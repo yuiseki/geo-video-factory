@@ -10,6 +10,7 @@ MapLibre の 3D 地形に使う標高データ（DEM）の選択・変換と、�
 ## 責務と使い分け
 
 - **標高タイル (`dem`) の選択と変換**: 国内の地理院標高タイル（`gsidem`）と全球対応の `mapterhorn` の使い分け、Terrarium 変換、出典表記。→ [references/dem-sources.md](references/dem-sources.md)
+- **海底地形データ (`GEBCO 2024 Grid`)**: 「海を抜く」表現向けの 15 秒角全球水深データの仕様、Terrarium 変換、沿岸高精細データとの併用、出典表記。→ [references/gebco-2024.md](references/gebco-2024.md)
 - **立体表現と描画の制約**: `exaggeration`（高さ強調）、`hillshade`（陰影起伏）、MapLibre 6.18.0 で確認した地形とラスタ/DOM 重ね合わせの仕様とトラブルシュート。→ [references/terrain-rendering.md](references/terrain-rendering.md)
 
 ## 関連スキルとの境界
