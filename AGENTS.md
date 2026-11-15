@@ -70,6 +70,9 @@ projects/YYYY/MM/DD/<slug>/     個々の動画の作業場所
   ```
 - 全 packages の型検査・単体テスト・カバレッジ検査: `packages/test.sh`
 - レンダラーのテストは Playwright と ffmpeg を通す E2E 動画も生成する。成果物は `packages/renderer/dist/test/video/` の `base.mp4`、`earth-tokyo-station.mp4`、`terrain-mt-fuji.mp4`。各動画の確認用フレームは同ディレクトリの `.work/<動画名>/frames/` に出る
+- PLATEAU データを使う E2E のケース名・出力動画名には、必ず `buildings-` prefix を付ける（例: `buildings-asakusa`）。
+- `packages/renderer/dist/test/video/` に置く再現用素材・動画は、追跡されたパッケージ実装とフィクスチャから他端末でも生成できるものに限る。`tmp/` 以下にある実装・入力・生成物を同ディレクトリへコピー、移動、リンクしてはならない。
+- `tmp/` は使い捨ての作業物専用とする。再現に必要なコード、データ、設定、手順の正本を `tmp/` に置かない。再現用素材は、出典・ライセンスを記録したうえで適切な追跡対象ディレクトリに置く。
 - Python パイプラインだけのテスト: `python3 -m unittest discover -s packages/pipeline/tests -v`
 - 参考動画の分析スクリプトのテスト: `python3 .agents/skills/geo-video-reference-analysis/scripts/tests/test_scripts.py`
 

@@ -1,0 +1,28 @@
+{
+  "width": 640,
+  "height": 360,
+  "fps": 2,
+  "base": "std",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "exaggeration": 1,
+  "plateauBuildings": {
+    "manifest": "assets/buildings-asakusa/plateau/manifest.json",
+    "workers": 2
+  },
+  "credits": [
+    "PLATEAU 3D都市モデル（東京都台東区、2025年度）"
+  ],
+  "shots": [
+    {
+      "duration": 6,
+      "ease": "inOutCubic",
+      "from": { "center": [139.797, 35.714], "zoom": 16.1, "pitch": 48, "bearing": -24 },
+      "to": { "center": [139.797, 35.714], "zoom": 16.9, "pitch": 56, "bearing": 0 },
+      "overlays": [
+        { "type": "chapter", "kicker": "PLATEAU 3D BUILDINGS", "text": "浅草の建物データ", "show": [0, 0.3] }
+      ]
+    }
+  ]
+}
