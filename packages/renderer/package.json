@@ -4,6 +4,9 @@
   "private": true,
   "license": "Apache-2.0",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "bin": {
     "geo-video-render": "./dist/src/render.js"
   },
@@ -11,7 +14,8 @@
     "build": "tsc",
     "typecheck": "tsc --noEmit",
     "render": "node dist/src/render.js",
-    "test": "npm run build && node --test \"dist/test/*.test.js\""
+    "test": "npm run build && node --test \"dist/test/*.test.js\"",
+    "test:coverage": "npm run build && node --experimental-test-coverage --test-coverage-lines=65 --test-coverage-branches=80 --test-coverage-functions=90 --test \"dist/test/*.test.js\""
   },
   "dependencies": {
     "maplibre-gl": "5.24.0",

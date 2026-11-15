@@ -17,6 +17,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 RENDERER_ENTRY = REPO_ROOT / 'packages' / 'renderer' / 'dist' / 'src' / 'render.js'
 FONT = '/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc'
 FPS = 24
+LOUDNORM_KEYS = ('input_i', 'input_tp', 'input_lra', 'input_thresh', 'target_offset')
 
 
 def run(args, **kwargs):
@@ -30,6 +31,51 @@ def duration(path: Path) -> float:
         text=True,
     )
     return float(p.stdout.strip())
+
+
+def validate_chapter_ids(chapters) -> None:
+    if not chapters:
+        raise ValueError('manifest must contain chapters')
+    names = [chapter['id'] for chapter in chapters]
+    if len(names) != len(set(names)):
+        raise ValueError('chapter ids must be unique')
+    if any(not isinstance(name, str) or not name or not name.replace('-', '').replace('_', '').isalnum() for name in names):
+        raise ValueError('chapter ids must be alphanumeric, hyphen or underscore')
+
+
+def parse_loudnorm(stderr: str) -> str:
+    start, end = stderr.rfind('{'), stderr.rfind('}')
+    if start < 0 or end <= start:
+        raise ValueError('loudnorm measurement did not contain JSON')
+    try:
+        values = json.loads(stderr[start:end + 1])
+    except json.JSONDecodeError as exc:
+        raise ValueError('loudnorm measurement contained invalid JSON') from exc
+    missing = [key for key in LOUDNORM_KEYS if key not in values]
+    if missing:
+        raise ValueError(f'loudnorm measurement missing: {", ".join(missing)}')
+    return (
+        'loudnorm=I=-14:TP=-1.5:LRA=11:'
+        f"measured_I={values['input_i']}:measured_TP={values['input_tp']}:"
+        f"measured_LRA={values['input_lra']}:measured_thresh={values['input_thresh']}:"
+        f"offset={values['target_offset']}:linear=true"
+    )
+
+
+def build_timeline(chapters, chapter_durations, card_durations):
+    if len(chapter_durations) != len(chapters) or len(card_durations) != max(0, len(chapters) - 1):
+        raise ValueError('duration counts must match chapters')
+    durations = [*chapter_durations, *card_durations]
+    if any(not isinstance(value, (int, float)) or value < 0 for value in durations):
+        raise ValueError('durations must be non-negative numbers')
+    cursor = 0.0
+    timeline = []
+    for index, (chapter, chapter_duration) in enumerate(zip(chapters, chapter_durations)):
+        if index:
+            cursor += card_durations[index - 1]
+        timeline.append({'title': chapter['title'], 'start': cursor})
+        cursor += chapter_duration
+    return timeline, cursor
 
 
 def card(title: str, number: int, image: Path, video: Path, series: str, fps: int, seconds: float) -> None:
@@ -104,12 +150,10 @@ def main() -> None:
     project_root = manifest_path.parent
     manifest = json.loads(manifest_path.read_text(encoding='utf-8'))
     chapters = manifest['chapters']
-    if not chapters:
-        p.error('manifest must contain chapters')
-
-    names = [c['id'] for c in chapters]
-    if len(names) != len(set(names)) or any(not n.replace('-', '').replace('_', '').isalnum() for n in names):
-        p.error('chapter ids must be unique alphanumeric, hyphen or underscore')
+    try:
+        validate_chapter_ids(chapters)
+    except (KeyError, ValueError) as exc:
+        p.error(str(exc))
 
     cache = args.voice_cache.resolve() if args.voice_cache else None
     if cache and not cache.is_dir():
@@ -141,14 +185,14 @@ def main() -> None:
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
         videos = list(pool.map(render, items))
 
-    cursor, timeline, ordered = 0.0, [], []
+    ordered = []
+    chapter_durations = [duration(video) for video in videos]
+    card_durations = [duration(cards[i]) for i in range(1, len(chapters))]
+    timeline, _ = build_timeline(chapters, chapter_durations, card_durations)
     for i, (ch, video) in enumerate(zip(chapters, videos)):
-        timeline.append({'title': ch['title'], 'start': cursor})
         if i:
             ordered.append(cards[i])
-            cursor += duration(cards[i])
         ordered.append(video)
-        cursor += duration(video)
 
     concat = out / 'concat.txt'
     concat.write_text(''.join("file '" + str(f).replace("'", "'\\''") + "'\n" for f in ordered), encoding='utf-8')
@@ -161,14 +205,7 @@ def main() -> None:
         capture_output=True,
         text=True,
     )
-    raw = measure.stderr
-    values = json.loads(raw[raw.rfind('{'):raw.rfind('}') + 1])
-    filt = (
-        'loudnorm=I=-14:TP=-1.5:LRA=11:'
-        f"measured_I={values['input_i']}:measured_TP={values['input_tp']}:"
-        f"measured_LRA={values['input_lra']}:measured_thresh={values['input_thresh']}:"
-        f"offset={values['target_offset']}:linear=true"
-    )
+    filt = parse_loudnorm(measure.stderr)
     result = out / 'episode.mp4'
     print('joining chapters', flush=True)
     run(

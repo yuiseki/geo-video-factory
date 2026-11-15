@@ -70,7 +70,9 @@ node packages/renderer/dist/src/render.js projects/2026/11/15/my-video/shots/exa
 node packages/renderer/dist/src/render.js projects/2026/11/15/my-video/shots/narrated.json --out projects/2026/11/15/my-video/out/narrated
 ```
 
-ショット JSON の書き方は [shots.md](.agents/skills/geo-video-renderer/references/shots.md)、声と字幕は [narration.md](.agents/skills/geo-video-narration/references/narration.md) にあります。テストは `packages/renderer` で `npm test`、Python パイプラインは `python3 -m unittest packages/pipeline/tests/test_pipeline.py` で走ります。
+ショット JSON の書き方は [shots.md](.agents/skills/geo-video-renderer/references/shots.md)、声と字幕は [narration.md](.agents/skills/geo-video-narration/references/narration.md) にあります。全パッケージの型検査、単体テスト、カバレッジ検査は、リポジトリのルートで `packages/test.sh` を実行します。
+
+`packages/` 全体の TDD 方針、カバレッジ基準、統合テストの実行方法は [packages/TESTING.md](packages/TESTING.md) を参照してください。
 
 ### 必要なもの
 

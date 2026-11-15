@@ -65,7 +65,8 @@ projects/YYYY/MM/DD/<slug>/     個々の動画の作業場所
   cd packages/renderer
   npm test
   ```
-- Python パイプラインのテスト: `python3 -m unittest packages/pipeline/tests/test_pipeline.py`
+- 全 packages の型検査・単体テスト・カバレッジ検査: `packages/test.sh`
+- Python パイプラインだけのテスト: `python3 -m unittest discover -s packages/pipeline/tests -v`
 - 参考動画の分析スクリプトのテスト: `python3 .agents/skills/geo-video-reference-analysis/scripts/tests/test_scripts.py`
 
 必要なもの: Node.js 22+、Playwright の Chromium、ffmpeg と ffprobe、Python 3 と Pillow、Noto Sans CJK、VOICEVOX エンジン (既定は `http://127.0.0.1:50021`)。

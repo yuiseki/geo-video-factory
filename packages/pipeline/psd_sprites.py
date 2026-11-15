@@ -16,7 +16,7 @@ from PIL import Image
 
 
 def bare(name):
-    return name.lstrip('*!').strip()
+    return name.strip().lstrip('*!').strip()
 
 
 def find(group, path):
@@ -61,6 +61,8 @@ def apply(psd, sel, on=(), off=()):
 
 
 def render(psd_path, cfg, outdir):
+    if not cfg.get('faces'):
+        raise ValueError('character config must define at least one face under "faces"')
     os.makedirs(outdir, exist_ok=True)
     x0, y0, x1, y1 = cfg['crop']
     width = cfg.get('width', 360)

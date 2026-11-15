@@ -36,13 +36,37 @@ export function resolveProjectRoot(specPath: string, projectArg?: string): strin
   return path.basename(parent) === 'shots' ? path.dirname(parent) : process.cwd();
 }
 
+export function parseSize(value: string): [number, number] {
+  const match = /^(\d+)x(\d+)$/.exec(value);
+  if (!match) throw new Error(`invalid size "${value}"; expected WIDTHxHEIGHT`);
+  const width = Number(match[1]);
+  const height = Number(match[2]);
+  if (!Number.isSafeInteger(width) || !Number.isSafeInteger(height) || width <= 0 || height <= 0) {
+    throw new Error(`invalid size "${value}"; dimensions must be positive integers`);
+  }
+  return [width, height];
+}
+
+export function buildFrameTimes(from: number, to: number, step: number): number[] {
+  if (!Number.isFinite(from) || from < 0) throw new Error('from must be a non-negative number');
+  if (!Number.isFinite(to) || to < from) throw new Error('invalid frame range: to must be at least from');
+  if (!Number.isFinite(step) || step <= 0) throw new Error('step must be a positive number');
+  const count = Math.max(0, Math.ceil((to - from - 1e-9) / step));
+  return Array.from({ length: count }, (_, i) => Number((from + i * step).toFixed(12)));
+}
+
 function isWithin(root: string, target: string): boolean {
   const rel = path.relative(root, target);
   return rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel);
 }
 
 export function resolveRequestFile(urlPath: string, packageRoot: string, projectRoot: string): string | null {
-  const clean = decodeURIComponent(new URL(urlPath, 'http://x').pathname).replace(/^\/+/, '');
+  let clean: string;
+  try {
+    clean = decodeURIComponent(new URL(urlPath, 'http://x').pathname).replace(/^\/+/, '');
+  } catch {
+    return null;
+  }
   let baseRoot: string;
   let candidate: string;
 
@@ -93,7 +117,7 @@ async function main(): Promise<void> {
 
   const projectRoot = resolveProjectRoot(specPath, opt('project'));
   const spec = JSON.parse(fs.readFileSync(specPath, 'utf8')) as ShotSpec;
-  const [w, h] = (opt('size', `${spec.width ?? 1920}x${spec.height ?? 1080}`) ?? '1920x1080').split('x').map(Number) as [number, number];
+  const [w, h] = parseSize(opt('size', `${spec.width ?? 1920}x${spec.height ?? 1080}`) ?? '1920x1080');
   spec.width = w;
   spec.height = h;
   const fps = Number(opt('fps', String(spec.fps ?? 30)));
@@ -172,8 +196,7 @@ async function main(): Promise<void> {
   const to = Math.min(total, Number(opt('to', String(total))));
   const stills = opt('stills');
   const step = stills ? Number(stills) : 1 / fps;
-  const times: number[] = [];
-  for (let s = from; s < to - 1e-9; s += step) times.push(s);
+  const times = buildFrameTimes(from, to, step);
 
   let timeouts = 0;
   const collisions = new Map<string, number>();
