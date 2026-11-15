@@ -21,7 +21,7 @@ YuisekinTV の特集動画です。`geo-video-renderer` のテンプレート (�
 
 ```bash
 python3 build_story.py
-node render.mjs shots/dotonbori.json --out out/新しい出力名 --size 1920x1080 --fps 24
+node ../../../../packages/renderer/dist/src/render.js shots/dotonbori.json --project . --out out/新しい出力名 --size 1920x1080 --fps 24
 ```
 
 既存フレームを消さないため、出力先に `frames/` があるとレンダラーは停止します。毎回、新しい出力先を指定してください。地理院タイルへの負荷と計算資源に注意し、章単位の書き出しは最大3並列で実行します。
@@ -53,7 +53,7 @@ python3 chapter_pipeline.py --out out/新しい出力名 --workers 3 \
 
 ## 移動速度と地名表示（v0.1.7）
 
-`soften_transitions_v017.py` は v0.1.6 の台詞を維持し、遠距離や章間の移動を長くして、`smooth` 補間で加減速を抑えます。コスモスクエア駅と大阪南港のラベルは、それぞれ駅と地域を表す位置に配置します。`page/lib.js` の `smooth` は従来の補間を選んだショットには影響しません。
+`soften_transitions_v017.py` は v0.1.6 の台詞を維持し、遠距離や章間の移動を長くして、`smooth` 補間で加減速を抑えます。コスモスクエア駅と大阪南港のラベルは、それぞれ駅と地域を表す位置に配置します。共通レンダラー (`packages/renderer/src/lib.ts`) の `smooth` は従来の補間を選んだショットには影響しません。
 
 ## 似た写真の重複 (v0.1.2)
 

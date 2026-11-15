@@ -17,6 +17,7 @@ from shot_effects import landmark
 from title_card import create_card, encode_card
 
 ROOT = Path(__file__).resolve().parent
+RENDERER_ENTRY = ROOT.parents[4] / 'packages' / 'renderer' / 'dist' / 'src' / 'render.js'
 CARD_SECONDS = 2.5
 FPS = 24
 
@@ -62,7 +63,7 @@ def render_chapter(item):
     section, _, spec_path, output = item
     log = output.parent / f'{output.name}.log'
     with log.open('x') as stream:
-        p = subprocess.run(['node', 'render.mjs', str(spec_path), '--out', str(output),
+        p = subprocess.run(['node', str(RENDERER_ENTRY), str(spec_path), '--project', str(ROOT), '--out', str(output),
                             '--size', '1920x1080', '--fps', str(FPS), '--raw-audio'],
                            cwd=ROOT, stdout=stream, stderr=subprocess.STDOUT)
     if p.returncode:
