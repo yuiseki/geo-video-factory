@@ -16,7 +16,7 @@ npm run test:coverage
 VIDEO_TARGET=terrain-mt-omuroyama npm run test:video
 ```
 
-`VIDEO_TARGET` は `base`、`earth-tokyo-station`、`terrain-mt-fuji`、`terrain-mt-omuroyama`、各 `choropleth-3d-*`、`buildings-asakusa`、`buildings-asakusa-sumida-river` を指定できます。PLATEAU の建物 E2E は `buildings-` prefix を使います。例: `VIDEO_TARGET=buildings-asakusa npm run test:video`。最終出力はそれぞれ `dist/test/video/<testname>.mp4` です。PLATEAU の実データは fixture に含めず、欠落時に `.work/<testname>/project/` へ取得・生成してキャッシュします。未指定で `npm test` を実行すると、E2E対象動画を生成します。E2Eは `dist/test/video/` 全体を削除せず、対象ケースの動画と `.work/` 内だけを更新するため、手動生成した動画を保持します。
+`VIDEO_TARGET` は `base`、`earth-tokyo-station`、`terrain-mt-fuji`、`terrain-mt-fuji-seasonal`、`terrain-mt-omuroyama`、各 `choropleth-3d-*`、`buildings-asakusa`、`buildings-asakusa-sumida-river` を指定できます。PLATEAU の建物 E2E は `buildings-` prefix を使います。例: `VIDEO_TARGET=buildings-asakusa npm run test:video`。最終出力はそれぞれ `dist/test/video/<testname>.mp4` です。PLATEAU の実データは fixture に含めず、欠落時に `.work/<testname>/project/` へ取得・生成してキャッシュします。未指定で `npm test` を実行すると、E2E対象動画を生成します。E2Eは `dist/test/video/` 全体を削除せず、対象ケースの動画と `.work/` 内だけを更新するため、手動生成した動画を保持します。
 
 `test:coverage` は、行 65%、分岐 80%、関数 90% を下回ると失敗する。ブラウザーを起動する CLI 本体を含むため、行カバレッジは段階的に引き上げる。
 
@@ -45,3 +45,5 @@ Python 実装の行カバレッジは 70% を下回ると失敗する。`package
 - カメラ効果とタイムラインは純粋関数として入力を変更しないこと、境界値、異常値をテストする。
 
 不具合を直すときは、その不具合を再現するテストを追加して失敗を確認する。テストが通る最小の修正を入れた後、重複だけを整理する。
+
+`terrain-mt-fuji-seasonal` は Sentinel-2 と地理院オルソから四季画像を初回取得・生成し、`.work/terrain-mt-fuji-seasonal/project/fuji-seasons/` にキャッシュします。Python の `numpy`、`Pillow`、`pyproj`、`scipy` とネットワーク接続が必要です。冬の雪は Sentinel-2 の SCL 積雪分類を使用します。

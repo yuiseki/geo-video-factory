@@ -103,10 +103,25 @@ def blend_seasonal_chroma(
     return lab_to_srgb(out_lab)
 
 
+def blend_snow(base_rgb: np.ndarray, season_rgb: np.ndarray, scl: np.ndarray) -> np.ndarray:
+    """Transfer observed snow brightness and color only where Sentinel-2 classifies snow."""
+    weight = (scl >= 10.9).astype(np.float32)
+    blended = base_rgb.astype(np.float32) * (1.0 - weight[..., None] * 0.9)
+    blended += season_rgb.astype(np.float32) * (weight[..., None] * 0.9)
+    return np.clip(np.rint(blended), 0, 255).astype(np.uint8)
+
+
 def scl_clear_ratio(scl: np.ndarray) -> float:
     """Return fraction of pixels not classified as cloud/cirrus/cloud-shadow (SCL 3, 8, 9, 10)."""
     cloudy = np.isin(scl, [3, 8, 9, 10])
     return float(1.0 - np.mean(cloudy))
+
+
+def scene_covers_bbox(feature: dict[str, Any], bbox: tuple[float, float, float, float]) -> bool:
+    """Reject scenes whose geographic extent does not cover the requested mosaic."""
+    extent = feature.get("bbox")
+    return bool(extent and len(extent) >= 4 and extent[0] <= bbox[0] and extent[1] <= bbox[1]
+                and extent[2] >= bbox[2] and extent[3] >= bbox[3])
 
 
 def search_sentinel2_scene(
@@ -121,7 +136,7 @@ def search_sentinel2_scene(
             "bbox": list(bbox_deg),
             "datetime": datetime_range,
             "query": {"eo:cloud_cover": {"lt": max_cloud}},
-            "limit": 12,
+            "limit": 100,
         }
     ).encode("utf-8")
     req = urllib.request.Request(
@@ -130,9 +145,9 @@ def search_sentinel2_scene(
         headers={"Content-Type": "application/json", "User-Agent": USER_AGENT},
     )
     res = json.loads(_urlopen_retry(req).decode("utf-8"))
-    feats = res.get("features") or []
+    feats = [feature for feature in (res.get("features") or []) if scene_covers_bbox(feature, bbox_deg)]
     if not feats:
-        raise RuntimeError(f"No Sentinel-2 L2A scene found for {datetime_range} (cloud < {max_cloud}%)")
+        raise RuntimeError(f"No Sentinel-2 L2A scene covers the requested bbox for {datetime_range} (cloud < {max_cloud}%)")
     feats.sort(key=lambda f: float(f["properties"].get("eo:cloud_cover", 100.0)))
 
     best_feat = feats[0]
@@ -314,7 +329,7 @@ def main(argv: list[str] | None = None) -> int:
     # Prefer summer scene's NDVI as vegetation mask so winter_burn still masks grass vs roads!
     for name, dt in parsed_seasons:
         if "summer" in name:
-            feat = search_sentinel2_scene(bounds_tuple, dt, max_cloud=25.0)
+            feat = search_sentinel2_scene(bounds_tuple, dt, max_cloud=100.0)
             epsg = int(feat["properties"]["proj:epsg"])
             red = read_cog_mercator_bbox(feat["assets"]["red"]["href"], epsg, feat["assets"]["red"]["proj:transform"], bounds_tuple, w, h)
             nir = read_cog_mercator_bbox(feat["assets"]["nir"]["href"], epsg, feat["assets"]["nir"]["proj:transform"], bounds_tuple, w, h)
@@ -322,7 +337,7 @@ def main(argv: list[str] | None = None) -> int:
             break
 
     for name, dt in parsed_seasons:
-        feat = search_sentinel2_scene(bounds_tuple, dt, max_cloud=25.0)
+        feat = search_sentinel2_scene(bounds_tuple, dt, max_cloud=100.0)
         epsg = int(feat["properties"]["proj:epsg"])
         vis = feat["assets"]["visual"]
         season_rgb = read_cog_mercator_bbox(vis["href"], epsg, vis["proj:transform"], bounds_tuple, w, h).astype(np.uint8)
@@ -332,6 +347,10 @@ def main(argv: list[str] | None = None) -> int:
             nir = read_cog_mercator_bbox(feat["assets"]["nir"]["href"], epsg, feat["assets"]["nir"]["proj:transform"], bounds_tuple, w, h)
             mask = build_vegetation_mask(red, nir)
         blended = blend_seasonal_chroma(ortho_rgb, season_rgb, mask=mask, chroma_strength=0.92, lightness_blend=0.30)
+        if name == "winter" and "scl" in feat["assets"]:
+            scl = feat["assets"]["scl"]
+            classes = read_cog_mercator_bbox(scl["href"], epsg, scl["proj:transform"], bounds_tuple, w, h)
+            blended = blend_snow(blended, season_rgb, classes)
         out_file = out_dir / f"{name}.jpg"
         Image.fromarray(blended).save(out_file, quality=92)
         manifest["seasons"][name] = {

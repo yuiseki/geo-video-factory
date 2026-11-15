@@ -86,6 +86,21 @@ class SeasonalOrthoTests(unittest.TestCase):
         self.assertGreater(int(out[0, 2, 1]), int(out[0, 2, 0]) + 15)
         self.assertGreater(int(out[0, 2, 1]), int(out[3, 2, 1]))
 
+    def test_scene_covers_bbox_rejects_partial_footprint(self) -> None:
+        bbox = (138.60, 35.20, 138.86, 35.48)
+        self.assertFalse(seasonal_ortho.scene_covers_bbox({'bbox': [137.7, 34.2, 138.93, 35.225]}, bbox))
+        self.assertTrue(seasonal_ortho.scene_covers_bbox({'bbox': [137.68, 35.11, 138.91, 36.12]}, bbox))
+        self.assertFalse(seasonal_ortho.scene_covers_bbox({}, bbox))
+
+    def test_blend_snow_uses_scl_and_keeps_non_snow_unchanged(self) -> None:
+        base = np.full((4, 4, 3), [90, 85, 80], dtype=np.uint8)
+        satellite = np.full((4, 4, 3), [235, 238, 240], dtype=np.uint8)
+        scl = np.zeros((4, 4), dtype=np.uint8)
+        scl[:, 2:] = 11
+        out = seasonal_ortho.blend_snow(base, satellite, scl)
+        np.testing.assert_array_equal(out[:, :2, :], base[:, :2, :])
+        self.assertGreater(int(out[0, 3, 0]), 190)
+
     def test_scl_clear_ratio_excludes_cloud_and_shadow_classes(self) -> None:
         # Sentinel-2 SCL: 4=veg, 5=bare, 3=cloud shadow, 8=cloud med, 9=cloud high, 10=cirrus
         scl = np.array([[4, 4, 5, 8], [4, 9, 10, 3]], dtype=np.uint8)

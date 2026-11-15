@@ -15,6 +15,7 @@
    - GeoTIFF IFD（TileOffsets / TileByteCounts / Predictor=2 Deflate）を直接解析し、対象 `bbox` と重なるタイルだけを Range リクエストで取得する。
 4. **NDVI 植生マスク＋CIE L\*a\*b\* 色度転写 (`build_vegetation_mask`, `blend_seasonal_chroma`)**
    - 植生域（対象季節の NDVI または地理院オルソの緑・茶色度）に限定し、L\*（明度・高周波テクスチャ）は地理院オルソを主体に保ちつつ、a\*・b\*（色度）と緩やかな明度差を季節データから転写する。これにより道路・建物・リフト等の人工物の色被りを防ぐ。
+   - `winter` の場合は、SCL クラス 11 の積雪域にも衛星画像の色と明るさを重ねる。植生のない山頂の雪を表現し、それ以外の地物は変更しない。
 
 ## 2. ショット JSON への組み込み
 
