@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
@@ -66,6 +67,41 @@ async function readManifest(path: string): Promise<{ manifest: ModelManifest; ur
   }
   if (!manifest.tiles.length) throw new Error('PLATEAU buildings manifest has no tiles');
   return { manifest, url };
+}
+
+function batchUntexturedMeshes(root: THREE.Object3D): void {
+  root.updateMatrixWorld(true);
+  const identity = new THREE.Matrix4();
+  const candidates: THREE.Mesh[] = [];
+  root.traverse((object) => {
+    const mesh = object as THREE.Mesh;
+    if (!mesh.isMesh || Array.isArray(mesh.material)) return;
+    const mat = mesh.material as THREE.MeshStandardMaterial;
+    if (!mat || mat.map) return;
+    if (!mesh.geometry.attributes.position || !mesh.geometry.attributes._batchid) return;
+    candidates.push(mesh);
+  });
+  if (candidates.length <= 16) return;
+  const geometries: THREE.BufferGeometry[] = [];
+  for (const mesh of candidates) {
+    const src = mesh.geometry;
+    const geom = new THREE.BufferGeometry();
+    geom.setAttribute('position', src.attributes.position!.clone());
+    if (src.attributes.normal) geom.setAttribute('normal', src.attributes.normal.clone());
+    geom.setAttribute('_batchid', src.attributes._batchid!.clone());
+    if (src.index) geom.setIndex(src.index.clone());
+    if (!mesh.matrixWorld.equals(identity)) geom.applyMatrix4(mesh.matrixWorld);
+    geometries.push(geom);
+  }
+  const merged = mergeGeometries(geometries, false);
+  for (const geom of geometries) geom.dispose();
+  if (!merged) return;
+  for (const mesh of candidates) {
+    mesh.parent?.remove(mesh);
+    mesh.geometry.dispose();
+    (mesh.material as THREE.Material).dispose();
+  }
+  root.add(new THREE.Mesh(merged, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.92, metalness: 0 })));
 }
 
 function tuneMaterials(root: THREE.Object3D): void {
@@ -157,6 +193,7 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
       const tile = manifest.tiles[cursor++]!;
       const modelUrl = new URL(tile.glb, url).href;
       const gltf = await loader.loadAsync(modelUrl);
+      batchUntexturedMeshes(gltf.scene);
       const delta = tile.rtc.map((value, index) => value - origin[index]!) as [number, number, number];
       const localPosition: [number, number, number] = [dot(east, delta), dot(north, delta), dot(up, delta) + tileHeightOffset(tile.kind, heightOffset)];
       const translate = new THREE.Matrix4().makeTranslation(...localPosition);

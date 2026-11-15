@@ -207,6 +207,9 @@ export function buildMapStyle(spec: ShotSpec) {
   const ov = overlayLayers(spec.shots);
   return {
     version: 8,
+    ...(spec.projection
+      ? { projection: typeof spec.projection === 'string' ? { type: spec.projection } : spec.projection }
+      : {}),
     ...(spec.osmLabels ? { glyphs: 'https://tile.yuiseki.net/fonts/{fontstack}/{range}.pbf' } : {}),
     sources: {
       base: rasterSource(base),

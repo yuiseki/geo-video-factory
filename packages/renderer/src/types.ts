@@ -341,6 +341,7 @@ export interface ShotSpec {
   width?: number;
   height?: number;
   fps?: number;
+  projection?: 'mercator' | 'globe' | 'vertical-perspective' | { type: string };
   base?: string;
   dem?: 'gsi' | 'mapterhorn' | string;
   exaggeration?: number;
