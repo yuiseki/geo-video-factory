@@ -31,6 +31,7 @@ from typing import Any, Callable
 from PIL import Image
 
 from building_heights import ONE_STORY_M, calibrate_height_model, estimate_height, footprint_area_m2
+from facade_archetypes import STYLE_CODES, classify_facade, facade_wall_color, roof_stats
 from glb_spatial import _ecef
 from city_geometry import SHADOW_CELL_M, SHADOW_LIFT_M, SHADOW_PER_M, _flat_roof, _Mesh, _pitched, _shadow_glb, _walls  # noqa: F401
 
@@ -77,17 +78,11 @@ def roof_color(sample: tuple[int, int, int] | None, identifier: str) -> tuple[fl
     return colorsys.hsv_to_rgb(h, s, v)
 
 
-def _ortho_sampler(orthophoto: Image.Image | None, bbox: list[float]):
+def _ortho_sampler(orthophoto: Image.Image | None, bounds: list[float]):
+    """Roof statistics (color, texture) from the orthophoto covering `bounds`."""
     if orthophoto is None:
         return lambda ring: None
-    from building_appearance import sample_polygon_color
-
-    def sample(ring):
-        try:
-            return sample_polygon_color(orthophoto, ring, bbox)
-        except ValueError:
-            return None
-    return sample
+    return lambda ring: roof_stats(orthophoto, ring, bounds)
 
 
 def build_city_proxy_tile(
@@ -100,6 +95,7 @@ def build_city_proxy_tile(
     seed: str = 'geo-video-factory',
     shadow_casters: list[tuple[dict[str, Any], float]] | None = None,
     roof_texture: tuple[str, list[float]] | None = None,
+    orthophoto_bounds: list[float] | None = None,
 ) -> dict[str, Any]:
     """Append one `city-proxy` tile for footprints PLATEAU lacks; returns the manifest."""
     from shapely.geometry import Point, shape
@@ -120,7 +116,7 @@ def build_city_proxy_tile(
     kx = 111_320.0 * math.cos(math.radians(lat0))
     ky = 110_950.0
     model = height_model or calibrate_height_model([])
-    sample_roof = _ortho_sampler(orthophoto, bbox_degrees)
+    sample_roof = _ortho_sampler(orthophoto, orthophoto_bounds or bbox_degrees)
 
     polygons = [shape(f['geometry']) for f in features]
     plateau_hits: set[int] = set()
@@ -158,37 +154,47 @@ def build_city_proxy_tile(
         area = footprint_area_m2(outer)
         height, source = estimate_height(props, area, model, identifier)
         code = str(props.get('vt_code') or '3101')
-        style = 2 if code in ('3111', '3112') else 1 if code in ('3102', '3103') else 0
         ground_samples = [ground(lon, lat) for lon, lat in outer[:-1]] + [ground(*polygon.centroid.coords[0])]
         base = min(ground_samples) - GROUND_SINK_M
         top = base + GROUND_SINK_M + (max(ground_samples) - min(ground_samples)) + height
         rings = [local(ring) for ring in feat['geometry']['coordinates']]
         casters.append((rings, top - base - GROUND_SINK_M))
-        wall = wall_color(identifier, style)
-        roof = roof_color(sample_roof(outer), identifier)
         batch = len(records)
 
-        roof_kind = 'flat'
-        if style == 0 and PITCHED_AREA_M2[0] <= area <= PITCHED_AREA_M2[1] and len(rings) == 1 and props.get('roof:shape', 'auto') != 'flat':
+        # Pitched roofs only for small, nearly rectangular ordinary buildings.
+        rect = None
+        if code == '3101' and PITCHED_AREA_M2[0] <= area <= PITCHED_AREA_M2[1] and len(rings) == 1 and props.get('roof:shape', 'auto') != 'flat':
             from shapely.geometry import Polygon
             footprint_m = Polygon(rings[0])
-            rect = footprint_m.minimum_rotated_rectangle
-            if rect.geom_type == 'Polygon' and footprint_m.area / rect.area >= PITCHED_MIN_RECTANGULARITY:
-                roof_kind = 'gable' if _hash01(identifier, f'{seed}:roof') < 0.45 else 'hip'
-                corners = list(rect.exterior.coords)[:4]
-                if sum(corners[i][0] * corners[(i + 1) % 4][1] - corners[(i + 1) % 4][0] * corners[i][1] for i in range(4)) < 0:
-                    corners = corners[::-1]
-                width = min(math.dist(corners[0], corners[1]), math.dist(corners[1], corners[2]))
-                pitch = math.radians(22 + 9 * _hash01(identifier, 'pitch'))
-                rise = min(width / 2 * math.tan(pitch), max(0.6, height - 2.5))
-                eave = top - rise
-                _pitched(mesh, corners, eave, top, base, roof_kind, wall, roof, batch, (float(style), eave - base))
+            candidate = footprint_m.minimum_rotated_rectangle
+            if candidate.geom_type == 'Polygon' and footprint_m.area / candidate.area >= PITCHED_MIN_RECTANGULARITY:
+                rect = candidate
+        # Walls are guessed from the roof seen in the aerial photo (facade_archetypes).
+        stats = sample_roof(outer)
+        archetype = classify_facade(stats, area, height, code, pitched=rect is not None, osm_building=props.get('building'))
+        if archetype not in ('house', 'old_house'):
+            rect = None
+        style = STYLE_CODES[archetype]
+        wall = facade_wall_color(archetype, stats, identifier)
+        roof = roof_color(stats['rgb'] if stats else None, identifier)
+
+        roof_kind = 'flat'
+        if rect is not None:
+            roof_kind = 'gable' if _hash01(identifier, f'{seed}:roof') < 0.45 else 'hip'
+            corners = list(rect.exterior.coords)[:4]
+            if sum(corners[i][0] * corners[(i + 1) % 4][1] - corners[(i + 1) % 4][0] * corners[i][1] for i in range(4)) < 0:
+                corners = corners[::-1]
+            width = min(math.dist(corners[0], corners[1]), math.dist(corners[1], corners[2]))
+            pitch = math.radians(22 + 9 * _hash01(identifier, 'pitch'))
+            rise = min(width / 2 * math.tan(pitch), max(0.6, height - 2.5))
+            eave = top - rise
+            _pitched(mesh, corners, eave, top, base, roof_kind, wall, roof, batch, (float(style), eave - base))
         if roof_kind == 'flat':
             for ring_index, ring in enumerate(rings):
                 _walls(mesh, ring, base, top, base, wall, batch, (float(style), top - base), ring_index == 0)
             _flat_roof(mesh, rings, top, base, roof, batch, (float(style), top - base))
         records.append({'id': identifier, 'height': round(top - base - GROUND_SINK_M, 2), 'source': source, 'roof': roof_kind,
-                        'ground': round(base, 2), 'vt_code': code})
+                        'ground': round(base, 2), 'vt_code': code, 'facade': archetype})
 
     if records:
         glb = mesh.glb()

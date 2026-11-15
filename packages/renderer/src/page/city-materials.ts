@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { CITY_FACADE } from './city-facade-glsl.js';
 
 /**
  * Uniforms shared by the city materials of one scene (one manifest), updated once per frame.
@@ -66,7 +67,7 @@ export interface CityRoofPhoto {
 
 export function createCityProxyMaterial(roof?: CityRoofPhoto, uniforms: CityUniforms = cityUniforms): THREE.MeshStandardMaterial {
   const material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.88, metalness: 0, side: THREE.DoubleSide });
-  material.customProgramCacheKey = () => `city-proxy-v5${roof ? '-roof' : ''}`;
+  material.customProgramCacheKey = () => `city-proxy-v6${roof ? '-roof' : ''}`;
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
     if (roof) {
@@ -145,53 +146,7 @@ diffuseColor.rgb = mix(vec3(0.80, 0.80, 0.78), cityPainted, vCityPaint);`,
       .replace(
         '#include <dithering_fragment>',
         `gl_FragColor.rgb = mix(gl_FragColor.rgb * 0.45 + vec3(0.52), gl_FragColor.rgb, vCityPaint);
-float cityWall = 1.0 - step(0.35, abs(vCityUp));
-float cityStyle = floor(vCityStyle.x + 0.5);
-float cityHouse = 1.0 - step(0.5, cityStyle);
-float cityEave = vCityStyle.y;
-float cityR = cityHash(vec2(vCityBatch, 3.7));
-float cityStorey = cityStyle > 0.5 ? 3.25 : 2.85;
-float cityBay = cityStyle > 0.5 ? 2.6 + cityR * 0.8 : 3.3 + cityR * 1.3;
-float cityFy = vCityUv.y / cityStorey;
-float cityFx = vCityUv.x / cityBay;
-vec2 cityCellId = vec2(floor(cityFx) + vCityBatch * 7.13, floor(cityFy) + vCityBatch * 1.37);
-float cityWx = fract(cityFx);
-float cityWy = fract(cityFy);
-// Windows are rectangles on a regular grid: one row per storey, one column per bay. Whether a
-// bay has windows is decided per column, so a column is either glazed from bottom to top or not.
-float cityColumn = cityHash(vec2(floor(cityFx), vCityBatch * 0.731 + 11.0));
-float cityPresent = step(cityStyle > 0.5 ? 0.0 : 0.35, cityColumn) * (1.0 - step(1.5, cityStyle));
-float cityHalf = cityStyle > 0.5 ? 0.34 : 0.22;
-float cityAaX = max(fwidth(cityFx), 1e-4);
-float cityAaY = max(fwidth(cityFy), 1e-4);
-float cityInX = smoothstep(0.5 - cityHalf - cityAaX, 0.5 - cityHalf + cityAaX, cityWx) * (1.0 - smoothstep(0.5 + cityHalf - cityAaX, 0.5 + cityHalf + cityAaX, cityWx));
-float cityInY = smoothstep(0.32 - cityAaY, 0.32 + cityAaY, cityWy) * (1.0 - smoothstep(0.82 - cityAaY, 0.82 + cityAaY, cityWy));
-float cityBelow = step(0.7, vCityUv.y) * step(vCityUv.y, cityEave - 0.45);
-float cityWindow = cityWall * cityPresent * cityInX * cityInY * cityBelow * vCityPaint;
-// Prefilter: when a storey covers only a few pixels, use the average window coverage instead of
-// the pattern, so distant walls do not shimmer as black speckles.
-float cityPx = max(fwidth(vCityUv.x), fwidth(vCityUv.y));
-float cityDetail = 1.0 - smoothstep(0.18, 0.45, cityPx / cityStorey);
-float cityCoverage = vCityPaint * cityWall * cityBelow * (1.0 - step(1.5, cityStyle)) * (cityStyle > 0.5 ? 0.68 : 0.65 * 0.44) * 0.5;
-float cityGlassMix = mix(cityCoverage, cityWindow, cityDetail);
-vec3 cityGlass = mix(vec3(0.20, 0.24, 0.29), vec3(0.42, 0.48, 0.56), cityHash(cityCellId + 9.1));
-gl_FragColor.rgb = mix(gl_FragColor.rgb, mix(vec3(0.27, 0.31, 0.37), cityGlass, cityDetail), cityGlassMix * 0.72);
-float cityBand = cityWall * (1.0 - step(1.5, cityStyle)) * (1.0 - smoothstep(0.0, 0.05, min(cityWy, 1.0 - cityWy))) * step(1.0, vCityUv.y) * cityDetail * vCityPaint;
-gl_FragColor.rgb *= 1.0 - cityBand * 0.08;
-// No wall stays flat: houses get lap siding, wall-less sheds get vertical slats.
-float citySiding = cityWall * cityHouse * (1.0 - smoothstep(0.0, 0.12, fract(vCityUv.y / 0.42))) * cityDetail * vCityPaint;
-gl_FragColor.rgb *= 1.0 - citySiding * 0.10;
-float citySlat = cityWall * step(1.5, cityStyle) * (1.0 - smoothstep(0.0, 0.25, fract(vCityUv.x / 0.55))) * cityDetail * vCityPaint;
-gl_FragColor.rgb *= 1.0 - citySlat * 0.22;
-gl_FragColor.rgb *= mix(1.0, mix(0.72, 1.0, smoothstep(0.2, 2.4, vCityUv.y)), cityWall);
-float cityLitShare = uCityWindows * (0.45 + 0.4 * cityR);
-float cityLit = step(1.0 - cityLitShare, cityHash(cityCellId + 4.2));
-vec3 cityWarm = mix(vec3(1.0, 0.72, 0.40), vec3(0.85, 0.92, 1.0), step(0.85, cityHash(cityCellId + 2.3)));
-vec3 cityWarmAvg = mix(vec3(1.0, 0.72, 0.40), vec3(0.85, 0.92, 1.0), 0.15);
-vec3 cityGlow = mix(cityWarmAvg * cityCoverage * cityLitShare * 0.9, cityWarm * cityWindow * cityLit, cityDetail);
-gl_FragColor.rgb = mix(gl_FragColor.rgb, gl_FragColor.rgb * vec3(0.90, 0.93, 1.02), uCityNight);
-gl_FragColor.rgb += cityGlow * uCityWindows * 1.2;
-#include <dithering_fragment>`,
+${CITY_FACADE}#include <dithering_fragment>`,
       );
   };
   material.needsUpdate = true;

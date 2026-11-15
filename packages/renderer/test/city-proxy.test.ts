@@ -73,6 +73,10 @@ describe('city proxy material', () => {
     // every wall carries a pattern: windows, lap siding on houses, slats on wall-less sheds
     assert.match(shader.fragmentShader, /citySiding/);
     assert.match(shader.fragmentShader, /citySlat/);
+    // facade kinds guessed from the roof: balconies, factory ribs, old-house boards
+    assert.match(shader.fragmentShader, /cityBalcony/);
+    assert.match(shader.fragmentShader, /cityRibs/);
+    assert.match(shader.fragmentShader, /cityBoards/);
     assert.equal(shader.uniforms.uCityNight, cityUniforms.uCityNight, 'uniforms are shared, not copied');
     const own = createCityUniforms();
     const scoped = createCityProxyMaterial(undefined, own);

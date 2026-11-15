@@ -12,6 +12,7 @@ cp = import_pipeline('city_proxy')
 bh = import_pipeline('building_heights')
 gs = import_pipeline('glb_spatial')
 p3 = import_pipeline('plateau_3d')
+fa = import_pipeline('facade_archetypes')
 
 BBOX = [139.30, 35.74, 139.34, 35.77]
 LAT0 = 35.755
@@ -133,6 +134,16 @@ class CityProxyTest(unittest.TestCase):
         self.assertAlmostEqual(maxx - minx, 0.02 * KX, delta=1)
         self.assertAlmostEqual(maxy - miny, 0.02 * KY, delta=1)
         self.assertAlmostEqual(minx, (139.31 - 139.32) * KX, delta=1)
+
+    def test_the_facade_kind_guessed_from_the_roof_is_recorded_and_sent_to_the_renderer(self):
+        features = [feature('gsi/h', rect(139.31, 35.75, 11, 8)), feature('gsi/w', rect(139.33, 35.75, 60, 40), building='warehouse')]
+        directory, manifest = self.build(features, osm_features=[feature('way/9', rect(139.33, 35.75, 60, 40), building='warehouse')])
+        tile, _, values = read(directory, manifest)
+        records = {r['id']: r for r in json.loads((Path(directory) / tile['buildings']).read_text())['buildings']}
+        self.assertEqual(records['gsi/h']['facade'], 'house')
+        self.assertEqual(records['gsi/w']['facade'], 'factory')
+        styles = {int(round(v[0])) for v in values['_STYLE']}
+        self.assertEqual(styles, {fa.STYLE_CODES['house'], fa.STYLE_CODES['factory']})
 
     def test_wall_hex_carries_the_facade_style_in_its_alpha(self):
         self.assertRegex(cp.wall_hex('a', 30.0), r'^#[0-9a-f]{6}ff$')
