@@ -69,6 +69,35 @@ test('cameraAt interpolates keys and takes the short way round for bearing', () 
   assert.deepEqual(cameraAt(keys, 1, 'linear').center, [139, 36]);
 });
 
+test('cameraAt with fly path couples zoom and pan (van Wijk) without high-zoom skidding', () => {
+  const zoomIn: CameraKey[] = [
+    { t: 0, center: [98.08355, 31.1540786], zoom: 2.01733745 },
+    { t: 1, center: [139.7671, 35.6812], zoom: 10 },
+  ];
+  assert.deepEqual(cameraAt(zoomIn, 0, 'linear', { path: 'fly', width: 640, height: 360 }).center, zoomIn[0]!.center);
+  assert.deepEqual(cameraAt(zoomIn, 1, 'linear', { path: 'fly', width: 640, height: 360 }).center, zoomIn[1]!.center);
+  const halfIn = cameraAt(zoomIn, 0.5, 'linear', { path: 'fly', width: 640, height: 360 });
+  // By halfway through a zoom-in flight, the camera should already be centered near Tokyo instead of inland China.
+  assert.ok(halfIn.center[0] > 138, `expected center lng > 138 at t=0.5, got ${halfIn.center[0]}`);
+  assert.ok(halfIn.zoom < 7, `expected zoom < 7 at t=0.5, got ${halfIn.zoom}`);
+
+  const zoomOut: CameraKey[] = [
+    { t: 0, center: [56.4, 26.4], zoom: 5.2 },
+    { t: 1, center: [98.08355, 31.1540786], zoom: 2.01733745 },
+  ];
+  const earlyOut = cameraAt(zoomOut, 0.2, 'linear', { path: 'fly', width: 640, height: 360 });
+  const panFraction = (earlyOut.center[0] - 56.4) / (98.08355 - 56.4);
+  // During zoom-out, pan stays slow while zoomed in so the origin stays framed while pulling back.
+  assert.ok(panFraction < 0.1, `expected panFraction < 0.1 at t=0.2, got ${panFraction}`);
+
+  // Pure zoom in place falls back to linear zoom without NaN.
+  const pureZoom: CameraKey[] = [
+    { t: 0, center: [139.7671, 35.6812], zoom: 10 },
+    { t: 1, center: [139.7671, 35.6812], zoom: 15 },
+  ];
+  assert.equal(cameraAt(pureZoom, 0.5, 'linear', { path: 'fly' }).zoom, 12.5);
+});
+
 test('sliceLine returns the first fraction of the line by length', () => {
   const line: [number, number][] = [[0, 0], [1, 0], [1, 1]];
   assert.deepEqual(sliceLine(line, 0), [[0, 0], [0, 0]]);

@@ -34,6 +34,8 @@
 | `from` / `to` | カメラ。`center` [経度, 緯度]、`zoom`、`pitch` (0〜85 度)、`bearing` (北が 0、時計回り) |
 | `keys` | 途中を通るとき: `[{ "t": 0, ...カメラ }, { "t": 0.5, ... }, { "t": 1, ... }]`。`from`/`to` の代わり |
 | `ease` | `inOut` (既定) / `smooth` / `linear` / `in` / `out`。ショット全体にかかる |
+| `path` | `linear` (既定) / `fly`。`fly` は van Wijk & Nuij 型のズーム・パン結合補間（長距離移動＋大きなズーム変化向け） |
+| `curve` | `path: "fly"` の軌道曲線パラメータ（既定 `1.42`） |
 | `tint` | 地形を暗くする量 (0〜1)。`chapter` を置くと自動で 0.55 |
 | `overlays` | 重ね物の配列 |
 

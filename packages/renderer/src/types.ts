@@ -1,5 +1,6 @@
 export type LngLat = [number, number];
 export type EaseKind = 'linear' | 'smooth' | 'in' | 'out' | 'inOut';
+export type CameraPathKind = 'linear' | 'fly';
 export type TimeWindow = [number, number];
 
 export interface CameraPose {
@@ -258,6 +259,8 @@ export interface Shot {
   to?: CameraPose;
   keys?: CameraKey[];
   ease?: EaseKind;
+  path?: CameraPathKind;
+  curve?: number;
   tint?: number;
   subtitles?: boolean;
   lines?: LineSpec[];

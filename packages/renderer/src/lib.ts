@@ -1,5 +1,6 @@
 import type {
   CameraKey,
+  CameraPathKind,
   CameraPose,
   CounterOverlay,
   DemConfig,
@@ -80,9 +81,55 @@ const lerp = (a: number, b: number, t: number): number => a + (b - a) * t;
 const mercY = (lat: number): number => Math.log(Math.tan(Math.PI / 4 + (lat * Math.PI) / 360));
 const unmercY = (y: number): number => ((2 * Math.atan(Math.exp(y)) - Math.PI / 2) * 180) / Math.PI;
 
+export interface CameraPathOptions {
+  path?: CameraPathKind;
+  curve?: number;
+  width?: number;
+  height?: number;
+}
+
+// van Wijk & Nuij (2003) coupled zoom+pan trajectory so screen-space optical flow stays smooth.
+function flyPanAndZoom(
+  a: CameraKey,
+  b: CameraKey,
+  u: number,
+  { curve = 1.42, width = 1920, height = 1080 }: CameraPathOptions,
+): { frac: number; zoom: number } {
+  if (u <= 0) return { frac: 0, zoom: a.zoom };
+  if (u >= 1) return { frac: 1, zoom: b.zoom };
+  const dx = (b.center[0] - a.center[0]) / 360;
+  const dy = (mercY(a.center[1]) - mercY(b.center[1])) / (2 * Math.PI);
+  const u1 = Math.hypot(dx, dy);
+  if (u1 < 1e-9) return { frac: u, zoom: lerp(a.zoom, b.zoom, u) };
+
+  const span = Math.max(width, height) / 512;
+  const w0 = span * 2 ** -a.zoom;
+  const w1 = span * 2 ** -b.zoom;
+  const rho = curve > 0 ? curve : 1.42;
+  const rho2 = rho * rho;
+  const rho4 = rho2 * rho2;
+  const b0 = (w1 * w1 - w0 * w0 + rho4 * u1 * u1) / (2 * w0 * rho2 * u1);
+  const b1 = (w1 * w1 - w0 * w0 - rho4 * u1 * u1) / (2 * w1 * rho2 * u1);
+  const r0 = -Math.asinh(b0);
+  const r1 = -Math.asinh(b1);
+  const s = ((r1 - r0) / rho) * u;
+  const coshR0 = Math.cosh(r0);
+  const w = (w0 * coshR0) / Math.cosh(r0 + rho * s);
+  const uPan = (w0 / rho2) * (coshR0 * Math.tanh(r0 + rho * s) - Math.sinh(r0));
+  return {
+    frac: Math.min(1, Math.max(0, uPan / u1)),
+    zoom: Math.log2(span / w),
+  };
+}
+
 // keys: [{t, center:[lng,lat], zoom, pitch, bearing}], t in 0..1 within the shot.
-// Easing is applied to the whole shot, then keys are interpolated linearly.
-export function cameraAt(keys: CameraKey[], t: number, easing: EaseKind = 'inOut'): Required<CameraPose> {
+// Easing is applied to the whole shot, then keys are interpolated linearly (or coupled via van Wijk when path='fly').
+export function cameraAt(
+  keys: CameraKey[],
+  t: number,
+  easing: EaseKind = 'inOut',
+  options: CameraPathOptions = {},
+): Required<CameraPose> {
   const e = ease(easing, t);
   const first = keys[0];
   if (!first) throw new Error('cameraAt requires at least one key');
@@ -101,9 +148,17 @@ export function cameraAt(keys: CameraKey[], t: number, easing: EaseKind = 'inOut
   const u = b.t === a.t ? 1 : Math.min(1, Math.max(0, (e - a.t) / (b.t - a.t)));
   let db = (b.bearing ?? 0) - (a.bearing ?? 0);
   db = ((db + 540) % 360) - 180;
+  const { frac, zoom } =
+    options.path === 'fly' ? flyPanAndZoom(a, b, u, options) : { frac: u, zoom: lerp(a.zoom, b.zoom, u) };
+  const center: LngLat =
+    frac <= 0
+      ? a.center
+      : frac >= 1
+        ? b.center
+        : [lerp(a.center[0], b.center[0], frac), unmercY(lerp(mercY(a.center[1]), mercY(b.center[1]), frac))];
   return {
-    center: [lerp(a.center[0], b.center[0], u), unmercY(lerp(mercY(a.center[1]), mercY(b.center[1]), u))],
-    zoom: lerp(a.zoom, b.zoom, u),
+    center,
+    zoom,
     pitch: lerp(a.pitch ?? 0, b.pitch ?? 0, u),
     bearing: (a.bearing ?? 0) + db * u,
   };

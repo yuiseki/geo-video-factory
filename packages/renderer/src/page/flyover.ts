@@ -79,7 +79,12 @@ async function frame(sec: number): Promise<'idle' | 'timeout'> {
   setOverlayTime(sec);
   const { index, t } = locate(spec.shots, sec);
   const shot = spec.shots[index]!;
-  const cam = cameraAt(keysOf(shot), t, shot.ease ?? 'inOut');
+  const cam = cameraAt(keysOf(shot), t, shot.ease ?? 'inOut', {
+    path: shot.path,
+    curve: shot.curve,
+    width: spec.width,
+    height: spec.height,
+  });
   map.jumpTo(cam);
   drawOverlays(index, shot, t, 'map');
   const sig = rasterSignature(index, shot, t);

@@ -4,7 +4,7 @@
   "fps": 6,
   "base": "seamlessphoto",
   "world": "bluemarble",
-  "worldFade": [5.5, 7],
+  "worldFade": [8, 9.5],
   "dem": "gsi",
   "hillshade": false,
   "exaggeration": 1,
@@ -29,6 +29,7 @@
     {
       "duration": 5,
       "ease": "smooth",
+      "path": "fly",
       "from": { "center": [56.4, 26.4], "zoom": 5.2, "pitch": 0, "bearing": 0 },
       "to": { "center": [98.08355, 31.1540786], "zoom": 2.01733745, "pitch": 0, "bearing": 0 },
       "overlays": [
@@ -48,6 +49,7 @@
     {
       "duration": 5,
       "ease": "smooth",
+      "path": "fly",
       "from": { "center": [98.08355, 31.1540786], "zoom": 2.01733745, "pitch": 0, "bearing": 0 },
       "to": { "center": [139.7671, 35.6812], "zoom": 10, "pitch": 0, "bearing": 0 },
       "overlays": [
