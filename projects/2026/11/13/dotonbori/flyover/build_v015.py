@@ -1,6 +1,9 @@
 """Attach owner photographs to their EXIF camera positions and update the shop image."""
 import json
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / 'packages' / 'pipeline'))
 from photo_geo import exif_coordinates, linked_photo
 
 ROOT = Path(__file__).resolve().parent

@@ -1,6 +1,9 @@
 """Revise the episode's visual rhythm and use each panel image at most once."""
 import json
 from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / 'packages' / 'pipeline'))
 from shot_effects import camera_views, landmark, photo_motion
 
 root = Path(__file__).resolve().parent

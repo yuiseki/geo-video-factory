@@ -1,7 +1,10 @@
 """Add spoken bridges and reusable geographic camera moves to v0.1.5."""
 import copy,json
 from pathlib import Path
+import sys
 import build_story
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[4] / 'packages' / 'pipeline'))
 from shot_effects import geographic_transition
 ROOT=Path(__file__).resolve().parent
 source=build_story.SOURCE
