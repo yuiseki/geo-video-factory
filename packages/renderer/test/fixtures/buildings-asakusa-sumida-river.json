@@ -1,0 +1,636 @@
+{
+  "width": 640,
+  "height": 360,
+  "fps": 12,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "plateauBuildings": {
+    "manifest": "assets/buildings-asakusa/manifest.json",
+    "heightOffset": -39,
+    "workers": 3
+  },
+  "shots": [
+    {
+      "duration": 4,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.7967,
+          35.7147
+        ],
+        "zoom": 18.0,
+        "pitch": 60,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.7967,
+          35.7147
+        ],
+        "zoom": 18.0,
+        "pitch": 60,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7965,
+            35.7124
+          ],
+          "text": "仲見世通り",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            139.7967,
+            35.7147
+          ],
+          "text": "浅草寺",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 4,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.7967,
+          35.7147
+        ],
+        "zoom": 18.0,
+        "pitch": 60,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.80075,
+          35.71014
+        ],
+        "zoom": 16.6,
+        "pitch": 55,
+        "bearing": 132
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7984,
+            35.712
+          ],
+          "text": "東武 浅草駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            139.80075,
+            35.71014
+          ],
+          "text": "アサヒグループ本社ビル",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 3,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.80075,
+          35.71014
+        ],
+        "zoom": 16.6,
+        "pitch": 55,
+        "bearing": 132
+      },
+      "to": {
+        "center": [
+          139.7984,
+          35.712
+        ],
+        "zoom": 18.1,
+        "pitch": 20,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7984,
+            35.712
+          ],
+          "text": "東武 浅草駅",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 1.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.7984,
+          35.712
+        ],
+        "zoom": 18.1,
+        "pitch": 20,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.7984,
+          35.712
+        ],
+        "zoom": 18.1,
+        "pitch": 20,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7984,
+            35.712
+          ],
+          "text": "東武 浅草駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 3,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.7984,
+          35.712
+        ],
+        "zoom": 18.1,
+        "pitch": 20,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.798931,
+          35.710107
+        ],
+        "zoom": 17.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.798931,
+            35.710107
+          ],
+          "text": "吾妻橋中央",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.798931,
+          35.710107
+        ],
+        "zoom": 17.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.797415,
+          35.708238
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.798931,
+            35.710107
+          ],
+          "text": "吾妻橋",
+          "style": "tag",
+          "show": [
+            0,
+            0.25
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            139.797415,
+            35.708238
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.7,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.797415,
+          35.708238
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.795833,
+          35.705598
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.795833,
+            35.705598
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.795833,
+          35.705598
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.794028,
+          35.701954
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.794028,
+            35.701954
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.794028,
+          35.701954
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.79255,
+          35.699584
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.79255,
+            35.699584
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.79255,
+          35.699584
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.790856,
+          35.697585
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7935,
+            35.6969
+          ],
+          "text": "両国国技館",
+          "style": "tag",
+          "show": [
+            0.75,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            139.790856,
+            35.697585
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.790856,
+          35.697585
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.789136,
+          35.695375
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.789136,
+            35.695375
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.789136,
+          35.695375
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.788813,
+          35.693853
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.788813,
+            35.693853
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.788813,
+          35.693853
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.789047,
+          35.691412
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.789047,
+            35.691412
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.789047,
+          35.691412
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.790188,
+          35.689477
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.790188,
+            35.689477
+          ],
+          "text": "隅田川",
+          "style": "tag",
+          "show": [
+            0.65,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 4,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.790188,
+          35.689477
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          139.7888,
+          35.6882
+        ],
+        "zoom": 14.8,
+        "pitch": 35,
+        "bearing": 27
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888,
+            35.6882
+          ],
+          "text": "中央区立浜町公園",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            139.793528,
+            35.696917
+          ],
+          "text": "両国国技館",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

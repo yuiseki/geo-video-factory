@@ -24,15 +24,15 @@ def cache_is_complete(manifest_path: Path) -> bool:
 
 
 def main() -> None:
-    if len(sys.argv) != 2:
-        raise SystemExit("usage: prepare-buildings-asakusa.py WORK_PROJECT")
+    if len(sys.argv) != 3:
+        raise SystemExit("usage: prepare-buildings-asakusa.py WORK_PROJECT FIXTURE")
 
     renderer_dir = Path(__file__).resolve().parents[2]
     repository_dir = renderer_dir.parents[1]
     project_dir = Path(sys.argv[1]).resolve()
-    fixture = renderer_dir / "test/fixtures/buildings-asakusa.json"
+    fixture = renderer_dir / "test/fixtures" / sys.argv[2]
     project_dir.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(fixture, project_dir / "buildings-asakusa.json")
+    shutil.copy2(fixture, project_dir / fixture.name)
 
     output_dir = project_dir / "assets/buildings-asakusa"
     manifest_path = output_dir / "manifest.json"

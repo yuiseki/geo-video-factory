@@ -245,14 +245,14 @@ test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
     const renderOutput = path.join(work, item.name);
     const generatedProject = path.join(renderOutput, 'project');
     if (item.prepareScript) {
-      const prepare = spawnSync('python3', [item.prepareScript, generatedProject], {
+      const prepare = spawnSync('python3', [item.prepareScript, generatedProject, item.fixture], {
         cwd: process.cwd(),
         encoding: 'utf8',
         timeout: 900_000,
       });
       assert.equal(prepare.status, 0, `${item.name} asset preparation\n${prepare.stdout}\n${prepare.stderr}`);
     }
-    const frameOutput = path.join(renderOutput, 'render');
+    const frameOutput = path.join(renderOutput, 'render', item.name);
     fs.rmSync(frameOutput, { recursive: true, force: true });
     fs.rmSync(path.join(work, `${item.name}.log`), { force: true });
     const project = item.generatedProject ? generatedProject : 'test/fixtures';
@@ -273,13 +273,13 @@ test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
     assert.equal(render.status, 0, `${item.name}\n${render.stdout}\n${render.stderr}`);
 
     const rendered = path.join(frameOutput, `${item.name}.mp4`);
-  const video = path.join(output, item.outputPath ?? `${item.name}.mp4`);
-  if (item.outputPath) {
-    fs.rmSync(path.dirname(video), { recursive: true, force: true });
-    fs.mkdirSync(path.dirname(video), { recursive: true });
-  }
+    const video = path.join(output, item.outputPath ?? `${item.name}.mp4`);
+    if (item.outputPath) {
+      fs.rmSync(path.dirname(video), { recursive: true, force: true });
+      fs.mkdirSync(path.dirname(video), { recursive: true });
+    }
     fs.copyFileSync(rendered, video);
-  if (item.outputPath) fs.rmSync(path.join(output, `${item.name}.mp4`), { force: true });
+    if (item.outputPath) fs.rmSync(path.join(output, `${item.name}.mp4`), { force: true });
     assert.ok(fs.statSync(video).size > 1_000, `${item.name}.mp4 should not be empty`);
     const metadata = probeVideo(video);
     assert.deepEqual([metadata.width, metadata.height], [item.width ?? 640, item.height ?? 360]);

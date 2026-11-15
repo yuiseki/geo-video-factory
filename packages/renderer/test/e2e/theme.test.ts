@@ -25,6 +25,13 @@ export const themeVideoCases: VideoCase[] = [
     prepareScript: 'test/e2e/prepare-buildings-asakusa.py',
     generatedProject: true,
   },
+  {
+    name: 'buildings-asakusa-sumida-river',
+    fixture: 'buildings-asakusa-sumida-river.json',
+    minimumDuration: 41.9,
+    prepareScript: 'test/e2e/prepare-buildings-asakusa.py',
+    generatedProject: true,
+  },
 ];
 
 test(`${videoName} E2E case and output use the buildings- prefix`, () => {
@@ -88,4 +95,13 @@ test(`${videoName} E2E reproduces the real-data render specification`, () => {
   assert.ok(fs.existsSync('test/e2e/prepare-buildings-asakusa.py'));
   assert.equal(fs.existsSync(path.join('test/fixtures', spec.plateauBuildings.manifest)), false,
     'runtime-generated PLATEAU data must not be committed under fixtures');
+});
+
+test('Asakusa-Sumida river video is a registered flat-output E2E case', () => {
+  const item = themeVideoCases.find(({ name }) => name === 'buildings-asakusa-sumida-river');
+  assert.ok(item);
+  assert.equal(item.outputPath, undefined);
+  assert.equal(item.generatedProject, true);
+  assert.equal(item.minimumDuration, 41.9);
+  assert.ok(fs.existsSync(path.join('test/fixtures', item.fixture)));
 });
