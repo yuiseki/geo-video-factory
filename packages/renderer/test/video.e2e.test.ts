@@ -14,7 +14,7 @@ interface VideoCase {
 const cases: VideoCase[] = [
   { name: 'base', fixture: 'base-video.json', minimumDuration: 0.5 },
   { name: 'earth-tokyo-station', fixture: 'earth-tokyo-station.json', minimumDuration: 20.4 },
-  { name: 'terrain-mt-fuji', fixture: 'terrain-mt-fuji.json', minimumDuration: 9.5 },
+  { name: 'terrain-mt-fuji', fixture: 'terrain-mt-fuji.json', minimumDuration: 19.9 },
 ];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
@@ -56,6 +56,44 @@ test('long-distance fixture separates moves from two-second geographic holds', (
     const screen = projectLngLat(point, { center: wideCamera.center as [number, number], zoom: wideCamera.zoom }, { width: 640, height: 360, padding: 80 });
     assert.ok(screen.x >= 79.999 && screen.x <= 560.001);
     assert.ok(screen.y >= 79.999 && screen.y <= 280.001);
+  }
+});
+
+test('Fuji E2E makes one wide orbit, then zooms in through a second orbit', () => {
+  const fixture = JSON.parse(fs.readFileSync('test/fixtures/terrain-mt-fuji.json', 'utf8')) as {
+    shots: {
+      duration: number;
+      ease?: string;
+      from?: { center: number[]; zoom: number; pitch: number; bearing: number };
+      to?: { center: number[]; zoom: number; pitch: number; bearing: number };
+      keys: { t: number; center: number[]; zoom: number; pitch: number; bearing: number }[];
+    }[];
+  };
+  assert.equal(fixture.shots.length, 2, 'wide orbit followed by zoom-in orbit');
+  assert.deepEqual(fixture.shots.map(({ duration }) => duration), [8, 12]);
+  const [wide, zoomIn] = fixture.shots as [typeof fixture.shots[number], typeof fixture.shots[number]];
+  for (const shot of [wide, zoomIn]) {
+    assert.equal(shot.ease, 'linear', 'continuous orbit uses linear timing');
+    assert.deepEqual(shot.keys.map(({ t }) => t), [0, 0.25, 0.5, 0.75, 1], 'orbit has no stationary intervals');
+  }
+  assert.ok(wide.keys.every(({ zoom }) => zoom < 9), 'first orbit keeps the full mountain in a wide view');
+  assert.ok(zoomIn.keys.at(-1)!.zoom > zoomIn.keys[0]!.zoom + 2, 'second orbit zooms in substantially');
+  assert.ok(zoomIn.keys.every((key, i) => i === 0 || key.zoom > zoomIn.keys[i - 1]!.zoom), 'second orbit zooms in continuously');
+  assert.ok(zoomIn.keys.slice(1).every((key, i) => Math.abs((key.zoom - zoomIn.keys[i]!.zoom) - 0.65) < 1e-9), 'zoom-in rate stays even across the orbit');
+  const wideEnd = wide.keys.at(-1)!;
+  const zoomInStart = zoomIn.keys[0]!;
+  assert.deepEqual(
+    { center: zoomInStart.center, zoom: zoomInStart.zoom, pitch: zoomInStart.pitch, bearing: zoomInStart.bearing },
+    { center: wideEnd.center, zoom: wideEnd.zoom, pitch: wideEnd.pitch, bearing: wideEnd.bearing },
+    'zoom-in orbit starts at the end of the wide orbit',
+  );
+  for (const shot of [wide, zoomIn]) {
+    const turns = shot.keys.slice(1).reduce((total, key, i) => {
+      const previous = shot.keys[i]!;
+      return total + (((key.bearing - previous.bearing + 540) % 360) - 180);
+    }, 0);
+    assert.ok(Math.abs(Math.abs(turns) - 360) < 2, `orbit should rotate once, got ${turns} degrees`);
+    for (const key of shot.keys) assert.deepEqual(key.center, [138.7274, 35.3606]);
   }
 });
 
