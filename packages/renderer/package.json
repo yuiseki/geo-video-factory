@@ -16,7 +16,7 @@
     "typecheck": "tsc --noEmit",
     "render": "node dist/src/render.js",
     "test": "npm run build && node --test \"dist/test/*.test.js\"",
-    "test:coverage": "npm run build && node --experimental-test-coverage --test-coverage-lines=65 --test-coverage-branches=80 --test-coverage-functions=90 --test \"dist/test/*.test.js\""
+    "test:coverage": "npm run build && node --experimental-test-coverage --test-skip-pattern=E2E --test-coverage-lines=65 --test-coverage-branches=80 --test-coverage-functions=90 --test \"dist/test/*.test.js\""
   },
   "dependencies": {
     "maplibre-gl": "6.18.0",

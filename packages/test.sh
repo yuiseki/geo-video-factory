@@ -6,6 +6,7 @@ root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$root/packages/renderer"
 npm ci
 npm run typecheck
+npm test
 npm run test:coverage
 
 cd "$root"

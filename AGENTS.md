@@ -66,6 +66,7 @@ projects/YYYY/MM/DD/<slug>/     個々の動画の作業場所
   npm test
   ```
 - 全 packages の型検査・単体テスト・カバレッジ検査: `packages/test.sh`
+- レンダラーのテストは Playwright と ffmpeg を通す短い E2E 動画も生成する。成果物は `packages/renderer/dist/test/video/video.mp4`、確認用フレームは同ディレクトリの `frames/` に出る
 - Python パイプラインだけのテスト: `python3 -m unittest discover -s packages/pipeline/tests -v`
 - 参考動画の分析スクリプトのテスト: `python3 .agents/skills/geo-video-reference-analysis/scripts/tests/test_scripts.py`
 

@@ -1,0 +1,20 @@
+{
+  "width": 320,
+  "height": 180,
+  "fps": 2,
+  "base": "std",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "exaggeration": 1,
+  "shots": [
+    {
+      "duration": 0.6,
+      "from": { "center": [139.7671, 35.6812], "zoom": 10, "pitch": 0, "bearing": 0 },
+      "to": { "center": [139.7671, 35.6812], "zoom": 10, "pitch": 0, "bearing": 0 },
+      "overlays": [
+        { "type": "chapter", "kicker": "E2E", "text": "renderer test", "show": [0, 1] }
+      ]
+    }
+  ]
+}
