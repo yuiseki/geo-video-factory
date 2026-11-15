@@ -10,22 +10,66 @@
   "exaggeration": 1,
   "shots": [
     {
-      "duration": 14,
+      "duration": 1.5,
       "ease": "smooth",
-      "keys": [
-        { "t": 0, "center": [56.3, 26.5], "zoom": 5.4, "pitch": 0, "bearing": 0 },
-        { "t": 0.1, "center": [56.3, 26.5], "zoom": 5.4, "pitch": 0, "bearing": 0 },
-        { "t": 0.22, "center": [56.3, 26.5], "zoom": 3.8, "pitch": 0, "bearing": 0 },
-        { "t": 0.36, "center": [75.0, 27.5], "zoom": 3.8, "pitch": 0, "bearing": 0 },
-        { "t": 0.52, "center": [105.0, 30.0], "zoom": 3.8, "pitch": 0, "bearing": 0 },
-        { "t": 0.66, "center": [128.0, 33.0], "zoom": 4.2, "pitch": 0, "bearing": 0 },
-        { "t": 0.76, "center": [138.0, 35.2], "zoom": 6.2, "pitch": 0, "bearing": 0 },
-        { "t": 0.87, "center": [139.6, 35.6], "zoom": 9.5, "pitch": 0, "bearing": 0 },
-        { "t": 1, "center": [139.7671, 35.6812], "zoom": 15, "pitch": 0, "bearing": 0 }
-      ],
+      "from": { "center": [56.4, 26.4], "zoom": 7.2, "pitch": 0, "bearing": 0 },
+      "to": { "center": [56.4, 26.4], "zoom": 5.2, "pitch": 0, "bearing": 0 },
       "overlays": [
-        { "type": "label", "at": [56.3, 26.5], "text": "ホルムズ海峡", "style": "tag", "show": [0, 0.25] },
-        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0.76, 1] }
+        { "type": "label", "at": [56.4, 26.4], "text": "ホルムズ海峡", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 2,
+      "from": { "center": [56.4, 26.4], "zoom": 5.2, "pitch": 0, "bearing": 0 },
+      "to": { "center": [56.4, 26.4], "zoom": 5.2, "pitch": 0, "bearing": 0 },
+      "overlays": [
+        { "type": "label", "at": [56.4, 26.4], "text": "ホルムズ海峡", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 5,
+      "ease": "smooth",
+      "from": { "center": [56.4, 26.4], "zoom": 5.2, "pitch": 0, "bearing": 0 },
+      "to": { "center": [98.08355, 31.1540786], "zoom": 2.01733745, "pitch": 0, "bearing": 0 },
+      "overlays": [
+        { "type": "label", "at": [56.4, 26.4], "text": "ホルムズ海峡", "style": "tag", "show": [0, 1] },
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 2,
+      "from": { "center": [98.08355, 31.1540786], "zoom": 2.01733745, "pitch": 0, "bearing": 0 },
+      "to": { "center": [98.08355, 31.1540786], "zoom": 2.01733745, "pitch": 0, "bearing": 0 },
+      "overlays": [
+        { "type": "label", "at": [56.4, 26.4], "text": "ホルムズ海峡", "style": "tag", "show": [0, 1] },
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 5,
+      "ease": "smooth",
+      "from": { "center": [98.08355, 31.1540786], "zoom": 2.01733745, "pitch": 0, "bearing": 0 },
+      "to": { "center": [139.7671, 35.6812], "zoom": 10, "pitch": 0, "bearing": 0 },
+      "overlays": [
+        { "type": "label", "at": [56.4, 26.4], "text": "ホルムズ海峡", "style": "tag", "show": [0, 0.35] },
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 2,
+      "from": { "center": [139.7671, 35.6812], "zoom": 10, "pitch": 0, "bearing": 0 },
+      "to": { "center": [139.7671, 35.6812], "zoom": 10, "pitch": 0, "bearing": 0 },
+      "overlays": [
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 3,
+      "ease": "smooth",
+      "from": { "center": [139.7671, 35.6812], "zoom": 10, "pitch": 0, "bearing": 0 },
+      "to": { "center": [139.7671, 35.6812], "zoom": 15, "pitch": 0, "bearing": 0 },
+      "overlays": [
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0, 1] }
       ]
     }
   ]
