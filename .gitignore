@@ -12,6 +12,7 @@ out/
 
 # Character PSDs and other third-party source material are not redistributed here
 *.psd
+*.glb
 
 # Reference videos and their analyses stay outside the repository
 video-references/

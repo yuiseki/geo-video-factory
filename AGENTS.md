@@ -71,7 +71,8 @@ projects/YYYY/MM/DD/<slug>/     個々の動画の作業場所
 - 全 packages の型検査・単体テスト・カバレッジ検査: `packages/test.sh`
 - レンダラーのテストは Playwright と ffmpeg を通す E2E 動画も生成する。成果物は `packages/renderer/dist/test/video/` の `base.mp4`、`earth-tokyo-station.mp4`、`terrain-mt-fuji.mp4`。各動画の確認用フレームは同ディレクトリの `.work/<動画名>/frames/` に出る
 - 動画 E2E は `packages/renderer/test/video.e2e.test.ts` の共通 `cases` 登録と描画処理を使う。テーマ別に `test/e2e/*.test.ts` へ分割するときは、そこでケース定義・フィクスチャ検査を行い、ケースを共通 runner に登録する。テーマ別ファイルに別の動画描画・出力処理を実装しない。
-- 中間成果物は必ず `packages/renderer/dist/test/video/.work/<testname>/` に作る。通常の最終出力は `packages/renderer/dist/test/video/<testname>.mp4`。ケースが `outputPath` を宣言した場合はその1か所だけを正本とし、古い別名コピーを残さない。PLATEAU Asakusa の正本は `packages/renderer/dist/test/video/buildings-asakusa/buildings-asakusa.mp4`。
+- 中間成果物と実行時に取得・生成する実データのキャッシュは必ず `packages/renderer/dist/test/video/.work/<testname>/` に作る。通常の最終出力は `packages/renderer/dist/test/video/<testname>.mp4`。ケースが `outputPath` を宣言した場合はその1か所だけを正本とし、古い別名コピーを残さない。PLATEAU Asakusa の正本は `packages/renderer/dist/test/video/buildings-asakusa.mp4`。
+- E2E 実行時に公開データから取得・生成できる GLB、manifest、GeoJSON、アーカイブを `packages/renderer/test/fixtures/` に置かない。fixture には動画仕様だけを置き、実データは欠落時に `.work/<testname>/` へ取得・生成して再利用する。
 - `VIDEO_TARGET=<testname>` は共通 `cases` に登録した名前で対象を絞る。PLATEAU E2E も例外にせず、この共通 runner から単独実行できるようにする。
 - PLATEAU データを使う E2E のケース名・出力動画名には、必ず `buildings-` prefix を付ける（例: `buildings-asakusa`）。
 - `packages/renderer/dist/test/video/` に置く再現用素材・動画は、追跡されたパッケージ実装とフィクスチャから他端末でも生成できるものに限る。`tmp/` 以下にある実装・入力・生成物を同ディレクトリへコピー、移動、リンクしてはならない。

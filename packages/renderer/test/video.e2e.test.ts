@@ -5,12 +5,14 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fitLngLatBounds, projectLngLat } from '../src/map-viewport.js';
-import { themaVideoCases } from './e2e/thema.test.js';
+import { themeVideoCases } from './e2e/theme.test.js';
 
 interface VideoCase {
   name: string;
   fixture: string;
   minimumDuration: number;
+  prepareScript?: string;
+  generatedProject?: boolean;
   outputPath?: string;
   width?: number;
   height?: number;
@@ -24,7 +26,7 @@ const cases: VideoCase[] = [
   { name: 'choropleth-3d-tokyo23', fixture: 'choropleth-3d-tokyo23.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref', fixture: 'choropleth-3d-japan-pref.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref-to-tokyo23', fixture: 'choropleth-3d-japan-pref-to-tokyo23.json', minimumDuration: 14.4 },
-  ...themaVideoCases,
+  ...themeVideoCases,
 ];
 
 function prepareVideoOutput(output: string, work: string): void {
@@ -241,17 +243,28 @@ test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
 
   for (const item of selectedCases) {
     const renderOutput = path.join(work, item.name);
-    fs.rmSync(renderOutput, { recursive: true, force: true });
+    const generatedProject = path.join(renderOutput, 'project');
+    if (item.prepareScript) {
+      const prepare = spawnSync('python3', [item.prepareScript, generatedProject], {
+        cwd: process.cwd(),
+        encoding: 'utf8',
+        timeout: 900_000,
+      });
+      assert.equal(prepare.status, 0, `${item.name} asset preparation\n${prepare.stdout}\n${prepare.stderr}`);
+    }
+    const frameOutput = path.join(renderOutput, 'render');
+    fs.rmSync(frameOutput, { recursive: true, force: true });
     fs.rmSync(path.join(work, `${item.name}.log`), { force: true });
+    const project = item.generatedProject ? generatedProject : 'test/fixtures';
     const render = spawnSync(
       process.execPath,
       [
         'dist/src/render.js',
-        path.join('test/fixtures', item.fixture),
+        path.join(project, item.fixture),
         '--project',
-        'test/fixtures',
+        project,
         '--out',
-        renderOutput,
+        frameOutput,
         '--no-voice',
         '--raw-audio',
       ],
@@ -259,7 +272,7 @@ test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
     );
     assert.equal(render.status, 0, `${item.name}\n${render.stdout}\n${render.stderr}`);
 
-    const rendered = path.join(renderOutput, `${item.name}.mp4`);
+    const rendered = path.join(frameOutput, `${item.name}.mp4`);
   const video = path.join(output, item.outputPath ?? `${item.name}.mp4`);
   if (item.outputPath) {
     fs.rmSync(path.dirname(video), { recursive: true, force: true });

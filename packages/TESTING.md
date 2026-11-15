@@ -16,7 +16,7 @@ npm run test:coverage
 VIDEO_TARGET=terrain-mt-omuroyama npm run test:video
 ```
 
-`VIDEO_TARGET` は `base`、`earth-tokyo-station`、`terrain-mt-fuji`、`terrain-mt-omuroyama`、各 `choropleth-3d-*`、`buildings-asakusa` を指定できます。PLATEAU の建物 E2E は `buildings-` prefix を使います。例: `VIDEO_TARGET=buildings-asakusa npm run test:video`。Asakusa の正本は `dist/test/video/buildings-asakusa/buildings-asakusa.mp4` です。未指定で `npm test` を実行すると、E2E対象動画を生成します。E2Eは `dist/test/video/` 全体を削除せず、対象ケースの動画と `.work/` 内だけを更新するため、手動生成した動画を保持します。
+`VIDEO_TARGET` は `base`、`earth-tokyo-station`、`terrain-mt-fuji`、`terrain-mt-omuroyama`、各 `choropleth-3d-*`、`buildings-asakusa` を指定できます。PLATEAU の建物 E2E は `buildings-` prefix を使います。例: `VIDEO_TARGET=buildings-asakusa npm run test:video`。Asakusa の正本は `dist/test/video/buildings-asakusa.mp4` です。PLATEAU の実データは fixture に含めず、欠落時に `.work/buildings-asakusa/project/` へ取得・生成してキャッシュします。未指定で `npm test` を実行すると、E2E対象動画を生成します。E2Eは `dist/test/video/` 全体を削除せず、対象ケースの動画と `.work/` 内だけを更新するため、手動生成した動画を保持します。
 
 `test:coverage` は、行 65%、分岐 80%、関数 90% を下回ると失敗する。ブラウザーを起動する CLI 本体を含むため、行カバレッジは段階的に引き上げる。
 
