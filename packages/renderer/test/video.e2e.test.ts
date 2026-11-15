@@ -69,7 +69,7 @@ test('Fuji E2E makes one wide orbit, then zooms in through a second orbit', () =
   }
 });
 
-test('Omuroyama E2E loops seamlessly across four seasons in four slow linear orbits (1 orbit per season)', () => {
+test('Omuroyama E2E loops seamlessly across four seasons on a fixed camera', () => {
   const fixture = JSON.parse(fs.readFileSync('test/fixtures/terrain-mt-omuroyama.json', 'utf8')) as {
     shots: {
       duration: number;
@@ -80,24 +80,22 @@ test('Omuroyama E2E loops seamlessly across four seasons in four slow linear orb
   };
   assert.equal(fixture.shots.length, 1);
   const shot = fixture.shots[0]!;
-  assert.equal(shot.duration, 48);
+  assert.equal(shot.duration, 16);
   assert.equal(shot.ease, 'linear');
   assert.equal(shot.keys[0]!.t, 0);
   assert.equal(shot.keys.at(-1)!.t, 1);
-  for (const key of shot.keys) assert.deepEqual(key.center, [139.0947222, 34.9030556]);
-  const turns = shot.keys.slice(1).reduce((total, key, i) => {
-    const previous = shot.keys[i]!;
-    return total + (((key.bearing - previous.bearing + 540) % 360) - 180);
-  }, 0);
-  assert.equal(turns, 1440);
-  assert.equal(shot.keys.at(-1)!.zoom, shot.keys[0]!.zoom);
-  assert.equal(shot.keys.at(-1)!.pitch, shot.keys[0]!.pitch);
+  for (const key of shot.keys) {
+    assert.deepEqual(key.center, shot.keys[0]!.center);
+    assert.equal(key.zoom, shot.keys[0]!.zoom);
+    assert.equal(key.pitch, shot.keys[0]!.pitch);
+    assert.equal(key.bearing, shot.keys[0]!.bearing);
+  }
   const seasonImages = shot.overlays.filter((o) => o.type === 'image').map((o) => o.src);
   assert.deepEqual(seasonImages, [
+    'omuro-seasons/spring.jpg',
     'omuro-seasons/summer.jpg',
     'omuro-seasons/autumn.jpg',
     'omuro-seasons/winter_burn.jpg',
-    'omuro-seasons/spring.jpg',
   ]);
 });
 
