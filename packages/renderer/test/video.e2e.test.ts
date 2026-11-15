@@ -11,6 +11,7 @@ interface VideoCase {
   name: string;
   fixture: string;
   minimumDuration: number;
+  outputPath?: string;
   width?: number;
   height?: number;
 }
@@ -259,8 +260,13 @@ test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
     assert.equal(render.status, 0, `${item.name}\n${render.stdout}\n${render.stderr}`);
 
     const rendered = path.join(renderOutput, `${item.name}.mp4`);
-    const video = path.join(output, `${item.name}.mp4`);
+  const video = path.join(output, item.outputPath ?? `${item.name}.mp4`);
+  if (item.outputPath) {
+    fs.rmSync(path.dirname(video), { recursive: true, force: true });
+    fs.mkdirSync(path.dirname(video), { recursive: true });
+  }
     fs.copyFileSync(rendered, video);
+  if (item.outputPath) fs.rmSync(path.join(output, `${item.name}.mp4`), { force: true });
     assert.ok(fs.statSync(video).size > 1_000, `${item.name}.mp4 should not be empty`);
     const metadata = probeVideo(video);
     assert.deepEqual([metadata.width, metadata.height], [item.width ?? 640, item.height ?? 360]);

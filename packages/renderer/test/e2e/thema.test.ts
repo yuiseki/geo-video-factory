@@ -10,16 +10,23 @@ export interface VideoCase {
   name: string;
   fixture: string;
   minimumDuration: number;
+  outputPath?: string;
   width?: number;
   height?: number;
 }
 
 export const themaVideoCases: VideoCase[] = [
-  { name: videoName, fixture: `${videoName}.json`, minimumDuration: 5.9 },
+  {
+    name: videoName,
+    fixture: `${videoName}.json`,
+    minimumDuration: 5.9,
+    outputPath: `${videoName}/${videoName}.mp4`,
+  },
 ];
 
 test(`${videoName} E2E case and output use the buildings- prefix`, () => {
   assert.match(videoName, /^buildings-/);
+  assert.equal(themaVideoCases[0]?.outputPath, `${videoName}/${videoName}.mp4`);
 });
 
 test(`${videoName} E2E uses a complete, repository-local PLATEAU fixture`, () => {
