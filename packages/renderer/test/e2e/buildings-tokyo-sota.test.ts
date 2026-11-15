@@ -91,7 +91,8 @@ test(`${videoName} fixture: one continuous 60 s render from West Shinjuku to Ham
   assert.ok(groups[0]!.reveal.paint[0]![1] < 0 && groups[1]!.reveal.paint[0]![1] < 0);
   // On-screen text states counts and names; no mood copy ("AI poem") and no overclaiming.
   const text = JSON.stringify(spec);
-  for (const word of ['全部', 'すべて', 'つながる', '革命', '魔法', '可能性', '誰でも']) {
+  // and no jargon a viewer cannot read (較正: say what was measured and borrowed instead)
+  for (const word of ['全部', 'すべて', 'つながる', '革命', '魔法', '可能性', '誰でも', '較正']) {
     assert.ok(!text.includes(word), `on-screen text must not use "${word}"`);
   }
 });

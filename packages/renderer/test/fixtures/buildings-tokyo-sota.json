@@ -391,16 +391,46 @@
       "overlays": [
         {
           "type": "quote",
-          "text": "屋根: 空中写真 ／ 高さ: PLATEAU で較正した推定 ／ 屋根の形・窓・壁: 推定",
+          "text": "屋根: 空中写真",
           "marks": false,
           "cps": 50,
           "screen": [
             90,
             110
           ],
-          "width": 1500,
+          "width": 1300,
           "show": [
             0.05,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "高さ: 推定 (隣の福生市で測られた、同じ種類・広さの建物の高さ)",
+          "marks": false,
+          "cps": 50,
+          "screen": [
+            90,
+            196
+          ],
+          "width": 1300,
+          "show": [
+            0.13,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "屋根の形・窓・壁: 推定",
+          "marks": false,
+          "cps": 50,
+          "screen": [
+            90,
+            282
+          ],
+          "width": 1300,
+          "show": [
+            0.21000000000000002,
             1
           ]
         },

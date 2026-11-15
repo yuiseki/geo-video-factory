@@ -78,6 +78,12 @@ class HeightModelTest(unittest.TestCase):
         prior = bh.PRIOR_HEIGHTS['3102'][bh.area_bin(400)]
         self.assertTrue(prior * 0.85 <= height <= prior * 1.15)
 
+    def test_levels_below_one_are_not_storeys_and_fall_back_to_the_model(self):
+        model = bh.calibrate_height_model([])
+        for bad in ('0.8', '0', '-1', 'two'):
+            height, source = bh.estimate_height({'vt_code': 3101, 'building:levels': bad}, 90, model, 'a')
+            self.assertEqual(source, 'model:3101', bad)
+
 
 if __name__ == '__main__':
     unittest.main()

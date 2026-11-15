@@ -1,5 +1,9 @@
 """Building height estimates for footprints that come without a height.
 
+OpenStreetMap convention: mappers fill `building:levels`; `height` is entered only by someone who
+measured the building or checked construction documents, so that guesses do not enter as data.
+`height` is therefore rare but strong, and `building:levels` is the field to expect.
+
 Order of evidence, strongest first, and the source is kept with every estimate:
 
 1. a measured OSM `height` tag                      -> 'osm:height'
@@ -87,7 +91,7 @@ def estimate_height(properties: dict[str, Any], area_m2: float, model: dict[str,
     if height is not None:
         return max(height, ONE_STORY_M), 'osm:height'
     levels = _positive(properties.get('building:levels'))
-    if levels is not None:
+    if levels is not None and levels >= 1:  # "0.8" or "0" are not storeys
         return max(levels * STORY_M, ONE_STORY_M), 'osm:levels'
     code = str(properties.get('vt_code') or '3101')
     table = (model.get('heights') or {}).get(code) or PRIOR_HEIGHTS.get(code) or PRIOR_HEIGHTS['3101']
