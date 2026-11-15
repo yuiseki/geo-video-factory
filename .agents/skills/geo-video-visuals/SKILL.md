@@ -13,4 +13,4 @@ description: 地理動画の写真、地名、線、範囲、数字、図解、�
 - 合成、色、質感： [references/effects.md](references/effects.md)
 - テロップとモーショングラフィックス： [references/graphics.md](references/graphics.md)
 
-章ごとに静止、地図、写真、図解、広域、近景を使い分け、同じカメラと同じ画像の反復を避ける。実装できない技法を名称だけで指定しない。図や位置が概略なら画面で明示し、引用素材の作者、出典、ライセンスを残す。
+章ごとに静止、地図、写真、図解、広域、近景を使い分け、同じカメラと同じ画像の反復を避ける。単調さは動きの量より場面の型の数で決まる。画面が動いていても、同じ組み立てを章ごとに繰り返すと単調に見える。参考動画で見た場面の型と、写真を動かす速さの目安は `geo-video-reference-analysis` の [findings.md](../geo-video-reference-analysis/references/findings.md)。実装できない技法を名称だけで指定しない。図や位置が概略なら画面で明示し、引用素材の作者、出典、ライセンスを残す。

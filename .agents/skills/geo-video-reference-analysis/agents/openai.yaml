@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Reference Analysis"
+  short_description: "良いと感じた動画の構成、編集、数字を分析して型を持ち帰る"

@@ -13,6 +13,7 @@
 | `geo-video-camera` | カメラ技法 (ドリー、トラッキング、オービット、リビール、俯瞰) の選択、速度、データ範囲、ラベルの検品 | カメラの動きを決める・直すとき |
 | `geo-video-narration` | VOICEVOX、複数話者の掛け合い、字幕のタイミング、読み、立ち絵のリアクション、BGM と効果音 | 台本を音声付きの動画へ組み込むとき |
 | `geo-video-visuals` | 写真、地名、線、範囲、数字、図解、タイトルカード、画面効果、編集表現 | 画が単調、素材が反復、情報が読みにくいとき |
+| `geo-video-reference-analysis` | 利用者が良いと感じた動画の取得、測定、構成と編集の分析、再生数などの数字の読み方、持ち帰りの提案 | 「この動画いいな」「なぜ伸びたのか」と言われたとき |
 
 単一ショットの JSON やカメラの調整だけなら、`geo-video-production` を経ずに専用のスキルを直接使う。
 
@@ -52,6 +53,8 @@ cd .agents/skills/geo-video-renderer/assets/template
 node --test "test/*.test.mjs"
 ```
 
+参考動画の分析スクリプトのテストは `python3 .agents/skills/geo-video-reference-analysis/scripts/tests/test_scripts.py`。
+
 必要なもの: Node.js、Playwright の Chromium、ffmpeg と ffprobe、Python 3 と Pillow、Noto Sans CJK、VOICEVOX エンジン (既定は `http://127.0.0.1:50021`)。
 
 ## 進め方の原則
@@ -75,5 +78,5 @@ node --test "test/*.test.mjs"
 このリポジトリは公開を前提にしている。
 
 - 特定の機械のパス、ローカルのホスト名、配布先、資格情報、`.env`。必要なら環境変数や引数で渡す。公開している `*.yuiseki.net` の OSM サービス (`osm-services.md`) は書いてよい。
-- 立ち絵の PSD、参考動画、再配布の許可が確かめられていない写真や素材。
+- 立ち絵の PSD、参考動画とその字幕・サムネイル・分析ファイル、再配布の許可が確かめられていない写真や素材。スキルや文書に個々の参考動画やチャンネルの名前を書かず、型の言葉で書く。
 - 書き出したフレームと動画 (`out/`)、`node_modules/`。
