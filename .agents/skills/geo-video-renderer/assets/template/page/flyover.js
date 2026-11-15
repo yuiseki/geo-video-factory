@@ -1,6 +1,6 @@
 // Browser side: builds a MapLibre map with GSI photo + terrain, and draws one frame at a time.
 // render.mjs calls window.FLY.init(spec) once, then window.FLY.frame(sec) for every frame.
-import { gsiToTerrarium, terrariumRGB, cameraAt, sliceLine, locate, fadeAlpha, countValue, phase, easeOutBack, ease, typeCount, chartGeometry, mouthOpenAt, blinkAt, reactionAt } from './lib.js';
+import { gsiToTerrarium, terrariumRGB, demSourceSpec, cameraAt, sliceLine, locate, fadeAlpha, countValue, phase, easeOutBack, ease, typeCount, chartGeometry, mouthOpenAt, blinkAt, reactionAt } from './lib.js';
 
 const maplibregl = window.maplibregl;
 let map, spec, overlayEl, tintEl, terrainSpec, lastRasterSig = '', nowSec = 0;
@@ -34,11 +34,6 @@ const WORLDS = {
     maxzoom: 8, credit: '衛星画像：NASA Blue Marble (海底地形つき、NASA GIBS 経由)' },
   'bluemarble-plain': { tiles: ['https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/BlueMarble_NextGeneration/default/GoogleMapsCompatible_Level8/{z}/{y}/{x}.jpeg'],
     maxzoom: 8, credit: '衛星画像：NASA Blue Marble Next Generation (NASA GIBS 経由)' },
-};
-const DEMS = {
-  // 地理院 標高タイル(基盤地図情報 数値標高モデル)。z14 まで。海と国外は 0 m にする
-  gsi: { tiles: ['gsidem://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'], maxzoom: 14,
-    credit: '標高：国土地理院(地理院タイル「標高タイル」)を加工' },
 };
 
 function registerGsiDem() {
@@ -155,7 +150,7 @@ function overlayLayers(shots) {
 
 function buildStyle() {
   const base = BASES[spec.base ?? 'seamlessphoto'];
-  const dem = DEMS[spec.dem ?? 'gsi'];
+  const dem = demSourceSpec(spec.dem ?? 'gsi');
   const world = spec.world === false ? null : WORLDS[spec.world ?? 'bluemarble'];
   const [wf0, wf1] = spec.worldFade ?? [5.5, 7];
   // GSI photo opacity by camera zoom: 0 below wf0 (world image only), 1 above wf1
@@ -169,9 +164,9 @@ function buildStyle() {
       // the same photo capped at z12, drawn underneath: fills open sea where the detailed tiles have no picture
       baselo: { ...rasterSource(base), maxzoom: Math.min(12, base.maxzoom) },
       ...(world ? { world: rasterSource(world) } : {}),
-      dem: { type: 'raster-dem', tiles: dem.tiles, tileSize: 256, maxzoom: dem.maxzoom, encoding: 'terrarium' },
+      dem: dem.source,
       // a second source for the hillshade: MapLibre warns that sharing the terrain source lowers quality
-      demshade: { type: 'raster-dem', tiles: dem.tiles, tileSize: 256, maxzoom: dem.maxzoom, encoding: 'terrarium' },
+      demshade: { ...dem.source },
       ...(spec.osmLabels ? { osm: { type: 'vector', url: 'https://tile.yuiseki.net/data/v3.json' } } : {}),
       ...ov.sources,
     },

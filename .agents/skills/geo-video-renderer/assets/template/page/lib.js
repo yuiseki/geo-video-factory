@@ -19,6 +19,38 @@ export function terrariumRGB(h) {
   return [r, g, b];
 }
 
+export const DEMS = {
+  // 地理院 標高タイル(基盤地図情報 数値標高モデル)。z14 まで。海と国外は 0 m にする
+  gsi: {
+    tiles: ['gsidem://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'],
+    maxzoom: 14,
+    tileSize: 256,
+    credit: '標高：国土地理院(地理院タイル「標高タイル」)を加工',
+  },
+  // Mapterhorn (Copernicus GLO-30 等)。全球対応、tileSize 512、Terrarium 形式
+  mapterhorn: {
+    tiles: ['https://tiles.mapterhorn.com/{z}/{x}/{y}.webp'],
+    maxzoom: 15,
+    tileSize: 512,
+    credit: '標高：© Mapterhorn and DEM source contributors',
+  },
+};
+
+export function demSourceSpec(name = 'gsi') {
+  const dem = DEMS[name];
+  if (!dem) throw new Error(`unknown dem: ${name}`);
+  return {
+    source: {
+      type: 'raster-dem',
+      tiles: dem.tiles,
+      tileSize: dem.tileSize ?? 256,
+      maxzoom: dem.maxzoom,
+      encoding: 'terrarium',
+    },
+    credit: dem.credit,
+  };
+}
+
 export function ease(kind, t) {
   t = Math.min(1, Math.max(0, t));
   switch (kind) {

@@ -18,7 +18,8 @@
 - `world` / `worldFade`: 引いた画の NASA Blue Marble と、地理院の写真に切り替わる zoom の範囲 (`gsi-tiles.md`)。
 - `background`: 写真がどのズームにも無い所 (遠くの海) の色。既定は暗い海の青 `#10243a`。
 - `base`: 下地のタイル。`seamlessphoto` (既定) / `std` / `pale` / `relief`。一覧は `gsi-tiles.md`。
-- `hillshade`: 陰影の強さ (0〜1)。`false` で消す。写真だけだと平たく見えるので薄く足している。
+- `dem`: 標高タイル。`gsi` (既定、国内) / `mapterhorn` (全球)。詳細は `geo-video-3d-terrain` の `dem-sources.md`。
+- `exaggeration` / `hillshade`: 高さの強調 (既定 `1.3`) と陰影の強さ (0〜1、既定 `0.25`、`false` で消す)。詳細は `geo-video-3d-terrain` の `terrain-rendering.md`。
 - `sky`: 空と霧の設定 (MapLibre の sky)。省略すると水色の空に白い霧。
 - `credits`: 自動で入る出典に足す行。
 - `voices` / `tts` / `bgm` / `subtitles`: 声と字幕 (`narration.md`)。

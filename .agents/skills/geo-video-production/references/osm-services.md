@@ -44,7 +44,7 @@ curl -s --get https://valhalla.yuiseki.net/route --data-urlencode \
 
 - 経路の形は `trip.legs[].shape` に、精度 6 の encoded polyline で入る。デコードして `line` にする。
 - `costing` は `pedestrian`、`bicycle`、`auto` など。鉄道の線形は返らない。電車の移動を見せるなら Overpass の線路を使い、徒歩の経路を鉄道の線のように描かない。
-- `/height` (標高) は使わない。標高データが入っておらず、`null` が返った。標高や断面には地理院の DEM を使う ([gsi-tiles.md](../../geo-video-renderer/references/gsi-tiles.md))。
+- `/height` (標高) は使わない。標高データが入っておらず、`null` が返った。標高や断面には DEM タイルを使う ([dem-sources.md](../../geo-video-3d-terrain/references/dem-sources.md))。
 
 ## 使うときの決まり
 

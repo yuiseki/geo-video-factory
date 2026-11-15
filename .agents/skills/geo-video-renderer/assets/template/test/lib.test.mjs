@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { gsiToTerrarium, ease, cameraAt, sliceLine, locate, fadeAlpha, countValue } from '../page/lib.js';
+import { gsiToTerrarium, demSourceSpec, ease, cameraAt, sliceLine, locate, fadeAlpha, countValue } from '../page/lib.js';
 
 test('GSI DEM: positive, negative and NA pixels', () => {
   // 3776.12 m -> x = 377612
@@ -11,6 +11,23 @@ test('GSI DEM: positive, negative and NA pixels', () => {
   assert.equal(gsiToTerrarium(n >> 16, (n >> 8) & 255, n & 255), -1.5);
   // NA (128,0,0) -> 0 (sea and no data)
   assert.equal(gsiToTerrarium(128, 0, 0), 0);
+});
+
+test('demSourceSpec builds raster-dem config for gsi and mapterhorn', () => {
+  const gsi = demSourceSpec('gsi');
+  assert.equal(gsi.source.type, 'raster-dem');
+  assert.equal(gsi.source.tileSize, 256);
+  assert.equal(gsi.source.encoding, 'terrarium');
+  assert.match(gsi.source.tiles[0], /^gsidem:\/\//);
+
+  const mh = demSourceSpec('mapterhorn');
+  assert.equal(mh.source.type, 'raster-dem');
+  assert.equal(mh.source.tileSize, 512);
+  assert.equal(mh.source.encoding, 'terrarium');
+  assert.equal(mh.source.tiles[0], 'https://tiles.mapterhorn.com/{z}/{x}/{y}.webp');
+  assert.match(mh.credit, /Mapterhorn/);
+
+  assert.throws(() => demSourceSpec('unknown-dem'));
 });
 
 test('ease keeps ends and is monotonic', () => {

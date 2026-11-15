@@ -17,7 +17,7 @@ npx playwright install chromium-headless-shell
 実データを読む書き出しはホストの資源制限ルールに従う。構図確認はまず `--stills`、本番は新しい `--out` を指定する。過去のフレームを混ぜない。GPU利用時はログのWebGL rendererを確認する。
 
 - ショットJSONとoverlay： [references/shots.md](references/shots.md)
-- 地理院写真、標高、過去画像、出典： [references/gsi-tiles.md](references/gsi-tiles.md)
+- 地理院写真、過去画像、出典： [references/gsi-tiles.md](references/gsi-tiles.md)
 - タイル待ち、WebGL、音声、黒画面など： [references/troubleshooting.md](references/troubleshooting.md)
 
-カメラの意味や速度は `geo-video-camera`、PLATEAUと建物補完は `geo-video-3d-buildings`、掛け合いと字幕は `geo-video-narration`、見た目の選択は `geo-video-visuals` の責務とする。レンダラー側へ個別作品の演出ルールを増やさず、再利用できるデータ形式と処理だけを置く。
+標高タイル (`gsidem` / `mapterhorn`) や 3D 地形表現の詳細は `geo-video-3d-terrain`、カメラの意味や速度は `geo-video-camera`、PLATEAUと建物補完は `geo-video-3d-buildings`、掛け合いと字幕は `geo-video-narration`、見た目の選択は `geo-video-visuals` の責務とする。レンダラー側へ個別作品の演出ルールを増やさず、再利用できるデータ形式と処理だけを置く。

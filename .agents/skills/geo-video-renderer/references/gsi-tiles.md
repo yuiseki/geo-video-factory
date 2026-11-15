@@ -28,10 +28,7 @@ URL は `https://cyberjapandata.gsi.go.jp/xyz/<ID>/{z}/{x}/{y}.<拡張子>`。20
 
 ## 標高
 
-- `dem: "gsi"` は標高タイル `dem_png` (z14 まで、基盤地図情報の数値標高モデル)。
-- 値は `x = R×2^16 + G×2^8 + B`、`x < 2^23` なら `x × 0.01 m`、`x > 2^23` なら `(x − 2^24) × 0.01 m`、`x = 2^23` (RGB 128,0,0) は値なし。
-- MapLibre はこの形式を直接読めない。`gsidem` プロトコルでブラウザの中で Terrarium 形式に変え、値なし (海、国外) は 0 m にしている。変換を直さずに MapLibre の custom encoding を使うと、値なしが 83,886 m の針になる。
-- 海外の地形には別の標高 (Terrarium 形式の全球 DEM など) を `DEMS` に足す。そのときは出典も足す。
+標高タイル（`dem: "gsi"` / `gsidem` および `dem: "mapterhorn"`）の仕様・変換・使い分けは [geo-video-3d-terrain/references/dem-sources.md](../../geo-video-3d-terrain/references/dem-sources.md) にまとめた。
 
 ## 利用のきまり
 

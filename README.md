@@ -25,6 +25,7 @@
 |---|---|
 | [geo-video-production](.agents/skills/geo-video-production/SKILL.md) | 企画、章立て、素材と出典、地名と経路の調べ方、並列の書き出し、検品、公開用の概要欄 |
 | [geo-video-renderer](.agents/skills/geo-video-renderer/SKILL.md) | レンダラー本体、ショット JSON の書式、地理院タイル、書き出しの不具合 |
+| [geo-video-3d-terrain](.agents/skills/geo-video-3d-terrain/SKILL.md) | 標高タイル (`gsidem` / `mapterhorn`) の選択と変換、3D 地形の強調・陰影・描画の制約 |
 | [geo-video-camera](.agents/skills/geo-video-camera/SKILL.md) | カメラの技法、速度、データの範囲、ラベルの重なりの検品 |
 | [geo-video-narration](.agents/skills/geo-video-narration/SKILL.md) | VOICEVOX、掛け合い、字幕、読み違い、立ち絵、BGM |
 | [geo-video-visuals](.agents/skills/geo-video-visuals/SKILL.md) | 写真、地名、図解、テロップ、画面効果、編集の技法 |

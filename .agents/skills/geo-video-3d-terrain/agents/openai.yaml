@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video 3D Terrain"
+  short_description: "標高タイル(gsidem/mapterhorn)と3D地形表現を設計・検品"
