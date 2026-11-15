@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Growth Predictive Coding"
+  short_description: "視聴者の予測と予測誤差の解消として構成を設計する (予測符号化・自由エネルギー原理)"
