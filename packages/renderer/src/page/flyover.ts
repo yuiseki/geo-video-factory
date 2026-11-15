@@ -6,10 +6,12 @@ import { buildMapStyle } from './map-style.js';
 import { registerMapProtocols } from './map-protocols.js';
 import type { MapLibreMap } from './map-types.js';
 import { configureOverlayRenderer, drawOverlays, setOverlayTime } from './overlays.js';
+import { addPlateauBuildings, type PlateauRenderStats } from './plateau-buildings.js';
 
 let map: MapLibreMap;
 let spec: ShotSpec;
 let overlayEl: HTMLElement;
+let plateauStats: (() => PlateauRenderStats) | undefined;
 
 function settle(timeoutMs = 40000): Promise<'idle' | 'timeout'> {
   return new Promise((resolve) => {
@@ -65,6 +67,9 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
   }) as unknown as MapLibreMap;
   configureOverlayRenderer({ map, spec, overlayEl, tintEl });
   await new Promise<void>((resolve) => map.once('load', resolve));
+  if (spec.plateauBuildings) {
+    plateauStats = await addPlateauBuildings(map as unknown as maplibregl.Map, spec.plateauBuildings);
+  }
   return settle();
 }
 
@@ -90,5 +95,5 @@ function totalSeconds(): number {
   return spec.shots.reduce((sum, shot) => sum + (shot.duration ?? 0), 0);
 }
 
-(window as unknown as Record<string, unknown>).FLY = { init, frame, totalSeconds, get map() { return map; } };
+(window as unknown as Record<string, unknown>).FLY = { init, frame, totalSeconds, get map() { return map; }, get plateauStats() { return plateauStats?.(); } };
 (window as unknown as Record<string, unknown>).FLY_READY = true;
