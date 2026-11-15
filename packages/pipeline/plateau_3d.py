@@ -345,12 +345,13 @@ def main() -> None:
         manifest = apply_orthophoto_palette(args.out, args.orthophoto, seed=args.seed)
     citygml_features = None
     if args.citygml_geojson:
-        from building_appearance import build_osm_proxy_tiles
+        from building_appearance import apply_citygml_colors, build_osm_proxy_tiles
         citygml = json.loads(args.citygml_geojson.read_text(encoding='utf-8'))
         features = citygml.get('features') if isinstance(citygml, dict) else None
         if not isinstance(features, list):
             raise ValueError('--citygml-geojson must contain a GeoJSON FeatureCollection')
         citygml_features = features
+        manifest = apply_citygml_colors(args.out, features)
         ortho = None
         if args.orthophoto:
             with Image.open(args.orthophoto) as source:

@@ -15,6 +15,19 @@ plateau_3d = import_pipeline('plateau_3d')
 
 
 class BuildingAppearanceTests(unittest.TestCase):
+    def test_citygml_colors_fill_missing_tile_palette_in_id_order(self):
+        features = [{'type': 'Feature', 'id': 'b', 'properties': {'color': '#81909a'}},
+                    {'type': 'Feature', 'id': 'a', 'properties': {'color': '#987654'}}]
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'manifest.json').write_text(json.dumps({'tiles': [
+                {'ids': ['a', 'b', 'c'], 'facade_colors': ['#123456', None, None]},
+                {'ids': ['b', 'a']},
+            ]}))
+            result = appearance.apply_citygml_colors(root, features)
+        self.assertEqual(result['tiles'][0]['facade_colors'], ['#123456', '#81909a', None])
+        self.assertEqual(result['tiles'][1]['facade_colors'], ['#81909a', '#987654'])
+
     def test_osm_overlap_uses_footprint_area_not_a_centroid(self):
         def feature(identifier, west, east):
             return {'type': 'Feature', 'id': identifier, 'properties': {'height': 9}, 'geometry': {

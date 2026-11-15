@@ -7,6 +7,7 @@ import json
 import math
 from pathlib import Path
 import random
+import re
 from typing import Any, Iterable
 
 from PIL import Image
@@ -36,6 +37,7 @@ __all__ = [
     '_ecef',
     '_geodetic',
     'apply_orthophoto_palette',
+    'apply_citygml_colors',
     'assign_facade_colors',
     'build_osm_proxy_tiles',
     'build_plateau_facade_palette',
@@ -156,6 +158,27 @@ def build_plateau_facade_palette(
         buildings.append({'id': key, 'geometry': footprint or {}, 'textured': False})
     colors = assign_facade_colors(buildings, seed=seed, orthophoto=orthophoto, bbox_degrees=bbox_degrees)
     return {str(building['id']): building.get('facade_color') for building in colors}
+
+
+def apply_citygml_colors(output_dir: Path, features: list[dict[str, Any]]) -> dict[str, Any]:
+    """Fill missing per-ID colors using previously sampled CityGML footprint colors."""
+    colors = {}
+    for feature in features:
+        identifier = feature.get('id')
+        color = (feature.get('properties') or {}).get('color')
+        if identifier is not None and isinstance(color, str) and re.fullmatch(r'#[0-9a-fA-F]{6}', color):
+            colors[str(identifier)] = color
+    path = output_dir / 'manifest.json'
+    manifest = json.loads(path.read_text(encoding='utf-8'))
+    for tile in manifest['tiles']:
+        ids = tile.get('ids') or []
+        previous = tile.get('facade_colors') or []
+        tile['facade_colors'] = [
+            (previous[i] if i < len(previous) and previous[i] else colors.get(str(identifier)))
+            for i, identifier in enumerate(ids)
+        ]
+    path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    return manifest
 
 
 def _sample_point_color(image: Image.Image, longitude: float, latitude: float, bbox: list[float]) -> tuple[int, int, int]:
