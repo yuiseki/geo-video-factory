@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { buildFrameTimes, parseSize, resolveProjectRoot, resolveRequestFile } from '../src/render.js';
+import { buildFrameTimes, contentType, parseSize, resolveProjectRoot, resolveRequestFile } from '../src/render.js';
 
 test('resolveProjectRoot uses explicit --project or parent of shots/ directory', () => {
   assert.equal(resolveProjectRoot('/tmp/p/shots/a.json'), path.resolve('/tmp/p'));
@@ -20,12 +20,17 @@ test('resolveRequestFile routes renderer assets to packageRoot and project asset
   fs.mkdirSync(path.join(proj, 'assets'), { recursive: true });
   fs.writeFileSync(path.join(pkg, 'public', 'index.html'), '<html></html>');
   fs.writeFileSync(path.join(pkg, 'dist', 'src', 'page', 'flyover.js'), '');
+  fs.writeFileSync(path.join(pkg, 'dist', 'src', 'page', 'maplibre-gl-worker.mjs'), '');
   fs.writeFileSync(path.join(pkg, 'dist', 'src', 'lib.js'), '');
   fs.writeFileSync(path.join(proj, 'assets', 'photo.jpg'), 'jpg');
   fs.writeFileSync(path.join(tmp, 'secret.txt'), 'secret');
 
   assert.equal(resolveRequestFile('/page/index.html', pkg, proj), path.join(pkg, 'public', 'index.html'));
   assert.equal(resolveRequestFile('/page/flyover.js', pkg, proj), path.join(pkg, 'dist', 'src', 'page', 'flyover.js'));
+  assert.equal(
+    resolveRequestFile('/page/maplibre-gl-worker.mjs?v=6.18.0', pkg, proj),
+    path.join(pkg, 'dist', 'src', 'page', 'maplibre-gl-worker.mjs'),
+  );
   assert.equal(resolveRequestFile('/lib.js', pkg, proj), path.join(pkg, 'dist', 'src', 'lib.js'));
   assert.equal(resolveRequestFile('/assets/photo.jpg', pkg, proj), path.join(proj, 'assets', 'photo.jpg'));
   // Path traversal outside projectRoot must be rejected
@@ -50,4 +55,23 @@ test('buildFrameTimes is stable at decimal steps and validates its range', () =>
   assert.throws(() => buildFrameTimes(-1, 1, 0.1), /from/i);
   assert.throws(() => buildFrameTimes(2, 1, 0.1), /range/i);
   assert.throws(() => buildFrameTimes(0, 1, 0), /step/i);
+});
+
+test('MapLibre v6 ESM assets are served as JavaScript modules', () => {
+  assert.equal(contentType('maplibre-gl.mjs'), 'text/javascript');
+  assert.equal(contentType('maplibre-gl-worker.mjs'), 'text/javascript');
+  assert.equal(contentType('style.css'), 'text/css');
+  assert.equal(contentType('unknown.bin'), 'application/octet-stream');
+});
+
+test('flyover bundle includes MapLibre without a browser import map', () => {
+  const html = fs.readFileSync(path.resolve('public/index.html'), 'utf8');
+  assert.doesNotMatch(html, /importmap|maplibre-gl\.m?js/);
+  assert.match(html, /await import\(['"]\/page\/flyover\.js['"]\)/);
+  const source = fs.readFileSync(path.resolve('src/page/flyover.ts'), 'utf8');
+  assert.match(source, /import \* as maplibregl from ['"]maplibre-gl['"]/);
+  const bundle = fs.readFileSync(path.resolve('dist/src/page/flyover.js'), 'utf8');
+  assert.doesNotMatch(bundle, /from\s+['"]maplibre-gl['"]/);
+  assert.ok(bundle.length > 500_000, 'flyover.js should contain the MapLibre implementation');
+  assert.ok(fs.statSync(path.resolve('dist/src/page/maplibre-gl-worker.mjs')).size > 500_000);
 });

@@ -1,5 +1,6 @@
 // Browser side: builds a MapLibre map with GSI photo + terrain, and draws one frame at a time.
 // render.ts calls window.FLY.init(spec) once, then window.FLY.frame(sec) for every frame.
+import * as maplibregl from 'maplibre-gl';
 import {
   gsiToTerrarium,
   terrariumRGB,
@@ -38,13 +39,6 @@ interface MapLibreMap {
   getSource: (id: string) => { setData: (data: unknown) => void };
   project: (lngLat: LngLat) => { x: number; y: number };
 }
-
-interface MapLibreGlobal {
-  addProtocol: (name: string, handler: (params: { url: string }, abort: AbortController) => Promise<{ data: ArrayBuffer }>) => void;
-  Map: new (opts: Record<string, unknown>) => MapLibreMap;
-}
-
-declare const maplibregl: MapLibreGlobal;
 
 interface TileConfig {
   tiles: string[];
@@ -730,7 +724,7 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
   const first = cameraAt(keysOf(spec.shots[0]!), 0);
   map = new maplibregl.Map({
     container: 'map',
-    style: mapStyle,
+    style: mapStyle as unknown as maplibregl.StyleSpecification,
     center: first.center,
     zoom: first.zoom,
     pitch: first.pitch,
@@ -741,7 +735,7 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
     attributionControl: false,
     canvasContextAttributes: { preserveDrawingBuffer: true, antialias: true },
     pixelRatio: 1,
-  });
+  }) as unknown as MapLibreMap;
   await new Promise<void>((r) => map.once('load', r));
   return settle();
 }

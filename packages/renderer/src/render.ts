@@ -19,6 +19,7 @@ const PACKAGE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), 
 const TYPES: Record<string, string> = {
   '.html': 'text/html',
   '.js': 'text/javascript',
+  '.mjs': 'text/javascript',
   '.css': 'text/css',
   '.json': 'application/json',
   '.map': 'application/json',
@@ -28,6 +29,10 @@ const TYPES: Record<string, string> = {
   '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
 };
+
+export function contentType(file: string): string {
+  return TYPES[path.extname(file)] ?? 'application/octet-stream';
+}
 
 export function resolveProjectRoot(specPath: string, projectArg?: string): string {
   if (projectArg) return path.resolve(projectArg);
@@ -73,9 +78,9 @@ export function resolveRequestFile(urlPath: string, packageRoot: string, project
   if (clean === 'page/index.html' || clean === 'page/flyover.css') {
     baseRoot = path.join(packageRoot, 'public');
     candidate = path.join(baseRoot, path.basename(clean));
-  } else if (clean === 'page/flyover.js') {
+  } else if (clean === 'page/flyover.js' || clean === 'page/maplibre-gl-worker.mjs') {
     baseRoot = path.join(packageRoot, 'dist', 'src', 'page');
-    candidate = path.join(baseRoot, 'flyover.js');
+    candidate = path.join(baseRoot, path.basename(clean));
   } else if (clean === 'lib.js' || clean === 'page/lib.js') {
     baseRoot = path.join(packageRoot, 'dist', 'src');
     candidate = path.join(baseRoot, 'lib.js');
@@ -145,7 +150,7 @@ async function main(): Promise<void> {
       res.end();
       return;
     }
-    res.writeHead(200, { 'content-type': TYPES[path.extname(file)] ?? 'application/octet-stream' });
+    res.writeHead(200, { 'content-type': contentType(file) });
     fs.createReadStream(file).pipe(res);
   });
   await new Promise<void>((r) => server.listen(0, '127.0.0.1', r));
