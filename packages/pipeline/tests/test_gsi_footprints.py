@@ -140,6 +140,10 @@ class DemSamplerTest(unittest.TestCase):
             sample = gf.dem_sampler([139.31, 35.75, 139.32, 35.76], Path(directory), fetch=fetch)
             self.assertAlmostEqual(sample(139.315, 35.755), 123.45, places=2)
 
+        with TemporaryDirectory() as directory:
+            below = gf.dem_sampler([139.31, 35.75, 139.32, 35.76], Path(directory), fetch=lambda url: _dem_png(-2.5))
+            self.assertAlmostEqual(below(139.315, 35.755), -2.5, places=2, msg='below sea level: the 24-bit value is negative')
+
         nodata = Image.new('RGB', (256, 256), (128, 0, 0))
         buffer = io.BytesIO()
         nodata.save(buffer, format='PNG')

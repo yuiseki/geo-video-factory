@@ -342,7 +342,9 @@ def _decode_dem_png(data: bytes | None):
         return np.zeros((256, 256), dtype=np.float32)
     rgb = np.asarray(Image.open(io.BytesIO(data)).convert('RGB'), dtype=np.int64)
     raw = (rgb[..., 0] << 16) | (rgb[..., 1] << 8) | rgb[..., 2]
-    raw = np.where(raw >= 2 ** 23, raw - 2 ** 24, raw)
+    # 24-bit two's complement by arithmetic alone. np.where(raw >= 2**23, raw - 2**24, raw) picked
+    # the wrong branch for every pixel on a CI runner (numpy 2.2.6, Python 3.14, AVX-512).
+    raw = (raw + 2 ** 23) % 2 ** 24 - 2 ** 23
     heights = raw.astype(np.float32) * 0.01
     heights[raw == -(2 ** 23)] = 0.0  # 0x800000 is nodata
     return heights
