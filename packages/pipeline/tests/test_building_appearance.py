@@ -278,6 +278,110 @@ class BuildingAppearanceTests(unittest.TestCase):
             self.assertEqual(final['tiles'][1]['ids'], ['way/osm-1'])
             self.assertTrue(final['tiles'][1]['facade_colors'][0].startswith('#'))
 
+    def test_b3dm_rtc_and_native_glb_node_translation_produce_identical_centroids_and_colors(self):
+        rtc_ecef = appearance._ecef(139.79, 35.70)
+        # Displace 10m east, 10m north, 10m up using ECEF->local glTF [dx, dz, -dy]
+        p_east_north_up = appearance._ecef(139.79011, 35.70009, 10.0)
+        dx, dy, dz = (p_east_north_up[i] - rtc_ecef[i] for i in range(3))
+        local_verts = [(0.0, 0.0, 0.0), (dx, dz, -dy)]
+
+        def make_glb(node_spec):
+            binary = b''.join(struct.pack('<3f', *v) for v in local_verts) + bytes([0, 0, 0, 0])
+            doc = {
+                'asset': {'version': '2.0'},
+                'scene': 0, 'scenes': [{'nodes': [0]}],
+                'nodes': [node_spec],
+                'buffers': [{'byteLength': len(binary)}],
+                'bufferViews': [
+                    {'buffer': 0, 'byteOffset': 0, 'byteLength': 24},
+                    {'buffer': 0, 'byteOffset': 24, 'byteLength': 2},
+                ],
+                'accessors': [
+                    {'bufferView': 0, 'componentType': 5126, 'count': 2, 'type': 'VEC3'},
+                    {'bufferView': 1, 'componentType': 5121, 'count': 2, 'type': 'SCALAR'},
+                ],
+                'materials': [{'pbrMetallicRoughness': {}}],
+                'meshes': [{'primitives': [{'attributes': {'POSITION': 0, '_BATCHID': 1}, 'material': 0}]}],
+            }
+            jc = json.dumps(doc, separators=(',', ':')).encode()
+            jc += b' ' * ((-len(jc)) % 4)
+            return struct.pack('<4sII', b'glTF', 2, 12 + 8 + len(jc) + 8 + len(binary)) + struct.pack('<I4s', len(jc), b'JSON') + jc + struct.pack('<I4s', len(binary), b'BIN\0') + binary
+
+        b3dm_glb = make_glb({'mesh': 0})
+        native_glb = make_glb({'mesh': 0, 'translation': [rtc_ecef[0], rtc_ecef[2], -rtc_ecef[1]]})
+
+        c_b3dm = appearance.extract_glb_feature_centroids(b3dm_glb, list(rtc_ecef), ['bldg-1'])
+        c_native = appearance.extract_glb_feature_centroids(native_glb, [0.0, 0.0, 0.0], ['bldg-1'])
+        self.assertAlmostEqual(c_b3dm['bldg-1'][0], c_native['bldg-1'][0], places=6)
+        self.assertAlmostEqual(c_b3dm['bldg-1'][1], c_native['bldg-1'][1], places=6)
+        self.assertAlmostEqual(c_native['bldg-1'][0], 139.790055, places=4)
+        self.assertAlmostEqual(c_native['bldg-1'][1], 35.700045, places=4)
+
+        image = Image.new('RGB', (32, 32), (140, 125, 110))
+        bbox = [139.78, 35.69, 139.80, 35.71]
+        pal_b3dm = appearance.infer_glb_facade_colors(b3dm_glb, list(rtc_ecef), ['bldg-1'], image, bbox, seed='v1')
+        pal_native = appearance.infer_glb_facade_colors(native_glb, [0.0, 0.0, 0.0], ['bldg-1'], image, bbox, seed='v1')
+        self.assertEqual(pal_b3dm, pal_native)
+
+    def test_draco_compressed_glb_decodes_positions_and_batch_ids_for_centroids_and_colors(self):
+        import DracoPy
+        import numpy as np
+        rtc_ecef = appearance._ecef(139.79, 35.70)
+        # Building 0 at (-0.005, -0.005) deg offset from center; Building 1 at (+0.005, +0.005) deg offset
+        p0 = appearance._ecef(139.785, 35.695)
+        p1 = appearance._ecef(139.795, 35.705)
+        d0 = [p0[0] - rtc_ecef[0], p0[2] - rtc_ecef[2], -(p0[1] - rtc_ecef[1])]
+        d1 = [p1[0] - rtc_ecef[0], p1[2] - rtc_ecef[2], -(p1[1] - rtc_ecef[1])]
+        pts = np.array([
+            d0, [d0[0] + 10, d0[1], d0[2]], [d0[0], d0[1], d0[2] + 10],
+            d1, [d1[0] + 10, d1[1], d1[2]], [d1[0], d1[1], d1[2] + 10],
+        ], dtype=np.float32)
+        faces = np.array([[0, 1, 2], [3, 4, 5]], dtype=np.uint32)
+        batch_ids = np.array([[0], [0], [0], [1], [1], [1]], dtype=np.uint8)
+        draco_bytes = DracoPy.encode(pts, faces, quantization_bits=16, generic_attributes={1: batch_ids})
+        decoded = DracoPy.decode(draco_bytes)
+        pos_uid = next(attr['unique_id'] for attr in decoded.attributes if attr['attribute_type'] == 0)
+        bid_uid = next(attr['unique_id'] for attr in decoded.attributes if attr['unique_id'] != pos_uid)
+        doc = {
+            'asset': {'version': '2.0'},
+            'extensionsUsed': ['KHR_draco_mesh_compression'],
+            'buffers': [{'byteLength': len(draco_bytes)}],
+            'bufferViews': [{'buffer': 0, 'byteOffset': 0, 'byteLength': len(draco_bytes)}],
+            'accessors': [
+                {'componentType': 5126, 'count': 6, 'type': 'VEC3'},
+                {'componentType': 5121, 'count': 6, 'type': 'SCALAR'},
+            ],
+            'materials': [{'pbrMetallicRoughness': {}}],
+            'meshes': [{'primitives': [{
+                'attributes': {'POSITION': 0, '_BATCHID': 1},
+                'material': 0,
+                'extensions': {'KHR_draco_mesh_compression': {
+                    'bufferView': 0,
+                    'attributes': {'POSITION': pos_uid, '_BATCHID': bid_uid},
+                }},
+            }]}],
+        }
+        jc = json.dumps(doc, separators=(',', ':')).encode()
+        jc += b' ' * ((-len(jc)) % 4)
+        bin_pad = draco_bytes + b'\0' * ((-len(draco_bytes)) % 4)
+        glb = struct.pack('<4sII', b'glTF', 2, 12 + 8 + len(jc) + 8 + len(bin_pad)) + struct.pack('<I4s', len(jc), b'JSON') + jc + struct.pack('<I4s', len(bin_pad), b'BIN\0') + bin_pad
+
+        centroids = appearance.extract_glb_feature_centroids(glb, list(rtc_ecef), ['gml-d0', 'gml-d1'])
+        self.assertIn('gml-d0', centroids)
+        self.assertIn('gml-d1', centroids)
+        self.assertAlmostEqual(centroids['gml-d0'][0], 139.785, places=3)
+        self.assertAlmostEqual(centroids['gml-d1'][0], 139.795, places=3)
+
+        image = Image.new('RGB', (100, 100), (40, 40, 40))
+        draw = ImageDraw.Draw(image)
+        draw.rectangle((10, 60, 40, 90), fill=(210, 70, 60))   # SW quadrant -> gml-d0
+        draw.rectangle((60, 10, 90, 40), fill=(60, 110, 210))  # NE quadrant -> gml-d1
+        palette = appearance.infer_glb_facade_colors(glb, list(rtc_ecef), ['gml-d0', 'gml-d1'], image, [139.78, 35.69, 139.80, 35.71], seed='v1')
+        r0, _, b0 = (int(palette['gml-d0'][i:i + 2], 16) for i in (1, 3, 5))
+        r1, _, b1 = (int(palette['gml-d1'][i:i + 2], 16) for i in (1, 3, 5))
+        self.assertGreater(r0, b0)
+        self.assertGreater(b1, r1)
+
     def test_apply_orthophoto_palette_persists_colors_in_manifest_id_order(self):
         with TemporaryDirectory() as directory:
             root = Path(directory)
