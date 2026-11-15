@@ -56,3 +56,28 @@ export function wipeSequenceFilter(parts: WipeKeys[], line = 4): string {
   const joined = parts.map((_, k) => `[p${k}]`).join('');
   return `${graphs.join(';')};${joined}concat=n=${parts.length}:v=1:a=0[v]`;
 }
+
+export type RenderLayer = 'all' | 'map' | 'overlay';
+
+/**
+ * Frame and video formats per layer. The map layer is the picture without any decoration; the
+ * overlay layer is text, labels, counters and credits on a transparent background, laid over the
+ * finished picture at the end (so text is never cut by an edit and can change without
+ * re-rendering the 3D city).
+ */
+export function layerFormat(layer: RenderLayer): { frame: 'jpg' | 'png'; video: 'mp4' | 'mov'; transparent: boolean } {
+  return layer === 'overlay' ? { frame: 'png', video: 'mov', transparent: true } : { frame: 'jpg', video: 'mp4', transparent: false };
+}
+
+/** [0:v] picture, [1:v] transparent decoration layer -> [v]. */
+export function overlayFilter(): string {
+  return '[0:v][1:v]overlay=format=auto:shortest=1,format=yuv420p[v]';
+}
+
+/**
+ * Zoom offset that keeps the framing of a spec designed at `designWidth` pixels when it is
+ * rendered at `renderWidth` (a half-size preview must show the same ground, not half of it).
+ */
+export function previewZoomOffset(designWidth: number, renderWidth: number): number {
+  return Math.log2(renderWidth / designWidth);
+}

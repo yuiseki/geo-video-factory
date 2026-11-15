@@ -13,6 +13,7 @@ import { fileURLToPath } from 'node:url';
 import { chromium } from 'playwright';
 import { prepareNarration } from './voice.js';
 import type { ShotSpec } from './types.js';
+import { layerFormat, previewZoomOffset, type RenderLayer } from './compose.js';
 
 const PACKAGE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
@@ -150,13 +151,15 @@ async function main(): Promise<void> {
   };
   const specPath = args.find((a) => a.endsWith('.json'));
   if (!specPath) {
-    console.error('usage: node render.js <shots.json> [--project dir] [--out dir] [--fps n] [--size WxH] [--stills sec] [--from s --to s]');
+    console.error('usage: node render.js <shots.json> [--project dir] [--out dir] [--fps n] [--size WxH] [--stills sec] [--from s --to s] [--layer all|map|overlay]');
     process.exit(2);
   }
 
   const projectRoot = resolveProjectRoot(specPath, opt('project'));
   const spec = JSON.parse(fs.readFileSync(specPath, 'utf8')) as ShotSpec;
+  const designWidth = spec.width ?? 1920;
   const [w, h] = parseSize(opt('size', `${spec.width ?? 1920}x${spec.height ?? 1080}`) ?? '1920x1080');
+  spec.zoomOffset = previewZoomOffset(designWidth, w);
   spec.width = w;
   spec.height = h;
   const fps = Number(opt('fps', String(spec.fps ?? 30)));
@@ -202,6 +205,11 @@ async function main(): Promise<void> {
   const total = spec.shots.reduce((sum, shot) => sum + (shot.duration ?? 0), 0);
   const from = Number(opt('from', '0'));
   const to = Math.min(total, Number(opt('to', String(total))));
+  const layer = (opt('layer', 'all') as RenderLayer);
+  if (!['all', 'map', 'overlay'].includes(layer)) throw new Error(`--layer must be all, map or overlay (got ${layer})`);
+  const format = layerFormat(layer);
+  // the decoration layer needs the camera but not the 3D city
+  const pageSpec: ShotSpec = layer === 'overlay' ? { ...spec, layer, plateauBuildings: undefined } : { ...spec, layer };
   const stills = opt('stills');
   const step = stills ? Number(stills) : 1 / fps;
   const times = buildFrameTimes(from, to, step);
@@ -209,7 +217,7 @@ async function main(): Promise<void> {
   const workers = resolveWorkerCount(
     times.length,
     workersOpt !== undefined ? Number(workersOpt) : undefined,
-    Boolean(spec.plateauBuildings),
+    Boolean(pageSpec.plateauBuildings),
   );
   const ranges = partitionFrameIndices(times.length, workers);
 
@@ -241,7 +249,7 @@ async function main(): Promise<void> {
         }),
       );
     }
-    const first = await page.evaluate((s) => window.FLY.init(s), spec);
+    const first = await page.evaluate((s) => window.FLY.init(s), pageSpec);
     if (first === 'timeout' && workerIndex === 0) console.error('warning: first load did not settle (tiles still loading?)');
 
     for (let i = start; i < end; i++) {
@@ -277,12 +285,10 @@ async function main(): Promise<void> {
         }
       }
 
-      await page.screenshot({
-        path: path.join(out, 'frames', String(i).padStart(5, '0') + '.jpg'),
-        type: 'jpeg',
-        quality: 95,
-        timeout: 120_000,
-      });
+      const framePath = path.join(out, 'frames', String(i).padStart(5, '0') + '.' + format.frame);
+      await page.screenshot(format.transparent
+        ? { path: framePath, type: 'png', omitBackground: true, timeout: 120_000 }
+        : { path: framePath, type: 'jpeg', quality: 95, timeout: 120_000 });
       completed++;
       if (completed % 30 === 0 || completed === times.length) {
         process.stdout.write(`\r${completed}/${times.length} frames, ${((Date.now() - t0) / 1000).toFixed(0)} s`);
@@ -305,7 +311,7 @@ async function main(): Promise<void> {
     const cols = Math.min(4, times.length);
     const r = spawnSync(
       'ffmpeg',
-      ['-v', 'error', '-y', '-i', path.join(out, 'frames', '%05d.jpg'), '-vf', `scale=480:-1,tile=${cols}x${Math.ceil(times.length / cols)}`, '-frames:v', '1', sheet],
+      ['-v', 'error', '-y', '-i', path.join(out, 'frames', '%05d.' + format.frame), '-vf', `scale=480:-1,tile=${cols}x${Math.ceil(times.length / cols)}`, '-frames:v', '1', sheet],
       { stdio: 'inherit' },
     );
     if (r.status !== 0) {
@@ -314,9 +320,9 @@ async function main(): Promise<void> {
     }
     console.log(`stills: ${sheet}`);
   } else {
-    const mp4 = path.join(out, path.basename(out) + '.mp4');
+    const mp4 = path.join(out, path.basename(out) + '.' + format.video);
     const partial = from > 0 || to < total;
-    const ff = ['-v', 'error', '-y', '-framerate', String(fps), '-i', path.join(out, 'frames', '%05d.jpg')];
+    const ff = ['-v', 'error', '-y', '-framerate', String(fps), '-i', path.join(out, 'frames', '%05d.' + format.frame)];
     let audio: string[] = [];
 
     if (narration.wav && !partial) {
@@ -345,7 +351,10 @@ async function main(): Promise<void> {
       console.error('note: --from/--to renders the picture only (no audio)');
     }
 
-    const r = spawnSync(
+    const codec = format.transparent
+      ? ['-c:v', 'qtrle', '-pix_fmt', 'argb', mp4]
+      : null;
+    const r = codec ? spawnSync('ffmpeg', [...ff, ...codec], { stdio: 'inherit' }) : spawnSync(
       'ffmpeg',
       [
         ...ff,

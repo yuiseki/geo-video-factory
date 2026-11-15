@@ -4,8 +4,9 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
-import { applyBuildingAppearance, neutralizePbr, plateauRoofUniforms } from './plateau-materials.js';
-import { cityUniforms, createCityProxyMaterial, createCityShadowMaterial, type CityRoofPhoto } from './city-materials.js';
+import { applyBuildingAppearance, neutralizePbr } from './plateau-materials.js';
+import { createPlateauRoofUniforms } from './plateau-facade-glsl.js';
+import { createCityProxyMaterial, createCityShadowMaterial, createCityUniforms, type CityRoofPhoto, type CityUniforms } from './city-materials.js';
 import { cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
 
 interface ModelTile {
@@ -88,7 +89,18 @@ export interface PlateauBuildingsLayer {
   update: (sec: number) => void;
 }
 
-export async function addPlateauBuildings(map: MapLibre, config: PlateauBuildingsConfig): Promise<PlateauBuildingsLayer> {
+interface BuildingGroup {
+  scene: THREE.Scene;
+  localToMercator: THREE.Matrix4;
+  lights: { ambient: THREE.AmbientLight; sun: THREE.DirectionalLight; fill: THREE.DirectionalLight };
+  city: CityUniforms;
+  config: PlateauBuildingsConfig;
+  totalTiles: number;
+  loadedTiles: () => number;
+}
+
+/** One manifest: its own origin, lights and wave uniforms, so several cities can share a render. */
+async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup> {
   const { manifest, url } = await readManifest(config.manifest);
   if (!manifest.center) throw new Error('PLATEAU manifest must define a WGS84 center');
   const center = manifest.center;
@@ -107,9 +119,13 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   sun.position.set(-300, -450, 450);
   scene.add(sun);
   const fill = new THREE.DirectionalLight(0xdce8ff, 0.35);
-  const fillBase = fill.intensity;
   fill.position.set(300, 200, 400);
   scene.add(fill);
+  const city = createCityUniforms();
+  const roofUniforms = createPlateauRoofUniforms();
+  const growOrigin = config.reveal ? localMeters(config.reveal.center, center) : [0, 0];
+  city.uCityGrowOrigin.value.set(growOrigin[0]!, growOrigin[1]!);
+  city.uCityGrowWidth.value = config.reveal?.width ?? 120;
   const draco = new DRACOLoader().setDecoderPath('/node_modules/three/examples/jsm/libs/draco/').setWorkerLimit(2);
   const loader = new GLTFLoader().setDRACOLoader(draco);
   const originMercator = MercatorCoordinate.fromLngLat(center, 0);
@@ -121,15 +137,18 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   const basis = rowBasis(center[0], center[1]);
   const heightOffset = config.heightOffset ?? 0;
   const workerCount = Math.max(1, Math.min(8, Math.floor(config.workers ?? 3)));
-  if (manifest.roof_texture && config.appearance !== false) {
-    const texture = await new THREE.TextureLoader().loadAsync(new URL(manifest.roof_texture.image, url).href);
+  const loadPhoto = async (image: string) => {
+    const texture = await new THREE.TextureLoader().loadAsync(new URL(image, url).href);
     texture.colorSpace = THREE.SRGBColorSpace;
     texture.anisotropy = 8;
+    return texture;
+  };
+  if (manifest.roof_texture && config.appearance !== false) {
     const [x0, y0, x1, y1] = manifest.roof_texture.bounds_m;
-    plateauRoofUniforms.uPlateauRoofPhoto.value = texture;
-    plateauRoofUniforms.uPlateauRoofMin.value.set(x0, y0);
-    plateauRoofUniforms.uPlateauRoofSize.value.set(x1 - x0, y1 - y0);
-    plateauRoofUniforms.uPlateauRoofOn.value = 1;
+    roofUniforms.uPlateauRoofPhoto.value = await loadPhoto(manifest.roof_texture.image);
+    roofUniforms.uPlateauRoofMin.value.set(x0, y0);
+    roofUniforms.uPlateauRoofSize.value.set(x1 - x0, y1 - y0);
+    roofUniforms.uPlateauRoofOn.value = 1;
   }
   let cursor = 0;
   let loadedTiles = 0;
@@ -151,21 +170,17 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
       if (tile.kind === 'city-proxy' || tile.kind === 'city-shadow') {
         let roof: CityRoofPhoto | undefined;
         if (tile.kind === 'city-proxy' && tile.roof_texture) {
-          const texture = await new THREE.TextureLoader().loadAsync(new URL(tile.roof_texture.image, url).href);
-          texture.colorSpace = THREE.SRGBColorSpace;
-          texture.anisotropy = 8;
-          roof = { texture, bounds: tile.roof_texture.bounds_m };
+          roof = { texture: await loadPhoto(tile.roof_texture.image), bounds: tile.roof_texture.bounds_m };
         }
-        const material = tile.kind === 'city-proxy' ? createCityProxyMaterial(roof) : createCityShadowMaterial();
+        const material = tile.kind === 'city-proxy' ? createCityProxyMaterial(roof, city) : createCityShadowMaterial(city);
         gltf.scene.traverse((object) => {
           const mesh = object as THREE.Mesh;
           if (mesh.isMesh) mesh.material = material;
         });
       } else if (config.appearance !== false) {
-        // The enhanced render leaves no building flat: photo textures stay, untextured buildings
-        // get a facade and the aerial photo on their roofs. appearance: false is the untouched
-        // "before" reference of a comparison.
-        applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl);
+        // No building is left flat: photo textures stay, untextured buildings get a facade and the
+        // aerial photo on their roofs as the paint wave passes. appearance: false is untouched PLATEAU.
+        applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl, true, { city, roof: roofUniforms });
       }
       scene.add(gltf.scene);
       loadedTiles++;
@@ -173,12 +188,18 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   };
   try {
     await Promise.all(Array.from({ length: workerCount }, loadWorker));
-  } catch (error) {
+  } finally {
     draco.dispose();
-    throw error;
   }
-  draco.dispose();
+  return { scene, localToMercator, lights: { ambient, sun, fill }, city, config, totalTiles: manifest.tiles.length, loadedTiles: () => loadedTiles };
+}
 
+export async function addPlateauBuildings(
+  map: MapLibre,
+  configs: PlateauBuildingsConfig | PlateauBuildingsConfig[],
+): Promise<PlateauBuildingsLayer> {
+  const list = Array.isArray(configs) ? configs : [configs];
+  const groups = await Promise.all(list.map((config) => loadGroup(config)));
   let renderer: THREE.WebGLRenderer | undefined;
   const camera = new THREE.Camera();
   const layer: CustomLayerInterface = {
@@ -194,10 +215,12 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
     },
     render: (_gl, args: CustomRenderMethodInput) => {
       if (!renderer) return;
-      const projection = args.defaultProjectionData.mainMatrix;
-      camera.projectionMatrix.fromArray(projection as unknown as number[]).multiply(localToMercator);
+      const projection = args.defaultProjectionData.mainMatrix as unknown as number[];
       renderer.resetState();
-      renderer.render(scene, camera);
+      for (const group of groups) {
+        camera.projectionMatrix.fromArray(projection).multiply(group.localToMercator);
+        renderer.render(group.scene, camera);
+      }
     },
     onRemove: () => {
       renderer?.dispose();
@@ -207,24 +230,27 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   const styleLayers = map.getStyle().layers ?? [];
   const firstSymbol = styleLayers.find((item) => item.type === 'symbol')?.id;
   map.addLayer(layer, firstSymbol);
-  const growOrigin = config.reveal ? localMeters(config.reveal.center, center) : [0, 0];
-  cityUniforms.uCityGrowOrigin.value.set(growOrigin[0]!, growOrigin[1]!);
-  cityUniforms.uCityGrowWidth.value = config.reveal?.width ?? 120;
   const rasterLayers = styleLayers.filter((item) => item.type === 'raster').map((item) => item.id);
+  const nightKeys = list.find((config) => config.night)?.night;
   const update = (sec: number) => {
-    cityUniforms.uCityGrowRadius.value = revealRadius(config.reveal, sec);
-    cityUniforms.uCityPaintRadius.value = paintRadius(config.reveal, sec);
-    if (!config.night) return;
-    const night = keyframeValue(config.night, sec);
+    for (const group of groups) {
+      group.city.uCityGrowRadius.value = revealRadius(group.config.reveal, sec);
+      group.city.uCityPaintRadius.value = paintRadius(group.config.reveal, sec);
+    }
+    if (!nightKeys) return;
+    const night = keyframeValue(nightKeys, sec);
     const light = cityLight(night);
-    ambient.intensity = light.ambient;
-    ambient.color.setRGB(...light.ambientColor);
-    sun.intensity = light.sun;
-    sun.color.setRGB(...light.sunColor);
-    fill.intensity = fillBase * (1 - 0.7 * night);
-    cityUniforms.uCityWindows.value = light.windows;
-    cityUniforms.uCityShadow.value = light.shadow;
-    cityUniforms.uCityNight.value = night;
+    for (const group of groups) {
+      const { ambient, sun, fill } = group.lights;
+      ambient.intensity = light.ambient;
+      ambient.color.setRGB(...light.ambientColor);
+      sun.intensity = light.sun;
+      sun.color.setRGB(...light.sunColor);
+      fill.intensity = 0.35 * (1 - 0.7 * night);
+      group.city.uCityWindows.value = light.windows;
+      group.city.uCityShadow.value = light.shadow;
+      group.city.uCityNight.value = night;
+    }
     for (const id of rasterLayers) {
       map.setPaintProperty(id, 'raster-brightness-max', light.mapBrightness);
       map.setPaintProperty(id, 'raster-saturation', light.mapSaturation);
@@ -234,11 +260,11 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   return {
     update,
     stats: () => ({
-      loadedTiles,
-      totalTiles: manifest.tiles.length,
+      loadedTiles: groups.reduce((sum, group) => sum + group.loadedTiles(), 0),
+      totalTiles: groups.reduce((sum, group) => sum + group.totalTiles, 0),
       triangles: renderer?.info.render.triangles ?? 0,
       drawCalls: renderer?.info.render.calls ?? 0,
-      objectCount: scene.children.length,
+      objectCount: groups.reduce((sum, group) => sum + group.scene.children.length, 0),
     }),
   };
 }

@@ -28,7 +28,7 @@ BBOX = [139.302, 35.736, 139.336, 35.768]  # Tokyo Hamura (0% PLATEAU -> 100% OS
 SHINJUKU_BBOX = [139.684, 35.683, 139.702, 35.697]
 SEED = "tokyo-sota-v1"
 SOTA_VERSION = 8  # bump when the SOTA assets change shape, so cached ones are rebuilt
-FIXTURES = ("buildings-tokyo-sota-prelude.json", "buildings-tokyo-sota-prelude-enhanced.json", "buildings-tokyo-sota-baseline.json", "buildings-tokyo-sota-enhanced.json")
+FIXTURES = ("buildings-tokyo-sota.json",)
 # Set OVERPASS_URL to your own Overpass instance; the public ones are shared resources.
 OVERPASS_ENDPOINTS = [os.environ["OVERPASS_URL"]] if os.environ.get("OVERPASS_URL") else [
     "https://overpass-api.de/api/interpreter",

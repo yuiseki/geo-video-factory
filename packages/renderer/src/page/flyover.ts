@@ -47,6 +47,15 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
     transform: `scale(${1 / scale()})`,
     transformOrigin: '0 0',
   });
+  if (spec.layer === 'map') {
+    // the picture only: decorations are rendered as their own layer and laid over at the end
+    for (const id of ['overlay', 'tint', 'credit']) document.getElementById(id)!.style.display = 'none';
+  } else if (spec.layer === 'overlay') {
+    document.documentElement.style.background = 'transparent';
+    document.body.style.background = 'transparent';
+    stage.style.background = 'transparent';
+    mapEl.style.visibility = 'hidden';
+  }
   registerMapProtocols();
   const style = buildMapStyle(spec);
   document.getElementById('credit')!.textContent = [...style.credits, ...(spec.credits ?? [])].join('\n');
@@ -56,7 +65,7 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
     container: 'map',
     style: mapStyle as unknown as maplibregl.StyleSpecification,
     center: first.center,
-    zoom: first.zoom,
+    zoom: first.zoom + (spec.zoomOffset ?? 0),
     pitch: first.pitch,
     bearing: first.bearing,
     maxPitch: 85,
@@ -84,7 +93,7 @@ async function frame(sec: number): Promise<'idle' | 'timeout'> {
     width: spec.width,
     height: spec.height,
   });
-  map.jumpTo(cam);
+  map.jumpTo({ ...cam, zoom: cam.zoom + (spec.zoomOffset ?? 0) });
   buildings?.update(sec);
   drawOverlays(index, shot, t, 'map');
   const result = await settle();

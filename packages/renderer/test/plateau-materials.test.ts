@@ -7,6 +7,8 @@ import {
   neutralizePbr,
   plateauRoofUniforms
 } from "../src/page/plateau-materials.js";
+import { createCityUniforms } from "../src/page/city-materials.js";
+import { createPlateauRoofUniforms } from "../src/page/plateau-facade-glsl.js";
 
 function makeSolidTexture(r: number, g: number, b: number, a = 255): THREE.DataTexture {
   const data = new Uint8Array(4 * 4 * 4);
@@ -197,5 +199,29 @@ describe("untextured PLATEAU buildings in the enhanced render", () => {
     assert.equal(a.uniforms.uPlateauRoofPhoto, plateauRoofUniforms.uPlateauRoofPhoto, "roof photo uniforms are shared");
     const b = compile(photo);
     assert.doesNotMatch(b.fragmentShader, /curtainGlass/);
+  });
+});
+
+describe("untextured PLATEAU buildings change in place as the paint wave passes", () => {
+  it("start as PLATEAU shows them and follow the wave of their own scene", () => {
+    const geometry = new THREE.BoxGeometry(10, 10, 20);
+    geometry.setAttribute("_batchid", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xffffff }));
+    const root = new THREE.Group();
+    root.add(mesh);
+    const city = createCityUniforms();
+    const roof = createPlateauRoofUniforms();
+    applyPlateauBuildingAppearance(root, { palette: ["#c8c2b6ff"], seed: 2, uniforms: { city, roof } });
+    const shader = {
+      uniforms: {} as Record<string, THREE.IUniform>,
+      vertexShader: "#include <common>\n#include <begin_vertex>",
+      fragmentShader: "#include <common>\n#include <color_fragment>\n#include <dithering_fragment>"
+    };
+    (mesh.material as THREE.MeshStandardMaterial).onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    assert.match(shader.vertexShader, /vPlateauPaint/);
+    assert.match(shader.fragmentShader, /uPlateauRawColor/);
+    assert.equal(shader.uniforms.uCityPaintRadius, city.uCityPaintRadius, "the wave of this scene, not a global one");
+    assert.equal(shader.uniforms.uPlateauRoofPhoto, roof.uPlateauRoofPhoto);
+    assert.deepEqual((shader.uniforms.uPlateauRawColor!.value as THREE.Color).toArray(), [1, 1, 1], "before the wave: PLATEAU's own white");
   });
 });

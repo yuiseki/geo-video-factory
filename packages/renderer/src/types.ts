@@ -352,7 +352,12 @@ export interface ShotSpec {
   contrast?: number;
   sky?: Record<string, unknown>;
   osmLabels?: boolean;
-  plateauBuildings?: PlateauBuildingsConfig;
+  /** One manifest, or several (each with its own origin, reveal and roof photo) in one render. */
+  plateauBuildings?: PlateauBuildingsConfig | PlateauBuildingsConfig[];
+  /** Set by the renderer (--layer): 'map' without decorations, 'overlay' decorations only. */
+  layer?: 'all' | 'map' | 'overlay';
+  /** Set by the renderer when --size differs from the designed width, to keep the framing. */
+  zoomOffset?: number;
   credits?: string[];
   voices?: Record<string, VoiceConfig>;
   tts?: TtsConfig;

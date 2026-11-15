@@ -1,6 +1,9 @@
 import * as THREE from "three";
-import { cityUniforms } from "./city-materials.js";
-import { plateauRoofUniforms, UNTEXTURED_FACADE } from "./plateau-facade-glsl.js";
+import { cityUniforms, type CityUniforms } from "./city-materials.js";
+import { analyzeTextureTone } from "./plateau-texture-tone.js";
+
+export { analyzeTextureTone, type TextureToneAnalysis } from "./plateau-texture-tone.js";
+import { plateauRoofUniforms, type PlateauRoofUniforms, UNTEXTURED_FACADE } from "./plateau-facade-glsl.js";
 
 export { plateauRoofUniforms };
 
@@ -12,106 +15,20 @@ export interface PlateauAppearanceOptions {
    * applied either way: no building may be left as a flat, featureless surface.
    */
   recolor?: boolean;
+  /** Uniforms of the scene these buildings belong to (paint wave, windows, roof photo). */
+  uniforms?: FacadeUniforms;
 }
+
+export interface FacadeUniforms {
+  city: CityUniforms;
+  roof: PlateauRoofUniforms;
+}
+
+const defaultUniforms: FacadeUniforms = { city: cityUniforms, roof: plateauRoofUniforms };
 
 export interface PlateauAppearanceResult {
   preservedTexturedMaterials: number;
   styledUntexturedMaterials: number;
-}
-
-export interface TextureToneAnalysis {
-  tone: number;
-  bland: boolean;
-}
-
-const toneCache = new WeakMap<THREE.Texture, TextureToneAnalysis>();
-
-function extractTexturePixels(image: unknown): Uint8Array | Uint8ClampedArray | null {
-  if (!image || typeof image !== "object") {
-    return null;
-  }
-  const dataImage = image as { data?: unknown; width?: number; height?: number };
-  if (
-    (dataImage.data instanceof Uint8Array || dataImage.data instanceof Uint8ClampedArray) &&
-    dataImage.data.length >= 4
-  ) {
-    return dataImage.data;
-  }
-  if (typeof document === "undefined") {
-    return null;
-  }
-  const width = Number(dataImage.width) || 0;
-  const height = Number(dataImage.height) || 0;
-  if (width <= 0 || height <= 0) {
-    return null;
-  }
-  try {
-    const size = 32;
-    const canvas = document.createElement("canvas");
-    canvas.width = size;
-    canvas.height = size;
-    const ctx = canvas.getContext("2d", { willReadFrequently: true });
-    if (!ctx) {
-      return null;
-    }
-    ctx.drawImage(image as CanvasImageSource, 0, 0, size, size);
-    return ctx.getImageData(0, 0, size, size).data;
-  } catch {
-    return null;
-  }
-}
-
-export function analyzeTextureTone(texture?: THREE.Texture | null): TextureToneAnalysis {
-  if (!texture) {
-    return { tone: 1, bland: false };
-  }
-  const cached = toneCache.get(texture);
-  if (cached) {
-    return cached;
-  }
-  const pixels = extractTexturePixels(texture.image);
-  if (!pixels) {
-    return { tone: 1, bland: false };
-  }
-  let count = 0;
-  let sum = 0;
-  let sumSq = 0;
-  let bright = 0;
-  for (let i = 0; i + 3 < pixels.length; i += 4) {
-    const a = pixels[i + 3] ?? 0;
-    if (a < 16) {
-      continue;
-    }
-    const r = pixels[i] ?? 0;
-    const g = pixels[i + 1] ?? 0;
-    const b = pixels[i + 2] ?? 0;
-    const y = (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
-    count++;
-    sum += y;
-    sumSq += y * y;
-    if (y > 0.78) {
-      bright++;
-    }
-  }
-  if (!count) {
-    return { tone: 1, bland: false };
-  }
-  const mean = sum / count;
-  const variance = Math.max(0, sumSq / count - mean * mean);
-  const spread = Math.sqrt(variance);
-  const share = bright / count;
-  let tone = 1;
-  if (share > 0.42 || mean > 0.74) {
-    tone = 0.64;
-  } else if (share > 0.24 || mean > 0.64) {
-    tone = 0.78;
-  }
-  const result = {
-    tone,
-    bland: spread < 0.105 && mean > 0.28
-  };
-  toneCache.set(texture, result);
-  return result;
 }
 
 /**
@@ -178,7 +95,9 @@ function clampUntexturedBase(material: THREE.MeshStandardMaterial): void {
 function attachFacadeShader(
   material: THREE.MeshStandardMaterial,
   seed: number,
-  palette?: THREE.DataTexture | null
+  palette?: THREE.DataTexture | null,
+  uniforms: FacadeUniforms = defaultUniforms,
+  rawColor?: THREE.Color
 ): void {
   const usePalette = !material.map && Boolean(palette);
   const untextured = !material.map;
@@ -187,8 +106,14 @@ function attachFacadeShader(
     `plateau-facade-v3-${seed}-${usePalette ? paletteSize : "map"}-${untextured ? "u" : "t"}`;
   material.onBeforeCompile = (shader) => {
     shader.uniforms.uPlateauSeed = { value: seed };
-    shader.uniforms.uCityWindows = cityUniforms.uCityWindows;
-    if (untextured) Object.assign(shader.uniforms, plateauRoofUniforms);
+    shader.uniforms.uCityWindows = uniforms.city.uCityWindows;
+    if (untextured) {
+      Object.assign(shader.uniforms, uniforms.roof);
+      shader.uniforms.uCityGrowOrigin = uniforms.city.uCityGrowOrigin;
+      shader.uniforms.uCityGrowWidth = uniforms.city.uCityGrowWidth;
+      shader.uniforms.uCityPaintRadius = uniforms.city.uCityPaintRadius;
+      shader.uniforms.uPlateauRawColor = { value: rawColor ?? material.color.clone() };
+    }
     if (usePalette && palette) {
       shader.uniforms.uPlateauPalette = { value: palette };
       shader.uniforms.uPlateauPaletteSize = { value: paletteSize };
@@ -200,7 +125,8 @@ function attachFacadeShader(
 attribute float _batchid;
 varying float vPlateauFeatureId;
 varying vec3 vPlateauWorldPos;
-varying vec3 vPlateauWorldNormal;`
+varying vec3 vPlateauWorldNormal;
+${untextured ? "uniform vec2 uCityGrowOrigin;\nuniform float uCityGrowWidth;\nuniform float uCityPaintRadius;\nvarying float vPlateauPaint;" : ""}`
       )
       .replace(
         "#include <begin_vertex>",
@@ -208,13 +134,16 @@ varying vec3 vPlateauWorldNormal;`
 vPlateauFeatureId = _batchid;
 vec4 plateauWorld = modelMatrix * vec4(transformed, 1.0);
 vPlateauWorldPos = plateauWorld.xyz;
-vPlateauWorldNormal = normalize(mat3(modelMatrix) * objectNormal);`
+vPlateauWorldNormal = normalize(mat3(modelMatrix) * objectNormal);
+${untextured ? "vPlateauPaint = clamp((uCityPaintRadius - distance(plateauWorld.xy, uCityGrowOrigin)) / uCityGrowWidth, 0.0, 1.0);" : ""}`
       );
     const roofHook = untextured
       ? `
 float plateauRoofUp = smoothstep(0.72, 0.92, abs(normalize(vPlateauWorldNormal).z));
 vec3 plateauRoofColor = texture2D(uPlateauRoofPhoto, (vPlateauWorldPos.xy - uPlateauRoofMin) / uPlateauRoofSize).rgb;
-diffuseColor.rgb = mix(diffuseColor.rgb, plateauRoofColor, plateauRoofUp * uPlateauRoofOn);`
+diffuseColor.rgb = mix(diffuseColor.rgb, plateauRoofColor, plateauRoofUp * uPlateauRoofOn);
+// Before the paint wave the building looks as PLATEAU ships it.
+diffuseColor.rgb = mix(uPlateauRawColor, diffuseColor.rgb, vPlateauPaint);`
       : "";
     const colorHook = (usePalette
       ? `#include <color_fragment>
@@ -232,7 +161,7 @@ float plateauTall = plateauSample.a > 0.9 || plateauSample.a < 0.5 ? 1.0 : 0.0;`
 ${usePalette ? "uniform sampler2D uPlateauPalette;\nuniform float uPlateauPaletteSize;" : ""}
 uniform float uPlateauSeed;
 uniform float uCityWindows;
-${untextured ? "uniform sampler2D uPlateauRoofPhoto;\nuniform vec2 uPlateauRoofMin;\nuniform vec2 uPlateauRoofSize;\nuniform float uPlateauRoofOn;" : ""}
+${untextured ? "uniform sampler2D uPlateauRoofPhoto;\nuniform vec2 uPlateauRoofMin;\nuniform vec2 uPlateauRoofSize;\nuniform float uPlateauRoofOn;\nuniform vec3 uPlateauRawColor;\nvarying float vPlateauPaint;" : ""}
 varying float vPlateauFeatureId;
 varying vec3 vPlateauWorldPos;
 varying vec3 vPlateauWorldNormal;
@@ -312,6 +241,7 @@ export function applyPlateauBuildingAppearance(
 ): PlateauAppearanceResult {
   const seed = options.seed ?? 1;
   const recolor = options.recolor ?? true;
+  const uniforms = options.uniforms ?? defaultUniforms;
   const palette = recolor ? options.palette ?? [] : [];
   const texture = palette.length > 0 ? paletteTexture(palette) : null;
   const result: PlateauAppearanceResult = {
@@ -339,19 +269,20 @@ export function applyPlateauBuildingAppearance(
         if (recolor && analysis.tone < 1) {
           clone.color.multiplyScalar(analysis.tone);
         }
-        attachFacadeShader(clone, seed + meshIndex * 0.13, null);
+        attachFacadeShader(clone, seed + meshIndex * 0.13, null, uniforms);
         return clone;
       }
       result.styledUntexturedMaterials++;
       const clone = std.clone();
+      const raw = std.color.clone();
       if (!recolor) {
-        attachFacadeShader(clone, seed + meshIndex * 0.13, null);
+        attachFacadeShader(clone, seed + meshIndex * 0.13, null, uniforms, raw);
       } else if (batchAttr) {
         clampUntexturedBase(clone);
-        attachFacadeShader(clone, seed + meshIndex * 0.13, texture);
+        attachFacadeShader(clone, seed + meshIndex * 0.13, texture, uniforms, raw);
       } else {
         tintUnbatched(clone, seed + meshIndex * 0.13);
-        attachFacadeShader(clone, seed + meshIndex * 0.13, null);
+        attachFacadeShader(clone, seed + meshIndex * 0.13, null, uniforms, raw);
       }
       return clone;
     };
@@ -377,7 +308,8 @@ export function applyBuildingAppearance(
   root: THREE.Object3D,
   paletteOrOptions?: Array<string | null> | PlateauAppearanceOptions,
   seedKey?: string | number,
-  recolor = true
+  recolor = true,
+  uniforms?: FacadeUniforms
 ): PlateauAppearanceResult {
   if (Array.isArray(paletteOrOptions)) {
     const seed =
@@ -386,7 +318,7 @@ export function applyBuildingAppearance(
         : typeof seedKey === "string"
           ? seedFromString(seedKey)
           : 1;
-    return applyPlateauBuildingAppearance(root, { palette: paletteOrOptions, seed, recolor });
+    return applyPlateauBuildingAppearance(root, { palette: paletteOrOptions, seed, recolor, ...(uniforms ? { uniforms } : {}) });
   }
   return applyPlateauBuildingAppearance(root, paletteOrOptions);
 }

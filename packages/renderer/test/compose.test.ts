@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { describe, it } from 'node:test';
-import { wipeSequenceFilter, wipeAt, wipeExpression, wipeFilter } from '../src/compose.js';
+import { layerFormat, overlayFilter, previewZoomOffset, wipeSequenceFilter, wipeAt, wipeExpression, wipeFilter } from '../src/compose.js';
 
 describe('before/after slider', () => {
   const keys: [number, number][] = [[1, 0], [2, 0.5], [4, 0.5], [5, 1]];
@@ -50,5 +50,36 @@ describe('before/after slider', () => {
     const probe = spawnSync('ffprobe', ['-v', 'error', '-count_frames', '-select_streams', 'v', '-show_entries', 'stream=nb_read_frames', '-of', 'csv=p=0', path.join(dir, 'joined.mp4')], { encoding: 'utf8' });
     assert.equal(probe.stdout.trim(), '20', 'the first slider (10 frames) is followed by the second (10 frames)');
     fs.rmSync(dir, { recursive: true, force: true });
+  });
+});
+
+describe('render layers', () => {
+  it('writes the map as opaque JPEG frames and the decorations as transparent PNG frames', () => {
+    assert.deepEqual(layerFormat('all'), { frame: 'jpg', video: 'mp4', transparent: false });
+    assert.deepEqual(layerFormat('map'), { frame: 'jpg', video: 'mp4', transparent: false });
+    assert.deepEqual(layerFormat('overlay'), { frame: 'png', video: 'mov', transparent: true });
+  });
+
+  it('lays the decoration layer over the picture', () => {
+    const dir = fs.mkdtempSync(path.join(os.tmpdir(), 'layers-'));
+    const run = (args: string[]) => {
+      const r = spawnSync('ffmpeg', ['-v', 'error', '-y', ...args], { encoding: 'utf8' });
+      assert.equal(r.status, 0, r.stderr);
+    };
+    run(['-f', 'lavfi', '-i', 'color=c=black:s=64x16:d=1:r=10', path.join(dir, 'map.mp4')]);
+    run(['-f', 'lavfi', '-i', "color=c=white:s=64x16:d=1:r=10,format=rgba,geq=r=255:g=255:b=255:a='if(lt(X,16),255,0)'", '-c:v', 'qtrle', path.join(dir, 'ov.mov')]);
+    run(['-i', path.join(dir, 'map.mp4'), '-i', path.join(dir, 'ov.mov'), '-filter_complex', overlayFilter(), '-map', '[v]', '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'gray', path.join(dir, 'out.gray')]);
+    const row = fs.readFileSync(path.join(dir, 'out.gray')).subarray(8 * 64, 9 * 64);
+    assert.ok(row[4]! > 215, 'decoration drawn');
+    assert.ok(row[40]! < 40, 'picture shows through the transparent part');
+    fs.rmSync(dir, { recursive: true, force: true });
+  });
+});
+
+describe('preview size', () => {
+  it('keeps the framing of the designed size when rendering smaller or larger', () => {
+    assert.equal(previewZoomOffset(1280, 1280), 0);
+    assert.equal(previewZoomOffset(1280, 640), -1);
+    assert.equal(previewZoomOffset(1280, 2560), 1);
   });
 });

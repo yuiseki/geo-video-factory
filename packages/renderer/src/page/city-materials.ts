@@ -1,31 +1,39 @@
 import * as THREE from 'three';
 
 /**
- * Uniforms shared by every city material, updated once per frame by the buildings layer.
+ * Uniforms shared by the city materials of one scene (one manifest), updated once per frame.
  * Grow: buildings within uCityGrowRadius - uCityGrowWidth (meters, world plane) of
- * uCityGrowOrigin stand; beyond uCityGrowRadius they are flat. Windows: 0 none lit .. 1 night.
+ * uCityGrowOrigin stand; beyond uCityGrowRadius they are flat. Paint works the same way for the
+ * second wave. Windows: 0 none lit .. 1 night.
  */
-export const cityUniforms = {
-  uCityGrowOrigin: { value: new THREE.Vector2(0, 0) },
-  uCityGrowRadius: { value: 1e9 },
-  uCityGrowWidth: { value: 120 },
-  uCityPaintRadius: { value: 1e9 },
-  uCityWindows: { value: 0 },
-  uCityNight: { value: 0 },
-  uCityShadow: { value: 0.38 },
-};
+export function createCityUniforms() {
+  return {
+    uCityGrowOrigin: { value: new THREE.Vector2(0, 0) },
+    uCityGrowRadius: { value: 1e9 },
+    uCityGrowWidth: { value: 120 },
+    uCityPaintRadius: { value: 1e9 },
+    uCityWindows: { value: 0 },
+    uCityNight: { value: 0 },
+    uCityShadow: { value: 0.38 },
+  };
+}
+
+export type CityUniforms = ReturnType<typeof createCityUniforms>;
+
+/** The default set, for materials created without a scene of their own. */
+export const cityUniforms = createCityUniforms();
 
 /**
  * Ground shadows of `city-shadow` tiles: a flat dark veil whose opacity follows the light and
  * which only appears where the buildings have risen.
  */
-export function createCityShadowMaterial(): THREE.MeshBasicMaterial {
+export function createCityShadowMaterial(uniforms: CityUniforms = cityUniforms): THREE.MeshBasicMaterial {
   const material = new THREE.MeshBasicMaterial({
     color: 0x0a0f18, transparent: true, depthWrite: false, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2,
   });
   material.customProgramCacheKey = () => 'city-shadow-v1';
   material.onBeforeCompile = (shader) => {
-    Object.assign(shader.uniforms, cityUniforms);
+    Object.assign(shader.uniforms, uniforms);
     shader.vertexShader = shader.vertexShader
       .replace('#include <common>', `#include <common>
 uniform vec2 uCityGrowOrigin;
@@ -56,11 +64,11 @@ export interface CityRoofPhoto {
   bounds: [number, number, number, number];
 }
 
-export function createCityProxyMaterial(roof?: CityRoofPhoto): THREE.MeshStandardMaterial {
+export function createCityProxyMaterial(roof?: CityRoofPhoto, uniforms: CityUniforms = cityUniforms): THREE.MeshStandardMaterial {
   const material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.88, metalness: 0, side: THREE.DoubleSide });
   material.customProgramCacheKey = () => `city-proxy-v5${roof ? '-roof' : ''}`;
   material.onBeforeCompile = (shader) => {
-    Object.assign(shader.uniforms, cityUniforms);
+    Object.assign(shader.uniforms, uniforms);
     if (roof) {
       const [x0, y0, x1, y1] = roof.bounds;
       shader.uniforms.uCityRoofPhoto = { value: roof.texture };

@@ -12,17 +12,24 @@ blankTexture.needsUpdate = true;
  * Aerial photo draped on the roofs of untextured PLATEAU buildings (enhanced render only).
  * Set once per scene from the manifest's roof_texture; off (0) by default.
  */
-export const plateauRoofUniforms = {
-  uPlateauRoofPhoto: { value: blankTexture as THREE.Texture },
-  uPlateauRoofMin: { value: new THREE.Vector2(0, 0) },
-  uPlateauRoofSize: { value: new THREE.Vector2(1, 1) },
-  uPlateauRoofOn: { value: 0 },
-};
+export function createPlateauRoofUniforms() {
+  return {
+    uPlateauRoofPhoto: { value: blankTexture as THREE.Texture },
+    uPlateauRoofMin: { value: new THREE.Vector2(0, 0) },
+    uPlateauRoofSize: { value: new THREE.Vector2(1, 1) },
+    uPlateauRoofOn: { value: 0 },
+  };
+}
+
+export type PlateauRoofUniforms = ReturnType<typeof createPlateauRoofUniforms>;
+
+/** The default set, for materials created without a scene of their own. */
+export const plateauRoofUniforms = createPlateauRoofUniforms();
 
 // Curtain wall for untextured walls: storeys, mullions, glass reflecting the sky, floor slabs.
 // An estimate for the picture, never a survey of the real facade.
-export const UNTEXTURED_FACADE = `float curtainWall = facadeWall * plateauTall;
-float houseWall = facadeWall * (1.0 - plateauTall);
+export const UNTEXTURED_FACADE = `float curtainWall = facadeWall * plateauTall * vPlateauPaint;
+float houseWall = facadeWall * (1.0 - plateauTall) * vPlateauPaint;
 float curtainStorey = 3.7 + buildingRnd * 0.5;
 float curtainMull = 1.35 + buildingRnd2 * 0.7;
 float cfy = vPlateauWorldPos.z / curtainStorey;
