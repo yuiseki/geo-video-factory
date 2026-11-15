@@ -282,6 +282,12 @@ def prepare_tiles(
         model_path = models_dir / f'{source_hash}.glb'
         optimized = _resize_glb_textures(glb, max_texture_dimension)
         model_path.write_bytes(optimized)
+        try:
+            from building_appearance import extract_glb_feature_centroids
+        except ImportError:
+            from .building_appearance import extract_glb_feature_centroids
+        rtc_floats = [float(v) for v in rtc]
+        feature_centroids = extract_glb_feature_centroids(optimized, rtc_floats, ids) if ids else {}
         return {
             'source': item['uri'],
             'glb': model_path.relative_to(output_dir).as_posix(),
@@ -289,8 +295,9 @@ def prepare_tiles(
             'source_sha256': hashlib.sha256(raw).hexdigest(),
             'source_bytes': len(raw),
             'bytes': len(optimized),
-            'rtc': [float(v) for v in rtc],
+            'rtc': rtc_floats,
             'ids': ids,
+            'feature_centroids': feature_centroids,
             'region': item['region'],
             'depth': item['depth'],
             'extensions': document.get('extensionsUsed', []),
@@ -345,7 +352,8 @@ def main() -> None:
         if args.orthophoto:
             with Image.open(args.orthophoto) as source:
                 ortho = source.convert('RGB')
-        manifest = build_osm_proxy_tiles(features, args.bbox, args.out, seed=args.seed, orthophoto=ortho)
+        plateau_ids = {str(identifier) for tile in manifest.get('tiles', []) for identifier in tile.get('ids', [])}
+        manifest = build_osm_proxy_tiles(features, args.bbox, args.out, plateau_ids=plateau_ids, seed=args.seed, orthophoto=ortho)
     print(json.dumps({k: v for k, v in manifest.items() if k != 'tiles'}, ensure_ascii=False))
 
 

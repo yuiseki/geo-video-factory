@@ -120,6 +120,65 @@ class Plateau3DTilesTests(unittest.TestCase):
             self.assertTrue((Path(directory) / manifest['tiles'][0]['glb']).is_file())
             self.assertEqual(json.loads((Path(directory) / 'manifest.json').read_text())['format'], 'geo-video-factory.plateau-3d/1')
 
+    def test_prepare_tiles_records_feature_centroids_from_batched_glb(self):
+        from building_appearance import _ecef
+        rtc = list(_ecef(139.8, 35.7))
+        binary = struct.pack('<3f', 0.0, 0.0, 0.0) + bytes([0, 0, 0, 0])
+        document = {
+            'asset': {'version': '2.0'},
+            'buffers': [{'byteLength': len(binary)}],
+            'bufferViews': [
+                {'buffer': 0, 'byteOffset': 0, 'byteLength': 12},
+                {'buffer': 0, 'byteOffset': 12, 'byteLength': 1},
+            ],
+            'accessors': [
+                {'bufferView': 0, 'componentType': 5126, 'count': 1, 'type': 'VEC3'},
+                {'bufferView': 1, 'componentType': 5121, 'count': 1, 'type': 'SCALAR'},
+            ],
+            'meshes': [{'primitives': [{'attributes': {'POSITION': 0, '_BATCHID': 1}}]}],
+        }
+        json_chunk = json.dumps(document, separators=(',', ':')).encode()
+        json_chunk += b' ' * ((-len(json_chunk)) % 4)
+        total = 12 + 8 + len(json_chunk) + 8 + len(binary)
+        glb = struct.pack('<4sII', b'glTF', 2, total) + struct.pack('<I4s', len(json_chunk), b'JSON') + json_chunk + struct.pack('<I4s', len(binary), b'BIN\0') + binary
+        feature = json.dumps({'BATCH_LENGTH': 1, 'RTC_CENTER': rtc}).encode()
+        batch = json.dumps({'gml_id': ['gml-1']}).encode()
+        feature += b' ' * ((-len(feature)) % 8)
+        batch += b' ' * ((-(28 + len(feature) + len(batch))) % 8)
+        b3dm = struct.pack('<4sIIIIII', b'b3dm', 1, 28 + len(feature) + len(batch) + len(glb), len(feature), 0, len(batch), 0) + feature + batch + glb
+        tileset = {
+            'root': {
+                'boundingVolume': {'region': [math.radians(139.7), math.radians(35.6), math.radians(139.9), math.radians(35.8)]},
+                'content': {'uri': 'tile.b3dm'},
+            },
+        }
+        resources = {'https://tiles.example/root.json': json.dumps(tileset).encode(), 'https://tiles.example/tile.b3dm': b3dm}
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = plateau_3d.prepare_tiles(
+                'https://tiles.example/root.json', [139.75, 35.65, 139.85, 35.75], Path(directory),
+                fetcher=lambda url: resources[url],
+            )
+        centroids = manifest['tiles'][0].get('feature_centroids')
+        self.assertIsInstance(centroids, dict)
+        self.assertIn('gml-1', centroids)
+        self.assertAlmostEqual(centroids['gml-1'][0], 139.8, places=4)
+        self.assertAlmostEqual(centroids['gml-1'][1], 35.7, places=4)
+
+    def test_cli_passes_plateau_ids_to_osm_proxy_builder(self):
+        from unittest.mock import patch
+        import sys
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            osm_path = root / 'osm.geojson'
+            osm_path.write_text(json.dumps({'type': 'FeatureCollection', 'features': []}), encoding='utf-8')
+            fake_manifest = {'format': 'geo-video-factory.plateau-3d/1', 'tiles': [{'ids': ['gml-1', 'gml-2']}]}
+            with patch.object(plateau_3d, 'prepare_tiles', return_value=fake_manifest), \
+                 patch('building_appearance.build_osm_proxy_tiles', return_value=fake_manifest) as mock_proxy, \
+                 patch.object(sys, 'argv', ['plateau_3d.py', 'https://tiles.example/root.json', '--bbox', '139.7', '35.6', '139.9', '35.8', '--out', str(root / 'out'), '--osm-geojson', str(osm_path)]):
+                plateau_3d.main()
+            mock_proxy.assert_called_once()
+            self.assertEqual(mock_proxy.call_args.kwargs.get('plateau_ids'), {'gml-1', 'gml-2'})
+
 
 if __name__ == '__main__':
     unittest.main()

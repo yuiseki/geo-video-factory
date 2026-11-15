@@ -103,6 +103,181 @@ class BuildingAppearanceTests(unittest.TestCase):
         self.assertTrue(palette['gml-b'].startswith('#'))
         self.assertNotEqual(palette['gml-a'], palette['gml-b'])
 
+    def test_mixed_textured_and_untextured_feature_still_receives_facade_color(self):
+        image = Image.new('RGB', (16, 16), (140, 110, 85))
+        json_chunk = json.dumps({
+            'asset': {'version': '2.0'},
+            'buffers': [{'byteLength': 48}],
+            'bufferViews': [
+                {'buffer': 0, 'byteOffset': 0, 'byteLength': 12}, {'buffer': 0, 'byteOffset': 12, 'byteLength': 1},
+                {'buffer': 0, 'byteOffset': 16, 'byteLength': 24}, {'buffer': 0, 'byteOffset': 40, 'byteLength': 2},
+            ],
+            'accessors': [
+                {'bufferView': 0, 'componentType': 5126, 'count': 1, 'type': 'VEC3'},
+                {'bufferView': 1, 'componentType': 5121, 'count': 1, 'type': 'SCALAR'},
+                {'bufferView': 2, 'componentType': 5126, 'count': 2, 'type': 'VEC3'},
+                {'bufferView': 3, 'componentType': 5121, 'count': 2, 'type': 'SCALAR'},
+            ],
+            'materials': [{'pbrMetallicRoughness': {}}, {'pbrMetallicRoughness': {'baseColorTexture': {'index': 0}}}],
+            'textures': [{'source': 0}],
+            'images': [{'uri': 'data:image/png;base64,' + base64.b64encode(b'fake').decode()}],
+            'meshes': [{'primitives': [
+                {'attributes': {'POSITION': 0, '_BATCHID': 1}, 'material': 0},
+                {'attributes': {'POSITION': 2, '_BATCHID': 3}, 'material': 1},
+            ]}],
+        }, separators=(',', ':')).encode()
+        json_chunk += b' ' * ((-len(json_chunk)) % 4)
+        binary = struct.pack('<3f', 0, 0, 0) + bytes([0]) + b'\0' * 3
+        binary += struct.pack('<6f', 2, 0, 0, 4, 0, 0) + bytes([0, 1]) + b'\0' * 2
+        total = 12 + 8 + len(json_chunk) + 8 + len(binary)
+        glb = struct.pack('<4sII', b'glTF', 2, total) + struct.pack('<I4s', len(json_chunk), b'JSON') + json_chunk
+        glb += struct.pack('<I4s', len(binary), b'BIN\0') + binary
+        palette = appearance.infer_glb_facade_colors(
+            glb, list(appearance._ecef(139.5, 35.5)), ['gml-mixed', 'gml-fully-textured'], image, [139, 35, 140, 36], seed='v006',
+        )
+        self.assertIsNotNone(palette['gml-mixed'])
+        self.assertTrue(palette['gml-mixed'].startswith('#'))
+        self.assertIsNone(palette['gml-fully-textured'])
+
+    def test_infer_glb_facade_colors_samples_footprint_polygon_not_only_centroid(self):
+        image = Image.new('RGB', (100, 100), (190, 150, 110))
+        # Paint a narrow dark shadow/road strip right across the centroid (x=45..55, y=45..55)
+        ImageDraw.Draw(image).rectangle((45, 45, 55, 55), fill=(30, 60, 180))
+        rtc = list(appearance._ecef(139.5, 35.5))
+        # 4 corners around the center (~ +/- 0.25 deg in local meters: ~22km, here use 0.2 deg in meters)
+        east_pt = appearance._ecef(139.7, 35.5)
+        west_pt = appearance._ecef(139.3, 35.5)
+        north_pt = appearance._ecef(139.5, 35.7)
+        south_pt = appearance._ecef(139.5, 35.3)
+        # Convert ECEF to GLB local: (dx, dz, -dy)
+        to_local = lambda pt: (pt[0] - rtc[0], pt[2] - rtc[2], -(pt[1] - rtc[1]))
+        verts = [to_local(east_pt), to_local(north_pt), to_local(west_pt), to_local(south_pt)]
+        binary = b''.join(struct.pack('<3f', *v) for v in verts) + bytes([0, 0, 0, 0])
+        json_chunk = json.dumps({
+            'asset': {'version': '2.0'},
+            'buffers': [{'byteLength': len(binary)}],
+            'bufferViews': [
+                {'buffer': 0, 'byteOffset': 0, 'byteLength': 48},
+                {'buffer': 0, 'byteOffset': 48, 'byteLength': 4},
+            ],
+            'accessors': [
+                {'bufferView': 0, 'componentType': 5126, 'count': 4, 'type': 'VEC3'},
+                {'bufferView': 1, 'componentType': 5121, 'count': 4, 'type': 'SCALAR'},
+            ],
+            'materials': [{'pbrMetallicRoughness': {}}],
+            'meshes': [{'primitives': [{'attributes': {'POSITION': 0, '_BATCHID': 1}, 'material': 0}]}],
+        }, separators=(',', ':')).encode()
+        json_chunk += b' ' * ((-len(json_chunk)) % 4)
+        total = 12 + 8 + len(json_chunk) + 8 + len(binary)
+        glb = struct.pack('<4sII', b'glTF', 2, total) + struct.pack('<I4s', len(json_chunk), b'JSON') + json_chunk + struct.pack('<I4s', len(binary), b'BIN\0') + binary
+        palette = appearance.infer_glb_facade_colors(
+            glb, rtc, ['gml-footprint'], image, [139.0, 35.0, 140.0, 36.0], seed='v006',
+        )
+        color = palette['gml-footprint']
+        r, g, b = (int(color[i:i + 2], 16) for i in (1, 3, 5))
+        self.assertGreater(r, b, f'footprint sampling should reflect roof (190,150,110) not centroid strip (30,60,180): got {color}')
+
+    def test_infer_glb_facade_colors_supports_feature_id_0_and_draco_without_buffer_views(self):
+        image = Image.new('RGB', (16, 16), (130, 120, 110))
+        rtc = list(appearance._ecef(139.5, 35.5))
+        # Case 1: _FEATURE_ID_0 attribute
+        binary = struct.pack('<6f', 0, 0, 0, 2, 0, 0) + bytes([0, 1]) + b'\0' * 2
+        json_chunk = json.dumps({
+            'asset': {'version': '2.0'},
+            'buffers': [{'byteLength': len(binary)}],
+            'bufferViews': [{'buffer': 0, 'byteOffset': 0, 'byteLength': 24}, {'buffer': 0, 'byteOffset': 24, 'byteLength': 2}],
+            'accessors': [
+                {'bufferView': 0, 'componentType': 5126, 'count': 2, 'type': 'VEC3'},
+                {'bufferView': 1, 'componentType': 5121, 'count': 2, 'type': 'SCALAR'},
+            ],
+            'materials': [{'pbrMetallicRoughness': {}}],
+            'meshes': [{'primitives': [{'attributes': {'POSITION': 0, '_FEATURE_ID_0': 1}, 'material': 0}]}],
+        }, separators=(',', ':')).encode()
+        json_chunk += b' ' * ((-len(json_chunk)) % 4)
+        total = 12 + 8 + len(json_chunk) + 8 + len(binary)
+        glb_feat = struct.pack('<4sII', b'glTF', 2, total) + struct.pack('<I4s', len(json_chunk), b'JSON') + json_chunk + struct.pack('<I4s', len(binary), b'BIN\0') + binary
+        palette = appearance.infer_glb_facade_colors(glb_feat, rtc, ['gml-0', 'gml-1'], image, [139, 35, 140, 36], seed='v006')
+        self.assertTrue(palette['gml-0'].startswith('#'))
+        self.assertTrue(palette['gml-1'].startswith('#'))
+        self.assertNotEqual(palette['gml-0'], palette['gml-1'])
+
+        # Case 2: Draco compressed primitive where accessors omit bufferView
+        draco_doc = {
+            'asset': {'version': '2.0'},
+            'extensionsUsed': ['KHR_draco_mesh_compression'],
+            'accessors': [
+                {'componentType': 5126, 'count': 3, 'type': 'VEC3'},
+                {'componentType': 5121, 'count': 3, 'type': 'SCALAR'},
+            ],
+            'materials': [{'pbrMetallicRoughness': {}}],
+            'meshes': [{'primitives': [{'attributes': {'POSITION': 0, '_BATCHID': 1}, 'material': 0, 'extensions': {'KHR_draco_mesh_compression': {'bufferView': 0}}}]}],
+        }
+        draco_json = json.dumps(draco_doc, separators=(',', ':')).encode()
+        draco_json += b' ' * ((-len(draco_json)) % 4)
+        glb_draco = struct.pack('<4sII', b'glTF', 2, 20 + len(draco_json)) + struct.pack('<I4s', len(draco_json), b'JSON') + draco_json
+        draco_palette = appearance.infer_glb_facade_colors(glb_draco, rtc, ['gml-d0', 'gml-d1'], image, [139, 35, 140, 36], seed='v006')
+        self.assertTrue(draco_palette['gml-d0'].startswith('#'))
+        self.assertTrue(draco_palette['gml-d1'].startswith('#'))
+
+    def test_integration_manifest_combines_textured_plateau_untextured_plateau_and_osm_proxy(self):
+        rtc = list(appearance._ecef(139.79, 35.70))
+        # 1 textured PLATEAU feature (id 0) + 2 untextured PLATEAU features (ids 1, 2)
+        binary = struct.pack('<3f', 0, 0, 0) + bytes([0, 0, 0, 0])
+        binary += struct.pack('<6f', 20, 0, 0, -20, 0, 0) + bytes([1, 2]) + b'\0' * 2
+        doc = {
+            'asset': {'version': '2.0'},
+            'buffers': [{'byteLength': len(binary)}],
+            'bufferViews': [
+                {'buffer': 0, 'byteOffset': 0, 'byteLength': 12}, {'buffer': 0, 'byteOffset': 12, 'byteLength': 1},
+                {'buffer': 0, 'byteOffset': 16, 'byteLength': 24}, {'buffer': 0, 'byteOffset': 40, 'byteLength': 2},
+            ],
+            'accessors': [
+                {'bufferView': 0, 'componentType': 5126, 'count': 1, 'type': 'VEC3'},
+                {'bufferView': 1, 'componentType': 5121, 'count': 1, 'type': 'SCALAR'},
+                {'bufferView': 2, 'componentType': 5126, 'count': 2, 'type': 'VEC3'},
+                {'bufferView': 3, 'componentType': 5121, 'count': 2, 'type': 'SCALAR'},
+            ],
+            'materials': [{'pbrMetallicRoughness': {'baseColorTexture': {'index': 0}}}, {'pbrMetallicRoughness': {}}],
+            'textures': [{'source': 0}],
+            'images': [{'uri': 'data:image/png;base64,' + base64.b64encode(b'fake').decode()}],
+            'meshes': [{'primitives': [
+                {'attributes': {'POSITION': 0, '_BATCHID': 1}, 'material': 0},
+                {'attributes': {'POSITION': 2, '_BATCHID': 3}, 'material': 1},
+            ]}],
+        }
+        json_chunk = json.dumps(doc, separators=(',', ':')).encode()
+        json_chunk += b' ' * ((-len(json_chunk)) % 4)
+        total = 12 + 8 + len(json_chunk) + 8 + len(binary)
+        glb = struct.pack('<4sII', b'glTF', 2, total) + struct.pack('<I4s', len(json_chunk), b'JSON') + json_chunk + struct.pack('<I4s', len(binary), b'BIN\0') + binary
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'models').mkdir()
+            (root / 'models' / 'plateau.glb').write_bytes(glb)
+            ortho_path = root / 'ortho.png'
+            Image.new('RGB', (32, 32), (165, 130, 105)).save(ortho_path)
+            manifest = {
+                'format': 'geo-video-factory.plateau-3d/1',
+                'bbox_degrees': [139.78, 35.69, 139.80, 35.71],
+                'center': [139.79, 35.70],
+                'tiles': [{'glb': 'models/plateau.glb', 'rtc': rtc, 'ids': ['gml-tex', 'gml-u1', 'gml-u2']}],
+            }
+            (root / 'manifest.json').write_text(json.dumps(manifest))
+            appearance.apply_orthophoto_palette(root, ortho_path, seed='ryogoku')
+            osm_features = [{
+                'type': 'Feature', 'id': 'way/osm-1', 'properties': {'height': 14},
+                'geometry': {'type': 'Polygon', 'coordinates': [[[139.792, 35.702], [139.793, 35.702], [139.793, 35.703], [139.792, 35.703], [139.792, 35.702]]]},
+            }]
+            with Image.open(ortho_path) as ortho:
+                final = appearance.build_osm_proxy_tiles(osm_features, [139.78, 35.69, 139.80, 35.71], root, orthophoto=ortho, seed='ryogoku')
+            self.assertEqual(final['tile_count'], 2)
+            self.assertEqual(final['proxy_tile_count'], 1)
+            self.assertIsNone(final['tiles'][0]['facade_colors'][0])
+            self.assertTrue(final['tiles'][0]['facade_colors'][1].startswith('#'))
+            self.assertTrue(final['tiles'][0]['facade_colors'][2].startswith('#'))
+            self.assertNotEqual(final['tiles'][0]['facade_colors'][1], final['tiles'][0]['facade_colors'][2])
+            self.assertEqual(final['tiles'][1]['ids'], ['way/osm-1'])
+            self.assertTrue(final['tiles'][1]['facade_colors'][0].startswith('#'))
+
     def test_apply_orthophoto_palette_persists_colors_in_manifest_id_order(self):
         with TemporaryDirectory() as directory:
             root = Path(directory)
@@ -155,8 +330,90 @@ class BuildingAppearanceTests(unittest.TestCase):
             self.assertTrue((Path(directory) / tile['glb']).is_file())
             gltf, _, _ = plateau_3d.glb_chunks((Path(directory) / tile['glb']).read_bytes())
             self.assertTrue(gltf['meshes'][0]['primitives'][0]['attributes'].get('POSITION') is not None)
+            self.assertTrue(gltf['meshes'][0]['primitives'][0]['attributes'].get('_BATCHID') is not None)
+            self.assertEqual(tile['facade_colors'], [appearance.assign_facade_colors([{'id': 'way/100', 'ortho_color': [183, 174, 159]}], seed='geo-video-factory')[0]['facade_color']])
             self.assertEqual(gltf['materials'][0]['pbrMetallicRoughness']['metallicFactor'], 0)
             self.assertEqual(json.loads((Path(directory) / 'manifest.json').read_text())['proxy_tile_count'], 1)
+
+    def test_osm_proxy_uses_orthophoto_color_in_facade_colors_and_batch_ids(self):
+        features = [
+            {
+                'type': 'Feature', 'id': 'way/400', 'properties': {'height': 10},
+                'geometry': {'type': 'Polygon', 'coordinates': [[[139.2, 35.7], [139.3, 35.7], [139.3, 35.8], [139.2, 35.8], [139.2, 35.7]]]},
+            },
+            {
+                'type': 'Feature', 'id': 'way/401', 'properties': {'height': 15},
+                'geometry': {'type': 'Polygon', 'coordinates': [[[139.7, 35.2], [139.8, 35.2], [139.8, 35.3], [139.7, 35.3], [139.7, 35.2]]]},
+            },
+        ]
+        image = Image.new('RGB', (100, 100), (40, 40, 40))
+        draw = ImageDraw.Draw(image)
+        draw.rectangle((15, 15, 35, 35), fill=(210, 80, 70))
+        draw.rectangle((65, 65, 85, 85), fill=(70, 110, 200))
+        with TemporaryDirectory() as directory:
+            result = appearance.build_osm_proxy_tiles(features, [139.0, 35.0, 140.0, 36.0], Path(directory), orthophoto=image, seed='v006')
+            tile = result['tiles'][0]
+            self.assertEqual(len(tile['facade_colors']), 2)
+            r0, g0, b0 = (int(tile['facade_colors'][0][i:i + 2], 16) for i in (1, 3, 5))
+            r1, g1, b1 = (int(tile['facade_colors'][1][i:i + 2], 16) for i in (1, 3, 5))
+            self.assertGreater(r0, b0)
+            self.assertGreater(b1, r1)
+            gltf, binary, _ = plateau_3d.glb_chunks((Path(directory) / tile['glb']).read_bytes())
+            for expected_id, mesh in enumerate(gltf['meshes']):
+                attr_index = mesh['primitives'][0]['attributes']['_BATCHID']
+                values = appearance._accessor_values(gltf, binary, attr_index)
+                self.assertTrue(all(int(round(row[0])) == expected_id for row in values))
+
+    def test_osm_proxy_supports_multipolygon_holes_and_bbox_crossing_buildings(self):
+        features = [
+            {
+                'type': 'Feature', 'id': 'way/crossing', 'properties': {'height': '12 m'},
+                'geometry': {'type': 'Polygon', 'coordinates': [[[139.795, 35.70], [139.810, 35.70], [139.810, 35.705], [139.795, 35.705], [139.795, 35.70]]]},
+            },
+            {
+                'type': 'Feature', 'id': 'relation/courtyard', 'properties': {'building:levels': '3'},
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [
+                        [[139.785, 35.695], [139.789, 35.695], [139.789, 35.699], [139.785, 35.699], [139.785, 35.695]],
+                        [[139.786, 35.696], [139.788, 35.696], [139.788, 35.698], [139.786, 35.698], [139.786, 35.696]],
+                    ],
+                },
+            },
+            {
+                'type': 'Feature', 'id': 'relation/multi', 'properties': {'height': 9},
+                'geometry': {
+                    'type': 'MultiPolygon',
+                    'coordinates': [
+                        [[[139.781, 35.691], [139.782, 35.691], [139.782, 35.692], [139.781, 35.692], [139.781, 35.691]]],
+                        [[[139.783, 35.691], [139.784, 35.691], [139.784, 35.692], [139.783, 35.692], [139.783, 35.691]]],
+                    ],
+                },
+            },
+            {
+                'type': 'Feature', 'id': 'way/non-building', 'properties': {'building': 'no', 'height': 10},
+                'geometry': {'type': 'Polygon', 'coordinates': [[[139.781, 35.695], [139.782, 35.695], [139.782, 35.696], [139.781, 35.696], [139.781, 35.695]]]},
+            },
+        ]
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            # Place a PLATEAU centroid inside the courtyard hole; the surrounding ring should NOT be skipped.
+            (root / 'manifest.json').write_text(json.dumps({
+                'format': 'geo-video-factory.plateau-3d/1',
+                'bbox_degrees': [139.78, 35.69, 139.80, 35.71],
+                'center': [139.79, 35.70],
+                'tiles': [{'ids': ['gml-courtyard'], 'feature_centroids': {'gml-courtyard': [139.787, 35.697]}}],
+            }))
+            result = appearance.build_osm_proxy_tiles(features, [139.78, 35.69, 139.80, 35.71], root)
+            proxy_tile = result['tiles'][-1]
+            self.assertEqual(proxy_tile['ids'], ['way/crossing', 'relation/courtyard', 'relation/multi'])
+            gltf, binary, _ = plateau_3d.glb_chunks((root / proxy_tile['glb']).read_bytes())
+            # Courtyard has 4 outer + 4 inner edges = 8 walls (48 wall verts) + roof triangles (> 6*3 verts);
+            # MultiPolygon has 2 separate boxes so its primitive must have > 36 vertices.
+            courtyard_pos_count = gltf['accessors'][gltf['meshes'][1]['primitives'][0]['attributes']['POSITION']]['count']
+            multi_pos_count = gltf['accessors'][gltf['meshes'][2]['primitives'][0]['attributes']['POSITION']]['count']
+            self.assertGreater(courtyard_pos_count, 36)
+            self.assertGreater(multi_pos_count, 36)
 
     def test_osm_proxy_requires_height_or_level_estimate_and_valid_closed_polygon(self):
         invalid = [{
