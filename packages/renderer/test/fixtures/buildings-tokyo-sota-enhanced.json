@@ -5,10 +5,11 @@
   "base": "seamlessphoto",
   "world": false,
   "dem": "gsi",
+  "exaggeration": 0,
   "hillshade": false,
   "plateauBuildings": {
     "manifest": "assets/buildings-tokyo-sota/sota/manifest.json",
-    "heightOffset": -39,
+    "heightOffset": -158,
     "workers": 3,
     "appearance": true
   },
