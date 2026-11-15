@@ -77,8 +77,10 @@
     "Ocdp",
     "Oneindia",
     "openstreetmap",
+    "opentype",
     "Pexels",
     "pycache",
+    "PYTHONUTF",
     "riku",
     "ryogoku",
     "seamlessphoto",
@@ -96,6 +98,7 @@
     "venv",
     "VOICEVOX",
     "webgl",
+    "winget",
     "xlabels",
     "xytext",
     "yanagibashi",
@@ -103,6 +106,7 @@
     "ylim",
     "yticks",
     "zorder",
+    "zunda",
     "zundamon"
   ]
 }

@@ -24,27 +24,12 @@
 
 Node.js は保守中の LTS 版を使ってください。Python は Python 3.10 以降を想定しています。古い Linux ディストリビューションの標準パッケージでは、Node.js が古すぎる場合があります。その場合は、Node.js の公式配布物または Node.js のバージョン管理ツールを使ってください。
 
-## OS の基本パッケージ
+## OS 別の環境構築手順
 
-Ubuntu 系 Linux では、次のパッケージが土台になります。
+環境固有のパッケージ導入手順は、OS ごとのドキュメントに分けています。
 
-```bash
-sudo apt update
-sudo apt install git curl ffmpeg python3 python3-venv python3-pip \
-  fontconfig fonts-noto-cjk
-```
-
-Node.js、Docker、gitleaks は、それぞれの公式手順でインストールしてください。インストール後に、コマンドが `PATH` から実行できることを確認します。
-
-```bash
-git --version
-node --version
-npm --version
-python3 --version
-ffmpeg -version
-ffprobe -version
-fc-list :lang=ja | head
-```
+- **Ubuntu (Linux)**: [docs/images/setup/Linux/Ubuntu/README.md](docs/images/setup/Linux/Ubuntu/README.md)
+- **Windows**: [docs/images/setup/Windows/README.md](docs/images/setup/Windows/README.md)
 
 ## リポジトリと秘密情報検査の準備
 
@@ -70,24 +55,19 @@ npm run build
 cd ../..
 ```
 
-Linux で Chromium の共有ライブラリーが不足する場合は、Playwright の表示に従って OS パッケージを追加してください。Playwright のブラウザーは、OS に入っている Chromium とは別に管理されます。
+Playwright のブラウザーは、OS に入っている Chrome / Chromium とは別に管理されます（Linux で共有ライブラリーが不足する場合は OS 別手順を参照）。
 
-JavaScript の単体テストで、Node.js と依存パッケージを確認できます。
+TypeScript の単体テストで、Node.js と依存パッケージを確認できます。
 
 ```bash
+cd packages/renderer
 npm test
+cd ../..
 ```
 
 ## Python の準備
 
-章の結合と写真の EXIF 読み取りには Pillow が必要です。仮想環境を作り、Pillow をインストールします。
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-python -m pip install Pillow
-```
+章の結合と写真の EXIF 読み取りには Python 3.10 以降と Pillow が必要です。仮想環境等を用意して Pillow をインストールしてください。
 
 次の機能では追加パッケージを使います。
 
@@ -150,11 +130,7 @@ PSD、変換後の PNG、素材の ZIP はコミットしません。プロジ�
 
 ## VOICEVOX エンジンの準備
 
-音声付き動画では、VOICEVOX エンジンの HTTP API を使います。既定の接続先は `http://127.0.0.1:50021` です。
-
-Linux では、VOICEVOX エンジンの Docker 版を使えます。利用する CPU または GPU に対応した安定版イメージを選び、ポート `50021` をローカルホストだけに公開してください。イメージ名とタグは VOICEVOX エンジンの公式配布情報で確認し、プロジェクト内で固定します。
-
-エンジンを起動した後、HTTP API を確認します。
+音声付き動画では、VOICEVOX エンジンの HTTP API を使います。既定の接続先は `http://127.0.0.1:50021` です。ローカルアプリ版または Docker 版（OS 別手順を参照）を起動し、HTTP API が応答することを確認します。
 
 ```bash
 curl http://127.0.0.1:50021/version
