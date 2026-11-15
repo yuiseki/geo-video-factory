@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import * as THREE from 'three';
 import { cityLight, keyframeValue, localMeters, paintRadius, revealProgress } from '../src/page/city-timeline.js';
-import { cityUniforms, createCityProxyMaterial, createCityUniforms } from '../src/page/city-materials.js';
+import { cityUniforms, createCityProxyMaterial, createCityShadowMaterial, createCityUniforms } from '../src/page/city-materials.js';
 import { buildMapStyle } from '../src/page/map-style.js';
 import { tileHeightOffset } from '../src/page/plateau-coordinates.js';
 import type { ShotSpec } from '../src/types.js';
@@ -107,5 +107,24 @@ describe('terrain under buildings', () => {
     assert.equal(withBuildings.terrain.exaggeration, 1);
     const plain = buildMapStyle(base) as { terrain: { exaggeration: number } };
     assert.equal(plain.terrain.exaggeration, 1.3);
+  });
+});
+
+describe('city shadow material', () => {
+  it('is a see-through veil that appears with the light and only where buildings have risen', () => {
+    const own = createCityUniforms();
+    const material = createCityShadowMaterial(own);
+    assert.equal(material.transparent, true);
+    assert.equal(material.depthWrite, false, 'shadows never hide the ground photo from depth');
+    assert.equal(material.customProgramCacheKey(), createCityShadowMaterial().customProgramCacheKey());
+    const shader = {
+      uniforms: {} as Record<string, THREE.IUniform>,
+      vertexShader: '#include <common>\n#include <begin_vertex>',
+      fragmentShader: '#include <common>\n#include <dithering_fragment>',
+    };
+    material.onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    assert.match(shader.vertexShader, /vShadowGrow = clamp\(\(uCityGrowRadius/);
+    assert.match(shader.fragmentShader, /gl_FragColor\.a = uCityShadow \* vShadowGrow/);
+    assert.equal(shader.uniforms.uCityGrowRadius, own.uCityGrowRadius, 'the shadows grow with the buildings of the same scene');
   });
 });

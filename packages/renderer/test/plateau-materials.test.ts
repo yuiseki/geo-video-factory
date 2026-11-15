@@ -3,6 +3,7 @@ import { describe, it } from "node:test";
 import * as THREE from "three";
 import {
   analyzeTextureTone,
+  applyBuildingAppearance,
   applyPlateauBuildingAppearance,
   neutralizePbr,
   plateauRoofUniforms
@@ -223,5 +224,40 @@ describe("untextured PLATEAU buildings change in place as the paint wave passes"
     assert.equal(shader.uniforms.uCityPaintRadius, city.uCityPaintRadius, "the wave of this scene, not a global one");
     assert.equal(shader.uniforms.uPlateauRoofPhoto, roof.uPlateauRoofPhoto);
     assert.deepEqual((shader.uniforms.uPlateauRawColor!.value as THREE.Color).toArray(), [1, 1, 1], "before the wave: PLATEAU's own white");
+  });
+});
+
+describe("applyBuildingAppearance", () => {
+  const scene = () => {
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    geometry.setAttribute("_batchid", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xffffff }));
+    const root = new THREE.Group();
+    root.add(mesh);
+    return { root, key: () => (mesh.material as THREE.MeshStandardMaterial).customProgramCacheKey() };
+  };
+
+  it("derives a stable seed from the tile URL, so a tile looks the same on every render", () => {
+    const a = scene();
+    const b = scene();
+    const c = scene();
+    applyBuildingAppearance(a.root, ["#c8c2b6"], "tiles/a.glb");
+    applyBuildingAppearance(b.root, ["#c8c2b6"], "tiles/a.glb");
+    applyBuildingAppearance(c.root, ["#c8c2b6"], "tiles/b.glb");
+    assert.equal(a.key(), b.key());
+    assert.notEqual(a.key(), c.key(), "neighbouring tiles do not repeat the same pattern");
+  });
+
+  it("accepts a numeric seed, no seed, or a full options object", () => {
+    const numeric = scene();
+    const result = applyBuildingAppearance(numeric.root, ["#c8c2b6"], 7);
+    assert.equal(result.styledUntexturedMaterials, 1);
+    assert.match(numeric.key(), /-7-/);
+    const fallback = scene();
+    applyBuildingAppearance(fallback.root, [null]);
+    assert.match(fallback.key(), /-1-/);
+    const options = scene();
+    applyBuildingAppearance(options.root, { palette: [], seed: 5 });
+    assert.match(options.key(), /-5-/);
   });
 });
