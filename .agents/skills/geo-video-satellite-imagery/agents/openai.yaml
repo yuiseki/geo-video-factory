@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Satellite Imagery"
+  short_description: "Sentinel-2等の衛星データ取得・雲判定・季節色度転写"
