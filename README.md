@@ -34,6 +34,8 @@
 
 エージェント向けの案内は [AGENTS.md](AGENTS.md) にあります。
 
+Node.js、Python、FFmpeg、Playwright、VOICEVOX などの共通環境は、[SETUP.md](SETUP.md) の手順で準備してください。
+
 ## 使い方
 
 ### エージェントに頼む

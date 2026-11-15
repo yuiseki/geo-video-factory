@@ -17,11 +17,11 @@
 
 ## 立ち絵を書き出す
 
-`tools/psd_sprites.py` が、表情ごとに口 (開く・閉じる) と目 (開く・閉じる) の 4 枚を書き出す。psd-tools はテンプレートの依存に入れていないので uv で動かす。
+`packages/pipeline/psd_sprites.py` が、表情ごとに口 (開く・閉じる) と目 (開く・閉じる) の 4 枚を書き出す。psd-tools は共通依存に入れていないので uv で動かす。次のコマンドはリポジトリのルートで実行する。
 
 ```
-uv run --with psd-tools python tools/psd_sprites.py characters/zundamon.json <ずんだもん.psd> assets/chara/zundamon
-uv run --with psd-tools python tools/psd_sprites.py characters/metan.json <めたん.psd> assets/chara/metan
+uv run --with psd-tools python packages/pipeline/psd_sprites.py <project>/characters/zundamon.json tmp/zunda/ずんだもん立ち絵素材2.3.psd <project>/assets/chara/zundamon
+uv run --with psd-tools python packages/pipeline/psd_sprites.py <project>/characters/metan.json tmp/metan/四国めたん立ち絵素材2.1.psd <project>/assets/chara/metan
 ```
 
 `assets/chara/<名前>/<表情>_<目 o|c>_<口 o|c>.png` と、全部を並べた `sheet.png` ができる。書き出したら `sheet.png` を目で見る (目を閉じた版が本当に閉じているか、表情が変わっているか)。
