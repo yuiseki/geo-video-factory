@@ -1,0 +1,127 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 15,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "credits": [
+    "建物: 国土地理院ベクトルタイル / 国土交通省 PLATEAU (新宿区・福生市) / © OpenStreetMap contributors"
+  ],
+  "plateauBuildings": {
+    "manifest": "assets/buildings-tokyo-sota/shinjuku/manifest.json",
+    "heightOffset": -39,
+    "workers": 3,
+    "appearance": false
+  },
+  "shots": [
+    {
+      "duration": 5,
+      "ease": "linear",
+      "from": {
+        "center": [
+          139.6935,
+          35.688
+        ],
+        "zoom": 16.2,
+        "pitch": 72,
+        "bearing": -35
+      },
+      "to": {
+        "center": [
+          139.6928,
+          35.689
+        ],
+        "zoom": 16.5,
+        "pitch": 72,
+        "bearing": -5
+      },
+      "overlays": [
+        {
+          "type": "quote",
+          "text": "東京都新宿区　国の3D都市モデル (PLATEAU)",
+          "marks": false,
+          "cps": 40,
+          "screen": [
+            90,
+            110
+          ],
+          "width": 1200,
+          "show": [
+            0.05,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "text": "東京都庁",
+          "at": [
+            139.6915,
+            35.69
+          ],
+          "dot": true,
+          "show": [
+            0.25,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 6,
+      "ease": "inOut",
+      "path": "fly",
+      "from": {
+        "center": [
+          139.6928,
+          35.689
+        ],
+        "zoom": 16.5,
+        "pitch": 72,
+        "bearing": -5
+      },
+      "to": {
+        "center": [
+          139.316,
+          35.7584
+        ],
+        "zoom": 16.4,
+        "pitch": 62,
+        "bearing": 15
+      },
+      "overlays": [
+        {
+          "type": "quote",
+          "text": "西へ 約35 km",
+          "marks": false,
+          "cps": 30,
+          "screen": [
+            90,
+            110
+          ],
+          "width": 700,
+          "show": [
+            0.1,
+            0.7
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "東京都羽村市",
+          "marks": false,
+          "cps": 30,
+          "screen": [
+            90,
+            110
+          ],
+          "width": 700,
+          "show": [
+            0.75,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

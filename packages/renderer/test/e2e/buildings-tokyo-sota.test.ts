@@ -4,14 +4,16 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { prepareVideoOutput } from './video-e2e.js';
-import { wipeFilter, type WipeKeys } from '../../src/compose.js';
+import { introThenWipeFilter, type WipeKeys } from '../../src/compose.js';
 
 const videoName = 'buildings-tokyo-sota';
 const baselineFixture = 'buildings-tokyo-sota-baseline.json';
 const enhancedFixture = 'buildings-tokyo-sota-enhanced.json';
+const preludeFixture = 'buildings-tokyo-sota-prelude.json';
 const prepareScript = 'test/e2e/prepare-buildings-tokyo-sota.py';
 // Before/after slider: fraction of the width (from the left) that shows the baseline.
-const wipe: WipeKeys = [[0, 0], [25, 0], [26.5, 0.5], [35.5, 0.5], [37, 0], [50.5, 0], [52, 1], [53, 1], [57, 0], [60, 0]];
+// Times are within the main part, which follows the 11 s opening (Shinjuku, then 35 km west).
+const wipe: WipeKeys = [[0, 0], [20, 0], [21.5, 0.5], [30.5, 0.5], [32, 0], [40.5, 0], [42, 1], [43, 1], [46.5, 0], [49, 0]];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
   const probe = spawnSync(
@@ -71,6 +73,12 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
   });
   assert.equal(prepare.status, 0, `${videoName} asset preparation\n${prepare.stdout}\n${prepare.stderr}`);
 
+  const preludeVideo = renderVariant(
+    generatedProject,
+    preludeFixture,
+    path.join(renderOutput, 'render', 'prelude'),
+    'buildings-tokyo-sota-prelude',
+  );
   const baselineVideo = renderVariant(
     generatedProject,
     baselineFixture,
@@ -89,10 +97,11 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
     'ffmpeg',
     [
       '-y',
+      '-i', preludeVideo,
       '-i', baselineVideo,
       '-i', enhancedVideo,
       '-filter_complex',
-      wipeFilter(wipe, 4),
+      introThenWipeFilter(wipe, 4),
       '-map', '[v]',
       '-c:v', 'libx264',
       '-pix_fmt', 'yuv420p',
@@ -116,23 +125,26 @@ test(`${videoName} E2E fixtures configure a 720p before/after slider of baseline
   assert.ok(fs.existsSync(prepareScript));
   const baseline = JSON.parse(fs.readFileSync(path.join('test/fixtures', baselineFixture), 'utf8'));
   const enhanced = JSON.parse(fs.readFileSync(path.join('test/fixtures', enhancedFixture), 'utf8'));
+  const prelude = JSON.parse(fs.readFileSync(path.join('test/fixtures', preludeFixture), 'utf8'));
+  const seconds = (spec: { shots: { duration: number }[] }) => spec.shots.reduce((sum, s) => sum + s.duration, 0);
 
   for (const spec of [baseline, enhanced]) {
     assert.equal(spec.width, 1280);
     assert.equal(spec.height, 720);
   }
   assert.deepEqual(baseline.plateauBuildings.reveal, enhanced.plateauBuildings.reveal);
-  assert.equal(wipe[wipe.length - 1]![0], 60);
+  assert.equal(wipe[wipe.length - 1]![0], seconds(baseline));
   // On-screen text states counts and names; no mood copy ("AI poem") and no overclaiming.
-  const text = JSON.stringify([baseline, enhanced]);
+  const text = JSON.stringify([prelude, baseline, enhanced]);
   for (const word of ['全部', 'すべて', 'つながる', '革命', '魔法', '可能性', '誰でも']) {
     assert.ok(!text.includes(word), `on-screen text must not use "${word}"`);
   }
   assert.equal(baseline.plateauBuildings?.appearance, false);
   assert.equal(enhanced.plateauBuildings?.appearance, true);
   assert.equal(baseline.shots.length, enhanced.shots.length);
-  const totalDuration = baseline.shots.reduce((sum: number, s: { duration: number }) => sum + s.duration, 0);
-  assert.equal(totalDuration, 60);
+  assert.equal(seconds(prelude) + seconds(baseline), 60);
+  assert.deepEqual([prelude.width, prelude.height], [1280, 720]);
+  assert.deepEqual(prelude.shots.at(-1).to, baseline.shots[0].from, 'the opening lands where the main part starts');
   for (let i = 0; i < baseline.shots.length; i++) {
     assert.deepEqual(baseline.shots[i].from, enhanced.shots[i].from);
     assert.deepEqual(baseline.shots[i].to, enhanced.shots[i].to);

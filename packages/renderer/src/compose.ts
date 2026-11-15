@@ -36,12 +36,18 @@ export function wipeExpression(keys: WipeKeys): string {
 }
 
 /**
- * ffmpeg -filter_complex graph: [0:v] before, [1:v] after -> [v]. A white divider `line` pixels
- * wide is drawn while the divider is inside the frame.
+ * ffmpeg -filter_complex graph: [before] and [after] -> [out] (default [0:v], [1:v] -> [v]). A
+ * white divider `line` pixels wide is drawn while the divider is inside the frame.
  */
-export function wipeFilter(keys: WipeKeys, line = 4): string {
+export function wipeFilter(keys: WipeKeys, line = 4, labels: { before?: string; after?: string; out?: string } = {}): string {
+  const { before = '0:v', after = '1:v', out = 'v' } = labels;
   const p = wipeExpression(keys);
   const half = line / 2;
   const blend = `if(lt(abs(X-W*(${p})),${half})*gt(${p},0.002)*lt(${p},0.998),255,if(lt(X,W*(${p})),A,B))`;
-  return `[0:v]format=gbrp[a];[1:v]format=gbrp[b];[a][b]blend=all_expr='${blend}',format=yuv420p[v]`;
+  return `[${before}]format=gbrp[wa];[${after}]format=gbrp[wb];[wa][wb]blend=all_expr='${blend}',format=yuv420p[${out}]`;
+}
+
+/** Play `intro` first, then the before/after slider of `before` and `after` (inputs 0, 1, 2). */
+export function introThenWipeFilter(keys: WipeKeys, line = 4): string {
+  return `${wipeFilter(keys, line, { before: '1:v', after: '2:v', out: 'w' })};[0:v]format=yuv420p[i];[i][w]concat=n=2:v=1:a=0[v]`;
 }

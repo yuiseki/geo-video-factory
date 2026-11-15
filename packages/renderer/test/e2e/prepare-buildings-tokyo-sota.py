@@ -24,9 +24,11 @@ from PIL import Image
 
 TILESET_URL = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
 BBOX = [139.302, 35.736, 139.336, 35.768]  # Tokyo Hamura (0% PLATEAU -> 100% OSM) <-> Tokyo Fussa (untextured PLATEAU)
+# Opening: the 3D Tokyo everyone expects (West Shinjuku high-rises, textured PLATEAU).
+SHINJUKU_BBOX = [139.684, 35.683, 139.702, 35.697]
 SEED = "tokyo-sota-v1"
 SOTA_VERSION = 6  # bump when the SOTA assets change shape, so cached ones are rebuilt
-FIXTURES = ("buildings-tokyo-sota-baseline.json", "buildings-tokyo-sota-enhanced.json")
+FIXTURES = ("buildings-tokyo-sota-prelude.json", "buildings-tokyo-sota-baseline.json", "buildings-tokyo-sota-enhanced.json")
 # Set OVERPASS_URL to your own Overpass instance; the public ones are shared resources.
 OVERPASS_ENDPOINTS = [os.environ["OVERPASS_URL"]] if os.environ.get("OVERPASS_URL") else [
     "https://overpass-api.de/api/interpreter",
@@ -180,6 +182,20 @@ def main() -> None:
         print(f"prepared {manifest['tile_count']} baseline PLATEAU tiles in {baseline_dir}")
     else:
         print(f"using cached baseline PLATEAU models: {baseline_manifest_path}")
+
+    prelude_dir = assets_root / "shinjuku"
+    if not cache_is_complete(prelude_dir / "manifest.json"):
+        manifest = prepare_tiles(
+            TILESET_URL,
+            SHINJUKU_BBOX,
+            prelude_dir,
+            max_texture_dimension=2048,
+            far_texture_dimension=1024,
+            workers=3,
+        )
+        print(f"prepared {manifest['tile_count']} Shinjuku PLATEAU tiles ({manifest['tile_ids']} buildings)")
+    else:
+        print(f"using cached Shinjuku PLATEAU models: {prelude_dir}")
 
     if not cache_is_complete(sota_manifest_path, require_sota=True):
         if sota_dir.exists():
