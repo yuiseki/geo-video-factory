@@ -5,14 +5,16 @@ import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, ty
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
 import { applyBuildingAppearance } from './plateau-materials.js';
-import { cityUniforms, createCityProxyMaterial, createCityShadowMaterial } from './city-materials.js';
-import { cityLight, keyframeValue, localMeters, revealRadius } from './city-timeline.js';
+import { cityUniforms, createCityProxyMaterial, createCityShadowMaterial, type CityRoofPhoto } from './city-materials.js';
+import { cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
 
 interface ModelTile {
   glb: string;
   kind?: string;
   /** 'enu': positions are local east/up/south meters around the manifest center (city-proxy). */
   frame?: string;
+  /** Aerial photo draped on city-proxy roofs. */
+  roof_texture?: { image: string; bounds_m: [number, number, number, number] };
   rtc: [number, number, number];
   bytes?: number;
   ids?: string[];
@@ -134,7 +136,14 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
       }
       tuneMaterials(gltf.scene);
       if (tile.kind === 'city-proxy' || tile.kind === 'city-shadow') {
-        const material = tile.kind === 'city-proxy' ? createCityProxyMaterial() : createCityShadowMaterial();
+        let roof: CityRoofPhoto | undefined;
+        if (tile.kind === 'city-proxy' && tile.roof_texture) {
+          const texture = await new THREE.TextureLoader().loadAsync(new URL(tile.roof_texture.image, url).href);
+          texture.colorSpace = THREE.SRGBColorSpace;
+          texture.anisotropy = 8;
+          roof = { texture, bounds: tile.roof_texture.bounds_m };
+        }
+        const material = tile.kind === 'city-proxy' ? createCityProxyMaterial(roof) : createCityShadowMaterial();
         gltf.scene.traverse((object) => {
           const mesh = object as THREE.Mesh;
           if (mesh.isMesh) mesh.material = material;
@@ -188,6 +197,7 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   const rasterLayers = styleLayers.filter((item) => item.type === 'raster').map((item) => item.id);
   const update = (sec: number) => {
     cityUniforms.uCityGrowRadius.value = revealRadius(config.reveal, sec);
+    cityUniforms.uCityPaintRadius.value = paintRadius(config.reveal, sec);
     if (!config.night) return;
     const night = keyframeValue(config.night, sec);
     const light = cityLight(night);

@@ -2,7 +2,6 @@ import type {
   CameraKey,
   CameraPathKind,
   CameraPose,
-  CounterOverlay,
   DemConfig,
   DemSourceSpec,
   EaseKind,
@@ -220,18 +219,6 @@ export function fadeAlpha(win: TimeWindow | undefined, t: number, fade = 0.08): 
   return Math.max(0, Math.min(inA, outA));
 }
 
-export function countValue(o: Pick<CounterOverlay, 'value' | 'decimals' | 'countUp' | 'from' | 'countEase' | 'grouping'>, t: number): string {
-  if (typeof o.value !== 'number') return String(o.value);
-  const d = o.decimals ?? 0;
-  let v = o.value;
-  if (o.countUp) {
-    const [t0, t1] = o.countUp;
-    const u = Math.min(1, Math.max(0, (t - t0) / (t1 - t0)));
-    const from = o.from ?? 0;
-    v = from + (o.value - from) * (o.countEase === 'linear' ? u : ease('out', u));
-  }
-  return v.toLocaleString('en-US', { minimumFractionDigits: d, maximumFractionDigits: d, useGrouping: o.grouping ?? true });
-}
 
 // One subtitle = one spoken line. Keep it to two rows: split a long line at the punctuation
 // closest to the middle (or at the middle when there is none). Existing line breaks are kept.

@@ -11,7 +11,6 @@ import {
   sliceLine,
   locate,
   fadeAlpha,
-  countValue,
   wrapSubtitle,
   layoutLines,
   estimateSeconds,
@@ -21,6 +20,7 @@ import {
   chartGeometry,
 } from '../src/lib.js';
 import { parseWav, writeWav } from '../src/voice.js';
+import { countValue, counterNumber, odometerColumns } from '../src/counter.js';
 import type { CameraKey } from '../src/types.js';
 
 test('GSI DEM: positive, negative and NA pixels', () => {
@@ -201,4 +201,20 @@ test('chartGeometry maps points into the plot box and measures the path', () => 
   assert.ok(Math.abs(g.pts[2]![0] - 190) < 1e-9);
   assert.ok(g.length > 180);
   assert.ok(Math.abs(g.cum[2]! - g.length) < 1e-9);
+});
+
+test('odometerColumns rolls the ones continuously and carries into higher digits only at the rollover', () => {
+  // 1234.5: ones half way from 4 to 5, tens still on 3
+  assert.deepEqual(odometerColumns(1234.5, 4), [1, 2, 3, 4.5]);
+  // 1299.5: the 9s are rolling over, so tens and hundreds move half a step too
+  assert.deepEqual(odometerColumns(1299.5, 4), [1, 2.5, 9.5, 9.5]);
+  // whole numbers sit exactly on their digits; columns are padded to the final width
+  assert.deepEqual(odometerColumns(7, 3), [0, 0, 7]);
+  assert.deepEqual(odometerColumns(19756, 5), [1, 9, 7, 5, 6]);
+});
+
+test('counterNumber returns the raw counting value for rolling digits', () => {
+  assert.equal(counterNumber({ value: 2000, countUp: [0, 1], countEase: 'linear' }, 0.5), 1000);
+  assert.equal(counterNumber({ value: 2000 }, 0.1), 2000);
+  assert.equal(counterNumber({ value: '19,756' }, 0.1), null);
 });

@@ -10,6 +10,11 @@ export interface CityReveal {
   radius: [number, number][];
   /** Width of the front in meters: a building rises over this distance. Defaults to 120. */
   width?: number;
+  /**
+   * [seconds, meters] keys for a second wave that paints the risen clay-white buildings with
+   * their colors (orthophoto roofs, facades, windows). Without it buildings are painted.
+   */
+  paint?: [number, number][];
 }
 
 /** Linear interpolation over [seconds, value] keys; the first and last values hold outside. */
@@ -36,6 +41,11 @@ export function revealProgress(reveal: CityReveal | undefined, t: number, distan
 /** The front radius in meters that the shader compares against. */
 export function revealRadius(reveal: CityReveal | undefined, t: number): number {
   return reveal ? keyframeValue(reveal.radius, t) : 1e9;
+}
+
+/** The paint front radius in meters (1e9, everything painted, when there are no paint keys). */
+export function paintRadius(reveal: CityReveal | undefined, t: number): number {
+  return reveal?.paint?.length ? keyframeValue(reveal.paint, t) : 1e9;
 }
 
 /** Meters east and north of origin, in the same local plane the city-proxy pipeline writes. */

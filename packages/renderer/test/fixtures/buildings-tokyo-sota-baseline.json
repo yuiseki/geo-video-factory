@@ -19,6 +19,7 @@
         139.316,
         35.7584
       ],
+      "width": 160,
       "radius": [
         [
           3.2,
@@ -30,29 +31,32 @@
         ],
         [
           8.4,
-          -120
+          -160
         ],
         [
-          17.0,
+          16.0,
           2800
         ]
       ],
-      "width": 160
-    },
-    "night": [
-      [
-        40,
-        0
-      ],
-      [
-        44,
-        0.5
-      ],
-      [
-        49,
-        1
+      "paint": [
+        [
+          3.2,
+          6000
+        ],
+        [
+          4.4,
+          -200
+        ],
+        [
+          17.2,
+          -200
+        ],
+        [
+          24.0,
+          2800
+        ]
       ]
-    ]
+    }
   },
   "shots": [
     {
@@ -111,9 +115,9 @@
           139.316,
           35.7584
         ],
-        "zoom": 16.2,
-        "pitch": 60,
-        "bearing": 20
+        "zoom": 16.4,
+        "pitch": 62,
+        "bearing": 15
       },
       "overlays": [
         {
@@ -148,35 +152,35 @@
       ]
     },
     {
-      "duration": 10,
+      "duration": 9,
       "ease": "inOut",
       "from": {
         "center": [
           139.316,
           35.7584
         ],
-        "zoom": 16.2,
-        "pitch": 60,
-        "bearing": 20
+        "zoom": 16.4,
+        "pitch": 62,
+        "bearing": 15
       },
       "to": {
         "center": [
           139.316,
           35.7584
         ],
-        "zoom": 15.7,
-        "pitch": 62,
-        "bearing": -20
+        "zoom": 15.8,
+        "pitch": 63,
+        "bearing": -15
       },
       "overlays": [
         {
           "type": "counter",
           "value": "{{city_proxy_count}}",
-          "caption": "国土地理院の建物の形から立体化",
+          "caption": "国土地理院の建物の形 + 推定の高さ",
           "unit": "棟",
           "countUp": [
-            0.04,
-            0.86
+            0.05,
+            0.9
           ],
           "screen": [
             90,
@@ -185,12 +189,52 @@
           "show": [
             0,
             1
+          ],
+          "roll": true
+        }
+      ]
+    },
+    {
+      "duration": 8,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.316,
+          35.7584
+        ],
+        "zoom": 15.8,
+        "pitch": 63,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.315,
+          35.7595
+        ],
+        "zoom": 16.7,
+        "pitch": 68,
+        "bearing": 12
+      },
+      "overlays": [
+        {
+          "type": "quote",
+          "text": "屋根の色: 国土地理院の空中写真から",
+          "marks": false,
+          "cps": 40,
+          "screen": [
+            90,
+            110
+          ],
+          "width": 1100,
+          "show": [
+            0.1,
+            1
           ]
         }
       ]
     },
     {
-      "duration": 10,
+      "duration": 12,
       "ease": "inOut",
       "from": {
         "center": [
@@ -231,18 +275,18 @@
           "style": "tag",
           "text": "左: PLATEAU のみ",
           "screen": [
-            360,
+            330,
             1000
           ],
           "show": [
-            0.15,
-            0.85
+            0.12,
+            0.9
           ]
         }
       ]
     },
     {
-      "duration": 12,
+      "duration": 13,
       "ease": "inOut",
       "from": {
         "center": [
@@ -265,71 +309,34 @@
       "overlays": [
         {
           "type": "note",
-          "text": "屋根の色: 空中写真から ／ 高さ: 福生市の PLATEAU で較正した推定 ／ 屋根の形・窓: 推定",
+          "text": "屋根の色: 空中写真 ／ 高さ: 福生市の PLATEAU で較正した推定 ／ 屋根の形・窓・壁の色: 推定",
           "show": [
-            0.1,
+            0.08,
             0.95
           ]
         }
       ]
     },
     {
-      "duration": 12,
+      "duration": 10,
       "ease": "inOut",
       "from": {
         "center": [
-          139.315,
-          35.76
+          139.316,
+          35.759
         ],
-        "zoom": 16.8,
-        "pitch": 68,
+        "zoom": 16.6,
+        "pitch": 66,
         "bearing": 60
       },
       "to": {
         "center": [
-          139.317,
-          35.757
-        ],
-        "zoom": 15.9,
-        "pitch": 62,
-        "bearing": 160
-      },
-      "overlays": [
-        {
-          "type": "label",
-          "style": "tag",
-          "text": "左: PLATEAU のみ",
-          "screen": [
-            360,
-            1000
-          ],
-          "show": [
-            0.55,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "duration": 8,
-      "ease": "inOut",
-      "from": {
-        "center": [
-          139.317,
-          35.757
-        ],
-        "zoom": 15.9,
-        "pitch": 62,
-        "bearing": 160
-      },
-      "to": {
-        "center": [
           139.32,
-          35.754
+          35.7545
         ],
-        "zoom": 15.2,
-        "pitch": 58,
-        "bearing": 185
+        "zoom": 15.4,
+        "pitch": 60,
+        "bearing": 160
       },
       "overlays": [
         {
@@ -344,6 +351,24 @@
           "show": [
             0.15,
             1
+          ],
+          "roll": true,
+          "countUp": [
+            0.05,
+            0.75
+          ]
+        },
+        {
+          "type": "label",
+          "style": "tag",
+          "text": "左: PLATEAU のみ",
+          "screen": [
+            330,
+            1000
+          ],
+          "show": [
+            0.1,
+            0.65
           ]
         }
       ]

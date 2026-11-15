@@ -25,7 +25,7 @@ from PIL import Image
 TILESET_URL = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
 BBOX = [139.302, 35.736, 139.336, 35.768]  # Tokyo Hamura (0% PLATEAU -> 100% OSM) <-> Tokyo Fussa (untextured PLATEAU)
 SEED = "tokyo-sota-v1"
-SOTA_VERSION = 5  # bump when the SOTA assets change shape, so cached ones are rebuilt
+SOTA_VERSION = 6  # bump when the SOTA assets change shape, so cached ones are rebuilt
 FIXTURES = ("buildings-tokyo-sota-baseline.json", "buildings-tokyo-sota-enhanced.json")
 # Set OVERPASS_URL to your own Overpass instance; the public ones are shared resources.
 OVERPASS_ENDPOINTS = [os.environ["OVERPASS_URL"]] if os.environ.get("OVERPASS_URL") else [
@@ -164,7 +164,7 @@ def main() -> None:
     from building_heights import calibrate_height_model, footprint_area_m2
     from city_proxy import build_city_proxy_tile, wall_hex
     from glb_spatial import extract_glb_feature_heights
-    from gsi_footprints import dem_sampler, fetch_gsi_buildings
+    from gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
 
     if not cache_is_complete(baseline_manifest_path):
         manifest = prepare_tiles(
@@ -232,6 +232,8 @@ def main() -> None:
         print(f"GSI footprints: {len(footprints)}; PLATEAU buildings: {len(plateau)}; calibration samples: {len(samples)}")
 
         osm_features = fetch_osm_buildings(BBOX, assets_root / "osm-buildings.geojson")
+        roof_photo, roof_bounds = orthophoto_texture(BBOX, gsi_cache, zoom=18)
+        roof_photo.save(sota_dir / "roof-photo.jpg", quality=90)
         manifest = build_city_proxy_tile(
             footprints,
             BBOX,
@@ -243,6 +245,7 @@ def main() -> None:
             height_model=model,
             seed=SEED,
             shadow_casters=[(footprints[i], h) for i, h in sorted(casters.items())],
+            roof_texture=("roof-photo.jpg", roof_bounds),
         )
         manifest["sota_prepared"] = SOTA_VERSION
         manifest["plateau_building_count"] = len(plateau)

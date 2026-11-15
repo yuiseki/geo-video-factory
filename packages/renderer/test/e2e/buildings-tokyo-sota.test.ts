@@ -11,7 +11,7 @@ const baselineFixture = 'buildings-tokyo-sota-baseline.json';
 const enhancedFixture = 'buildings-tokyo-sota-enhanced.json';
 const prepareScript = 'test/e2e/prepare-buildings-tokyo-sota.py';
 // Before/after slider: fraction of the width (from the left) that shows the baseline.
-const wipe: WipeKeys = [[0, 0], [18, 0], [19.5, 0.5], [26.5, 0.5], [28, 0], [46.5, 0], [48, 1], [49, 1], [51.5, 0], [60, 0]];
+const wipe: WipeKeys = [[0, 0], [25, 0], [26.5, 0.5], [35.5, 0.5], [37, 0], [50.5, 0], [52, 1], [53, 1], [57, 0], [60, 0]];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
   const probe = spawnSync(
@@ -122,7 +122,6 @@ test(`${videoName} E2E fixtures configure a 720p before/after slider of baseline
     assert.equal(spec.height, 720);
   }
   assert.deepEqual(baseline.plateauBuildings.reveal, enhanced.plateauBuildings.reveal);
-  assert.deepEqual(baseline.plateauBuildings.night, enhanced.plateauBuildings.night);
   assert.equal(wipe[wipe.length - 1]![0], 60);
   // On-screen text states counts and names; no mood copy ("AI poem") and no overclaiming.
   const text = JSON.stringify([baseline, enhanced]);

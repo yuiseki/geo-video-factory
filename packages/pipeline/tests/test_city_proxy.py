@@ -124,6 +124,16 @@ class CityProxyTest(unittest.TestCase):
         self.assertTrue(all(c[0] > 2 * c[2] for c in roof), 'roof keeps the red of the photo')
         self.assertNotEqual(roof[0], wall[0])
 
+    def test_records_the_roof_photo_and_its_bounds_in_local_meters(self):
+        bounds = [139.31, 35.745, 139.33, 35.765]
+        directory, manifest = self.build([feature('gsi/a', rect(139.32, 35.75, 10, 10))], roof_texture=('roof.jpg', bounds))
+        tile = next(t for t in manifest['tiles'] if t['kind'] == 'city-proxy')
+        self.assertEqual(tile['roof_texture']['image'], 'roof.jpg')
+        minx, miny, maxx, maxy = tile['roof_texture']['bounds_m']
+        self.assertAlmostEqual(maxx - minx, 0.02 * KX, delta=1)
+        self.assertAlmostEqual(maxy - miny, 0.02 * KY, delta=1)
+        self.assertAlmostEqual(minx, (139.31 - 139.32) * KX, delta=1)
+
 
 class CityShadowTest(unittest.TestCase):
     def test_shadows_fall_away_from_the_sun_lie_on_the_ground_and_do_not_double_up(self):

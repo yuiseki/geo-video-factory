@@ -27,6 +27,7 @@ import urllib.request
 
 BVMAP_URL = 'https://cyberjapandata.gsi.go.jp/xyz/optimal_bvmap-v1/{z}/{x}/{y}.pbf'
 DEM_URL = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
+PHOTO_URL = 'https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg'
 Fetch = Callable[[str], 'bytes | None']
 
 
@@ -304,6 +305,24 @@ def fetch_gsi_buildings(
         })
     features.sort(key=lambda f: f['id'])
     return features
+
+
+def orthophoto_texture(bbox: list[float], cache_dir: Path, *, zoom: int = 18, fetch: Fetch | None = None):
+    """Mosaic the GSI seamless photo over bbox from cached tiles; returns (PIL image, [w, s, e, n])."""
+    from PIL import Image
+
+    fetch = fetch or default_fetch
+    tiles = tiles_for_bbox(bbox, zoom)
+    xs = sorted({x for x, _ in tiles})
+    ys = sorted({y for _, y in tiles})
+    canvas = Image.new('RGB', (len(xs) * 256, len(ys) * 256))
+    for x, y in tiles:
+        data = _cached(cache_dir, f'photo/{zoom}/{x}/{y}.jpg', PHOTO_URL.format(z=zoom, x=x, y=y), fetch)
+        if data:
+            canvas.paste(Image.open(io.BytesIO(data)).convert('RGB'), ((x - xs[0]) * 256, (y - ys[0]) * 256))
+    west, _, _, north = tile_bbox(zoom, xs[0], ys[0])
+    _, south, east, _ = tile_bbox(zoom, xs[-1], ys[-1])
+    return canvas, [west, south, east, north]
 
 
 # --- ground heights ---------------------------------------------------------------------------

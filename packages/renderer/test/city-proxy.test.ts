@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { describe, it } from 'node:test';
 import * as THREE from 'three';
-import { cityLight, keyframeValue, localMeters, revealProgress } from '../src/page/city-timeline.js';
+import { cityLight, keyframeValue, localMeters, paintRadius, revealProgress } from '../src/page/city-timeline.js';
 import { cityUniforms, createCityProxyMaterial } from '../src/page/city-materials.js';
 import { buildMapStyle } from '../src/page/map-style.js';
 import { tileHeightOffset } from '../src/page/plateau-coordinates.js';
@@ -33,6 +33,13 @@ describe('city timeline', () => {
     assert.ok(Math.abs(east - 903.5) < 1 && Math.abs(north - 1109.5) < 0.1);
   });
 
+  it('paints buildings after they rise, with its own radius keys', () => {
+    const reveal = { center: [139.31, 35.75] as [number, number], radius: [[0, 1000]] as [number, number][], paint: [[0, -100], [10, 900]] as [number, number][] };
+    assert.equal(paintRadius(reveal, 0), -100);
+    assert.equal(paintRadius(reveal, 5), 400);
+    assert.equal(paintRadius({ center: [0, 0], radius: [[0, 1]] }, 3), 1e9, 'without paint keys buildings are painted');
+  });
+
   it('turns daylight into dusk and night', () => {
     const day = cityLight(0);
     const dusk = cityLight(0.5);
@@ -52,16 +59,25 @@ describe('city proxy material', () => {
     const b = createCityProxyMaterial();
     assert.equal(a.vertexColors, true);
     assert.equal(a.customProgramCacheKey(), b.customProgramCacheKey());
+    assert.ok('uCityPaintRadius' in cityUniforms, 'a second wave paints the clay model');
     const shader = {
       uniforms: {} as Record<string, THREE.IUniform>,
       vertexShader: '#include <common>\n#include <begin_vertex>',
-      fragmentShader: '#include <common>\n#include <dithering_fragment>',
+      fragmentShader: '#include <common>\n#include <color_fragment>\n#include <dithering_fragment>',
     };
     a.onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
     assert.match(shader.vertexShader, /attribute vec2 _style/);
     assert.match(shader.vertexShader, /cityGrow/);
     assert.match(shader.fragmentShader, /cityWindow/);
+    assert.match(shader.fragmentShader, /vCityPaint/);
     assert.equal(shader.uniforms.uCityNight, cityUniforms.uCityNight, 'uniforms are shared, not copied');
+    const roof = createCityProxyMaterial({ texture: new THREE.Texture(), bounds: [-100, -50, 100, 150] });
+    assert.notEqual(roof.customProgramCacheKey(), a.customProgramCacheKey());
+    const roofShader = { uniforms: {} as Record<string, THREE.IUniform>, vertexShader: shader.vertexShader, fragmentShader: '#include <common>\n#include <color_fragment>\n#include <dithering_fragment>' };
+    roof.onBeforeCompile(roofShader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    assert.deepEqual((roofShader.uniforms.uCityRoofSize!.value as THREE.Vector2).toArray(), [200, 200]);
+    assert.match(roofShader.fragmentShader, /uCityRoofPhoto/);
+    assert.match(roofShader.fragmentShader, /^#define CITY_ROOF_PHOTO/);
   });
 
   it('places proxy tiles at map altitude', () => {

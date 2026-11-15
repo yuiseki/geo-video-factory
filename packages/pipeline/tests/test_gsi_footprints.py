@@ -148,5 +148,31 @@ class DemSamplerTest(unittest.TestCase):
             self.assertEqual(sample(139.315, 35.755), 0.0)
 
 
+class OrthophotoTextureTest(unittest.TestCase):
+    def test_mosaics_cached_photo_tiles_and_reports_tile_aligned_bounds(self):
+        calls = []
+
+        def fetch(url):
+            calls.append(url)
+            image = Image.new('RGB', (256, 256), (200, 60, 40))
+            buffer = io.BytesIO()
+            image.save(buffer, format='JPEG')
+            return buffer.getvalue()
+
+        bbox = [139.3100, 35.7500, 139.3120, 35.7515]
+        with TemporaryDirectory() as directory:
+            image, bounds = gf.orthophoto_texture(bbox, Path(directory), zoom=18, fetch=fetch)
+            tiles = gf.tiles_for_bbox(bbox, 18)
+            columns = len({x for x, _ in tiles})
+            rows = len({y for _, y in tiles})
+            self.assertEqual(image.size, (columns * 256, rows * 256))
+            self.assertLessEqual(bounds[0], bbox[0])
+            self.assertGreaterEqual(bounds[3], bbox[3])
+            self.assertGreater(image.getpixel((10, 10))[0], 150)
+            n = len(calls)
+            gf.orthophoto_texture(bbox, Path(directory), zoom=18, fetch=fetch)
+            self.assertEqual(len(calls), n)
+
+
 if __name__ == '__main__':
     unittest.main()

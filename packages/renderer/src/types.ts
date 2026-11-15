@@ -124,6 +124,8 @@ export interface CounterOverlay {
   grouping?: boolean;
   countUp?: TimeWindow;
   countEase?: 'linear' | 'out';
+  /** Show the number as rolling odometer wheels while it counts. */
+  roll?: boolean;
   caption?: string;
   prefix?: string;
   unit?: string;

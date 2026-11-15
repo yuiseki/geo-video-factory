@@ -9,6 +9,7 @@ export const cityUniforms = {
   uCityGrowOrigin: { value: new THREE.Vector2(0, 0) },
   uCityGrowRadius: { value: 1e9 },
   uCityGrowWidth: { value: 120 },
+  uCityPaintRadius: { value: 1e9 },
   uCityWindows: { value: 0 },
   uCityNight: { value: 0 },
   uCityShadow: { value: 0.38 },
@@ -49,11 +50,24 @@ varying float vShadowGrow;`)
  * uv = (meters along the wall, meters above the building's ground), _style = (style, eave height)
  * and _batchid, in a Y-up local frame. Windows are a deterministic illustration per building.
  */
-export function createCityProxyMaterial(): THREE.MeshStandardMaterial {
+export interface CityRoofPhoto {
+  texture: THREE.Texture;
+  /** [minEast, minNorth, maxEast, maxNorth] of the photo in the tile's local meters. */
+  bounds: [number, number, number, number];
+}
+
+export function createCityProxyMaterial(roof?: CityRoofPhoto): THREE.MeshStandardMaterial {
   const material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.88, metalness: 0, side: THREE.DoubleSide });
-  material.customProgramCacheKey = () => 'city-proxy-v2';
+  material.customProgramCacheKey = () => `city-proxy-v4${roof ? '-roof' : ''}`;
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, cityUniforms);
+    if (roof) {
+      const [x0, y0, x1, y1] = roof.bounds;
+      shader.uniforms.uCityRoofPhoto = { value: roof.texture };
+      shader.uniforms.uCityRoofMin = { value: new THREE.Vector2(x0, y0) };
+      shader.uniforms.uCityRoofSize = { value: new THREE.Vector2(x1 - x0, y1 - y0) };
+      shader.fragmentShader = '#define CITY_ROOF_PHOTO\n' + shader.fragmentShader;
+    }
     shader.vertexShader = shader.vertexShader
       .replace(
         '#include <common>',
@@ -63,10 +77,13 @@ attribute float _batchid;
 uniform vec2 uCityGrowOrigin;
 uniform float uCityGrowRadius;
 uniform float uCityGrowWidth;
+uniform float uCityPaintRadius;
 varying vec2 vCityUv;
 varying vec2 vCityStyle;
 varying float vCityBatch;
-varying float vCityUp;`,
+varying float vCityUp;
+varying float vCityPaint;
+varying vec2 vCityWorld;`,
       )
       .replace(
         '#include <begin_vertex>',
@@ -79,7 +96,9 @@ transformed.y -= uv.y * (1.0 - cityGrow);
 vCityUv = uv;
 vCityStyle = _style;
 vCityBatch = _batchid;
-vCityUp = normal.y;`,
+vCityUp = normal.y;
+vCityPaint = clamp((uCityPaintRadius - cityDist) / uCityGrowWidth, 0.0, 1.0);
+vCityWorld = cityWorld.xy;`,
       );
     shader.fragmentShader = shader.fragmentShader
       .replace(
@@ -91,13 +110,34 @@ varying vec2 vCityUv;
 varying vec2 vCityStyle;
 varying float vCityBatch;
 varying float vCityUp;
+varying float vCityPaint;
+varying vec2 vCityWorld;
+#ifdef CITY_ROOF_PHOTO
+uniform sampler2D uCityRoofPhoto;
+uniform vec2 uCityRoofMin;
+uniform vec2 uCityRoofSize;
+#endif
 float cityHash(vec2 p) {
   return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
 }`,
       )
       .replace(
+        '#include <color_fragment>',
+        `#include <color_fragment>
+vec3 cityPainted = diffuseColor.rgb;
+#ifdef CITY_ROOF_PHOTO
+// Roofs show the aerial photo itself: from above, a roof is what the photo shows.
+float cityRoofFace = step(0.35, abs(vCityUp));
+vec3 cityPhoto = texture2D(uCityRoofPhoto, (vCityWorld - uCityRoofMin) / uCityRoofSize).rgb;
+cityPainted = mix(cityPainted, cityPhoto, cityRoofFace);
+#endif
+// Before the paint wave arrives the building is a clay-white study model.
+diffuseColor.rgb = mix(vec3(0.80, 0.80, 0.78), cityPainted, vCityPaint);`,
+      )
+      .replace(
         '#include <dithering_fragment>',
-        `float cityWall = 1.0 - step(0.35, abs(vCityUp));
+        `gl_FragColor.rgb = mix(gl_FragColor.rgb * 0.45 + vec3(0.52), gl_FragColor.rgb, vCityPaint);
+float cityWall = 1.0 - step(0.35, abs(vCityUp));
 float cityStyle = floor(vCityStyle.x + 0.5);
 float cityEave = vCityStyle.y;
 float cityR = cityHash(vec2(vCityBatch, 3.7));
@@ -118,16 +158,16 @@ float cityAaY = max(fwidth(cityFy), 1e-4);
 float cityInX = smoothstep(0.5 - cityHalf - cityAaX, 0.5 - cityHalf + cityAaX, cityWx) * (1.0 - smoothstep(0.5 + cityHalf - cityAaX, 0.5 + cityHalf + cityAaX, cityWx));
 float cityInY = smoothstep(0.32 - cityAaY, 0.32 + cityAaY, cityWy) * (1.0 - smoothstep(0.82 - cityAaY, 0.82 + cityAaY, cityWy));
 float cityBelow = step(0.7, vCityUv.y) * step(vCityUv.y, cityEave - 0.45);
-float cityWindow = cityWall * cityPresent * cityInX * cityInY * cityBelow;
+float cityWindow = cityWall * cityPresent * cityInX * cityInY * cityBelow * vCityPaint;
 // Prefilter: when a storey covers only a few pixels, use the average window coverage instead of
 // the pattern, so distant walls do not shimmer as black speckles.
 float cityPx = max(fwidth(vCityUv.x), fwidth(vCityUv.y));
 float cityDetail = 1.0 - smoothstep(0.18, 0.45, cityPx / cityStorey);
-float cityCoverage = cityWall * cityBelow * (1.0 - step(1.5, cityStyle)) * (cityStyle > 0.5 ? 0.68 : 0.65 * 0.44) * 0.5;
+float cityCoverage = vCityPaint * cityWall * cityBelow * (1.0 - step(1.5, cityStyle)) * (cityStyle > 0.5 ? 0.68 : 0.65 * 0.44) * 0.5;
 float cityGlassMix = mix(cityCoverage, cityWindow, cityDetail);
 vec3 cityGlass = mix(vec3(0.20, 0.24, 0.29), vec3(0.42, 0.48, 0.56), cityHash(cityCellId + 9.1));
 gl_FragColor.rgb = mix(gl_FragColor.rgb, mix(vec3(0.27, 0.31, 0.37), cityGlass, cityDetail), cityGlassMix * 0.72);
-float cityBand = cityWall * (1.0 - step(1.5, cityStyle)) * (1.0 - smoothstep(0.0, 0.05, min(cityWy, 1.0 - cityWy))) * step(1.0, vCityUv.y) * cityDetail;
+float cityBand = cityWall * (1.0 - step(1.5, cityStyle)) * (1.0 - smoothstep(0.0, 0.05, min(cityWy, 1.0 - cityWy))) * step(1.0, vCityUv.y) * cityDetail * vCityPaint;
 gl_FragColor.rgb *= 1.0 - cityBand * 0.08;
 gl_FragColor.rgb *= mix(1.0, mix(0.72, 1.0, smoothstep(0.2, 2.4, vCityUv.y)), cityWall);
 float cityLitShare = uCityWindows * (0.45 + 0.4 * cityR);

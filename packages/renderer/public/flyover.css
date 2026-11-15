@@ -22,7 +22,9 @@ html, body { margin: 0; background: #000; overflow: hidden; }
 .o.label .dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: #fff; margin-right: 10px; vertical-align: middle; box-shadow: 0 0 6px rgba(0,0,0,0.8); }
 .o.counter { line-height: 1; }
 .o.counter .cap { display: block; font-size: 22px; font-weight: 500; margin-bottom: 8px; opacity: 0.95; }
-.o.counter .num { font-size: 96px; letter-spacing: 1px; }
+.o.counter .num { font-size: 96px; letter-spacing: 1px; font-variant-numeric: tabular-nums; }
+.o.counter .wheel { display: inline-block; height: 1em; line-height: 1em; overflow: hidden; vertical-align: bottom; }
+.o.counter .strip { display: block; line-height: 1em; }
 .o.counter .unit { font-size: 40px; margin-left: 10px; }
 .o.counter .pre { font-size: 48px; margin-right: 6px; }
 .o.chapter { left: 0; right: 0; top: 40%; text-align: center; }

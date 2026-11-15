@@ -3,7 +3,6 @@ import { choroplethRiseProgress, drawChoroplethLabels, drawChoroplethLegend } fr
 import {
   blinkAt,
   chartGeometry,
-  countValue,
   ease,
   easeOutBack,
   fadeAlpha,
@@ -13,7 +12,8 @@ import {
   sliceLine,
   typeCount,
 } from '../lib.js';
-import type { ChartOverlay, LngLat, Overlay, ReactionOverlay, Shot, ShotSpec } from '../types.js';
+import { countValue, counterNumber, odometerColumns } from '../counter.js';
+import type { ChartOverlay, CounterOverlay, LngLat, Overlay, ReactionOverlay, Shot, ShotSpec } from '../types.js';
 import type { MapLibreMap } from './map-types.js';
 
 let map: MapLibreMap;
@@ -173,7 +173,7 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
       'counter',
       (o.caption ? `<span class="cap" style="opacity:${inn(0.3, 0.1)}">${esc(o.caption)}</span>` : '') +
         (o.prefix ? `<span class="pre">${esc(o.prefix)}</span>` : '') +
-        `<span class="num">${esc(countValue(o, t))}</span>` +
+        `<span class="num">${o.roll ? rollingDigits(o, t) : esc(countValue(o, t))}</span>` +
         (o.unit ? `<span class="unit">${esc(o.unit)}</span>` : '') +
         `<span class="rule" style="width:${outCubic(inn(0.5, 0.2)) * 100}%"></span>`,
       { left: x + 'px', top: y + 'px', opacity: inn(0.2) * out, transform: `translateY(${up - leave * 20}px)` },
@@ -362,4 +362,23 @@ function drawReaction(o: ReactionOverlay, since: number): void {
   }
   const side = cfg.side ?? 'right';
   el('reaction', html, { [side]: (cfg.margin ?? 16) + 'px', bottom: (cfg.bottom ?? 150) + 'px' });
+}
+
+/** Odometer wheels for a rolling counter; leading wheels fade in as the number reaches them. */
+function rollingDigits(o: CounterOverlay, t: number): string {
+  const value = counterNumber(o, t);
+  if (value === null) return countValue(o, t);
+  const final = Math.max(1, Math.round(Math.abs(Number(o.value))));
+  const digits = String(final).length;
+  const columns = odometerColumns(value, digits);
+  const strip = '0123456789'.split('').concat('0').join('<br>');
+  let html = '';
+  columns.forEach((pos, i) => {
+    const place = digits - 1 - i;
+    // a wheel appears only as the number reaches its place (no leading zeros)
+    const shown = place === 0 ? 1 : Math.min(1, Math.max(0, (value / 10 ** place - 0.97) / 0.03));
+    html += `<span class="wheel" style="opacity:${shown.toFixed(3)}"><span class="strip" style="transform:translateY(${(-pos).toFixed(4)}em)">${strip}</span></span>`;
+    if (place > 0 && place % 3 === 0 && (o.grouping ?? true)) html += `<span class="sep" style="opacity:${shown.toFixed(3)}">,</span>`;
+  });
+  return html;
 }

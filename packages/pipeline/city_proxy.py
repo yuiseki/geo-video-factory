@@ -97,6 +97,7 @@ def build_city_proxy_tile(
     height_model: dict[str, Any] | None = None,
     seed: str = 'geo-video-factory',
     shadow_casters: list[tuple[dict[str, Any], float]] | None = None,
+    roof_texture: tuple[str, list[float]] | None = None,
 ) -> dict[str, Any]:
     """Append one `city-proxy` tile for footprints PLATEAU lacks; returns the manifest."""
     from shapely.geometry import Point, shape
@@ -198,8 +199,14 @@ def build_city_proxy_tile(
         for record in records:
             key = record['source'].split(':')[0]
             sources[key] = sources.get(key, 0) + 1
+        texture = None
+        if roof_texture:
+            image, (tw, ts, te, tn) = roof_texture
+            texture = {'image': image, 'bounds': [tw, ts, te, tn],
+                       'bounds_m': [(tw - lon0) * kx, (ts - lat0) * ky, (te - lon0) * kx, (tn - lat0) * ky]}
         manifest['tiles'].append({
             'source': 'gsi-footprints://' + digest[:20], 'kind': 'city-proxy', 'frame': 'enu',
+            **({'roof_texture': texture} if texture else {}),
             'glb': model_path.relative_to(output_dir).as_posix(), 'buildings': sidecar.name,
             'sha256': digest, 'bytes': len(glb), 'rtc': list(_ecef(lon0, lat0)),
             'ids': [r['id'] for r in records], 'height_sources': sources,
