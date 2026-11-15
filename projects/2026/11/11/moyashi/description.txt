@@ -1,0 +1,47 @@
+【特集】ヤサイマシマシらーめんの危機！？背景に潜む激変する世界
+
+ラーメンの「ヤサイマシマシ」が危ない、という話から、もやしの値段の裏側を地図でたどりました。
+分かったことと、調べても分からなかったこと (もやしの袋1枚あたりの値上がり、2026年のもやし工場の燃料代) を、そのままお見せしています。
+
+【目次】
+(書き出したあとに秒数を入れる)
+ダイジェスト
+第1章 ヤサイマシマシが危ない？
+第2章 統計では、まだ上がっていない
+第3章 それでも、業者は倒れている
+第4章 遠くの戦争とホルムズ海峡
+第5章 1本目の線 袋
+第6章 2本目の線 重油
+第7章 3本目の線 電気
+第8章 4本目の線 円安
+第9章 値段に乗らない
+第10章 優等生は、やめられるのか
+
+【引用・参考】
+FNNプライムオンライン(文春オンライン掲載) 2026-10-16 https://bunshun.jp/articles/-/92981
+東京都「東京の物価」第7表 主要品目の東京都区部小売価格 (総務省 小売物価統計調査) https://www.toukei.metro.tokyo.lg.jp/bukka/2026/bk269v0701.csv
+ダイヤモンド・オンライン 2026-10-24 https://diamond.jp/articles/-/401805
+帝国データバンク (PR TIMES) 2026-11-03 https://prtimes.jp/main/html/rd/p/000001489.000043465.html
+straits.live 2026-11-10 https://straits.live/
+共同通信 (秋田魁新報) 2026-05-21 https://www.sakigake.jp/news/article/20260521CO0037/
+OilPrice.com 2026-11-09 https://oilprice.com/Latest-Energy-News/World-News/Oil-Sinks-to-94-as-Irans-8-Billion-Hormuz-Deal-Heads-to-Trump.html
+大和総研 2026-06-15 https://www.dir.co.jp/report/research/economics/japan/20260615_025826.html
+東洋紡 ニュースリリース 2026-05-28 https://www.toyobo.co.jp/news/2026/release_1961.html
+資源エネルギー庁 A重油価格 (新電力ネット経由) https://pps-net.org/industrial
+野村総合研究所 木内登英 2026-05-01 https://www.nri.com/jp/media/column/kiuchi/20260501_3.html
+共同通信 (デイリースポーツ) 2026-11-10 https://www.daily.co.jp/society/economics/2026/11/10/0021018596.shtml
+中京テレビNEWS 2026-10-20 https://news.yahoo.co.jp/articles/93f90abf24da5196805a59eae2e559fa3a4c2e31
+
+※引用カードには、記事の文そのままのもの (「」つき) と、要約したもの (「」なし) があります。
+※地名の位置と航路の線は概略です。
+
+【地図・画像】
+空中写真：国土地理院(地理院タイル「全国最新写真(シームレス)」)を加工
+標高：国土地理院(地理院タイル「標高タイル」)を加工
+衛星画像：NASA Blue Marble (海底地形つき、NASA GIBS 経由)
+イラスト：いらすとや
+写真：Ocdp / Wikimedia Commons (CC0) https://commons.wikimedia.org/w/index.php?curid=35335191
+写真：pics_pd / Wikimedia Commons (CC0) https://commons.wikimedia.org/w/index.php?curid=141121581
+写真：MODIS Land Rapid Response Team, NASA GSFC / Wikimedia Commons (Public domain) https://commons.wikimedia.org/w/index.php?curid=144938834
+
+音声：VOICEVOX:ずんだもん、VOICEVOX:四国めたん

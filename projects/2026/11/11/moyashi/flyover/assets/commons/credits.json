@@ -1,0 +1,26 @@
+{
+ "jiro.jpg": {
+  "title": "File:Ramen Jiro 001.jpg",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=35335191",
+  "license": "CC0",
+  "artist": "Ocdp"
+ },
+ "sprouts.jpg": {
+  "title": "File:Mung bean sprouts, close-up.jpg",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=141121581",
+  "license": "CC0",
+  "artist": "pics_pd"
+ },
+ "keiyo.jpg": {
+  "title": "File:Keiyo Industrial Region; 2010.jpg",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=66479690",
+  "license": "CC BY 2.0",
+  "artist": "Kabacchi"
+ },
+ "hormuz_modis.jpg": {
+  "title": "File:Strait of Hormuz (MODIS 2020-12-04).jpg",
+  "page": "https://commons.wikimedia.org/w/index.php?curid=144938834",
+  "license": "Public domain",
+  "artist": "MODIS Land Rapid Response Team, NASA GSFC"
+ }
+}

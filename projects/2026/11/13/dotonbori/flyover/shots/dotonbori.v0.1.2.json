@@ -1,0 +1,7295 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.2,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "credits": [
+    "地図の位置は概略"
+  ],
+  "shots": [
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "大阪・道頓堀のたこ焼き屋に入ったら、店員さんはみんな外国の人に見えて、",
+          "speech": "大阪・道頓堀のたこ焼き屋に入ったら、店員さんはみんな外国の人に見えて、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "道頓堀からコスモスクエアへ",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "来ているお客さんも海外から。英語で注文が進んで、目の前には大阪名物のたこ焼き。",
+          "speech": "来ているお客さんも海外から。英語で注文が進んで、目の前には大阪名物のたこ焼き。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
+          "caption": "たこ焼き（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "そこにあるのは「大阪のたこ焼き屋」という商売のミームだけ……そんな気がしたのだ。",
+          "speech": "そこにあるのは「大阪のたこ焼き屋」という商売のミームだけ……そんな気がしたのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
+          "caption": "たこ焼き（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "でも、たこ焼きは絶品だったそうね。しかも、焼きたてではなかったのにおいしかった。",
+          "speech": "でも、たこ焼きは絶品だったそうね。しかも、焼きたてではなかったのにおいしかった。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
+          "caption": "たこ焼き（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "個人の腕だけでなく、技術や段取りが店の仕組みに落とし込まれているのかもしれないわ。",
+          "speech": "個人の腕だけでなく、技術や段取りが店の仕組みに落とし込まれているのかもしれないわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
+          "caption": "たこ焼き（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "文化が空っぽになったのか。それとも、誰が働いても再現できるほど文化が強くなったのか。",
+          "speech": "文化が空っぽになったのか。それとも、誰が働いても再現できるほど文化が強くなったのか。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "今日、道頓堀で感じたこの疑問は、少し離れた南港へ向かうと、別の形で続いていくのだ。",
+          "speech": "今日、道頓堀で感じたこの疑問は、少し離れた南港へ向かうと、別の形で続いていくのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "目の前には、江戸時代から積み重なった道頓堀と、",
+          "speech": "目の前には、江戸時代から積み重なった道頓堀と、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "昭和の人が思い描いた未来を名前に残すコスモスクエアがある。過去と未来が、",
+          "speech": "昭和の人が思い描いた未来を名前に残すコスモスクエアがある。過去と未来が、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "いまの生活圏の中で同時に動いているのね。",
+          "speech": "いまの生活圏の中で同時に動いているのね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "それにしても、道頓堀は川がタイムズスクエアみたいなのだ。どうして川沿いが、",
+          "speech": "それにしても、道頓堀は川がタイムズスクエアみたいなのだ。どうして川沿いが、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/63fec71eed55499db29276a87216b48f.jpg",
+          "caption": "道頓堀川の風景（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "こんなに看板だらけになったのだ？",
+          "speech": "こんなに看板だらけになったのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/63fec71eed55499db29276a87216b48f.jpg",
+          "caption": "道頓堀川の風景（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "道頓堀川は1615年に完成した堀川。周辺には芝居小屋が集まり、劇場街として栄えたの。",
+          "speech": "道頓堀川は1615年に完成した堀川。周辺にはしばいごやが集まり、劇場街としてさかえたの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/dotonbori/ort_1928.png",
+          "caption": "道頓堀周辺（現在の地名）：道頓堀 1928年頃",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/dotonbori/seamlessphoto.png",
+          "caption": "道頓堀周辺（現在の地名）：道頓堀 全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "水辺と娯楽の結びつきは、近年の観光ブームよりずっと古いのよ。",
+          "speech": "水辺と娯楽の結びつきは、近年の観光ブームよりずっと古いのよ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "川ができたころから、ここは人を楽しませる場所だったのだ。川は街の裏側ではなく、",
+          "speech": "川ができたころから、ここは人を楽しませる場所だったのだ。川は街の裏側ではなく、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "見世物の舞台だったのだ。",
+          "speech": "見世物の舞台だったのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そして1935年、戎橋のそばに初代グリコサインが登場する。",
+          "speech": "そして1935年、えびすばしのそばに初代グリコサインが登場する。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/glico.jpg",
+          "caption": "道頓堀のグリコサイン（2014年）",
+          "credit": "写真：Tokumeigakarinoaoshima / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 490,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "広告は商品を知らせるものだけれど、長く街にあり続けると、",
+          "speech": "広告は商品を知らせるものだけれど、長く街にあり続けると、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "広告そのものが「道頓堀らしい景色」になる。",
+          "speech": "広告そのものが「道頓堀らしい景色」になる。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "大阪市もグリコサインを都市景観資源に登録しているわ。",
+          "speech": "大阪市もグリコサインを都市景観資源に登録しているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/glico.jpg",
+          "caption": "道頓堀のグリコサイン（2014年）",
+          "credit": "写真：Tokumeigakarinoaoshima / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 490,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
+          "speech": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "その景色がまた商売を呼ぶのだ。",
+          "speech": "その景色がまた商売を呼ぶのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "川の上に立つと、両岸の看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
+          "speech": "川の上に立つと、りょうがんの看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
+          "speech": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "いまは光る街を眺める場所にもなった。",
+          "speech": "いまは光る街を眺める場所にもなった。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "同じ川なのに、時代ごとに使い道が足されていくのだ。",
+          "speech": "同じ川なのに、時代ごとに使い道が足されていくのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "最初から観光のために設計されたわけじゃないのに、",
+          "speech": "最初から観光のために設計されたわけじゃないのに、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "結果として街全体が舞台装置みたいになっているのだ。",
+          "speech": "結果として街全体が舞台装置みたいになっているのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "たこ焼きも似ているわね。味、店の動線、接客、器まで含めて、",
+          "speech": "たこ焼きも似ているわね。味、店の動線、接客、器まで含めて、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/ccfeb7040f40c4dcc23f71033fc9ecb0.jpg",
+          "caption": "たこ焼き（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "来訪者が「大阪でたこ焼きを食べた」と感じる体験をつくっている。ただ、",
+          "speech": "来訪者が「大阪でたこ焼きを食べた」と感じる体験をつくっている。ただ、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/ccfeb7040f40c4dcc23f71033fc9ecb0.jpg",
+          "caption": "たこ焼き（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "目の前の一店舗の観察から、街全体や働く人の出自まで決めつけないようにしたいわ。",
+          "speech": "目の前の一店舗の観察から、街全体や働く人の出自まで決めつけないようにしたいわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "うん。店員さんが外国の人に見えたというのは、ある日の一店舗での観察なのだ。",
+          "speech": "うん。店員さんが外国の人に見えたというのは、ある日の一店舗での観察なのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/46d8534ae3060ddef51435a86c2c8aac.jpg",
+          "caption": "道頓堀の看板（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "そこから街の人みんながいなくなった、なんて結論には飛べないのだ。",
+          "speech": "そこから街の人みんながいなくなった、なんて結論には飛べないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/46d8534ae3060ddef51435a86c2c8aac.jpg",
+          "caption": "道頓堀の看板（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "それでも、国籍や母語が違う人たちが、たこ焼きを焼き、注文を受け、観光客に渡している。",
+          "speech": "それでも、国籍や母語が違う人たちが、たこ焼きを焼き、注文を受け、観光客に渡している。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/takoyaki.jpg",
+          "caption": "道頓堀のたこ焼き店（別店舗・イメージ）",
+          "credit": "写真：City Foodsters / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "その場で実際に文化を担っているのは、いま働いている人たちなのよね。",
+          "speech": "その場で実際に文化を担っているのは、いま働いている人たちなのよね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "「日本人が作っていること」が文化の条件なのか。それとも、",
+          "speech": "「日本人が作っていること」が文化の条件なのか。それとも、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "おいしいたこ焼きがこの場所で売られ、人がその体験を持ち帰ることが大事なのか。",
+          "speech": "おいしいたこ焼きがこの場所で売られ、人がその体験を持ち帰ることが大事なのか。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/takoyaki.jpg",
+          "caption": "道頓堀のたこ焼き店（別店舗・イメージ）",
+          "credit": "写真：City Foodsters / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "答えは簡単じゃないけれど、少なくとも文化は、昔の姿のまま保存されるだけではないのだ。",
+          "speech": "答えは簡単じゃないけれど、少なくとも文化は、昔の姿のまま保存されるだけではないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "江戸にも、水辺の娯楽街はあったのだ？",
+          "speech": "江戸にも、水辺の娯楽街はあったのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "江戸の水辺の盛り場",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "両国よ。明暦の大火のあと、両国橋が架けられ、橋詰には火除地として広小路が設けられた。",
+          "speech": "りょうごくよ。めいれきのたいかのあと、りょうごくばしが架けられ、橋詰には火除地として広小路が設けられた。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/ryogoku.jpg",
+          "caption": "歌川広重「両国橋大川ばた」（1856年）",
+          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 420,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そこに屋台や水茶屋、見世物小屋が集まり、相撲や寺社の出開帳も加わって、",
+          "speech": "そこに屋台や水茶屋、見世物小屋が集まり、相撲や寺社のでがいちょうも加わって、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/yanagibashi.jpg",
+          "caption": "歌川国芳「両国柳ばし」",
+          "credit": "British Museum / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 750,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "江戸有数の盛り場になったの。",
+          "speech": "江戸有数の盛り場になったの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "防災のために空けた場所が、にぎわいを生んだのだ。水辺では花火や船遊びもあったのだ？",
+          "speech": "防災のために空けた場所が、にぎわいを生んだのだ。水辺では花火や船遊びもあったのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/yanagibashi.jpg",
+          "caption": "歌川国芳「両国柳ばし」",
+          "credit": "British Museum / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 750,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ええ。橋の上や川岸から花火を見て、屋台で食べて、船に乗る。",
+          "speech": "ええ。はしのうえやかわぎしから花火を見て、屋台で食べて、船に乗る。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/ryogoku.jpg",
+          "caption": "歌川広重「両国橋大川ばた」（1856年）",
+          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 420,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "道頓堀と両国は同じ街ではないけれど、",
+          "speech": "道頓堀とりょうごくは同じ街ではないけれど、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "水辺を娯楽と商業の舞台にする発想には通じるものがあるわ。",
+          "speech": "水辺を娯楽と商業の舞台にする発想には通じるものがあるわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/ryogoku.jpg",
+          "caption": "歌川広重「両国橋大川ばた」（1856年）",
+          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 420,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "ただ、道頓堀は運河沿いに芝居小屋が集まり、両国は橋と広小路、回向院の興行が中心。",
+          "speech": "ただ、道頓堀は運河沿いにしばいごやが集まり、りょうごくは橋と広小路、回向院の興行が中心。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/yanagibashi.jpg",
+          "caption": "歌川国芳「両国柳ばし」",
+          "credit": "British Museum / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 750,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "形はそれぞれ違うのだ。",
+          "speech": "形はそれぞれ違うのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そう。二つを同じものとして扱うのではなく、川や橋が人の流れをつくり、",
+          "speech": "そう。二つを同じものとして扱うのではなく、川や橋が人の流れをつくり、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/yanagibashi.jpg",
+          "caption": "歌川国芳「両国柳ばし」",
+          "credit": "British Museum / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 750,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "その人の流れに飲食や興行が結びついた例として比べるといい。人は水辺に集まる。",
+          "speech": "その人の流れに飲食や興行が結びついた例として比べるといい。人は水辺に集まる。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/ryogoku.jpg",
+          "caption": "歌川広重「両国橋大川ばた」（1856年）",
+          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 420,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そこで何を楽しむかは、時代と土地が決めるのね。",
+          "speech": "そこで何を楽しむかは、時代と土地が決めるのね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "でも、神田川が隅田川に注ぐ柳橋のあたりは、昔の花街がなくなったのだ。",
+          "speech": "でも、神田川が隅田川に注ぐやなぎばしのあたりは、昔の花街がなくなったのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "柳橋と川を守る堤防",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "柳橋は船宿や料亭、芸妓の文化で知られた場所。東京都は、",
+          "speech": "やなぎばしは船宿や料亭、芸妓の文化で知られた場所。東京都は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "伊勢湾台風を契機に1959年から75年にかけて隅田川に「カミソリ堤防」を整備し、",
+          "speech": "伊勢湾台風を契機に1959年から75年にかけて隅田川に「カミソリ堤防」を整備し、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "高い防潮堤が人と水辺を隔てた経緯を説明しているわ。",
+          "speech": "高いぼうちょうていが人と水辺を隔てた経緯を説明しているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "水害から街を守る堤防が、水辺を楽しむ商売には影響したのだ。",
+          "speech": "水害から街を守る堤防が、水辺を楽しむ商売には影響したのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "台東区の観光案内も、堤防造成による景観の変化などで客足が遠のき、",
+          "speech": "台東区の観光案内も、堤防造成による景観の変化などで客足が遠のき、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "最後の料亭と芸妓組合が1999年に閉じたと紹介している。ただし、",
+          "speech": "最後の料亭と芸妓組合が1999年に閉じたと紹介している。ただし、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "堤防だけを原因にするのは正確ではないわ。交通や暮らし、",
+          "speech": "堤防だけを原因にするのは正確ではないわ。交通や暮らし、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "商売の変化も重なったと考えるべきね。",
+          "speech": "商売の変化も重なったと考えるべきね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "必然だったと決めつけるより、守るための都市の仕組みが、別の価値を見えにくくした、",
+          "speech": "必然だったと決めつけるより、守るための都市の仕組みが、別の価値を見えにくくした、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "と見るのがよさそうなのだ。",
+          "speech": "と見るのがよさそうなのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "都市の安全を守ることと、水辺の風景や仕事を保つこと。どちらも大切なのに、",
+          "speech": "都市の安全を守ることと、水辺の風景や仕事を保つこと。どちらも大切なのに、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "同じ工事が両方に同じ効果をもたらすとは限らない。東京都はその後、",
+          "speech": "同じ工事が両方に同じ効果をもたらすとは限らない。東京都はその後、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "人が川に近づける緩やかな護岸やテラスの整備も進めているわ。",
+          "speech": "人が川に近づける緩やかな護岸やテラスの整備も進めているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "川を遠ざけた堤防を、今度は川に近づける形に直しているのだ。都市の考え方も、",
+          "speech": "川を遠ざけた堤防を、今度は川に近づける形に直しているのだ。都市の考え方も、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "時間をかけて変わっていくのだ。",
+          "speech": "時間をかけて変わっていくのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "そういえば新橋って、「橋」と付くけど、本当に川に架かっていたのだ？",
+          "speech": "そういえば新橋って、「橋」と付くけど、本当に川に架かっていたのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "新橋と消えた水路",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そう。港区の説明によると、1604年ごろ、東海道の起点を日本橋まで延ばしたころ、",
+          "speech": "そう。港区の説明によると、1604年ごろ、東海道の起点を日本橋まで延ばしたころ、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/ort_USA10.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/seamlessphoto.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "汐留川に架けられた橋が新橋の由来。",
+          "speech": "シオドメガワに架けられた橋が新橋の由来。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/ort_USA10.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/seamlessphoto.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "川と橋は1964年の東京オリンピックに合わせた開発で姿を消し、親柱が残っているの。",
+          "speech": "川と橋は1964年の東京オリンピックに合わせた開発で姿を消し、親柱が残っているの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7617,
+            35.6666
+          ],
+          "text": "新橋・汐留川跡",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "銀座の京橋や数寄屋橋も、昔の水路や橋の記憶を地名に残しているのだ。",
+          "speech": "銀座の京橋やスキヤバシも、昔の水路や橋の記憶を地名に残しているのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/ort_USA10.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/seamlessphoto.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "道頓堀では川が街の顔として残り、柳橋では堤防が水辺との関係を変え、",
+          "speech": "道頓堀では川が街の顔として残り、やなぎばしでは堤防が水辺との関係を変え、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/ort_USA10.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/seamlessphoto.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "新橋では川そのものが都市の下に隠れた。文化は、担い手だけでなく、",
+          "speech": "新橋では川そのものが都市の下に隠れた。文化は、担い手だけでなく、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7617,
+            35.6666
+          ],
+          "text": "新橋・汐留川跡",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.7617,
+          35.6666
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.76229999999998,
+          35.666900000000005
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "街の形やインフラにも支えられているのね。",
+          "speech": "街の形やインフラにも支えられているのね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/ort_USA10.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/shimbashi/seamlessphoto.png",
+          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "ここで、今日のもう一つの発見なのだ。",
+          "speech": "ここで、今日のもう一つの発見なのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "ニュートラムに乗って",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "コスモスクエア行きのニュートラムに乗っているけれど、",
+          "speech": "コスモスクエア行きのニュートラムに乗っているけれど、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/station.jpg",
+          "caption": "コスモスクエア駅の案内（2024年）",
+          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 760,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "「ニュートラム」「コスモスクエア」って名前、昭和の未来っぽくないのだ？",
+          "speech": "「ニュートラム」「コスモスクエア」って名前、昭和の未来っぽくないのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/newtram.jpg",
+          "caption": "ニュートラムの車内",
+          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 720,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "たしかに、どちらも未来を指さしているみたいな名前ね。駅名を聞いただけで、",
+          "speech": "たしかに、どちらも未来を指さしているみたいな名前ね。駅名を聞いただけで、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "白い建物とガラス張りの通路、遠くまで伸びる高架が頭に浮かぶわ。",
+          "speech": "白い建物とガラス張りの通路、遠くまで伸びる高架が頭に浮かぶわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/newtram.jpg",
+          "caption": "ニュートラムの車内",
+          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 720,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "しかも、車両に運転士さんがいないのだ。名前だけじゃなく、乗っているものまで未来なのだ！",
+          "speech": "しかも、車両に運転士さんがいないのだ。名前だけじゃなく、乗っているものまで未来なのだ！",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/station.jpg",
+          "caption": "コスモスクエア駅の案内（2024年）",
+          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 760,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ニュートラムが開業したのは1981年。最初の区間は住之江公園から中ふ頭までで、",
+          "speech": "ニュートラムが開業したのは1981年。最初の区間は住之江公園からなかふとうまでで、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "当時は南港ポートタウンを結ぶ交通だったの。",
+          "speech": "当時は南港ポートタウンを結ぶ交通だったの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/station.jpg",
+          "caption": "コスモスクエア駅の案内（2024年）",
+          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 760,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "コスモスクエアまで最初から通じていたわけではなく、その区間は1997年に開業した。",
+          "speech": "コスモスクエアまで最初から通じていたわけではなく、その区間は1997年に開業した。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/newtram.jpg",
+          "caption": "ニュートラムの車内",
+          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 720,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "つまり、今の「コスモスクエア行き」という乗り方の中に、1981年の南港の暮らしと、",
+          "speech": "つまり、今の「コスモスクエア行き」という乗り方の中に、1981年の南港の暮らしと、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "1997年に伸びた新しい街がつながっているのだ。",
+          "speech": "1997年に伸びた新しい街がつながっているのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/newtram.jpg",
+          "caption": "ニュートラムの車内",
+          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 720,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そして無人運転の開始は1991年。開業直後から、",
+          "speech": "そして無人運転の開始は1991年。開業直後から、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/station.jpg",
+          "caption": "コスモスクエア駅の案内（2024年）",
+          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 760,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "乗務員の添乗や監視をなくしていたわけではないの。運行を安定させたあと、",
+          "speech": "乗務員の添乗や監視をなくしていたわけではないの。運行を安定させたあと、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "段階的に無人化されたと大阪市立図書館の調査資料にあるわ。",
+          "speech": "段階的に無人化されたと大阪市立図書館の調査資料にあるわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/station.jpg",
+          "caption": "コスモスクエア駅の案内（2024年）",
+          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 760,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "そこは思い込みと違ったのだ。開業したその日から完全無人の未来列車だった、",
+          "speech": "そこは思い込みと違ったのだ。開業したその日から完全無人の未来列車だった、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/newtram.jpg",
+          "caption": "ニュートラムの車内",
+          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 720,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "というわけじゃないのだ。",
+          "speech": "というわけじゃないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そうね。新しい交通システムも、使いながら安全を確かめて、",
+          "speech": "そうね。新しい交通システムも、使いながら安全を確かめて、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/newtram.jpg",
+          "caption": "ニュートラムの車内",
+          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 720,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "日常の交通として馴染ませていった。いま乗っている私たちには当たり前の運行でも、",
+          "speech": "日常の交通として馴染ませていった。いま乗っている私たちには当たり前の運行でも、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/station.jpg",
+          "caption": "コスモスクエア駅の案内（2024年）",
+          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 760,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そこに至るまでの段階があったのよ。",
+          "speech": "そこに至るまでの段階があったのよ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "「未来の技術」って、完成した瞬間に未来じゃなくなるんじゃないのだ。",
+          "speech": "「未来の技術」って、完成した瞬間に未来じゃなくなるんじゃないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/station.jpg",
+          "caption": "コスモスクエア駅の案内（2024年）",
+          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 760,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "毎日使えるようになったとき、未来は日常の一部になるのだ。",
+          "speech": "毎日使えるようになったとき、未来は日常の一部になるのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/newtram.jpg",
+          "caption": "ニュートラムの車内",
+          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 720,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "それに、コスモスクエアのまわりは、名前だけ先に未来だったのだ？",
+          "speech": "それに、コスモスクエアのまわりは、名前だけ先に未来だったのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "昭和に描かれた未来",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "咲洲など大阪臨海部の新しい都市拠点を目指した「テクノポート大阪」計画は、",
+          "speech": "さきしまなど大阪臨海部の新しい都市拠点を目指した「テクノポート大阪」計画は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "1983年に構想が発表され、1985年に基本構想、1988年に基本計画が策定された。",
+          "speech": "1983年に構想が発表され、1985年に基本構想、1988年に基本計画が策定された。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "国際交易、情報通信、先端技術の開発といった機能を集める構想だったの。",
+          "speech": "国際交易、情報通信、先端技術の開発といった機能を集める構想だったの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "昭和の終わりごろ、海沿いに未来の都市を描いていたのだ。今、",
+          "speech": "昭和の終わりごろ、海沿いに未来の都市を描いていたのだ。今、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "電車が海へ向かって伸びているのも、その計画の一部なのだ？",
+          "speech": "電車が海へ向かって伸びているのも、その計画の一部なのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "交通は暮らしのために整備されて、街の計画はその先に働く場所や交流の拠点を描いたの。",
+          "speech": "交通は暮らしのために整備されて、街の計画はその先に働く場所や交流の拠点を描いたの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ニュートラムの開業とテクノポート大阪の基本計画は、",
+          "speech": "ニュートラムの開業とテクノポート大阪の基本計画は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "同じ時期の臨海部開発という大きな流れの中にあるわ。ただし、",
+          "speech": "同じ時期の臨海部開発という大きな流れの中にあるわ。ただし、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ニュートラム自体をテクノポート構想だけから説明できるわけではないの。",
+          "speech": "ニュートラム自体をテクノポート構想だけから説明できるわけではないの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "先に南港ポートタウンがあり、住民の移動を支える役割があった。",
+          "speech": "先に南港ポートタウンがあり、住民の移動を支える役割があった。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "未来都市の絵だけじゃなく、すでに住んでいる人が使う電車でもあったのだ。",
+          "speech": "未来都市の絵だけじゃなく、すでに住んでいる人が使う電車でもあったのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ATCは1994年に開業した。大阪市の資料は、",
+          "speech": "エーティーシーは1994年に開業した。大阪市の資料は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "コスモスクエア地区の当初計画が国際交易や高次の都市機能を集める方向を目指していた一方、",
+          "speech": "コスモスクエア地区の当初計画が国際交易や高次の都市機能を集める方向を目指していた一方、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "バブル崩壊などを受けて開発が停滞し、",
+          "speech": "バブル崩壊などを受けて開発が停滞し、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "2002年以降には計画の見直しも行われたと記録しているわ。",
+          "speech": "2002年以降には計画の見直しも行われたと記録しているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "未来の計画は、そのまま予定通りに現実になったわけじゃないのだ。",
+          "speech": "未来の計画は、そのまま予定通りに現実になったわけじゃないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ええ。大きな構想は景気や社会の変化に影響される。施設ができ、交通網が伸びても、",
+          "speech": "ええ。大きな構想は景気や社会の変化に影響される。施設ができ、交通網が伸びても、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "当初想定した企業や人の集まり方になるとは限らない。コスモスクエアの現在の姿には、",
+          "speech": "当初想定した企業や人の集まり方になるとは限らない。コスモスクエアの現在の姿には、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "建設されたものだけでなく、変更された計画や、これからも続くまちづくりが重なっているわ。",
+          "speech": "建設されたものだけでなく、変更された計画や、これからも続くまちづくりが重なっているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "それでも、ATCもニュートラムも、海辺のビルも今ここにあって、",
+          "speech": "それでも、エーティーシーもニュートラムも、海辺のビルも今ここにあって、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "ぼくたちはそれを使っている。成功か失敗かの二択で片づけるより、",
+          "speech": "ぼくたちはそれを使っている。成功か失敗かの二択で片づけるより、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "当初の未来像がどう日常に変わったかを見ると、面白さが増すのだ。",
+          "speech": "当初の未来像がどう日常に変わったかを見ると、面白さが増すのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "「テクノポート」や「コスモスクエア」という言葉の響きには、",
+          "speech": "「テクノポート」や「コスモスクエア」という言葉の響きには、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "計画を立てた人たちの期待が残っている。でも乗客にとっては、電車に乗って、",
+          "speech": "計画を立てた人たちの期待が残っている。でも乗客にとっては、電車に乗って、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "目的地で降りて、用事を済ませる場所。壮大な未来が、",
+          "speech": "目的地で降りて、用事を済ませる場所。壮大な未来が、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "いまは具体的な移動や仕事や買い物になっているのね。",
+          "speech": "いまは具体的な移動や仕事や買い物になっているのね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "未来の名前がレトロに聞こえるのは、未来が古びたからなのだ？",
+          "speech": "未来の名前がレトロに聞こえるのは、未来が古びたからなのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "名前の響きが時代をまとっているのは確かね。でも、使われ続ける交通や建物は、",
+          "speech": "名前の響きが時代をまとっているのは確かね。でも、使われ続ける交通や建物は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "過去の計画が現在の生活に組み込まれた証拠でもある。懐かしさと現役が、",
+          "speech": "過去の計画が現在の生活に組み込まれた証拠でもある。懐かしさと現役が、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/gazo1.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
+          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4131,
+          34.643
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "同じ景色に並んでいるのよ。",
+          "speech": "同じ景色に並んでいるのよ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "道頓堀は、商売や芝居が積み重なって、あとから「大阪らしい景色」になった。",
+          "speech": "道頓堀は、商売や芝居が積み重なって、あとから「大阪らしい景色」になった。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "二つの街がある風景",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "コスモスクエアは、まず未来の計画を描いて、そこへ街や施設をつくっていった。",
+          "speech": "コスモスクエアは、まず未来の計画を描いて、そこへ街や施設をつくっていった。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "ずいぶん違う出発点なのだ。",
+          "speech": "ずいぶん違う出発点なのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "道頓堀には、積み重ねから景観が育つ「ボトムアップ」の面がある。南港の計画には、",
+          "speech": "道頓堀には、積み重ねから景観が育つ「ボトムアップ」の面がある。南港の計画には、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "行政や事業者が広い範囲の将来像を描く「トップダウン」の面がある。ただ、",
+          "speech": "行政や事業者が広い範囲の将来像を描く「トップダウン」の面がある。ただ、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "現実の街はどちらか一方だけではないわ。道頓堀にも行政の河川整備や観光政策があり、",
+          "speech": "現実の街はどちらか一方だけではないわ。道頓堀にも行政の河川整備や観光政策があり、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "南港にも毎日通勤や通学をする人の暮らしがある。",
+          "speech": "南港にも毎日通勤や通学をする人の暮らしがある。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "ひとつは古いから残った、もうひとつは新しいから失敗した、みたいな話でもないのだ。",
+          "speech": "ひとつは古いから残った、もうひとつは新しいから失敗した、みたいな話でもないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そう。長く続く街も、時代ごとに姿を変えている。計画都市も、",
+          "speech": "そう。長く続く街も、時代ごとに姿を変えている。計画都市も、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "完成図のまま保存されているわけではない。人が住み、働き、移動することで、",
+          "speech": "完成図のまま保存されているわけではない。人が住み、働き、移動することで、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "当初の計画を使い替えていくの。",
+          "speech": "当初の計画を使い替えていくの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "今日の行動範囲の中には、江戸時代から続く娯楽の記憶も、昭和の未来都市の記憶もある。",
+          "speech": "今日の行動範囲の中には、江戸時代から続く娯楽の記憶も、昭和の未来都市の記憶もある。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "しかも、それぞれが古い展示物じゃなく、いま営業する店や、",
+          "speech": "しかも、それぞれが古い展示物じゃなく、いま営業する店や、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "いま走る電車としてそこにあるのだ。",
+          "speech": "いま走る電車としてそこにあるのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "それが不思議で、面白いのね。道頓堀のネオンを見て、たこ焼きを買い、",
+          "speech": "それが不思議で、面白いのね。道頓堀のネオンを見て、たこ焼きを買い、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ニュートラムに乗ってコスモスクエアへ向かう。歴史の層を順番に博物館で見るのではなく、",
+          "speech": "ニュートラムに乗ってコスモスクエアへ向かう。歴史の層を順番に博物館で見るのではなく、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "一日の移動の中で通り抜けている。",
+          "speech": "一日の移動の中で通り抜けている。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "道頓堀のたこ焼き屋にあったのは、空っぽのミームだけじゃない。誰かが受け継ぎ、磨き、",
+          "speech": "道頓堀のたこ焼き屋にあったのは、空っぽのミームだけじゃない。誰かが受け継ぎ、磨き、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "街の中に残る時間",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "訪れた人に届ける仕組みも、そこにあったのだ。",
+          "speech": "訪れた人に届ける仕組みも、そこにあったのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ただ、街の文化が残るかどうかは、商品や働く人だけでは決まらない。川をどう使い、",
+          "speech": "ただ、街の文化が残るかどうかは、商品や働く人だけでは決まらない。川をどう使い、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "何を守り、誰がその場所に近づけるのか。その選択が、次の景色をつくっていくのね。",
+          "speech": "何を守り、誰がその場所に近づけるのか。その選択が、次の景色をつくっていくのね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "みなさんの街にも、名前だけ残った橋や、",
+          "speech": "みなさんの街にも、名前だけ残った橋や、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "いつの間にか見えなくなった川があるかもしれないのだ。",
+          "speech": "いつの間にか見えなくなった川があるかもしれないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そして、昔に描かれた未来が今も現役で動いている場所もあるかもしれない。",
+          "speech": "そして、昔に描かれた未来が今も現役で動いている場所もあるかもしれない。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/atc.jpg",
+          "caption": "大阪南港のATCと周辺",
+          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "次に乗る電車や通り過ぎる建物の名前を、少しだけ昔の人の目で眺めてみてもいいわね。",
+          "speech": "次に乗る電車や通り過ぎる建物の名前を、少しだけ昔の人の目で眺めてみてもいいわね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "コスモスクエア行きのニュートラム。昭和の未来っぽい名前なのに、",
+          "speech": "コスモスクエア行きのニュートラム。昭和の未来っぽい名前なのに、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45759999999999,
+          34.654300000000006
+        ],
+        "zoom": 11.78,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "今日もちゃんとぼくたちを運んでくれているのだ。",
+          "speech": "今日もちゃんとぼくたちを運んでくれているのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 900,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "osmLabels": true
+}

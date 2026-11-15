@@ -1,0 +1,264 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "credits": [
+    "位置は概略",
+    "カメラ構成の試作・音声なし"
+  ],
+  "shots": [
+    {
+      "duration": 6,
+      "from": {
+        "center": [
+          135.47,
+          34.66
+        ],
+        "zoom": 11.2,
+        "pitch": 20,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.501,
+          34.669
+        ],
+        "zoom": 14.3,
+        "pitch": 48,
+        "bearing": -8
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.50157,
+            34.66903
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 6,
+      "from": {
+        "center": [
+          135.496,
+          34.669
+        ],
+        "zoom": 15,
+        "pitch": 30,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.505,
+          34.669
+        ],
+        "zoom": 15,
+        "pitch": 30,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.501,
+            34.6688
+          ],
+          "text": "道頓堀川",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 6,
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14,
+        "pitch": 0,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14,
+        "pitch": 0,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国・柳橋周辺：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "同じ場所：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 6,
+      "from": {
+        "center": [
+          135.501,
+          34.669
+        ],
+        "zoom": 14.8,
+        "pitch": 35,
+        "bearing": 8
+      },
+      "to": {
+        "center": [
+          135.502,
+          34.669
+        ],
+        "zoom": 14.5,
+        "pitch": 38,
+        "bearing": 3
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
+          "caption": "道頓堀のたこ焼き（2026年11月13日）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            150,
+            55
+          ],
+          "width": 1200,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 7,
+      "from": {
+        "center": [
+          135.4122,
+          34.6426
+        ],
+        "zoom": 15.4,
+        "pitch": 52,
+        "bearing": -20
+      },
+      "to": {
+        "center": [
+          135.415,
+          34.646
+        ],
+        "zoom": 12.8,
+        "pitch": 32,
+        "bearing": 2
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 7,
+      "from": {
+        "center": [
+          135.4122,
+          34.6426
+        ],
+        "zoom": 12.8,
+        "pitch": 32,
+        "bearing": 2
+      },
+      "to": {
+        "center": [
+          135.455,
+          34.654
+        ],
+        "zoom": 11,
+        "pitch": 22,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "osmLabels": true
+}

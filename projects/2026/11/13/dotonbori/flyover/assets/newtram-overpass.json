@@ -1,0 +1,2300 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2025-09-14T23:59:55Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "relation",
+  "id": 444913,
+  "members": [
+    {
+      "type": "node",
+      "ref": 6621530408,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 346493228,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 8729045244,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 8729045270,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 346493362,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 8729045331,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 8729045356,
+      "role": "stop"
+    },
+    {
+      "type": "way",
+      "ref": 624907247,
+      "role": "platform"
+    },
+    {
+      "type": "node",
+      "ref": 8729045379,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 8729045402,
+      "role": "stop"
+    },
+    {
+      "type": "node",
+      "ref": 346493842,
+      "role": "stop"
+    },
+    {
+      "type": "way",
+      "ref": 942667449,
+      "role": "platform"
+    },
+    {
+      "type": "way",
+      "ref": 705002795,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 942667451,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 942667399,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 329132409,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 942667395,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 329132408,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 31146644,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 31146646,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 329135829,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 31146645,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 942667446,
+      "role": ""
+    },
+    {
+      "type": "way",
+      "ref": 942667445,
+      "role": ""
+    }
+  ],
+  "tags": {
+    "colour": "#00A0DE",
+    "from": "コスモスクエア",
+    "name": "Osaka Metro南港ポートタウン線",
+    "name:en": "Nankō Port Town Line",
+    "name:es": "Línea Nankō Port Town",
+    "name:ja": "Osaka Metro南港ポートタウン線 (コスモスクエア=>住之江公園)",
+    "network": "大阪市営地下鉄",
+    "operator": "大阪市高速電気軌道",
+    "public_transport:version": "2",
+    "ref": "P",
+    "route": "light_rail",
+    "to": "住之江公園",
+    "type": "route",
+    "wikidata": "Q1073366",
+    "wikipedia": "ja:大阪市高速電気軌道南港ポートタウン線"
+  }
+},
+{
+  "type": "node",
+  "id": 346493228,
+  "lat": 34.6387218,
+  "lon": 135.4121811,
+  "tags": {
+    "alt_name:ko": "트레이드센터마에",
+    "level": "2",
+    "light_rail": "yes",
+    "local_ref": "2",
+    "name": "トレードセンター前",
+    "name:en": "Trade Center-mae",
+    "name:es": "Trade Center-mae",
+    "name:ja": "トレードセンター前",
+    "name:ko": "트레이드센터앞",
+    "network": "Osaka Metro",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "public_transport": "stop_position",
+    "railway": "stop",
+    "ref": "P10",
+    "wheelchair": "yes",
+    "wikidata": "Q180469",
+    "wikipedia": "ja:トレードセンター前駅"
+  }
+},
+{
+  "type": "node",
+  "id": 346493239,
+  "lat": 34.6139027,
+  "lon": 135.4376318
+},
+{
+  "type": "node",
+  "id": 346493251,
+  "lat": 34.6138629,
+  "lon": 135.4381542
+},
+{
+  "type": "node",
+  "id": 346493260,
+  "lat": 34.6139769,
+  "lon": 135.4373959
+},
+{
+  "type": "node",
+  "id": 346493272,
+  "lat": 34.6139262,
+  "lon": 135.4375304
+},
+{
+  "type": "node",
+  "id": 346493283,
+  "lat": 34.6141711,
+  "lon": 135.4370803
+},
+{
+  "type": "node",
+  "id": 346493296,
+  "lat": 34.6140428,
+  "lon": 135.4372678
+},
+{
+  "type": "node",
+  "id": 346493303,
+  "lat": 34.6146772,
+  "lon": 135.4367536
+},
+{
+  "type": "node",
+  "id": 346493315,
+  "lat": 34.6143339,
+  "lon": 135.4369170
+},
+{
+  "type": "node",
+  "id": 346493362,
+  "lat": 34.6309278,
+  "lon": 135.4291486,
+  "tags": {
+    "light_rail": "yes",
+    "name": "ポートタウン東",
+    "name:en": "Port Town-higashi",
+    "name:ja": "ポートタウン東",
+    "name:ko": "포트타운히가시",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "public_transport": "stop_position",
+    "railway": "stop",
+    "ref": "P13",
+    "wikidata": "Q180504",
+    "wikipedia": "ja:ポートタウン東駅"
+  }
+},
+{
+  "type": "node",
+  "id": 346493374,
+  "lat": 34.6309292,
+  "lon": 135.4287853
+},
+{
+  "type": "node",
+  "id": 346493385,
+  "lat": 34.6308303,
+  "lon": 135.4212431
+},
+{
+  "type": "node",
+  "id": 346493396,
+  "lat": 34.6308159,
+  "lon": 135.4209564
+},
+{
+  "type": "node",
+  "id": 346493419,
+  "lat": 34.6308964,
+  "lon": 135.4218771
+},
+{
+  "type": "node",
+  "id": 346493432,
+  "lat": 34.6312825,
+  "lon": 135.4201263
+},
+{
+  "type": "node",
+  "id": 346493442,
+  "lat": 34.6317275,
+  "lon": 135.4197919
+},
+{
+  "type": "node",
+  "id": 346493454,
+  "lat": 34.6308814,
+  "lon": 135.4206007
+},
+{
+  "type": "node",
+  "id": 346493465,
+  "lat": 34.6309876,
+  "lon": 135.4204054
+},
+{
+  "type": "node",
+  "id": 346493494,
+  "lat": 34.6321488,
+  "lon": 135.4194487
+},
+{
+  "type": "node",
+  "id": 346493508,
+  "lat": 34.6107881,
+  "lon": 135.4576771
+},
+{
+  "type": "node",
+  "id": 346493523,
+  "lat": 34.6337633,
+  "lon": 135.4178017
+},
+{
+  "type": "node",
+  "id": 346493540,
+  "lat": 34.6108801,
+  "lon": 135.4570698
+},
+{
+  "type": "node",
+  "id": 346493548,
+  "lat": 34.6108130,
+  "lon": 135.4574605
+},
+{
+  "type": "node",
+  "id": 346493650,
+  "lat": 34.6136087,
+  "lon": 135.4480288
+},
+{
+  "type": "node",
+  "id": 346493761,
+  "lat": 34.6138468,
+  "lon": 135.4467292
+},
+{
+  "type": "node",
+  "id": 346493794,
+  "lat": 34.6138165,
+  "lon": 135.4471648
+},
+{
+  "type": "node",
+  "id": 346493801,
+  "lat": 34.6137081,
+  "lon": 135.4476964
+},
+{
+  "type": "node",
+  "id": 346493810,
+  "lat": 34.6093216,
+  "lon": 135.4714869,
+  "tags": {
+    "railway": "switch"
+  }
+},
+{
+  "type": "node",
+  "id": 346493842,
+  "lat": 34.6092699,
+  "lon": 135.4719336,
+  "tags": {
+    "alt_name:ko": "스미노에코엔",
+    "light_rail": "yes",
+    "name": "住之江公園",
+    "name:en": "Suminoekoen",
+    "name:ja": "住之江公園",
+    "name:ja_rm": "Suminoe Kōen",
+    "name:ko": "스미노에공원",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "public_transport": "stop_position",
+    "railway": "stop",
+    "ref": "P18",
+    "url": "http://www.kotsu.city.osaka.jp/eigyou/shisetsu/station/suminoe.html",
+    "wikidata": "Q126046",
+    "wikipedia": "ja:住之江公園駅"
+  }
+},
+{
+  "type": "node",
+  "id": 346493900,
+  "lat": 34.6094435,
+  "lon": 135.4702101
+},
+{
+  "type": "node",
+  "id": 346493916,
+  "lat": 34.6103730,
+  "lon": 135.4618478
+},
+{
+  "type": "node",
+  "id": 346493984,
+  "lat": 34.6196079,
+  "lon": 135.4348658
+},
+{
+  "type": "node",
+  "id": 346493992,
+  "lat": 34.6106287,
+  "lon": 135.4592818
+},
+{
+  "type": "node",
+  "id": 346494000,
+  "lat": 34.6105421,
+  "lon": 135.4599585
+},
+{
+  "type": "node",
+  "id": 346494032,
+  "lat": 34.6298096,
+  "lon": 135.4311280
+},
+{
+  "type": "node",
+  "id": 346494040,
+  "lat": 34.6290958,
+  "lon": 135.4313990
+},
+{
+  "type": "node",
+  "id": 346494049,
+  "lat": 34.6286286,
+  "lon": 135.4315435
+},
+{
+  "type": "node",
+  "id": 346494055,
+  "lat": 34.6274997,
+  "lon": 135.4318041
+},
+{
+  "type": "node",
+  "id": 346494060,
+  "lat": 34.6272432,
+  "lon": 135.4318918
+},
+{
+  "type": "node",
+  "id": 346494065,
+  "lat": 34.6268869,
+  "lon": 135.4320213
+},
+{
+  "type": "node",
+  "id": 346494070,
+  "lat": 34.6138520,
+  "lon": 135.4456386
+},
+{
+  "type": "node",
+  "id": 346494085,
+  "lat": 34.6377133,
+  "lon": 135.4132434
+},
+{
+  "type": "node",
+  "id": 346494092,
+  "lat": 34.6355768,
+  "lon": 135.4155754
+},
+{
+  "type": "node",
+  "id": 346494101,
+  "lat": 34.6358917,
+  "lon": 135.4151798
+},
+{
+  "type": "node",
+  "id": 346494109,
+  "lat": 34.6346572,
+  "lon": 135.4168461
+},
+{
+  "type": "node",
+  "id": 346494116,
+  "lat": 34.6351521,
+  "lon": 135.4162046
+},
+{
+  "type": "node",
+  "id": 346494134,
+  "lat": 34.6304312,
+  "lon": 135.4308771
+},
+{
+  "type": "node",
+  "id": 346494143,
+  "lat": 34.6302270,
+  "lon": 135.4309665
+},
+{
+  "type": "node",
+  "id": 346494151,
+  "lat": 34.6307139,
+  "lon": 135.4306331
+},
+{
+  "type": "node",
+  "id": 346494159,
+  "lat": 34.6305611,
+  "lon": 135.4307858
+},
+{
+  "type": "node",
+  "id": 346494168,
+  "lat": 34.6308849,
+  "lon": 135.4302695
+},
+{
+  "type": "node",
+  "id": 346494177,
+  "lat": 34.6307681,
+  "lon": 135.4305582
+},
+{
+  "type": "node",
+  "id": 346494185,
+  "lat": 34.6309324,
+  "lon": 135.4298049
+},
+{
+  "type": "node",
+  "id": 346494209,
+  "lat": 34.6309207,
+  "lon": 135.4237889
+},
+{
+  "type": "node",
+  "id": 2298229853,
+  "lat": 34.6410783,
+  "lon": 135.4099361
+},
+{
+  "type": "node",
+  "id": 2298229854,
+  "lat": 34.6418961,
+  "lon": 135.4103561
+},
+{
+  "type": "node",
+  "id": 2298229855,
+  "lat": 34.6412426,
+  "lon": 135.4099290
+},
+{
+  "type": "node",
+  "id": 2298229856,
+  "lat": 34.6405709,
+  "lon": 135.4101773
+},
+{
+  "type": "node",
+  "id": 2298229857,
+  "lat": 34.6417515,
+  "lon": 135.4101249
+},
+{
+  "type": "node",
+  "id": 2298229858,
+  "lat": 34.6403577,
+  "lon": 135.4104022
+},
+{
+  "type": "node",
+  "id": 2298229859,
+  "lat": 34.6408550,
+  "lon": 135.4099866
+},
+{
+  "type": "node",
+  "id": 2438699285,
+  "lat": 34.6091796,
+  "lon": 135.4727045,
+  "tags": {
+    "railway": "buffer_stop"
+  }
+},
+{
+  "type": "node",
+  "id": 3359516011,
+  "lat": 34.6345258,
+  "lon": 135.4169858
+},
+{
+  "type": "node",
+  "id": 3359516021,
+  "lat": 34.6396035,
+  "lon": 135.4112184
+},
+{
+  "type": "node",
+  "id": 3359550849,
+  "lat": 34.6138449,
+  "lon": 135.4410868
+},
+{
+  "type": "node",
+  "id": 4464207600,
+  "lat": 34.6413837,
+  "lon": 135.4099397
+},
+{
+  "type": "node",
+  "id": 4464207601,
+  "lat": 34.6416499,
+  "lon": 135.4100353
+},
+{
+  "type": "node",
+  "id": 5900593680,
+  "lat": 34.6137950,
+  "lon": 135.4383313
+},
+{
+  "type": "node",
+  "id": 5900593681,
+  "lat": 34.6137950,
+  "lon": 135.4389259
+},
+{
+  "type": "node",
+  "id": 5900593682,
+  "lat": 34.6138518,
+  "lon": 135.4389259
+},
+{
+  "type": "node",
+  "id": 5900593683,
+  "lat": 34.6138518,
+  "lon": 135.4383313
+},
+{
+  "type": "node",
+  "id": 6050602068,
+  "lat": 34.6380345,
+  "lon": 135.4129093
+},
+{
+  "type": "node",
+  "id": 6050602069,
+  "lat": 34.6382598,
+  "lon": 135.4126656
+},
+{
+  "type": "node",
+  "id": 6621471250,
+  "lat": 34.6421299,
+  "lon": 135.4111232,
+  "tags": {
+    "level": "-1",
+    "railway": "switch"
+  }
+},
+{
+  "type": "node",
+  "id": 6621530408,
+  "lat": 34.6425341,
+  "lon": 135.4122584,
+  "tags": {
+    "alt_name:en": "Cosmosquare",
+    "level": "-1",
+    "light_rail": "yes",
+    "local_ref": "3",
+    "name": "コスモスクエア",
+    "name:en": "Cosmo Square",
+    "name:ja": "コスモスクエア",
+    "name:ko": "코스모스퀘어",
+    "network": "Osaka Metro",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "public_transport": "stop_position",
+    "railway": "stop",
+    "ref": "P09",
+    "wikidata": "Q1136734",
+    "wikipedia": "ja:コスモスクエア駅"
+  }
+},
+{
+  "type": "node",
+  "id": 6621530409,
+  "lat": 34.6423820,
+  "lon": 135.4118425
+},
+{
+  "type": "node",
+  "id": 6622607901,
+  "lat": 34.6427201,
+  "lon": 135.4127556,
+  "tags": {
+    "level": "-1",
+    "railway": "buffer_stop"
+  }
+},
+{
+  "type": "node",
+  "id": 7141276489,
+  "lat": 34.6261040,
+  "lon": 135.4323261
+},
+{
+  "type": "node",
+  "id": 8327540449,
+  "lat": 34.6104700,
+  "lon": 135.4609369
+},
+{
+  "type": "node",
+  "id": 8327540450,
+  "lat": 34.6104925,
+  "lon": 135.4606552
+},
+{
+  "type": "node",
+  "id": 8327540451,
+  "lat": 34.6109687,
+  "lon": 135.4567270
+},
+{
+  "type": "node",
+  "id": 8327540452,
+  "lat": 34.6110416,
+  "lon": 135.4564911
+},
+{
+  "type": "node",
+  "id": 8327540453,
+  "lat": 34.6134271,
+  "lon": 135.4486351
+},
+{
+  "type": "node",
+  "id": 8327540456,
+  "lat": 34.6137612,
+  "lon": 135.4474834
+},
+{
+  "type": "node",
+  "id": 8327540457,
+  "lat": 34.6137916,
+  "lon": 135.4473279
+},
+{
+  "type": "node",
+  "id": 8729029222,
+  "lat": 34.6409678,
+  "lon": 135.4099538
+},
+{
+  "type": "node",
+  "id": 8729029223,
+  "lat": 34.6407475,
+  "lon": 135.4100484
+},
+{
+  "type": "node",
+  "id": 8729029224,
+  "lat": 34.6406629,
+  "lon": 135.4101039
+},
+{
+  "type": "node",
+  "id": 8729029236,
+  "lat": 34.6390654,
+  "lon": 135.4118167
+},
+{
+  "type": "node",
+  "id": 8729029237,
+  "lat": 34.6399629,
+  "lon": 135.4108256
+},
+{
+  "type": "node",
+  "id": 8729029238,
+  "lat": 34.6384983,
+  "lon": 135.4124126
+},
+{
+  "type": "node",
+  "id": 8729029247,
+  "lat": 34.6401603,
+  "lon": 135.4106139
+},
+{
+  "type": "node",
+  "id": 8729029249,
+  "lat": 34.6401940,
+  "lon": 135.4105778
+},
+{
+  "type": "node",
+  "id": 8729029253,
+  "lat": 34.6415285,
+  "lon": 135.4099702
+},
+{
+  "type": "node",
+  "id": 8729029254,
+  "lat": 34.6418227,
+  "lon": 135.4102134
+},
+{
+  "type": "node",
+  "id": 8729029260,
+  "lat": 34.6421051,
+  "lon": 135.4110510,
+  "tags": {
+    "level": "-1",
+    "railway": "switch"
+  }
+},
+{
+  "type": "node",
+  "id": 8729029302,
+  "lat": 34.6357358,
+  "lon": 135.4153678
+},
+{
+  "type": "node",
+  "id": 8729029303,
+  "lat": 34.6354002,
+  "lon": 135.4158288
+},
+{
+  "type": "node",
+  "id": 8729029304,
+  "lat": 34.6350056,
+  "lon": 135.4164186
+},
+{
+  "type": "node",
+  "id": 8729029305,
+  "lat": 34.6348779,
+  "lon": 135.4165929
+},
+{
+  "type": "node",
+  "id": 8729045234,
+  "lat": 34.6334483,
+  "lon": 135.4181365,
+  "tags": {
+    "railway": "switch"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045243,
+  "lat": 34.6332605,
+  "lon": 135.4183322,
+  "tags": {
+    "railway": "switch"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045244,
+  "lat": 34.6340615,
+  "lon": 135.4174807,
+  "tags": {
+    "light_rail": "yes",
+    "local_ref": "2",
+    "name": "中ふ頭",
+    "name:en": "Nakafuto",
+    "name:ja": "中ふ頭",
+    "name:ja-Hira": "なかふとう",
+    "name:ja-Latn": "Nakafutō",
+    "name:ko": "나카후토",
+    "network": "Osaka Metro",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "public_transport": "stop_position",
+    "railway": "stop",
+    "ref": "P11"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045249,
+  "lat": 34.6319998,
+  "lon": 135.4195790
+},
+{
+  "type": "node",
+  "id": 8729045250,
+  "lat": 34.6311426,
+  "lon": 135.4202432
+},
+{
+  "type": "node",
+  "id": 8729045251,
+  "lat": 34.6310543,
+  "lon": 135.4203278
+},
+{
+  "type": "node",
+  "id": 8729045252,
+  "lat": 34.6309293,
+  "lon": 135.4204963
+},
+{
+  "type": "node",
+  "id": 8729045253,
+  "lat": 34.6308470,
+  "lon": 135.4207086
+},
+{
+  "type": "node",
+  "id": 8729045254,
+  "lat": 34.6308246,
+  "lon": 135.4208198
+},
+{
+  "type": "node",
+  "id": 8729045270,
+  "lat": 34.6309412,
+  "lon": 135.4228121,
+  "tags": {
+    "light_rail": "yes",
+    "name": "ポートタウン西",
+    "public_transport": "stop_position",
+    "railway": "stop"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045272,
+  "lat": 34.6309423,
+  "lon": 135.4224015
+},
+{
+  "type": "node",
+  "id": 8729045273,
+  "lat": 34.6309341,
+  "lon": 135.4222585
+},
+{
+  "type": "node",
+  "id": 8729045274,
+  "lat": 34.6309433,
+  "lon": 135.4231713
+},
+{
+  "type": "node",
+  "id": 8729045275,
+  "lat": 34.6309376,
+  "lon": 135.4233951
+},
+{
+  "type": "node",
+  "id": 8729045280,
+  "lat": 34.6309130,
+  "lon": 135.4261399
+},
+{
+  "type": "node",
+  "id": 8729045281,
+  "lat": 34.6309006,
+  "lon": 135.4278901
+},
+{
+  "type": "node",
+  "id": 8729045282,
+  "lat": 34.6309042,
+  "lon": 135.4282099
+},
+{
+  "type": "node",
+  "id": 8729045283,
+  "lat": 34.6309313,
+  "lon": 135.4295677
+},
+{
+  "type": "node",
+  "id": 8729045284,
+  "lat": 34.6309257,
+  "lon": 135.4300045
+},
+{
+  "type": "node",
+  "id": 8729045285,
+  "lat": 34.6309096,
+  "lon": 135.4301624
+},
+{
+  "type": "node",
+  "id": 8729045286,
+  "lat": 34.6308602,
+  "lon": 135.4303594
+},
+{
+  "type": "node",
+  "id": 8729045287,
+  "lat": 34.6308171,
+  "lon": 135.4304686
+},
+{
+  "type": "node",
+  "id": 8729045288,
+  "lat": 34.6306375,
+  "lon": 135.4307177
+},
+{
+  "type": "node",
+  "id": 8729045289,
+  "lat": 34.6288686,
+  "lon": 135.4314785
+},
+{
+  "type": "node",
+  "id": 8729045290,
+  "lat": 34.6279483,
+  "lon": 135.4316928
+},
+{
+  "type": "node",
+  "id": 8729045316,
+  "lat": 34.6277351,
+  "lon": 135.4317448
+},
+{
+  "type": "node",
+  "id": 8729045322,
+  "lat": 34.6246948,
+  "lon": 135.4328637
+},
+{
+  "type": "node",
+  "id": 8729045325,
+  "lat": 34.6222390,
+  "lon": 135.4338279
+},
+{
+  "type": "node",
+  "id": 8729045328,
+  "lat": 34.6209389,
+  "lon": 135.4343224
+},
+{
+  "type": "node",
+  "id": 8729045330,
+  "lat": 34.6186755,
+  "lon": 135.4352021
+},
+{
+  "type": "node",
+  "id": 8729045331,
+  "lat": 34.6192668,
+  "lon": 135.4349956,
+  "tags": {
+    "light_rail": "yes",
+    "name": "フェリーターミナル",
+    "public_transport": "stop_position",
+    "railway": "stop"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045333,
+  "lat": 34.6189284,
+  "lon": 135.4351237
+},
+{
+  "type": "node",
+  "id": 8729045338,
+  "lat": 34.6198630,
+  "lon": 135.4347418
+},
+{
+  "type": "node",
+  "id": 8729045340,
+  "lat": 34.6174018,
+  "lon": 135.4356941
+},
+{
+  "type": "node",
+  "id": 8729045342,
+  "lat": 34.6157225,
+  "lon": 135.4363464
+},
+{
+  "type": "node",
+  "id": 8729045347,
+  "lat": 34.6141042,
+  "lon": 135.4371719
+},
+{
+  "type": "node",
+  "id": 8729045348,
+  "lat": 34.6138726,
+  "lon": 135.4378798
+},
+{
+  "type": "node",
+  "id": 8729045355,
+  "lat": 34.6138591,
+  "lon": 135.4400919
+},
+{
+  "type": "node",
+  "id": 8729045356,
+  "lat": 34.6138619,
+  "lon": 135.4386311,
+  "tags": {
+    "light_rail": "yes",
+    "name": "南港東",
+    "public_transport": "stop_position",
+    "railway": "stop"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045357,
+  "lat": 34.6138808,
+  "lon": 135.4377807
+},
+{
+  "type": "node",
+  "id": 8729045358,
+  "lat": 34.6142541,
+  "lon": 135.4369940
+},
+{
+  "type": "node",
+  "id": 8729045359,
+  "lat": 34.6144858,
+  "lon": 135.4368242
+},
+{
+  "type": "node",
+  "id": 8729045363,
+  "lat": 34.6144084,
+  "lon": 135.4368651
+},
+{
+  "type": "node",
+  "id": 8729045367,
+  "lat": 34.6138501,
+  "lon": 135.4405872
+},
+{
+  "type": "node",
+  "id": 8729045371,
+  "lat": 34.6138324,
+  "lon": 135.4441676
+},
+{
+  "type": "node",
+  "id": 8729045376,
+  "lat": 34.6138341,
+  "lon": 135.4449321
+},
+{
+  "type": "node",
+  "id": 8729045377,
+  "lat": 34.6138400,
+  "lon": 135.4452699
+},
+{
+  "type": "node",
+  "id": 8729045378,
+  "lat": 34.6138395,
+  "lon": 135.4469575
+},
+{
+  "type": "node",
+  "id": 8729045379,
+  "lat": 34.6138536,
+  "lon": 135.4459391,
+  "tags": {
+    "light_rail": "yes",
+    "name": "南港口",
+    "public_transport": "stop_position",
+    "railway": "stop"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045391,
+  "lat": 34.6127014,
+  "lon": 135.4510249
+},
+{
+  "type": "node",
+  "id": 8729045393,
+  "lat": 34.6123824,
+  "lon": 135.4520828
+},
+{
+  "type": "node",
+  "id": 8729045396,
+  "lat": 34.6111381,
+  "lon": 135.4561685
+},
+{
+  "type": "node",
+  "id": 8729045397,
+  "lat": 34.6109234,
+  "lon": 135.4568996
+},
+{
+  "type": "node",
+  "id": 8729045398,
+  "lat": 34.6108465,
+  "lon": 135.4572503
+},
+{
+  "type": "node",
+  "id": 8729045399,
+  "lat": 34.6107298,
+  "lon": 135.4583284
+},
+{
+  "type": "node",
+  "id": 8729045400,
+  "lat": 34.6105783,
+  "lon": 135.4596575
+},
+{
+  "type": "node",
+  "id": 8729045401,
+  "lat": 34.6105227,
+  "lon": 135.4601729
+},
+{
+  "type": "node",
+  "id": 8729045402,
+  "lat": 34.6107003,
+  "lon": 135.4586323,
+  "tags": {
+    "light_rail": "yes",
+    "name": "平林",
+    "public_transport": "stop_position",
+    "railway": "stop"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045418,
+  "lat": 34.6104391,
+  "lon": 135.4612317
+},
+{
+  "type": "node",
+  "id": 8729045426,
+  "lat": 34.6096326,
+  "lon": 135.4684416
+},
+{
+  "type": "node",
+  "id": 8729045427,
+  "lat": 34.6098445,
+  "lon": 135.4666146
+},
+{
+  "type": "node",
+  "id": 8729045435,
+  "lat": 34.6095262,
+  "lon": 135.4693721
+},
+{
+  "type": "node",
+  "id": 8729045436,
+  "lat": 34.6094885,
+  "lon": 135.4698014
+},
+{
+  "type": "node",
+  "id": 8729045437,
+  "lat": 34.6093620,
+  "lon": 135.4709611
+},
+{
+  "type": "node",
+  "id": 8729045438,
+  "lat": 34.6093492,
+  "lon": 135.4712329
+},
+{
+  "type": "node",
+  "id": 8729045445,
+  "lat": 34.6094453,
+  "lon": 135.4701944,
+  "tags": {
+    "railway": "switch"
+  }
+},
+{
+  "type": "node",
+  "id": 8729045446,
+  "lat": 34.6138612,
+  "lon": 135.4390057
+},
+{
+  "type": "node",
+  "id": 8729045451,
+  "lat": 34.6093033,
+  "lon": 135.4715839
+},
+{
+  "type": "node",
+  "id": 8729045452,
+  "lat": 34.6092259,
+  "lon": 135.4722644
+},
+{
+  "type": "node",
+  "id": 8729045453,
+  "lat": 34.6091535,
+  "lon": 135.4722544
+},
+{
+  "type": "node",
+  "id": 8729045454,
+  "lat": 34.6092194,
+  "lon": 135.4715712
+},
+{
+  "type": "node",
+  "id": 8729045455,
+  "lat": 34.6397581,
+  "lon": 135.4110494
+},
+{
+  "type": "way",
+  "id": 31146644,
+  "bounds": {
+    "minlat": 34.6196079,
+    "minlon": 135.4218771,
+    "maxlat": 34.6309433,
+    "maxlon": 135.4348658
+  },
+  "nodes": [
+    346493419,
+    8729045273,
+    8729045272,
+    8729045270,
+    8729045274,
+    8729045275,
+    346494209,
+    8729045280,
+    8729045281,
+    8729045282,
+    346493374,
+    346493362,
+    8729045283,
+    346494185,
+    8729045284,
+    8729045285,
+    346494168,
+    8729045286,
+    8729045287,
+    346494177,
+    346494151,
+    8729045288,
+    346494159,
+    346494134,
+    346494143,
+    346494032,
+    346494040,
+    8729045289,
+    346494049,
+    8729045290,
+    8729045316,
+    346494055,
+    346494060,
+    346494065,
+    7141276489,
+    8729045322,
+    8729045325,
+    8729045328,
+    8729045338,
+    346493984
+  ],
+  "geometry": [
+    { "lat": 34.6308964, "lon": 135.4218771 },
+    { "lat": 34.6309341, "lon": 135.4222585 },
+    { "lat": 34.6309423, "lon": 135.4224015 },
+    { "lat": 34.6309412, "lon": 135.4228121 },
+    { "lat": 34.6309433, "lon": 135.4231713 },
+    { "lat": 34.6309376, "lon": 135.4233951 },
+    { "lat": 34.6309207, "lon": 135.4237889 },
+    { "lat": 34.6309130, "lon": 135.4261399 },
+    { "lat": 34.6309006, "lon": 135.4278901 },
+    { "lat": 34.6309042, "lon": 135.4282099 },
+    { "lat": 34.6309292, "lon": 135.4287853 },
+    { "lat": 34.6309278, "lon": 135.4291486 },
+    { "lat": 34.6309313, "lon": 135.4295677 },
+    { "lat": 34.6309324, "lon": 135.4298049 },
+    { "lat": 34.6309257, "lon": 135.4300045 },
+    { "lat": 34.6309096, "lon": 135.4301624 },
+    { "lat": 34.6308849, "lon": 135.4302695 },
+    { "lat": 34.6308602, "lon": 135.4303594 },
+    { "lat": 34.6308171, "lon": 135.4304686 },
+    { "lat": 34.6307681, "lon": 135.4305582 },
+    { "lat": 34.6307139, "lon": 135.4306331 },
+    { "lat": 34.6306375, "lon": 135.4307177 },
+    { "lat": 34.6305611, "lon": 135.4307858 },
+    { "lat": 34.6304312, "lon": 135.4308771 },
+    { "lat": 34.6302270, "lon": 135.4309665 },
+    { "lat": 34.6298096, "lon": 135.4311280 },
+    { "lat": 34.6290958, "lon": 135.4313990 },
+    { "lat": 34.6288686, "lon": 135.4314785 },
+    { "lat": 34.6286286, "lon": 135.4315435 },
+    { "lat": 34.6279483, "lon": 135.4316928 },
+    { "lat": 34.6277351, "lon": 135.4317448 },
+    { "lat": 34.6274997, "lon": 135.4318041 },
+    { "lat": 34.6272432, "lon": 135.4318918 },
+    { "lat": 34.6268869, "lon": 135.4320213 },
+    { "lat": 34.6261040, "lon": 135.4323261 },
+    { "lat": 34.6246948, "lon": 135.4328637 },
+    { "lat": 34.6222390, "lon": 135.4338279 },
+    { "lat": 34.6209389, "lon": 135.4343224 },
+    { "lat": 34.6198630, "lon": 135.4347418 },
+    { "lat": 34.6196079, "lon": 135.4348658 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "2",
+    "level": "2",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 31146645,
+  "bounds": {
+    "minlat": 34.6094453,
+    "minlon": 135.4410868,
+    "maxlat": 34.6138536,
+    "maxlon": 135.4701944
+  },
+  "nodes": [
+    3359550849,
+    8729045371,
+    8729045376,
+    8729045377,
+    346494070,
+    8729045379,
+    346493761,
+    8729045378,
+    346493794,
+    8327540457,
+    8327540456,
+    346493801,
+    346493650,
+    8327540453,
+    8729045391,
+    8729045393,
+    8729045396,
+    8327540452,
+    8327540451,
+    8729045397,
+    346493540,
+    8729045398,
+    346493548,
+    346493508,
+    8729045399,
+    8729045402,
+    346493992,
+    8729045400,
+    346494000,
+    8729045401,
+    8327540450,
+    8327540449,
+    8729045418,
+    346493916,
+    8729045427,
+    8729045426,
+    8729045435,
+    8729045436,
+    8729045445
+  ],
+  "geometry": [
+    { "lat": 34.6138449, "lon": 135.4410868 },
+    { "lat": 34.6138324, "lon": 135.4441676 },
+    { "lat": 34.6138341, "lon": 135.4449321 },
+    { "lat": 34.6138400, "lon": 135.4452699 },
+    { "lat": 34.6138520, "lon": 135.4456386 },
+    { "lat": 34.6138536, "lon": 135.4459391 },
+    { "lat": 34.6138468, "lon": 135.4467292 },
+    { "lat": 34.6138395, "lon": 135.4469575 },
+    { "lat": 34.6138165, "lon": 135.4471648 },
+    { "lat": 34.6137916, "lon": 135.4473279 },
+    { "lat": 34.6137612, "lon": 135.4474834 },
+    { "lat": 34.6137081, "lon": 135.4476964 },
+    { "lat": 34.6136087, "lon": 135.4480288 },
+    { "lat": 34.6134271, "lon": 135.4486351 },
+    { "lat": 34.6127014, "lon": 135.4510249 },
+    { "lat": 34.6123824, "lon": 135.4520828 },
+    { "lat": 34.6111381, "lon": 135.4561685 },
+    { "lat": 34.6110416, "lon": 135.4564911 },
+    { "lat": 34.6109687, "lon": 135.4567270 },
+    { "lat": 34.6109234, "lon": 135.4568996 },
+    { "lat": 34.6108801, "lon": 135.4570698 },
+    { "lat": 34.6108465, "lon": 135.4572503 },
+    { "lat": 34.6108130, "lon": 135.4574605 },
+    { "lat": 34.6107881, "lon": 135.4576771 },
+    { "lat": 34.6107298, "lon": 135.4583284 },
+    { "lat": 34.6107003, "lon": 135.4586323 },
+    { "lat": 34.6106287, "lon": 135.4592818 },
+    { "lat": 34.6105783, "lon": 135.4596575 },
+    { "lat": 34.6105421, "lon": 135.4599585 },
+    { "lat": 34.6105227, "lon": 135.4601729 },
+    { "lat": 34.6104925, "lon": 135.4606552 },
+    { "lat": 34.6104700, "lon": 135.4609369 },
+    { "lat": 34.6104391, "lon": 135.4612317 },
+    { "lat": 34.6103730, "lon": 135.4618478 },
+    { "lat": 34.6098445, "lon": 135.4666146 },
+    { "lat": 34.6096326, "lon": 135.4684416 },
+    { "lat": 34.6095262, "lon": 135.4693721 },
+    { "lat": 34.6094885, "lon": 135.4698014 },
+    { "lat": 34.6094453, "lon": 135.4701944 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "2",
+    "level": "2",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 31146646,
+  "bounds": {
+    "minlat": 34.6186755,
+    "minlon": 135.4348658,
+    "maxlat": 34.6196079,
+    "maxlon": 135.4352021
+  },
+  "nodes": [
+    346493984,
+    8729045331,
+    8729045333,
+    8729045330
+  ],
+  "geometry": [
+    { "lat": 34.6196079, "lon": 135.4348658 },
+    { "lat": 34.6192668, "lon": 135.4349956 },
+    { "lat": 34.6189284, "lon": 135.4351237 },
+    { "lat": 34.6186755, "lon": 135.4352021 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "2",
+    "level": "2",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 329132408,
+  "bounds": {
+    "minlat": 34.6308159,
+    "minlon": 135.4112184,
+    "maxlat": 34.6396035,
+    "maxlon": 135.4218771
+  },
+  "nodes": [
+    3359516021,
+    8729029236,
+    346493228,
+    8729029238,
+    6050602069,
+    6050602068,
+    346494085,
+    346494101,
+    8729029302,
+    346494092,
+    8729029303,
+    346494116,
+    8729029304,
+    8729029305,
+    346494109,
+    3359516011,
+    8729045244,
+    346493523,
+    8729045234,
+    8729045243,
+    346493494,
+    8729045249,
+    346493442,
+    346493432,
+    8729045250,
+    8729045251,
+    346493465,
+    8729045252,
+    346493454,
+    8729045253,
+    8729045254,
+    346493396,
+    346493385,
+    346493419
+  ],
+  "geometry": [
+    { "lat": 34.6396035, "lon": 135.4112184 },
+    { "lat": 34.6390654, "lon": 135.4118167 },
+    { "lat": 34.6387218, "lon": 135.4121811 },
+    { "lat": 34.6384983, "lon": 135.4124126 },
+    { "lat": 34.6382598, "lon": 135.4126656 },
+    { "lat": 34.6380345, "lon": 135.4129093 },
+    { "lat": 34.6377133, "lon": 135.4132434 },
+    { "lat": 34.6358917, "lon": 135.4151798 },
+    { "lat": 34.6357358, "lon": 135.4153678 },
+    { "lat": 34.6355768, "lon": 135.4155754 },
+    { "lat": 34.6354002, "lon": 135.4158288 },
+    { "lat": 34.6351521, "lon": 135.4162046 },
+    { "lat": 34.6350056, "lon": 135.4164186 },
+    { "lat": 34.6348779, "lon": 135.4165929 },
+    { "lat": 34.6346572, "lon": 135.4168461 },
+    { "lat": 34.6345258, "lon": 135.4169858 },
+    { "lat": 34.6340615, "lon": 135.4174807 },
+    { "lat": 34.6337633, "lon": 135.4178017 },
+    { "lat": 34.6334483, "lon": 135.4181365 },
+    { "lat": 34.6332605, "lon": 135.4183322 },
+    { "lat": 34.6321488, "lon": 135.4194487 },
+    { "lat": 34.6319998, "lon": 135.4195790 },
+    { "lat": 34.6317275, "lon": 135.4197919 },
+    { "lat": 34.6312825, "lon": 135.4201263 },
+    { "lat": 34.6311426, "lon": 135.4202432 },
+    { "lat": 34.6310543, "lon": 135.4203278 },
+    { "lat": 34.6309876, "lon": 135.4204054 },
+    { "lat": 34.6309293, "lon": 135.4204963 },
+    { "lat": 34.6308814, "lon": 135.4206007 },
+    { "lat": 34.6308470, "lon": 135.4207086 },
+    { "lat": 34.6308246, "lon": 135.4208198 },
+    { "lat": 34.6308159, "lon": 135.4209564 },
+    { "lat": 34.6308303, "lon": 135.4212431 },
+    { "lat": 34.6308964, "lon": 135.4218771 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "2",
+    "level": "2",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 329132409,
+  "bounds": {
+    "minlat": 34.6401603,
+    "minlon": 135.4099361,
+    "maxlat": 34.6410783,
+    "maxlon": 135.4106139
+  },
+  "nodes": [
+    2298229853,
+    8729029222,
+    2298229859,
+    8729029223,
+    8729029224,
+    2298229856,
+    2298229858,
+    8729029249,
+    8729029247
+  ],
+  "geometry": [
+    { "lat": 34.6410783, "lon": 135.4099361 },
+    { "lat": 34.6409678, "lon": 135.4099538 },
+    { "lat": 34.6408550, "lon": 135.4099866 },
+    { "lat": 34.6407475, "lon": 135.4100484 },
+    { "lat": 34.6406629, "lon": 135.4101039 },
+    { "lat": 34.6405709, "lon": 135.4101773 },
+    { "lat": 34.6403577, "lon": 135.4104022 },
+    { "lat": 34.6401940, "lon": 135.4105778 },
+    { "lat": 34.6401603, "lon": 135.4106139 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "cutting": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 329135829,
+  "bounds": {
+    "minlat": 34.6138449,
+    "minlon": 135.4352021,
+    "maxlat": 34.6186755,
+    "maxlon": 135.4410868
+  },
+  "nodes": [
+    8729045330,
+    8729045340,
+    8729045342,
+    346493303,
+    8729045359,
+    8729045363,
+    346493315,
+    8729045358,
+    346493283,
+    8729045347,
+    346493296,
+    346493260,
+    346493272,
+    346493239,
+    8729045357,
+    8729045348,
+    346493251,
+    8729045356,
+    8729045446,
+    8729045355,
+    8729045367,
+    3359550849
+  ],
+  "geometry": [
+    { "lat": 34.6186755, "lon": 135.4352021 },
+    { "lat": 34.6174018, "lon": 135.4356941 },
+    { "lat": 34.6157225, "lon": 135.4363464 },
+    { "lat": 34.6146772, "lon": 135.4367536 },
+    { "lat": 34.6144858, "lon": 135.4368242 },
+    { "lat": 34.6144084, "lon": 135.4368651 },
+    { "lat": 34.6143339, "lon": 135.4369170 },
+    { "lat": 34.6142541, "lon": 135.4369940 },
+    { "lat": 34.6141711, "lon": 135.4370803 },
+    { "lat": 34.6141042, "lon": 135.4371719 },
+    { "lat": 34.6140428, "lon": 135.4372678 },
+    { "lat": 34.6139769, "lon": 135.4373959 },
+    { "lat": 34.6139262, "lon": 135.4375304 },
+    { "lat": 34.6139027, "lon": 135.4376318 },
+    { "lat": 34.6138808, "lon": 135.4377807 },
+    { "lat": 34.6138726, "lon": 135.4378798 },
+    { "lat": 34.6138629, "lon": 135.4381542 },
+    { "lat": 34.6138619, "lon": 135.4386311 },
+    { "lat": 34.6138612, "lon": 135.4390057 },
+    { "lat": 34.6138591, "lon": 135.4400919 },
+    { "lat": 34.6138501, "lon": 135.4405872 },
+    { "lat": 34.6138449, "lon": 135.4410868 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "2",
+    "level": "2",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 624907247,
+  "bounds": {
+    "minlat": 34.6137950,
+    "minlon": 135.4383313,
+    "maxlat": 34.6138518,
+    "maxlon": 135.4389259
+  },
+  "nodes": [
+    5900593683,
+    5900593682,
+    5900593681,
+    5900593680,
+    5900593683
+  ],
+  "geometry": [
+    { "lat": 34.6138518, "lon": 135.4383313 },
+    { "lat": 34.6138518, "lon": 135.4389259 },
+    { "lat": 34.6137950, "lon": 135.4389259 },
+    { "lat": 34.6137950, "lon": 135.4383313 },
+    { "lat": 34.6138518, "lon": 135.4383313 }
+  ],
+  "tags": {
+    "area": "yes",
+    "covered": "yes",
+    "light_rail": "yes",
+    "public_transport": "platform",
+    "railway": "platform"
+  }
+},
+{
+  "type": "way",
+  "id": 705002795,
+  "bounds": {
+    "minlat": 34.6421299,
+    "minlon": 135.4111232,
+    "maxlat": 34.6427201,
+    "maxlon": 135.4127556
+  },
+  "nodes": [
+    6622607901,
+    6621530408,
+    6621530409,
+    6621471250
+  ],
+  "geometry": [
+    { "lat": 34.6427201, "lon": 135.4127556 },
+    { "lat": 34.6425341, "lon": 135.4122584 },
+    { "lat": 34.6423820, "lon": 135.4118425 },
+    { "lat": 34.6421299, "lon": 135.4111232 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "-1",
+    "level": "-1",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "operator": "大阪市高速電気軌道",
+    "operator:ja": "大阪市",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 942667395,
+  "bounds": {
+    "minlat": 34.6396035,
+    "minlon": 135.4106139,
+    "maxlat": 34.6401603,
+    "maxlon": 135.4112184
+  },
+  "nodes": [
+    8729029247,
+    8729029237,
+    8729045455,
+    3359516021
+  ],
+  "geometry": [
+    { "lat": 34.6401603, "lon": 135.4106139 },
+    { "lat": 34.6399629, "lon": 135.4108256 },
+    { "lat": 34.6397581, "lon": 135.4110494 },
+    { "lat": 34.6396035, "lon": 135.4112184 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "electrified": "rail",
+    "embankment": "yes",
+    "frequency": "60",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 942667399,
+  "bounds": {
+    "minlat": 34.6410783,
+    "minlon": 135.4099290,
+    "maxlat": 34.6421051,
+    "maxlon": 135.4110510
+  },
+  "nodes": [
+    8729029260,
+    2298229854,
+    8729029254,
+    2298229857,
+    4464207601,
+    8729029253,
+    4464207600,
+    2298229855,
+    2298229853
+  ],
+  "geometry": [
+    { "lat": 34.6421051, "lon": 135.4110510 },
+    { "lat": 34.6418961, "lon": 135.4103561 },
+    { "lat": 34.6418227, "lon": 135.4102134 },
+    { "lat": 34.6417515, "lon": 135.4101249 },
+    { "lat": 34.6416499, "lon": 135.4100353 },
+    { "lat": 34.6415285, "lon": 135.4099702 },
+    { "lat": 34.6413837, "lon": 135.4099397 },
+    { "lat": 34.6412426, "lon": 135.4099290 },
+    { "lat": 34.6410783, "lon": 135.4099361 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "-1",
+    "level": "-1",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "passenger_lines": "2",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "tracks": "2",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 942667445,
+  "bounds": {
+    "minlat": 34.6091796,
+    "minlon": 135.4714869,
+    "maxlat": 34.6093216,
+    "maxlon": 135.4727045
+  },
+  "nodes": [
+    346493810,
+    346493842,
+    2438699285
+  ],
+  "geometry": [
+    { "lat": 34.6093216, "lon": 135.4714869 },
+    { "lat": 34.6092699, "lon": 135.4719336 },
+    { "lat": 34.6091796, "lon": 135.4727045 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "2",
+    "level": "2",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 942667446,
+  "bounds": {
+    "minlat": 34.6093216,
+    "minlon": 135.4701944,
+    "maxlat": 34.6094453,
+    "maxlon": 135.4714869
+  },
+  "nodes": [
+    8729045445,
+    346493900,
+    8729045437,
+    8729045438,
+    346493810
+  ],
+  "geometry": [
+    { "lat": 34.6094453, "lon": 135.4701944 },
+    { "lat": 34.6094435, "lon": 135.4702101 },
+    { "lat": 34.6093620, "lon": 135.4709611 },
+    { "lat": 34.6093492, "lon": 135.4712329 },
+    { "lat": 34.6093216, "lon": 135.4714869 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name": "Osaka Metro南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "bridge": "yes",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "2",
+    "level": "2",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source:en": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "source:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "voltage": "600"
+  }
+},
+{
+  "type": "way",
+  "id": 942667449,
+  "bounds": {
+    "minlat": 34.6091535,
+    "minlon": 135.4715712,
+    "maxlat": 34.6093033,
+    "maxlon": 135.4722644
+  },
+  "nodes": [
+    8729045451,
+    8729045452,
+    8729045453,
+    8729045454,
+    8729045451
+  ],
+  "geometry": [
+    { "lat": 34.6093033, "lon": 135.4715839 },
+    { "lat": 34.6092259, "lon": 135.4722644 },
+    { "lat": 34.6091535, "lon": 135.4722544 },
+    { "lat": 34.6092194, "lon": 135.4715712 },
+    { "lat": 34.6093033, "lon": 135.4715839 }
+  ],
+  "tags": {
+    "area": "yes",
+    "light_rail": "yes",
+    "public_transport": "platform",
+    "railway": "platform"
+  }
+},
+{
+  "type": "way",
+  "id": 942667451,
+  "bounds": {
+    "minlat": 34.6421051,
+    "minlon": 135.4110510,
+    "maxlat": 34.6421299,
+    "maxlon": 135.4111232
+  },
+  "nodes": [
+    6621471250,
+    8729029260
+  ],
+  "geometry": [
+    { "lat": 34.6421299, "lon": 135.4111232 },
+    { "lat": 34.6421051, "lon": 135.4110510 }
+  ],
+  "tags": {
+    "KSJ2:LIN": "南港ポートタウン線",
+    "alt_name:en": "Osaka Metro Nanko Porttown Line",
+    "alt_name:ja": "Osaka Metro南港ポートタウン線",
+    "alt_name:ja-Hira": "おおさかめとろなんこうぽーとたうんせん",
+    "alt_name:ja-Latn": "Ōsaka Metoro Nankō Pōtotaun sen",
+    "electrified": "rail",
+    "frequency": "60",
+    "layer": "-1",
+    "level": "-1",
+    "name": "Osaka Metroニュートラム",
+    "name:en": "Osaka Metro New Tram",
+    "name:ja": "Osaka Metroニュートラム",
+    "name:ja-Hira": "おおさかめとろにゅーとらむ",
+    "name:ja-Latn": "Ōsaka Metoro Nyūtoramu",
+    "note": "National-Land Numerical Information (Railway) 2007, MLIT Japan",
+    "note:ja": "国土数値情報（鉄道データ）平成19年　国土交通省",
+    "official_name": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:en": "Osaka Metro Nanko Porttown Line",
+    "official_name:ja": "大阪市高速電気軌道南港ポートタウン線",
+    "official_name:ja-Hira": "おおさかしこうそくでんききどうなんこうぽーとたうんせん",
+    "official_name:ja-Latn": "Ōsakashi kōsoku denki kidō Nankō Pōtotaun sen",
+    "operator": "大阪市高速電気軌道",
+    "operator:en": "Osaka Metro",
+    "operator:ja": "大阪市高速電気軌道",
+    "passenger_lines": "2",
+    "railway": "light_rail",
+    "source": "KSJ2;knowldge",
+    "source_ref": "http://nlftp.mlit.go.jp/ksj/jpgis/datalist/KsjTmplt-N02-v1_1.html",
+    "tracks": "2",
+    "tunnel": "yes",
+    "voltage": "600"
+  }
+}
+
+  ]
+}

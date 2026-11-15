@@ -1,0 +1,146 @@
+[
+  {
+    "query": "道頓堀",
+    "viewbox": "135.45,34.70,135.55,34.64",
+    "results": [
+      {
+        "place_id": 262062391,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 4029007869,
+        "lat": "34.6690306",
+        "lon": "135.5015715",
+        "category": "place",
+        "type": "locality",
+        "place_rank": 25,
+        "importance": 0.4585303629820817,
+        "addresstype": "locality",
+        "name": "道頓堀",
+        "display_name": "道頓堀, 道頓堀一丁目, 中央区, 大阪市, 大阪府, 542-0071, 日本",
+        "boundingbox": [
+          "34.6590306",
+          "34.6790306",
+          "135.4915715",
+          "135.5115715"
+        ]
+      },
+      {
+        "place_id": 262062806,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "way",
+        "osm_id": 174727837,
+        "lat": "34.6687239",
+        "lon": "135.5031840",
+        "category": "highway",
+        "type": "pedestrian",
+        "place_rank": 26,
+        "importance": 0.0533433333333333,
+        "addresstype": "road",
+        "name": "道頓堀",
+        "display_name": "道頓堀, 道頓堀一丁目, 中央区, 大阪市, 大阪府, 542-0071, 日本",
+        "boundingbox": [
+          "34.6687124",
+          "34.6687637",
+          "135.5003347",
+          "135.5060330"
+        ]
+      }
+    ]
+  },
+  {
+    "query": "コスモスクエア",
+    "viewbox": "135.39,34.67,135.44,34.62",
+    "results": [
+      {
+        "place_id": 261516618,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 6621530410,
+        "lat": "34.6425613",
+        "lon": "135.4122330",
+        "category": "railway",
+        "type": "stop",
+        "place_rank": 30,
+        "importance": 0.41319251906495164,
+        "addresstype": "railway",
+        "name": "コスモスクエア",
+        "display_name": "コスモスクエア, 30, 大阪港咲洲トンネル, 南港北一丁目, 住之江区, 大阪市, 大阪府, 552-0022, 日本",
+        "boundingbox": [
+          "34.6425113",
+          "34.6426113",
+          "135.4121830",
+          "135.4122830"
+        ]
+      },
+      {
+        "place_id": 261517442,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "node",
+        "osm_id": 6621493575,
+        "lat": "34.6425771",
+        "lon": "135.4122147",
+        "category": "railway",
+        "type": "station",
+        "place_rank": 30,
+        "importance": 0.41319251906495164,
+        "addresstype": "railway",
+        "name": "コスモスクエア",
+        "display_name": "コスモスクエア, 30, 大阪港咲洲トンネル, 南港北一丁目, 住之江区, 大阪市, 大阪府, 552-0022, 日本",
+        "boundingbox": [
+          "34.6375771",
+          "34.6475771",
+          "135.4072147",
+          "135.4172147"
+        ]
+      }
+    ]
+  },
+  {
+    "query": "両国橋",
+    "viewbox": "139.77,35.71,139.81,35.68",
+    "results": [
+      {
+        "place_id": 258894702,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "way",
+        "osm_id": 553536165,
+        "lat": "35.6943052",
+        "lon": "139.7888628",
+        "category": "man_made",
+        "type": "bridge",
+        "place_rank": 30,
+        "importance": 0.34958115586665534,
+        "addresstype": "man_made",
+        "name": "両国橋",
+        "display_name": "両国橋, 京葉道路, 東日本橋二丁目, 東日本橋, 中央区, 東京都, 103-0004, 日本",
+        "boundingbox": [
+          "35.6940534",
+          "35.6945569",
+          "139.7879187",
+          "139.7898070"
+        ]
+      },
+      {
+        "place_id": 258895552,
+        "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+        "osm_type": "way",
+        "osm_id": 156938650,
+        "lat": "35.6942744",
+        "lon": "139.7888532",
+        "category": "bridge",
+        "type": "yes",
+        "place_rank": 30,
+        "importance": 9.99999999995449e-06,
+        "addresstype": "bridge",
+        "name": "両国橋",
+        "display_name": "両国橋, 京葉道路, 東日本橋二丁目, 東日本橋, 中央区, 東京都, 103-0004, 日本",
+        "boundingbox": [
+          "35.6941290",
+          "35.6944198",
+          "139.7879227",
+          "139.7897837"
+        ]
+      }
+    ]
+  }
+]

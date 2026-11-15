@@ -1,0 +1,75 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "credits": [
+    "看板位置：© OpenStreetMap contributors",
+    "橋・看板：OpenStreetMap、位置は概略"
+  ],
+  "shots": [
+    {
+      "duration": 6,
+      "from": {
+        "center": [
+          135.4989,
+          34.66895
+        ],
+        "zoom": 16.1,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.49895,
+          34.66895
+        ],
+        "zoom": 16.2,
+        "pitch": 25,
+        "bearing": 2
+      },
+      "overlays": [
+        {
+          "type": "photo_marker",
+          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
+          "caption": "道頓堀グリコサイン",
+          "credit": "写真：yuiseki（CC0）",
+          "screen": [
+            70,
+            90
+          ],
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5005517,
+            34.669199
+          ],
+          "targetLabel": "",
+          "cameraAt": [
+            135.5010546,
+            34.668926
+          ],
+          "cameraLabel": "グリコサイン",
+          "show": [
+            0,
+            1
+          ],
+          "bridgeAt": [
+            135.5012993,
+            34.6690658
+          ],
+          "bridgeLabel": "戎橋",
+          "cameraLabelAnchor": "start",
+          "cameraLabelOffset": [
+            20,
+            45
+          ]
+        }
+      ]
+    }
+  ],
+  "osmLabels": true
+}

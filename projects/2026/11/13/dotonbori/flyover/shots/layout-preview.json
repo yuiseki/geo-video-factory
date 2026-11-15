@@ -1,0 +1,203 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.2,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "credits": [
+    "地図の位置は概略"
+  ],
+  "shots": [
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "両国よ。明暦の大火のあと、両国橋が架けられ、橋詰には火除地として広小路が設けられた。",
+          "speech": "両国よ。明暦の大火のあと、両国橋が架けられ、橋詰には火除地として広小路が設けられた。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/ryogoku.jpg",
+          "caption": "歌川広重「両国橋大川ばた」（1856年）",
+          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 420,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そして1935年、戎橋のそばに初代グリコサインが登場する。",
+          "speech": "そして1935年、えびすばしのそばに初代グリコサインが登場する。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/glico.jpg",
+          "caption": "道頓堀のグリコサイン（2014年）",
+          "credit": "写真：Tokumeigakarinoaoshima / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 490,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78806,
+          35.695510000000006
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "柳橋は船宿や料亭、芸妓の文化で知られた場所。東京都は、",
+          "speech": "柳橋は船宿や料亭、芸妓の文化で知られた場所。東京都は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

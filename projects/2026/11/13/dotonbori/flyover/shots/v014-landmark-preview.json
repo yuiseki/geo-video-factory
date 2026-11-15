@@ -1,0 +1,97 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.2,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "credits": [
+    "地図の位置は概略"
+  ],
+  "osmLabels": true,
+  "shots": [
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            135.500271,
+            34.6661565
+          ],
+          "text": "なんば駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            135.5003566,
+            34.6745173
+          ],
+          "text": "心斎橋駅",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "duration": 6
+    }
+  ]
+}

@@ -13,3 +13,32 @@ out/
 
 # Reference videos and their analyses stay outside the repository
 video-references/
+
+# Images, videos and audio inside projects are not committed: they are third-party
+# material, personal photos or render output. Record their sources instead.
+projects/**/*.png
+projects/**/*.PNG
+projects/**/*.jpg
+projects/**/*.JPG
+projects/**/*.jpeg
+projects/**/*.JPEG
+projects/**/*.webp
+projects/**/*.gif
+projects/**/*.tif
+projects/**/*.tiff
+projects/**/*.heic
+projects/**/*.psd
+projects/**/*.mp4
+projects/**/*.mov
+projects/**/*.webm
+projects/**/*.mkv
+projects/**/*.avi
+projects/**/*.wav
+projects/**/*.mp3
+projects/**/*.m4a
+projects/**/*.aac
+projects/**/*.ogg
+# VOICEVOX /speaker_info dumps embed portraits, icons and voice samples as base64.
+# Fetch them again from the engine when needed.
+projects/**/assets/voicevox/
+projects/2026/11/13/dotonbori/plateau/*

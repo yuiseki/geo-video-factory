@@ -1,0 +1,163 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "credits": [
+    "地図の位置は概略"
+  ],
+  "shots": [
+    {
+      "duration": 3,
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.2,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.2,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.50115,
+            34.66881
+          ],
+          "text": "道頓堀川",
+          "style": "tag",
+          "dot": true,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 3,
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.2,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.2,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "dot": true,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 3,
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.2,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.2,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.78746,
+            35.69521
+          ],
+          "text": "両国・柳橋",
+          "style": "tag",
+          "dot": true,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 3,
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.50115,
+            34.66881
+          ],
+          "text": "大阪市",
+          "style": "tag",
+          "dot": true,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ],
+  "osmLabels": true
+}

@@ -1,0 +1,227 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.2,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "credits": [
+    "地図の位置は概略"
+  ],
+  "shots": [
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": -7
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "大阪・道頓堀のたこ焼き屋に入ったら、店員さんはみんな外国の人に見えて、",
+          "speech": "大阪・道頓堀のたこ焼き屋に入ったら、店員さんはみんな外国の人に見えて、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "道頓堀からコスモスクエアへ",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 40,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.08,
+        "pitch": 43,
+        "bearing": 13
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "来ているお客さんも海外から。英語で注文が進んで、目の前には大阪名物のたこ焼き。",
+          "speech": "来ているお客さんも海外から。英語で注文が進んで、目の前には大阪名物のたこ焼き。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/takoyaki.jpg",
+          "caption": "道頓堀のたこ焼き店（別店舗・イメージ）",
+          "credit": "写真：City Foodsters / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 40,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 15.379999999999999,
+        "pitch": 43,
+        "bearing": 28
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "そこにあるのは「大阪のたこ焼き屋」という商売のミームだけ……そんな気がしたのだ。",
+          "speech": "そこにあるのは「大阪のたこ焼き屋」という商売のミームだけ……そんな気がしたのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/takoyaki.jpg",
+          "caption": "道頓堀のたこ焼き店（別店舗・イメージ）",
+          "credit": "写真：City Foodsters / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 40,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50175,
+          34.66911
+        ],
+        "zoom": 14.78,
+        "pitch": 43,
+        "bearing": 8
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "でも、たこ焼きは絶品だったそうね。しかも、焼きたてではなかったのにおいしかった。",
+          "speech": "でも、たこ焼きは絶品だったそうね。しかも、焼きたてではなかったのにおいしかった。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/takoyaki.jpg",
+          "caption": "道頓堀のたこ焼き店（別店舗・イメージ）",
+          "credit": "写真：City Foodsters / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 820,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+[
+  {
+    "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
+    "camera": [
+      135.5006158,
+      34.668164499999996
+    ],
+    "subject": null
+  },
+  {
+    "src": "assets/gyazo/63fec71eed55499db29276a87216b48f.jpg",
+    "camera": [
+      135.5014261,
+      34.669106199999995
+    ],
+    "subject": {
+      "at": [
+        135.5027289,
+        34.6692927
+      ],
+      "name": "ドン・キホーテ道頓堀店"
+    }
+  },
+  {
+    "src": "assets/gyazo/9e289c21ab57679c2ac005f95818c4f1.jpg",
+    "camera": [
+      135.501304,
+      34.6688871
+    ],
+    "subject": null
+  },
+  {
+    "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
+    "camera": [
+      135.5005517,
+      34.669199
+    ],
+    "subject": {
+      "at": [
+        135.5010546,
+        34.668926
+      ],
+      "name": "グリコサイン"
+    }
+  },
+  {
+    "src": "assets/gyazo/f01c299b67d773988e5257a0fecd41cb.jpg",
+    "camera": [
+      135.5012716,
+      34.6687594
+    ],
+    "subject": {
+      "at": [
+        135.5009117,
+        34.6684231
+      ],
+      "name": "大阪松竹座"
+    }
+  },
+  {
+    "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
+    "camera": [
+      135.5004038,
+      34.6684591
+    ],
+    "subject": null
+  }
+]

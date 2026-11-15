@@ -1,0 +1,1216 @@
+{
+  "created_utc": "2026-11-13T09:28:16.791371+00:00",
+  "zoom": 16,
+  "attribution": "出典：国土地理院（地理院タイル）を加工 https://maps.gsi.go.jp/development/ichiran.html",
+  "notes": [
+    "年代はタイル提供元の範囲。個別の撮影日は未確認。",
+    "透明部は画像の欠落または範囲外。海や埋立前を意味するとは限らない。",
+    "gazo1〜4はRGB各値3以下の画素を欠損として透明化。元タイルはrawに保存。",
+    "旧写真と現代地図の位置にはずれがあり得る。"
+  ],
+  "places": {
+    "dotonbori": {
+      "name": "道頓堀・戎橋周辺",
+      "center_lon_lat": [
+        135.50115,
+        34.66881
+      ],
+      "bbox_west_south_east_north": [
+        135.494384765625,
+        34.664840578219284,
+        135.50537109375,
+        34.67387626588272
+      ],
+      "layers": {
+        "ort_1928": {
+          "period": "1928年頃",
+          "mosaic_file": "dotonbori/ort_1928.png",
+          "visible_fraction": 0.9784,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_1928/16/57434/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_1928/16/57434/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_1928/16/57435/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_1928/16/57435/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_1928/16/57434/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_1928/16/57434/26032.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_1928/16/57435/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_1928/16/57435/26032.png"
+            }
+          ]
+        },
+        "ort_riku10": {
+          "period": "1936年〜1942年頃",
+          "mosaic_file": "dotonbori/ort_riku10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/57434/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_riku10/16/57434/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/57435/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_riku10/16/57435/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/57434/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_riku10/16/57434/26032.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/57435/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_riku10/16/57435/26032.png"
+            }
+          ]
+        },
+        "ort_USA10": {
+          "period": "1945年〜1950年",
+          "mosaic_file": "dotonbori/ort_USA10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57434/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_USA10/16/57434/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57435/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_USA10/16/57435/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57434/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_USA10/16/57434/26032.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57435/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_USA10/16/57435/26032.png"
+            }
+          ]
+        },
+        "ort_old10": {
+          "period": "1961年〜1969年",
+          "mosaic_file": "dotonbori/ort_old10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57434/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_old10/16/57434/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57435/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_old10/16/57435/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57434/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_old10/16/57434/26032.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57435/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/ort_old10/16/57435/26032.png"
+            }
+          ]
+        },
+        "gazo1": {
+          "period": "1974年〜1978年",
+          "mosaic_file": "dotonbori/gazo1.png",
+          "visible_fraction": 0.9989,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57434/26031.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/gazo1/16/57434/26031.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57435/26031.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/gazo1/16/57435/26031.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57434/26032.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/gazo1/16/57434/26032.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57435/26032.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/gazo1/16/57435/26032.jpg"
+            }
+          ]
+        },
+        "gazo4": {
+          "period": "1987年〜1990年",
+          "mosaic_file": null,
+          "visible_fraction": 0.0,
+          "target_pixel_has_image": false,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57434/26031.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57435/26031.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57434/26032.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57435/26032.jpg",
+              "http_status": 404
+            }
+          ]
+        },
+        "seamlessphoto": {
+          "period": "全国最新写真（複数時期の合成）",
+          "mosaic_file": "dotonbori/seamlessphoto.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57434/26031.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/seamlessphoto/16/57434/26031.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57435/26031.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/seamlessphoto/16/57435/26031.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57434/26032.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/seamlessphoto/16/57434/26032.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57435/26032.jpg",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/seamlessphoto/16/57435/26032.jpg"
+            }
+          ]
+        },
+        "std": {
+          "period": "標準地図",
+          "mosaic_file": "dotonbori/std.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57434/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/std/16/57434/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57435/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/std/16/57435/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57434/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/std/16/57434/26032.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57435/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/std/16/57435/26032.png"
+            }
+          ]
+        },
+        "pale": {
+          "period": "淡色地図",
+          "mosaic_file": "dotonbori/pale.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57434/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/pale/16/57434/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57435/26031.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/pale/16/57435/26031.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57434/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/pale/16/57434/26032.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57435/26032.png",
+              "http_status": 200,
+              "raw_file": "dotonbori/raw/pale/16/57435/26032.png"
+            }
+          ]
+        }
+      }
+    },
+    "yanagibashi": {
+      "name": "柳橋・両国橋周辺",
+      "center_lon_lat": [
+        139.78746,
+        35.69521
+      ],
+      "bbox_west_south_east_north": [
+        139.7845458984375,
+        35.688533207388744,
+        139.7955322265625,
+        35.69745580725804
+      ],
+      "layers": {
+        "ort_riku10": {
+          "period": "1936年〜1942年頃",
+          "mosaic_file": "yanagibashi/ort_riku10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58215/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_riku10/16/58215/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58216/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_riku10/16/58216/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58215/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_riku10/16/58215/25804.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58216/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_riku10/16/58216/25804.png"
+            }
+          ]
+        },
+        "ort_USA10": {
+          "period": "1945年〜1950年",
+          "mosaic_file": "yanagibashi/ort_USA10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58215/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_USA10/16/58215/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58216/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_USA10/16/58216/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58215/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_USA10/16/58215/25804.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58216/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_USA10/16/58216/25804.png"
+            }
+          ]
+        },
+        "ort_old10": {
+          "period": "1961年〜1969年",
+          "mosaic_file": "yanagibashi/ort_old10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58215/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_old10/16/58215/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58216/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_old10/16/58216/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58215/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_old10/16/58215/25804.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58216/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/ort_old10/16/58216/25804.png"
+            }
+          ]
+        },
+        "gazo1": {
+          "period": "1974年〜1978年",
+          "mosaic_file": "yanagibashi/gazo1.png",
+          "visible_fraction": 0.9979,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58215/25803.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo1/16/58215/25803.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58216/25803.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo1/16/58216/25803.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58215/25804.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo1/16/58215/25804.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58216/25804.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo1/16/58216/25804.jpg"
+            }
+          ]
+        },
+        "gazo4": {
+          "period": "1987年〜1990年",
+          "mosaic_file": "yanagibashi/gazo4.png",
+          "visible_fraction": 0.9999,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58215/25803.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo4/16/58215/25803.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58216/25803.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo4/16/58216/25803.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58215/25804.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo4/16/58215/25804.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58216/25804.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/gazo4/16/58216/25804.jpg"
+            }
+          ]
+        },
+        "seamlessphoto": {
+          "period": "全国最新写真（複数時期の合成）",
+          "mosaic_file": "yanagibashi/seamlessphoto.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58215/25803.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/seamlessphoto/16/58215/25803.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58216/25803.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/seamlessphoto/16/58216/25803.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58215/25804.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/seamlessphoto/16/58215/25804.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58216/25804.jpg",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/seamlessphoto/16/58216/25804.jpg"
+            }
+          ]
+        },
+        "std": {
+          "period": "標準地図",
+          "mosaic_file": "yanagibashi/std.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58215/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/std/16/58215/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58216/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/std/16/58216/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58215/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/std/16/58215/25804.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58216/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/std/16/58216/25804.png"
+            }
+          ]
+        },
+        "pale": {
+          "period": "淡色地図",
+          "mosaic_file": "yanagibashi/pale.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58215/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/pale/16/58215/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58216/25803.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/pale/16/58216/25803.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58215/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/pale/16/58215/25804.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58216/25804.png",
+              "http_status": 200,
+              "raw_file": "yanagibashi/raw/pale/16/58216/25804.png"
+            }
+          ]
+        }
+      }
+    },
+    "shimbashi": {
+      "name": "新橋跡・汐留川周辺",
+      "center_lon_lat": [
+        139.7617,
+        35.6666
+      ],
+      "bbox_west_south_east_north": [
+        139.757080078125,
+        35.66175941929504,
+        139.76806640625,
+        35.67068501330237
+      ],
+      "layers": {
+        "ort_riku10": {
+          "period": "1936年〜1942年頃",
+          "mosaic_file": "shimbashi/ort_riku10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58210/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_riku10/16/58210/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58211/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_riku10/16/58211/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58210/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_riku10/16/58210/25810.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_riku10/16/58211/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_riku10/16/58211/25810.png"
+            }
+          ]
+        },
+        "ort_USA10": {
+          "period": "1945年〜1950年",
+          "mosaic_file": "shimbashi/ort_USA10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58210/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_USA10/16/58210/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58211/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_USA10/16/58211/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58210/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_USA10/16/58210/25810.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/58211/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_USA10/16/58211/25810.png"
+            }
+          ]
+        },
+        "ort_old10": {
+          "period": "1961年〜1969年",
+          "mosaic_file": "shimbashi/ort_old10.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58210/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_old10/16/58210/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58211/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_old10/16/58211/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58210/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_old10/16/58210/25810.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/58211/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/ort_old10/16/58211/25810.png"
+            }
+          ]
+        },
+        "gazo1": {
+          "period": "1974年〜1978年",
+          "mosaic_file": "shimbashi/gazo1.png",
+          "visible_fraction": 0.9562,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58210/25809.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo1/16/58210/25809.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58211/25809.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo1/16/58211/25809.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58210/25810.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo1/16/58210/25810.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/58211/25810.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo1/16/58211/25810.jpg"
+            }
+          ]
+        },
+        "gazo4": {
+          "period": "1987年〜1990年",
+          "mosaic_file": "shimbashi/gazo4.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58210/25809.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo4/16/58210/25809.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58211/25809.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo4/16/58211/25809.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58210/25810.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo4/16/58210/25810.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/58211/25810.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/gazo4/16/58211/25810.jpg"
+            }
+          ]
+        },
+        "seamlessphoto": {
+          "period": "全国最新写真（複数時期の合成）",
+          "mosaic_file": "shimbashi/seamlessphoto.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58210/25809.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/seamlessphoto/16/58210/25809.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58211/25809.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/seamlessphoto/16/58211/25809.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58210/25810.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/seamlessphoto/16/58210/25810.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/58211/25810.jpg",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/seamlessphoto/16/58211/25810.jpg"
+            }
+          ]
+        },
+        "std": {
+          "period": "標準地図",
+          "mosaic_file": "shimbashi/std.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58210/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/std/16/58210/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58211/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/std/16/58211/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58210/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/std/16/58210/25810.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/58211/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/std/16/58211/25810.png"
+            }
+          ]
+        },
+        "pale": {
+          "period": "淡色地図",
+          "mosaic_file": "shimbashi/pale.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58210/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/pale/16/58210/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58211/25809.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/pale/16/58211/25809.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58210/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/pale/16/58210/25810.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/58211/25810.png",
+              "http_status": 200,
+              "raw_file": "shimbashi/raw/pale/16/58211/25810.png"
+            }
+          ]
+        }
+      }
+    },
+    "cosmosquare": {
+      "name": "コスモスクエア駅北方の沖合（参考）",
+      "center_lon_lat": [
+        135.41238,
+        34.64713
+      ],
+      "bbox_west_south_east_north": [
+        135.406494140625,
+        34.642247047768535,
+        135.41748046875,
+        34.65128519895414
+      ],
+      "layers": {
+        "ort_USA10": {
+          "period": "1945年〜1950年",
+          "mosaic_file": null,
+          "visible_fraction": 0.0,
+          "target_pixel_has_image": false,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57418/26036.png",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57419/26036.png",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57418/26037.png",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57419/26037.png",
+              "http_status": 404
+            }
+          ]
+        },
+        "ort_old10": {
+          "period": "1961年〜1969年",
+          "mosaic_file": "cosmosquare/ort_old10.png",
+          "visible_fraction": 0.5458,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57418/26036.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/ort_old10/16/57418/26036.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57419/26036.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/ort_old10/16/57419/26036.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57418/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/ort_old10/16/57418/26037.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57419/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/ort_old10/16/57419/26037.png"
+            }
+          ]
+        },
+        "gazo1": {
+          "period": "1974年〜1978年",
+          "mosaic_file": "cosmosquare/gazo1.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57418/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo1/16/57418/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57419/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo1/16/57419/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo1/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo1/16/57419/26037.jpg"
+            }
+          ]
+        },
+        "gazo2": {
+          "period": "1979年〜1983年",
+          "mosaic_file": "cosmosquare/gazo2.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57418/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo2/16/57418/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57419/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo2/16/57419/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo2/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo2/16/57419/26037.jpg"
+            }
+          ]
+        },
+        "gazo3": {
+          "period": "1984年〜1986年",
+          "mosaic_file": "cosmosquare/gazo3.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57418/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo3/16/57418/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57419/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo3/16/57419/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo3/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/gazo3/16/57419/26037.jpg"
+            }
+          ]
+        },
+        "gazo4": {
+          "period": "1987年〜1990年",
+          "mosaic_file": null,
+          "visible_fraction": 0.0,
+          "target_pixel_has_image": false,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57418/26036.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57419/26036.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57418/26037.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57419/26037.jpg",
+              "http_status": 404
+            }
+          ]
+        },
+        "seamlessphoto": {
+          "period": "全国最新写真（複数時期の合成）",
+          "mosaic_file": "cosmosquare/seamlessphoto.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57418/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/seamlessphoto/16/57418/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57419/26036.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/seamlessphoto/16/57419/26036.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/seamlessphoto/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare/raw/seamlessphoto/16/57419/26037.jpg"
+            }
+          ]
+        }
+      }
+    },
+    "cosmosquare_station": {
+      "name": "コスモスクエア駅・咲洲周辺",
+      "center_lon_lat": [
+        135.4125,
+        34.6427
+      ],
+      "bbox_west_south_east_north": [
+        135.406494140625,
+        34.63772760271713,
+        135.41748046875,
+        34.6467662465191
+      ],
+      "layers": {
+        "ort_USA10": {
+          "period": "1945年〜1950年",
+          "mosaic_file": null,
+          "visible_fraction": 0.0,
+          "target_pixel_has_image": false,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57418/26037.png",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57419/26037.png",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57418/26038.png",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_USA10/16/57419/26038.png",
+              "http_status": 404
+            }
+          ]
+        },
+        "ort_old10": {
+          "period": "1961年〜1969年",
+          "mosaic_file": "cosmosquare_station/ort_old10.png",
+          "visible_fraction": 0.5428,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57418/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/ort_old10/16/57418/26037.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57419/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/ort_old10/16/57419/26037.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57418/26038.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/ort_old10/16/57418/26038.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/ort_old10/16/57419/26038.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/ort_old10/16/57419/26038.png"
+            }
+          ]
+        },
+        "gazo1": {
+          "period": "1974年〜1978年",
+          "mosaic_file": "cosmosquare_station/gazo1.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo1/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo1/16/57419/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57418/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo1/16/57418/26038.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo1/16/57419/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo1/16/57419/26038.jpg"
+            }
+          ]
+        },
+        "gazo2": {
+          "period": "1979年〜1983年",
+          "mosaic_file": "cosmosquare_station/gazo2.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo2/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo2/16/57419/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57418/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo2/16/57418/26038.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo2/16/57419/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo2/16/57419/26038.jpg"
+            }
+          ]
+        },
+        "gazo3": {
+          "period": "1984年〜1986年",
+          "mosaic_file": "cosmosquare_station/gazo3.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo3/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo3/16/57419/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57418/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo3/16/57418/26038.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo3/16/57419/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/gazo3/16/57419/26038.jpg"
+            }
+          ]
+        },
+        "gazo4": {
+          "period": "1987年〜1990年",
+          "mosaic_file": null,
+          "visible_fraction": 0.0,
+          "target_pixel_has_image": false,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57418/26037.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57419/26037.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57418/26038.jpg",
+              "http_status": 404
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/gazo4/16/57419/26038.jpg",
+              "http_status": 404
+            }
+          ]
+        },
+        "seamlessphoto": {
+          "period": "全国最新写真（複数時期の合成）",
+          "mosaic_file": "cosmosquare_station/seamlessphoto.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57418/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/seamlessphoto/16/57418/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57419/26037.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/seamlessphoto/16/57419/26037.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57418/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/seamlessphoto/16/57418/26038.jpg"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/16/57419/26038.jpg",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/seamlessphoto/16/57419/26038.jpg"
+            }
+          ]
+        },
+        "std": {
+          "period": "標準地図",
+          "mosaic_file": "cosmosquare_station/std.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57418/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/std/16/57418/26037.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57419/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/std/16/57419/26037.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57418/26038.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/std/16/57418/26038.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/std/16/57419/26038.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/std/16/57419/26038.png"
+            }
+          ]
+        },
+        "pale": {
+          "period": "淡色地図",
+          "mosaic_file": "cosmosquare_station/pale.png",
+          "visible_fraction": 1.0,
+          "target_pixel_has_image": true,
+          "tiles": [
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57418/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/pale/16/57418/26037.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57419/26037.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/pale/16/57419/26037.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57418/26038.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/pale/16/57418/26038.png"
+            },
+            {
+              "url": "https://cyberjapandata.gsi.go.jp/xyz/pale/16/57419/26038.png",
+              "http_status": 200,
+              "raw_file": "cosmosquare_station/raw/pale/16/57419/26038.png"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
