@@ -58,7 +58,7 @@ export interface CityRoofPhoto {
 
 export function createCityProxyMaterial(roof?: CityRoofPhoto): THREE.MeshStandardMaterial {
   const material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.88, metalness: 0, side: THREE.DoubleSide });
-  material.customProgramCacheKey = () => `city-proxy-v4${roof ? '-roof' : ''}`;
+  material.customProgramCacheKey = () => `city-proxy-v5${roof ? '-roof' : ''}`;
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, cityUniforms);
     if (roof) {
@@ -139,6 +139,7 @@ diffuseColor.rgb = mix(vec3(0.80, 0.80, 0.78), cityPainted, vCityPaint);`,
         `gl_FragColor.rgb = mix(gl_FragColor.rgb * 0.45 + vec3(0.52), gl_FragColor.rgb, vCityPaint);
 float cityWall = 1.0 - step(0.35, abs(vCityUp));
 float cityStyle = floor(vCityStyle.x + 0.5);
+float cityHouse = 1.0 - step(0.5, cityStyle);
 float cityEave = vCityStyle.y;
 float cityR = cityHash(vec2(vCityBatch, 3.7));
 float cityStorey = cityStyle > 0.5 ? 3.25 : 2.85;
@@ -169,6 +170,11 @@ vec3 cityGlass = mix(vec3(0.20, 0.24, 0.29), vec3(0.42, 0.48, 0.56), cityHash(ci
 gl_FragColor.rgb = mix(gl_FragColor.rgb, mix(vec3(0.27, 0.31, 0.37), cityGlass, cityDetail), cityGlassMix * 0.72);
 float cityBand = cityWall * (1.0 - step(1.5, cityStyle)) * (1.0 - smoothstep(0.0, 0.05, min(cityWy, 1.0 - cityWy))) * step(1.0, vCityUv.y) * cityDetail * vCityPaint;
 gl_FragColor.rgb *= 1.0 - cityBand * 0.08;
+// No wall stays flat: houses get lap siding, wall-less sheds get vertical slats.
+float citySiding = cityWall * cityHouse * (1.0 - smoothstep(0.0, 0.12, fract(vCityUv.y / 0.42))) * cityDetail * vCityPaint;
+gl_FragColor.rgb *= 1.0 - citySiding * 0.10;
+float citySlat = cityWall * step(1.5, cityStyle) * (1.0 - smoothstep(0.0, 0.25, fract(vCityUv.x / 0.55))) * cityDetail * vCityPaint;
+gl_FragColor.rgb *= 1.0 - citySlat * 0.22;
 gl_FragColor.rgb *= mix(1.0, mix(0.72, 1.0, smoothstep(0.2, 2.4, vCityUv.y)), cityWall);
 float cityLitShare = uCityWindows * (0.45 + 0.4 * cityR);
 float cityLit = step(1.0 - cityLitShare, cityHash(cityCellId + 4.2));

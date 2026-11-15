@@ -70,6 +70,9 @@ describe('city proxy material', () => {
     assert.match(shader.vertexShader, /cityGrow/);
     assert.match(shader.fragmentShader, /cityWindow/);
     assert.match(shader.fragmentShader, /vCityPaint/);
+    // every wall carries a pattern: windows, lap siding on houses, slats on wall-less sheds
+    assert.match(shader.fragmentShader, /citySiding/);
+    assert.match(shader.fragmentShader, /citySlat/);
     assert.equal(shader.uniforms.uCityNight, cityUniforms.uCityNight, 'uniforms are shared, not copied');
     const roof = createCityProxyMaterial({ texture: new THREE.Texture(), bounds: [-100, -50, 100, 150] });
     assert.notEqual(roof.customProgramCacheKey(), a.customProgramCacheKey());

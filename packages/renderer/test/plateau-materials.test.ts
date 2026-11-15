@@ -4,7 +4,8 @@ import * as THREE from "three";
 import {
   analyzeTextureTone,
   applyPlateauBuildingAppearance,
-  neutralizePbr
+  neutralizePbr,
+  plateauRoofUniforms
 } from "../src/page/plateau-materials.js";
 
 function makeSolidTexture(r: number, g: number, b: number, a = 255): THREE.DataTexture {
@@ -72,8 +73,9 @@ describe("plateau-materials", () => {
     };
     updated.onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
     assert.equal("uPlateauPalette" in shader.uniforms, false);
-    assert.match(shader.fragmentShader, /graySurface = 1\.0 - smoothstep\(0\.07, 0\.19, cmax - cmin\)/);
-    assert.match(shader.fragmentShader, /facadeGlass/);
+    // the photo already is the facade: no procedural pattern on top of it
+    assert.match(shader.fragmentShader, /float graySurface = 0\.0;/);
+    assert.doesNotMatch(shader.fragmentShader, /curtainGlass/);
   });
 
   it("applies feature palette and procedural facade shader to untextured materials without rainbow hues", () => {
@@ -147,5 +149,53 @@ describe("photo-textured PLATEAU materials without an environment map", () => {
     const mirror = new THREE.MeshStandardMaterial({ metalness: 0, roughness: 0 });
     neutralizePbr(mirror);
     assert.ok(mirror.roughness >= 0.8, "mirror-smooth untextured walls do not flash highlights");
+  });
+});
+
+describe("no building is left as a flat, featureless surface", () => {
+  it("gives untextured PLATEAU buildings the facade pattern even without a palette", () => {
+    const geometry = new THREE.BoxGeometry(10, 10, 20);
+    geometry.setAttribute("_batchid", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xffffff }));
+    const root = new THREE.Group();
+    root.add(mesh);
+    applyPlateauBuildingAppearance(root, { palette: [], recolor: false });
+    const updated = mesh.material as THREE.MeshStandardMaterial;
+    assert.equal(updated.color.getHex(), 0xffffff, "without recolor the source color is kept");
+    const shader = {
+      uniforms: {} as Record<string, THREE.IUniform>,
+      vertexShader: "#include <common>\n#include <begin_vertex>",
+      fragmentShader: "#include <common>\n#include <color_fragment>\n#include <dithering_fragment>"
+    };
+    updated.onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    assert.match(shader.fragmentShader, /facadeWindow/);
+  });
+});
+
+describe("untextured PLATEAU buildings in the enhanced render", () => {
+  it("get a curtain-wall facade and the aerial photo on their roofs; photo-textured ones keep their photo", () => {
+    const geometry = new THREE.BoxGeometry(10, 10, 20);
+    geometry.setAttribute("_batchid", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    const plain = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xffffff }));
+    const photo = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ map: makeSolidTexture(120, 110, 100) }));
+    const root = new THREE.Group();
+    root.add(plain, photo);
+    applyPlateauBuildingAppearance(root, { palette: ["#c8c2b6"], seed: 3 });
+    const compile = (mesh: THREE.Mesh) => {
+      const shader = {
+        uniforms: {} as Record<string, THREE.IUniform>,
+        vertexShader: "#include <common>\n#include <begin_vertex>",
+        fragmentShader: "#include <common>\n#include <color_fragment>\n#include <dithering_fragment>"
+      };
+      (mesh.material as THREE.MeshStandardMaterial).onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+      return shader;
+    };
+    const a = compile(plain);
+    assert.match(a.fragmentShader, /curtainGlass/);
+    assert.match(a.fragmentShader, /houseWindow/, "low buildings get a house facade, not a glass tower");
+    assert.match(a.fragmentShader, /uPlateauRoofPhoto/);
+    assert.equal(a.uniforms.uPlateauRoofPhoto, plateauRoofUniforms.uPlateauRoofPhoto, "roof photo uniforms are shared");
+    const b = compile(photo);
+    assert.doesNotMatch(b.fragmentShader, /curtainGlass/);
   });
 });

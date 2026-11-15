@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
-import { applyBuildingAppearance, neutralizePbr } from './plateau-materials.js';
+import { applyBuildingAppearance, neutralizePbr, plateauRoofUniforms } from './plateau-materials.js';
 import { cityUniforms, createCityProxyMaterial, createCityShadowMaterial, type CityRoofPhoto } from './city-materials.js';
 import { cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
 
@@ -24,6 +24,8 @@ interface ModelTile {
 interface ModelManifest {
   format: 'geo-video-factory.plateau-3d/1';
   center?: [number, number];
+  /** Aerial photo for the roofs of untextured PLATEAU buildings, in local meters around center. */
+  roof_texture?: { image: string; bounds_m: [number, number, number, number] };
   tiles: ModelTile[];
 }
 
@@ -119,6 +121,16 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   const basis = rowBasis(center[0], center[1]);
   const heightOffset = config.heightOffset ?? 0;
   const workerCount = Math.max(1, Math.min(8, Math.floor(config.workers ?? 3)));
+  if (manifest.roof_texture && config.appearance !== false) {
+    const texture = await new THREE.TextureLoader().loadAsync(new URL(manifest.roof_texture.image, url).href);
+    texture.colorSpace = THREE.SRGBColorSpace;
+    texture.anisotropy = 8;
+    const [x0, y0, x1, y1] = manifest.roof_texture.bounds_m;
+    plateauRoofUniforms.uPlateauRoofPhoto.value = texture;
+    plateauRoofUniforms.uPlateauRoofMin.value.set(x0, y0);
+    plateauRoofUniforms.uPlateauRoofSize.value.set(x1 - x0, y1 - y0);
+    plateauRoofUniforms.uPlateauRoofOn.value = 1;
+  }
   let cursor = 0;
   let loadedTiles = 0;
   const loadWorker = async () => {
@@ -150,6 +162,9 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
           if (mesh.isMesh) mesh.material = material;
         });
       } else if (config.appearance !== false) {
+        // The enhanced render leaves no building flat: photo textures stay, untextured buildings
+        // get a facade and the aerial photo on their roofs. appearance: false is the untouched
+        // "before" reference of a comparison.
         applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl);
       }
       scene.add(gltf.scene);

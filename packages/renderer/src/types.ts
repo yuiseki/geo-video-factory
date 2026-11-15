@@ -329,7 +329,7 @@ export interface PlateauBuildingsConfig {
   heightOffset?: number;
   /** Deterministic worker count for loading model assets. Defaults to 3. */
   workers?: number;
-  /** Apply orthophoto palette and procedural facade appearance. Defaults to true. */
+  /** Recolor buildings with the orthophoto palette. Defaults to true. The facade pattern is always applied. */
   appearance?: boolean;
   /** Buildings rise out of the ground in a wave from a point (city-proxy tiles). */
   reveal?: CityReveal;

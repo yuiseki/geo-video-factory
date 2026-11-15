@@ -47,7 +47,12 @@ export function wipeFilter(keys: WipeKeys, line = 4, labels: { before?: string; 
   return `[${before}]format=gbrp[wa];[${after}]format=gbrp[wb];[wa][wb]blend=all_expr='${blend}',format=yuv420p[${out}]`;
 }
 
-/** Play `intro` first, then the before/after slider of `before` and `after` (inputs 0, 1, 2). */
-export function introThenWipeFilter(keys: WipeKeys, line = 4): string {
-  return `${wipeFilter(keys, line, { before: '1:v', after: '2:v', out: 'w' })};[0:v]format=yuv420p[i];[i][w]concat=n=2:v=1:a=0[v]`;
+/**
+ * Several before/after sliders played one after another. Inputs come in pairs: part k uses input
+ * 2k (before) and 2k+1 (after), with its own divider keys (times within that part).
+ */
+export function wipeSequenceFilter(parts: WipeKeys[], line = 4): string {
+  const graphs = parts.map((keys, k) => wipeFilter(keys, line, { before: `${2 * k}:v`, after: `${2 * k + 1}:v`, out: `p${k}` }));
+  const joined = parts.map((_, k) => `[p${k}]`).join('');
+  return `${graphs.join(';')};${joined}concat=n=${parts.length}:v=1:a=0[v]`;
 }

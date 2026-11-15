@@ -27,8 +27,8 @@ BBOX = [139.302, 35.736, 139.336, 35.768]  # Tokyo Hamura (0% PLATEAU -> 100% OS
 # Opening: the 3D Tokyo everyone expects (West Shinjuku high-rises, textured PLATEAU).
 SHINJUKU_BBOX = [139.684, 35.683, 139.702, 35.697]
 SEED = "tokyo-sota-v1"
-SOTA_VERSION = 6  # bump when the SOTA assets change shape, so cached ones are rebuilt
-FIXTURES = ("buildings-tokyo-sota-prelude.json", "buildings-tokyo-sota-baseline.json", "buildings-tokyo-sota-enhanced.json")
+SOTA_VERSION = 8  # bump when the SOTA assets change shape, so cached ones are rebuilt
+FIXTURES = ("buildings-tokyo-sota-prelude.json", "buildings-tokyo-sota-prelude-enhanced.json", "buildings-tokyo-sota-baseline.json", "buildings-tokyo-sota-enhanced.json")
 # Set OVERPASS_URL to your own Overpass instance; the public ones are shared resources.
 OVERPASS_ENDPOINTS = [os.environ["OVERPASS_URL"]] if os.environ.get("OVERPASS_URL") else [
     "https://overpass-api.de/api/interpreter",
@@ -141,6 +141,15 @@ def crop_orthophoto(img: Image.Image, img_bounds: list[float], target_bbox: list
     return img.crop((x0, y0, x1, y1))
 
 
+def roof_texture_entry(image: str, bounds: list[float], center: list[float]) -> dict:
+    """Photo bounds in the renderer's local meters around the manifest center."""
+    kx = 111_320.0 * math.cos(math.radians(center[1]))
+    ky = 110_950.0
+    w, s, e, n = bounds
+    return {"image": image, "bounds": bounds,
+            "bounds_m": [(w - center[0]) * kx, (s - center[1]) * ky, (e - center[0]) * kx, (n - center[1]) * ky]}
+
+
 def main() -> None:
     if len(sys.argv) < 2:
         raise SystemExit("usage: prepare-buildings-tokyo-sota.py WORK_PROJECT [FIXTURE...]")
@@ -196,6 +205,25 @@ def main() -> None:
         print(f"prepared {manifest['tile_count']} Shinjuku PLATEAU tiles ({manifest['tile_ids']} buildings)")
     else:
         print(f"using cached Shinjuku PLATEAU models: {prelude_dir}")
+
+    # Enhanced Shinjuku: same PLATEAU models, a facade palette for the untextured ones and the
+    # aerial photo for their roofs (the renderer adds the facade pattern).
+    prelude_sota_dir = assets_root / "shinjuku-sota"
+    if not cache_is_complete(prelude_sota_dir / "manifest.json", require_sota=True):
+        if prelude_sota_dir.exists():
+            shutil.rmtree(prelude_sota_dir)
+        shutil.copytree(prelude_dir, prelude_sota_dir)
+        shinjuku = json.loads((prelude_sota_dir / "manifest.json").read_text(encoding="utf-8"))
+        heights = {}
+        for tile in shinjuku["tiles"]:
+            heights.update(extract_glb_feature_heights((prelude_sota_dir / tile["glb"]).read_bytes(), tile["rtc"], tile["ids"]))
+            tile["facade_colors"] = [wall_hex(str(i), heights.get(str(i), {}).get("height", 20.0)) for i in tile["ids"]]
+        photo, photo_bounds = orthophoto_texture(SHINJUKU_BBOX, assets_root / "gsi-cache", zoom=18)
+        photo.save(prelude_sota_dir / "roof-photo.jpg", quality=90)
+        shinjuku["roof_texture"] = roof_texture_entry("roof-photo.jpg", photo_bounds, shinjuku["center"])
+        shinjuku["sota_prepared"] = SOTA_VERSION
+        (prelude_sota_dir / "manifest.json").write_text(json.dumps(shinjuku, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        print(f"prepared enhanced Shinjuku manifest ({len(heights)} buildings)")
 
     if not cache_is_complete(sota_manifest_path, require_sota=True):
         if sota_dir.exists():
@@ -265,6 +293,7 @@ def main() -> None:
         )
         manifest["sota_prepared"] = SOTA_VERSION
         manifest["plateau_building_count"] = len(plateau)
+        manifest["roof_texture"] = roof_texture_entry("roof-photo.jpg", roof_bounds, manifest["center"])
         sota_manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(
             f"prepared SOTA manifest in {sota_dir}: {manifest['tile_count']} tiles, "

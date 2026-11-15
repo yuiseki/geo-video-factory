@@ -134,6 +134,10 @@ class CityProxyTest(unittest.TestCase):
         self.assertAlmostEqual(maxy - miny, 0.02 * KY, delta=1)
         self.assertAlmostEqual(minx, (139.31 - 139.32) * KX, delta=1)
 
+    def test_wall_hex_carries_the_facade_style_in_its_alpha(self):
+        self.assertRegex(cp.wall_hex('a', 30.0), r'^#[0-9a-f]{6}ff$')
+        self.assertRegex(cp.wall_hex('a', 6.0), r'^#[0-9a-f]{6}c8$')
+
 
 class CityShadowTest(unittest.TestCase):
     def test_shadows_fall_away_from_the_sun_lie_on_the_ground_and_do_not_double_up(self):

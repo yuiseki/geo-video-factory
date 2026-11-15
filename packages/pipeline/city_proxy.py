@@ -59,9 +59,11 @@ def wall_color(identifier: str, style: int) -> tuple[float, float, float]:
 
 
 def wall_hex(identifier: str, height: float) -> str:
-    """Facade color for a building modelled elsewhere (e.g. untextured PLATEAU), matching the proxies."""
-    r, g, b = wall_color(identifier, 1 if height >= 10 else 0)
-    return '#' + ''.join(f'{round(v * 255):02x}' for v in (r, g, b))
+    """Facade color for a building modelled elsewhere (e.g. untextured PLATEAU), matching the proxies.
+    The alpha byte tells the renderer the facade style: ff tall (curtain wall), c8 low (house)."""
+    tall = height >= 12
+    r, g, b = wall_color(identifier, 1 if tall else 0)
+    return '#' + ''.join(f'{round(v * 255):02x}' for v in (r, g, b)) + ('ff' if tall else 'c8')
 
 
 def roof_color(sample: tuple[int, int, int] | None, identifier: str) -> tuple[float, float, float]:

@@ -4,15 +4,18 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { prepareVideoOutput } from './video-e2e.js';
-import { introThenWipeFilter, type WipeKeys } from '../../src/compose.js';
+import { wipeSequenceFilter, type WipeKeys } from '../../src/compose.js';
 
 const videoName = 'buildings-tokyo-sota';
 const baselineFixture = 'buildings-tokyo-sota-baseline.json';
 const enhancedFixture = 'buildings-tokyo-sota-enhanced.json';
 const preludeFixture = 'buildings-tokyo-sota-prelude.json';
+const preludeEnhancedFixture = 'buildings-tokyo-sota-prelude-enhanced.json';
 const prepareScript = 'test/e2e/prepare-buildings-tokyo-sota.py';
 // Before/after slider: fraction of the width (from the left) that shows the baseline.
-// Times are within the main part, which follows the 11 s opening (Shinjuku, then 35 km west).
+// Opening (11 s): West Shinjuku as PLATEAU shows it, swept to the enhanced render, then 35 km west.
+const preludeWipe: WipeKeys = [[0, 1], [1.2, 1], [3.4, 0.5], [4.4, 0.5], [5.2, 0], [11, 0]];
+// Main part (times within it): Hamura rises and is painted, then the border and the final sweep.
 const wipe: WipeKeys = [[0, 0], [20, 0], [21.5, 0.5], [30.5, 0.5], [32, 0], [40.5, 0], [42, 1], [43, 1], [46.5, 0], [49, 0]];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
@@ -79,6 +82,12 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
     path.join(renderOutput, 'render', 'prelude'),
     'buildings-tokyo-sota-prelude',
   );
+  const preludeEnhancedVideo = renderVariant(
+    generatedProject,
+    preludeEnhancedFixture,
+    path.join(renderOutput, 'render', 'prelude-enhanced'),
+    'buildings-tokyo-sota-prelude-enhanced',
+  );
   const baselineVideo = renderVariant(
     generatedProject,
     baselineFixture,
@@ -98,10 +107,11 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
     [
       '-y',
       '-i', preludeVideo,
+      '-i', preludeEnhancedVideo,
       '-i', baselineVideo,
       '-i', enhancedVideo,
       '-filter_complex',
-      introThenWipeFilter(wipe, 4),
+      wipeSequenceFilter([preludeWipe, wipe], 4),
       '-map', '[v]',
       '-c:v', 'libx264',
       '-pix_fmt', 'yuv420p',
@@ -144,6 +154,14 @@ test(`${videoName} E2E fixtures configure a 720p before/after slider of baseline
   assert.equal(baseline.shots.length, enhanced.shots.length);
   assert.equal(seconds(prelude) + seconds(baseline), 60);
   assert.deepEqual([prelude.width, prelude.height], [1280, 720]);
+  const preludeEnhanced = JSON.parse(fs.readFileSync(path.join('test/fixtures', preludeEnhancedFixture), 'utf8'));
+  assert.equal(prelude.plateauBuildings.appearance, false);
+  assert.equal(preludeEnhanced.plateauBuildings.appearance, true);
+  for (let i = 0; i < prelude.shots.length; i++) {
+    assert.deepEqual(prelude.shots[i].from, preludeEnhanced.shots[i].from);
+    assert.deepEqual(prelude.shots[i].to, preludeEnhanced.shots[i].to);
+  }
+  assert.equal(preludeWipe[preludeWipe.length - 1]![0], seconds(prelude));
   assert.deepEqual(prelude.shots.at(-1).to, baseline.shots[0].from, 'the opening lands where the main part starts');
   for (let i = 0; i < baseline.shots.length; i++) {
     assert.deepEqual(baseline.shots[i].from, enhanced.shots[i].from);
