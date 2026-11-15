@@ -3,11 +3,12 @@ import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
-import { wgs84Ecef } from './plateau-coordinates.js';
+import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
 import { applyBuildingAppearance } from './plateau-materials.js';
 
 interface ModelTile {
   glb: string;
+  kind?: string;
   rtc: [number, number, number];
   bytes?: number;
   ids?: string[];
@@ -111,7 +112,7 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
       const modelUrl = new URL(tile.glb, url).href;
       const gltf = await loader.loadAsync(modelUrl);
       const delta = tile.rtc.map((value, index) => value - origin[index]!) as [number, number, number];
-      const localPosition: [number, number, number] = [dot(east, delta), dot(north, delta), dot(up, delta) + heightOffset];
+      const localPosition: [number, number, number] = [dot(east, delta), dot(north, delta), dot(up, delta) + tileHeightOffset(tile.kind, heightOffset)];
       const translate = new THREE.Matrix4().makeTranslation(...localPosition);
       gltf.scene.matrixAutoUpdate = false;
       gltf.scene.matrix.copy(translate).multiply(basis).multiply(yToZ);

@@ -1,2 +1,4 @@
 coverage>=7,<8
 Pillow>=10,<13
+DracoPy>=2,<3
+shapely>=2,<3

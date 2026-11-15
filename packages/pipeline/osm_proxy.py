@@ -248,10 +248,26 @@ def _polygons_intersect_bbox(polygons: list[list[list[list[float]]]], bbox_degre
 def build_osm_proxy_tiles(
     features: list[dict[str, Any]], bbox_degrees: list[float], output_dir: Path,
     *, plateau_ids: set[str] | None = None, seed: str = 'geo-video-factory',
-    orthophoto: Image.Image | None = None,
+    orthophoto: Image.Image | None = None, kind: str = 'osm-proxy',
+    plateau_footprints: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Extrude OSM footprints to local GLB and append them to the renderer manifest."""
     from building_appearance import assign_facade_colors, sample_polygon_color
+
+    if kind not in ('osm-proxy', 'citygml-proxy'):
+        raise ValueError(f'unsupported building proxy kind: {kind}')
+    footprint_tree = None
+    footprint_shapes = []
+    if kind == 'osm-proxy' and plateau_footprints is not None:
+        from shapely.geometry import shape
+        from shapely.strtree import STRtree
+        for feature in plateau_footprints:
+            geometry = feature.get('geometry')
+            if geometry:
+                polygon = shape(geometry)
+                if not polygon.is_empty and polygon.is_valid and polygon.area > 0:
+                    footprint_shapes.append(polygon)
+        footprint_tree = STRtree(footprint_shapes)
 
     if len(bbox_degrees) != 4 or bbox_degrees[0] >= bbox_degrees[2] or bbox_degrees[1] >= bbox_degrees[3]:
         raise ValueError('bbox must be [west, south, east, north] with positive area')
@@ -291,12 +307,20 @@ def build_osm_proxy_tiles(
             outer = poly[0]
             if len(outer) < 4 or outer[0] != outer[-1]:
                 raise ValueError(f'OSM building {identifier} has an invalid closed polygon')
-        if any(_point_in_polygon(point, poly) for poly in polygons for point in plateau_centroids):
-            continue
+        if kind == 'osm-proxy':
+            if footprint_tree is not None:
+                from shapely.geometry import shape
+                polygon = shape(feature['geometry'])
+                if not polygon.is_valid or polygon.area <= 0:
+                    raise ValueError(f'OSM building {identifier} has invalid geometry')
+                if any(polygon.intersection(footprint_shapes[int(i)]).area / polygon.area > 0.10 for i in footprint_tree.query(polygon)):
+                    continue
+            elif any(_point_in_polygon(point, poly) for poly in polygons for point in plateau_centroids):
+                continue
         if not _polygons_intersect_bbox(polygons, bbox_degrees):
             continue
         height = _height(properties)
-        explicit_color = properties.get('facade_color')
+        explicit_color = properties.get('facade_color') or (properties.get('color') if kind == 'citygml-proxy' else None)
         ortho_color = list(sample_polygon_color(orthophoto, polygons[0][0], bbox_degrees)) if (not explicit_color and orthophoto is not None) else [183, 174, 159]
         candidates.append({'id': identifier, 'polygons': polygons, 'ring': polygons[0][0], 'height': height, 'ortho_color': ortho_color, 'explicit_facade_color': explicit_color})
     colored = assign_facade_colors(candidates, seed=seed)
@@ -310,7 +334,7 @@ def build_osm_proxy_tiles(
         model_path.write_bytes(glb)
         ids = [building['id'] for building in buildings]
         tile = {
-            'source': 'osm://' + ids[0] if len(ids) == 1 else 'osm://proxy/' + hashlib.sha256('\n'.join(ids).encode()).hexdigest()[:20],
+            'source': ('citygml://' if kind == 'citygml-proxy' else 'osm://') + (ids[0] if len(ids) == 1 else 'proxy/' + hashlib.sha256('\n'.join(ids).encode()).hexdigest()[:20]),
             'glb': model_path.relative_to(output_dir).as_posix(),
             'sha256': digest,
             'source_sha256': hashlib.sha256(json.dumps(features, sort_keys=True, default=str).encode()).hexdigest(),
@@ -322,7 +346,7 @@ def build_osm_proxy_tiles(
             'region': [math.radians(bbox_degrees[0]), math.radians(bbox_degrees[1]), math.radians(bbox_degrees[2]), math.radians(bbox_degrees[3]), 0, max(building['height'] for building in buildings)],
             'depth': 0,
             'extensions': [],
-            'kind': 'osm-proxy',
+            'kind': kind,
         }
         manifest.setdefault('tiles', []).append(tile)
     all_ids = {str(identifier) for item in manifest.get('tiles', []) for identifier in item.get('ids', [])}
@@ -331,6 +355,7 @@ def build_osm_proxy_tiles(
     manifest['total_bytes'] = sum(int(item.get('bytes', 0)) for item in manifest.get('tiles', []))
     manifest['proxy_tile_count'] = sum(item.get('kind') == 'osm-proxy' for item in manifest.get('tiles', []))
     manifest['proxy_building_count'] = sum(len(item.get('ids', [])) for item in manifest.get('tiles', []) if item.get('kind') == 'osm-proxy')
+    manifest['citygml_proxy_building_count'] = sum(len(item.get('ids', [])) for item in manifest.get('tiles', []) if item.get('kind') == 'citygml-proxy')
     if buildings or manifest_path.exists():
         manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return manifest

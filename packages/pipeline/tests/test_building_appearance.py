@@ -15,6 +15,42 @@ plateau_3d = import_pipeline('plateau_3d')
 
 
 class BuildingAppearanceTests(unittest.TestCase):
+    def test_osm_overlap_uses_footprint_area_not_a_centroid(self):
+        def feature(identifier, west, east):
+            return {'type': 'Feature', 'id': identifier, 'properties': {'height': 9}, 'geometry': {
+                'type': 'Polygon', 'coordinates': [[[west, 35.70], [east, 35.70], [east, 35.701], [west, 35.701], [west, 35.70]]]}}
+        osm = [feature('way/overlap', 139.79, 139.80), feature('way/small', 139.81, 139.82)]
+        footprints = [feature('gml/a', 139.798, 139.801), feature('gml/b', 139.8195, 139.821)]
+        with TemporaryDirectory() as directory:
+            result = appearance.build_osm_proxy_tiles(osm, [139.78, 35.69, 139.83, 35.71], Path(directory), plateau_footprints=footprints)
+        self.assertEqual(result['tiles'][-1]['ids'], ['way/small'])
+
+    def test_palette_terminates_when_many_buildings_share_the_same_source_color(self):
+        buildings = [{'id': str(index), 'ortho_color': [183, 174, 159]} for index in range(500)]
+        with patch.object(appearance, '_varied_color', return_value='#888888') as color:
+            result = appearance.assign_facade_colors(buildings)
+        self.assertEqual(len(result), len(buildings))
+        self.assertLess(color.call_count, len(buildings) * 20)
+
+    def test_citygml_fallback_adds_only_missing_ids_as_ground_based_proxy(self):
+        ring = [[139.79, 35.70], [139.7901, 35.70], [139.7901, 35.7001], [139.79, 35.7001], [139.79, 35.70]]
+        features = [
+            {'type': 'Feature', 'id': identifier, 'properties': {'height': 8, 'color': '#8c9596'},
+             'geometry': {'type': 'Polygon', 'coordinates': [ring]}}
+            for identifier in ('bldg-existing', 'bldg-missing')
+        ]
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'manifest.json').write_text(json.dumps({
+                'format': 'geo-video-factory.plateau-3d/1', 'center': [139.79, 35.70],
+                'tiles': [{'ids': ['bldg-existing'], 'feature_centroids': {'bldg-existing': [139.79005, 35.70005]}}],
+            }))
+            result = appearance.build_osm_proxy_tiles(features, [139.78, 35.69, 139.80, 35.71], root, kind='citygml-proxy')
+            self.assertEqual(result['tiles'][-1]['kind'], 'citygml-proxy')
+            self.assertEqual(result['tiles'][-1]['ids'], ['bldg-missing'])
+            self.assertEqual(result['tiles'][-1]['facade_colors'], ['#8c9596'])
+            self.assertEqual(result['citygml_proxy_building_count'], 1)
+
     def test_samples_orthophoto_color_inside_building_polygon(self):
         image = Image.new('RGB', (100, 100), (36, 118, 74))
         ImageDraw.Draw(image).rectangle((30, 30, 69, 69), fill=(184, 132, 92))

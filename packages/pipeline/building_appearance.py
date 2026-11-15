@@ -126,7 +126,9 @@ def assign_facade_colors(
         rng = random.Random(hashlib.sha256(f'{seed}:{identity}'.encode()).digest())
         facade = _varied_color(color, rng)
         attempt = 0
-        while facade in seen:
+        # The finite RGB palette can be exhausted by large batches of similar roofs.
+        # Bound retries so thousands of buildings cannot stall preparation forever.
+        while facade in seen and attempt < 12:
             attempt += 1
             facade = _varied_color(color, random.Random(hashlib.sha256(f'{seed}:{identity}:{attempt}'.encode()).digest()))
         item['facade_color'] = facade

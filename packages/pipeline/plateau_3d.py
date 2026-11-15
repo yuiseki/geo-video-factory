@@ -336,12 +336,26 @@ def main() -> None:
     parser.add_argument('--workers', type=int, default=3)
     parser.add_argument('--orthophoto', type=Path, help='local GSI orthophoto mosaic covering --bbox')
     parser.add_argument('--osm-geojson', type=Path, help='OSM building FeatureCollection to add as missing-building proxies')
+    parser.add_argument('--citygml-geojson', type=Path, help='CityGML building footprints and heights as GeoJSON for PLATEAU models missing from the tiles')
     parser.add_argument('--seed', default='geo-video-factory', help='stable per-building appearance seed')
     args = parser.parse_args()
     manifest = prepare_tiles(args.tileset_url, args.bbox, args.out, max_texture_dimension=args.max_texture_dimension, workers=args.workers)
     if args.orthophoto:
         from building_appearance import apply_orthophoto_palette
         manifest = apply_orthophoto_palette(args.out, args.orthophoto, seed=args.seed)
+    citygml_features = None
+    if args.citygml_geojson:
+        from building_appearance import build_osm_proxy_tiles
+        citygml = json.loads(args.citygml_geojson.read_text(encoding='utf-8'))
+        features = citygml.get('features') if isinstance(citygml, dict) else None
+        if not isinstance(features, list):
+            raise ValueError('--citygml-geojson must contain a GeoJSON FeatureCollection')
+        citygml_features = features
+        ortho = None
+        if args.orthophoto:
+            with Image.open(args.orthophoto) as source:
+                ortho = source.convert('RGB')
+        manifest = build_osm_proxy_tiles(features, args.bbox, args.out, kind='citygml-proxy', seed=args.seed, orthophoto=ortho)
     if args.osm_geojson:
         from building_appearance import build_osm_proxy_tiles
         geojson = json.loads(args.osm_geojson.read_text(encoding='utf-8'))
@@ -353,7 +367,7 @@ def main() -> None:
             with Image.open(args.orthophoto) as source:
                 ortho = source.convert('RGB')
         plateau_ids = {str(identifier) for tile in manifest.get('tiles', []) for identifier in tile.get('ids', [])}
-        manifest = build_osm_proxy_tiles(features, args.bbox, args.out, plateau_ids=plateau_ids, seed=args.seed, orthophoto=ortho)
+        manifest = build_osm_proxy_tiles(features, args.bbox, args.out, plateau_ids=plateau_ids, seed=args.seed, orthophoto=ortho, plateau_footprints=citygml_features)
     print(json.dumps({k: v for k, v in manifest.items() if k != 'tiles'}, ensure_ascii=False))
 
 

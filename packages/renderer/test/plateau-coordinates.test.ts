@@ -3,6 +3,13 @@ import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { MercatorCoordinate } from 'maplibre-gl';
 import { ecefToEnu, wgs84Ecef } from '../src/page/plateau-coordinates.js';
+import { tileHeightOffset } from '../src/page/plateau-coordinates.js';
+
+test('ground-based proxy buildings do not inherit the PLATEAU ellipsoid height correction', () => {
+  assert.equal(tileHeightOffset(undefined, -39), -39);
+  assert.equal(tileHeightOffset('osm-proxy', -39), 0);
+  assert.equal(tileHeightOffset('citygml-proxy', -39), 0);
+});
 
 function enuMatrix(center: [number, number]): THREE.Matrix4 {
   const lambda = center[0] * Math.PI / 180;

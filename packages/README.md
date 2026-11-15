@@ -9,6 +9,7 @@ python3 packages/pipeline/plateau_3d.py 'https://example.invalid/tileset.json' \
   --bbox 139.775 35.680 139.810 35.718 \
   --out projects/example/assets/plateau \
   --orthophoto projects/example/assets/ortho.png \
+  --citygml-geojson projects/example/assets/plateau-footprints.geojson \
   --osm-geojson projects/example/assets/osm-buildings.geojson \
   --seed example-v1
 ```
@@ -19,6 +20,8 @@ python3 packages/pipeline/plateau_3d.py 'https://example.invalid/tileset.json' \
 
 - `--orthophoto` を指定すると、`pipeline/building_appearance.py` が PLATEAU 各建物の footprint 領域（または重心の近傍）から代表色をサンプリングし、明度・彩度を調和させた `facade_colors` を `manifest.json` に記録します。元の写真テクスチャのみを持つ建物は `null` となり、元のテクスチャが保持されます。
 - `--osm-geojson` を指定すると、PLATEAU の建物 ID および `feature_centroids` に含まれない OSM 建物ポリゴン（`Polygon` / `MultiPolygon`、穴あきポリゴン対応）を `height` または `building:levels × 3m` で押し出し、`_BATCHID` と `facade_colors` を備えたローカル GLB（`kind: "osm-proxy"`）として `manifest.json` へ追記します。
+- `--citygml-geojson` に CityGML から用意した建物 footprint と高さの FeatureCollection を渡すと、詳細タイルに ID がない建物を `citygml-proxy` として追加します。`height` はメートル、位置は WGS84 の経度・緯度で指定します。既存の `color` 属性またはオルソ由来の色を利用します。CityGML 自体の GeoJSON 変換はこの CLI の対象外です。
+- 両方の GeoJSON を渡した場合、OSM 建物と CityGML footprint の交差面積が OSM 建物の面積の 10% を超える建物は除外します。CityGML footprint を渡さない場合は従来の重心内包判定にフォールバックするため、部分重複の検出は不完全です。この空間判定には Shapely 2 が必要です。Draco 圧縮タイルの建物単位の位置・色の抽出には DracoPy 2 が必要です。両方とも `packages/pipeline/requirements-dev.txt` に記載しています。
 - レンダラー（`plateau-materials.ts`）は、テクスチャを持つマテリアルをそのまま保持し、テクスチャのないマテリアルおよび OSM プロキシに対して `_BATCHID` / `_FEATURE_ID_0` と `facade_colors` を用いた座標固定の疑似外観（階境界・窓・屋上グリッド）を適用します。
 
 配信元が許す範囲で元データを保持してください。マニフェストには取得元URL、ハッシュ、タイルID、RTC中心、利用拡張を記録します。
@@ -38,7 +41,7 @@ ShotSpecのトップレベルに `plateauBuildings` を指定します。マニ�
 }
 ```
 
-rendererは動画開始前にマニフェストとモデルを読み込み、WGS84 ECEFからローカルENUへ配置します。`heightOffset` はモデル全体の鉛直補正（メートル）で、既定値は0です。PLATEAUと地形の標高基準差が見える地域では、対象範囲に合わせて調整します。地図の地名やラスターは既存のMapLibreスタイルをそのまま使用します。
+rendererは動画開始前にマニフェストとモデルを読み込み、WGS84 ECEFからローカルENUへ配置します。`heightOffset` は PLATEAU 詳細モデルの鉛直補正（メートル）で、既定値は0です。地表を基準とする OSM・CityGML プロキシには適用しません。PLATEAUと地形の標高基準差が見える地域では、対象範囲に合わせて調整します。地図の地名やラスターは既存のMapLibreスタイルをそのまま使用します。
 
 ## 検証
 
