@@ -1,6 +1,7 @@
 {
   "name": "gsi-terrain-flyover",
   "private": true,
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "render": "node render.mjs",
