@@ -2,6 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
+import { registerVideoE2E } from './video-e2e.js';
 
 const videoName = 'buildings-asakusa';
 const fixturePath = path.join('test/fixtures', `${videoName}.json`);
@@ -13,6 +14,8 @@ export const buildingsAsakusaVideoCase = {
   prepareScript: 'test/e2e/prepare-buildings-asakusa.py',
   generatedProject: true,
 } as const;
+
+registerVideoE2E(buildingsAsakusaVideoCase);
 
 test(`${videoName} E2E case and output use the buildings- prefix`, () => {
   assert.match(videoName, /^buildings-/);

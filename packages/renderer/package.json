@@ -11,12 +11,13 @@
     "geo-video-render": "./dist/src/render.js"
   },
   "scripts": {
-    "build": "tsc && npm run bundle:page",
+    "build": "npm run clean:test-e2e && tsc && npm run bundle:page",
+    "clean:test-e2e": "node -e \"require('node:fs').rmSync('dist/test/e2e', { recursive: true, force: true })\"",
     "bundle:page": "esbuild src/page/flyover.ts --bundle --format=esm --platform=browser --target=es2022 --sourcemap --outfile=dist/src/page/flyover.js && node -e \"import('node:fs').then((fs) => fs.copyFileSync('node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs', 'dist/src/page/maplibre-gl-worker.mjs'))\"",
     "typecheck": "tsc --noEmit",
     "render": "node dist/src/render.js",
     "test": "npm run build && node --test \"dist/test/*.test.js\"",
-    "test:video": "npm run build && node --test --test-name-pattern='buildings-asakusa|E2E: renderer writes selected' dist/test/video.e2e.test.js",
+    "test:video": "npm run build && node --test dist/test/e2e/*.test.js",
     "test:coverage": "npm run build && node --experimental-test-coverage --test-skip-pattern=E2E --test-coverage-lines=65 --test-coverage-branches=80 --test-coverage-functions=90 --test \"dist/test/*.test.js\""
   },
   "dependencies": {
