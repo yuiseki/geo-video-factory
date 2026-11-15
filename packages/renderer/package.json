@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "tsc && npm run bundle:page",
-    "bundle:page": "esbuild src/page/flyover.ts --bundle --format=esm --platform=browser --target=es2022 --sourcemap --outfile=dist/src/page/flyover.js && cp node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs dist/src/page/maplibre-gl-worker.mjs",
+    "bundle:page": "esbuild src/page/flyover.ts --bundle --format=esm --platform=browser --target=es2022 --sourcemap --outfile=dist/src/page/flyover.js && node -e \"import('node:fs').then((fs) => fs.copyFileSync('node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs', 'dist/src/page/maplibre-gl-worker.mjs'))\"",
     "typecheck": "tsc --noEmit",
     "render": "node dist/src/render.js",
     "test": "npm run build && node --test \"dist/test/*.test.js\"",

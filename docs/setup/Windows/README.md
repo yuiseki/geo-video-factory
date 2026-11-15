@@ -1,22 +1,27 @@
 # Windows での開発環境セットアップ
 
-Windows 10 / 11（PowerShell）における依存ソフトウェアのインストールと初期確認の手順です。全体の流れや共通の設定は [SETUP.md](../../../../SETUP.md) を参照してください。
+Windows 10 / 11（PowerShell）における依存ソフトウェアのインストールと初期確認の手順です。全体の流れや共通の設定は [SETUP.md](../../../SETUP.md) を参照してください。
 
 ## 1. 必要なソフトウェアのインストール
 
 `winget` が使える環境では、PowerShell から次のツールを導入できます（`winget` が利用できない環境では、各公式サイトからインストーラーまたは ZIP 版を取得して `PATH` に通してください）。
 
 ```powershell
-winget install Git.Git
-winget install OpenJS.NodeJS.LTS
-winget install Python.Python.3.13
-winget install Gyan.FFmpeg
-winget install astral-sh.uv
-winget install Gitleaks.Gitleaks
+winget install --id Git.Git -e
+winget install --id OpenJS.NodeJS.LTS -e
+winget install --id Python.Python.3.13 -e
+winget install --id Gyan.FFmpeg -e
+winget install --id astral-sh.uv -e
+winget install --id Gitleaks.Gitleaks -e
 ```
 
 > [!NOTE]
-> `Gyan.FFmpeg` には `ffmpeg` と `ffprobe` の両方が含まれます。インストール後は新しい PowerShell ウィンドウを開き直して `PATH` を反映してください。
+> - `Gyan.FFmpeg` には `ffmpeg` と `ffprobe` の両方が含まれます。
+> - `winget` が PowerShell の `PATH` に見当たらない場合は、`& "$env:LOCALAPPDATA\Microsoft\WindowsApps\winget.exe" ...` で直接実行できます。
+> - インストール後は新しい PowerShell ウィンドウを開き直すか、次のコマンドで現在のセッションに `PATH` を再読み込みしてください：
+>   ```powershell
+>   $env:Path = [Environment]::GetEnvironmentVariable("Path","Machine") + ";" + [Environment]::GetEnvironmentVariable("Path","User")
+>   ```
 
 インストール後の確認（PowerShell）：
 
@@ -48,6 +53,8 @@ $env:PYTHONUTF8 = "1"
 
 ## 4. レンダラーと Playwright Chromium の準備
 
+`npm test` には Playwright Chromium と `ffmpeg` を使う E2E 動画生成テストが含まれます。先に上記で `ffmpeg` を導入し、Playwright のブラウザーをインストールしてからテストを実行してください。
+
 ```powershell
 cd packages\renderer
 npm install
@@ -56,6 +63,8 @@ npm run build
 npm test
 cd ..\..
 ```
+
+Windows ではレンダラーが ANGLE の Direct3D11 バックエンド（`--use-angle=d3d11`）を自動で選択するため、GPU 搭載機では追加設定なしでハードウェア WebGL が有効になります。
 
 ## 5. Python 仮想環境 (venv)
 

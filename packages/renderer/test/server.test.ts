@@ -3,7 +3,14 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { buildFrameTimes, contentType, parseSize, resolveProjectRoot, resolveRequestFile } from '../src/render.js';
+import { buildFrameTimes, contentType, parseSize, resolveProjectRoot, resolveRequestFile, chromiumGlArgs } from '../src/render.js';
+
+test('chromiumGlArgs picks OS-appropriate ANGLE GPU backend and supports swiftshader override', () => {
+  assert.deepEqual(chromiumGlArgs('win32'), ['--use-gl=angle', '--use-angle=d3d11', '--ignore-gpu-blocklist']);
+  assert.deepEqual(chromiumGlArgs('linux'), ['--use-gl=angle', '--use-angle=gl-egl', '--ignore-gpu-blocklist']);
+  assert.deepEqual(chromiumGlArgs('darwin'), ['--use-gl=angle', '--use-angle=metal', '--ignore-gpu-blocklist']);
+  assert.deepEqual(chromiumGlArgs('win32', 'swiftshader'), ['--use-angle=swiftshader', '--enable-unsafe-swiftshader']);
+});
 
 test('resolveProjectRoot uses explicit --project or parent of shots/ directory', () => {
   assert.equal(resolveProjectRoot('/tmp/p/shots/a.json'), path.resolve('/tmp/p'));

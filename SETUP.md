@@ -28,8 +28,8 @@ Node.js は保守中の LTS 版を使ってください。Python は Python 3.10
 
 環境固有のパッケージ導入手順は、OS ごとのドキュメントに分けています。
 
-- **Ubuntu (Linux)**: [docs/images/setup/Linux/Ubuntu/README.md](docs/images/setup/Linux/Ubuntu/README.md)
-- **Windows**: [docs/images/setup/Windows/README.md](docs/images/setup/Windows/README.md)
+- **Ubuntu (Linux)**: [docs/setup/Linux/Ubuntu/README.md](docs/setup/Linux/Ubuntu/README.md)
+- **Windows**: [docs/setup/Windows/README.md](docs/setup/Windows/README.md)
 
 ## リポジトリと秘密情報検査の準備
 

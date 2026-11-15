@@ -65,6 +65,14 @@ function isWithin(root: string, target: string): boolean {
   return rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel);
 }
 
+export function chromiumGlArgs(platform: NodeJS.Platform = process.platform, flyoverGl = process.env.FLYOVER_GL): string[] {
+  if (flyoverGl === 'swiftshader') {
+    return ['--use-angle=swiftshader', '--enable-unsafe-swiftshader'];
+  }
+  const angle = platform === 'win32' ? 'd3d11' : platform === 'darwin' ? 'metal' : 'gl-egl';
+  return ['--use-gl=angle', `--use-angle=${angle}`, '--ignore-gpu-blocklist'];
+}
+
 export function resolveRequestFile(urlPath: string, packageRoot: string, projectRoot: string): string | null {
   let clean: string;
   try {
@@ -161,11 +169,9 @@ async function main(): Promise<void> {
   const env: NodeJS.ProcessEnv = { ...process.env };
   delete env.DISPLAY;
   delete env.WAYLAND_DISPLAY;
-  // gl-egl reaches the NVIDIA GPU in headless mode; the default falls back to SwiftShader (CPU), which
-  // is far too slow for terrain. FLYOVER_GL=swiftshader forces the CPU path on machines without a GPU.
-  const GL = process.env.FLYOVER_GL === 'swiftshader'
-    ? ['--use-angle=swiftshader', '--enable-unsafe-swiftshader']
-    : ['--use-gl=angle', '--use-angle=gl-egl', '--ignore-gpu-blocklist'];
+  // Pick an OS-appropriate ANGLE GPU backend (d3d11 on Windows, gl-egl on Linux, metal on macOS);
+  // FLYOVER_GL=swiftshader forces the CPU path on machines without a GPU.
+  const GL = chromiumGlArgs();
   const browser = await chromium.launch({ env, args: GL });
   const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
 
@@ -263,11 +269,15 @@ async function main(): Promise<void> {
   if (stills) {
     const sheet = path.join(out, 'stills.jpg');
     const cols = Math.min(4, times.length);
-    spawnSync(
+    const r = spawnSync(
       'ffmpeg',
       ['-v', 'error', '-y', '-i', path.join(out, 'frames', '%05d.jpg'), '-vf', `scale=480:-1,tile=${cols}x${Math.ceil(times.length / cols)}`, '-frames:v', '1', sheet],
       { stdio: 'inherit' },
     );
+    if (r.status !== 0) {
+      console.error('ffmpeg failed while creating stills sheet');
+      process.exit(1);
+    }
     console.log(`stills: ${sheet}`);
   } else {
     const mp4 = path.join(out, path.basename(out) + '.mp4');
