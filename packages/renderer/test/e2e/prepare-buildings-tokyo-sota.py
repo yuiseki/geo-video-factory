@@ -25,7 +25,7 @@ from PIL import Image
 TILESET_URL = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
 BBOX = [139.302, 35.736, 139.336, 35.768]  # Tokyo Hamura (0% PLATEAU -> 100% OSM) <-> Tokyo Fussa (untextured PLATEAU)
 SEED = "tokyo-sota-v1"
-SOTA_VERSION = 4  # bump when the SOTA assets change shape, so cached ones are rebuilt
+SOTA_VERSION = 5  # bump when the SOTA assets change shape, so cached ones are rebuilt
 FIXTURES = ("buildings-tokyo-sota-baseline.json", "buildings-tokyo-sota-enhanced.json")
 # Set OVERPASS_URL to your own Overpass instance; the public ones are shared resources.
 OVERPASS_ENDPOINTS = [os.environ["OVERPASS_URL"]] if os.environ.get("OVERPASS_URL") else [

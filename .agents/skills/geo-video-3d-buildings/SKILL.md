@@ -48,6 +48,7 @@ PLATEAU を主役に、欠損を OSM と地理院オルソで補い、動画レ�
 
 - 取得、座標変換、固定ロード: [architecture.md](references/architecture.md)
 - PLATEAU 欠損と OSM・オルソ補完: [fallback-data.md](references/fallback-data.md)
+- PLATEAU の無い街を地理院の全建物で建てる (高さの較正、屋根、影、立ち上がり、夜): [city-proxy.md](references/city-proxy.md)
 - テクスチャ最適化と疑似外観: [materials.md](references/materials.md)
 - カメラ被覆と受入検証: [validation.md](references/validation.md)
 

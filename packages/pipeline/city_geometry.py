@@ -12,9 +12,9 @@ import struct
 from osm_proxy import _triangulate_polygon
 
 ROOF_OVERHANG_M = 0.35
-# The renderer's sun stands at (-200, -300, 700) (east, north, up): shadows fall to the
+# The renderer's sun stands at (-300, -450, 450) (east, north, up): shadows fall to the
 # north-east, this many meters per meter of height. Keep in step with plateau-buildings.ts.
-SHADOW_PER_M = (200 / 700, 300 / 700)
+SHADOW_PER_M = (300 / 450, 450 / 450)
 SHADOW_LIFT_M = 0.6
 SHADOW_CELL_M = 40.0
 

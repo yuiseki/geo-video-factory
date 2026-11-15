@@ -99,7 +99,7 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   scene.add(ambient);
   const sun = new THREE.DirectionalLight(0xfff4e6, 0.85);
   // Ground shadows are baked for this sun (packages/pipeline/city_proxy.py SHADOW_PER_M).
-  sun.position.set(-200, -300, 700);
+  sun.position.set(-300, -450, 450);
   scene.add(sun);
   const fill = new THREE.DirectionalLight(0xdce8ff, 0.35);
   const fillBase = fill.intensity;
