@@ -12,6 +12,7 @@ description: 地理・歴史解説動画を企画し、章別制作、素材管�
 - カメラ技法、速度、地名、データ範囲の検品：`geo-video-camera`
 - VOICEVOX、掛け合い、字幕、立ち絵：`geo-video-narration`
 - 写真、図解、画面効果、見た目の文法：`geo-video-visuals`
+- 素材収集（いらすとや、Wikimedia Commons 等）、ライセンス・重複・EXIF・画像 ID 管理：`geo-video-materials`
 - 利用者が良いと感じた参考動画の分析：`geo-video-reference-analysis`。章立ての前に、伸びた動画の入り口、骨組み、終わり方の傾向 (その `references/findings.md`) を読む
 
 複数章では章ごとに独立したショットJSONと出力先を持たせ、章間に無音のタイトルカードなど明確な編集点を置く。独立章は資源上限を共有し、最大3並列を目安にする。既存成果物を上書きせず、版番号付きで残す。

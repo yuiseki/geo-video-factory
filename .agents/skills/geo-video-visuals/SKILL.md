@@ -5,7 +5,7 @@ description: 地理動画の写真、地名、線、範囲、数字、図解、�
 
 # 地理動画の画面設計
 
-主題を理解するために必要な要素だけを重ねる。地名は主題だけでなく、駅、川、橋など相対位置を理解するランドマークも選ぶ。写真は撮影地点へ線を結び、写っている対象の名前を別に示す。同じ写真を繰り返し使わない。同じ場所で続けて撮った、見た目のほぼ同じ写真も「同じ写真」として扱い、1 枚だけ選ぶ (確かめ方は `geo-video-production` の [production-workflow.md](../geo-video-production/references/production-workflow.md))。
+主題を理解するために必要な要素だけを重ねる。地名は主題だけでなく、駅、川、橋など相対位置を理解するランドマークも選ぶ。写真は撮影地点へ線を結び、写っている対象の名前を別に示す。素材の取得方法、重複監査、ライセンス確認、EXIF 確認は `geo-video-materials` を参照する。
 
 - 地理解説動画で観察した画面構成と素材規則： [references/look.md](references/look.md)
 - テンプレートで扱える技法の対応表： [references/README.md](references/README.md)

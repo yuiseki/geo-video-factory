@@ -44,8 +44,4 @@
 
 ## 素材
 
-- この手本ではイラストに「いらすとや」、写真に Wikimedia Commons を用いた。依頼ごとの指定素材を優先し、作者・使用条件に応じた出典を画面に出す。
-- いらすとやは 1 作品 20 点まで。画像は検索結果の `bp_thumbnail_resize("…/s72-c/<名前>.png", "<題>")` から取り、`/s72-c/` を `/s600/` に替えると大きい版になる。出典は「イラスト：いらすとや」。
-- Wikimedia Commons は API (`action=query&prop=imageinfo&iiprop=url|extmetadata&iiurlwidth=1200`) で、ライセンス (`LicenseShortName`) と作者 (`Artist`) を一緒に取る。出典は「写真：<作者> / Wikimedia Commons (<ライセンス>)」。CC BY-SA は動画全体の扱いに関わるので、CC0、パブリックドメイン、CC BY を優先する。
-- 日本の観光や文化の絵記号は EXPERIENCE JAPAN PICTOGRAMS (日本デザインセンター、https://experience-japan.info/) も使える。商用も無料、点数の制限なし、PNG と SVG。形を変えるのは禁止 (色、大きさ、丸や四角で囲むのは可)。アニメーション版は動画編集ソフトで編集し直して使わない。素材へ直接リンクしない。出典は必須でないが「素材提供：日本デザインセンター/EXPERIENCE JAPAN PICTOGRAMS」と入れる。規約は予告なく変わるので、使う前に /terms を読む。
-- 写真は中身を目で確かめてから使う (「京葉工業地域」で探した写真が港のクレーンだった)。イメージ写真には caption に「(イメージ)」と書く。
+イラスト（いらすとや等）、写真（Wikimedia Commons・個人写真）、ピクトグラムの取得手順、ライセンス条件、目視確認・イメージ表記の決まりは `geo-video-materials` の [sourcing.md](../../geo-video-materials/references/sourcing.md) と [rights-and-audit.md](../../geo-video-materials/references/rights-and-audit.md) を参照する。

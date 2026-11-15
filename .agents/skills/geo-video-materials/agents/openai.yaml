@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Materials"
+  short_description: "いらすとや・Wikimedia等の素材収集、ライセンス確認、重複・EXIF監査"
