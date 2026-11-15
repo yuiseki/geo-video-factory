@@ -5,7 +5,8 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fitLngLatBounds, projectLngLat } from '../src/map-viewport.js';
-import { themeVideoCases } from './e2e/theme.test.js';
+import { buildingsAsakusaVideoCase } from './e2e/buildings-asakusa.test.js';
+import { buildingsAsakusaSumidaRiverVideoCase } from './e2e/buildings-asakusa-sumida-river.test.js';
 
 interface VideoCase {
   name: string;
@@ -26,7 +27,8 @@ const cases: VideoCase[] = [
   { name: 'choropleth-3d-tokyo23', fixture: 'choropleth-3d-tokyo23.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref', fixture: 'choropleth-3d-japan-pref.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref-to-tokyo23', fixture: 'choropleth-3d-japan-pref-to-tokyo23.json', minimumDuration: 14.4 },
-  ...themeVideoCases,
+  buildingsAsakusaVideoCase,
+  buildingsAsakusaSumidaRiverVideoCase,
 ];
 
 function prepareVideoOutput(output: string, work: string): void {
