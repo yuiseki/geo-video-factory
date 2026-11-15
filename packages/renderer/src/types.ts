@@ -319,6 +319,15 @@ export interface BgmConfig {
   volume?: number;
 }
 
+export interface PlateauBuildingsConfig {
+  /** URL or project-root-relative path to a geo-video-factory.plateau-3d/1 manifest. */
+  manifest: string;
+  /** Height offset applied to source ECEF buildings, in meters. Defaults to 0. */
+  heightOffset?: number;
+  /** Deterministic worker count for loading model assets. Defaults to 3. */
+  workers?: number;
+}
+
 export interface ShotSpec {
   width?: number;
   height?: number;
@@ -334,6 +343,7 @@ export interface ShotSpec {
   contrast?: number;
   sky?: Record<string, unknown>;
   osmLabels?: boolean;
+  plateauBuildings?: PlateauBuildingsConfig;
   credits?: string[];
   voices?: Record<string, VoiceConfig>;
   tts?: TtsConfig;

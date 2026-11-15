@@ -1,0 +1,82 @@
+{
+  "format": "geo-video-factory.plateau-3d/1",
+  "bbox_degrees": [
+    139.794,
+    35.709,
+    139.799,
+    35.714
+  ],
+  "center": [
+    139.7965,
+    35.7115
+  ],
+  "tiles": [
+    {
+      "glb": "models/plateau-asakusa.glb",
+      "rtc": [
+        -3959886.2860448076,
+        3346778.024893617,
+        3702247.0520511586
+      ],
+      "ids": [
+        "gml-asakusa-textured",
+        "gml-asakusa-untextured-1",
+        "gml-asakusa-untextured-2"
+      ],
+      "feature_centroids": {
+        "gml-asakusa-textured": [
+          139.79615000000325,
+          35.71125000009703
+        ],
+        "gml-asakusa-untextured-1": [
+          139.79665000000017,
+          35.71145000009798
+        ],
+        "gml-asakusa-untextured-2": [
+          139.79705000000774,
+          35.711350000090114
+        ]
+      },
+      "facade_colors": [
+        null,
+        "#75584b",
+        "#95705f"
+      ]
+    },
+    {
+      "source": "osm://way/asakusa-osm-1",
+      "glb": "models/osm-proxy-92cf797bdb87ace37f4c.glb",
+      "sha256": "92cf797bdb87ace37f4c56ccc76bffb020ab4cb6e1e7d91082cab897dfa2d05a",
+      "source_sha256": "e1fabe6b453cf06742c007c1f21abbcb630174147a22ab46f861fa3c75b4b148",
+      "source_bytes": 0,
+      "bytes": 2228,
+      "rtc": [
+        -3959886.2860448076,
+        3346778.024893617,
+        3702247.0520511586
+      ],
+      "ids": [
+        "way/asakusa-osm-1"
+      ],
+      "facade_colors": [
+        "#846354"
+      ],
+      "region": [
+        2.4398655745329534,
+        0.6232396225946552,
+        2.439952840995553,
+        0.6233268890572549,
+        0,
+        22.0
+      ],
+      "depth": 0,
+      "extensions": [],
+      "kind": "osm-proxy"
+    }
+  ],
+  "tile_count": 2,
+  "tile_ids": 4,
+  "total_bytes": 2228,
+  "proxy_tile_count": 1,
+  "proxy_building_count": 1
+}

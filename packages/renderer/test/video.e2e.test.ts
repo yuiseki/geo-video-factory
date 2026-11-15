@@ -21,6 +21,7 @@ const cases: VideoCase[] = [
   { name: 'choropleth-3d-tokyo23', fixture: 'choropleth-3d-tokyo23.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref', fixture: 'choropleth-3d-japan-pref.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref-to-tokyo23', fixture: 'choropleth-3d-japan-pref-to-tokyo23.json', minimumDuration: 14.4 },
+  { name: 'asakusa-buildings', fixture: 'asakusa-buildings.json', minimumDuration: 4.0 },
 ];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
@@ -204,6 +205,31 @@ test('Japan 47 prefectures to Tokyo 23 wards 3D choropleth E2E centers Tokyo and
   assert.deepEqual(zoomShot.from.center, [139.742, 35.669]);
   assert.deepEqual(zoomShot.to.center, [139.742, 35.669]);
   assert.ok(zoomShot.to.zoom > zoomShot.from.zoom + 4);
+});
+
+test('Asakusa buildings E2E fixture combines textured PLATEAU, untextured PLATEAU, and OSM proxy', () => {
+  const fixture = JSON.parse(fs.readFileSync('test/fixtures/asakusa-buildings.json', 'utf8')) as {
+    plateauBuildings?: { manifest: string; heightOffset?: number };
+    shots: { duration: number; from: { center: number[]; zoom: number; pitch: number; bearing: number }; to: { center: number[]; zoom: number; pitch: number; bearing: number } }[];
+  };
+  assert.ok(fixture.plateauBuildings?.manifest, 'Asakusa fixture must configure plateauBuildings.manifest');
+  const manifestPath = path.join('test/fixtures', fixture.plateauBuildings.manifest);
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as {
+    format: string;
+    tiles: { glb: string; kind?: string; ids?: string[]; facade_colors?: (string | null)[] }[];
+  };
+  assert.equal(manifest.format, 'geo-video-factory.plateau-3d/1');
+  const plateauTile = manifest.tiles.find((tile) => tile.kind !== 'osm-proxy');
+  const osmTile = manifest.tiles.find((tile) => tile.kind === 'osm-proxy');
+  assert.ok(plateauTile && osmTile, 'manifest must contain both PLATEAU and OSM proxy tiles');
+  assert.ok(plateauTile.facade_colors?.includes(null), 'textured PLATEAU feature must preserve null palette entry');
+  assert.ok((plateauTile.facade_colors?.filter((c) => typeof c === 'string').length ?? 0) >= 2, 'untextured PLATEAU features must have facade_colors');
+  assert.ok((osmTile.facade_colors?.filter((c) => typeof c === 'string').length ?? 0) >= 1, 'OSM proxy must have facade_colors');
+  for (const tile of manifest.tiles) {
+    assert.ok(fs.existsSync(path.join(path.dirname(manifestPath), tile.glb)), `missing GLB ${tile.glb}`);
+  }
+  assert.ok(fixture.shots.length >= 1);
+  assert.ok(fixture.shots[0]!.from.pitch >= 50, 'Asakusa 3D building shot uses oblique pitch');
 });
 
 test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
