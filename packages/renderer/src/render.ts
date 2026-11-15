@@ -28,6 +28,7 @@ const TYPES: Record<string, string> = {
   '.jpeg': 'image/jpeg',
   '.webp': 'image/webp',
   '.svg': 'image/svg+xml',
+  '.wasm': 'application/wasm',
 };
 
 export function contentType(file: string): string {

@@ -67,6 +67,7 @@ test('buildFrameTimes is stable at decimal steps and validates its range', () =>
 test('MapLibre v6 ESM assets are served as JavaScript modules', () => {
   assert.equal(contentType('maplibre-gl.mjs'), 'text/javascript');
   assert.equal(contentType('maplibre-gl-worker.mjs'), 'text/javascript');
+  assert.equal(contentType('draco_decoder.wasm'), 'application/wasm');
   assert.equal(contentType('style.css'), 'text/css');
   assert.equal(contentType('unknown.bin'), 'application/octet-stream');
 });
@@ -77,8 +78,11 @@ test('flyover bundle includes MapLibre without a browser import map', () => {
   assert.match(html, /await import\(['"]\/page\/flyover\.js['"]\)/);
   const source = fs.readFileSync(path.resolve('src/page/flyover.ts'), 'utf8');
   assert.match(source, /import \* as maplibregl from ['"]maplibre-gl['"]/);
+  const buildingsSource = fs.readFileSync(path.resolve('src/page/plateau-buildings.ts'), 'utf8');
+  assert.match(buildingsSource, /from ['"]three['"]/);
   const bundle = fs.readFileSync(path.resolve('dist/src/page/flyover.js'), 'utf8');
   assert.doesNotMatch(bundle, /from\s+['"]maplibre-gl['"]/);
+  assert.match(bundle, /WebGLRenderer/);
   assert.ok(bundle.length > 500_000, 'flyover.js should contain the MapLibre implementation');
   assert.ok(fs.statSync(path.resolve('dist/src/page/maplibre-gl-worker.mjs')).size > 500_000);
 });
