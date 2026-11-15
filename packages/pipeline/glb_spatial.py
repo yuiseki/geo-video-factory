@@ -80,8 +80,12 @@ def _decode_draco_primitive(
     document: dict[str, Any], binary: bytes, primitive: dict[str, Any], feature_attribute: str | None,
 ) -> tuple[list[tuple[float, ...]], list[tuple[float, ...]]] | tuple[None, None]:
     ext = (primitive.get('extensions') or {}).get('KHR_draco_mesh_compression')
-    if DracoPy is None or not ext or ext.get('bufferView') is None:
+    if not ext or ext.get('bufferView') is None:
         return None, None
+    if DracoPy is None:
+        # Returning nothing here silently emptied feature_centroids, and OSM proxies were then
+        # extruded on top of the PLATEAU buildings they should have been excluded by.
+        raise RuntimeError('Draco-compressed GLB needs DracoPy (see packages/pipeline/requirements-dev.txt)')
     buffer_views = document.get('bufferViews') or []
     bv_index = int(ext['bufferView'])
     if not (0 <= bv_index < len(buffer_views)):
@@ -192,8 +196,8 @@ def _convex_hull(points: list[tuple[float, float]]) -> list[list[float]]:
     return ring if abs(_area(ring)) > 1e-14 else []
 
 
-def extract_glb_feature_centroids(payload: bytes, rtc: list[float], tile_ids: list[str]) -> dict[str, list[float]]:
-    """Read per-feature batch geometry centers as WGS84 points for OSM overlap rejection."""
+def _feature_ecef_points(payload: bytes, rtc: list[float], tile_ids: list[str]) -> dict[int, list[tuple[float, float, float]]]:
+    """Collect every vertex of every batch feature as ECEF points, keyed by feature index."""
     document, binary, _ = glb_chunks(payload)
     mesh_matrices = _mesh_world_matrices(document)
     points: dict[int, list[tuple[float, float, float]]] = {}
@@ -219,12 +223,35 @@ def extract_glb_feature_centroids(payload: bytes, rtc: list[float], tile_ids: li
                     if 0 <= index < len(tile_ids):
                         wx, wy, wz = _transform_point(matrix, position)
                         points.setdefault(index, []).append((rtc[0] + wx, rtc[1] - wz, rtc[2] + wy))
+    return points
+
+
+def extract_glb_feature_centroids(payload: bytes, rtc: list[float], tile_ids: list[str]) -> dict[str, list[float]]:
+    """Read per-feature batch geometry centers as WGS84 points for OSM overlap rejection."""
+    points = _feature_ecef_points(payload, rtc, tile_ids)
     result: dict[str, list[float]] = {}
     for index, identifier in enumerate(tile_ids):
         vertices = points.get(index)
         if vertices:
             mean = tuple(sum(vertex[axis] for vertex in vertices) / len(vertices) for axis in range(3))
             result[str(identifier)] = list(_geodetic(mean))
+    return result
+
+
+def extract_glb_feature_heights(payload: bytes, rtc: list[float], tile_ids: list[str]) -> dict[str, dict[str, Any]]:
+    """Per feature: WGS84 centroid and vertical extent (meters along the local up direction)."""
+    points = _feature_ecef_points(payload, rtc, tile_ids)
+    result: dict[str, dict[str, Any]] = {}
+    for index, identifier in enumerate(tile_ids):
+        vertices = points.get(index)
+        if not vertices:
+            continue
+        mean = tuple(sum(vertex[axis] for vertex in vertices) / len(vertices) for axis in range(3))
+        lon, lat = _geodetic(mean)
+        lam, phi = math.radians(lon), math.radians(lat)
+        up = (math.cos(phi) * math.cos(lam), math.cos(phi) * math.sin(lam), math.sin(phi))
+        ups = [sum((vertex[axis] - mean[axis]) * up[axis] for axis in range(3)) for vertex in vertices]
+        result[str(identifier)] = {'lonlat': [lon, lat], 'height': max(ups) - min(ups)}
     return result
 
 

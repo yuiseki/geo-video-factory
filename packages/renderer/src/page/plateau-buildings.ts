@@ -5,10 +5,14 @@ import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, ty
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
 import { applyBuildingAppearance } from './plateau-materials.js';
+import { cityUniforms, createCityProxyMaterial, createCityShadowMaterial } from './city-materials.js';
+import { cityLight, keyframeValue, localMeters, revealRadius } from './city-timeline.js';
 
 interface ModelTile {
   glb: string;
   kind?: string;
+  /** 'enu': positions are local east/up/south meters around the manifest center (city-proxy). */
+  frame?: string;
   rtc: [number, number, number];
   bytes?: number;
   ids?: string[];
@@ -73,7 +77,13 @@ function tuneMaterials(root: THREE.Object3D): void {
   });
 }
 
-export async function addPlateauBuildings(map: MapLibre, config: PlateauBuildingsConfig): Promise<() => PlateauRenderStats> {
+export interface PlateauBuildingsLayer {
+  stats: () => PlateauRenderStats;
+  /** Apply the time-driven reveal and lighting for the frame at `sec`. */
+  update: (sec: number) => void;
+}
+
+export async function addPlateauBuildings(map: MapLibre, config: PlateauBuildingsConfig): Promise<PlateauBuildingsLayer> {
   const { manifest, url } = await readManifest(config.manifest);
   if (!manifest.center) throw new Error('PLATEAU manifest must define a WGS84 center');
   const center = manifest.center;
@@ -85,11 +95,14 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   const up = [Math.cos(phi) * Math.cos(lambda), Math.cos(phi) * Math.sin(lambda), Math.sin(phi)];
   const dot = (a: number[], b: number[]) => a[0]! * b[0]! + a[1]! * b[1]! + a[2]! * b[2]!;
   const scene = new THREE.Scene();
-  scene.add(new THREE.AmbientLight(0xffffff, 1.15));
+  const ambient = new THREE.AmbientLight(0xffffff, 1.15);
+  scene.add(ambient);
   const sun = new THREE.DirectionalLight(0xfff4e6, 0.85);
+  // Ground shadows are baked for this sun (packages/pipeline/city_proxy.py SHADOW_PER_M).
   sun.position.set(-200, -300, 700);
   scene.add(sun);
   const fill = new THREE.DirectionalLight(0xdce8ff, 0.35);
+  const fillBase = fill.intensity;
   fill.position.set(300, 200, 400);
   scene.add(fill);
   const draco = new DRACOLoader().setDecoderPath('/node_modules/three/examples/jsm/libs/draco/').setWorkerLimit(2);
@@ -114,9 +127,19 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
       const localPosition: [number, number, number] = [dot(east, delta), dot(north, delta), dot(up, delta) + tileHeightOffset(tile.kind, heightOffset)];
       const translate = new THREE.Matrix4().makeTranslation(...localPosition);
       gltf.scene.matrixAutoUpdate = false;
-      gltf.scene.matrix.copy(translate).multiply(basis).multiply(yToZ);
+      if (tile.frame === 'enu') {
+        gltf.scene.matrix.copy(yToZ);
+      } else {
+        gltf.scene.matrix.copy(translate).multiply(basis).multiply(yToZ);
+      }
       tuneMaterials(gltf.scene);
-      if (config.appearance !== false) {
+      if (tile.kind === 'city-proxy' || tile.kind === 'city-shadow') {
+        const material = tile.kind === 'city-proxy' ? createCityProxyMaterial() : createCityShadowMaterial();
+        gltf.scene.traverse((object) => {
+          const mesh = object as THREE.Mesh;
+          if (mesh.isMesh) mesh.material = material;
+        });
+      } else if (config.appearance !== false) {
         applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl);
       }
       scene.add(gltf.scene);
@@ -159,11 +182,37 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   const styleLayers = map.getStyle().layers ?? [];
   const firstSymbol = styleLayers.find((item) => item.type === 'symbol')?.id;
   map.addLayer(layer, firstSymbol);
-  return () => ({
-    loadedTiles,
-    totalTiles: manifest.tiles.length,
-    triangles: renderer?.info.render.triangles ?? 0,
-    drawCalls: renderer?.info.render.calls ?? 0,
-    objectCount: scene.children.length,
-  });
+  const growOrigin = config.reveal ? localMeters(config.reveal.center, center) : [0, 0];
+  cityUniforms.uCityGrowOrigin.value.set(growOrigin[0]!, growOrigin[1]!);
+  cityUniforms.uCityGrowWidth.value = config.reveal?.width ?? 120;
+  const rasterLayers = styleLayers.filter((item) => item.type === 'raster').map((item) => item.id);
+  const update = (sec: number) => {
+    cityUniforms.uCityGrowRadius.value = revealRadius(config.reveal, sec);
+    if (!config.night) return;
+    const night = keyframeValue(config.night, sec);
+    const light = cityLight(night);
+    ambient.intensity = light.ambient;
+    ambient.color.setRGB(...light.ambientColor);
+    sun.intensity = light.sun;
+    sun.color.setRGB(...light.sunColor);
+    fill.intensity = fillBase * (1 - 0.7 * night);
+    cityUniforms.uCityWindows.value = light.windows;
+    cityUniforms.uCityShadow.value = light.shadow;
+    cityUniforms.uCityNight.value = night;
+    for (const id of rasterLayers) {
+      map.setPaintProperty(id, 'raster-brightness-max', light.mapBrightness);
+      map.setPaintProperty(id, 'raster-saturation', light.mapSaturation);
+    }
+    map.triggerRepaint();
+  };
+  return {
+    update,
+    stats: () => ({
+      loadedTiles,
+      totalTiles: manifest.tiles.length,
+      triangles: renderer?.info.render.triangles ?? 0,
+      drawCalls: renderer?.info.render.calls ?? 0,
+      objectCount: scene.children.length,
+    }),
+  };
 }

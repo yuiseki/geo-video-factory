@@ -4,11 +4,14 @@ import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { prepareVideoOutput } from './video-e2e.js';
+import { wipeFilter, type WipeKeys } from '../../src/compose.js';
 
 const videoName = 'buildings-tokyo-sota';
 const baselineFixture = 'buildings-tokyo-sota-baseline.json';
 const enhancedFixture = 'buildings-tokyo-sota-enhanced.json';
 const prepareScript = 'test/e2e/prepare-buildings-tokyo-sota.py';
+// Before/after slider: fraction of the width (from the left) that shows the baseline.
+const wipe: WipeKeys = [[0, 0], [18, 0], [19.5, 0.5], [26.5, 0.5], [28, 0], [46.5, 0], [48, 1], [49, 1], [51.5, 0], [60, 0]];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
   const probe = spawnSync(
@@ -40,7 +43,7 @@ function renderVariant(project: string, fixture: string, outDir: string, name: s
       '--no-voice',
       '--raw-audio',
     ],
-    { encoding: 'utf8', timeout: 1_200_000, env: renderEnv },
+    { encoding: 'utf8', timeout: 3_600_000, env: renderEnv },
   );
   assert.equal(render.status, 0, `${name}\n${render.stdout}\n${render.stderr}`);
   return path.join(outDir, `${path.basename(outDir)}.mp4`);
@@ -49,7 +52,7 @@ function renderVariant(project: string, fixture: string, outDir: string, name: s
 const target = process.env.VIDEO_TARGET?.trim();
 
 test(`E2E: renderer writes ${videoName}.mp4`, {
-  timeout: 2_400_000,
+  timeout: 9_000_000,
   skip: Boolean(target && target !== videoName),
 }, () => {
   const output = path.resolve('dist/test/video');
@@ -58,7 +61,9 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
   const generatedProject = path.join(renderOutput, 'project');
   prepareVideoOutput(output, work);
 
-  const pythonCmd = process.platform === 'win32' ? 'python' : 'python3';
+  // The pipeline needs packages/pipeline/requirements-dev.txt (DracoPy, shapely); point
+  // GVF_PYTHON at an interpreter that has them.
+  const pythonCmd = process.env.GVF_PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3');
   const prepare = spawnSync(pythonCmd, [prepareScript, generatedProject], {
     cwd: process.cwd(),
     encoding: 'utf8',
@@ -87,7 +92,7 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
       '-i', baselineVideo,
       '-i', enhancedVideo,
       '-filter_complex',
-      '[0:v][1:v]hstack=inputs=2,drawbox=x=639:y=0:w=2:h=720:color=white@0.75:t=fill[v]',
+      wipeFilter(wipe, 4),
       '-map', '[v]',
       '-c:v', 'libx264',
       '-pix_fmt', 'yuv420p',
@@ -98,7 +103,7 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
     ],
     { encoding: 'utf8', timeout: 300_000 },
   );
-  assert.equal(compose.status, 0, `ffmpeg hstack failed\n${compose.stderr}`);
+  assert.equal(compose.status, 0, `ffmpeg slider composition failed\n${compose.stderr}`);
   assert.ok(fs.statSync(finalVideo).size > 1_000, `${videoName}.mp4 should not be empty`);
 
   const metadata = probeVideo(finalVideo);
@@ -106,16 +111,24 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
   assert.ok(metadata.duration >= 59.5, `${videoName}.mp4 is too short`);
 });
 
-test(`${videoName} E2E fixtures configure 720p side-by-side baseline vs enhanced`, () => {
+test(`${videoName} E2E fixtures configure a 720p before/after slider of baseline vs enhanced`, () => {
   assert.match(videoName, /^buildings-/);
   assert.ok(fs.existsSync(prepareScript));
   const baseline = JSON.parse(fs.readFileSync(path.join('test/fixtures', baselineFixture), 'utf8'));
   const enhanced = JSON.parse(fs.readFileSync(path.join('test/fixtures', enhancedFixture), 'utf8'));
 
-  assert.equal(baseline.width, 640);
-  assert.equal(baseline.height, 720);
-  assert.equal(enhanced.width, 640);
-  assert.equal(enhanced.height, 720);
+  for (const spec of [baseline, enhanced]) {
+    assert.equal(spec.width, 1280);
+    assert.equal(spec.height, 720);
+  }
+  assert.deepEqual(baseline.plateauBuildings.reveal, enhanced.plateauBuildings.reveal);
+  assert.deepEqual(baseline.plateauBuildings.night, enhanced.plateauBuildings.night);
+  assert.equal(wipe[wipe.length - 1]![0], 60);
+  // On-screen text states counts and names; no mood copy ("AI poem") and no overclaiming.
+  const text = JSON.stringify([baseline, enhanced]);
+  for (const word of ['全部', 'すべて', 'つながる', '革命', '魔法', '可能性', '誰でも']) {
+    assert.ok(!text.includes(word), `on-screen text must not use "${word}"`);
+  }
   assert.equal(baseline.plateauBuildings?.appearance, false);
   assert.equal(enhanced.plateauBuildings?.appearance, true);
   assert.equal(baseline.shots.length, enhanced.shots.length);

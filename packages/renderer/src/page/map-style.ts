@@ -260,7 +260,8 @@ export function buildMapStyle(spec: ShotSpec) {
       ...(spec.osmLabels ? osmLabelLayers() : []),
       ...ov.layers,
     ],
-    terrain: { source: 'dem', exaggeration: spec.exaggeration ?? 1.3 },
+    // 3D buildings carry true heights; exaggerated terrain would bury them.
+    terrain: { source: 'dem', exaggeration: spec.exaggeration ?? (spec.plateauBuildings ? 1 : 1.3) },
     sky: spec.sky ?? {
       'sky-color': '#6f9fd6',
       'horizon-color': '#dce8f5',

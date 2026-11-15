@@ -1,3 +1,4 @@
+import type { CityReveal } from './page/city-timeline.js';
 export type LngLat = [number, number];
 export type EaseKind = 'linear' | 'smooth' | 'in' | 'out' | 'inOut';
 export type CameraPathKind = 'linear' | 'fly';
@@ -328,6 +329,10 @@ export interface PlateauBuildingsConfig {
   workers?: number;
   /** Apply orthophoto palette and procedural facade appearance. Defaults to true. */
   appearance?: boolean;
+  /** Buildings rise out of the ground in a wave from a point (city-proxy tiles). */
+  reveal?: CityReveal;
+  /** [seconds, 0..1] keys: 0 day, 0.5 dusk, 1 night with lit windows. */
+  night?: [number, number][];
 }
 
 export interface ShotSpec {

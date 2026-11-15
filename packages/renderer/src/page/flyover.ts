@@ -7,12 +7,12 @@ import { registerMapProtocols } from './map-protocols.js';
 import type { MapLibreMap } from './map-types.js';
 import { preloadChoroplethLabels } from './choropleth-dom.js';
 import { configureOverlayRenderer, drawOverlays, setOverlayTime } from './overlays.js';
-import { addPlateauBuildings, type PlateauRenderStats } from './plateau-buildings.js';
+import { addPlateauBuildings, type PlateauBuildingsLayer } from './plateau-buildings.js';
 
 let map: MapLibreMap;
 let spec: ShotSpec;
 let overlayEl: HTMLElement;
-let plateauStats: (() => PlateauRenderStats) | undefined;
+let buildings: PlateauBuildingsLayer | undefined;
 
 function settle(timeoutMs = 40000): Promise<'idle' | 'timeout'> {
   return new Promise((resolve) => {
@@ -69,7 +69,7 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
   configureOverlayRenderer({ map, spec, overlayEl, tintEl });
   await Promise.all([new Promise<void>((resolve) => map.once('load', resolve)), preloadChoroplethLabels(spec)]);
   if (spec.plateauBuildings) {
-    plateauStats = await addPlateauBuildings(map as unknown as maplibregl.Map, spec.plateauBuildings);
+    buildings = await addPlateauBuildings(map as unknown as maplibregl.Map, spec.plateauBuildings);
   }
   return settle();
 }
@@ -85,6 +85,7 @@ async function frame(sec: number): Promise<'idle' | 'timeout'> {
     height: spec.height,
   });
   map.jumpTo(cam);
+  buildings?.update(sec);
   drawOverlays(index, shot, t, 'map');
   const result = await settle();
   drawOverlays(index, shot, t, 'dom');
@@ -96,5 +97,5 @@ function totalSeconds(): number {
   return spec.shots.reduce((sum, shot) => sum + (shot.duration ?? 0), 0);
 }
 
-(window as unknown as Record<string, unknown>).FLY = { init, frame, totalSeconds, get map() { return map; }, get plateauStats() { return plateauStats?.(); } };
+(window as unknown as Record<string, unknown>).FLY = { init, frame, totalSeconds, get map() { return map; }, get plateauStats() { return buildings?.stats(); } };
 (window as unknown as Record<string, unknown>).FLY_READY = true;

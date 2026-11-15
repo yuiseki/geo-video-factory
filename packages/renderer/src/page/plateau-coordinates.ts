@@ -6,7 +6,7 @@ const ECCENTRICITY_SQUARED = 6.69437999014e-3;
 
 /** Ground-based proxy geometry already starts at map altitude zero. */
 export function tileHeightOffset(kind: string | undefined, plateauOffset: number): number {
-  return kind === 'osm-proxy' || kind === 'citygml-proxy' ? 0 : plateauOffset;
+  return kind === 'osm-proxy' || kind === 'citygml-proxy' || kind === 'city-proxy' || kind === 'city-shadow' ? 0 : plateauOffset;
 }
 
 export function wgs84Ecef([longitude, latitude, height]: LngLatHeight): Ecef {

@@ -1,4 +1,5 @@
 import * as THREE from "three";
+import { cityUniforms } from "./city-materials.js";
 
 export interface PlateauAppearanceOptions {
   palette?: Array<string | null>;
@@ -161,6 +162,7 @@ function attachFacadeShader(
     `plateau-facade-v2-${seed}-${usePalette ? paletteSize : "map"}`;
   material.onBeforeCompile = (shader) => {
     shader.uniforms.uPlateauSeed = { value: seed };
+    shader.uniforms.uCityWindows = cityUniforms.uCityWindows;
     if (usePalette && palette) {
       shader.uniforms.uPlateauPalette = { value: palette };
       shader.uniforms.uPlateauPaletteSize = { value: paletteSize };
@@ -196,6 +198,7 @@ if (plateauSample.a > 0.5) {
         `#include <common>
 ${usePalette ? "uniform sampler2D uPlateauPalette;\nuniform float uPlateauPaletteSize;" : ""}
 uniform float uPlateauSeed;
+uniform float uCityWindows;
 varying float vPlateauFeatureId;
 varying vec3 vPlateauWorldPos;
 varying vec3 vPlateauWorldNormal;
@@ -241,6 +244,8 @@ float roofUnit = step(0.72, roofRnd) * smoothstep(0.18, 0.24, roofUv.x) * (1.0 -
 roofUnit *= smoothstep(0.20, 0.27, roofUv.y) * (1.0 - smoothstep(0.58, 0.65, roofUv.y));
 gl_FragColor.rgb *= 1.0 - graySurface * facadeRoof * roofSeam * 0.10;
 gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(0.17, 0.19, 0.20), graySurface * facadeRoof * roofUnit * 0.32);
+float facadeLit = step(1.0 - uCityWindows * 0.7, plateauHash(facadeCell + 4.2));
+gl_FragColor.rgb += vec3(1.0, 0.72, 0.40) * graySurface * facadeWall * facadeWindow * facadeLit * uCityWindows * 1.1;
 #include <dithering_fragment>`
       );
   };

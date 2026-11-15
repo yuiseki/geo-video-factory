@@ -2,3 +2,6 @@ coverage>=7,<8
 Pillow>=10,<13
 DracoPy>=2,<3
 shapely>=2,<3
+numpy>=1.26,<2.3
+scipy>=1.11,<2
+pyproj>=3.6,<4
