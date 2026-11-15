@@ -21,8 +21,9 @@ jobs:
           cache-dependency-path: packages/renderer/package-lock.json
       - name: Install Python test dependencies
         run: python3 -m pip install -r packages/pipeline/requirements-dev.txt
-      - name: Install Playwright browser for renderer E2E
+      - name: Install Playwright browser and ffmpeg for renderer E2E
         run: |
+          sudo apt-get update && sudo apt-get install -y ffmpeg
           npm --prefix packages/renderer ci
           npx --prefix packages/renderer playwright install --with-deps chromium-headless-shell
       - name: Test packages
