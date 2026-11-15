@@ -1,0 +1,4 @@
+interface:
+  display_name: "Geo Video 3D Buildings"
+  short_description: "PLATEAUとOSM・オルソで都市の3D建物映像を作る"
+  default_prompt: "PLATEAUを中心に3D建物データを準備し、欠損補完、材質調整、被覆検証まで進めてください。"

@@ -8,6 +8,7 @@ description: 地理・歴史解説動画を企画し、章別制作、素材管�
 動画全体の目的、視聴者、主張、章構成、必要素材、出典、完成条件を先に整理する。実装と素材の責務は次のスキルへ渡す。
 
 - 地図描画、ショットJSON、書き出し環境：`geo-video-renderer`
+- PLATEAU、OSM補完、建物材質、3D被覆：`geo-video-3d-buildings`
 - カメラ技法、速度、地名、データ範囲の検品：`geo-video-camera`
 - VOICEVOX、掛け合い、字幕、立ち絵：`geo-video-narration`
 - 写真、図解、画面効果、見た目の文法：`geo-video-visuals`

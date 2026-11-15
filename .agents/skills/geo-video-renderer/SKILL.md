@@ -20,4 +20,4 @@ npx playwright install chromium-headless-shell
 - 地理院写真、標高、過去画像、出典： [references/gsi-tiles.md](references/gsi-tiles.md)
 - タイル待ち、WebGL、音声、黒画面など： [references/troubleshooting.md](references/troubleshooting.md)
 
-カメラの意味や速度は `geo-video-camera`、掛け合いと字幕は `geo-video-narration`、見た目の選択は `geo-video-visuals` の責務とする。レンダラー側へ個別作品の演出ルールを増やさず、再利用できるデータ形式と処理だけを置く。
+カメラの意味や速度は `geo-video-camera`、PLATEAUと建物補完は `geo-video-3d-buildings`、掛け合いと字幕は `geo-video-narration`、見た目の選択は `geo-video-visuals` の責務とする。レンダラー側へ個別作品の演出ルールを増やさず、再利用できるデータ形式と処理だけを置く。
