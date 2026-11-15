@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Camera"
+  short_description: "地図と3D都市のカメラ設計と速度・範囲検品"

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Renderer"
+  short_description: "ショットJSONをMapLibreとPlaywrightで動画化"

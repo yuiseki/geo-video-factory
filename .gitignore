@@ -1,0 +1,12 @@
+.DS_Store
+node_modules/
+__pycache__/
+.env
+.env.*
+tmp/
+
+# Rendered frames and videos
+out/
+
+# Character PSDs and other third-party source material are not redistributed here
+*.psd
