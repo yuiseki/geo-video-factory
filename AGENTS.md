@@ -100,3 +100,13 @@ node --test "test/*.test.mjs"
 - 立ち絵の PSD、参考動画とその字幕・サムネイル・分析ファイル、再配布の許可が確かめられていない写真や素材。スキルや文書に個々の参考動画やチャンネルの名前を書かず、型の言葉で書く。
 - 書き出したフレームと動画 (`out/`)、`node_modules/`。
 - 公開してよいと確かめていない写真サービスの画像 ID や URL (Gyazo など)。ID が分かれば写真そのものを開けるので、写真のファイルを除外していても、ID を書けば写真を公開したことになる。push する前に ID の一覧を利用者に見せて確かめる。
+
+### 秘密情報と写真の ID の検査 (gitleaks)
+
+gitleaks で、資格情報と写真の ID を検査する。設定は `.gitleaks.toml`。
+
+- gitleaks の既定の規則 (API キー、トークン、秘密鍵など) に加えて、ちょうど 32 桁の小文字の 16 進の並びをすべて Gyazo の画像 ID の候補として検出する。許可するのは、持ち主が公開してよいと確かめた ID だけ (許可リスト方式)。
+- 新しい写真の ID を使うときは、`https://gyazo.com/<ID>` の一覧を利用者に見せ、公開してよいと言われた ID だけを `.gitleaks.toml` の許可リストに足す。日付とプロジェクトを注記する。確かめていない ID を許可リストに足さない。検出を避けるために ID の書き方を変えない。
+- clone したら一度 `git config core.hooksPath .githooks` を実行する。コミットのたびに `.githooks/pre-commit` がステージした変更を検査する。
+- GitHub では `.github/workflows/gitleaks.yml` が push と pull request のたびに全履歴を検査する。
+- 手で全履歴を検査するとき: `gitleaks git --redact -c .gitleaks.toml .`

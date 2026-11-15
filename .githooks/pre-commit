@@ -1,0 +1,8 @@
+#!/bin/sh
+# Scan the staged changes with gitleaks before every commit.
+# Enable once per clone:  git config core.hooksPath .githooks
+if ! command -v gitleaks >/dev/null 2>&1; then
+  echo "pre-commit: gitleaks is not installed; see AGENTS.md (Secrets and photo IDs)" >&2
+  exit 1
+fi
+exec gitleaks git --pre-commit --staged --redact --no-banner -c .gitleaks.toml .

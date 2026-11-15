@@ -1,0 +1,37 @@
+title = "geo-video-factory"
+
+# Keep gitleaks' default rules (API keys, tokens, private keys, ...).
+[extend]
+useDefault = true
+
+# Gyazo image IDs. Anyone who knows an ID can open the photo at
+# https://gyazo.com/<ID>, so writing an ID into this public repository
+# publishes the photo, even though the image files themselves are ignored.
+#
+# IDs appear in many shapes (assets/gyazo/<ID>.jpg, "id": "<ID>",
+# bare strings in scripts), so the rule flags every token of exactly
+# 32 lowercase hex digits, and only the IDs listed below are allowed.
+#
+# To add an ID: show https://gyazo.com/<ID> to the owner of the photo,
+# get an explicit yes that it may be public, then add it to the list.
+[[rules]]
+id = "gyazo-image-id"
+description = "Gyazo image ID (32 hex digits) not confirmed as public"
+regex = '''(?:^|[^0-9a-fA-F])([0-9a-f]{32})(?:[^0-9a-fA-F]|$)'''
+secretGroup = 1
+entropy = 0
+
+[[rules.allowlists]]
+description = "Gyazo IDs confirmed as public by the owner"
+regexTarget = "secret"
+regexes = [
+  # 2026-11-15: projects/2026/11/13/dotonbori (Dotonbori, 2026-11-13)
+  '''^012c98f4cda101b1d94423a8ebc62a0d$''',
+  '''^46d8534ae3060ddef51435a86c2c8aac$''',
+  '''^595dc51520a6d3b3ba9c0831ae3f52c1$''',
+  '''^63fec71eed55499db29276a87216b48f$''',
+  '''^86ff64a1f435c9b808531fc32ba48c4b$''',
+  '''^9e289c21ab57679c2ac005f95818c4f1$''',
+  '''^ccfeb7040f40c4dcc23f71033fc9ecb0$''',
+  '''^f01c299b67d773988e5257a0fecd41cb$''',
+]
