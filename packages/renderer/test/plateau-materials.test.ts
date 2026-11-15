@@ -3,7 +3,8 @@ import { describe, it } from "node:test";
 import * as THREE from "three";
 import {
   analyzeTextureTone,
-  applyPlateauBuildingAppearance
+  applyPlateauBuildingAppearance,
+  neutralizePbr
 } from "../src/page/plateau-materials.js";
 
 function makeSolidTexture(r: number, g: number, b: number, a = 255): THREE.DataTexture {
@@ -134,5 +135,17 @@ describe("plateau-materials", () => {
     const minRB = Math.min(updated.color.r, updated.color.b);
     const maxRB = Math.max(updated.color.r, updated.color.b);
     assert.ok(updated.color.g >= minRB - 0.02 && updated.color.g <= maxRB + 0.02);
+  });
+});
+
+describe("photo-textured PLATEAU materials without an environment map", () => {
+  it("render as rough non-metal surfaces, so the photo is not darkened to black", () => {
+    const material = new THREE.MeshStandardMaterial({ metalness: 0.5, roughness: 0.3 });
+    neutralizePbr(material);
+    assert.equal(material.metalness, 0);
+    assert.ok(material.roughness >= 0.8);
+    const mirror = new THREE.MeshStandardMaterial({ metalness: 0, roughness: 0 });
+    neutralizePbr(mirror);
+    assert.ok(mirror.roughness >= 0.8, "mirror-smooth untextured walls do not flash highlights");
   });
 });

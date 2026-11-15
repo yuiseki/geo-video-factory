@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
-import { applyBuildingAppearance } from './plateau-materials.js';
+import { applyBuildingAppearance, neutralizePbr } from './plateau-materials.js';
 import { cityUniforms, createCityProxyMaterial, createCityShadowMaterial, type CityRoofPhoto } from './city-materials.js';
 import { cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
 
@@ -75,6 +75,7 @@ function tuneMaterials(root: THREE.Object3D): void {
     for (const material of (Array.isArray(mesh.material) ? mesh.material : [mesh.material])) {
       if (!material) continue;
       material.side = THREE.DoubleSide;
+      neutralizePbr(material);
     }
   });
 }

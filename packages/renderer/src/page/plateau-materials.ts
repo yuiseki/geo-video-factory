@@ -106,6 +106,18 @@ export function analyzeTextureTone(texture?: THREE.Texture | null): TextureToneA
   return result;
 }
 
+/**
+ * PLATEAU photo-textured materials ask for metalness 0.5 / roughness 0.3 and untextured ones for
+ * roughness 0. Without an environment map a metal reflects nothing, so the photo came out near
+ * black; the texture already is the facade's look, so treat every surface as rough non-metal.
+ */
+export function neutralizePbr(material: THREE.Material): void {
+  const standard = material as THREE.MeshStandardMaterial;
+  if (!standard.isMeshStandardMaterial) return;
+  standard.metalness = 0;
+  standard.roughness = Math.max(standard.roughness, 0.85);
+}
+
 function parseHexBytes(hex: string | null | undefined): [number, number, number] | null {
   if (!hex || !/^#[0-9a-f]{6}$/i.test(hex)) {
     return null;
