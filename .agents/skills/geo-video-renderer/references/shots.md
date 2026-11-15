@@ -98,7 +98,7 @@ bearing は近い向きに回る (350 度 → 10 度は 20 度だけ回る)。
 
 ## 写真と地名の追加機能
 
-`osmLabels: true` で `tile.yuiseki.net` の現代の地名を重ねる。出典は自動表示される。歴史的写真と組み合わせる際は現代の地名であると明示する。`photo_marker`、EXIF、撮影地点を指す線は [production-workflow.md](../../geo-video-production/references/production-workflow.md)、ラベルの衝突回避と動画での確認方法は [camera-and-label-review.md](../../geo-video-camera/references/camera-and-label-review.md) を参照する。
+`osmLabels: true` で `tile.yuiseki.net` の現代の地名 (OSM) を重ねる。同じ系統の Nominatim、Overpass、Valhalla は [osm-services.md](../../geo-video-production/references/osm-services.md)。出典は自動表示される。歴史的写真と組み合わせる際は現代の地名であると明示する。`photo_marker`、EXIF、撮影地点を指す線は [production-workflow.md](../../geo-video-production/references/production-workflow.md)、ラベルの衝突回避と動画での確認方法は [camera-and-label-review.md](../../geo-video-camera/references/camera-and-label-review.md) を参照する。
 
 ```json
 {

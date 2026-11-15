@@ -16,6 +16,6 @@ description: 地理・歴史解説動画を企画し、章別制作、素材管�
 
 素材収集、写真のEXIFと撮影地点、章パイプライン、結合、公開、ハッシュとHTTP応答の確認が必要な場合は [references/production-workflow.md](references/production-workflow.md) を読む。
 
-報道や資料から台本を書くときは [references/script-from-sources.md](references/script-from-sources.md)、概要欄、チャプター、タグ、縦長版を作るときは [references/publishing.md](references/publishing.md) を読む。
+地名の座標、川や路線の形、経路を調べるときは [references/osm-services.md](references/osm-services.md) (Nominatim、Overpass、Valhalla、ベクトルタイル)。報道や資料から台本を書くときは [references/script-from-sources.md](references/script-from-sources.md)、概要欄、チャプター、タグ、縦長版を作るときは [references/publishing.md](references/publishing.md) を読む。
 
 完成報告前に、音声付きの通し動画、章境界、出典、画像の重複、カメラ速度、ラベル、公開ファイルの一致を確認する。
