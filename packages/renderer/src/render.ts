@@ -62,11 +62,12 @@ export function buildFrameTimes(from: number, to: number, step: number): number[
   return Array.from({ length: count }, (_, i) => Number((from + i * step).toFixed(12)));
 }
 
-export function resolveWorkerCount(frameCount: number, explicit?: number): number {
+export function resolveWorkerCount(frameCount: number, explicit?: number, singlePageHeavy = false): number {
   if (explicit !== undefined) {
     if (!Number.isSafeInteger(explicit) || explicit < 1) throw new Error(`invalid workers "${explicit}"; expected positive integer`);
     return Math.min(explicit, Math.max(1, frameCount));
   }
+  if (singlePageHeavy) return 1;
   return frameCount >= 24 ? 4 : 1;
 }
 
@@ -205,7 +206,11 @@ async function main(): Promise<void> {
   const step = stills ? Number(stills) : 1 / fps;
   const times = buildFrameTimes(from, to, step);
   const workersOpt = opt('workers');
-  const workers = resolveWorkerCount(times.length, workersOpt !== undefined ? Number(workersOpt) : undefined);
+  const workers = resolveWorkerCount(
+    times.length,
+    workersOpt !== undefined ? Number(workersOpt) : undefined,
+    Boolean(spec.plateauBuildings),
+  );
   const ranges = partitionFrameIndices(times.length, workers);
 
   let timeouts = 0;
@@ -272,7 +277,12 @@ async function main(): Promise<void> {
         }
       }
 
-      await page.screenshot({ path: path.join(out, 'frames', String(i).padStart(5, '0') + '.jpg'), type: 'jpeg', quality: 95 });
+      await page.screenshot({
+        path: path.join(out, 'frames', String(i).padStart(5, '0') + '.jpg'),
+        type: 'jpeg',
+        quality: 95,
+        timeout: 120_000,
+      });
       completed++;
       if (completed % 30 === 0 || completed === times.length) {
         process.stdout.write(`\r${completed}/${times.length} frames, ${((Date.now() - t0) / 1000).toFixed(0)} s`);

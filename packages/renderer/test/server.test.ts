@@ -80,6 +80,8 @@ test('resolveWorkerCount defaults to 4 workers for 24+ frames and respects expli
   assert.equal(resolveWorkerCount(288), 4);
   assert.equal(resolveWorkerCount(288, 2), 2);
   assert.equal(resolveWorkerCount(2, 4), 2);
+  assert.equal(resolveWorkerCount(60, undefined, true), 1);
+  assert.equal(resolveWorkerCount(60, 2, true), 2);
   assert.throws(() => resolveWorkerCount(10, 0), /workers/i);
   assert.throws(() => resolveWorkerCount(10, 1.5), /workers/i);
 });
