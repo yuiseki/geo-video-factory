@@ -22,6 +22,7 @@ const TYPES: Record<string, string> = {
   '.mjs': 'text/javascript',
   '.css': 'text/css',
   '.json': 'application/json',
+  '.geojson': 'application/geo+json',
   '.map': 'application/json',
   '.png': 'image/png',
   '.jpg': 'image/jpeg',

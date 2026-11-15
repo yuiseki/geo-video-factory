@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Visualize"
+  short_description: "2D/3Dコロプレス図の配色・階級設計とMapLibre組み込み"

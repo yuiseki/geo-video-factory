@@ -236,11 +236,56 @@ export interface ReactionOverlay {
   fade?: number;
 }
 
+export interface ChoroplethLegend {
+  title?: string;
+  unit?: string;
+  labels?: string[];
+  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
+  showNoData?: boolean;
+  noDataLabel?: string;
+  valueDivisor?: number;
+}
+
+export interface ChoroplethFocus {
+  property?: string;
+  values: (string | number)[];
+  window?: TimeWindow;
+  dimOpacity?: number;
+}
+
+export interface ChoroplethOverlay {
+  type: 'choropleth';
+  src?: string;
+  data?: unknown;
+  property: string;
+  breaks: number[];
+  colors: string[];
+  scale?: 'step' | 'linear';
+  noDataColor?: string;
+  opacity?: number;
+  outline?: string;
+  outlineWidth?: number;
+  extrude?: boolean;
+  heightProperty?: string;
+  heightScale?: number;
+  heightBase?: number;
+  rise?: TimeWindow;
+  focus?: ChoroplethFocus;
+  legend?: boolean | ChoroplethLegend;
+  labelProperty?: string;
+  labelFontSize?: number;
+  labelMaxFontSize?: number;
+  credit?: string;
+  show?: TimeWindow;
+  fade?: number;
+}
+
 export type Overlay =
   | BaseOverlay
   | ImageOverlay
   | LineOverlay
   | PolygonOverlay
+  | ChoroplethOverlay
   | LabelOverlay
   | CounterOverlay
   | ChapterOverlay

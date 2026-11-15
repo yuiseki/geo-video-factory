@@ -1,0 +1,40 @@
+{
+  "width": 640,
+  "height": 360,
+  "fps": 6,
+  "base": "pale",
+  "world": false,
+  "dem": "gsi",
+  "shots": [
+    {
+      "duration": 6,
+      "ease": "inOut",
+      "from": { "center": [136.0, 35.2], "zoom": 3.9, "pitch": 42, "bearing": -6 },
+      "to": { "center": [136.0, 35.2], "zoom": 4.2, "pitch": 50, "bearing": 6 },
+      "overlays": [
+        {
+          "type": "choropleth",
+          "src": "japan-pref-population.geojson",
+          "property": "population",
+          "breaks": [0, 1000000, 2000000, 4000000, 7000000],
+          "colors": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"],
+          "noDataColor": "#6b7280",
+          "opacity": 0.88,
+          "extrude": true,
+          "heightScale": 0.009,
+          "rise": [0.05, 0.55],
+          "labelProperty": "name",
+          "labelFontSize": 14,
+          "labelMaxFontSize": 32,
+          "legend": {
+            "title": "都道府県別 人口（2020年）",
+            "unit": "万人",
+            "valueDivisor": 10000,
+            "position": "bottom-left"
+          },
+          "credit": "出典：令和2年国勢調査（総務省統計局） / Natural Earth"
+        }
+      ]
+    }
+  ]
+}

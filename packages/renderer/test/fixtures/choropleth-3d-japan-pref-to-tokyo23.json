@@ -1,0 +1,166 @@
+{
+  "width": 640,
+  "height": 360,
+  "fps": 6,
+  "base": "pale",
+  "world": false,
+  "dem": "gsi",
+  "shots": [
+    {
+      "duration": 4.5,
+      "ease": "inOut",
+      "from": { "center": [136.0, 35.2], "zoom": 3.9, "pitch": 42, "bearing": -6 },
+      "to": { "center": [136.0, 35.2], "zoom": 4.2, "pitch": 50, "bearing": 6 },
+      "overlays": [
+        {
+          "type": "choropleth",
+          "src": "japan-pref-population.geojson",
+          "property": "population",
+          "breaks": [0, 1000000, 2000000, 4000000, 7000000],
+          "colors": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"],
+          "noDataColor": "#6b7280",
+          "opacity": 0.88,
+          "extrude": true,
+          "heightScale": 0.009,
+          "rise": [0.05, 0.65],
+          "labelProperty": "name",
+          "labelFontSize": 14,
+          "labelMaxFontSize": 32,
+          "legend": {
+            "title": "都道府県別 人口（2020年）",
+            "unit": "万人",
+            "valueDivisor": 10000,
+            "position": "bottom-left"
+          },
+          "credit": "出典：令和2年国勢調査（総務省統計局） / Natural Earth"
+        }
+      ]
+    },
+    {
+      "duration": 2.5,
+      "ease": "inOut",
+      "from": { "center": [136.0, 35.2], "zoom": 4.2, "pitch": 50, "bearing": 6 },
+      "to": { "center": [139.742, 35.669], "zoom": 4.2, "pitch": 45, "bearing": -8 },
+      "overlays": [
+        {
+          "type": "choropleth",
+          "src": "japan-pref-population.geojson",
+          "property": "population",
+          "breaks": [0, 1000000, 2000000, 4000000, 7000000],
+          "colors": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"],
+          "noDataColor": "#6b7280",
+          "opacity": 0.88,
+          "extrude": true,
+          "heightScale": 0.009,
+          "focus": {
+            "property": "name",
+            "values": ["東京都"],
+            "window": [0.05, 0.65],
+            "dimOpacity": 0.15
+          },
+          "labelProperty": "name",
+          "labelFontSize": 14,
+          "labelMaxFontSize": 32,
+          "legend": {
+            "title": "都道府県別 人口（2020年）",
+            "unit": "万人",
+            "valueDivisor": 10000,
+            "position": "bottom-left"
+          },
+          "credit": "出典：令和2年国勢調査（総務省統計局） / Natural Earth"
+        }
+      ]
+    },
+    {
+      "duration": 3.0,
+      "ease": "inOut",
+      "from": { "center": [139.742, 35.669], "zoom": 4.2, "pitch": 45, "bearing": -8 },
+      "to": { "center": [139.742, 35.669], "zoom": 9.4, "pitch": 45, "bearing": -8 },
+      "overlays": [
+        {
+          "type": "choropleth",
+          "src": "japan-pref-population.geojson",
+          "property": "population",
+          "breaks": [0, 1000000, 2000000, 4000000, 7000000],
+          "colors": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"],
+          "noDataColor": "#6b7280",
+          "opacity": 0.88,
+          "extrude": true,
+          "heightScale": 0.009,
+          "focus": {
+            "property": "name",
+            "values": ["東京都"],
+            "window": [-1, 0],
+            "dimOpacity": 0.15
+          },
+          "show": [-0.3, 0.72],
+          "fade": 0.22,
+          "labelProperty": "name",
+          "labelFontSize": 14,
+          "labelMaxFontSize": 32,
+          "legend": {
+            "title": "都道府県別 人口（2020年）",
+            "unit": "万人",
+            "valueDivisor": 10000,
+            "position": "bottom-left"
+          },
+          "credit": "出典：令和2年国勢調査（総務省統計局） / Natural Earth"
+        },
+        {
+          "type": "choropleth",
+          "src": "tokyo23-population.geojson",
+          "property": "population",
+          "breaks": [0, 250000, 350000, 550000, 700000],
+          "colors": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"],
+          "noDataColor": "#6b7280",
+          "opacity": 0.88,
+          "extrude": true,
+          "heightScale": 0.008,
+          "rise": [1.0, 2.0],
+          "show": [0.72, 1.5],
+          "fade": 0.2,
+          "labelProperty": "name",
+          "labelFontSize": 16,
+          "labelMaxFontSize": 32,
+          "legend": {
+            "title": "東京23区 人口（2020年）",
+            "unit": "万人",
+            "valueDivisor": 10000,
+            "position": "bottom-left"
+          },
+          "credit": "出典：令和2年国勢調査 小地域境界データ（e-Stat）"
+        }
+      ]
+    },
+    {
+      "duration": 4.5,
+      "ease": "inOut",
+      "from": { "center": [139.742, 35.669], "zoom": 9.4, "pitch": 45, "bearing": -8 },
+      "to": { "center": [139.742, 35.669], "zoom": 9.7, "pitch": 55, "bearing": 8 },
+      "overlays": [
+        {
+          "type": "choropleth",
+          "src": "tokyo23-population.geojson",
+          "property": "population",
+          "breaks": [0, 250000, 350000, 550000, 700000],
+          "colors": ["#ffffb2", "#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"],
+          "noDataColor": "#6b7280",
+          "opacity": 0.88,
+          "extrude": true,
+          "heightScale": 0.008,
+          "rise": [0.05, 0.65],
+          "labelProperty": "name",
+          "labelFontSize": 16,
+          "labelMaxFontSize": 32,
+          "legend": {
+            "title": "東京23区 人口（2020年）",
+            "unit": "万人",
+            "valueDivisor": 10000,
+            "position": "bottom-left"
+          },
+          "credit": "出典：令和2年国勢調査 小地域境界データ（e-Stat）"
+        }
+      ]
+    }
+  ]
+}

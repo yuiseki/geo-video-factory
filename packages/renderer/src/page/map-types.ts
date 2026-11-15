@@ -9,5 +9,7 @@ export interface MapLibreMap {
   setPaintProperty: (id: string, prop: string, val: unknown) => void;
   getSource: (id: string) => { setData: (data: unknown) => void };
   project: (lngLat: LngLat) => { x: number; y: number };
+  getZoom: () => number;
+  getPitch: () => number;
 }
 

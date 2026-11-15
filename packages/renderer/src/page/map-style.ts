@@ -1,4 +1,5 @@
 import { demSourceSpec } from '../lib.js';
+import { choroplethColorExpression, choroplethFocusFilters, choroplethHeightExpression } from '../choropleth.js';
 import type { Shot, ShotSpec } from '../types.js';
 import { registerImageOverlay } from './map-protocols.js';
 
@@ -144,6 +145,53 @@ function overlayLayers(shots: Shot[]) {
           layout: { 'line-join': 'round', visibility: 'none' },
           paint: { 'line-color': o.outline ?? '#ffffff', 'line-width': o.width ?? 4 },
         });
+      } else if (o.type === 'choropleth') {
+        if (!o.src && !o.data) throw new Error('choropleth overlay requires src or data');
+        sources[id] = { type: 'geojson', data: o.src ? '/' + o.src.replace(/^\/+/, '') : o.data };
+        const colorExpr = choroplethColorExpression(o.property, o.breaks, o.colors, o.scale ?? 'step', o.noDataColor ?? '#6b7280');
+        const focusProp = o.focus?.property ?? o.labelProperty ?? o.property;
+        const filters = o.focus ? choroplethFocusFilters(focusProp, o.focus.values) : null;
+        const variants = filters
+          ? [{ suffix: '', filter: filters.dimFilter }, { suffix: '-focus', filter: filters.focusFilter }]
+          : [{ suffix: '', filter: undefined as unknown[] | undefined }];
+        for (const { suffix, filter } of variants) {
+          const lid = id + suffix;
+          const extra = filter ? { filter } : {};
+          if (o.extrude) {
+            const heightProp = o.heightProperty ?? o.property;
+            layers.push({
+              id: lid + '-fill',
+              type: 'fill-extrusion',
+              source: id,
+              ...extra,
+              layout: { visibility: 'none' },
+              paint: {
+                'fill-extrusion-color': colorExpr,
+                'fill-extrusion-height': choroplethHeightExpression(heightProp, o.heightScale ?? 1, o.heightBase ?? 0, o.rise ? 0 : 1),
+                'fill-extrusion-base': 0,
+                'fill-extrusion-opacity': o.opacity ?? 0.85,
+              },
+            });
+          } else {
+            layers.push({
+              id: lid + '-fill',
+              type: 'fill',
+              source: id,
+              ...extra,
+              layout: { visibility: 'none' },
+              paint: { 'fill-color': colorExpr, 'fill-opacity': o.opacity ?? 0.78 },
+            });
+          }
+          layers.push({
+            id: lid,
+            type: 'line',
+            source: id,
+            ...extra,
+            layout: { 'line-join': 'round', visibility: 'none' },
+            paint: { 'line-color': o.outline ?? '#ffffff', 'line-width': o.outlineWidth ?? 1.2 },
+          });
+        }
+        if (o.credit) credits.add(o.credit);
       }
     }),
   );

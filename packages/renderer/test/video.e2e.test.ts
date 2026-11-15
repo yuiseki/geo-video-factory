@@ -18,6 +18,9 @@ const cases: VideoCase[] = [
   { name: 'earth-tokyo-station', fixture: 'earth-tokyo-station.json', minimumDuration: 20.4 },
   { name: 'terrain-mt-fuji', fixture: 'terrain-mt-fuji.json', minimumDuration: 19.9 },
   { name: 'terrain-mt-omuroyama', fixture: 'terrain-mt-omuroyama.json', minimumDuration: 47.9, width: 1280, height: 720 },
+  { name: 'choropleth-3d-tokyo23', fixture: 'choropleth-3d-tokyo23.json', minimumDuration: 5.9 },
+  { name: 'choropleth-3d-japan-pref', fixture: 'choropleth-3d-japan-pref.json', minimumDuration: 5.9 },
+  { name: 'choropleth-3d-japan-pref-to-tokyo23', fixture: 'choropleth-3d-japan-pref-to-tokyo23.json', minimumDuration: 14.4 },
 ];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
@@ -130,6 +133,77 @@ test('Omuroyama E2E loops seamlessly across four seasons in four slow linear orb
     'omuro-seasons/winter_burn.jpg',
     'omuro-seasons/spring.jpg',
   ]);
+});
+
+test('Tokyo 23 wards 3D choropleth E2E tilts subtly while extrusions rise with a legend', () => {
+  const fixture = JSON.parse(fs.readFileSync('test/fixtures/choropleth-3d-tokyo23.json', 'utf8')) as {
+    shots: {
+      duration: number;
+      ease?: string;
+      from: { center: number[]; zoom: number; pitch: number; bearing: number };
+      to: { center: number[]; zoom: number; pitch: number; bearing: number };
+      overlays: { type: string; src?: string; extrude?: boolean; property?: string; labelProperty?: string; rise?: number[]; legend?: unknown }[];
+    }[];
+  };
+  assert.equal(fixture.shots.length, 1);
+  const shot = fixture.shots[0]!;
+  assert.equal(shot.duration, 6);
+  assert.ok(shot.from.pitch >= 40 && shot.to.pitch > shot.from.pitch);
+  assert.ok(Math.abs(shot.to.bearing - shot.from.bearing) <= 20, 'keeps north-up orientation readable');
+  const choropleth = shot.overlays.find((o) => o.type === 'choropleth');
+  assert.ok(choropleth);
+  assert.equal(choropleth.src, 'tokyo23-population.geojson');
+  assert.equal(choropleth.property, 'population');
+  assert.equal(choropleth.labelProperty, 'name');
+  assert.equal(choropleth.extrude, true);
+  assert.ok(choropleth.rise && choropleth.rise.length === 2);
+  assert.ok(choropleth.legend, 'Tokyo 23 wards choropleth should include a legend');
+});
+
+test('Japan 47 prefectures 3D choropleth E2E tilts subtly while extrusions rise with labels and legend', () => {
+  const fixture = JSON.parse(fs.readFileSync('test/fixtures/choropleth-3d-japan-pref.json', 'utf8')) as {
+    shots: {
+      duration: number;
+      from: { pitch: number; bearing: number };
+      to: { pitch: number; bearing: number };
+      overlays: { type: string; src?: string; extrude?: boolean; property?: string; labelProperty?: string; rise?: number[]; legend?: unknown }[];
+    }[];
+  };
+  assert.equal(fixture.shots.length, 1);
+  const shot = fixture.shots[0]!;
+  assert.equal(shot.duration, 6);
+  assert.ok(shot.from.pitch >= 40 && shot.to.pitch > shot.from.pitch);
+  const choropleth = shot.overlays.find((o) => o.type === 'choropleth');
+  assert.ok(choropleth);
+  assert.equal(choropleth.src, 'japan-pref-population.geojson');
+  assert.equal(choropleth.property, 'population');
+  assert.equal(choropleth.labelProperty, 'name');
+  assert.equal(choropleth.extrude, true);
+  assert.ok(choropleth.rise && choropleth.rise.length === 2);
+  assert.ok(choropleth.legend);
+});
+
+test('Japan 47 prefectures to Tokyo 23 wards 3D choropleth E2E centers Tokyo and dims others before zooming', () => {
+  const fixture = JSON.parse(fs.readFileSync('test/fixtures/choropleth-3d-japan-pref-to-tokyo23.json', 'utf8')) as {
+    shots: {
+      duration: number;
+      from: { center: number[]; zoom: number; pitch: number; bearing: number };
+      to: { center: number[]; zoom: number; pitch: number; bearing: number };
+      overlays: { type: string; src?: string; focus?: { values: string[]; dimOpacity?: number } }[];
+    }[];
+  };
+  assert.equal(fixture.shots.length, 4);
+  assert.deepEqual(fixture.shots.map(({ duration }) => duration), [4.5, 2.5, 3.0, 4.5]);
+  for (let i = 1; i < fixture.shots.length; i++) {
+    assert.deepEqual(fixture.shots[i]!.from, fixture.shots[i - 1]!.to, `camera discontinuity at shot ${i}`);
+  }
+  const panShot = fixture.shots[1]!;
+  assert.deepEqual(panShot.to.center, [139.742, 35.669]);
+  assert.equal(panShot.overlays[0]?.focus?.values[0], '東京都');
+  const zoomShot = fixture.shots[2]!;
+  assert.deepEqual(zoomShot.from.center, [139.742, 35.669]);
+  assert.deepEqual(zoomShot.to.center, [139.742, 35.669]);
+  assert.ok(zoomShot.to.zoom > zoomShot.from.zoom + 4);
 });
 
 test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {

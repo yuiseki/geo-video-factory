@@ -5,6 +5,7 @@ import type { CameraKey, Shot, ShotSpec } from '../types.js';
 import { buildMapStyle } from './map-style.js';
 import { registerMapProtocols } from './map-protocols.js';
 import type { MapLibreMap } from './map-types.js';
+import { preloadChoroplethLabels } from './choropleth-dom.js';
 import { configureOverlayRenderer, drawOverlays, setOverlayTime } from './overlays.js';
 
 let map: MapLibreMap;
@@ -64,7 +65,7 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
     pixelRatio: 1,
   }) as unknown as MapLibreMap;
   configureOverlayRenderer({ map, spec, overlayEl, tintEl });
-  await new Promise<void>((resolve) => map.once('load', resolve));
+  await Promise.all([new Promise<void>((resolve) => map.once('load', resolve)), preloadChoroplethLabels(spec)]);
   return settle();
 }
 

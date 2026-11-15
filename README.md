@@ -31,6 +31,7 @@
 | [geo-video-camera](.agents/skills/geo-video-camera/SKILL.md) | カメラの技法、速度、データの範囲、ラベルの重なりの検品 |
 | [geo-video-narration](.agents/skills/geo-video-narration/SKILL.md) | VOICEVOX、掛け合い、字幕、読み違い、立ち絵、BGM |
 | [geo-video-visuals](.agents/skills/geo-video-visuals/SKILL.md) | 写真、地名、図解、テロップ、画面効果、編集の技法 |
+| [geo-video-visualize](.agents/skills/geo-video-visualize/SKILL.md) | 2D / 3D コロプレス図（`choropleth` / `fill-extrusion`）、配色・階級区切り・NoData・時系列共通尺度の設計 |
 | [geo-video-materials](.agents/skills/geo-video-materials/SKILL.md) | いらすとや・Wikimedia 等の素材収集、ライセンス確認、重複・EXIF 監査、出典・画像 ID 管理 |
 | [geo-video-reference-analysis](.agents/skills/geo-video-reference-analysis/SKILL.md) | 良いと感じた動画の構成、編集、声、題とサムネイル、再生数や登録者数との比を分析し、持ち帰る型を提案する |
 

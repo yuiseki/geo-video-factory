@@ -1,3 +1,5 @@
+import { choroplethDimMultiplier, choroplethHeightExpression } from '../choropleth.js';
+import { choroplethRiseProgress, drawChoroplethLabels, drawChoroplethLegend } from './choropleth-dom.js';
 import {
   blinkAt,
   chartGeometry,
@@ -52,20 +54,34 @@ export function drawOverlays(si: number, shot: Shot, t: number, pass: 'map' | 'd
   if (pass === 'map') {
     spec.shots.forEach((s, i) =>
       (s.overlays || []).forEach((o, oi) => {
-        if (!['line', 'polygon', 'base', 'image'].includes(o.type)) return;
+        if (!['line', 'polygon', 'choropleth', 'base', 'image'].includes(o.type)) return;
         const id = `ov-${i}-${oi}`;
-        const ids = o.type === 'line' ? [id, id + '-casing'] : o.type === 'polygon' ? [id, id + '-fill'] : [id];
+        const ids =
+          o.type === 'line'
+            ? [id, id + '-casing']
+            : o.type === 'polygon'
+              ? [id, id + '-fill']
+              : o.type === 'choropleth'
+                ? o.focus
+                  ? [id, id + '-fill', id + '-focus', id + '-focus-fill']
+                  : [id, id + '-fill']
+                : [id];
         ids.forEach((lid) => map.setLayoutProperty(lid, 'visibility', i === si ? 'visible' : 'none'));
       }),
     );
   }
   let tint = shot.tint ?? 0;
+  const hasSub = (shot.overlays || []).some((o) => o.type === 'subtitle');
   (shot.overlays || []).forEach((o, oi) => {
     const a = fadeAlpha(o.show, t, o.fade ?? 0.06);
     const id = `ov-${si}-${oi}`;
-    const isMap = ['line', 'polygon', 'base', 'image'].includes(o.type);
+    const isMap = ['line', 'polygon', 'choropleth', 'base', 'image'].includes(o.type);
     if (isMap !== (pass === 'map')) {
       if (o.type === 'chapter' && pass === 'map') tint = Math.max(tint, 0.55 * a);
+      if (o.type === 'choropleth' && pass === 'dom' && a > 0) {
+        if (o.labelProperty) drawChoroplethLabels(o, t, a, map, scale(), el, esc);
+        if (o.legend) drawChoroplethLegend(o, a, hasSub, el, esc);
+      }
       return;
     }
     if (o.type === 'base' || o.type === 'image') {
@@ -78,6 +94,26 @@ export function drawOverlays(si: number, shot: Shot, t: number, pass: 'map' | 'd
     } else if (o.type === 'polygon') {
       map.setPaintProperty(id, 'line-opacity', a);
       map.setPaintProperty(id + '-fill', 'fill-opacity', a * (o.fillOpacity ?? 0.35));
+    } else if (o.type === 'choropleth') {
+      const dim = o.focus ? choroplethDimMultiplier(t, o.focus.window, o.focus.dimOpacity) : 1;
+      const variants = o.focus ? [{ suffix: '', mult: dim }, { suffix: '-focus', mult: 1 }] : [{ suffix: '', mult: 1 }];
+      const progress = o.extrude && o.rise ? choroplethRiseProgress(o, t) : null;
+      for (const { suffix, mult } of variants) {
+        const lid = id + suffix;
+        map.setPaintProperty(lid, 'line-opacity', a * mult);
+        if (o.extrude) {
+          map.setPaintProperty(lid + '-fill', 'fill-extrusion-opacity', a * mult * (o.opacity ?? 0.85));
+          if (progress !== null) {
+            map.setPaintProperty(
+              lid + '-fill',
+              'fill-extrusion-height',
+              choroplethHeightExpression(o.heightProperty ?? o.property, o.heightScale ?? 1, o.heightBase ?? 0, progress),
+            );
+          }
+        } else {
+          map.setPaintProperty(lid + '-fill', 'fill-opacity', a * mult * (o.opacity ?? 0.78));
+        }
+      }
     } else {
       drawMotion(o, phase(o.show, t, shot.duration ?? 0), t, a, (v) => {
         tint = Math.max(tint, v);

@@ -1,0 +1,55 @@
+{
+  "width": 640,
+  "height": 360,
+  "fps": 6,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "shots": [
+    {
+      "duration": 2,
+      "ease": "linear",
+      "from": { "center": [139.7671, 35.6812], "zoom": 13.5, "pitch": 52, "bearing": -20 },
+      "to": { "center": [139.7671, 35.6812], "zoom": 13.5, "pitch": 52, "bearing": 20 },
+      "overlays": [
+        {
+          "type": "choropleth",
+          "data": {
+            "type": "FeatureCollection",
+            "features": [
+              {
+                "type": "Feature",
+                "properties": { "val": 100 },
+                "geometry": { "type": "Polygon", "coordinates": [[[139.758, 35.678], [139.765, 35.678], [139.765, 35.683], [139.758, 35.683], [139.758, 35.678]]] }
+              },
+              {
+                "type": "Feature",
+                "properties": { "val": 400 },
+                "geometry": { "type": "Polygon", "coordinates": [[[139.766, 35.678], [139.773, 35.678], [139.773, 35.683], [139.766, 35.683], [139.766, 35.678]]] }
+              },
+              {
+                "type": "Feature",
+                "properties": { "val": 800 },
+                "geometry": { "type": "Polygon", "coordinates": [[[139.766, 35.684], [139.773, 35.684], [139.773, 35.689], [139.766, 35.689], [139.766, 35.684]]] }
+              },
+              {
+                "type": "Feature",
+                "properties": { "val": null },
+                "geometry": { "type": "Polygon", "coordinates": [[[139.758, 35.684], [139.765, 35.684], [139.765, 35.689], [139.758, 35.689], [139.758, 35.684]]] }
+              }
+            ]
+          },
+          "property": "val",
+          "breaks": [0, 250, 600],
+          "colors": ["#eff3ff", "#6baed6", "#08519c"],
+          "noDataColor": "#6b7280",
+          "opacity": 0.85,
+          "extrude": true,
+          "heightScale": 0.6,
+          "rise": [0.0, 0.7],
+          "credit": "統計：3D コロプレステスト"
+        }
+      ]
+    }
+  ]
+}
