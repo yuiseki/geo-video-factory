@@ -44,3 +44,4 @@ projects/**/*.ogg
 # Fetch them again from the engine when needed.
 projects/**/assets/voicevox/
 projects/2026/11/13/dotonbori/plateau/*
+projects/trials/**/*
