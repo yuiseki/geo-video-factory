@@ -33,6 +33,7 @@ Important visual details from the trial implementation:
 - Branch: `feat/plateau-appearance-osm-proxies`
 - Test-first specification commit: `2d8b206 test: specify PLATEAU building appearance and OSM proxies`
 - Current implementation commit: `805d8d9 feat: add PLATEAU appearance and OSM proxy pipeline`
+- Follow-up implementation commit pulled from the remote branch: `d0be832 feat: complete PLATEAU appearance, OSM proxy pipeline, and Asakusa E2E`; merge commit: `a01ad40`.
 - `.vscode/settings.json` is intentionally part of the implementation commit per the owner's standing instruction.
 - The implementation commit was pushed, but the full Python suite has not been verified after the latest edits. Do not infer green CI from the renderer build/unit pass.
 
@@ -54,7 +55,7 @@ Important visual details from the trial implementation:
 - `infer_glb_facade_colors()` maps GLB feature/batch IDs to inferred orthophoto color and skips detected textured IDs.
 - `apply_orthophoto_palette()` writes per-tile `facade_colors` in manifest ID order.
 - `build_osm_proxy_tiles()` extrudes OSM polygons to GLB with height from `height` or `building:levels` (3 m/floor), and appends a renderer-compatible proxy tile to the existing manifest.
-- `extract_glb_feature_centroids()` and `_point_in_ring()` exist, but centroid metadata is not yet wired into the PLATEAU manifest or proxy overlap filtering.
+- `extract_glb_feature_centroids()` now writes per-ID `feature_centroids` in the manifest, and OSM proxy generation excludes a proxy if one of those points falls inside its polygon. See the coordinate-specific limitations below: node transforms and Draco decoding are not included in this centroid extraction.
 
 ### Renderer
 
@@ -64,13 +65,37 @@ Important visual details from the trial implementation:
 
 ## Known gaps (do these first)
 
-1. **Known test/implementation mismatch:** `test_osm_proxy_skips_buildings_whose_footprint_contains_a_plateau_building_centroid` expects OSM/PLATEAU overlap suppression. The helper for centroid extraction and point-in-ring is present, but `build_osm_proxy_tiles()` does not yet load/use those centroids. This test is expected to fail until it is wired. Implement that test first and then make it pass.
-2. The `plateau_3d.py --osm-geojson` CLI currently invokes `build_osm_proxy_tiles()` without `plateau_ids`, even though the function can exclude explicit IDs. Wire overlap and ID metadata end-to-end.
-3. `infer_glb_facade_colors()` currently considers a feature textured if it appears in a textured primitive; a mixed textured/untextured feature can therefore miss facade color assignment. Improve this carefully without recoloring original texture maps.
-4. The OSM generator currently handles a Polygon outer ring or only the first ring of each MultiPolygon polygon. It does not model holes and its centroid-based bbox filter can drop intersecting edge buildings.
-5. Current PLATEAU color sampling from GLB vertices uses a feature centroid (not a full footprint mask). This can sample a road, shadow, or roof equipment; compare against the trial's polygon-based sampling and improve if feasible.
-6. The proxy's palette/material path and the PLATEAU palette path need a shared appearance contract; verify OSM proxy colors actually reach the renderer and are not overwritten by the generic fallback shader.
-7. The production README describes the base 3D building pipeline but is not yet sufficient documentation for the new appearance and OSM pipeline.
+1. `extract_glb_feature_centroids()` and `infer_glb_facade_colors()` read accessor POSITION values as though those values plus `rtc` are ECEF deltas. They do not apply the glTF node hierarchy transforms. The trial Taito GLBs have small local vertex coordinates and an ECEF-sized translation on a node, with `rtc=[0,0,0]`; this path therefore computes centroids/colors near the wrong place. Their test fixture does not cover node translations.
+2. Draco accessors may have no ordinary `bufferView`; the current palette code avoids a crash and falls back to the tile RTC point. For georeferenced GLBs with `rtc=[0,0,0]` and ECEF data in node transforms this fallback is not a valid point. Add Draco decoding or use the matching CityGML footprints for color/centroid geometry.
+3. Current OSM/PLATEAU deduplication in `build_osm_proxy_tiles()` is centroid-in-polygon containment (with hole handling), not the trial's stronger area-overlap rule. It misses partial overlaps where the PLATEAU centroid lies outside the OSM polygon. Reproduce the trial rule: omit an OSM footprint when its intersection with any PLATEAU footprint exceeds 10% of the OSM footprint area.
+4. Current PLATEAU sampling uses the convex hull of decoded per-feature GLB vertices, then a masked orthophoto median; if that hull cannot be formed it samples a 5×5 patch around the ECEF-derived centroid. Hull sampling is an improvement over a single centroid, but is still vulnerable to node-transform omissions, concavities/holes, roof equipment, and tile/texture feature layouts.
+5. Trial CityGML footprint parsing assumes source `gml:posList` triples are axis-ordered `[latitude, longitude, height]`, swaps the first two values to GeoJSON `[longitude, latitude]`, and then uses longitude/latitude as degrees. Validate the GML CRS/axis order per dataset before copying this logic; one axis swap yields city-scale displacement.
+6. Add numeric transform tests for all source variants and a visual/coordinate control-point check before treating a green synthetic E2E as spatial validation. Existing `plateau-coordinates.test.ts` validates ECEF-to-ENU basis directions, but does not exercise GLB node transforms, the `yUpToZUp * rowBasis` composition, RTC variants, or final MapLibre projection.
+7. The production README describes the base 3D building pipeline but needs to be kept aligned with current appearance, source-coordinate, and proxy behavior.
+
+### Trial behavior to port (do not rediscover or approximate)
+
+The following behaviors were already implemented in `projects/trials/plateau/`. They are reference designs, not evidence that the current `packages/` pipeline has them. Port them with fixtures derived from those scripts and compare outputs before changing formulas:
+
+| Behavior | Trial implementation / exact contract | Current package status |
+|---|---|---|
+| Original PLATEAU photo textures | `plateau-direct-experiment/page/plateau-direct.js`: retain source atlas and UVs; apply render-time `onBeforeCompile` treatment, modulated by per-atlas chroma/brightness analysis. See “Shader-based procedural facade and texture treatment” below. | Source texture is preserved and textured materials are skipped by the palette in the basic path, but the trial's atlas darkening and chroma-aware shader treatment are not fully ported. |
+| Textureless PLATEAU facade appearance | Same shader: world/model coordinates generate stable floor bands, window pattern, roof seams, and deterministic per-building variation keyed by feature identity. It is shader logic, not a generated bitmap. Exact constants and formula summary are below. | Palette assignment exists; the trial shader appearance system is not equivalent to a per-feature flat palette and needs separate implementation. |
+| Orthophoto-derived facade palette | `plateau-ortho-experiment/build_plateau.py` / `page/lib.js` and the direct experiment sample GSI `seamlessphoto` at z18, mask to a footprint/feature hull, use a robust representative roof color, then convert roof value to a darker facade tone using `0.14 + 0.50 * v^0.88`; stable seeded variation avoids neighboring repetition. See “Orthophoto sampling and facade tone” below. | Package has masked median/hull sampling and deterministic palette variation, but spatial sampling fails for unsupported node/Draco coordinate forms; exact trial conversion and filters need parity verification. |
+| OSM proxy buildings | `plateau-hybrid-experiment/prepare.py` selects valid OSM building footprints, uses `height` (1–350 m) or `building:levels × 3 m`, omits unusable heights, and removes an OSM polygon only when its area overlap with PLATEAU exceeds 10% of the OSM polygon area. `build_proxy_b3dm.py` makes the OSM geometry conform to a 3D Tiles building payload. | Package emits renderer-compatible proxy GLBs and handles explicit IDs/centroid containment, but does not yet reproduce the >10% polygon-intersection suppression or all trial filtering semantics. Coordinate contract differs; see above. |
+| Adaptive atlas optimization | `optimize_glb_adaptive.py`: center-window tile classification, 2048 px near / 1024 px far max dimension, Lanczos resize, WebP quality 88/method 3; only image payload is replaced. Geometry/UV/node transforms remain unchanged. | Not fully ported. Avoid modifying geometry as part of image optimization. |
+
+#### Design for restoring the trial behavior
+
+1. **Normalize spatial geometry before all appearance or dedupe work.** Parse each GLB scene graph, compose parent-to-child node matrices, apply accessor POSITION and primitive index selection, decode `KHR_draco_mesh_compression`, then apply the source-specific RTC/3D Tiles placement exactly once. Convert the resulting vertices to WGS84 or a local metric CRS before calculating hulls, centroids, or raster samples. If a decoder is unavailable, join the same feature by GML ID to CityGML footprint geometry; do not substitute `[0,0,0]`, tile RTC, or raw accessor bounds as a proxy. Keep source IDs attached through normalization.
+2. **Separate geometry appearance classes.** For each feature/material primitive, preserve original atlas and UV bindings; classify textured and untextured primitives independently so one textured primitive cannot suppress treatment for the entire building. Apply photo-atlas luminance correction and low-chroma procedural facade treatment only to the intended material. Apply orthophoto-derived facade palette to genuinely textureless features. Never bake procedural windows/floors into the source GLB or modify shared source atlases in place.
+3. **Make the procedural facade shader deterministic and world-anchored.** Use the trial's shader formulas and constants recorded below as the parity target. Seed from stable source feature identity (`_BATCHID`/feature ID plus tile/material identity), not draw order, frame number, or random runtime state. Keep the pattern in the same transformed model/world coordinate frame while the camera moves. Test adjacent features with different IDs and repeat renders byte-for-byte at the palette/material-data level.
+4. **Port orthophoto sampling as a footprint operation.** Reproject normalized WGS84 footprint geometry into the raster's pixel coordinates, clip to image bounds, rasterize a polygon mask, and sample interior pixels rather than the centroid alone. Exclude invalid/transparent pixels and use the trial's shadow/road suppression and robust representative-color estimator where present. Convert roof representative RGB to facade tone using the recorded value formula, then apply deterministic bounded per-building variation. Persist source sample, mask pixel count, representative color, and seed in optional diagnostics so a displaced footprint can be distinguished from a color-estimation issue.
+5. **Use area-based OSM suppression in a metric projection.** Normalize OSM and PLATEAU footprints to valid polygons, project both into a suitable local metric CRS (or a stable local equal-area projection), use a spatial index to find candidates, calculate `intersection_area(OSM, PLATEAU) / area(OSM)`, and suppress the OSM building only when the ratio is strictly greater than `0.10`, matching `prepare.py`. Keep exact ID suppression independent. Define behavior for invalid/zero-area geometries, holes, multipolygons, and bbox-crossing polygons; do not perform area ratios in longitude/latitude degrees.
+6. **Keep texture optimization isolated and measurable.** Classify near/far using the trial's center window; cap the maximum image dimension at 2048/1024 px; resample with Lanczos and encode WebP at quality 88, method 3. Preserve alpha, UVs, image references, and every geometry/node/RTC byte. Record before/after dimensions and bytes. Compare a source fixture's transforms and geometry buffers before and after to prove the optimizer changed only image payloads and references.
+7. **Validate each source-coordinate variant before visual parity.** Use matched control points and equivalent buildings represented as (a) b3dm/RTC local geometry, (b) native GLB with ECEF node translation and zero RTC, and (c) Draco-compressed geometry. Assert their normalized WGS84 footprints agree within a stated metre tolerance before comparing palette colors, OSM overlap results, or rendered frames.
+
+Do not copy an old trial implementation wholesale into `packages/`: retain these behavioral contracts while adapting the coordinate normalization and data schema to the package pipeline. The detailed formulas, thresholds, tile sources, and observed format counts below are the reference values to preserve unless a test or visual comparison demonstrates a deliberate improvement.
 
 ## Tests and resource safety
 
@@ -183,3 +208,75 @@ Recorded horizontal render benchmarks from the logs:
 | v0.0.7 Asakusa–Ryogoku | 495 | 148 s | 422 | 1,091 | 2,657,560 | 0 |
 
 The corresponding vertical logs record 48 s for v0.0.6 and 141 s for v0.0.7. These are render-loop elapsed times from logs, not controlled benchmarks. Peak memory was not captured, so do not invent a memory figure.
+
+## Coordinate reference and transform contract (critical)
+
+The coordinate mismatch risk is high because the trial tree contains several distinct pipelines. Keep the coordinate type, unit, and axis order explicit at every boundary. “Coordinates” below are not interchangeable even when all are represented by three numbers.
+
+| Data | Coordinate order / units | Meaning |
+|---|---|---|
+| Shot camera center, labels, GeoJSON | `[longitude, latitude]`, degrees | WGS84 geographic coordinates; GeoJSON heights are separate properties in metres |
+| 3D Tiles `boundingVolume.region` | `[west,south,east,north,minHeight,maxHeight]`, radians/metres | WGS84 angular bounds are radians, unlike shot and manifest bbox values |
+| Manifest `center` | `[longitude,latitude]`, degrees | Local map origin; height is implicitly 0 in the renderer |
+| Manifest tile `rtc` / `RTC_CENTER` | `[X,Y,Z]`, metres | Earth-centered, Earth-fixed (ECEF), WGS84 geocentric coordinates |
+| GLB POSITION after `yUpToZUp` in the direct renderer | `[X,Y,Z]`-oriented ECEF delta (m) | Offset from `rtc`, or absolute ECEF position encoded in a node transform for some native GLBs |
+| Renderer local frame | `[east,north,up]`, metres | Tangent ENU frame at manifest center |
+| MapLibre Mercator world | normalized coordinates | X eastward; normalized Y grows southward; normalized Z is altitude scaled by meters-per-Mercator-unit |
+
+### Trial direct-mesh path: ECEF -> ENU -> MapLibre
+
+`plateau-direct-experiment/page/plateau-direct.js` has this exact order:
+
+1. Read manifest `center=[lon,lat]` in degrees and calculate WGS84 ECEF origin `O` at height 0 using semi-major axis `a=6378137 m` and eccentricity squared `e²=6.69437999014e-3`.
+2. At that origin define ECEF unit basis vectors:
+   - `E=(-sin λ, cos λ, 0)` (east),
+   - `N=(-sin φ cos λ, -sin φ sin λ, cos φ)` (north),
+   - `U=(cos φ cos λ, cos φ sin λ, sin φ)` (up), where `λ=lon*pi/180`, `φ=lat*pi/180`.
+3. Read each tile's ECEF `rtc`, compute `d=rtc-O`, then tile translation in local metres as `(E·d, N·d, U·d - 39.0)`. The `-39 m` is applied along local up only. It is an empirical correction for a flat map plane; it is not valid as a universal geoid or terrain correction.
+4. Convert source GLTF Y-up to the direct renderer's Z-up shim with matrix
+   `Y = [[1,0,0,0],[0,0,-1,0],[0,1,0,0],[0,0,0,1]]`, i.e. `(x,y,z) -> (x,-z,y)`.
+5. The trial's `basis = Matrix4.set(E.x,E.y,E.z,0, N.x,N.y,N.z,0, U.x,U.y,U.z,0, ...)` puts E/N/U in **rows**. Three.js `Matrix4.set()` accepts row-major arguments and applies a column vector, so this is the ECEF-to-ENU dot-product matrix: `(X,Y,Z) -> (E·p,N·p,U·p)`. It is intentionally not the ENU-to-ECEF matrix. Scene transform is `T(tile ENU - height correction) * basis(ECEF->ENU) * Y(GLTF Y-up->ECEF-Z-up)`.
+6. `localToMerc` translates to `MercatorCoordinate.fromLngLat([lon,lat],0)` and scales by `meterInMercatorCoordinateUnits()`, with Y scale negated. Therefore ENU north becomes decreasing Mercator Y, and local up becomes positive Mercator Z.
+7. `args.defaultProjectionData.mainMatrix` is multiplied by `localToMerc`; this sends normalized MapLibre Mercator coordinates through the active map camera projection.
+
+This composition assumes that applying `Y` makes the model vertex position an ECEF-axis-oriented delta relative to the tile RTC. For the source forms below, the data is laid out to satisfy that contract. Do not “fix” the apparent row/column transpose by swapping the matrix without first checking model coordinate conventions; doing so is correct for a local ENU mesh but wrong for these ECEF-oriented vertices.
+
+### The two native PLATEAU GLB positioning patterns observed
+
+`prepare_tiles.py` stores one ECEF `rtc` per tile. `optimize_glb_adaptive.py` removes `CESIUM_RTC` from the optimized GLB JSON after the RTC has been copied into the manifest; it does not transform positions or node transforms. The renderer then applies the manifest RTC itself. The observed content includes two different but compatible patterns:
+
+- **b3dm embedded GLB (Chuo/Sumida):** vertices are local-sized positions around the model, and a tile ECEF center is stored in `CESIUM_RTC.center` (the source b3dm also has a feature table; the trial downloader primarily read the GLB extension). After the Y-up shim the local positions are treated as ECEF-axis deltas; `basis` turns them into ENU and the RTC translation locates the tile.
+- **Native Taito GLB:** no `CESIUM_RTC`; trial manifest uses `rtc=[0,0,0]`. Vertex POSITION values are local-sized (sample observed bounds roughly `[-51,-29,-103]` to `[38,101,26]` m), while a glTF node translation carries the absolute position in the inverse Y-up ECEF encoding. One sampled node translation was `[-3958110.75, 3703259.0, -3347751.0]`, approximately `[ECEF X,ECEF Z,-ECEF Y]` for Tokyo. The node hierarchy must be preserved and transformed by the same parent matrix; do not copy the node translation into `rtc` as well, or it will be applied twice.
+
+The file format/extension is not enough to infer where the world placement lives. Inspect `rtc`, node matrices/translations, accessor bounds, and `CESIUM_RTC` together. For unrecognized combinations fail loudly or normalize to a documented canonical representation before rendering.
+
+### OSM proxy GLB coordinate contract in `packages/`
+
+Current `_glb_for_buildings()` does not generate a local-ENU mesh. For every `[lon,lat,height]`, it computes WGS84 ECEF `P`, subtracts the manifest-center ECEF `O`, then writes GLTF position `[P.x-O.x, P.z-O.z, -(P.y-O.y)]`. Its tile `rtc` equals `O`. The renderer's Y-up shim maps that value back to ECEF delta `[dx,dy,dz]`; ECEF-to-ENU basis and tile translation then place it on the MapLibre plane. Generated proxies have identity GLTF node transforms, so their per-vertex coordinates are directly interpretable.
+
+This is a deliberately different representation from a conventional local ENU GLB. If changing the pipeline to write ENU positions, the renderer must not apply ECEF-to-ENU a second time. Pick one canonical contract and encode it in manifest metadata or normalize all source variants before the renderer.
+
+The older `plateau-hybrid-experiment/build_proxy_b3dm.py` uses another path: it approximates local horizontal coordinates by `x=(lon-lon0)*R*cos(lat0)`, `y=height`, `z=-(lat-lat0)*R`; its 3D Tiles root transform carries the ECEF placement. Its positions are Y-up local east/up/south and rely on the 3D Tiles transform convention. Do not transplant that tileset matrix into the current GLB custom layer without reproducing the Y-up conversion and matrix storage order.
+
+### Footprints, camera keys, and GSI coordinates
+
+- `prepare_tiles.py` converts scene extents in degrees to radians before testing them against 3D Tiles `region`. Manifest `bbox_degrees` remains degrees. `region_intersects_bbox()` in `packages/pipeline/plateau_3d.py` performs the same conversion. Mixing bbox degrees with region radians silently selects the wrong tiles.
+- `plateau-ortho-experiment/build_plateau.py` reads CityGML `gml:posList` triples and writes each ring point as `[v[i+1],v[i]]`, assuming the source axis order is latitude then longitude and discarding source height from the footprint ring. It uses WGS84 degree coordinates for the resulting GeoJSON. It looks first for `lod0FootPrint`, otherwise falls back to the first `posList`; the fallback can be a wall/roof ring, not a ground footprint. Confirm the GML CRS, axis labels, selected surface, closure, and known control point before using the resulting polygon as truth.
+- The CityGML fallback builder uses measured height if in `[1,350]` m, otherwise the range of LOD1 solid Z values if available. It filters buildings by approximate 1 km horizontal distance using `111195 m/degree` and longitude multiplied by `cos(latitude)`.
+- OSM `out geom` vertices and GeoJSON rings are `[lon,lat]` degrees. OSM height is metres or levels×3 m; extrusion base is MapLibre ground level, height above ground.
+- Camera shot coordinates and labels are WGS84 `[lon,lat]` degrees. `page/lib.js:cameraAt()` interpolates longitude linearly but interpolates latitude through Mercator Y (`log(tan(pi/4+lat*pi/360))`) before inverting. Camera center is not the manifest/model origin. A small camera-centering error should not be “corrected” by moving model RTCs.
+- In the direct-model trial `flyover.js` deletes `style.terrain`, leaving the orthophoto plane flat; that is why the `-39 m` direct-model correction is present. The DEM remains relevant to other trial modes but is not draped onto that direct-model mode. Fallback MapLibre fill-extrusions start at base 0 and should not have the mesh-only `-39 m` applied.
+
+### Why this is a current spatial failure risk
+
+The just-pulled package implementation adds `feature_centroids`, but `extract_glb_feature_centroids()` reads raw POSITION accessors and computes `(rtc.x+x, rtc.y-z, rtc.z+y)` without composing glTF node matrices. The Taito pattern above stores world placement in a node translation and leaves `rtc=0`; a raw-accessor centroid from this tile therefore is not a Tokyo coordinate. `infer_glb_facade_colors()` follows the same raw POSITION + RTC assumption. For Draco accessors without ordinary buffer views, centroid extraction skips the data; color inference falls back to the RTC, which can be `[0,0,0]` for the Taito pattern. These paths can create misplaced colors or fail to suppress duplicate OSM geometry even if the renderer's live model transform appears correct.
+
+Before trusting any real-data render, implement and assert these transform invariants with fixtures matching both observed source patterns:
+
+1. For a tile origin at `[139.79,35.70,0]`, a 10 m east model displacement must project to about `+10 m ENU east`, near-zero north/up; 10 m north to `+10 m ENU north`; and a 10 m building-height displacement to `+10 m up`.
+2. A b3dm local-delta vertex plus ECEF RTC and a native-GLB ECEF node translation with RTC zero that describe the same building must produce the same WGS84 footprint and screen position.
+3. OSM proxy vertex -> ECEF -> ENU -> MapLibre projection must return the input `[lon,lat]` at ground height (within a documented tolerance). Check all four corners of a known footprint, not just its centroid.
+4. The `-39 m` scene correction must affect only vertical offset; it must not change longitude/latitude or rotate horizontal axes.
+5. Test with a real PLATEAU control point (station/platform/building corner) against the orthophoto and OSM labels. Record expected screen/map coordinates and measured error. A synthetic GLB render passing only proves file loading, not georeferencing.
+
+The current unit tests cover scalar WGS84 ECEF/ENU conversion and synthetic OSM proxies, but no test presently proves this end-to-end GLB hierarchy/RTC/MapLibre matrix contract. Treat the missing transform tests and point-control render as release-blocking for “real PLATEAU data works”.
