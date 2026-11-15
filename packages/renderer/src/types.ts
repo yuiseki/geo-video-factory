@@ -326,6 +326,8 @@ export interface PlateauBuildingsConfig {
   heightOffset?: number;
   /** Deterministic worker count for loading model assets. Defaults to 3. */
   workers?: number;
+  /** Apply orthophoto palette and procedural facade appearance. Defaults to true. */
+  appearance?: boolean;
 }
 
 export interface ShotSpec {

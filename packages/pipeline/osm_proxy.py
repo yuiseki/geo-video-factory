@@ -315,7 +315,17 @@ def build_osm_proxy_tiles(
                     raise ValueError(f'OSM building {identifier} has invalid geometry')
                 if any(polygon.intersection(footprint_shapes[int(i)]).area / polygon.area > 0.10 for i in footprint_tree.query(polygon)):
                     continue
-            elif any(_point_in_polygon(point, poly) for poly in polygons for point in plateau_centroids):
+            elif any(
+                min_x <= point[0] <= max_x and min_y <= point[1] <= max_y and _point_in_polygon(point, poly)
+                for poly in polygons
+                for min_x, min_y, max_x, max_y in [(
+                    min(pt[0] for pt in poly[0]),
+                    min(pt[1] for pt in poly[0]),
+                    max(pt[0] for pt in poly[0]),
+                    max(pt[1] for pt in poly[0]),
+                )]
+                for point in plateau_centroids
+            ):
                 continue
         if not _polygons_intersect_bbox(polygons, bbox_degrees):
             continue

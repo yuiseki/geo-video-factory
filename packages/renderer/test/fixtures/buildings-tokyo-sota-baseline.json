@@ -1,0 +1,74 @@
+{
+  "width": 640,
+  "height": 720,
+  "fps": 15,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "plateauBuildings": {
+    "manifest": "assets/buildings-tokyo-sota/baseline/manifest.json",
+    "heightOffset": -39,
+    "workers": 3,
+    "appearance": false
+  },
+  "shots": [
+    {
+      "duration": 10,
+      "ease": "inOut",
+      "from": { "center": [139.3105, 35.7600], "zoom": 16.3, "pitch": 62, "bearing": -30 },
+      "to": { "center": [139.3125, 35.7580], "zoom": 16.1, "pitch": 60, "bearing": -15 },
+      "overlays": [
+        { "type": "label", "screen": [960, 48], "text": "従来: PLATEAU のみ", "style": "tag", "show": [0, 1] },
+        { "type": "label", "screen": [960, 118], "text": "東京都羽村市 (PLATEAU 0% / 建物なし)", "style": "tag", "show": [0.05, 0.95] }
+      ]
+    },
+    {
+      "duration": 10,
+      "ease": "inOut",
+      "from": { "center": [139.3125, 35.7580], "zoom": 16.1, "pitch": 60, "bearing": -15 },
+      "to": { "center": [139.3160, 35.7525], "zoom": 15.6, "pitch": 58, "bearing": 145 },
+      "overlays": [
+        { "type": "label", "screen": [960, 48], "text": "従来: PLATEAU のみ", "style": "tag", "show": [0, 1] },
+        { "type": "label", "screen": [960, 118], "text": "羽村市・福生市 境界", "style": "tag", "show": [0.05, 0.95] }
+      ]
+    },
+    {
+      "duration": 10,
+      "ease": "inOut",
+      "from": { "center": [139.3160, 35.7525], "zoom": 15.6, "pitch": 58, "bearing": 145 },
+      "to": { "center": [139.3210, 35.7475], "zoom": 16.1, "pitch": 60, "bearing": 155 },
+      "overlays": [
+        { "type": "label", "screen": [960, 48], "text": "従来: PLATEAU のみ", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 12,
+      "ease": "inOut",
+      "from": { "center": [139.3210, 35.7475], "zoom": 16.1, "pitch": 60, "bearing": 155 },
+      "to": { "center": [139.3235, 35.7425], "zoom": 16.4, "pitch": 62, "bearing": 170 },
+      "overlays": [
+        { "type": "label", "screen": [960, 48], "text": "従来: PLATEAU のみ", "style": "tag", "show": [0, 1] },
+        { "type": "label", "screen": [960, 118], "text": "東京都福生市 (無テクスチャ地域)", "style": "tag", "show": [0.05, 0.95] }
+      ]
+    },
+    {
+      "duration": 10,
+      "ease": "inOut",
+      "from": { "center": [139.3235, 35.7425], "zoom": 16.4, "pitch": 62, "bearing": 170 },
+      "to": { "center": [139.3190, 35.7495], "zoom": 15.3, "pitch": 55, "bearing": -25 },
+      "overlays": [
+        { "type": "label", "screen": [960, 48], "text": "従来: PLATEAU のみ", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 8,
+      "ease": "inOut",
+      "from": { "center": [139.3190, 35.7495], "zoom": 15.3, "pitch": 55, "bearing": -25 },
+      "to": { "center": [139.3165, 35.7535], "zoom": 15.1, "pitch": 52, "bearing": -35 },
+      "overlays": [
+        { "type": "label", "screen": [960, 48], "text": "従来: PLATEAU のみ", "style": "tag", "show": [0, 1] }
+      ]
+    }
+  ]
+}

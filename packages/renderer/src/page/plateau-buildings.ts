@@ -116,7 +116,9 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
       gltf.scene.matrixAutoUpdate = false;
       gltf.scene.matrix.copy(translate).multiply(basis).multiply(yToZ);
       tuneMaterials(gltf.scene);
-      applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl);
+      if (config.appearance !== false) {
+        applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl);
+      }
       scene.add(gltf.scene);
       loadedTiles++;
     }
