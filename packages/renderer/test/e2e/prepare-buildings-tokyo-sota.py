@@ -25,7 +25,7 @@ from PIL import Image
 TILESET_URL = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
 BBOX = [139.302, 35.736, 139.336, 35.768]  # Tokyo Hamura (0% PLATEAU -> 100% OSM) <-> Tokyo Fussa (untextured PLATEAU)
 # Opening: the 3D Tokyo everyone expects (West Shinjuku high-rises, textured PLATEAU).
-SHINJUKU_BBOX = [139.684, 35.683, 139.702, 35.697]
+SHINJUKU_BBOX = [139.674, 35.683, 139.702, 35.700]
 SEED = "tokyo-sota-v1"
 SOTA_VERSION = 8  # bump when the SOTA assets change shape, so cached ones are rebuilt
 FIXTURES = ("buildings-tokyo-sota.json",)
