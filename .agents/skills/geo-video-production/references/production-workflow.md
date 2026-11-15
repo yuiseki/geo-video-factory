@@ -27,7 +27,7 @@
 実データを読む書き出しは、ホストの資源制限ルールに従ってメモリと CPU の上限を掛けて流す。
 
 ```bash
-python3 chapter_pipeline.py chapters.json --out out/新しい版 --workers 3 --check-label-overlap
+python3 packages/pipeline/chapter_pipeline.py projects/YYYY/MM/DD/<slug>/chapters.json --out projects/YYYY/MM/DD/<slug>/out/新しい版 --workers 3 --check-label-overlap
 ```
 
 Pillow、Noto Sans CJK、ffmpeg、ffprobe、Node.js、Playwright、VOICEVOX が必要。各章は 1920×1080・24fps・H.264/AAC stereo で統一し、結合後に全編を音量正規化する。完成物は `episode.mp4`、章の開始秒は `chapters.json`。このパイプラインは BGM を混ぜないため、`bgm` 指定があれば停止する。BGM が必要なら結合後に権利と音量を確認して別途重ねる。既存の出力先は上書きしない。`--voice-cache` は既存キャッシュを章ごとに複製し、並列書き込みの衝突を避ける。実行中にタイル取得・ブラウザー・時間切れのエラーがあればログを確認し、修正して新しい出力先で再生成する。

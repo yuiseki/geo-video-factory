@@ -5,14 +5,16 @@ description: MapLibre、地理院タイル、Playwright、ffmpegを使い、シ�
 
 # 地理動画レンダラー
 
-実装の正本は `assets/template/`。新規プロジェクトではこの中身を作業ディレクトリへコピーし、既存プロジェクトでは必要な差分だけ移植する。テンプレートにはMapLibreのページ、Playwrightレンダラー、VOICEVOX連携、章パイプライン、写真位置、共通エフェクト、サンプルショットが含まれる。
+レンダラーの本体は共通の TypeScript パッケージ `packages/renderer/` にあり、プロジェクトごとに JS/TS ファイルをコピーしない。新規プロジェクトには `assets/template/` の初期データ雛形（`shots/`, `characters/`, `assets/.gitkeep`, `.gitignore`）だけをコピーし、共通 CLI（`packages/renderer/dist/src/render.js`）に `--project <project-dir>`（または `shots/` 配下の JSON パス）を渡して実行する。
 
 ```bash
-cp -a <skill-dir>/assets/template/. <project>/
-cd <project>
-npm install
+cd packages/renderer && npm install && npm run build
 npx playwright install chromium-headless-shell
+# 実行例 (リポジトリルートから)
+node packages/renderer/dist/src/render.js <project>/shots/example.json --project <project> --out <project>/out/example --stills 2 --no-voice
 ```
+
+章の並列結合・EXIF 座標抽出・立ち絵 PSD スプライト化などの Python ツールは `packages/pipeline/` を使う。
 
 実データを読む書き出しはホストの資源制限ルールに従う。構図確認はまず `--stills`、本番は新しい `--out` を指定する。過去のフレームを混ぜない。GPU利用時はログのWebGL rendererを確認する。
 

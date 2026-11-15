@@ -1,15 +1,33 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { gsiToTerrarium, demSourceSpec, ease, cameraAt, sliceLine, locate, fadeAlpha, countValue } from '../page/lib.js';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {
+  gsiToTerrarium,
+  demSourceSpec,
+  ease,
+  cameraAt,
+  sliceLine,
+  locate,
+  fadeAlpha,
+  countValue,
+  wrapSubtitle,
+  layoutLines,
+  estimateSeconds,
+  phase,
+  easeOutBack,
+  typeCount,
+  chartGeometry,
+} from '../src/lib.js';
+import { parseWav, writeWav } from '../src/voice.js';
+import type { CameraKey } from '../src/types.js';
 
 test('GSI DEM: positive, negative and NA pixels', () => {
-  // 3776.12 m -> x = 377612
   const x = 377612;
   assert.equal(gsiToTerrarium(x >> 16, (x >> 8) & 255, x & 255), 3776.12);
-  // -1.5 m -> x = 2^24 - 150
   const n = 2 ** 24 - 150;
   assert.equal(gsiToTerrarium(n >> 16, (n >> 8) & 255, n & 255), -1.5);
-  // NA (128,0,0) -> 0 (sea and no data)
   assert.equal(gsiToTerrarium(128, 0, 0), 0);
 });
 
@@ -18,7 +36,7 @@ test('demSourceSpec builds raster-dem config for gsi and mapterhorn', () => {
   assert.equal(gsi.source.type, 'raster-dem');
   assert.equal(gsi.source.tileSize, 256);
   assert.equal(gsi.source.encoding, 'terrarium');
-  assert.match(gsi.source.tiles[0], /^gsidem:\/\//);
+  assert.match(gsi.source.tiles[0]!, /^gsidem:\/\//);
 
   const mh = demSourceSpec('mapterhorn');
   assert.equal(mh.source.type, 'raster-dem');
@@ -31,7 +49,7 @@ test('demSourceSpec builds raster-dem config for gsi and mapterhorn', () => {
 });
 
 test('ease keeps ends and is monotonic', () => {
-  for (const k of ['linear', 'inOut', 'in', 'out']) {
+  for (const k of ['linear', 'inOut', 'in', 'out'] as const) {
     assert.equal(ease(k, 0), 0);
     assert.equal(ease(k, 1), 1);
     assert.ok(ease(k, 0.6) >= ease(k, 0.4));
@@ -39,7 +57,7 @@ test('ease keeps ends and is monotonic', () => {
 });
 
 test('cameraAt interpolates keys and takes the short way round for bearing', () => {
-  const keys = [
+  const keys: CameraKey[] = [
     { t: 0, center: [138, 35], zoom: 10, pitch: 0, bearing: 350 },
     { t: 1, center: [139, 36], zoom: 12, pitch: 60, bearing: 10 },
   ];
@@ -52,13 +70,13 @@ test('cameraAt interpolates keys and takes the short way round for bearing', () 
 });
 
 test('sliceLine returns the first fraction of the line by length', () => {
-  const line = [[0, 0], [1, 0], [1, 1]];
+  const line: [number, number][] = [[0, 0], [1, 0], [1, 1]];
   assert.deepEqual(sliceLine(line, 0), [[0, 0], [0, 0]]);
   assert.deepEqual(sliceLine(line, 1), line);
   const half = sliceLine(line, 0.5);
   assert.deepEqual(half[half.length - 1], [1, 0]);
   const q = sliceLine(line, 0.25);
-  assert.ok(Math.abs(q[q.length - 1][0] - 0.5) < 1e-9);
+  assert.ok(Math.abs(q[q.length - 1]![0] - 0.5) < 1e-9);
 });
 
 test('locate maps a global time to a shot and local progress', () => {
@@ -78,17 +96,14 @@ test('fadeAlpha fades in and out over the window', () => {
 
 test('countValue counts up and keeps the given decimals', () => {
   assert.equal(countValue({ value: 2500, countUp: [0, 0.5], countEase: 'linear' }, 0.25), '1,250');
-  assert.ok(Number(countValue({ value: 2500, countUp: [0, 0.5] }, 0.25).replace(',', '')) > 1250); // eases out by default
+  assert.ok(Number(countValue({ value: 2500, countUp: [0, 0.5] }, 0.25).replace(',', '')) > 1250);
   assert.equal(countValue({ value: 2500, countUp: [0.2, 0.5] }, 0.1), '0');
   assert.equal(countValue({ value: 2500, countUp: [0, 0.5] }, 0.9), '2,500');
   assert.equal(countValue({ value: 2.8, decimals: 1 }, 0.1), '2.8');
   assert.equal(countValue({ value: '40〜50' }, 0.1), '40〜50');
-  // years: no grouping, count from a start value
   assert.equal(countValue({ value: 1969, from: 1950, grouping: false, countUp: [0, 1], countEase: 'linear' }, 0.5), '1960');
   assert.equal(countValue({ value: 1969, grouping: false }, 0), '1969');
 });
-
-import { wrapSubtitle, layoutLines, estimateSeconds } from '../page/lib.js';
 
 test('wrapSubtitle keeps short lines and splits long ones at punctuation near the middle', () => {
   assert.equal(wrapSubtitle('短い字幕', 26), '短い字幕');
@@ -97,35 +112,25 @@ test('wrapSubtitle keeps short lines and splits long ones at punctuation near th
   const w = wrapSubtitle(t, 20);
   assert.equal(w.replace('\n', ''), t);
   assert.equal(w.split('\n').length, 2);
-  assert.ok(w.split('\n')[0].endsWith('、'));
-  // no punctuation: split in the middle
+  assert.ok(w.split('\n')[0]!.endsWith('、'));
   const n = 'あいうえおかきくけこさしすせそたちつてと';
-  assert.equal(wrapSubtitle(n, 12).split('\n')[0].length, 10);
+  assert.equal(wrapSubtitle(n, 12).split('\n')[0]!.length, 10);
 });
 
 test('layoutLines puts lines one after another and stretches the shot to fit', () => {
   const r = layoutLines([1.0, 2.0], { duration: 2, padStart: 0.5, pause: 0.25, padEnd: 0.5 });
-  // 0.5 + 1.0 + 0.25 + 2.0 + 0.5 = 4.25
   assert.equal(r.duration, 4.25);
   assert.deepEqual(r.starts, [0.5, 1.75]);
-  // subtitle windows in shot progress; each stays until the next line starts (or the end)
-  assert.ok(Math.abs(r.windows[0][0] - 0.5 / 4.25) < 1e-9);
-  assert.ok(Math.abs(r.windows[0][1] - 1.75 / 4.25) < 1e-9);
-  assert.equal(r.windows[1][1], 1);
-  // a longer requested duration is kept
+  assert.ok(Math.abs(r.windows[0]![0] - 0.5 / 4.25) < 1e-9);
+  assert.ok(Math.abs(r.windows[0]![1] - 1.75 / 4.25) < 1e-9);
+  assert.equal(r.windows[1]![1], 1);
   assert.equal(layoutLines([1.0], { duration: 6, padStart: 0.5, pause: 0.25, padEnd: 0.5 }).duration, 6);
-  // no lines: duration unchanged
   assert.equal(layoutLines([], { duration: 3 }).duration, 3);
 });
 
 test('estimateSeconds approximates speech time from characters', () => {
   assert.equal(estimateSeconds('あいうえお、かきくけこ。', 5), 2);
 });
-
-import fs from 'node:fs';
-import os from 'node:os';
-import path from 'node:path';
-import { parseWav, writeWav } from '../voice.mjs';
 
 test('writeWav and parseWav round-trip 16-bit mono PCM', () => {
   const f = path.join(os.tmpdir(), `flyover-${process.pid}.wav`);
@@ -138,14 +143,10 @@ test('writeWav and parseWav round-trip 16-bit mono PCM', () => {
   assert.ok(Math.abs(w.seconds - 5 / 24000) < 1e-12);
 });
 
-import { phase, easeOutBack, typeCount, chartGeometry } from '../page/lib.js';
-
 test('phase gives seconds since the overlay appeared and until it leaves', () => {
   assert.deepEqual(phase([0.2, 0.8], 0.5, 10), { since: 3, until: 3, on: true });
   assert.equal(phase([0.2, 0.8], 0.1, 10).on, false);
-  // no window: shown for the whole shot, never leaves
   assert.deepEqual(phase(undefined, 0.5, 4), { since: 2, until: Infinity, on: true });
-  // a window ending at 1 does not count down to an exit (the cut ends it)
   assert.equal(phase([0.2, 1], 0.9, 10).until, Infinity);
 });
 
@@ -162,10 +163,13 @@ test('typeCount reveals characters at a steady rate', () => {
 });
 
 test('chartGeometry maps points into the plot box and measures the path', () => {
-  const g = chartGeometry([['2021-01', 100], ['2021-07', 200], ['2022-01', 150]], { w: 200, h: 100, pad: [10, 10, 10, 10], ymin: 100, ymax: 200 });
+  const g = chartGeometry(
+    [['2021-01', 100], ['2021-07', 200], ['2022-01', 150]],
+    { w: 200, h: 100, pad: [10, 10, 10, 10], ymin: 100, ymax: 200 },
+  );
   assert.deepEqual(g.pts[0], [10, 90]);
-  assert.deepEqual(g.pts[1].map(Math.round), [Math.round(10 + 180 * (181 / 365)), 10]);
-  assert.ok(Math.abs(g.pts[2][0] - 190) < 1e-9);
+  assert.deepEqual(g.pts[1]!.map(Math.round), [Math.round(10 + 180 * (181 / 365)), 10]);
+  assert.ok(Math.abs(g.pts[2]![0] - 190) < 1e-9);
   assert.ok(g.length > 180);
-  assert.ok(Math.abs(g.cum[2] - g.length) < 1e-9);
+  assert.ok(Math.abs(g.cum[2]! - g.length) < 1e-9);
 });

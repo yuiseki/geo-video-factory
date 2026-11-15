@@ -48,22 +48,27 @@
 
 ### レンダラーを直接使う
 
-実装は [.agents/skills/geo-video-renderer/assets/template/](.agents/skills/geo-video-renderer/assets/template/) にあります。新しい作業ディレクトリへコピーして使います。
+レンダラー本体は TypeScript 製の共通パッケージ ([packages/renderer/](packages/renderer/))、章結合や EXIF 等の補助ツールは ([packages/pipeline/](packages/pipeline/)) にあります。各プロジェクトにはデータ（`shots/*.json`、`assets/`、`characters/`）だけを置き、共通レンダラーを `--project` 付きで呼び出します。
 
 ```bash
-cp -a .agents/skills/geo-video-renderer/assets/template/. my-video/
-cd my-video
+# 初回セットアップ (リポジトリルートから)
+cd packages/renderer
 npm install
+npm run build
 npx playwright install chromium-headless-shell
 
+# 新規プロジェクトのデータ雛形をコピー
+cd ../..
+cp -a .agents/skills/geo-video-renderer/assets/template/. projects/2026/11/15/my-video/
+
 # 構図の確認: 2 秒おきの静止画を 1 枚に並べる (声は合成しない)
-node render.mjs shots/example.json --out out/example --stills 2 --no-voice
+node packages/renderer/dist/src/render.js projects/2026/11/15/my-video/shots/example.json --out projects/2026/11/15/my-video/out/example --stills 2 --no-voice
 
 # 本番: コマを書き出して mp4 にする
-node render.mjs shots/narrated.json --out out/narrated
+node packages/renderer/dist/src/render.js projects/2026/11/15/my-video/shots/narrated.json --out projects/2026/11/15/my-video/out/narrated
 ```
 
-ショット JSON の書き方は [shots.md](.agents/skills/geo-video-renderer/references/shots.md)、声と字幕は [narration.md](.agents/skills/geo-video-narration/references/narration.md) にあります。テストは `npm test` で走ります。
+ショット JSON の書き方は [shots.md](.agents/skills/geo-video-renderer/references/shots.md)、声と字幕は [narration.md](.agents/skills/geo-video-narration/references/narration.md) にあります。テストは `packages/renderer` で `npm test`、Python パイプラインは `python3 -m unittest packages/pipeline/tests/test_pipeline.py` で走ります。
 
 ### 必要なもの
 

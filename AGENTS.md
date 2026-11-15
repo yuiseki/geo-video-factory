@@ -50,33 +50,25 @@ projects/YYYY/MM/DD/<slug>/     個々の動画の作業場所
 | `projects/2026/11/11/moyashi/` | 特集「ヤサイマシマシらーめんの危機！？」。もやしの値段の裏側を、ホルムズ海峡から日本への 4 本の線 (袋、重油、電気、円安) でたどる。調査 (`research/`)、台本の下書き、ショット、v0.2 の見直し案 (`v0.2_plan.md`) |
 | `projects/2026/11/13/dotonbori/` | 特集「道頓堀からコスモスクエアへ」。江戸から続く娯楽の街と昭和に描かれた未来都市を、年代別の空中写真、写真、浮世絵でたどる。原稿、章ごとのショット (v0.1.2〜v0.1.7)、章の並列書き出し、撮影地点つきの写真マーカー |
 
-### レンダラーのテンプレート
+### 共通パッケージと Python / TypeScript の役割分担
 
-実装の正本は `.agents/skills/geo-video-renderer/assets/template/`。新しい動画では中身を作業ディレクトリへコピーして使う。
+プロジェクトごとに JS/Python ファイルをコピーせず、リポジトリ共通のパッケージを直接使う。
 
-| ファイル | 役割 |
-|---|---|
-| `render.mjs` | ショット JSON を Playwright の headless Chromium で 1 コマずつ書き出し、ffmpeg で mp4 にする |
-| `voice.mjs` | VOICEVOX で台詞を合成し、実尺をショットの長さに反映する |
-| `page/` | MapLibre の描画ページ (`flyover.js`、純粋関数は `lib.js`) |
-| `chapter_pipeline.py` | 章ごとのショット JSON を並列で書き出し、無音のタイトルカードを挟んで結合する |
-| `photo_geo.py` | EXIF の GPS から写真マーカーを作る |
-| `shot_effects.py` | 広域へ引いてから寄るなど、共通のカメラのキー生成 |
-| `tools/psd_sprites.py` | 立ち絵の PSD から表情ごとの口と目のスプライトを書き出す |
-| `characters/` | 立ち絵のレイヤー選択の定義 |
-| `shots/` | サンプルのショット JSON |
-| `test/` | `lib.js` などの単体テスト |
+| パッケージ / ディレクトリ | 言語 | 役割 |
+|---|---|---|
+| `packages/renderer/` | **TypeScript** (`strict: true`, TDD) | ショット JSON の型・純粋計算 (`src/lib.ts`)、VOICEVOX 連携 (`src/voice.ts`)、Playwright + MapLibre + ffmpeg 描画 CLI (`src/render.ts`, `src/page/flyover.ts`) |
+| `packages/pipeline/` | **Python** | 章ごとの並列書き出しと結合 (`chapter_pipeline.py`)、EXIF GPS 抽出 (`photo_geo.py`)、共通カメラキー生成 (`shot_effects.py`)、PSD スプライト書き出し (`psd_sprites.py`) |
+| `.agents/skills/geo-video-renderer/assets/template/` | データ雛形のみ | 新規プロジェクト用の初期データ (`shots/`, `characters/`, `assets/.gitkeep`, `.gitignore`)。コードはここに置かない |
 
-テストはテンプレートのディレクトリで実行する。
+- TypeScript レンダラーのビルドとテスト:
+  ```bash
+  cd packages/renderer
+  npm test
+  ```
+- Python パイプラインのテスト: `python3 -m unittest packages/pipeline/tests/test_pipeline.py`
+- 参考動画の分析スクリプトのテスト: `python3 .agents/skills/geo-video-reference-analysis/scripts/tests/test_scripts.py`
 
-```bash
-cd .agents/skills/geo-video-renderer/assets/template
-node --test "test/*.test.mjs"
-```
-
-参考動画の分析スクリプトのテストは `python3 .agents/skills/geo-video-reference-analysis/scripts/tests/test_scripts.py`。
-
-必要なもの: Node.js、Playwright の Chromium、ffmpeg と ffprobe、Python 3 と Pillow、Noto Sans CJK、VOICEVOX エンジン (既定は `http://127.0.0.1:50021`)。
+必要なもの: Node.js 22+、Playwright の Chromium、ffmpeg と ffprobe、Python 3 と Pillow、Noto Sans CJK、VOICEVOX エンジン (既定は `http://127.0.0.1:50021`)。
 
 ## 進め方の原則
 
@@ -89,9 +81,9 @@ node --test "test/*.test.mjs"
 
 ## スキルを書く、直すとき
 
-- 動画を作って見つかった型の不具合は、その作品の中だけで直さず、スキルとテンプレートへ戻してから次へ進む。
+- 動画を作って見つかった型の不具合は、その作品の中だけで直さず、スキルと共通パッケージ (`packages/renderer/`, `packages/pipeline/`) へ戻してから次へ進む。
 - `SKILL.md` は短く保ち、詳細は `references/` に分ける。スキル間の責務は上の表に合わせ、レンダラーへ個別作品の演出ルールを持ち込まない。
-- テンプレートの挙動を変えるときは、先に `test/` にテストを足す。ドキュメントは現に動いている実装に合わせて直す。
+- 共通パッケージの挙動を変えるときは、先に `test/` にテストを足す (TDD)。ドキュメントは現に動いている実装に合わせて直す。
 - 実装できない技法を名前だけで書かない。`geo-video-visuals/references/README.md` の対応表 (○ △ ×) を実装に合わせて更新する。
 
 ## リポジトリに入れないもの
