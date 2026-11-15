@@ -28,6 +28,25 @@ class BuildingAppearanceTests(unittest.TestCase):
         self.assertEqual(result['tiles'][0]['facade_colors'], ['#123456', '#81909a', None])
         self.assertEqual(result['tiles'][1]['facade_colors'], ['#81909a', '#987654'])
 
+    def test_citygml_and_orthophoto_harmonization_suppress_bright_white_green_and_purple_casts(self):
+        features = [
+            {'type': 'Feature', 'id': 'bldg-bright', 'properties': {'sampled': True, 'color': '#e7ebe2'}},
+            {'type': 'Feature', 'id': 'bldg-green', 'properties': {'sampled': True, 'color': '#5c6f5b'}},
+            {'type': 'Feature', 'id': 'bldg-purple', 'properties': {'sampled': False, 'color': '#b9a6c8'}},
+        ]
+        with TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / 'manifest.json').write_text(json.dumps({
+                'tiles': [{'ids': ['bldg-bright', 'bldg-green', 'bldg-purple']}],
+            }))
+            result = appearance.apply_citygml_colors(root, features)
+        colors = result['tiles'][0]['facade_colors']
+        for hex_color in colors:
+            r, g, b = (int(hex_color[i:i + 2], 16) for i in (1, 3, 5))
+            self.assertLessEqual(max(r, g, b), 175, f'{hex_color} is too bright and washes out under directional light')
+            self.assertLessEqual(g, max(r, b) + 3, f'{hex_color} has an unnatural green cast')
+            self.assertFalse(r > g + 6 and b > g + 6, f'{hex_color} has an unnatural purple/magenta cast')
+
     def test_osm_overlap_uses_footprint_area_not_a_centroid(self):
         def feature(identifier, west, east):
             return {'type': 'Feature', 'id': identifier, 'properties': {'height': 9}, 'geometry': {

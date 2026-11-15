@@ -1,37 +1,27 @@
-# TODO: PLATEAU building appearance and OSM proxies
+# TODO: PLATEAU 3D Buildings
 
-This is the implementation checklist for the work on branch `feat/plateau-appearance-osm-proxies`. See [handover.md](handover.md) for the design context and known gaps. Keep changes test-first.
+## 1. PLATEAU 本体データの欠落補完 (`citygml-proxy`)
 
-## Immediate correctness work
+- [x] `packages/pipeline/plateau_3d.py` に `--citygml-geojson <path>` を追加する。
+- [x] `manifest.json` に含まれない CityGML 建物 ID を抽出し、footprint + `height` から `kind: "citygml-proxy"` の GLB を生成する。
+- [x] CityGML GeoJSON が `color`（オルソ調和色）を持つ場合は、詳細 PLATEAU タイルの `facade_colors` 未設定 ID にもその色を補完する（未調和の明色・屋上緑化色は `normalize_citygml_color` で自動調和）。
+- [x] `citygml-proxy` は地表基準の押し出しなので、renderer で PLATEAU 詳細モデルの `heightOffset`（例: `-39m`）を掛けない。
 
-- [ ] Validate GLB spatial decoding across all real tile formats and both RTC variants. Node transforms and Draco decoding are implemented; three Ryogoku real tiles yielded feature centroids in the expected area. Add more real-data control points and verify incomplete or undecodable geometry cannot silently produce incorrect samples.
-- [ ] Validate OSM deduplication with complete CityGML coverage and production OSM input. When `--citygml-geojson` is supplied, the pipeline uses the trial's >10% area overlap rule; otherwise it still falls back to the less complete centroid test.
-- [ ] Make palette inference robust for partial texturing within one building. A building should keep actual source textures wherever present and receive inferred color only on genuinely untextured facade material/features. Current textured-feature detection can mark a whole feature textured from one textured primitive.
-- [ ] Verify GLB batch/feature IDs against the PLATEAU versions encountered in the Ryogoku trial and retain correct ID order when writing `facade_colors`.
-- [ ] Fix malformed or absent feature geometry handling and validate orthophoto bounds, image dimensions, and empty/degenerate footprints with clear errors.
+## 2. OSM プロキシの重複判定改善
 
-## Fidelity and coverage
+- [x] `build_osm_proxy_tiles()` に PLATEAU / CityGML footprint ポリゴン一覧を渡せるようにする。
+- [x] `shapely` の `STRtree` で OSM ポリゴンと既存建物ポリゴンの交差面積比を計算し、`intersection_area / osm_area > 0.10` を除外する。
+- [x] footprint が渡されない場合のみ、従来の `feature_centroids` 点内包判定にフォールバックする。
 
-- [ ] Sample each actual building footprint's orthophoto pixels robustly (mask the polygon and ignore shadows/roads where possible). Current hull sampling is only trustworthy after node transforms and Draco geometry are decoded; see [handover.md](handover.md). Preserve a stable seed so repeated renders match.
-- [ ] Estimate facade tone from roof/footprint color while reducing bright roof bias; keep neighboring untextured buildings visibly varied without random frame-to-frame flicker or implausible saturated colors.
-- [ ] Validate proxy triangulation for complex real OSM multipolygons, holes, concave polygons, and bbox-crossing buildings; basic geometry support exists.
-- [ ] Decide and test how to handle OSM ways without `height` or `building:levels`, units, malformed values, and non-building features. Current fallback is 3 m per level and otherwise raises.
-- [ ] Make OSM proxy materials use sampled orthophoto appearance consistently with PLATEAU palette materials, rather than relying on a separate flat/material path.
-- [ ] Add stable adjacency variation tests: neighboring untextured PLATEAU buildings and OSM proxies must not collapse to one identical color; same inputs and seed must reproduce identical outputs.
+## 3. 無テクスチャ建物・テクスチャ建物の色・質感調整
 
-## Renderer integration
+- [x] 実データ出力（`out-v3`）の右上に出ている紫・緑系の強い色味と、国技館横アパホテル等の白飛び壁面の原因を特定して修正する。
+  - パレット未設定時に 360° レインボー色相 (`setHSL`) と二重 sRGB ガンマ変換が掛かっていた不具合を廃止し、試作版 (`plateau-direct.js`) と同一の `max(r, g, b) <= 0.45` クランプ + 暖色 `(1.08, 0.96, 0.86)` / 寒色 `(0.86, 0.96, 1.08)` トーン + `0.84 + r2 * 0.30` 明度変化に統一。
+  - `harmonize_orthophoto_color` / `normalize_citygml_color` で屋上緑化・防水シート由来の緑色相 (`0.19 <= h <= 0.48`) と紫色相 (`0.72 <= h <= 0.94`) の彩度を抑制。
+  - テクスチャ付き PLATEAU マテリアルに対して `tuneMaterials` が `metalness` を `0.08` に上書きして拡散反射を 1.84 倍に白飛びさせていた問題を修正し、32×32 Rec.709 輝度解析 (`analyzeTextureTone`: `0.64` / `0.78` / `1.0`) と彩度減衰つき疑似外観シェーダ (`graySurface = 1.0 - smoothstep(0.07, 0.19, cmax - cmin)`) を適用。
+- [x] `plateau_3d.py` にシーン中心付近 (`±0.003° × 0.0025°`) を `2048px`、遠景を `1024px` とする適応的テクスチャ縮小 (`tile_texture_limit`, Lanczos WebP `quality=88, method=3`) と GLB からの `CESIUM_RTC` 除去を統合。
 
-- [ ] Confirm renderer uses each building's palette index for untextured materials while leaving source GLB texture maps intact.
-- [ ] Check material arrays, meshes without `_BATCHID`/feature IDs, multiple primitives, shared materials, and GLB texture color spaces.
-- [ ] Add a lightweight integration fixture with one textured PLATEAU feature, two untextured PLATEAU features, and one OSM proxy in a single manifest.
-- [ ] Render a Ryogoku preview and inspect it against the orthophoto. Specifically check for white/gray blank buildings, repeated adjacent colors, displaced models, missing facade texture, duplicate OSM/PLATEAU geometry, and seams at the edge of the coverage area.
-- [ ] Fix the obviously saturated purple/green buildings visible in the Ryogoku real-data preview. Identify source material, palette, and texture causes separately before claiming appearance parity with the trial.
-- [ ] Port the trial's adaptive atlas optimization and textured-material chroma/brightness treatment, and run the real-data render within the host resource limits. Unoptimized 422-tile rendering exhausted the browser; the trial's optimized assets rendered successfully.
-- [ ] Keep rendering deterministic and avoid adding Cesium ion or runtime Cesium dependencies.
+## 4. 実データ検証とドキュメント同期
 
-## Reproduction and verification
-
-- [ ] Recover or recreate the ignored source assets and video references described in [handover.md](handover.md); do not assume the two MP4s are tracked in this repository.
-- [ ] Reproduce both reference shots: `plateau-ryogoku-social.v0.0.6.mp4` and `asakusa-to-ryogoku-aerial-walk.v0.0.7.mp4`, then compare the appearance layers independently.
-- [ ] Add transform tests for both RTC + local-delta b3dm GLBs and RTC-zero + ECEF node-transform GLBs, plus a known geographic control point. Run Python pipeline unit tests and renderer build/unit tests; run only the affected video E2E target under the repository's resource limits.
-- [ ] Update `packages/README.md` and the relevant `geo-video-3d-buildings` skill with behavior verified in code and rendered previews.
+- [x] 両国・浅草周辺の実データ（PLATEAU 346 タイル + CityGML 補完 + OSM 補完）で再度動画を書き出し、フレームを目視確認する（`out-v4-final` で右上墨田区の紫・緑建物が解消し、国技館横アパホテル等の白壁に疑似窓と適正トーンが入ることを確認）。
+- [x] `packages/README.md` と `.agents/skills/geo-video-3d-buildings/SKILL.md` を、実際に検証済みの CLI オプションと挙動に合わせて更新する。

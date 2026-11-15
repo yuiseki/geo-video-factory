@@ -179,6 +179,36 @@ class Plateau3DTilesTests(unittest.TestCase):
             mock_proxy.assert_called_once()
             self.assertEqual(mock_proxy.call_args.kwargs.get('plateau_ids'), {'gml-1', 'gml-2'})
 
+    def test_adaptive_texture_limit_uses_2048_near_center_and_1024_far_and_strips_cesium_rtc(self):
+        near_region = [math.radians(139.799), math.radians(35.699), math.radians(139.801), math.radians(35.701), 0, 50]
+        far_region = [math.radians(139.810), math.radians(35.710), math.radians(139.812), math.radians(35.712), 0, 50]
+        self.assertEqual(plateau_3d.tile_texture_limit(near_region, (139.800, 35.700), 2048, 1024), 2048)
+        self.assertEqual(plateau_3d.tile_texture_limit(far_region, (139.800, 35.700), 2048, 1024), 1024)
+        image_buffer = io.BytesIO()
+        Image.new('RGB', (200, 100), (120, 90, 40)).save(image_buffer, 'PNG')
+        binary = image_buffer.getvalue()
+        document = {
+            'asset': {'version': '2.0'},
+            'extensionsUsed': ['CESIUM_RTC'],
+            'extensions': {'CESIUM_RTC': {'center': [1.0, 2.0, 3.0]}},
+            'buffers': [{'byteLength': len(binary)}],
+            'bufferViews': [{'buffer': 0, 'byteOffset': 0, 'byteLength': len(binary)}],
+            'images': [{'bufferView': 0, 'mimeType': 'image/png'}],
+        }
+        raw_json = json.dumps(document).encode()
+        raw_json += b' ' * ((-len(raw_json)) % 4)
+        binary += b'\0' * ((-len(binary)) % 4)
+        total = 12 + 8 + len(raw_json) + 8 + len(binary)
+        raw_glb = struct.pack('<4sII', b'glTF', 2, total) + struct.pack('<I4s', len(raw_json), b'JSON') + raw_json
+        raw_glb += struct.pack('<I4s', len(binary), b'BIN\0') + binary
+        optimized = plateau_3d.optimize_glb_textures(raw_glb, max_dimension=64)
+        gltf, opt_bin, _ = plateau_3d.glb_chunks(optimized)
+        self.assertNotIn('CESIUM_RTC', gltf.get('extensions', {}))
+        self.assertNotIn('CESIUM_RTC', gltf.get('extensionsUsed', []))
+        view = gltf['bufferViews'][gltf['images'][0]['bufferView']]
+        image = Image.open(io.BytesIO(opt_bin[view['byteOffset']:view['byteOffset'] + view['byteLength']]))
+        self.assertEqual(image.size, (64, 32))
+
 
 if __name__ == '__main__':
     unittest.main()

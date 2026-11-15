@@ -69,10 +69,6 @@ function tuneMaterials(root: THREE.Object3D): void {
     for (const material of (Array.isArray(mesh.material) ? mesh.material : [mesh.material])) {
       if (!material) continue;
       material.side = THREE.DoubleSide;
-      if (material instanceof THREE.MeshStandardMaterial) {
-        material.roughness = Math.max(material.roughness, 0.72);
-        material.metalness = Math.min(material.metalness, 0.08);
-      }
     }
   });
 }
@@ -90,9 +86,12 @@ export async function addPlateauBuildings(map: MapLibre, config: PlateauBuilding
   const dot = (a: number[], b: number[]) => a[0]! * b[0]! + a[1]! * b[1]! + a[2]! * b[2]!;
   const scene = new THREE.Scene();
   scene.add(new THREE.AmbientLight(0xffffff, 1.15));
-  const sun = new THREE.DirectionalLight(0xffffff, 0.72);
+  const sun = new THREE.DirectionalLight(0xfff4e6, 0.85);
   sun.position.set(-200, -300, 700);
   scene.add(sun);
+  const fill = new THREE.DirectionalLight(0xdce8ff, 0.35);
+  fill.position.set(300, 200, 400);
+  scene.add(fill);
   const draco = new DRACOLoader().setDecoderPath('/node_modules/three/examples/jsm/libs/draco/').setWorkerLimit(2);
   const loader = new GLTFLoader().setDRACOLoader(draco);
   const originMercator = MercatorCoordinate.fromLngLat(center, 0);

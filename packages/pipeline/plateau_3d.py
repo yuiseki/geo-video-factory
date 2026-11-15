@@ -174,14 +174,45 @@ def extract_gml_ids(payload: bytes, batch_table: dict[str, Any] | None = None) -
     return ids
 
 
-def _resize_glb_textures(payload: bytes, max_dimension: int) -> bytes:
+def tile_texture_limit(
+    region: list[float], center: tuple[float, float] | list[float],
+    near_dimension: int = 2048, far_dimension: int = 1024,
+) -> int:
+    west, south, east, north = (math.degrees(v) for v in region[:4])
+    cx, cy = float(center[0]), float(center[1])
+    near = not (east < cx - 0.003 or west > cx + 0.003 or north < cy - 0.0025 or south > cy + 0.0025)
+    return near_dimension if near else far_dimension
+
+
+def _strip_cesium_rtc(document: dict[str, Any]) -> bool:
+    changed = False
+    if 'CESIUM_RTC' in document.get('extensionsUsed', []):
+        document['extensionsUsed'] = [ext for ext in document['extensionsUsed'] if ext != 'CESIUM_RTC']
+        if not document['extensionsUsed']:
+            document.pop('extensionsUsed', None)
+        changed = True
+    if 'CESIUM_RTC' in document.get('extensions', {}):
+        document['extensions'].pop('CESIUM_RTC', None)
+        if not document['extensions']:
+            document.pop('extensions', None)
+        changed = True
+    return changed
+
+
+def _resize_glb_textures(payload: bytes, max_dimension: int = 2048) -> bytes:
     document, binary, chunks = glb_chunks(payload)
     for image_spec in document.get('images', []):
         uri = image_spec.get('uri')
         if uri and not uri.startswith('data:'):
             raise ValueError(f'GLB references an external image that must be embedded before rendering: {uri}')
+    rtc_stripped = _strip_cesium_rtc(document)
     if not binary or not document.get('images'):
-        return payload
+        if not rtc_stripped:
+            return payload
+        json_bytes = json.dumps(document, separators=(',', ':')).encode('utf-8')
+        json_bytes += b' ' * ((-len(json_bytes)) % 4)
+        out = [(b'JSON', json_bytes)] + [(k, d) for k, d in chunks if k != b'JSON']
+        return struct.pack('<4sII', b'glTF', 2, 12 + sum(8 + len(d) for _, d in out)) + b''.join(struct.pack('<I4s', len(d), k) + d for k, d in out)
     mutable = bytearray(binary)
     for image_spec in document['images']:
         view_index = image_spec.get('bufferView')
@@ -193,18 +224,21 @@ def _resize_glb_textures(payload: bytes, max_dimension: int) -> bytes:
             image.load()
         except (OSError, ValueError) as exc:
             raise ValueError(f'cannot decode embedded GLB image: {exc}') from exc
-        if max(image.size) <= max_dimension:
+        if max(image.size) <= max_dimension and image_spec.get('mimeType') == 'image/webp':
             continue
-        image.thumbnail((max_dimension, max_dimension), Image.Resampling.LANCZOS)
+        if max(image.size) > max_dimension:
+            image.thumbnail((max_dimension, max_dimension), Image.Resampling.LANCZOS)
+        elif not rtc_stripped:
+            continue
         encoded = io.BytesIO()
-        image.save(encoded, 'WEBP', quality=88, method=4)
+        image.save(encoded, 'WEBP', quality=88, method=3)
         image_spec['mimeType'] = 'image/webp'
         mutable.extend(b'\0' * ((-len(mutable)) % 4))
         view = document['bufferViews'][view_index]
         view['byteOffset'] = len(mutable)
         view['byteLength'] = len(encoded.getvalue())
         mutable.extend(encoded.getvalue())
-    if len(mutable) == len(binary):
+    if len(mutable) == len(binary) and not rtc_stripped:
         return payload
     document.setdefault('buffers', [{}])[0]['byteLength'] = len(mutable)
     output_chunks: list[tuple[bytes, bytes]] = []
@@ -222,6 +256,9 @@ def _resize_glb_textures(payload: bytes, max_dimension: int) -> bytes:
     )
 
 
+optimize_glb_textures = _resize_glb_textures
+
+
 def _default_fetch(url: str) -> bytes:
     request = Request(url, headers={'User-Agent': USER_AGENT})
     with urlopen(request, timeout=90) as response:
@@ -229,19 +266,16 @@ def _default_fetch(url: str) -> bytes:
 
 
 def prepare_tiles(
-    tileset_url: str,
-    bbox_degrees: list[float],
-    output_dir: Path,
-    *,
-    max_texture_dimension: int = 2048,
-    workers: int = 3,
-    fetcher: Callable[[str], bytes] | None = None,
+    tileset_url: str, bbox_degrees: list[float], output_dir: Path, *,
+    max_texture_dimension: int = 2048, far_texture_dimension: int | None = None,
+    workers: int = 3, fetcher: Callable[[str], bytes] | None = None,
 ) -> dict[str, Any]:
     """Download intersecting leaf models and write a fixed local manifest."""
     if max_texture_dimension <= 0 or workers <= 0:
         raise ValueError('max texture dimension and workers must be positive')
+    center = [(bbox_degrees[0] + bbox_degrees[2]) / 2, (bbox_degrees[1] + bbox_degrees[3]) / 2]
+    far_dim = far_texture_dimension or (1024 if max_texture_dimension == 2048 else max_texture_dimension)
     fetch = fetcher or _default_fetch
-    output_dir.mkdir(parents=True, exist_ok=True)
     models_dir = output_dir / 'models'
     models_dir.mkdir(parents=True, exist_ok=True)
     root = json.loads(fetch(tileset_url))
@@ -254,77 +288,61 @@ def prepare_tiles(
             else:
                 yield {**item, 'uri': absolute, 'depth': item['depth'] + inherited_depth}
 
-    selected = list(collect(root, tileset_url))
+    selected = sorted({item['uri']: item for item in collect(root, tileset_url)}.values(), key=lambda item: item['uri'])
     if not selected:
         raise ValueError('no leaf content intersects the requested bbox')
-    deduped = {item['uri']: item for item in selected}
-    selected = sorted(deduped.values(), key=lambda item: item['uri'])
 
     def download(item: dict[str, Any]) -> dict[str, Any]:
         raw = fetch(item['uri'])
         if raw[:4] == b'b3dm':
             parsed = parse_b3dm(raw)
-            glb = parsed['glb']
-            ids = extract_gml_ids(glb, parsed['batch_table'])
-            rtc = parsed['feature_table'].get('RTC_CENTER')
+            glb, ids, rtc = parsed['glb'], extract_gml_ids(parsed['glb'], parsed['batch_table']), parsed['feature_table'].get('RTC_CENTER')
         elif raw[:4] == b'glTF':
-            glb = raw
-            ids = extract_gml_ids(glb)
-            rtc = None
+            glb, ids, rtc = raw, extract_gml_ids(raw), None
         else:
             raise ValueError(f'unsupported 3D Tiles content at {item["uri"]}: {raw[:4]!r}')
         document, _, _ = glb_chunks(glb)
-        if rtc is None:
-            rtc = document.get('extensions', {}).get('CESIUM_RTC', {}).get('center', [0, 0, 0])
+        rtc = rtc if rtc is not None else document.get('extensions', {}).get('CESIUM_RTC', {}).get('center', [0, 0, 0])
         if len(rtc) != 3 or any(not isinstance(v, (int, float)) for v in rtc):
             raise ValueError(f'invalid RTC center in {item["uri"]}')
-        source_hash = hashlib.sha256(item['uri'].encode()).hexdigest()[:20]
-        model_path = models_dir / f'{source_hash}.glb'
-        optimized = _resize_glb_textures(glb, max_texture_dimension)
+        model_path = models_dir / f'{hashlib.sha256(item["uri"].encode()).hexdigest()[:20]}.glb'
+        limit = tile_texture_limit(item['region'], center, max_texture_dimension, far_dim)
+        optimized = _resize_glb_textures(glb, limit)
         model_path.write_bytes(optimized)
         try:
             from building_appearance import extract_glb_feature_centroids
         except ImportError:
             from .building_appearance import extract_glb_feature_centroids
         rtc_floats = [float(v) for v in rtc]
-        feature_centroids = extract_glb_feature_centroids(optimized, rtc_floats, ids) if ids else {}
         return {
-            'source': item['uri'],
-            'glb': model_path.relative_to(output_dir).as_posix(),
-            'sha256': hashlib.sha256(optimized).hexdigest(),
-            'source_sha256': hashlib.sha256(raw).hexdigest(),
-            'source_bytes': len(raw),
-            'bytes': len(optimized),
-            'rtc': rtc_floats,
-            'ids': ids,
-            'feature_centroids': feature_centroids,
-            'region': item['region'],
-            'depth': item['depth'],
+            'source': item['uri'], 'glb': model_path.relative_to(output_dir).as_posix(),
+            'sha256': hashlib.sha256(optimized).hexdigest(), 'source_sha256': hashlib.sha256(raw).hexdigest(),
+            'source_bytes': len(raw), 'bytes': len(optimized), 'rtc': rtc_floats, 'ids': ids,
+            'feature_centroids': extract_glb_feature_centroids(optimized, rtc_floats, ids) if ids else {},
+            'region': item['region'], 'depth': item['depth'], 'texture_limit': limit,
             'extensions': document.get('extensionsUsed', []),
         }
 
-    results: list[dict[str, Any]] = []
     with ThreadPoolExecutor(max_workers=workers) as pool:
-        futures = [pool.submit(download, item) for item in selected]
-        for future in futures:
-            results.append(future.result())
-    results.sort(key=lambda item: item['source'])
+        results = sorted((f.result() for f in [pool.submit(download, item) for item in selected]), key=lambda item: item['source'])
     unique_ids = {identifier for item in results for identifier in item['ids']}
     manifest = {
-        'format': 'geo-video-factory.plateau-3d/1',
-        'tileset_url': tileset_url,
-        'bbox_degrees': bbox_degrees,
-        'center': [(bbox_degrees[0] + bbox_degrees[2]) / 2, (bbox_degrees[1] + bbox_degrees[3]) / 2],
-        'tile_count': len(results),
-        'tile_ids': len(unique_ids),
+        'format': 'geo-video-factory.plateau-3d/1', 'tileset_url': tileset_url, 'bbox_degrees': bbox_degrees,
+        'center': center, 'tile_count': len(results), 'tile_ids': len(unique_ids),
         'total_source_bytes': sum(item['source_bytes'] for item in results),
         'total_bytes': sum(item['bytes'] for item in results),
-        'texture_max_dimension': max_texture_dimension,
-        'tiles': results,
+        'texture_max_dimension': max_texture_dimension, 'tiles': results,
     }
-    manifest_path = output_dir / 'manifest.json'
-    manifest_path.write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
+    (output_dir / 'manifest.json').write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     return manifest
+
+
+def _load_features(path: Path, flag: str) -> list[dict[str, Any]]:
+    data = json.loads(path.read_text(encoding='utf-8'))
+    features = data.get('features') if isinstance(data, dict) else None
+    if not isinstance(features, list):
+        raise ValueError(f'{flag} must contain a GeoJSON FeatureCollection')
+    return features
 
 
 def main() -> None:
@@ -340,33 +358,20 @@ def main() -> None:
     parser.add_argument('--seed', default='geo-video-factory', help='stable per-building appearance seed')
     args = parser.parse_args()
     manifest = prepare_tiles(args.tileset_url, args.bbox, args.out, max_texture_dimension=args.max_texture_dimension, workers=args.workers)
+    ortho = None
     if args.orthophoto:
         from building_appearance import apply_orthophoto_palette
         manifest = apply_orthophoto_palette(args.out, args.orthophoto, seed=args.seed)
-    citygml_features = None
-    if args.citygml_geojson:
+        with Image.open(args.orthophoto) as source:
+            ortho = source.convert('RGB')
+    citygml_features = _load_features(args.citygml_geojson, '--citygml-geojson') if args.citygml_geojson else None
+    if citygml_features is not None:
         from building_appearance import apply_citygml_colors, build_osm_proxy_tiles
-        citygml = json.loads(args.citygml_geojson.read_text(encoding='utf-8'))
-        features = citygml.get('features') if isinstance(citygml, dict) else None
-        if not isinstance(features, list):
-            raise ValueError('--citygml-geojson must contain a GeoJSON FeatureCollection')
-        citygml_features = features
-        manifest = apply_citygml_colors(args.out, features)
-        ortho = None
-        if args.orthophoto:
-            with Image.open(args.orthophoto) as source:
-                ortho = source.convert('RGB')
-        manifest = build_osm_proxy_tiles(features, args.bbox, args.out, kind='citygml-proxy', seed=args.seed, orthophoto=ortho)
+        manifest = apply_citygml_colors(args.out, citygml_features)
+        manifest = build_osm_proxy_tiles(citygml_features, args.bbox, args.out, kind='citygml-proxy', seed=args.seed, orthophoto=ortho)
     if args.osm_geojson:
         from building_appearance import build_osm_proxy_tiles
-        geojson = json.loads(args.osm_geojson.read_text(encoding='utf-8'))
-        features = geojson.get('features') if isinstance(geojson, dict) else None
-        if not isinstance(features, list):
-            raise ValueError('--osm-geojson must contain a GeoJSON FeatureCollection')
-        ortho = None
-        if args.orthophoto:
-            with Image.open(args.orthophoto) as source:
-                ortho = source.convert('RGB')
+        features = _load_features(args.osm_geojson, '--osm-geojson')
         plateau_ids = {str(identifier) for tile in manifest.get('tiles', []) for identifier in tile.get('ids', [])}
         manifest = build_osm_proxy_tiles(features, args.bbox, args.out, plateau_ids=plateau_ids, seed=args.seed, orthophoto=ortho, plateau_footprints=citygml_features)
     print(json.dumps({k: v for k, v in manifest.items() if k != 'tiles'}, ensure_ascii=False))

@@ -252,7 +252,7 @@ def build_osm_proxy_tiles(
     plateau_footprints: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Extrude OSM footprints to local GLB and append them to the renderer manifest."""
-    from building_appearance import assign_facade_colors, sample_polygon_color
+    from building_appearance import assign_facade_colors, normalize_citygml_color, sample_polygon_color
 
     if kind not in ('osm-proxy', 'citygml-proxy'):
         raise ValueError(f'unsupported building proxy kind: {kind}')
@@ -320,7 +320,7 @@ def build_osm_proxy_tiles(
         if not _polygons_intersect_bbox(polygons, bbox_degrees):
             continue
         height = _height(properties)
-        explicit_color = properties.get('facade_color') or (properties.get('color') if kind == 'citygml-proxy' else None)
+        explicit_color = properties.get('facade_color') or (normalize_citygml_color(properties, identifier) if kind == 'citygml-proxy' else None)
         ortho_color = list(sample_polygon_color(orthophoto, polygons[0][0], bbox_degrees)) if (not explicit_color and orthophoto is not None) else [183, 174, 159]
         candidates.append({'id': identifier, 'polygons': polygons, 'ring': polygons[0][0], 'height': height, 'ortho_color': ortho_color, 'explicit_facade_color': explicit_color})
     colored = assign_facade_colors(candidates, seed=seed)

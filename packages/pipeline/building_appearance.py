@@ -84,7 +84,10 @@ def harmonize_orthophoto_color(color: Iterable[int]) -> tuple[int, int, int]:
     """Compress bright roof highlights and clamp saturation for facade harmony."""
     r, g, b = (max(0, min(255, int(v))) / 255.0 for v in color)
     h, s, v = colorsys.rgb_to_hsv(r, g, b)
-    s = min(0.42, max(s * 1.12, 0.055))
+    if 0.19 <= h <= 0.48 or 0.72 <= h <= 0.94:
+        s = min(s, 0.04)
+    else:
+        s = min(0.32, max(s * 0.85, 0.04))
     v = min(0.14 + 0.50 * (v ** 0.88), 0.52)
     hr, hg, hb = colorsys.hsv_to_rgb(h, s, v)
     return (round(hr * 255), round(hg * 255), round(hb * 255))
@@ -93,9 +96,44 @@ def harmonize_orthophoto_color(color: Iterable[int]) -> tuple[int, int, int]:
 def _varied_color(color: Iterable[int], rng: random.Random) -> str:
     red, green, blue = harmonize_orthophoto_color(color)
     factor = rng.uniform(0.76, 1.19)
-    tint = rng.choice(((1.035, 0.995, 0.94), (0.94, 0.99, 1.045), (1.015, 0.965, 1.03)))
-    rgb = [max(35, min(238, round(value * factor * tint[index]))) for index, value in enumerate((red, green, blue))]
+    tint = rng.choice(((1.035, 0.995, 0.94), (0.94, 0.99, 1.045), (1.01, 1.00, 0.985)))
+    rgb = [max(35, min(172, round(value * factor * tint[index]))) for index, value in enumerate((red, green, blue))]
     return '#' + ''.join(f'{value:02x}' for value in rgb)
+
+
+def normalize_citygml_color(props: dict[str, Any], identifier: str) -> str | None:
+    raw = props.get('orthoColor') or props.get('color')
+    if not isinstance(raw, str) or not re.fullmatch(r'#[0-9a-fA-F]{6}', raw):
+        return None
+    r, g, b = (int(raw[i:i + 2], 16) for i in (1, 3, 5))
+    needs_harmonize = (
+        props.get('colorMethod') != 'ortho-hsv' and (
+            'sampled' in props or 'orthoColor' in props
+            or max(r, g, b) > 175 or g > max(r, b) + 3 or (r > g + 6 and b > g + 6)
+        )
+    )
+    if not needs_harmonize:
+        return raw.lower()
+    digest = hashlib.sha256(str(identifier).encode()).digest()
+    h1, h2 = digest[0] / 255.0, digest[1] / 255.0
+    if props.get('sampled') is False:
+        base = (150, 146, 140) if h1 < 0.55 else (138, 145, 152)
+        scale = 0.82 + h2 * 0.28
+        rgb = [max(72, min(168, round(c * scale))) for c in base]
+        return '#' + ''.join(f'{c:02x}' for c in rgb)
+    h, s, v = colorsys.rgb_to_hsv(r / 255.0, g / 255.0, b / 255.0)
+    if 0.19 <= h <= 0.48 or 0.72 <= h <= 0.94:
+        h = 0.08 if h1 < 0.55 else 0.58
+        s = min(s, 0.05)
+    else:
+        s = min(0.22, s * 0.55 + (0.04 if s > 0.06 else 0.01))
+    v = max(0.38, min(0.66, 0.46 + (v - 0.5) * 0.35 + (h1 - 0.5) * 0.14))
+    hr, hg, hb = colorsys.hsv_to_rgb(h, s, v)
+    tint = (1.03, 1.0, 0.96) if h2 < 0.5 else (0.96, 1.0, 1.04)
+    rgb = [max(70, min(172, round(c * 255 * t))) for c, t in zip((hr, hg, hb), tint)]
+    if rgb[1] > max(rgb[0], rgb[2]) + 2:
+        rgb[1] = max(rgb[0], rgb[2])
+    return '#' + ''.join(f'{c:02x}' for c in rgb)
 
 
 def assign_facade_colors(
@@ -165,9 +203,10 @@ def apply_citygml_colors(output_dir: Path, features: list[dict[str, Any]]) -> di
     colors = {}
     for feature in features:
         identifier = feature.get('id')
-        color = (feature.get('properties') or {}).get('color')
-        if identifier is not None and isinstance(color, str) and re.fullmatch(r'#[0-9a-fA-F]{6}', color):
-            colors[str(identifier)] = color
+        if identifier is not None:
+            normalized = normalize_citygml_color(feature.get('properties') or {}, str(identifier))
+            if normalized:
+                colors[str(identifier)] = normalized
     path = output_dir / 'manifest.json'
     manifest = json.loads(path.read_text(encoding='utf-8'))
     for tile in manifest['tiles']:
