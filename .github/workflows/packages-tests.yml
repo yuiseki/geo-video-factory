@@ -21,5 +21,11 @@ jobs:
           cache-dependency-path: packages/renderer/package-lock.json
       - name: Install Python test dependencies
         run: python3 -m pip install -r packages/pipeline/requirements-dev.txt
+      - name: Install Playwright browser for renderer E2E
+        run: |
+          npm --prefix packages/renderer ci
+          npx --prefix packages/renderer playwright install --with-deps chromium-headless-shell
       - name: Test packages
+        env:
+          FLYOVER_GL: swiftshader
         run: packages/test.sh
