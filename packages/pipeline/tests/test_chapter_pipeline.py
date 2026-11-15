@@ -37,6 +37,7 @@ class ChapterPipelineTests(unittest.TestCase):
             with patch.object(chapter_pipeline.Image, 'new', return_value=FakeImage()), \
                  patch.object(chapter_pipeline.ImageDraw, 'Draw', return_value=draw), \
                  patch.object(chapter_pipeline.ImageFont, 'truetype', return_value=object()), \
+                 patch.object(chapter_pipeline, 'find_font', return_value='font.ttc'), \
                  patch.object(chapter_pipeline, 'run') as run:
                 chapter_pipeline.card('水辺の文化', 2, image, video, '都市史', 24, 2.5)
             self.assertEqual(draw.texts, ['都市史', '第 2 章', '水辺の文化'])
