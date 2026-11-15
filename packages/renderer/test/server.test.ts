@@ -3,7 +3,16 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { buildFrameTimes, contentType, parseSize, resolveProjectRoot, resolveRequestFile, chromiumGlArgs } from '../src/render.js';
+import {
+  buildFrameTimes,
+  chromiumGlArgs,
+  contentType,
+  parseSize,
+  partitionFrameIndices,
+  resolveProjectRoot,
+  resolveRequestFile,
+  resolveWorkerCount,
+} from '../src/render.js';
 
 test('chromiumGlArgs picks OS-appropriate ANGLE GPU backend and supports swiftshader override', () => {
   assert.deepEqual(chromiumGlArgs('win32', undefined), ['--use-gl=angle', '--use-angle=d3d11', '--ignore-gpu-blocklist']);
@@ -62,6 +71,31 @@ test('buildFrameTimes is stable at decimal steps and validates its range', () =>
   assert.throws(() => buildFrameTimes(-1, 1, 0.1), /from/i);
   assert.throws(() => buildFrameTimes(2, 1, 0.1), /range/i);
   assert.throws(() => buildFrameTimes(0, 1, 0), /step/i);
+});
+
+test('resolveWorkerCount defaults to 4 workers for 24+ frames and respects explicit counts', () => {
+  assert.equal(resolveWorkerCount(2), 1);
+  assert.equal(resolveWorkerCount(23), 1);
+  assert.equal(resolveWorkerCount(24), 4);
+  assert.equal(resolveWorkerCount(288), 4);
+  assert.equal(resolveWorkerCount(288, 2), 2);
+  assert.equal(resolveWorkerCount(2, 4), 2);
+  assert.throws(() => resolveWorkerCount(10, 0), /workers/i);
+  assert.throws(() => resolveWorkerCount(10, 1.5), /workers/i);
+});
+
+test('partitionFrameIndices splits frames into contiguous balanced ranges', () => {
+  assert.deepEqual(partitionFrameIndices(10, 3), [
+    [0, 4],
+    [4, 7],
+    [7, 10],
+  ]);
+  assert.deepEqual(partitionFrameIndices(4, 3), [
+    [0, 2],
+    [2, 3],
+    [3, 4],
+  ]);
+  assert.deepEqual(partitionFrameIndices(0, 3), []);
 });
 
 test('MapLibre v6 ESM assets are served as JavaScript modules', () => {

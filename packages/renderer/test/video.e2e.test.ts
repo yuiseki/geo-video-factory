@@ -9,13 +9,15 @@ interface VideoCase {
   name: string;
   fixture: string;
   minimumDuration: number;
+  width?: number;
+  height?: number;
 }
 
 const cases: VideoCase[] = [
   { name: 'base', fixture: 'base-video.json', minimumDuration: 0.5 },
   { name: 'earth-tokyo-station', fixture: 'earth-tokyo-station.json', minimumDuration: 20.4 },
   { name: 'terrain-mt-fuji', fixture: 'terrain-mt-fuji.json', minimumDuration: 19.9 },
-  { name: 'terrain-mt-omuroyama', fixture: 'terrain-mt-omuroyama.json', minimumDuration: 19.9 },
+  { name: 'terrain-mt-omuroyama', fixture: 'terrain-mt-omuroyama.json', minimumDuration: 47.9, width: 1280, height: 720 },
 ];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
@@ -98,30 +100,39 @@ test('Fuji E2E makes one wide orbit, then zooms in through a second orbit', () =
   }
 });
 
-test('Omuroyama E2E keeps the volcanic cone in view while widening and zooming in', () => {
+test('Omuroyama E2E loops seamlessly across four seasons in four slow linear orbits (1 orbit per season)', () => {
   const fixture = JSON.parse(fs.readFileSync('test/fixtures/terrain-mt-omuroyama.json', 'utf8')) as {
-    shots: { duration: number; ease?: string; keys: { t: number; center: number[]; zoom: number; pitch: number; bearing: number }[] }[];
+    shots: {
+      duration: number;
+      ease?: string;
+      keys: { t: number; center: number[]; zoom: number; pitch: number; bearing: number }[];
+      overlays: { type: string; src?: string }[];
+    }[];
   };
-  assert.equal(fixture.shots.length, 2);
-  assert.deepEqual(fixture.shots.map(({ duration }) => duration), [8, 12]);
-  const [wide, zoomIn] = fixture.shots as [typeof fixture.shots[number], typeof fixture.shots[number]];
-  for (const shot of [wide, zoomIn]) {
-    assert.equal(shot.ease, 'linear');
-    assert.deepEqual(shot.keys.map(({ t }) => t), [0, 0.25, 0.5, 0.75, 1]);
-    for (const key of shot.keys) assert.deepEqual(key.center, [139.0947222, 34.9030556]);
-    const turns = shot.keys.slice(1).reduce((total, key, i) => total + (((key.bearing - shot.keys[i]!.bearing + 540) % 360) - 180), 0);
-    assert.ok(Math.abs(Math.abs(turns) - 360) < 2, `orbit should rotate once, got ${turns} degrees`);
-  }
-  assert.ok(wide.keys.every(({ zoom }) => zoom < 13), 'first orbit shows the entire volcanic cone');
-  assert.ok(zoomIn.keys.at(-1)!.zoom > zoomIn.keys[0]!.zoom + 1, 'second orbit zooms in');
-  assert.ok(zoomIn.keys.every((key, i) => i === 0 || key.zoom > zoomIn.keys[i - 1]!.zoom), 'zoom-in orbit is continuous');
-  assert.deepEqual(
-    { center: zoomIn.keys[0]!.center, zoom: zoomIn.keys[0]!.zoom, pitch: zoomIn.keys[0]!.pitch, bearing: zoomIn.keys[0]!.bearing },
-    { center: wide.keys.at(-1)!.center, zoom: wide.keys.at(-1)!.zoom, pitch: wide.keys.at(-1)!.pitch, bearing: wide.keys.at(-1)!.bearing },
-  );
+  assert.equal(fixture.shots.length, 1);
+  const shot = fixture.shots[0]!;
+  assert.equal(shot.duration, 48);
+  assert.equal(shot.ease, 'linear');
+  assert.equal(shot.keys[0]!.t, 0);
+  assert.equal(shot.keys.at(-1)!.t, 1);
+  for (const key of shot.keys) assert.deepEqual(key.center, [139.0947222, 34.9030556]);
+  const turns = shot.keys.slice(1).reduce((total, key, i) => {
+    const previous = shot.keys[i]!;
+    return total + (((key.bearing - previous.bearing + 540) % 360) - 180);
+  }, 0);
+  assert.equal(turns, 1440);
+  assert.equal(shot.keys.at(-1)!.zoom, shot.keys[0]!.zoom);
+  assert.equal(shot.keys.at(-1)!.pitch, shot.keys[0]!.pitch);
+  const seasonImages = shot.overlays.filter((o) => o.type === 'image').map((o) => o.src);
+  assert.deepEqual(seasonImages, [
+    'omuro-seasons/summer.jpg',
+    'omuro-seasons/autumn.jpg',
+    'omuro-seasons/winter_burn.jpg',
+    'omuro-seasons/spring.jpg',
+  ]);
 });
 
-test('E2E: renderer writes selected video MP4s', { timeout: 240_000 }, () => {
+test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
   const output = path.resolve('dist/test/video');
   const work = path.join(output, '.work');
   const target = process.env.VIDEO_TARGET?.trim();
@@ -149,7 +160,7 @@ test('E2E: renderer writes selected video MP4s', { timeout: 240_000 }, () => {
         '--no-voice',
         '--raw-audio',
       ],
-      { encoding: 'utf8', timeout: 220_000, env: renderEnv },
+      { encoding: 'utf8', timeout: 420_000, env: renderEnv },
     );
     assert.equal(render.status, 0, `${item.name}\n${render.stdout}\n${render.stderr}`);
 
@@ -158,7 +169,7 @@ test('E2E: renderer writes selected video MP4s', { timeout: 240_000 }, () => {
     fs.copyFileSync(rendered, video);
     assert.ok(fs.statSync(video).size > 1_000, `${item.name}.mp4 should not be empty`);
     const metadata = probeVideo(video);
-    assert.deepEqual([metadata.width, metadata.height], [640, 360]);
+    assert.deepEqual([metadata.width, metadata.height], [item.width ?? 640, item.height ?? 360]);
     assert.ok(metadata.duration >= item.minimumDuration, `${item.name}.mp4 is too short`);
   }
 });

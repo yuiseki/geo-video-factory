@@ -60,6 +60,29 @@ export function buildFrameTimes(from: number, to: number, step: number): number[
   return Array.from({ length: count }, (_, i) => Number((from + i * step).toFixed(12)));
 }
 
+export function resolveWorkerCount(frameCount: number, explicit?: number): number {
+  if (explicit !== undefined) {
+    if (!Number.isSafeInteger(explicit) || explicit < 1) throw new Error(`invalid workers "${explicit}"; expected positive integer`);
+    return Math.min(explicit, Math.max(1, frameCount));
+  }
+  return frameCount >= 24 ? 4 : 1;
+}
+
+export function partitionFrameIndices(frameCount: number, workers: number): Array<[number, number]> {
+  if (frameCount <= 0) return [];
+  const count = Math.min(Math.max(1, workers), frameCount);
+  const base = Math.floor(frameCount / count);
+  const extra = frameCount % count;
+  const ranges: Array<[number, number]> = [];
+  let start = 0;
+  for (let i = 0; i < count; i++) {
+    const end = start + base + (i < extra ? 1 : 0);
+    ranges.push([start, end]);
+    start = end;
+  }
+  return ranges;
+}
+
 function isWithin(root: string, target: string): boolean {
   const rel = path.relative(root, target);
   return rel !== '' && !rel.startsWith('..') && !path.isAbsolute(rel);
@@ -173,91 +196,90 @@ async function main(): Promise<void> {
   // FLYOVER_GL=swiftshader forces the CPU path on machines without a GPU.
   const GL = chromiumGlArgs();
   const browser = await chromium.launch({ env, args: GL });
-  const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
-
-  // Ocean DEM tiles legitimately return 404 and registerGsiDem supplies a flat sea-level tile.
-  page.on('console', (m) => {
-    if (m.type() === 'error' && !m.text().startsWith('Failed to load resource:')) {
-      console.error('[page]', m.text());
-    }
-  });
-  page.on('pageerror', (e) => console.error('[page]', e.message));
-  page.on('response', (r) => {
-    if (r.status() >= 400 && !(r.status() === 404 && r.url().includes('/xyz/dem_png/'))) {
-      console.error(`[http ${r.status()}] ${r.url()}`);
-    }
-  });
-
-  await page.goto(`http://127.0.0.1:${port}/page/index.html`);
-  await page.waitForFunction(() => window.FLY_READY === true);
-  console.log(
-    'webgl:',
-    await page.evaluate(() => {
-      const g = document.createElement('canvas').getContext('webgl2');
-      const d = g && g.getExtension('WEBGL_debug_renderer_info');
-      return d ? g.getParameter(d.UNMASKED_RENDERER_WEBGL) : String(!!g);
-    }),
-  );
-
-  const first = await page.evaluate((s) => window.FLY.init(s), spec);
-  if (first === 'timeout') console.error('warning: first load did not settle (tiles still loading?)');
-
-  const total = await page.evaluate(() => window.FLY.totalSeconds());
+  const total = spec.shots.reduce((sum, shot) => sum + (shot.duration ?? 0), 0);
   const from = Number(opt('from', '0'));
   const to = Math.min(total, Number(opt('to', String(total))));
   const stills = opt('stills');
   const step = stills ? Number(stills) : 1 / fps;
   const times = buildFrameTimes(from, to, step);
+  const workersOpt = opt('workers');
+  const workers = resolveWorkerCount(times.length, workersOpt !== undefined ? Number(workersOpt) : undefined);
+  const ranges = partitionFrameIndices(times.length, workers);
 
   let timeouts = 0;
+  let completed = 0;
   const collisions = new Map<string, number>();
   const t0 = Date.now();
 
-  for (let i = 0; i < times.length; i++) {
-    const timeSec = times[i]!;
-    let r = await page.evaluate((s) => window.FLY.frame(s), timeSec);
-    if (r === 'timeout') {
-      console.log(`retrying tile load for frame ${i}`);
-      r = await page.evaluate((s) => window.FLY.frame(s), timeSec);
+  const renderRange = async (workerIndex: number, [start, end]: [number, number]) => {
+    const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
+    page.on('console', (m) => {
+      if (m.type() === 'error' && !m.text().startsWith('Failed to load resource:')) console.error('[page]', m.text());
+    });
+    page.on('pageerror', (e) => console.error('[page]', e.message));
+    page.on('response', (r) => {
+      if (r.status() >= 400 && !(r.status() === 404 && r.url().includes('/xyz/dem_png/'))) {
+        console.error(`[http ${r.status()}] ${r.url()}`);
+      }
+    });
+    await page.goto(`http://127.0.0.1:${port}/page/index.html`);
+    await page.waitForFunction(() => window.FLY_READY === true);
+    if (workerIndex === 0) {
+      console.log(
+        'webgl:',
+        await page.evaluate(() => {
+          const g = document.createElement('canvas').getContext('webgl2');
+          const d = g && g.getExtension('WEBGL_debug_renderer_info');
+          return d ? g.getParameter(d.UNMASKED_RENDERER_WEBGL) : String(!!g);
+        }),
+      );
     }
-    if (r === 'timeout') timeouts++;
+    const first = await page.evaluate((s) => window.FLY.init(s), spec);
+    if (first === 'timeout' && workerIndex === 0) console.error('warning: first load did not settle (tiles still loading?)');
 
-    if (args.includes('--check-label-overlap')) {
-      const overlaps = await page.evaluate(() => {
-        const labels = [...document.querySelectorAll('#overlay .o.label')];
-        const others = [...document.querySelectorAll('#overlay .o.reaction, #overlay .o.subtitle, #overlay .o.panel, #overlay .o.photo-marker-card')];
-        const visible = (el: Element) => Number(getComputedStyle(el).opacity) > 0.1;
-        const result: [string, string][] = [];
-        for (let a = 0; a < labels.length; a++) {
-          const x = labels[a]!;
-          const ra = x.getBoundingClientRect();
-          for (const b of [...labels.slice(a + 1), ...others]) {
-            const rb = b.getBoundingClientRect();
-            if (
-              visible(x) &&
-              visible(b) &&
-              Math.min(ra.right, rb.right) - Math.max(ra.left, rb.left) > 2 &&
-              Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top) > 2
-            ) {
-              result.push([x.textContent?.trim() ?? '', b.classList.contains('label') ? (b.textContent?.trim() ?? '') : b.className]);
+    for (let i = start; i < end; i++) {
+      const timeSec = times[i]!;
+      let r = await page.evaluate((s) => window.FLY.frame(s), timeSec);
+      if (r === 'timeout') {
+        console.log(`retrying tile load for frame ${i}`);
+        r = await page.evaluate((s) => window.FLY.frame(s), timeSec);
+      }
+      if (r === 'timeout') timeouts++;
+
+      if (args.includes('--check-label-overlap')) {
+        const overlaps = await page.evaluate(() => {
+          const labels = [...document.querySelectorAll('#overlay .o.label')];
+          const others = [...document.querySelectorAll('#overlay .o.reaction, #overlay .o.subtitle, #overlay .o.panel, #overlay .o.photo-marker-card')];
+          const visible = (el: Element) => Number(getComputedStyle(el).opacity) > 0.1;
+          const result: [string, string][] = [];
+          for (let a = 0; a < labels.length; a++) {
+            const x = labels[a]!;
+            const ra = x.getBoundingClientRect();
+            for (const b of [...labels.slice(a + 1), ...others]) {
+              const rb = b.getBoundingClientRect();
+              if (visible(x) && visible(b) && Math.min(ra.right, rb.right) - Math.max(ra.left, rb.left) > 2 && Math.min(ra.bottom, rb.bottom) - Math.max(ra.top, rb.top) > 2) {
+                result.push([x.textContent?.trim() ?? '', b.classList.contains('label') ? (b.textContent?.trim() ?? '') : b.className]);
+              }
             }
           }
+          return result;
+        });
+        for (const pair of overlaps) {
+          const key = JSON.stringify(pair);
+          if (!collisions.has(key)) collisions.set(key, timeSec);
         }
-        return result;
-      });
-      for (const pair of overlaps) {
-        const key = JSON.stringify(pair);
-        if (!collisions.has(key)) collisions.set(key, timeSec);
+      }
+
+      await page.screenshot({ path: path.join(out, 'frames', String(i).padStart(5, '0') + '.jpg'), type: 'jpeg', quality: 95 });
+      completed++;
+      if (completed % 30 === 0 || completed === times.length) {
+        process.stdout.write(`\r${completed}/${times.length} frames, ${((Date.now() - t0) / 1000).toFixed(0)} s`);
       }
     }
+    await page.close();
+  };
 
-    await page.screenshot({
-      path: path.join(out, 'frames', String(i).padStart(5, '0') + '.jpg'),
-      type: 'jpeg',
-      quality: 95,
-    });
-    if (i % 30 === 0) process.stdout.write(`\r${i + 1}/${times.length} frames, ${((Date.now() - t0) / 1000).toFixed(0)} s`);
-  }
+  await Promise.all(ranges.map((range, idx) => renderRange(idx, range)));
   process.stdout.write(`\r${times.length}/${times.length} frames, ${((Date.now() - t0) / 1000).toFixed(0)} s\n`);
 
   await browser.close();
