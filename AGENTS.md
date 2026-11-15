@@ -56,7 +56,7 @@ projects/YYYY/MM/DD/<slug>/     個々の動画の作業場所
 
 | パッケージ / ディレクトリ | 言語 | 役割 |
 |---|---|---|
-| `packages/renderer/` | **TypeScript** (`strict: true`, TDD) | ショット JSON の型・純粋計算 (`src/lib.ts`)、VOICEVOX 連携 (`src/voice.ts`)、Playwright + MapLibre + ffmpeg 描画 CLI (`src/render.ts`, `src/page/flyover.ts`) |
+| `packages/renderer/` | **TypeScript** (`strict: true`, TDD) | ショット JSON の型・純粋計算 (`src/lib.ts`)、VOICEVOX 連携 (`src/voice.ts`)、Playwright + ffmpeg 描画 CLI (`src/render.ts`)。ブラウザ側はフレーム制御 (`src/page/flyover.ts`)、地図スタイル (`map-style.ts`)、タイルプロトコル (`map-protocols.ts`)、DOM オーバーレイ (`overlays.ts`) に分割 |
 | `packages/pipeline/` | **Python** | 章ごとの並列書き出しと結合 (`chapter_pipeline.py`)、EXIF GPS 抽出 (`photo_geo.py`)、共通カメラキー生成 (`shot_effects.py`)、PSD スプライト書き出し (`psd_sprites.py`) |
 | `.agents/skills/geo-video-renderer/assets/template/` | データ雛形のみ | 新規プロジェクト用の初期データ (`shots/`, `characters/`, `assets/.gitkeep`, `.gitignore`)。コードはここに置かない |
 
