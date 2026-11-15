@@ -9,13 +9,15 @@
   "exaggeration": 1.5,
   "shots": [
     {
-      "duration": 3,
+      "duration": 10,
       "ease": "smooth",
       "keys": [
         { "t": 0, "center": [138.7274, 35.3606], "zoom": 11.1, "pitch": 55, "bearing": 0 },
-        { "t": 0.25, "center": [138.7274, 35.3606], "zoom": 11.7, "pitch": 68, "bearing": 90 },
-        { "t": 0.5, "center": [138.7274, 35.3606], "zoom": 12.1, "pitch": 75, "bearing": 180 },
-        { "t": 0.75, "center": [138.7274, 35.3606], "zoom": 11.7, "pitch": 68, "bearing": 270 },
+        { "t": 0.1, "center": [138.7274, 35.3606], "zoom": 11.1, "pitch": 55, "bearing": 0 },
+        { "t": 0.3, "center": [138.7274, 35.3606], "zoom": 11.6, "pitch": 64, "bearing": 90 },
+        { "t": 0.5, "center": [138.7274, 35.3606], "zoom": 11.9, "pitch": 70, "bearing": 180 },
+        { "t": 0.7, "center": [138.7274, 35.3606], "zoom": 11.6, "pitch": 64, "bearing": 270 },
+        { "t": 0.9, "center": [138.7274, 35.3606], "zoom": 11.2, "pitch": 58, "bearing": 359 },
         { "t": 1, "center": [138.7274, 35.3606], "zoom": 11.2, "pitch": 58, "bearing": 359 }
       ],
       "overlays": [

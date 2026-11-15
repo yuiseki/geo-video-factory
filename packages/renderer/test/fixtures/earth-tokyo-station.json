@@ -10,18 +10,22 @@
   "exaggeration": 1,
   "shots": [
     {
-      "duration": 3,
+      "duration": 14,
       "ease": "smooth",
       "keys": [
-        { "t": 0, "center": [56.3, 26.5], "zoom": 5.2, "pitch": 0, "bearing": 0 },
-        { "t": 0.25, "center": [72.0, 27.0], "zoom": 4.6, "pitch": 0, "bearing": 0 },
-        { "t": 0.55, "center": [116.0, 31.0], "zoom": 4.8, "pitch": 0, "bearing": 0 },
-        { "t": 0.72, "center": [138.0, 35.2], "zoom": 6.2, "pitch": 0, "bearing": 0 },
+        { "t": 0, "center": [56.3, 26.5], "zoom": 5.4, "pitch": 0, "bearing": 0 },
+        { "t": 0.1, "center": [56.3, 26.5], "zoom": 5.4, "pitch": 0, "bearing": 0 },
+        { "t": 0.22, "center": [56.3, 26.5], "zoom": 3.8, "pitch": 0, "bearing": 0 },
+        { "t": 0.36, "center": [75.0, 27.5], "zoom": 3.8, "pitch": 0, "bearing": 0 },
+        { "t": 0.52, "center": [105.0, 30.0], "zoom": 3.8, "pitch": 0, "bearing": 0 },
+        { "t": 0.66, "center": [128.0, 33.0], "zoom": 4.2, "pitch": 0, "bearing": 0 },
+        { "t": 0.76, "center": [138.0, 35.2], "zoom": 6.2, "pitch": 0, "bearing": 0 },
+        { "t": 0.87, "center": [139.6, 35.6], "zoom": 9.5, "pitch": 0, "bearing": 0 },
         { "t": 1, "center": [139.7671, 35.6812], "zoom": 15, "pitch": 0, "bearing": 0 }
       ],
       "overlays": [
-        { "type": "label", "at": [56.3, 26.5], "text": "ホルムズ海峡", "style": "tag", "show": [0, 0.32] },
-        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0.68, 1] }
+        { "type": "label", "at": [56.3, 26.5], "text": "ホルムズ海峡", "style": "tag", "show": [0, 0.25] },
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0.76, 1] }
       ]
     }
   ]

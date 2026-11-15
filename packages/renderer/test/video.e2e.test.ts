@@ -12,8 +12,8 @@ interface VideoCase {
 
 const cases: VideoCase[] = [
   { name: 'base', fixture: 'base-video.json', minimumDuration: 0.5 },
-  { name: 'earth-tokyo-station', fixture: 'earth-tokyo-station.json', minimumDuration: 2.5 },
-  { name: 'terrain-mt-fuji', fixture: 'terrain-mt-fuji.json', minimumDuration: 2.5 },
+  { name: 'earth-tokyo-station', fixture: 'earth-tokyo-station.json', minimumDuration: 13.5 },
+  { name: 'terrain-mt-fuji', fixture: 'terrain-mt-fuji.json', minimumDuration: 9.5 },
 ];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
