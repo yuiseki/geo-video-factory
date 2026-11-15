@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fitLngLatBounds, projectLngLat } from '../src/map-viewport.js';
-import './e2e/thema.test.js';
+import { themaVideoCases } from './e2e/thema.test.js';
 
 interface VideoCase {
   name: string;
@@ -23,6 +23,7 @@ const cases: VideoCase[] = [
   { name: 'choropleth-3d-tokyo23', fixture: 'choropleth-3d-tokyo23.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref', fixture: 'choropleth-3d-japan-pref.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref-to-tokyo23', fixture: 'choropleth-3d-japan-pref-to-tokyo23.json', minimumDuration: 14.4 },
+  ...themaVideoCases,
 ];
 
 function prepareVideoOutput(output: string, work: string): void {
@@ -226,14 +227,10 @@ test('E2E output setup preserves manually generated real-data videos', () => {
   }
 });
 
-test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, (t) => {
+test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
   const output = path.resolve('dist/test/video');
   const work = path.join(output, '.work');
   const target = process.env.VIDEO_TARGET?.trim();
-  if (target?.startsWith('buildings-')) {
-    t.skip('PLATEAU E2E runs in test/e2e/thema.test.ts');
-    return;
-  }
   const selectedCases = target ? cases.filter(({ name }) => name === target) : cases;
   assert.ok(selectedCases.length, `unknown VIDEO_TARGET "${target}"; choose one of: ${cases.map(({ name }) => name).join(', ')}`);
   prepareVideoOutput(output, work);
