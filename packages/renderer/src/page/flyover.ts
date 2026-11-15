@@ -1,6 +1,6 @@
 // Browser entry point: coordinates map setup and deterministic frame rendering.
 import * as maplibregl from 'maplibre-gl';
-import { cameraAt, fadeAlpha, locate } from '../lib.js';
+import { cameraAt, locate } from '../lib.js';
 import type { CameraKey, Shot, ShotSpec } from '../types.js';
 import { buildMapStyle } from './map-style.js';
 import { registerMapProtocols } from './map-protocols.js';
@@ -11,8 +11,6 @@ import { addPlateauBuildings, type PlateauRenderStats } from './plateau-building
 let map: MapLibreMap;
 let spec: ShotSpec;
 let overlayEl: HTMLElement;
-let terrainSpec: unknown;
-let lastRasterSig = '';
 let plateauStats: (() => PlateauRenderStats) | undefined;
 
 function settle(timeoutMs = 40000): Promise<'idle' | 'timeout'> {
@@ -52,7 +50,6 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
   const style = buildMapStyle(spec);
   document.getElementById('credit')!.textContent = [...style.credits, ...(spec.credits ?? [])].join('\n');
   const { credits: _credits, ...mapStyle } = style;
-  terrainSpec = mapStyle.terrain;
   const first = cameraAt(keysOf(spec.shots[0]!), 0);
   map = new maplibregl.Map({
     container: 'map',
@@ -76,10 +73,6 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
   return settle();
 }
 
-function rasterSignature(si: number, shot: Shot, t: number): string {
-  return si + ':' + (shot.overlays || []).map((o) => (o.type === 'image' || o.type === 'base' ? fadeAlpha(o.show, t, o.fade ?? 0.06).toFixed(3) : '')).join(',');
-}
-
 async function frame(sec: number): Promise<'idle' | 'timeout'> {
   setOverlayTime(sec);
   const { index, t } = locate(spec.shots, sec);
@@ -92,12 +85,6 @@ async function frame(sec: number): Promise<'idle' | 'timeout'> {
   });
   map.jumpTo(cam);
   drawOverlays(index, shot, t, 'map');
-  const sig = rasterSignature(index, shot, t);
-  if (sig !== lastRasterSig) {
-    lastRasterSig = sig;
-    map.setTerrain(null);
-    map.setTerrain(terrainSpec);
-  }
   const result = await settle();
   drawOverlays(index, shot, t, 'dom');
   await Promise.all([...overlayEl.querySelectorAll('img')].map((image) => image.decode().catch(() => console.error('panel image failed: ' + image.src))));

@@ -1,39 +1,76 @@
 {
-  "width": 640,
-  "height": 360,
+  "width": 1280,
+  "height": 720,
   "fps": 6,
   "base": "seamlessphoto",
   "world": false,
   "dem": "gsi",
   "hillshade": 0.3,
   "exaggeration": 1.5,
+  "credits": [
+    "衛星色度：Copernicus Sentinel-2 L2A (2023-2024)"
+  ],
   "shots": [
     {
-      "duration": 8,
+      "duration": 48,
       "ease": "linear",
       "keys": [
-        { "t": 0, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 0 },
-        { "t": 0.25, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 90 },
-        { "t": 0.5, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 180 },
-        { "t": 0.75, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 270 },
-        { "t": 1, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 360 }
+        { "t": 0.0000, "center": [139.0947222, 34.9030556], "zoom": 13.5, "pitch": 40, "bearing": 0 },
+        { "t": 0.0625, "center": [139.0947222, 34.9030556], "zoom": 13.65, "pitch": 43, "bearing": 90 },
+        { "t": 0.1250, "center": [139.0947222, 34.9030556], "zoom": 13.8, "pitch": 46, "bearing": 180 },
+        { "t": 0.1875, "center": [139.0947222, 34.9030556], "zoom": 13.95, "pitch": 49, "bearing": 270 },
+        { "t": 0.2500, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 360 },
+        { "t": 0.3125, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 450 },
+        { "t": 0.3750, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 540 },
+        { "t": 0.4375, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 630 },
+        { "t": 0.5000, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 720 },
+        { "t": 0.5625, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 810 },
+        { "t": 0.6250, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 900 },
+        { "t": 0.6875, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 990 },
+        { "t": 0.7500, "center": [139.0947222, 34.9030556], "zoom": 14.1, "pitch": 52, "bearing": 1080 },
+        { "t": 0.8125, "center": [139.0947222, 34.9030556], "zoom": 13.95, "pitch": 49, "bearing": 1170 },
+        { "t": 0.8750, "center": [139.0947222, 34.9030556], "zoom": 13.8, "pitch": 46, "bearing": 1260 },
+        { "t": 0.9375, "center": [139.0947222, 34.9030556], "zoom": 13.65, "pitch": 43, "bearing": 1350 },
+        { "t": 1.0000, "center": [139.0947222, 34.9030556], "zoom": 13.5, "pitch": 40, "bearing": 1440 }
       ],
       "overlays": [
-        { "type": "label", "at": [139.0947222, 34.9030556], "text": "大室山", "style": "tag", "show": [0, 1] }
-      ]
-    },
-    {
-      "duration": 12,
-      "ease": "linear",
-      "keys": [
-        { "t": 0, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 360 },
-        { "t": 0.25, "center": [139.0947222, 34.9030556], "zoom": 13.025, "pitch": 35, "bearing": 450 },
-        { "t": 0.5, "center": [139.0947222, 34.9030556], "zoom": 13.35, "pitch": 40, "bearing": 540 },
-        { "t": 0.75, "center": [139.0947222, 34.9030556], "zoom": 13.675, "pitch": 45, "bearing": 630 },
-        { "t": 1, "center": [139.0947222, 34.9030556], "zoom": 14, "pitch": 50, "bearing": 720 }
-      ],
-      "overlays": [
-        { "type": "label", "at": [139.0947222, 34.9030556], "text": "大室山", "style": "tag", "show": [0, 1] }
+        {
+          "type": "image",
+          "src": "omuro-seasons/summer.jpg",
+          "bbox": [139.06494140625, 34.885930940753155, 139.1143798828125, 34.91746688928252],
+          "maxzoom": 16,
+          "show": [0, 1],
+          "fade": 0
+        },
+        {
+          "type": "image",
+          "src": "omuro-seasons/autumn.jpg",
+          "bbox": [139.06494140625, 34.885930940753155, 139.1143798828125, 34.91746688928252],
+          "maxzoom": 16,
+          "show": [0.20, 0.55],
+          "fade": 0.12
+        },
+        {
+          "type": "image",
+          "src": "omuro-seasons/winter_burn.jpg",
+          "bbox": [139.06494140625, 34.885930940753155, 139.1143798828125, 34.91746688928252],
+          "maxzoom": 16,
+          "show": [0.43, 0.78],
+          "fade": 0.12
+        },
+        {
+          "type": "image",
+          "src": "omuro-seasons/spring.jpg",
+          "bbox": [139.06494140625, 34.885930940753155, 139.1143798828125, 34.91746688928252],
+          "maxzoom": 16,
+          "show": [0.66, 1],
+          "fade": 0.12
+        },
+        { "type": "label", "screen": [190, 78], "text": "大室山（夏）", "style": "tag", "show": [-0.05, 0.26], "fade": 0.03 },
+        { "type": "label", "screen": [190, 78], "text": "大室山（秋）", "style": "tag", "show": [0.26, 0.50], "fade": 0.03 },
+        { "type": "label", "screen": [190, 78], "text": "大室山（冬・山焼き）", "style": "tag", "show": [0.50, 0.74], "fade": 0.03 },
+        { "type": "label", "screen": [190, 78], "text": "大室山（春・新緑）", "style": "tag", "show": [0.74, 0.94], "fade": 0.03 },
+        { "type": "label", "screen": [190, 78], "text": "大室山（夏）", "style": "tag", "show": [0.94, 1.05], "fade": 0.03 }
       ]
     }
   ]
