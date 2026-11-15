@@ -15,6 +15,7 @@ const cases: VideoCase[] = [
   { name: 'base', fixture: 'base-video.json', minimumDuration: 0.5 },
   { name: 'earth-tokyo-station', fixture: 'earth-tokyo-station.json', minimumDuration: 20.4 },
   { name: 'terrain-mt-fuji', fixture: 'terrain-mt-fuji.json', minimumDuration: 19.9 },
+  { name: 'terrain-mt-omuroyama', fixture: 'terrain-mt-omuroyama.json', minimumDuration: 19.9 },
 ];
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
@@ -97,17 +98,45 @@ test('Fuji E2E makes one wide orbit, then zooms in through a second orbit', () =
   }
 });
 
-test('E2E: renderer writes base, earth flight and terrain orbit MP4s', { timeout: 240_000 }, () => {
+test('Omuroyama E2E keeps the volcanic cone in view while widening and zooming in', () => {
+  const fixture = JSON.parse(fs.readFileSync('test/fixtures/terrain-mt-omuroyama.json', 'utf8')) as {
+    shots: { duration: number; ease?: string; keys: { t: number; center: number[]; zoom: number; pitch: number; bearing: number }[] }[];
+  };
+  assert.equal(fixture.shots.length, 2);
+  assert.deepEqual(fixture.shots.map(({ duration }) => duration), [8, 12]);
+  const [wide, zoomIn] = fixture.shots as [typeof fixture.shots[number], typeof fixture.shots[number]];
+  for (const shot of [wide, zoomIn]) {
+    assert.equal(shot.ease, 'linear');
+    assert.deepEqual(shot.keys.map(({ t }) => t), [0, 0.25, 0.5, 0.75, 1]);
+    for (const key of shot.keys) assert.deepEqual(key.center, [139.0947222, 34.9030556]);
+    const turns = shot.keys.slice(1).reduce((total, key, i) => total + (((key.bearing - shot.keys[i]!.bearing + 540) % 360) - 180), 0);
+    assert.ok(Math.abs(Math.abs(turns) - 360) < 2, `orbit should rotate once, got ${turns} degrees`);
+  }
+  assert.ok(wide.keys.every(({ zoom }) => zoom < 13), 'first orbit shows the entire volcanic cone');
+  assert.ok(zoomIn.keys.at(-1)!.zoom > zoomIn.keys[0]!.zoom + 1, 'second orbit zooms in');
+  assert.ok(zoomIn.keys.every((key, i) => i === 0 || key.zoom > zoomIn.keys[i - 1]!.zoom), 'zoom-in orbit is continuous');
+  assert.deepEqual(
+    { center: zoomIn.keys[0]!.center, zoom: zoomIn.keys[0]!.zoom, pitch: zoomIn.keys[0]!.pitch, bearing: zoomIn.keys[0]!.bearing },
+    { center: wide.keys.at(-1)!.center, zoom: wide.keys.at(-1)!.zoom, pitch: wide.keys.at(-1)!.pitch, bearing: wide.keys.at(-1)!.bearing },
+  );
+});
+
+test('E2E: renderer writes selected video MP4s', { timeout: 240_000 }, () => {
   const output = path.resolve('dist/test/video');
   const work = path.join(output, '.work');
-  fs.rmSync(output, { recursive: true, force: true });
+  const target = process.env.VIDEO_TARGET?.trim();
+  const selectedCases = target ? cases.filter(({ name }) => name === target) : cases;
+  assert.ok(selectedCases.length, `unknown VIDEO_TARGET "${target}"; choose one of: ${cases.map(({ name }) => name).join(', ')}`);
+  if (!target) fs.rmSync(output, { recursive: true, force: true });
   fs.mkdirSync(work, { recursive: true });
   const renderEnv = { ...process.env };
   // Keep the child CLI's process coverage separate from this test process's unit coverage.
   delete renderEnv.NODE_V8_COVERAGE;
 
-  for (const item of cases) {
+  for (const item of selectedCases) {
     const renderOutput = path.join(work, item.name);
+    fs.rmSync(renderOutput, { recursive: true, force: true });
+    fs.rmSync(path.join(work, `${item.name}.log`), { force: true });
     const render = spawnSync(
       process.execPath,
       [

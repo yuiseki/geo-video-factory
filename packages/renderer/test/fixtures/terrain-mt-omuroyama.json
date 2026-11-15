@@ -1,0 +1,40 @@
+{
+  "width": 640,
+  "height": 360,
+  "fps": 6,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "exaggeration": 1.5,
+  "shots": [
+    {
+      "duration": 8,
+      "ease": "linear",
+      "keys": [
+        { "t": 0, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 0 },
+        { "t": 0.25, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 90 },
+        { "t": 0.5, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 180 },
+        { "t": 0.75, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 270 },
+        { "t": 1, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 360 }
+      ],
+      "overlays": [
+        { "type": "label", "at": [139.0947222, 34.9030556], "text": "大室山", "style": "tag", "show": [0, 1] }
+      ]
+    },
+    {
+      "duration": 12,
+      "ease": "linear",
+      "keys": [
+        { "t": 0, "center": [139.0947222, 34.9030556], "zoom": 12.7, "pitch": 30, "bearing": 360 },
+        { "t": 0.25, "center": [139.0947222, 34.9030556], "zoom": 13.025, "pitch": 35, "bearing": 450 },
+        { "t": 0.5, "center": [139.0947222, 34.9030556], "zoom": 13.35, "pitch": 40, "bearing": 540 },
+        { "t": 0.75, "center": [139.0947222, 34.9030556], "zoom": 13.675, "pitch": 45, "bearing": 630 },
+        { "t": 1, "center": [139.0947222, 34.9030556], "zoom": 14, "pitch": 50, "bearing": 720 }
+      ],
+      "overlays": [
+        { "type": "label", "at": [139.0947222, 34.9030556], "text": "大室山", "style": "tag", "show": [0, 1] }
+      ]
+    }
+  ]
+}

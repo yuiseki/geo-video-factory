@@ -10,6 +10,14 @@ npm test
 npm run test:coverage
 ```
 
+動画E2Eは `packages/renderer/test/fixtures/` にある対象名だけ再生成できます。renderer ディレクトリで次のように実行します。
+
+```bash
+VIDEO_TARGET=terrain-mt-omuroyama npm run test:video
+```
+
+`VIDEO_TARGET` は `base`、`earth-tokyo-station`、`terrain-mt-fuji`、`terrain-mt-omuroyama` を指定できます。未指定で `npm test` を実行すると、全動画を生成します。対象指定時はその動画と作業用ファイルだけを更新し、他のMP4は保持します。
+
 `test:coverage` は、行 65%、分岐 80%、関数 90% を下回ると失敗する。ブラウザーを起動する CLI 本体を含むため、行カバレッジは段階的に引き上げる。
 
 - `src/lib.ts` の時間・座標・表示計算は、入力境界と決定性を単体テストする。
