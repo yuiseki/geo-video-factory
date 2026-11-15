@@ -9,15 +9,61 @@ import argparse
 from concurrent.futures import ThreadPoolExecutor
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 from PIL import Image, ImageDraw, ImageFont
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
 RENDERER_ENTRY = REPO_ROOT / 'packages' / 'renderer' / 'dist' / 'src' / 'render.js'
-FONT = '/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc'
+FONT_CANDIDATES = (
+    Path('/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc'),
+    Path('/usr/share/fonts/noto-cjk/NotoSansCJK-Bold.ttc'),
+    Path('/usr/share/fonts/truetype/noto/NotoSansCJK-Bold.ttc'),
+    Path('C:/Windows/Fonts/NotoSansJP-Bold.ttf'),
+    Path('C:/Windows/Fonts/BIZ-UDGothicB.ttc'),
+    Path('C:/Windows/Fonts/meiryob.ttc'),
+    Path('C:/Windows/Fonts/YuGothB.ttc'),
+    Path('C:/Windows/Fonts/msgothic.ttc'),
+    Path('/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc'),
+    Path('/Library/Fonts/NotoSansCJKjp-Bold.otf'),
+)
 FPS = 24
+SIZE = '1920x1080'
 LOUDNORM_KEYS = ('input_i', 'input_tp', 'input_lra', 'input_thresh', 'target_offset')
+
+
+def find_font(font: str | Path | None = None) -> str:
+    if font:
+        return str(font)
+    for candidate in FONT_CANDIDATES:
+        if candidate.is_file():
+            return str(candidate)
+    raise FileNotFoundError('no Japanese bold font found; pass --font or set manifest "font"')
+
+
+def parse_size(value: str) -> tuple[int, int]:
+    match = re.fullmatch(r'(\d+)x(\d+)', value)
+    if not match:
+        raise ValueError(f'invalid size "{value}"; expected WIDTHxHEIGHT')
+    width, height = int(match.group(1)), int(match.group(2))
+    if width <= 0 or height <= 0:
+        raise ValueError(f'invalid size "{value}"; dimensions must be positive integers')
+    return width, height
+
+
+def format_concat_line(path: Path) -> str:
+    escaped = path.as_posix().replace("'", "'\\''")
+    return f"file '{escaped}'\n"
+
+
+def can_reuse_chapter(reuse_from: Path | None, ch_id: str, index: int, spec_text: str, rerender: set[str]) -> bool:
+    if not reuse_from or ch_id in rerender or str(index) in rerender:
+        return False
+    prev_job = reuse_from / 'jobs' / ch_id
+    prev_mp4 = prev_job / f'{ch_id}.mp4'
+    prev_spec = prev_job / 'spec.json'
+    return prev_mp4.is_file() and prev_spec.is_file() and prev_spec.read_text(encoding='utf-8') == spec_text
 
 
 def run(args, **kwargs):
@@ -78,15 +124,29 @@ def build_timeline(chapters, chapter_durations, card_durations):
     return timeline, cursor
 
 
-def card(title: str, number: int, image: Path, video: Path, series: str, fps: int, seconds: float) -> None:
-    img = Image.new('RGB', (1920, 1080), '#101c2e')
+def card(
+    title: str,
+    number: int,
+    image: Path,
+    video: Path,
+    series: str,
+    fps: int,
+    seconds: float,
+    size: tuple[int, int] = (1920, 1080),
+    font: str | Path | None = None,
+) -> None:
+    width, height = size
+    sx, sy = width / 1920, height / 1080
+    scale = min(sx, sy)
+    img = Image.new('RGB', (width, height), '#101c2e')
     draw = ImageDraw.Draw(img)
-    small, large = ImageFont.truetype(FONT, 36), ImageFont.truetype(FONT, 72)
+    font_path = find_font(font)
+    small, large = ImageFont.truetype(font_path, max(12, round(36 * scale))), ImageFont.truetype(font_path, max(16, round(72 * scale)))
     if series:
-        draw.text((960, 350), series, font=small, anchor='mm', fill='#e7b462')
-    draw.text((960, 455), f'第 {number} 章', font=small, anchor='mm', fill='#d5e0ed')
-    draw.text((960, 560), title, font=large, anchor='mm', fill='white')
-    draw.line((600, 650, 1320, 650), fill='#e7b462', width=4)
+        draw.text((960 * sx, 350 * sy), series, font=small, anchor='mm', fill='#e7b462')
+    draw.text((960 * sx, 455 * sy), f'第 {number} 章', font=small, anchor='mm', fill='#d5e0ed')
+    draw.text((960 * sx, 560 * sy), title, font=large, anchor='mm', fill='white')
+    draw.line((600 * sx, 650 * sy, 1320 * sx, 650 * sy), fill='#e7b462', width=max(1, round(4 * scale)))
     img.save(image)
     run(
         [
@@ -100,20 +160,31 @@ def card(title: str, number: int, image: Path, video: Path, series: str, fps: in
 
 
 def render(item) -> Path:
-    i, spec, dest, cache, check_overlap, project_root, renderer_entry = item
-    dest.mkdir()
+    if len(item) == 8:
+        i, spec, dest, cache, check_overlap, project_root, renderer_entry, opts = item
+    else:
+        i, spec, dest, cache, check_overlap, project_root, renderer_entry = item
+        opts = {}
+    fps = opts.get('fps', FPS)
+    size = opts.get('size', SIZE)
+    no_voice = bool(opts.get('no_voice', False))
+    dest.mkdir(parents=True, exist_ok=True)
     if cache:
-        shutil.copytree(cache, dest / 'voice-cache')
+        shutil.copytree(cache, dest / 'voice-cache', dirs_exist_ok=True)
+    if spec.is_file():
+        (dest / 'spec.json').write_text(spec.read_text(encoding='utf-8'), encoding='utf-8')
     log = dest.parent / f'{dest.name}.log'
     with log.open('x', encoding='utf-8') as stream:
         cmd = [
             'node', str(renderer_entry), str(spec),
             '--project', str(project_root),
             '--out', str(dest),
-            '--size', '1920x1080',
-            '--fps', str(FPS),
+            '--size', str(size),
+            '--fps', str(fps),
             '--raw-audio',
         ]
+        if no_voice:
+            cmd.append('--no-voice')
         if check_overlap:
             cmd.append('--check-label-overlap')
         proc = subprocess.run(cmd, cwd=project_root, stdout=stream, stderr=subprocess.STDOUT)
@@ -138,6 +209,12 @@ def main() -> None:
     p.add_argument('--workers', type=int, default=3)
     p.add_argument('--voice-cache', type=Path)
     p.add_argument('--check-label-overlap', action='store_true')
+    p.add_argument('--no-voice', action='store_true')
+    p.add_argument('--fps', type=int)
+    p.add_argument('--size')
+    p.add_argument('--font', type=Path)
+    p.add_argument('--reuse-from', type=Path, help='reuse chapters whose spec.json matches a previous run')
+    p.add_argument('--rerender', default='', help='comma-separated chapter ids or indices to force re-render')
     p.add_argument('--renderer', type=Path, default=RENDERER_ENTRY)
     args = p.parse_args()
 
@@ -155,6 +232,13 @@ def main() -> None:
     except (KeyError, ValueError) as exc:
         p.error(str(exc))
 
+    fps = int(args.fps or manifest.get('fps', FPS))
+    size_str = str(args.size or manifest.get('size', SIZE))
+    size = parse_size(size_str)
+    font = args.font or manifest.get('font')
+    reuse_from = args.reuse_from.resolve() if args.reuse_from else None
+    rerender = {x.strip() for x in args.rerender.split(',') if x.strip()}
+
     cache = args.voice_cache.resolve() if args.voice_cache else None
     if cache and not cache.is_dir():
         p.error('voice cache must be an existing directory')
@@ -164,26 +248,43 @@ def main() -> None:
     jobs = out / 'jobs'
     jobs.mkdir()
     card_seconds = float(manifest.get('cardSeconds', 2.5))
-    cards, items = {}, []
+    cards, items, reused = {}, [], {}
 
     for i, ch in enumerate(chapters):
         spec = (project_root / ch['spec']).resolve()
         if not spec.is_file():
             raise FileNotFoundError(spec)
-        chapter_spec = json.loads(spec.read_text(encoding='utf-8'))
+        spec_text = spec.read_text(encoding='utf-8')
+        chapter_spec = json.loads(spec_text)
         if chapter_spec.get('bgm'):
             raise ValueError(f'chapter {i}: chapter_pipeline does not mix BGM; mix it after joining')
-        if not any(shot.get('lines') for shot in chapter_spec.get('shots', [])):
+        if not args.no_voice and not any(shot.get('lines') for shot in chapter_spec.get('shots', [])):
             raise ValueError(f'chapter {i}: narrated shots are required')
-        items.append((i, spec, jobs / ch['id'], cache, args.check_label_overlap, project_root, args.renderer.resolve()))
+        ch_id = ch['id']
+        if can_reuse_chapter(reuse_from, ch_id, i, spec_text, rerender):
+            prev_job = reuse_from / 'jobs' / ch_id
+            dest = jobs / ch_id
+            dest.mkdir()
+            reused_mp4 = dest / f'{ch_id}.mp4'
+            shutil.copy2(prev_job / f'{ch_id}.mp4', reused_mp4)
+            shutil.copy2(prev_job / 'spec.json', dest / 'spec.json')
+            reused[i] = reused_mp4
+            print(f'chapter {i} ({ch_id}) reused', flush=True)
+        else:
+            opts = {'fps': fps, 'size': size_str, 'no_voice': args.no_voice}
+            items.append((i, spec, jobs / ch_id, cache, args.check_label_overlap, project_root, args.renderer.resolve(), opts))
         if i:
             image, video = jobs / f'card-{i:02}.png', jobs / f'card-{i:02}.mp4'
-            card(ch['title'], i, image, video, manifest.get('series', ''), FPS, card_seconds)
+            card(ch['title'], i, image, video, manifest.get('series', ''), fps, card_seconds, size=size, font=font)
             cards[i] = video
 
-    print(f'rendering {len(items)} chapters with {args.workers} workers', flush=True)
-    with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        videos = list(pool.map(render, items))
+    print(f'rendering {len(items)} chapters with {args.workers} workers ({len(reused)} reused)', flush=True)
+    rendered = {}
+    if items:
+        with ThreadPoolExecutor(max_workers=args.workers) as pool:
+            for item, video in zip(items, pool.map(render, items)):
+                rendered[item[0]] = video
+    videos = [reused[i] if i in reused else rendered[i] for i in range(len(chapters))]
 
     ordered = []
     chapter_durations = [duration(video) for video in videos]
@@ -195,7 +296,7 @@ def main() -> None:
         ordered.append(video)
 
     concat = out / 'concat.txt'
-    concat.write_text(''.join("file '" + str(f).replace("'", "'\\''") + "'\n" for f in ordered), encoding='utf-8')
+    concat.write_text(''.join(format_concat_line(f) for f in ordered), encoding='utf-8')
     print('measuring complete audio', flush=True)
     measure = run(
         [

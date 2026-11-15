@@ -134,6 +134,62 @@ class ChapterPipelineTests(unittest.TestCase):
                         with self.assertRaises(error):
                             chapter_pipeline.render((0, spec, dest, None, False, root, renderer))
 
+    def test_find_font_prefers_explicit_then_existing_candidate(self):
+        with TemporaryDirectory() as temp:
+            font = Path(temp) / 'custom.ttc'
+            font.write_bytes(b'font')
+            self.assertEqual(chapter_pipeline.find_font(str(font)), str(font))
+            with patch.object(chapter_pipeline, 'FONT_CANDIDATES', (Path(temp) / 'missing.ttc', font)):
+                self.assertEqual(chapter_pipeline.find_font(), str(font))
+            with patch.object(chapter_pipeline, 'FONT_CANDIDATES', (Path(temp) / 'missing.ttc',)):
+                with self.assertRaises(FileNotFoundError):
+                    chapter_pipeline.find_font()
+
+    def test_parse_size_and_format_concat_line(self):
+        self.assertEqual(chapter_pipeline.parse_size('1280x720'), (1280, 720))
+        for bad in ('1280', '0x720', '1920x-1', 'abc'):
+            with self.assertRaises(ValueError):
+                chapter_pipeline.parse_size(bad)
+        line = chapter_pipeline.format_concat_line(Path('C:/work/out/ch-01.mp4'))
+        self.assertEqual(line, "file 'C:/work/out/ch-01.mp4'\n")
+        self.assertNotIn('\\', line)
+
+    def test_can_reuse_chapter_checks_spec_match_and_rerender_override(self):
+        with TemporaryDirectory() as temp:
+            prev = Path(temp)
+            job = prev / 'jobs' / 'ch-1'
+            job.mkdir(parents=True)
+            (job / 'ch-1.mp4').write_bytes(b'mp4')
+            (job / 'spec.json').write_text('{"shots":[1]}', encoding='utf-8')
+            self.assertTrue(chapter_pipeline.can_reuse_chapter(prev, 'ch-1', 0, '{"shots":[1]}', set()))
+            self.assertFalse(chapter_pipeline.can_reuse_chapter(prev, 'ch-1', 0, '{"shots":[2]}', set()))
+            self.assertFalse(chapter_pipeline.can_reuse_chapter(prev, 'ch-1', 0, '{"shots":[1]}', {'ch-1'}))
+            self.assertFalse(chapter_pipeline.can_reuse_chapter(prev, 'ch-1', 0, '{"shots":[1]}', {'0'}))
+
+    def test_render_forwards_no_voice_fps_and_size(self):
+        with TemporaryDirectory() as temp:
+            root = Path(temp)
+            spec = root / 'chapter.json'
+            spec.write_text('{}', encoding='utf-8')
+            renderer = root / 'render.js'
+            renderer.write_text('', encoding='utf-8')
+            dest = root / 'jobs' / 'ch-draft'
+            dest.parent.mkdir()
+
+            def fake_node(cmd, **kwargs):
+                self.assertIn('--no-voice', cmd)
+                self.assertEqual(cmd[cmd.index('--fps') + 1], '12')
+                self.assertEqual(cmd[cmd.index('--size') + 1], '1280x720')
+                (dest / 'ch-draft.mp4').write_bytes(b'video')
+                return SimpleNamespace(returncode=0)
+
+            probe = SimpleNamespace(stdout=json.dumps({'streams': [{'codec_type': 'video'}, {'codec_type': 'audio'}]}))
+            item = (0, spec, dest, None, False, root, renderer, {'fps': 12, 'size': '1280x720', 'no_voice': True})
+            with patch.object(chapter_pipeline.subprocess, 'run', side_effect=fake_node), \
+                 patch.object(chapter_pipeline, 'run', return_value=probe):
+                video = chapter_pipeline.render(item)
+            self.assertEqual(video, dest / 'ch-draft.mp4')
+
 
 if __name__ == '__main__':
     unittest.main()
