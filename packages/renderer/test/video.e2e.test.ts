@@ -1,6 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+import os from 'node:os';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
 import { fitLngLatBounds, projectLngLat } from '../src/map-viewport.js';
@@ -21,8 +22,13 @@ const cases: VideoCase[] = [
   { name: 'choropleth-3d-tokyo23', fixture: 'choropleth-3d-tokyo23.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref', fixture: 'choropleth-3d-japan-pref.json', minimumDuration: 5.9 },
   { name: 'choropleth-3d-japan-pref-to-tokyo23', fixture: 'choropleth-3d-japan-pref-to-tokyo23.json', minimumDuration: 14.4 },
-  { name: 'asakusa-buildings', fixture: 'asakusa-buildings.json', minimumDuration: 4.0 },
 ];
+
+function prepareVideoOutput(output: string, work: string): void {
+  // E2E owns only its named outputs and .work files. Keep manually rendered videos here.
+  fs.mkdirSync(output, { recursive: true });
+  fs.mkdirSync(work, { recursive: true });
+}
 
 function probeVideo(video: string): { width: number; height: number; duration: number } {
   const probe = spawnSync(
@@ -207,29 +213,16 @@ test('Japan 47 prefectures to Tokyo 23 wards 3D choropleth E2E centers Tokyo and
   assert.ok(zoomShot.to.zoom > zoomShot.from.zoom + 4);
 });
 
-test('Asakusa buildings E2E fixture combines textured PLATEAU, untextured PLATEAU, and OSM proxy', () => {
-  const fixture = JSON.parse(fs.readFileSync('test/fixtures/asakusa-buildings.json', 'utf8')) as {
-    plateauBuildings?: { manifest: string; heightOffset?: number };
-    shots: { duration: number; from: { center: number[]; zoom: number; pitch: number; bearing: number }; to: { center: number[]; zoom: number; pitch: number; bearing: number } }[];
-  };
-  assert.ok(fixture.plateauBuildings?.manifest, 'Asakusa fixture must configure plateauBuildings.manifest');
-  const manifestPath = path.join('test/fixtures', fixture.plateauBuildings.manifest);
-  const manifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8')) as {
-    format: string;
-    tiles: { glb: string; kind?: string; ids?: string[]; facade_colors?: (string | null)[] }[];
-  };
-  assert.equal(manifest.format, 'geo-video-factory.plateau-3d/1');
-  const plateauTile = manifest.tiles.find((tile) => tile.kind !== 'osm-proxy');
-  const osmTile = manifest.tiles.find((tile) => tile.kind === 'osm-proxy');
-  assert.ok(plateauTile && osmTile, 'manifest must contain both PLATEAU and OSM proxy tiles');
-  assert.ok(plateauTile.facade_colors?.includes(null), 'textured PLATEAU feature must preserve null palette entry');
-  assert.ok((plateauTile.facade_colors?.filter((c) => typeof c === 'string').length ?? 0) >= 2, 'untextured PLATEAU features must have facade_colors');
-  assert.ok((osmTile.facade_colors?.filter((c) => typeof c === 'string').length ?? 0) >= 1, 'OSM proxy must have facade_colors');
-  for (const tile of manifest.tiles) {
-    assert.ok(fs.existsSync(path.join(path.dirname(manifestPath), tile.glb)), `missing GLB ${tile.glb}`);
+test('E2E output setup preserves manually generated real-data videos', () => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'geo-video-e2e-output-'));
+  try {
+    const video = path.join(root, 'buildings-asakusa.mp4');
+    fs.writeFileSync(video, 'real-data-video');
+    prepareVideoOutput(root, path.join(root, '.work'));
+    assert.equal(fs.readFileSync(video, 'utf8'), 'real-data-video');
+  } finally {
+    fs.rmSync(root, { recursive: true, force: true });
   }
-  assert.ok(fixture.shots.length >= 1);
-  assert.ok(fixture.shots[0]!.from.pitch >= 50, 'Asakusa 3D building shot uses oblique pitch');
 });
 
 test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
@@ -238,8 +231,7 @@ test('E2E: renderer writes selected video MP4s', { timeout: 600_000 }, () => {
   const target = process.env.VIDEO_TARGET?.trim();
   const selectedCases = target ? cases.filter(({ name }) => name === target) : cases;
   assert.ok(selectedCases.length, `unknown VIDEO_TARGET "${target}"; choose one of: ${cases.map(({ name }) => name).join(', ')}`);
-  if (!target) fs.rmSync(output, { recursive: true, force: true });
-  fs.mkdirSync(work, { recursive: true });
+  prepareVideoOutput(output, work);
   const renderEnv = { ...process.env };
   // Keep the child CLI's process coverage separate from this test process's unit coverage.
   delete renderEnv.NODE_V8_COVERAGE;
