@@ -1,0 +1,34 @@
+{
+  "fps": 12,
+  "width": 640,
+  "height": 360,
+  "voices": {
+    "a": { "speaker": 3, "name": "ずんだもん", "speed": 1.3, "color": "#ffe94a" },
+    "b": { "speaker": 2, "name": "四国めたん", "speed": 1.2, "color": "#ff9ca7" }
+  },
+  "tts": { "url": "http://127.0.0.1:50021", "padStart": 0.2, "pause": 0.2, "padEnd": 0.3 },
+  "credits": ["VOICEVOX実音声E2E"],
+  "reaction": {
+    "characters": {
+      "a": { "sprites": "assets/chara/zundamon", "seed": "zundamon" },
+      "b": { "sprites": "assets/chara/metan", "seed": "metan" }
+    },
+    "order": ["b", "a"],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "shots": [
+    {
+      "from": { "center": [138.7274, 35.3606], "zoom": 10.5, "pitch": 55, "bearing": 20 },
+      "to":   { "center": [138.7274, 35.3606], "zoom": 11.0, "pitch": 60, "bearing": 35 },
+      "lines": [
+        { "voice": "a", "text": "これはずんだもんと四国めたんの音声合成テストなのだ。", "face": "smile", "react": "normal" },
+        { "voice": "b", "text": "声に合わせて口パクと字幕が同期して動くわね。", "face": "point", "react": "normal" }
+      ],
+      "overlays": [
+        { "type": "label", "at": [138.7274, 35.3606], "text": "富士山", "style": "tag", "show": [0.1, 1] }
+      ]
+    }
+  ]
+}
