@@ -6,7 +6,7 @@
   "world": false,
   "dem": "gsi",
   "hillshade": 0.3,
-  "exaggeration": 1.5,
+  "exaggeration": 1.2,
   "credits": [
     "衛星色度：Copernicus Sentinel-2 L2A (2023-2024)"
   ],
@@ -15,8 +15,8 @@
       "duration": 16,
       "ease": "linear",
       "keys": [
-        { "t": 0.0, "center": [139.0947222, 34.9030556], "zoom": 14.2, "pitch": 52, "bearing": 15 },
-        { "t": 1.0, "center": [139.0947222, 34.9030556], "zoom": 14.2, "pitch": 52, "bearing": 15 }
+        { "t": 0.0, "center": [139.094, 34.9055], "zoom": 14.5, "pitch": 81, "bearing": -15 },
+        { "t": 1.0, "center": [139.094, 34.9055], "zoom": 14.5, "pitch": 81, "bearing": -15 }
       ],
       "overlays": [
         {
