@@ -1,0 +1,34 @@
+{
+  "fps": 12,
+  "width": 640,
+  "height": 360,
+  "voices": {
+    "a": { "name": "霊夢", "voice": "f1", "speed": 1.05, "color": "#ff9ca7" },
+    "b": { "name": "魔理沙", "voice": "f2", "speed": 1.0, "color": "#ffe94a" }
+  },
+  "tts": { "engine": "aquestalk", "padStart": 0.2, "pause": 0.2, "padEnd": 0.3 },
+  "credits": ["AquesTalkゆっくりボイスE2E"],
+  "reaction": {
+    "characters": {
+      "a": { "sprites": "assets/chara/reimu", "seed": "reimu" },
+      "b": { "sprites": "assets/chara/marisa", "seed": "marisa" }
+    },
+    "order": ["b", "a"],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "shots": [
+    {
+      "from": { "center": [139.7671, 35.6812], "zoom": 10.5, "pitch": 45, "bearing": 0 },
+      "to":   { "center": [139.7671, 35.6812], "zoom": 11.2, "pitch": 50, "bearing": 15 },
+      "lines": [
+        { "voice": "a", "text": "ゆっくりしていってね。今日は東京駅を見ていくわよ。", "face": "smile", "react": "normal" },
+        { "voice": "b", "text": "霊夢は f1 で、魔理沙は f2 の声でしゃべっているんだぜ。", "face": "point", "react": "normal" }
+      ],
+      "overlays": [
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0.1, 1] }
+      ]
+    }
+  ]
+}

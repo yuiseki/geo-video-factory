@@ -32,11 +32,35 @@ python3 packages/pipeline/part_sprites.py \
 - `part_sprites.py` は全差分のバウンディングボックス和集合（union bbox）で一括切り出しし、四隅に `alpha=1` ピクセルを打って位置ずれを防ぐ。また `min_width: 820` により、帽子で横幅の広い魔理沙と霊夢の顔サイズを揃える。
 - 書き出し後は必ず `sheet.png` を開き、閉眼差分・口パク・顔位置が揃っているか確認する。
 
-## 3. 音声合成（Open JTalk）
+## 3. 音声合成（AquesTalk / Open JTalk）
 
-ゆっくり風の音声をローカルで生成する場合、Homebrew 版 `open_jtalk` または Python 版 `pyopenjtalk`（HTS Voice "Mei" 等）が利用できる。
+### AquesTalk（`AquesTalkPlayer.app`：ゆっくり霊夢 `f1`・ゆっくり魔理沙 `f2`）
 
-- **HTS Voice の声質分離**: `pyopenjtalk.tts(text, speed=..., half_tone=...)` 等でピッチ（`half_tone`: 霊夢は高め `+2.0` 前後、魔理沙は低め `-3.0` 前後）や話速を調整して 2 人の声を聞き分けやすくする。
+macOS に `AquesTalkPlayer.app` がインストールされている環境では、`tts.engine` に `"aquestalk"` を指定すると `packages/pipeline/aquestalk_tts.py` 経由で `f1`（霊夢）・`f2`（魔理沙）のゆっくりボイスを直接合成する。
+
+```json
+"tts": { "engine": "aquestalk", "padStart": 0.2, "pause": 0.2, "padEnd": 0.3 },
+"voices": {
+  "a": { "name": "霊夢", "voice": "f1", "speed": 1.05, "color": "#ff9ca7" },
+  "b": { "name": "魔理沙", "voice": "f2", "speed": 1.0, "color": "#ffe94a" }
+}
+```
+
+※ `AquesTalkPlayer.app` 内蔵ライブラリには評価版制限（一部が「ヌ」になる等）や商用利用時のライセンス条件があるため、公開用途に応じてアクエスト社の利用規約を確認する。
+
+### Open JTalk（`open_jtalk` CLI）
+
+ローカルの Open JTalk（HTS Voice "Mei" 等）で代用する場合は、`tts.engine` に `"openjtalk"` を指定する。
+
+```json
+"tts": { "engine": "openjtalk", "padStart": 0.2, "pause": 0.2, "padEnd": 0.3 },
+"voices": {
+  "a": { "name": "霊夢", "speed": 1.25, "halfTone": 1.5, "color": "#ff9ca7" },
+  "b": { "name": "魔理沙", "speed": 1.15, "halfTone": -3.0, "color": "#ffe94a" }
+}
+```
+
+- **声質の分離 (`halfTone` / `speed`)**: `halfTone`（`-fm`）でピッチを上下させて 2 人の声を聞き分けやすくする（例: 霊夢 `+1.5`、魔理沙 `-3.0`）。別の `.htsvoice` を使う場合は `voices.<key>.htsvoice` や環境変数 `OPENJTALK_VOICE` で指定する。
 - **読みの確認**: 固有名詞や同音異義語（「間」「光」「方」など）の読み間違いは `speech` でひらがな・カタカナに直して防ぐ（詳細は [narration.md](narration.md)）。
 
 ## 4. 権利・利用ガイドラインとクレジット

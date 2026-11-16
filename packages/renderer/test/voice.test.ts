@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { parseWav, prepareNarration } from '../src/voice.js';
+import { buildAquesTalkArgs, buildOpenJTalkArgs, parseWav, prepareNarration } from '../src/voice.js';
 import type { ShotSpec } from '../src/types.js';
 
 test('parseWav rejects invalid, incomplete, stereo and non-16-bit input', () => {
@@ -68,5 +68,73 @@ test('prepareNarration validates voices and respects subtitle switches', async (
   };
   await prepareNarration(spec, tmp, { noVoice: true });
   assert.equal(spec.shots[0]!.overlays!.some((o) => o.type === 'subtitle'), false);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('buildOpenJTalkArgs formats CLI flags and prepareNarration emits Open JTalk credits', async () => {
+  assert.deepEqual(
+    buildOpenJTalkArgs({ dic: '/dic', voice: '/voice.htsvoice', speed: 1.15, halfTone: -2.5, outFile: '/tmp/out.wav' }),
+    ['-x', '/dic', '-m', '/voice.htsvoice', '-r', '1.15', '-fm', '-2.5', '-ow', '/tmp/out.wav'],
+  );
+
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'flyover-ojt-'));
+  const spec: ShotSpec = {
+    tts: { engine: 'openjtalk' },
+    voices: {
+      a: { name: '霊夢', speed: 1.2, halfTone: 1.5 },
+      b: { name: '魔理沙', speed: 1.1, halfTone: -3.0 },
+    },
+    shots: [
+      {
+        lines: [
+          { voice: 'a', text: '霊夢のセリフよ。' },
+          { voice: 'b', text: '魔理沙のセリフだぜ。' },
+        ],
+      },
+    ],
+  };
+  const { credits } = await prepareNarration(spec, tmp, { noVoice: true });
+  assert.deepEqual(credits, ['音声：Open JTalk / HTS Voice "Mei"']);
+  fs.rmSync(tmp, { recursive: true, force: true });
+});
+
+test('buildAquesTalkArgs formats CLI flags and prepareNarration emits AquesTalk credits', async () => {
+  assert.deepEqual(
+    buildAquesTalkArgs({
+      script: '/repo/packages/pipeline/aquestalk_tts.py',
+      voiceId: 'f1',
+      speed: 1.1,
+      outFile: '/tmp/out.wav',
+      text: 'テスト',
+      appDir: '/Applications/AquesTalkPlayer.app',
+    }),
+    [
+      '/repo/packages/pipeline/aquestalk_tts.py',
+      '--voice', 'f1',
+      '--speed', '1.1',
+      '--out', '/tmp/out.wav',
+      '--text', 'テスト',
+      '--app', '/Applications/AquesTalkPlayer.app',
+    ],
+  );
+
+  const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'flyover-aq-'));
+  const spec: ShotSpec = {
+    tts: { engine: 'aquestalk' },
+    voices: {
+      a: { name: '霊夢', voice: 'f1', speed: 1.05 },
+      b: { name: '魔理沙', voice: 'f2', speed: 1.0 },
+    },
+    shots: [
+      {
+        lines: [
+          { voice: 'a', text: 'ゆっくりしていってね。' },
+          { voice: 'b', text: '今日は地図を見ていくぜ。' },
+        ],
+      },
+    ],
+  };
+  const { credits } = await prepareNarration(spec, tmp, { noVoice: true });
+  assert.deepEqual(credits, ['音声：AquesTalk (ゆっくりボイス)']);
   fs.rmSync(tmp, { recursive: true, force: true });
 });

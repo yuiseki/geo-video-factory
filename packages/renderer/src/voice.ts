@@ -3,6 +3,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';
 import { layoutLines, wrapSubtitle, estimateSeconds, levelEnvelope } from './lib.js';
 import type { ReactionSegment, ShotSpec, TtsConfig, VoiceConfig } from './types.js';
 
@@ -61,37 +62,143 @@ export function writeWav(file: string, samples: Int16Array, rate: number): void 
   fs.writeFileSync(file, Buffer.concat([h, Buffer.from(samples.buffer, samples.byteOffset, samples.length * 2)]));
 }
 
-async function synth(tts: TtsConfig, voice: VoiceConfig, text: string, cacheDir: string): Promise<ParsedWav> {
-  const params = {
-    speaker: voice.speaker,
+const DEFAULT_OPENJTALK_DICS = [
+  '/opt/homebrew/opt/open-jtalk/dic',
+  '/usr/local/opt/open-jtalk/dic',
+  '/var/lib/mecab/dic/open-jtalk/naist-jdic',
+];
+
+const DEFAULT_OPENJTALK_VOICES = [
+  '/opt/homebrew/opt/open-jtalk/voice/mei/mei_normal.htsvoice',
+  '/usr/local/opt/open-jtalk/voice/mei/mei_normal.htsvoice',
+  '/usr/share/hts-voice/mei/mei_normal.htsvoice',
+];
+
+export interface OpenJTalkArgsOptions {
+  dic: string;
+  voice: string;
+  speed: number;
+  halfTone: number;
+  outFile: string;
+}
+
+export function buildOpenJTalkArgs({ dic, voice, speed, halfTone, outFile }: OpenJTalkArgsOptions): string[] {
+  return ['-x', dic, '-m', voice, '-r', String(speed), '-fm', String(halfTone), '-ow', outFile];
+}
+
+function resolveExistingPath(explicit: string | undefined, envName: string, candidates: string[], label: string): string {
+  const fromEnv = process.env[envName]?.trim();
+  for (const candidate of [explicit, fromEnv, ...candidates]) {
+    if (candidate && fs.existsSync(candidate)) return candidate;
+  }
+  throw new Error(`Open JTalk ${label} not found (set tts.openjtalk or ${envName})`);
+}
+
+function synthOpenJTalk(tts: TtsConfig, voice: VoiceConfig, text: string, file: string): void {
+  const bin = tts.openjtalk?.bin ?? process.env.OPENJTALK_BIN?.trim() ?? 'open_jtalk';
+  const dic = resolveExistingPath(tts.openjtalk?.dic, 'OPENJTALK_DIC', DEFAULT_OPENJTALK_DICS, 'dictionary');
+  const htsvoice = resolveExistingPath(voice.htsvoice ?? tts.openjtalk?.voice, 'OPENJTALK_VOICE', DEFAULT_OPENJTALK_VOICES, 'voice model');
+  const args = buildOpenJTalkArgs({
+    dic,
+    voice: htsvoice,
+    speed: voice.speed ?? tts.speed ?? 1.0,
+    halfTone: voice.halfTone ?? 0,
+    outFile: file,
+  });
+  const res = spawnSync(bin, args, { input: text, encoding: 'utf8' });
+  if (res.status !== 0) {
+    throw new Error(`Open JTalk synthesis failed (${res.status}): ${res.stderr || res.error?.message || 'unknown error'}`);
+  }
+}
+
+export interface AquesTalkArgsOptions {
+  script: string;
+  voiceId: string;
+  speed: number;
+  outFile: string;
+  text: string;
+  appDir?: string;
+}
+
+export function buildAquesTalkArgs({ script, voiceId, speed, outFile, text, appDir }: AquesTalkArgsOptions): string[] {
+  const args = [script, '--voice', voiceId, '--speed', String(speed), '--out', outFile, '--text', text];
+  if (appDir) args.push('--app', appDir);
+  return args;
+}
+
+function synthAquesTalk(tts: TtsConfig, voice: VoiceConfig, text: string, file: string): void {
+  const python = tts.aquestalk?.python ?? process.env.PYTHON?.trim() ?? 'python3';
+  const script = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..', '..', 'pipeline', 'aquestalk_tts.py');
+  const appDir = tts.aquestalk?.appDir ?? process.env.AQUESTALK_APP_DIR?.trim();
+  const args = buildAquesTalkArgs({
+    script,
+    voiceId: voice.voice ?? 'f1',
+    speed: voice.speed ?? tts.speed ?? 1.0,
+    outFile: file,
     text,
-    speed: voice.speed ?? tts.speed ?? 1.25,
-    pitch: voice.pitch ?? 0,
-    intonation: voice.intonation ?? 1,
-    volume: voice.volume ?? 1,
-  };
+    appDir,
+  });
+  const res = spawnSync(python, args, { encoding: 'utf8' });
+  if (res.status !== 0) {
+    throw new Error(`AquesTalk synthesis failed (${res.status}): ${res.stderr || res.error?.message || 'unknown error'}`);
+  }
+}
+
+async function synth(tts: TtsConfig, voice: VoiceConfig, text: string, cacheDir: string): Promise<ParsedWav> {
+  const engine = voice.engine ?? tts.engine ?? 'voicevox';
+  const params =
+    engine === 'openjtalk'
+      ? {
+          engine,
+          text,
+          speed: voice.speed ?? tts.speed ?? 1.0,
+          halfTone: voice.halfTone ?? 0,
+          htsvoice: voice.htsvoice ?? tts.openjtalk?.voice ?? '',
+        }
+      : engine === 'aquestalk'
+        ? {
+            engine,
+            text,
+            voice: voice.voice ?? 'f1',
+            speed: voice.speed ?? tts.speed ?? 1.0,
+          }
+        : {
+            engine,
+            speaker: voice.speaker ?? 0,
+            text,
+            speed: voice.speed ?? tts.speed ?? 1.25,
+            pitch: voice.pitch ?? 0,
+            intonation: voice.intonation ?? 1,
+            volume: voice.volume ?? 1,
+          };
   const key = crypto.createHash('sha1').update(JSON.stringify(params)).digest('hex').slice(0, 16);
   const file = path.join(cacheDir, key + '.wav');
   if (!fs.existsSync(file)) {
-    const base = tts.url ?? 'http://127.0.0.1:50021';
-    const q = await fetch(`${base}/audio_query?speaker=${params.speaker}&text=${encodeURIComponent(text)}`, { method: 'POST' });
-    if (!q.ok) throw new Error(`VOICEVOX audio_query failed (${q.status}). Is the engine running at ${base}?`);
-    const query = (await q.json()) as Record<string, unknown>;
-    Object.assign(query, {
-      speedScale: params.speed,
-      pitchScale: params.pitch,
-      intonationScale: params.intonation,
-      volumeScale: params.volume,
-      prePhonemeLength: 0.05,
-      postPhonemeLength: 0.05,
-    });
-    const s = await fetch(`${base}/synthesis?speaker=${params.speaker}`, {
-      method: 'POST',
-      headers: { 'content-type': 'application/json' },
-      body: JSON.stringify(query),
-    });
-    if (!s.ok) throw new Error(`VOICEVOX synthesis failed (${s.status})`);
-    fs.writeFileSync(file, Buffer.from(await s.arrayBuffer()));
+    if (engine === 'openjtalk') {
+      synthOpenJTalk(tts, voice, text, file);
+    } else if (engine === 'aquestalk') {
+      synthAquesTalk(tts, voice, text, file);
+    } else {
+      const base = tts.url ?? 'http://127.0.0.1:50021';
+      const q = await fetch(`${base}/audio_query?speaker=${params.speaker}&text=${encodeURIComponent(text)}`, { method: 'POST' });
+      if (!q.ok) throw new Error(`VOICEVOX audio_query failed (${q.status}). Is the engine running at ${base}?`);
+      const query = (await q.json()) as Record<string, unknown>;
+      Object.assign(query, {
+        speedScale: params.speed,
+        pitchScale: params.pitch,
+        intonationScale: params.intonation,
+        volumeScale: params.volume,
+        prePhonemeLength: 0.05,
+        postPhonemeLength: 0.05,
+      });
+      const s = await fetch(`${base}/synthesis?speaker=${params.speaker}`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(query),
+      });
+      if (!s.ok) throw new Error(`VOICEVOX synthesis failed (${s.status})`);
+      fs.writeFileSync(file, Buffer.from(await s.arrayBuffer()));
+    }
   }
   return parseWav(fs.readFileSync(file));
 }
@@ -199,7 +306,18 @@ export async function prepareNarration(
     t0 += shot.duration;
   }
 
-  const credits = [...used].map((v) => `音声：VOICEVOX:${voices[v]!.name ?? v}`);
+  const credits = [
+    ...new Set(
+      [...used].map((v) => {
+        const voice = voices[v]!;
+        if (voice.credit) return voice.credit;
+        const engine = voice.engine ?? tts.engine ?? 'voicevox';
+        if (engine === 'openjtalk') return '音声：Open JTalk / HTS Voice "Mei"';
+        if (engine === 'aquestalk') return '音声：AquesTalk (ゆっくりボイス)';
+        return `音声：VOICEVOX:${voice.name ?? v}`;
+      }),
+    ),
+  ];
   spec.credits = [...(spec.credits ?? []), ...credits];
   fs.writeFileSync(path.join(outDir, 'credits.txt'), credits.join('\n') + '\n');
   if (noVoice) return { wav: null, credits };

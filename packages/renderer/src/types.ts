@@ -15,18 +15,39 @@ export interface CameraKey extends CameraPose {
   t: number;
 }
 
+export type TtsEngine = 'voicevox' | 'openjtalk' | 'aquestalk';
+
 export interface VoiceConfig {
-  speaker: number;
+  speaker?: number;
+  engine?: TtsEngine;
+  voice?: string;
   name?: string;
   speed?: number;
   pitch?: number;
+  halfTone?: number;
   intonation?: number;
   volume?: number;
+  htsvoice?: string;
+  credit?: string;
   color?: string;
 }
 
+export interface OpenJTalkConfig {
+  bin?: string;
+  dic?: string;
+  voice?: string;
+}
+
+export interface AquesTalkConfig {
+  appDir?: string;
+  python?: string;
+}
+
 export interface TtsConfig {
+  engine?: TtsEngine;
   url?: string;
+  openjtalk?: OpenJTalkConfig;
+  aquestalk?: AquesTalkConfig;
   speed?: number;
   padStart?: number;
   pause?: number;

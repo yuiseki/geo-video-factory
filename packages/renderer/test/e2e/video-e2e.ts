@@ -13,6 +13,9 @@ export interface VideoCase {
   outputPath?: string;
   width?: number;
   height?: number;
+  noVoice?: boolean;
+  expectAudio?: boolean;
+  skipReason?: string;
 }
 
 export function prepareVideoOutput(output: string, work: string): void {
@@ -20,7 +23,7 @@ export function prepareVideoOutput(output: string, work: string): void {
   fs.mkdirSync(work, { recursive: true });
 }
 
-function probeVideo(video: string): { width: number; height: number; duration: number } {
+function probeVideo(video: string): { width: number; height: number; duration: number; hasAudio: boolean } {
   const probe = spawnSync(
     'ffprobe',
     ['-v', 'error', '-show_entries', 'stream=codec_type,width,height:format=duration', '-of', 'json', video],
@@ -33,12 +36,14 @@ function probeVideo(video: string): { width: number; height: number; duration: n
   };
   const stream = metadata.streams.find(({ codec_type }) => codec_type === 'video');
   assert.ok(stream?.width && stream.height, `${video} must contain a video stream`);
-  return { width: stream.width, height: stream.height, duration: Number(metadata.format.duration) };
+  const hasAudio = metadata.streams.some(({ codec_type }) => codec_type === 'audio');
+  return { width: stream.width, height: stream.height, duration: Number(metadata.format.duration), hasAudio };
 }
 
 export function registerVideoE2E(item: VideoCase): void {
   const target = process.env.VIDEO_TARGET?.trim();
-  test(`E2E: renderer writes ${item.name}.mp4`, { timeout: 1_000_000, skip: Boolean(target && target !== item.name) }, () => {
+  const skip = Boolean(target && target !== item.name) || item.skipReason || false;
+  test(`E2E: renderer writes ${item.name}.mp4`, { timeout: 1_000_000, skip }, () => {
     const output = path.resolve('dist/test/video');
     const work = path.join(output, '.work');
     const renderOutput = path.join(work, item.name);
@@ -59,18 +64,15 @@ export function registerVideoE2E(item: VideoCase): void {
     const project = item.generatedProject ? generatedProject : 'test/fixtures';
     const renderEnv = { ...process.env };
     delete renderEnv.NODE_V8_COVERAGE;
-    const render = spawnSync(
-      process.execPath,
-      [
-        'dist/src/render.js',
-        path.join(project, item.fixture),
-        '--project', project,
-        '--out', frameOutput,
-        '--no-voice',
-        '--raw-audio',
-      ],
-      { encoding: 'utf8', timeout: 420_000, env: renderEnv },
-    );
+    const renderArgs = [
+      'dist/src/render.js',
+      path.join(project, item.fixture),
+      '--project', project,
+      '--out', frameOutput,
+      ...(item.noVoice === false ? [] : ['--no-voice']),
+      '--raw-audio',
+    ];
+    const render = spawnSync(process.execPath, renderArgs, { encoding: 'utf8', timeout: 420_000, env: renderEnv });
     assert.equal(render.status, 0, `${item.name}\n${render.stdout}\n${render.stderr}`);
 
     const rendered = path.join(frameOutput, `${item.name}.mp4`);
@@ -85,5 +87,6 @@ export function registerVideoE2E(item: VideoCase): void {
     const metadata = probeVideo(video);
     assert.deepEqual([metadata.width, metadata.height], [item.width ?? 640, item.height ?? 360]);
     assert.ok(metadata.duration >= item.minimumDuration, `${item.name}.mp4 is too short`);
+    if (item.expectAudio) assert.ok(metadata.hasAudio, `${item.name}.mp4 must contain an audio stream`);
   });
 }
