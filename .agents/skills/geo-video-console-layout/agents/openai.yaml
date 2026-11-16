@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Console Layout"
+  short_description: "管制コンソール・診断・警戒区画風の図解と状態遷移を設計"

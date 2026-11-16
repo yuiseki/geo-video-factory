@@ -16,6 +16,8 @@ description: 分析済みの統計値・空間データを、誤解を生まな�
 ## 関連スキルとの境界
 
 - 写真・テロップ・線・単色範囲・カード・画面効果などの一般演出は `geo-video-visuals` を使う。
+- 構図・情報密度・色以外の判別性・縮小グレースケール検品は `geo-video-art-direction`（[visual-review.md](../geo-video-art-direction/references/visual-review.md)）を使う。
+- 警戒区画・多系統比較・時系列診断などのコンソール風レイアウトは `geo-video-console-layout` を使う。
 - レンダラーの実行・並列化・ショット JSON 全体の書式は `geo-video-renderer` を使う。
 - 標高・海底地形（DEM / GEBCO 2024）の立体表現は `geo-video-3d-terrain` を使う。
 - Sentinel-2 等の衛星データ・季節色度転写は `geo-video-satellite-imagery` を使う。
