@@ -1,0 +1,34 @@
+{
+  "fps": 12,
+  "width": 640,
+  "height": 360,
+  "voices": {
+    "a": { "speaker": 3, "name": "霊夢", "speed": 1.2 },
+    "b": { "speaker": 2, "name": "魔理沙", "speed": 1.2 }
+  },
+  "tts": { "url": "http://127.0.0.1:50021", "padStart": 0.2, "pause": 0.2, "padEnd": 0.3 },
+  "credits": ["テスト用ゆっくり立ち絵(合成)"],
+  "reaction": {
+    "characters": {
+      "a": { "sprites": "assets/chara/reimu", "seed": "reimu" },
+      "b": { "sprites": "assets/chara/marisa", "seed": "marisa" }
+    },
+    "order": ["b", "a"],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "shots": [
+    {
+      "from": { "center": [139.7671, 35.6812], "zoom": 10.5, "pitch": 45, "bearing": 0 },
+      "to":   { "center": [139.7671, 35.6812], "zoom": 11.2, "pitch": 50, "bearing": 15 },
+      "lines": [
+        { "voice": "a", "text": "今日はゆっくり解説風の掛け合いをテストするわよ。", "face": "smile", "react": "normal" },
+        { "voice": "b", "text": "パーツ合成した立ち絵でしっかり動くんだぜ。", "face": "point", "react": "normal" }
+      ],
+      "overlays": [
+        { "type": "label", "at": [139.7671, 35.6812], "text": "東京駅", "style": "tag", "show": [0.1, 1] }
+      ]
+    }
+  ]
+}

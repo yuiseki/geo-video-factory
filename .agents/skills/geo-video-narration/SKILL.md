@@ -9,6 +9,6 @@ description: 地理解説動画のVOICEVOX音声、複数話者の掛け合い�
 
 - VOICEVOX、文字数、間、字幕色、キャッシュ： [references/narration.md](references/narration.md)
 - 立ち絵、表情、口パク、まばたき： [references/reaction.md](references/reaction.md)
-- BGM、SE、ダッキング、サウンドブリッジ： [references/sound.md](references/sound.md)
+- BGM、SE、ダッキング、サウンドブリッジ： [references/sound.md](references/sound.md)（BGM 合成・`sidechaincompress` ダッキング・`-14 LUFS` 調整は `geo-video-bgm` を参照）
 
-音声の実尺がショット長を決める。下書きの文字数推定だけで本番タイミングを確定しない。完成前に音声付き動画を再生し、読み、話速、無音、字幕との同期、章間のつながりを確認する。VOICEVOXと素材のクレジットを映像と配布文へ残す。
+音声の実尺がショット長を決める。下書きの文字数推定だけで本番タイミングを確定しない。音声の合成・結合・タイミング再計算の仕組みを変更するときは、長いセリフが途中で切れないこと・末尾の無音テールが保たれること・タイミング計算が冪等であることを単体テストで回帰確認する。完成前に音声付き動画を再生し、読み、話速、無音、字幕との同期、章間のつながりを確認する。VOICEVOXと素材のクレジットを映像と配布文へ残す。

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>Thumbnail Template</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1280px;
+      height: 720px;
+      overflow: hidden;
+      background: #0b111a;
+      font-family: "Noto Sans CJK JP", "Hiragino Sans", sans-serif;
+      color: #ffffff;
+      position: relative;
+    }
+    .hero {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .scrim {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        95deg,
+        rgba(8, 13, 22, 0.88) 0%,
+        rgba(8, 13, 22, 0.62) 48%,
+        rgba(8, 13, 22, 0.12) 100%
+      );
+    }
+    .content {
+      position: relative;
+      z-index: 2;
+      width: 68%;
+      height: 100%;
+      padding: 56px 64px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 20px;
+    }
+    .kicker {
+      display: inline-block;
+      align-self: flex-start;
+      background: #f59e0b;
+      color: #0b111a;
+      font-weight: 900;
+      font-size: 28px;
+      letter-spacing: 0.04em;
+      padding: 8px 18px;
+      border-radius: 4px;
+    }
+    .headline {
+      font-weight: 900;
+      font-size: 86px;
+      line-height: 1.12;
+      letter-spacing: -0.02em;
+      text-shadow: 0 6px 24px rgba(0, 0, 0, 0.75);
+    }
+    .headline .accent {
+      color: #fde047;
+    }
+    .subline {
+      font-weight: 700;
+      font-size: 34px;
+      line-height: 1.35;
+      color: #e2e8f0;
+      text-shadow: 0 3px 12px rgba(0, 0, 0, 0.8);
+    }
+    .credit {
+      position: absolute;
+      left: 64px;
+      bottom: 28px;
+      z-index: 2;
+      font-weight: 500;
+      font-size: 18px;
+      color: rgba(226, 232, 240, 0.82);
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+  <img class="hero" src="hero.png" alt="背景フレーム">
+  <div class="scrim"></div>
+  <main class="content">
+    <div class="kicker">地図・地理データ解説</div>
+    <h1 class="headline">ここに<span class="accent">短い主見出し</span><br>を入れる</h1>
+    <p class="subline">対象地域・年代・比較の要点を 1 行で補足</p>
+  </main>
+  <div class="credit">地図: 国土地理院 等（使用素材に合わせて更新）</div>
+</body>
+</html>

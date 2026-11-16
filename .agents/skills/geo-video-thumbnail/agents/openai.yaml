@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Thumbnail"
+  short_description: "1280x720のYouTubeサムネイル構図設計と自動生成"

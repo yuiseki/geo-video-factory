@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video BGM"
+  short_description: "BGMの選定・ローカル生成、ダッキング、音量正規化を設計"

@@ -39,6 +39,8 @@
 | [geo-video-3d-buildings](.agents/skills/geo-video-3d-buildings/SKILL.md) | PLATEAU・OpenStreetMap・地理院オルソによる都市の 3D 建物映像、PLATEAU 3D Tiles の取得・固定化、欠損建物の補完と質感 |
 | [geo-video-camera](.agents/skills/geo-video-camera/SKILL.md) | カメラの技法、速度、データの範囲、ラベルの重なりの検品 |
 | [geo-video-narration](.agents/skills/geo-video-narration/SKILL.md) | VOICEVOX、掛け合い、字幕、読み違い、立ち絵、BGM |
+| [geo-video-bgm](.agents/skills/geo-video-bgm/SKILL.md) | BGM の選定・ローカル合成、自動ダッキング、`-14 LUFS` 音量マスタリング |
+| [geo-video-thumbnail](.agents/skills/geo-video-thumbnail/SKILL.md) | 代表フレーム抽出と 1280×720 YouTube サムネイルの設計・自動生成 |
 | [geo-video-visuals](.agents/skills/geo-video-visuals/SKILL.md) | 写真、地名、図解、テロップ、画面効果、編集の技法 |
 | [geo-video-art-direction](.agents/skills/geo-video-art-direction/SKILL.md) | 画面全体の構図、文字造形と尺度差、3層情報密度、静止と変化、ビジュアル検品 |
 | [geo-video-console-layout](.agents/skills/geo-video-console-layout/SKILL.md) | 防災・インフラ・観測向けの管制コンソール・診断・警戒区画風レイアウトと状態遷移 |
