@@ -17,8 +17,9 @@
 | FFmpeg と ffprobe | フレームから MP4 を生成、音声結合、音量測定、動画分析 | 全機能 |
 | Playwright の Chromium | MapLibre の画面をフレーム単位で描画 | 動画レンダリング |
 | Noto Sans CJK JP | 日本語の字幕、地名、タイトルカード | 動画レンダリング |
-| VOICEVOX エンジン | 複数話者の音声合成 | 音声付き動画 |
-| ずんだもん・四国めたんの PSD | 表情、まばたき、口パクを含む立ち絵 | キャラクター付き動画 |
+| VOICEVOX エンジン | 複数話者の音声合成（ずんだもん・四国めたん等） | 音声付き動画（VOICEVOX 使用時） |
+| Open JTalk / AquesTalkPlayer | ゆっくり風・AquesTalk 音声の合成 | ゆっくり音声付き動画（任意） |
+| ずんだもん・四国めたんの PSD / たぬき式ゆっくり PNG | 表情、まばたき、口パクを含む立ち絵 | キャラクター付き動画 |
 | Docker | Linux で VOICEVOX エンジンを動かす方法の1つ | Docker 版 VOICEVOX を使う場合 |
 | gitleaks | 資格情報と公開未確認の画像 ID をコミット前に検出 | コミットと公開 |
 
@@ -29,6 +30,7 @@ Node.js は保守中の LTS 版を使ってください。Python は Python 3.10
 環境固有のパッケージ導入手順は、OS ごとのドキュメントに分けています。
 
 - **Ubuntu (Linux)**: [docs/setup/Linux/Ubuntu/README.md](docs/setup/Linux/Ubuntu/README.md)
+- **macOS**: [docs/setup/macOS/README.md](docs/setup/macOS/README.md)
 - **Windows**: [docs/setup/Windows/README.md](docs/setup/Windows/README.md)
 
 ## リポジトリと秘密情報検査の準備
@@ -67,7 +69,12 @@ cd ../..
 
 ## Python の準備
 
-章の結合と写真の EXIF 読み取りには Python 3.10 以降と Pillow が必要です。仮想環境等を用意して Pillow をインストールしてください。
+章の結合と写真の EXIF 読み取り・パイプライン実行には Python 3.10 以降と [packages/pipeline/requirements-dev.txt](packages/pipeline/requirements-dev.txt)（`Pillow`、`numpy`、`scipy`、`pyproj`、`shapely`、`DracoPy`、`coverage`）が必要です。`uv` 等で `.venv` 仮想環境を用意してインストールしてください。
+
+```bash
+uv venv --python 3.12 .venv
+uv pip install --python .venv/bin/python -r packages/pipeline/requirements-dev.txt
+```
 
 次の機能では追加パッケージを使います。
 
@@ -128,6 +135,17 @@ uv run --with psd-tools python packages/pipeline/psd_sprites.py \
 
 PSD、変換後の PNG、素材の ZIP はコミットしません。プロジェクトには、再取得できる素材名、作者、版、配布元、利用条件、変換設定だけを記録します。VOICEVOX の音声規約と立ち絵素材の規約は別のものです。完成動画では、実際に使用した音声と立ち絵の条件をそれぞれ確認してください。
 
+### ゆっくり（霊夢・魔理沙）などの PNG パーツ立ち絵
+
+たぬき式ゆっくり（[公式サイト](https://tanukiyukkuri.github.io/tanukitachie)）のように部位別 PNG パーツで配布されている立ち絵は、`packages/pipeline/part_sprites.py` で `<表情>_<o|c>_<o|c>.png` と `sheet.png` を生成できます。テンプレートの `characters/reimu.json` / `marisa.json` と [yukkuri.md](.agents/skills/geo-video-narration/references/yukkuri.md)（および [zunda-metan.md](.agents/skills/geo-video-narration/references/zunda-metan.md)）を参照してください。
+
+```bash
+python3 packages/pipeline/part_sprites.py \
+  projects/YYYY/MM/DD/<slug>/characters/reimu.json \
+  "tmp/__models/たぬき式ゆっくり/たぬき霊夢" \
+  projects/YYYY/MM/DD/<slug>/assets/chara/reimu
+```
+
 ## VOICEVOX エンジンの準備
 
 音声付き動画では、VOICEVOX エンジンの HTTP API を使います。既定の接続先は `http://127.0.0.1:50021` です。ローカルアプリ版または Docker 版（OS 別手順を参照）を起動し、HTTP API が応答することを確認します。
@@ -140,6 +158,8 @@ curl http://127.0.0.1:50021/speakers
 JSON が返れば、レンダラーから音声を合成できます。接続先を変更する場合は、ショット JSON の `tts.url` へ URL を指定します。AivisSpeech のように VOICEVOX 互換 API を持つエンジンも利用できますが、既定値、話者 ID、クレジット表記はエンジンごとに確認してください。
 
 VOICEVOX と各キャラクターには利用規約とクレジット条件があります。完成動画と概要欄に、実際に使用した音声のクレジットを記載してください。
+
+ゆっくり音声（AquesTalk / Open JTalk）を使う場合は、macOS では `AquesTalkPlayer.app`（`tts.engine: "aquestalk"`）または Homebrew の `open-jtalk`（`tts.engine: "openjtalk"`）を利用できます。詳細は [docs/setup/macOS/README.md](docs/setup/macOS/README.md) と [yukkuri.md](.agents/skills/geo-video-narration/references/yukkuri.md) を参照してください。
 
 ## 最小動作確認
 
