@@ -1,0 +1,9 @@
+{
+  "width": 1280, "height": 720, "fps": 15, "base": "seamlessphoto", "world": false, "dem": "gsi", "hillshade": 0.3, "exaggeration": 1,
+  "sky": {"sky-color": "#1c4a9a", "horizon-color": "#d6e6f7", "fog-color": "#c9d8e8", "sky-horizon-blend": 0.75, "horizon-fog-blend": 0.7, "fog-ground-blend": 0.85, "atmosphere-blend": 0},
+  "plateauBuildings": {"manifest": "assets/city/manifest.json"},
+  "shots": [
+    {"duration": 1, "from": {"center": [140.724, 41.78], "zoom": 13.9, "pitch": 72, "bearing": 5}, "to": {"center": [140.724, 41.78], "zoom": 13.9, "pitch": 72, "bearing": 5}, "overlays": []},
+    {"duration": 1, "from": {"center": [140.722, 41.78], "zoom": 14.4, "pitch": 65, "bearing": 15}, "to": {"center": [140.722, 41.78], "zoom": 14.4, "pitch": 65, "bearing": 15}, "overlays": []}
+  ]
+}

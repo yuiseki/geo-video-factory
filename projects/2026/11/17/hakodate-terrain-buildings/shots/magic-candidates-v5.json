@@ -1,0 +1,205 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 15,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "exaggeration": 1,
+  "sky": {
+    "sky-color": "#1c4a9a",
+    "horizon-color": "#d6e6f7",
+    "fog-color": "#c9d8e8",
+    "sky-horizon-blend": 0.75,
+    "horizon-fog-blend": 0.7,
+    "fog-ground-blend": 0.85,
+    "atmosphere-blend": 0
+  },
+  "plateauBuildings": {
+    "manifest": "assets/city/manifest.json"
+  },
+  "credits": [
+    "建物外形：国土地理院ベクトルタイルを加工",
+    "建物属性：© OpenStreetMap contributors",
+    "建物の高さ・外壁等には推定を含む"
+  ],
+  "shots": [
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.71,
+          41.765
+        ],
+        "zoom": 14.0,
+        "pitch": 50,
+        "bearing": 40
+      },
+      "to": {
+        "center": [
+          140.71,
+          41.765
+        ],
+        "zoom": 14.0,
+        "pitch": 50,
+        "bearing": 40
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.711,
+          41.765
+        ],
+        "zoom": 14.2,
+        "pitch": 50,
+        "bearing": 40
+      },
+      "to": {
+        "center": [
+          140.711,
+          41.765
+        ],
+        "zoom": 14.2,
+        "pitch": 50,
+        "bearing": 40
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.711,
+          41.764
+        ],
+        "zoom": 14.1,
+        "pitch": 45,
+        "bearing": 40
+      },
+      "to": {
+        "center": [
+          140.711,
+          41.764
+        ],
+        "zoom": 14.1,
+        "pitch": 45,
+        "bearing": 40
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.712,
+          41.765
+        ],
+        "zoom": 14.15,
+        "pitch": 45,
+        "bearing": 55
+      },
+      "to": {
+        "center": [
+          140.712,
+          41.765
+        ],
+        "zoom": 14.15,
+        "pitch": 45,
+        "bearing": 55
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.712,
+          41.766
+        ],
+        "zoom": 14.15,
+        "pitch": 45,
+        "bearing": 25
+      },
+      "to": {
+        "center": [
+          140.712,
+          41.766
+        ],
+        "zoom": 14.15,
+        "pitch": 45,
+        "bearing": 25
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.71,
+          41.764
+        ],
+        "zoom": 14.1,
+        "pitch": 45,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          140.71,
+          41.764
+        ],
+        "zoom": 14.1,
+        "pitch": 45,
+        "bearing": 20
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.711,
+          41.764
+        ],
+        "zoom": 14.1,
+        "pitch": 40,
+        "bearing": 60
+      },
+      "to": {
+        "center": [
+          140.711,
+          41.764
+        ],
+        "zoom": 14.1,
+        "pitch": 40,
+        "bearing": 60
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.711,
+          41.765
+        ],
+        "zoom": 14.0,
+        "pitch": 40,
+        "bearing": 45
+      },
+      "to": {
+        "center": [
+          140.711,
+          41.765
+        ],
+        "zoom": 14.0,
+        "pitch": 40,
+        "bearing": 45
+      },
+      "overlays": []
+    }
+  ]
+}
