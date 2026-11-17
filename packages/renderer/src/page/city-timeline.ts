@@ -1,4 +1,5 @@
 /** Time-driven staging for 3D city scenes: the rising-buildings reveal and the day-to-night light. */
+import { UPWARD_LAMBERT } from './city-tone.js';
 
 export interface CityReveal {
   /** WGS84 point the wave of rising buildings starts from. */
@@ -57,6 +58,8 @@ export function localMeters(point: [number, number], origin: [number, number]): 
 export interface CityLight {
   ambient: number;
   sun: number;
+  /** Sky fill from the opposite side of the sun. */
+  fill: number;
   sunColor: [number, number, number];
   ambientColor: [number, number, number];
   /** 0..1 how many windows glow. */
@@ -69,24 +72,62 @@ export interface CityLight {
 }
 
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
-const mix3 = (a: [number, number, number], b: [number, number, number], t: number): [number, number, number] =>
+type Rgb = [number, number, number];
+const mix3 = (a: Rgb, b: Rgb, t: number): Rgb =>
   [mix(a[0], b[0], t), mix(a[1], b[1], t), mix(a[2], b[2], t)];
 
-/** Light for night = 0 (day), 0.5 (dusk, warm low sun), 1 (night, moonlight and lit windows). */
+/**
+ * Where the lights stand, in the scene's east / north / up meters. The ground shadows are baked
+ * for this sun (packages/pipeline/city_proxy.py SHADOW_PER_M).
+ */
+export const SUN_POSITION: readonly [number, number, number] = [-300, -450, 450];
+export const FILL_POSITION: readonly [number, number, number] = [300, 200, 400];
+/** Linear RGB of the sky fill (0xdce8ff). */
+export const FILL_COLOR: Rgb = [0.716, 0.807, 1];
+
+const luminance = (color: readonly number[]) => 0.2126 * color[0]! + 0.7152 * color[1]! + 0.0722 * color[2]!;
+const upShare = (position: readonly number[]) => position[2]! / Math.hypot(position[0]!, position[1]!, position[2]!);
+
+/**
+ * Lambert gain of an upward face under a light: the luminance it returns per unit of albedo.
+ * At 1 (with the specular, see UPWARD_LAMBERT) a roof shows its albedo as it is.
+ */
+export function upwardGain(light: Pick<CityLight, 'ambient' | 'ambientColor' | 'sun' | 'sunColor' | 'fill'>): number {
+  return (
+    light.ambient * luminance(light.ambientColor)
+    + light.sun * luminance(light.sunColor) * upShare(SUN_POSITION)
+    + light.fill * luminance(FILL_COLOR) * upShare(FILL_POSITION)
+  ) / Math.PI;
+}
+
+/**
+ * Light for night = 0 (day), 0.5 (dusk, warm low sun), 1 (night, moonlight and lit windows).
+ * The balance of ambient, sun and fill is a look; their sum is not. It is scaled so that an
+ * upward face is dimmed exactly as much as the aerial photo on the ground (mapBrightness), which
+ * keeps roofs that carry the photo level with the ground at every hour.
+ */
 export function cityLight(night: number): CityLight {
   const n = Math.min(1, Math.max(0, night));
-  const day: [number, number, number] = [1, 0.96, 0.9];
-  const dusk: [number, number, number] = [1, 0.62, 0.36];
-  const moon: [number, number, number] = [0.62, 0.70, 0.95];
-  const sunColor = n < 0.5 ? mix3(day, dusk, n * 2) : mix3(dusk, moon, (n - 0.5) * 2);
-  const ambientColor = mix3([1, 1, 1], [0.58, 0.63, 0.82], n);
-  return {
+  const day: Rgb = [1, 0.905, 0.791]; // linear RGB of 0xfff4e6
+  const dusk: Rgb = [1, 0.62, 0.36];
+  const moon: Rgb = [0.62, 0.70, 0.95];
+  const mapBrightness = n < 0.5 ? mix(1, 0.78, n * 2) : mix(0.78, 0.26, (n - 0.5) * 2);
+  const balance = {
     ambient: mix(1.15, 0.22, n),
+    ambientColor: mix3([1, 1, 1], [0.58, 0.63, 0.82], n),
     sun: n < 0.5 ? mix(0.85, 0.95, n * 2) : mix(0.95, 0.12, (n - 0.5) * 2),
-    sunColor,
-    ambientColor,
+    sunColor: n < 0.5 ? mix3(day, dusk, n * 2) : mix3(dusk, moon, (n - 0.5) * 2),
+    fill: 0.35 * (1 - 0.7 * n),
+  };
+  // raster-brightness-max scales display values, the lights scale linear ones
+  const scale = UPWARD_LAMBERT * mapBrightness ** 2.2 / upwardGain(balance);
+  return {
+    ...balance,
+    ambient: balance.ambient * scale,
+    sun: balance.sun * scale,
+    fill: balance.fill * scale,
     windows: Math.min(1, Math.max(0, (n - 0.35) / 0.5)),
-    mapBrightness: n < 0.5 ? mix(1, 0.78, n * 2) : mix(0.78, 0.26, (n - 0.5) * 2),
+    mapBrightness,
     mapSaturation: mix(0, -0.45, n),
     shadow: n < 0.5 ? mix(0.38, 0.30, n * 2) : mix(0.30, 0, Math.min(1, (n - 0.5) * 3)),
   };

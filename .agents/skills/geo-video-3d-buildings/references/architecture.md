@@ -40,7 +40,7 @@ tile の transform は RTC 以外も含みうる。対応していない行列�
 
 - MapLibre custom layer 内で MapLibre と同じ WebGL context を使う。
 - `GLTFLoader` と、必要なら `DRACOLoader` で固定GLBを読む。
-- 色空間は sRGB、tone mapping は ACES 系から調整を始める。
+- 色空間は sRGB、tone mapping は使わない。写真はすでに現像されているので、もう一度かけると暗部がつぶれる ([tone.md](tone.md))。
 - 同時デコード数を制限する。既存試作では3並列が安定した。
 - ロード済みtile数、triangle数、draw call数、material数をログへ出す。
 - `cesium.com` と `cesium.io` へのリクエストがないことをネットワークログで確認する。

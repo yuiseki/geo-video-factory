@@ -5,10 +5,11 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
-import { applyBuildingAppearance, neutralizePbr } from './plateau-materials.js';
+import { applyBuildingAppearance, neutralizePbr, toStudyModelWhite } from './plateau-materials.js';
 import { createPlateauRoofUniforms } from './plateau-facade-glsl.js';
 import { createCityProxyMaterial, createCityShadowMaterial, createCityUniforms, type CityRoofPhoto, type CityUniforms } from './city-materials.js';
 import { cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
+import { applyCityLight, createCityLightRig, usePhotoNeutralOutput, type CityLightRig } from './city-light-rig.js';
 
 interface ModelTile {
   glb: string;
@@ -115,6 +116,7 @@ function tuneMaterials(root: THREE.Object3D): void {
       if (!material) continue;
       material.side = THREE.DoubleSide;
       neutralizePbr(material);
+      toStudyModelWhite(material);
     }
   });
 }
@@ -128,7 +130,7 @@ export interface PlateauBuildingsLayer {
 interface BuildingGroup {
   scene: THREE.Scene;
   localToMercator: THREE.Matrix4;
-  lights: { ambient: THREE.AmbientLight; sun: THREE.DirectionalLight; fill: THREE.DirectionalLight };
+  lights: CityLightRig;
   city: CityUniforms;
   config: PlateauBuildingsConfig;
   totalTiles: number;
@@ -148,15 +150,8 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
   const up = [Math.cos(phi) * Math.cos(lambda), Math.cos(phi) * Math.sin(lambda), Math.sin(phi)];
   const dot = (a: number[], b: number[]) => a[0]! * b[0]! + a[1]! * b[1]! + a[2]! * b[2]!;
   const scene = new THREE.Scene();
-  const ambient = new THREE.AmbientLight(0xffffff, 1.15);
-  scene.add(ambient);
-  const sun = new THREE.DirectionalLight(0xfff4e6, 0.85);
-  // Ground shadows are baked for this sun (packages/pipeline/city_proxy.py SHADOW_PER_M).
-  sun.position.set(-300, -450, 450);
-  scene.add(sun);
-  const fill = new THREE.DirectionalLight(0xdce8ff, 0.35);
-  fill.position.set(300, 200, 400);
-  scene.add(fill);
+  const lights = createCityLightRig();
+  scene.add(lights.ambient, lights.sun, lights.fill);
   const city = createCityUniforms();
   const roofUniforms = createPlateauRoofUniforms();
   const growOrigin = config.reveal ? localMeters(config.reveal.center, center) : [0, 0];
@@ -228,7 +223,7 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
   } finally {
     draco.dispose();
   }
-  return { scene, localToMercator, lights: { ambient, sun, fill }, city, config, totalTiles: manifest.tiles.length, loadedTiles: () => loadedTiles };
+  return { scene, localToMercator, lights, city, config, totalTiles: manifest.tiles.length, loadedTiles: () => loadedTiles };
 }
 
 export async function addPlateauBuildings(
@@ -246,9 +241,7 @@ export async function addPlateauBuildings(
     onAdd: (_map, gl) => {
       renderer = new THREE.WebGLRenderer({ canvas: map.getCanvas(), context: gl, antialias: true });
       renderer.autoClear = false;
-      renderer.outputColorSpace = THREE.SRGBColorSpace;
-      renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 0.82;
+      usePhotoNeutralOutput(renderer);
     },
     render: (_gl, args: CustomRenderMethodInput) => {
       if (!renderer) return;
@@ -278,12 +271,7 @@ export async function addPlateauBuildings(
     const night = keyframeValue(nightKeys, sec);
     const light = cityLight(night);
     for (const group of groups) {
-      const { ambient, sun, fill } = group.lights;
-      ambient.intensity = light.ambient;
-      ambient.color.setRGB(...light.ambientColor);
-      sun.intensity = light.sun;
-      sun.color.setRGB(...light.sunColor);
-      fill.intensity = 0.35 * (1 - 0.7 * night);
+      applyCityLight(group.lights, light);
       group.city.uCityWindows.value = light.windows;
       group.city.uCityShadow.value = light.shadow;
       group.city.uCityNight.value = night;

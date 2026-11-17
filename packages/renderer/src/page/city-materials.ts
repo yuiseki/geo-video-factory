@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { CITY_FACADE } from './city-facade-glsl.js';
+import { glslFloat, PROXY_CLAY, PROXY_WALL_GAIN } from './city-tone.js';
 
 /**
  * Uniforms shared by the city materials of one scene (one manifest), updated once per frame.
@@ -67,7 +68,7 @@ export interface CityRoofPhoto {
 
 export function createCityProxyMaterial(roof?: CityRoofPhoto, uniforms: CityUniforms = cityUniforms): THREE.MeshStandardMaterial {
   const material = new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.88, metalness: 0, side: THREE.DoubleSide });
-  material.customProgramCacheKey = () => `city-proxy-v6${roof ? '-roof' : ''}`;
+  material.customProgramCacheKey = () => `city-proxy-v7${roof ? '-roof' : ''}`;
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
     if (roof) {
@@ -133,7 +134,8 @@ float cityHash(vec2 p) {
       .replace(
         '#include <color_fragment>',
         `#include <color_fragment>
-vec3 cityPainted = diffuseColor.rgb;
+// Estimated wall colors are brought to the range of photographed walls (city-tone.ts).
+vec3 cityPainted = diffuseColor.rgb * mix(${glslFloat(PROXY_WALL_GAIN)}, 1.0, step(0.35, abs(vCityUp)));
 #ifdef CITY_ROOF_PHOTO
 // Roofs show the aerial photo itself: from above, a roof is what the photo shows.
 float cityRoofFace = step(0.35, abs(vCityUp));
@@ -141,7 +143,7 @@ vec3 cityPhoto = texture2D(uCityRoofPhoto, (vCityWorld - uCityRoofMin) / uCityRo
 cityPainted = mix(cityPainted, cityPhoto, cityRoofFace);
 #endif
 // Before the paint wave arrives the building is a clay-white study model.
-diffuseColor.rgb = mix(vec3(0.80, 0.80, 0.78), cityPainted, vCityPaint);`,
+diffuseColor.rgb = mix(vec3(${PROXY_CLAY.map(glslFloat).join(', ')}), cityPainted, vCityPaint);`,
       )
       .replace(
         '#include <dithering_fragment>',

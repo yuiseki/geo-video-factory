@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { cityUniforms, type CityUniforms } from "./city-materials.js";
+import { glslFloat, PALETTE_WALL_GAIN, PLATEAU_PHOTO_GAMMA, STUDY_MODEL_WHITE, UNTEXTURED_BASE_MAX } from "./city-tone.js";
 import { analyzeTextureTone } from "./plateau-texture-tone.js";
 
 export { analyzeTextureTone, type TextureToneAnalysis } from "./plateau-texture-tone.js";
@@ -11,8 +12,9 @@ export interface PlateauAppearanceOptions {
   palette?: Array<string | null>;
   seed?: number;
   /**
-   * false keeps the source colors (no palette, no darkening). The procedural facade pattern is
-   * applied either way: no building may be left as a flat, featureless surface.
+   * false keeps the source colors of untextured buildings (no palette, no darkening). The
+   * procedural facade pattern is applied either way: no building may be left as a flat,
+   * featureless surface. Photo textures are brought to the tone of the aerial photo either way.
    */
   recolor?: boolean;
   /** Uniforms of the scene these buildings belong to (paint wave, windows, roof photo). */
@@ -41,6 +43,17 @@ export function neutralizePbr(material: THREE.Material): void {
   if (!standard.isMeshStandardMaterial) return;
   standard.metalness = 0;
   standard.roughness = Math.max(standard.roughness, 0.85);
+}
+
+/**
+ * Untextured PLATEAU materials are pure white, which clips on every roof under the neutral light.
+ * Dim them to the study model white, once per material (meshes share materials).
+ */
+export function toStudyModelWhite(material: THREE.Material): void {
+  const standard = material as THREE.MeshStandardMaterial;
+  if (!standard.isMeshStandardMaterial || standard.map || standard.userData.studyModelWhite) return;
+  standard.color.multiplyScalar(STUDY_MODEL_WHITE);
+  standard.userData.studyModelWhite = true;
 }
 
 function parseHexBytes(hex: string | null | undefined): [number, number, number, number] | null {
@@ -87,10 +100,14 @@ function clampUntexturedBase(material: THREE.MeshStandardMaterial): void {
   material.roughness = 1;
   material.metalness = 0;
   const maxChannel = Math.max(material.color.r, material.color.g, material.color.b);
-  if (maxChannel > 0.45) {
-    material.color.multiplyScalar(0.45 / maxChannel);
+  if (maxChannel > UNTEXTURED_BASE_MAX) {
+    material.color.multiplyScalar(UNTEXTURED_BASE_MAX / maxChannel);
   }
 }
+
+// Brings a PLATEAU photo texture to the tone of the aerial photo (city-tone.ts). The material
+// color stays outside the curve: it only carries the tone-down of washed-out atlases.
+const PHOTO_CURVE = `diffuseColor.rgb = diffuse * pow(max(sampledDiffuseColor.rgb, vec3(0.0)), vec3(${glslFloat(PLATEAU_PHOTO_GAMMA)}));`;
 
 function attachFacadeShader(
   material: THREE.MeshStandardMaterial,
@@ -103,7 +120,7 @@ function attachFacadeShader(
   const untextured = !material.map;
   const paletteSize = palette ? Math.max(1, palette.image.width) : 1;
   material.customProgramCacheKey = () =>
-    `plateau-facade-v3-${seed}-${usePalette ? paletteSize : "map"}-${untextured ? "u" : "t"}`;
+    `plateau-facade-v4-${seed}-${usePalette ? paletteSize : "map"}-${untextured ? "u" : "t"}`;
   material.onBeforeCompile = (shader) => {
     shader.uniforms.uPlateauSeed = { value: seed };
     shader.uniforms.uCityWindows = uniforms.city.uCityWindows;
@@ -150,7 +167,7 @@ diffuseColor.rgb = mix(uPlateauRawColor, diffuseColor.rgb, vPlateauPaint);`
 float plateauIndex = clamp(floor(vPlateauFeatureId + 0.5), 0.0, uPlateauPaletteSize - 1.0);
 vec4 plateauSample = texture2D(uPlateauPalette, vec2((plateauIndex + 0.5) / uPlateauPaletteSize, 0.5));
 if (plateauSample.a > 0.5) {
-  diffuseColor.rgb = plateauSample.rgb;
+  diffuseColor.rgb = plateauSample.rgb * ${glslFloat(PALETTE_WALL_GAIN)};
 }
 float plateauTall = plateauSample.a > 0.9 || plateauSample.a < 0.5 ? 1.0 : 0.0;`
       : "#include <color_fragment>\nfloat plateauTall = 1.0;") + roofHook;
@@ -170,6 +187,8 @@ float plateauHash(vec2 p) {
 }`
       )
       .replace("#include <color_fragment>", colorHook)
+      .replace("#include <map_fragment>", untextured ? "#include <map_fragment>" : `#include <map_fragment>
+${PHOTO_CURVE}`)
       .replace(
         "#include <dithering_fragment>",
         `vec3 facadeN = normalize(vPlateauWorldNormal);
@@ -265,6 +284,9 @@ export function applyPlateauBuildingAppearance(
       if (std.map) {
         result.preservedTexturedMaterials++;
         const clone = std.clone();
+        // Some PLATEAU materials carry a base color factor (0.7 on half of the 2025 Tokyo LOD2
+        // textures) that multiplies the photo once more; the photo is the color.
+        clone.color.setRGB(1, 1, 1);
         const analysis = analyzeTextureTone(clone.map);
         if (recolor && analysis.tone < 1) {
           clone.color.multiplyScalar(analysis.tone);

@@ -207,6 +207,9 @@ export function buildMapStyle(spec: ShotSpec) {
   const ov = overlayLayers(spec.shots);
   return {
     version: 8,
+    // Frames are rendered one by one. A paint property set for a frame must show in that frame:
+    // with the default 300 ms fade the ground under the terrain stayed one frame behind.
+    transition: { duration: 0, delay: 0 },
     ...(spec.projection
       ? { projection: typeof spec.projection === 'string' ? { type: spec.projection } : spec.projection }
       : {}),
