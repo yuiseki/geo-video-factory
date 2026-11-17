@@ -1,0 +1,98 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": false,
+  "world": false,
+  "credits": [
+    "建物: 国土地理院ベクトルタイル / 国土交通省 PLATEAU / © OpenStreetMap contributors"
+  ],
+  "plateauBuildings": [
+    {
+      "manifest": "assets/sota/manifest.json",
+      "heightOffset": -39,
+      "workers": 3,
+      "reveal": {
+        "center": [
+          139.316,
+          35.7584
+        ],
+        "width": 160,
+        "radius": [
+          [
+            0,
+            3500
+          ]
+        ],
+        "paint": [
+          [
+            0,
+            3500
+          ]
+        ]
+      }
+    },
+    {
+      "manifest": "assets/shinjuku-sota/manifest.json",
+      "heightOffset": -39,
+      "workers": 3,
+      "reveal": {
+        "center": [
+          139.6915,
+          35.69
+        ],
+        "width": 200,
+        "radius": [
+          [
+            0,
+            1000000
+          ]
+        ],
+        "paint": [
+          [
+            0,
+            -300
+          ]
+        ]
+      }
+    }
+  ],
+  "shots": [
+    {
+      "duration": 6,
+      "path": "fly",
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.319,
+          35.7525
+        ],
+        "zoom": 15.25,
+        "pitch": 58,
+        "bearing": 172
+      },
+      "to": {
+        "center": [
+          139.6915,
+          35.69
+        ],
+        "zoom": 16.25,
+        "pitch": 52,
+        "bearing": -70
+      },
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "PLATEAU × オープンデータ",
+          "text": "空撮は、書ける。",
+          "show": [
+            0.15,
+            0.85
+          ]
+        }
+      ]
+    }
+  ]
+}

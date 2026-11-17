@@ -1,0 +1,10 @@
+out/
+assets/
+audio/generated/
+overlays/generated/
+*.mp4
+*.mov
+*.wav
+*.png
+*.jpg
+.DS_Store

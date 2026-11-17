@@ -1,0 +1,39 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": 0.28,
+  "world": true,
+  "exaggeration": 1.5,
+  "credits": [
+    "国土地理院タイル / NASA Blue Marble"
+  ],
+  "shots": [
+    {
+      "duration": 8,
+      "path": "fly",
+      "ease": "inOut",
+      "from": {
+        "center": [
+          135.5011,
+          34.6661
+        ],
+        "zoom": 16.6,
+        "pitch": 35,
+        "bearing": 180
+      },
+      "to": {
+        "center": [
+          138.7274,
+          35.3606
+        ],
+        "zoom": 9.8,
+        "pitch": 50,
+        "bearing": 30
+      },
+      "overlays": []
+    }
+  ]
+}

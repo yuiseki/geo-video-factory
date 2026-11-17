@@ -1,0 +1,177 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "world": false,
+  "exaggeration": 1.0,
+  "sky": {
+    "sky-color": "#1c4a9a",
+    "horizon-color": "#d6e6f7",
+    "fog-color": "#c9d8e8",
+    "sky-horizon-blend": 0.75,
+    "horizon-fog-blend": 0.7,
+    "fog-ground-blend": 0.85,
+    "atmosphere-blend": 0
+  },
+  "credits": [
+    "地理院ベクトルタイル / 地理院シームレス空中写真 / 地理院DEM",
+    "建物属性: © OpenStreetMap contributors（高さ・外観は推定）"
+  ],
+  "plateauBuildings": {
+    "manifest": "assets/hakodate/manifest.json",
+    "reveal": {
+      "center": [
+        140.719,
+        41.771
+      ],
+      "width": 250,
+      "radius": [
+        [
+          0,
+          -300
+        ],
+        [
+          9.0,
+          -300
+        ],
+        [
+          16.0,
+          7000
+        ]
+      ],
+      "paint": [
+        [
+          0,
+          -300
+        ],
+        [
+          13.0,
+          -300
+        ],
+        [
+          20.0,
+          7000
+        ]
+      ]
+    }
+  },
+  "shots": [
+    {
+      "duration": 4,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          140.716,
+          41.768
+        ],
+        "zoom": 14.4,
+        "pitch": 0,
+        "bearing": 215
+      },
+      "to": {
+        "center": [
+          140.717,
+          41.769
+        ],
+        "zoom": 14.9,
+        "pitch": 0,
+        "bearing": 215
+      },
+      "overlays": []
+    },
+    {
+      "duration": 5,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          140.717,
+          41.769
+        ],
+        "zoom": 14.9,
+        "pitch": 0,
+        "bearing": 215
+      },
+      "to": {
+        "center": [
+          140.718,
+          41.77
+        ],
+        "zoom": 15.0,
+        "pitch": 49,
+        "bearing": 215
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "text": "函館山",
+          "at": [
+            140.7037,
+            41.7591
+          ],
+          "dot": true,
+          "show": [
+            0.4,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 15,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          140.718,
+          41.77
+        ],
+        "zoom": 15.0,
+        "pitch": 49,
+        "bearing": 215
+      },
+      "to": {
+        "center": [
+          140.719,
+          41.771
+        ],
+        "zoom": 14.95,
+        "pitch": 49,
+        "bearing": 212
+      },
+      "overlays": [
+        {
+          "type": "quote",
+          "text": "山ごと、街を描く。",
+          "marks": false,
+          "cps": 35,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 880,
+          "show": [
+            0.15,
+            0.85
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "函館（地理院ベクトルタイル・OSM使用）",
+          "marks": false,
+          "cps": 60,
+          "screen": [
+            90,
+            920
+          ],
+          "width": 920,
+          "show": [
+            0.2,
+            0.9
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,172 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "world": false,
+  "exaggeration": 1.2,
+  "credits": [
+    "地理院シームレス空中写真 / 地理院DEM",
+    "衛星色度：Copernicus Sentinel-2 L2A (2023-2024)",
+    "季節の色は衛星画像を基にした再現"
+  ],
+  "shots": [
+    {
+      "duration": 11,
+      "ease": "smooth",
+      "from": {
+        "center": [
+          139.094,
+          34.9055
+        ],
+        "zoom": 14.5,
+        "pitch": 70,
+        "bearing": -32
+      },
+      "to": {
+        "center": [
+          139.094,
+          34.9055
+        ],
+        "zoom": 14.5,
+        "pitch": 70,
+        "bearing": -12
+      },
+      "overlays": [
+        {
+          "type": "image",
+          "src": "assets/omuro-seasons/summer.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0.0,
+            0.3
+          ],
+          "fade": 0.04
+        },
+        {
+          "type": "image",
+          "src": "assets/omuro-seasons/autumn.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0.25,
+            0.55
+          ],
+          "fade": 0.05
+        },
+        {
+          "type": "image",
+          "src": "assets/omuro-seasons/winter_burn.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0.5,
+            0.8
+          ],
+          "fade": 0.05
+        },
+        {
+          "type": "image",
+          "src": "assets/omuro-seasons/spring.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0.75,
+            1.05
+          ],
+          "fade": 0.05
+        },
+        {
+          "type": "quote",
+          "text": "季節は、衛星の色で着せ替える。",
+          "marks": false,
+          "cps": 45,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 1000,
+          "show": [
+            0.04,
+            0.96
+          ]
+        },
+        {
+          "type": "label",
+          "text": "大室山・夏",
+          "screen": [
+            240,
+            220
+          ],
+          "style": "tag",
+          "show": [
+            0.02,
+            0.26
+          ]
+        },
+        {
+          "type": "label",
+          "text": "大室山・秋",
+          "screen": [
+            240,
+            220
+          ],
+          "style": "tag",
+          "show": [
+            0.27,
+            0.51
+          ]
+        },
+        {
+          "type": "label",
+          "text": "大室山・冬（山焼き）",
+          "screen": [
+            280,
+            220
+          ],
+          "style": "tag",
+          "show": [
+            0.52,
+            0.76
+          ]
+        },
+        {
+          "type": "label",
+          "text": "大室山・春",
+          "screen": [
+            240,
+            220
+          ],
+          "style": "tag",
+          "show": [
+            0.77,
+            0.98
+          ]
+        }
+      ]
+    }
+  ]
+}

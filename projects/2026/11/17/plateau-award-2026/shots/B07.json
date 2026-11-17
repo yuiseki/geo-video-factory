@@ -1,0 +1,39 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "world": true,
+  "exaggeration": 1.0,
+  "credits": [
+    "地理院シームレス空中写真 / 地理院DEM / NASA Blue Marble"
+  ],
+  "shots": [
+    {
+      "duration": 9,
+      "path": "fly",
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.094,
+          34.9055
+        ],
+        "zoom": 14.5,
+        "pitch": 70,
+        "bearing": -12
+      },
+      "to": {
+        "center": [
+          140.716,
+          41.768
+        ],
+        "zoom": 14.4,
+        "pitch": 0,
+        "bearing": 215
+      },
+      "overlays": []
+    }
+  ]
+}

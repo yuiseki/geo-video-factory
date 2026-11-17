@@ -1,0 +1,45 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": false,
+  "world": true,
+  "credits": [
+    "国土地理院タイル / NASA Blue Marble"
+  ],
+  "plateauBuildings": [
+    {
+      "manifest": "assets/osaka-cosmosquare/manifest.json",
+      "heightOffset": -38,
+      "workers": 3
+    }
+  ],
+  "shots": [
+    {
+      "duration": 7,
+      "path": "fly",
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.316,
+          35.7584
+        ],
+        "zoom": 15.8,
+        "pitch": 63,
+        "bearing": 185
+      },
+      "to": {
+        "center": [
+          135.4133,
+          34.6395
+        ],
+        "zoom": 15.9,
+        "pitch": 42,
+        "bearing": 0
+      },
+      "overlays": []
+    }
+  ]
+}

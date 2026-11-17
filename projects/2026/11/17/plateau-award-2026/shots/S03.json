@@ -1,0 +1,203 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": false,
+  "world": false,
+  "credits": [
+    "建物: 国土交通省 PLATEAU (東京都23区) / 地理院ベクトルタイル / © OpenStreetMap contributors"
+  ],
+  "plateauBuildings": {
+    "manifest": "assets/asakusa-sota/manifest.json",
+    "heightOffset": -39,
+    "workers": 3
+  },
+  "shots": [
+    {
+      "duration": 4,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.7967,
+          35.7147
+        ],
+        "zoom": 17.5,
+        "pitch": 58,
+        "bearing": 135
+      },
+      "to": {
+        "center": [
+          139.80075,
+          35.71014
+        ],
+        "zoom": 16.6,
+        "pitch": 55,
+        "bearing": 165
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "text": "東京・隅田川",
+          "screen": [
+            230,
+            90
+          ],
+          "style": "tag",
+          "show": [
+            0.05,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "text": "浅草寺",
+          "at": [
+            139.7967,
+            35.7147
+          ],
+          "dot": true,
+          "show": [
+            0.05,
+            0.9
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 6,
+      "ease": "linear",
+      "keys": [
+        {
+          "t": 0.0,
+          "center": [
+            139.80075,
+            35.71014
+          ],
+          "zoom": 16.6,
+          "pitch": 55,
+          "bearing": 165
+        },
+        {
+          "t": 0.25,
+          "center": [
+            139.7974,
+            35.7082
+          ],
+          "zoom": 16.4,
+          "pitch": 48,
+          "bearing": 180
+        },
+        {
+          "t": 0.5,
+          "center": [
+            139.794,
+            35.702
+          ],
+          "zoom": 16.3,
+          "pitch": 45,
+          "bearing": 185
+        },
+        {
+          "t": 0.75,
+          "center": [
+            139.7908,
+            35.6975
+          ],
+          "zoom": 16.3,
+          "pitch": 45,
+          "bearing": 185
+        },
+        {
+          "t": 1.0,
+          "center": [
+            139.789,
+            35.6914
+          ],
+          "zoom": 16.2,
+          "pitch": 44,
+          "bearing": 175
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "text": "東京・隅田川",
+          "screen": [
+            230,
+            90
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "text": "両国",
+          "at": [
+            139.7933,
+            35.6969
+          ],
+          "dot": true,
+          "show": [
+            0.5,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 3,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.789,
+          35.6914
+        ],
+        "zoom": 16.2,
+        "pitch": 44,
+        "bearing": 175
+      },
+      "to": {
+        "center": [
+          139.7912,
+          35.6925
+        ],
+        "zoom": 15.5,
+        "pitch": 42,
+        "bearing": 27
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "text": "東京・隅田川",
+          "screen": [
+            230,
+            90
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            0.95
+          ]
+        },
+        {
+          "type": "label",
+          "text": "両国国技館",
+          "at": [
+            139.7933,
+            35.6969
+          ],
+          "dot": true,
+          "show": [
+            0,
+            0.95
+          ]
+        }
+      ]
+    }
+  ]
+}

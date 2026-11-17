@@ -1,0 +1,139 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": false,
+  "world": false,
+  "credits": [
+    "建物: 国土交通省 PLATEAU (新宿区) / © OpenStreetMap contributors"
+  ],
+  "plateauBuildings": [
+    {
+      "manifest": "assets/shinjuku-sota/manifest.json",
+      "heightOffset": -39,
+      "workers": 3,
+      "reveal": {
+        "center": [
+          139.6915,
+          35.69
+        ],
+        "width": 200,
+        "radius": [
+          [
+            0,
+            1000000
+          ]
+        ],
+        "paint": [
+          [
+            0,
+            -300
+          ],
+          [
+            3.0,
+            -300
+          ],
+          [
+            11.5,
+            2600
+          ]
+        ]
+      }
+    }
+  ],
+  "shots": [
+    {
+      "duration": 4,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.6915,
+          35.69
+        ],
+        "zoom": 16.25,
+        "pitch": 52,
+        "bearing": -70
+      },
+      "to": {
+        "center": [
+          139.6915,
+          35.69
+        ],
+        "zoom": 16.2,
+        "pitch": 55,
+        "bearing": -30
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "text": "東京都庁",
+          "at": [
+            139.6915,
+            35.69
+          ],
+          "dot": true,
+          "show": [
+            0.05,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "PLATEAUの建物に、外観を。",
+          "marks": false,
+          "cps": 40,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 980,
+          "show": [
+            0.1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "duration": 9,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.6915,
+          35.69
+        ],
+        "zoom": 16.2,
+        "pitch": 55,
+        "bearing": -30
+      },
+      "to": {
+        "center": [
+          139.685,
+          35.6925
+        ],
+        "zoom": 16.8,
+        "pitch": 64,
+        "bearing": 105
+      },
+      "overlays": [
+        {
+          "type": "quote",
+          "text": "屋根は地理院シームレス空中写真。壁と窓は推定。",
+          "marks": false,
+          "cps": 40,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 1160,
+          "show": [
+            0.05,
+            0.95
+          ]
+        }
+      ]
+    }
+  ]
+}

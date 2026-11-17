@@ -1,0 +1,69 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": false,
+  "world": false,
+  "credits": [
+    "建物: 国土交通省 PLATEAU / © OpenStreetMap contributors"
+  ],
+  "plateauBuildings": [
+    {
+      "manifest": "assets/asakusa-sota/manifest.json",
+      "heightOffset": -39,
+      "workers": 3
+    },
+    {
+      "manifest": "assets/sota/manifest.json",
+      "heightOffset": -39,
+      "workers": 3,
+      "reveal": {
+        "center": [
+          139.316,
+          35.7584
+        ],
+        "width": 160,
+        "radius": [
+          [
+            0,
+            -160
+          ]
+        ],
+        "paint": [
+          [
+            0,
+            -200
+          ]
+        ]
+      }
+    }
+  ],
+  "shots": [
+    {
+      "duration": 6,
+      "path": "fly",
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.7912,
+          35.6925
+        ],
+        "zoom": 15.5,
+        "pitch": 42,
+        "bearing": 27
+      },
+      "to": {
+        "center": [
+          139.3195,
+          35.7568
+        ],
+        "zoom": 15.85,
+        "pitch": 62,
+        "bearing": 160
+      },
+      "overlays": []
+    }
+  ]
+}

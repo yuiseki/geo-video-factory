@@ -1,0 +1,80 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": 0.28,
+  "world": false,
+  "exaggeration": 1.5,
+  "credits": [
+    "地理院シームレス空中写真 / 地理院DEM"
+  ],
+  "shots": [
+    {
+      "duration": 10,
+      "ease": "smooth",
+      "from": {
+        "center": [
+          138.7274,
+          35.3606
+        ],
+        "zoom": 9.8,
+        "pitch": 50,
+        "bearing": 30
+      },
+      "to": {
+        "center": [
+          138.705,
+          35.358
+        ],
+        "zoom": 11.8,
+        "pitch": 62,
+        "bearing": 75
+      },
+      "overlays": [
+        {
+          "type": "quote",
+          "text": "山は、地理院DEMから立つ。",
+          "marks": false,
+          "cps": 35,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 980,
+          "show": [
+            0.1,
+            0.92
+          ]
+        },
+        {
+          "type": "label",
+          "text": "富士山（3,776m）",
+          "at": [
+            138.7274,
+            35.3606
+          ],
+          "dot": true,
+          "show": [
+            0.15,
+            0.9
+          ]
+        },
+        {
+          "type": "label",
+          "text": "大沢崩れ",
+          "at": [
+            138.707,
+            35.362
+          ],
+          "dot": true,
+          "show": [
+            0.55,
+            0.95
+          ]
+        }
+      ]
+    }
+  ]
+}

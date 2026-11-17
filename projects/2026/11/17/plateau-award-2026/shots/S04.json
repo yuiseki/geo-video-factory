@@ -1,0 +1,164 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": false,
+  "world": false,
+  "credits": [
+    "建物: 国土地理院ベクトルタイル / 国土交通省 PLATEAU (福生市) / © OpenStreetMap contributors"
+  ],
+  "plateauBuildings": [
+    {
+      "manifest": "assets/sota/manifest.json",
+      "heightOffset": -39,
+      "workers": 3,
+      "reveal": {
+        "center": [
+          139.316,
+          35.7584
+        ],
+        "width": 160,
+        "radius": [
+          [
+            0,
+            -160
+          ],
+          [
+            3.0,
+            -160
+          ],
+          [
+            11.0,
+            2800
+          ]
+        ],
+        "paint": [
+          [
+            0,
+            -200
+          ],
+          [
+            11.0,
+            -200
+          ],
+          [
+            19.0,
+            2800
+          ]
+        ]
+      }
+    }
+  ],
+  "shots": [
+    {
+      "duration": 22,
+      "ease": "inOut",
+      "from": {
+        "center": [
+          139.3195,
+          35.7568
+        ],
+        "zoom": 15.85,
+        "pitch": 62,
+        "bearing": 160
+      },
+      "to": {
+        "center": [
+          139.316,
+          35.7584
+        ],
+        "zoom": 15.8,
+        "pitch": 63,
+        "bearing": 185
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "text": "羽村市",
+          "at": [
+            139.312,
+            35.7625
+          ],
+          "show": [
+            0.04,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "text": "福生市",
+          "at": [
+            139.33,
+            35.744
+          ],
+          "show": [
+            0.04,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "PLATEAU未整備の区域では、建物が空白になる。",
+          "marks": false,
+          "cps": 45,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 1080,
+          "show": [
+            0.02,
+            0.16
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "建物の形は、地理院ベクトルタイル。",
+          "marks": false,
+          "cps": 45,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 1120,
+          "show": [
+            0.16,
+            0.5
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "高さは、隣の街のPLATEAUから推定。",
+          "marks": false,
+          "cps": 45,
+          "screen": [
+            90,
+            210
+          ],
+          "width": 1120,
+          "show": [
+            0.24,
+            0.5
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "屋根は地理院シームレス空中写真。壁は推定。",
+          "marks": false,
+          "cps": 45,
+          "screen": [
+            90,
+            90
+          ],
+          "width": 1160,
+          "show": [
+            0.52,
+            0.96
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "world": false,
+  "exaggeration": 1.2,
+  "credits": [
+    "地理院シームレス空中写真 / 地理院DEM"
+  ],
+  "shots": [
+    {
+      "duration": 4,
+      "path": "fly",
+      "ease": "inOut",
+      "from": {
+        "center": [
+          138.705,
+          35.358
+        ],
+        "zoom": 11.8,
+        "pitch": 62,
+        "bearing": 75
+      },
+      "to": {
+        "center": [
+          139.094,
+          34.9055
+        ],
+        "zoom": 14.5,
+        "pitch": 70,
+        "bearing": -32
+      },
+      "overlays": []
+    }
+  ]
+}

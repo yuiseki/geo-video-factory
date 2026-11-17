@@ -1,0 +1,95 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "world": false,
+  "exaggeration": 1.0,
+  "sky": {
+    "sky-color": "#1c4a9a",
+    "horizon-color": "#d6e6f7",
+    "fog-color": "#c9d8e8",
+    "sky-horizon-blend": 0.75,
+    "horizon-fog-blend": 0.7,
+    "fog-ground-blend": 0.85,
+    "atmosphere-blend": 0
+  },
+  "credits": [
+    "国土地理院 / 国土交通省 PLATEAU / © OpenStreetMap contributors / Copernicus Sentinel-2 / VOICEVOX:四国めたん"
+  ],
+  "plateauBuildings": {
+    "manifest": "assets/hakodate/manifest.json",
+    "reveal": {
+      "center": [
+        140.719,
+        41.771
+      ],
+      "width": 250,
+      "radius": [
+        [
+          0,
+          7000
+        ]
+      ],
+      "paint": [
+        [
+          0,
+          7000
+        ]
+      ]
+    }
+  },
+  "shots": [
+    {
+      "duration": 7,
+      "ease": "linear",
+      "from": {
+        "center": [
+          140.719,
+          41.771
+        ],
+        "zoom": 14.95,
+        "pitch": 49,
+        "bearing": 212
+      },
+      "to": {
+        "center": [
+          140.719,
+          41.771
+        ],
+        "zoom": 14.95,
+        "pitch": 49,
+        "bearing": 212
+      },
+      "tint": 0.68,
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "Apache License 2.0  |  github.com/yuiseki/geo-video-factory",
+          "text": "geo-video-factory",
+          "show": [
+            0.05,
+            1.0
+          ]
+        },
+        {
+          "type": "quote",
+          "text": "この映像を作るソフトウェアを、無料で公開しています。",
+          "marks": false,
+          "cps": 60,
+          "screen": [
+            400,
+            180
+          ],
+          "width": 1120,
+          "show": [
+            0.05,
+            1.0
+          ]
+        }
+      ]
+    }
+  ]
+}
