@@ -1,3 +1,4 @@
+import { labelPosition } from '../overlay-position.js';
 import { choroplethDimMultiplier, choroplethHeightExpression } from '../choropleth.js';
 import { choroplethRiseProgress, drawChoroplethLabels, drawChoroplethLegend } from './choropleth-dom.js';
 import {
@@ -153,9 +154,10 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
   };
 
   if (o.type === 'label') {
+    const labelPos = o.at ? labelPosition(map.project(o.at), scale(), o.offset) : pos(o);
     if (o.style === 'tag') {
       const k = 0.5 + 0.5 * easeOutBack(inn(0.45));
-      el('label tag', esc(o.text), { ...pos(o), opacity: inn(0.15) * out, transform: `translate(-50%, -50%) scale(${k})` });
+      el('label tag', esc(o.text), { ...labelPos, opacity: inn(0.15) * out, transform: `translate(-50%, -50%) scale(${k})` });
     } else {
       const ring = (ph.since % 1.6) / 1.6;
       const reveal = 100 * (1 - outCubic(inn(0.5, 0.15)));
@@ -163,7 +165,7 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
         'label',
         (o.dot ? `<span class="dot"><span class="ring" style="transform:scale(${1 + ring * 2.2});opacity:${(1 - ring) * 0.8}"></span></span>` : '') +
           `<span class="txt" style="clip-path:inset(-20% ${reveal}% -20% 0)">${esc(o.text)}</span>`,
-        { ...pos(o), opacity: inn(0.15) * out },
+        { ...labelPos, opacity: inn(0.15) * out },
       );
     }
   } else if (o.type === 'counter') {

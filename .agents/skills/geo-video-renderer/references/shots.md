@@ -52,6 +52,7 @@ bearing は近い向きに回る (350 度 → 10 度は 20 度だけ回る)。
 { "type": "line", "coords": [[lng, lat], ...], "color": "#4aa3ff", "width": 6, "draw": [0.1, 0.5] }
 { "type": "polygon", "coords": [[lng, lat], ..., 最初の点], "fill": "#4aa3ff", "fillOpacity": 0.35, "outline": "#ffffff", "width": 4 }
 { "type": "label", "at": [lng, lat], "text": "大沢崩れ", "dot": true }
+{ "type": "label", "at": [lng, lat], "text": "建物名", "style": "tag", "offset": [0, -70] }
 { "type": "label", "screen": [190, 70], "text": "1974〜78年", "style": "tag" }
 { "type": "counter", "screen": [70, 120], "caption": "谷の長さ", "prefix": "約", "value": 2, "unit": "km" }
 { "type": "counter", "value": 1969, "from": 1950, "grouping": false, "unit": "年", "countUp": [0.2, 0.7] }
@@ -69,6 +70,7 @@ bearing は近い向きに回る (350 度 → 10 度は 20 度だけ回る)。
 ```
 
 - 画面の座標 (`screen`) は 1920x1080 の上の px。出力の大きさが違っても同じ比率に縮む。
+- 地理座標 `at` を指定したラベルの `offset: [x, y]` は、地物の投影後に表示位置をずらす。単位は 1920×1080 の画面上の px で、負の y は上方向。`screen` 指定には適用しない。
 - `line` の `draw` は線が伸びていく区間。省略すると最初から全部見える。長さは平面の距離で測っている (短い線なら十分)。
 - `counter` の `decimals` で小数の桁、`countEase: "linear"` で等速に数える (既定はだんだん遅く)。
 - `image` の `src` はプロジェクトのフォルダからの相対パス。北が上の画像だけ。

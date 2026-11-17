@@ -11,10 +11,10 @@ Node.js とレンダラーの依存関係、Python と `packages/pipeline/requir
 ```sh
 export GVF_PYTHON=/path/to/python
 export OVERPASS_URL=https://overpass.yuiseki.net/api/interpreter
-bash projects/2026/11/17/tour-asakusa-ryogoku/render.sh v0.1.1
+bash projects/2026/11/17/tour-asakusa-ryogoku/render.sh v0.1.2
 ```
 
-生成した実データは `assets/` にキャッシュされます。描画結果は `out/v0.1.1/tour-asakusa-ryogoku.v0.1.1.mp4` に出力されます。地図と装飾を別々にレンダリングし、最後に合成します。
+生成した実データは `assets/` にキャッシュされます。描画結果は `out/v0.1.2/tour-asakusa-ryogoku.v0.1.2.mp4` に出力されます。地図と装飾を別々にレンダリングし、最後に合成します。
 
 ## 素材と出典
 

@@ -129,6 +129,8 @@ export interface PolygonOverlay {
 export interface LabelOverlay {
   type: 'label';
   text: string;
+  /** Screen offset in 1920px design coordinates, applied after projecting `at`. */
+  offset?: [number, number];
   at?: LngLat;
   screen?: [number, number];
   style?: string;
