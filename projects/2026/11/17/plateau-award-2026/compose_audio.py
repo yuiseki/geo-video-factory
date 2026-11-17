@@ -289,7 +289,8 @@ def main() -> None:
             "-i", str(bgm_wav),
             "-i", str(sfx_wav),
             "-filter_complex",
-            "[0:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[v1][v2];"
+            "[0:a]aformat=sample_rates=48000:channel_layouts=stereo,asplit=2[voice][v2];"
+            "[voice]volume=-4dB[v1];"
             "[1:a]aformat=sample_rates=48000:channel_layouts=stereo,volume=0.38[m];"
             "[2:a]aformat=sample_rates=48000:channel_layouts=stereo,volume=0.65[sfx];"
             "[m][v2]sidechaincompress=threshold=0.03:ratio=7:attack=15:release=350[mc];"
