@@ -1,0 +1,164 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": 0.3,
+  "exaggeration": 1.2,
+  "credits": [
+    "衛星色度：Copernicus Sentinel-2 L2A (2023-2024)",
+    "季節の色は衛星画像を基にした再現"
+  ],
+  "shots": [
+    {
+      "duration": 32,
+      "ease": "smooth",
+      "keys": [
+        {
+          "t": 0,
+          "center": [
+            139.094,
+            34.9055
+          ],
+          "zoom": 14.5,
+          "pitch": 70,
+          "bearing": -32
+        },
+        {
+          "t": 1,
+          "center": [
+            139.094,
+            34.9055
+          ],
+          "zoom": 14.5,
+          "pitch": 70,
+          "bearing": 28
+        }
+      ],
+      "overlays": [
+        {
+          "type": "image",
+          "src": "omuro-seasons/summer.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0,
+            1.05
+          ],
+          "fade": 0
+        },
+        {
+          "type": "image",
+          "src": "omuro-seasons/autumn.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0.22,
+            0.53
+          ],
+          "fade": 0.08
+        },
+        {
+          "type": "image",
+          "src": "omuro-seasons/winter_burn.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0.47,
+            0.78
+          ],
+          "fade": 0.08
+        },
+        {
+          "type": "image",
+          "src": "omuro-seasons/spring.jpg",
+          "bbox": [
+            139.06494140625,
+            34.885930940753155,
+            139.1143798828125,
+            34.91746688928252
+          ],
+          "maxzoom": 16,
+          "show": [
+            0.72,
+            1.05
+          ],
+          "fade": 0.08
+        },
+        {
+          "type": "label",
+          "screen": [
+            190,
+            78
+          ],
+          "text": "大室山（夏）",
+          "style": "tag",
+          "show": [
+            -0.05,
+            0.25
+          ],
+          "fade": 0.03
+        },
+        {
+          "type": "label",
+          "screen": [
+            190,
+            78
+          ],
+          "text": "大室山（秋）",
+          "style": "tag",
+          "show": [
+            0.25,
+            0.5
+          ],
+          "fade": 0.03
+        },
+        {
+          "type": "label",
+          "screen": [
+            190,
+            78
+          ],
+          "text": "大室山（冬・山焼き）",
+          "style": "tag",
+          "show": [
+            0.5,
+            0.75
+          ],
+          "fade": 0.03
+        },
+        {
+          "type": "label",
+          "screen": [
+            190,
+            78
+          ],
+          "text": "大室山（春・新緑）",
+          "style": "tag",
+          "show": [
+            0.75,
+            1.05
+          ],
+          "fade": 0.03
+        }
+      ]
+    }
+  ]
+}
