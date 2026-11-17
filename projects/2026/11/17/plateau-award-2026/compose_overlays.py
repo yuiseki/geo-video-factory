@@ -11,6 +11,9 @@ OUT_OV = PROJECT / "overlays" / "generated"
 
 # Noto Sans CJK JP or Hiragino fallback on macOS
 FONT_CANDIDATES = [
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Bold.ttc",
+    "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc",
+    "/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf",
     "/System/Library/Fonts/ヒラギノ角ゴシック W6.ttc",
     "/System/Library/Fonts/Hiragino Sans GB.ttc",
     "/Library/Fonts/NotoSansCJKjp-Bold.otf",
@@ -27,7 +30,7 @@ def load_font(size: int, mono: bool = False) -> ImageFont.FreeTypeFont:
     for p in (MONO_CANDIDATES if mono else FONT_CANDIDATES):
         if Path(p).exists():
             return ImageFont.truetype(p, size)
-    return ImageFont.load_default()
+    raise RuntimeError("日本語を表示できるフォントが見つかりません。Noto Sans CJK JP をインストールしてください。")
 
 
 def draw_round_rect(draw: ImageDraw.ImageDraw, xy, radius: int, fill, outline=None, width: int = 2) -> None:
