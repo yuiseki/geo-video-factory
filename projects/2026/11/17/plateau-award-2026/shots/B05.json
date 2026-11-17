@@ -8,7 +8,20 @@
   "world": true,
   "exaggeration": 1.5,
   "credits": [
-    "国土地理院タイル / NASA Blue Marble"
+    "国土地理院タイル / NASA Blue Marble",
+    "建物: 国土交通省 PLATEAU / 地理院ベクトルタイル / © OpenStreetMap contributors"
+  ],
+  "plateauBuildings": [
+    {
+      "manifest": "assets/osaka-cosmosquare/manifest.json",
+      "heightOffset": -38,
+      "workers": 3
+    },
+    {
+      "manifest": "assets/osaka-minami/manifest.json",
+      "heightOffset": -38,
+      "workers": 3
+    }
   ],
   "shots": [
     {

@@ -358,8 +358,19 @@ def build_clips() -> dict[str, dict]:
     clips["B04"] = {
         **BASE_SPEC,
         "world": True,
-        "credits": ["国土地理院タイル / NASA Blue Marble"],
+        "credits": ["国土地理院タイル / NASA Blue Marble", "建物: 国土交通省 PLATEAU / 地理院ベクトルタイル / © OpenStreetMap contributors"],
         "plateauBuildings": [
+            {
+                "manifest": "assets/sota/manifest.json",
+                "heightOffset": -39,
+                "workers": 3,
+                "reveal": {
+                    "center": [139.316, 35.7584],
+                    "width": 160,
+                    "radius": [[0, 2800]],
+                    "paint": [[0, 2800]],
+                },
+            },
             {
                 "manifest": "assets/osaka-cosmosquare/manifest.json",
                 "heightOffset": -38,
@@ -443,7 +454,11 @@ def build_clips() -> dict[str, dict]:
         "world": True,
         "exaggeration": 1.5,
         "hillshade": 0.28,
-        "credits": ["国土地理院タイル / NASA Blue Marble"],
+        "credits": ["国土地理院タイル / NASA Blue Marble", "建物: 国土交通省 PLATEAU / 地理院ベクトルタイル / © OpenStreetMap contributors"],
+        "plateauBuildings": [
+            {"manifest": "assets/osaka-cosmosquare/manifest.json", "heightOffset": -38, "workers": 3},
+            {"manifest": "assets/osaka-minami/manifest.json", "heightOffset": -38, "workers": 3},
+        ],
         "shots": [
             {
                 "duration": 8,
@@ -471,8 +486,7 @@ def build_clips() -> dict[str, dict]:
                 "to": cam([138.705, 35.358], 11.8, 62, 75),
                 "overlays": [
                     {"type": "quote", "text": "山は、地理院DEMから立つ。", "marks": False, "cps": 35, "screen": [90, 90], "width": 980, "show": [0.1, 0.92]},
-                    {"type": "label", "text": "富士山（3,776m）", "at": [138.7274, 35.3606], "dot": True, "show": [0.15, 0.9]},
-                    {"type": "label", "text": "大沢崩れ", "at": [138.707, 35.362], "dot": True, "show": [0.55, 0.95]},
+                    {"type": "label", "text": "富士山（3,776m）", "screen": [1650, 90], "style": "tag", "show": [0.15, 0.9]},
                 ],
             }
         ],
