@@ -14,12 +14,27 @@ class AsakusaRyogokuTourTests(unittest.TestCase):
         self.assertEqual(tour['plateauBuildings']['heightOffset'], -39)
         self.assertEqual([shot['from']['center'] for shot in tour['shots'][5:]], [shot['from']['center'] for shot in baseline['shots'][5:]])
         self.assertEqual([shot['to']['center'] for shot in tour['shots'][5:-1]], [shot['to']['center'] for shot in baseline['shots'][5:-1]])
-        self.assertEqual(tour['shots'][2]['to']['center'], [139.7982, 35.7115])
+        self.assertEqual(tour['shots'][2]['to']['center'], [139.7984, 35.7113])
+        self.assertEqual(tour['shots'][2]['to']['bearing'], 270)
+        self.assertEqual(tour['fps'], 24)
         self.assertEqual(tour['shots'][3]['from'], tour['shots'][2]['to'])
         for shot in tour['shots'][6:14]:
             for end in ('from', 'to'):
                 self.assertEqual(shot[end]['zoom'], 16.7)
                 self.assertEqual(shot[end]['pitch'], 42)
+        for shot in tour['shots'][6:14]:
+            self.assertEqual(shot['duration'], 5)
+            self.assertGreaterEqual(len(shot.get('keys', [])), 9)
+            self.assertEqual(shot['keys'][0]['center'], shot['from']['center'])
+            self.assertEqual(shot['keys'][-1]['center'], shot['to']['center'])
+        for left, right in zip(tour['shots'][6:13], tour['shots'][7:14]):
+            a, b = left['keys'][-2]['center'], left['keys'][-1]['center']
+            c = right['keys'][1]['center']
+            v1 = [b[i] - a[i] for i in (0, 1)]
+            v2 = [c[i] - b[i] for i in (0, 1)]
+            dot = sum(v1[i] * v2[i] for i in (0, 1))
+            magnitudes = (sum(v * v for v in v1) * sum(v * v for v in v2)) ** 0.5
+            self.assertGreater(dot / magnitudes, 0.98)
         for left, right in zip(tour['shots'], tour['shots'][1:]):
             self.assertEqual(left['to'], right['from'])
         bridges = {'吾妻橋', '駒形橋', '厩橋', '蔵前橋', '両国橋'}

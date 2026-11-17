@@ -11,10 +11,10 @@ Node.js とレンダラーの依存関係、Python と `packages/pipeline/requir
 ```sh
 export GVF_PYTHON=/path/to/python
 export OVERPASS_URL=https://overpass.yuiseki.net/api/interpreter
-bash projects/2026/11/17/tour-asakusa-ryogoku/render.sh v0.1.2
+bash projects/2026/11/17/tour-asakusa-ryogoku/render.sh v0.1.3
 ```
 
-生成した実データは `assets/` にキャッシュされます。描画結果は `out/v0.1.2/tour-asakusa-ryogoku.v0.1.2.mp4` に出力されます。地図と装飾を別々にレンダリングし、最後に合成します。
+生成した実データは `assets/` にキャッシュされます。描画結果は `out/v0.1.3/tour-asakusa-ryogoku.v0.1.3.mp4` に出力されます。地図と装飾を別々にレンダリングし、最後に合成します。
 
 ## 素材と出典
 
@@ -23,3 +23,5 @@ bash projects/2026/11/17/tour-asakusa-ryogoku/render.sh v0.1.2
 - [OpenStreetMap](https://www.openstreetmap.org/copyright)：建物属性。データは ODbL で提供されます。
 
 データの更新時期は一致しません。取得時点によって建物や風景が変わります。
+
+隅田川の区間は、川の中央に置いた既存の経由点を通る滑らかな曲線を使い、24 fps で描画します。
