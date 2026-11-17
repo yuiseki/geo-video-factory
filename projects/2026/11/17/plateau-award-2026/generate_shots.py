@@ -615,14 +615,14 @@ def build_clips() -> dict[str, dict]:
                 "duration": 4,
                 "ease": "inOut",
                 "from": cam([140.716, 41.768], 14.4, 0, 215),
-                "to": cam([140.717, 41.769], 14.9, 0, 215),
+                "to": cam([140.714, 41.765], 14.0, 0, 215),
                 "overlays": [],
             },
             {
                 "duration": 5,
                 "ease": "inOut",
-                "from": cam([140.717, 41.769], 14.9, 0, 215),
-                "to": cam([140.718, 41.770], 15.0, 49, 215),
+                "from": cam([140.714, 41.765], 14.0, 0, 215),
+                "to": cam([140.714, 41.765], 14.0, 55, 215),
                 "overlays": [
                     {"type": "label", "text": "函館山", "at": [140.7037, 41.7591], "dot": True, "show": [0.4, 1]},
                 ],
@@ -630,8 +630,8 @@ def build_clips() -> dict[str, dict]:
             {
                 "duration": 15,
                 "ease": "inOut",
-                "from": cam([140.718, 41.770], 15.0, 49, 215),
-                "to": cam([140.719, 41.771], 14.95, 49, 212),
+                "from": cam([140.714, 41.765], 14.0, 55, 215),
+                "to": cam([140.714, 41.765], 14.25, 55, 200),
                 "overlays": [
                     {"type": "quote", "text": "山ごと、街を描く。", "marks": False, "cps": 35, "screen": [90, 90], "width": 880, "show": [0.15, 0.85]},
                     {"type": "quote", "text": "函館（地理院ベクトルタイル・OSM使用）", "marks": False, "cps": 60, "screen": [90, 920], "width": 920, "show": [0.2, 0.9]},
@@ -671,8 +671,8 @@ def build_clips() -> dict[str, dict]:
             {
                 "duration": 7,
                 "ease": "linear",
-                "from": cam([140.719, 41.771], 14.95, 49, 212),
-                "to": cam([140.719, 41.771], 14.95, 49, 212),
+                "from": cam([140.714, 41.765], 14.25, 55, 200),
+                "to": cam([140.714, 41.765], 14.25, 55, 200),
                 "tint": 0.68,
                 "overlays": [
                     {
