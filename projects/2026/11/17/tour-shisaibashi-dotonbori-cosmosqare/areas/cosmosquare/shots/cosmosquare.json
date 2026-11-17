@@ -1,0 +1,96 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 12,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "plateauBuildings": {
+    "manifest": "assets/city/manifest.json",
+    "heightOffset": -38,
+    "workers": 3
+  },
+  "credits": [
+    "3D都市モデル：国土交通省 PLATEAU（大阪市 2025）",
+    "建物外形・標高・空中写真：国土地理院",
+    "建物属性：© OpenStreetMap contributors（推定を含む）"
+  ],
+  "shots": [
+    {
+      "duration": 1,
+      "ease": "linear",
+      "from": {
+        "center": [
+          135.4133,
+          34.6395
+        ],
+        "zoom": 15.9,
+        "pitch": 42,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.4133,
+          34.6395
+        ],
+        "zoom": 15.9,
+        "pitch": 42,
+        "bearing": 0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
+          ],
+          "text": "コスモスクエア駅",
+          "style": "tag",
+          "offset": [
+            0,
+            -50
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            135.4148351,
+            34.6381291
+          ],
+          "text": "大阪府咲洲庁舎",
+          "style": "tag",
+          "offset": [
+            120,
+            -100
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            135.4132543,
+            34.6372212
+          ],
+          "text": "ATC",
+          "style": "tag",
+          "offset": [
+            -100,
+            -50
+          ],
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}
