@@ -18,6 +18,8 @@ VIDEO_TARGET=terrain-mt-omuroyama npm run test:video
 
 `VIDEO_TARGET` は `base`、`earth-tokyo-station`、`terrain-mt-fuji`、`terrain-mt-fuji-seasonal`、`terrain-mt-omuroyama`、各 `choropleth-3d-*`、`buildings-asakusa`、`buildings-asakusa-sumida-river` を指定できます。PLATEAU の建物 E2E は `buildings-` prefix を使います。例: `VIDEO_TARGET=buildings-asakusa npm run test:video`。最終出力はそれぞれ `dist/test/video/<testname>.mp4` です。PLATEAU の実データは fixture に含めず、欠落時に `.work/<testname>/project/` へ取得・生成してキャッシュします。未指定で `npm test` を実行すると、E2E対象動画を生成します。E2Eは `dist/test/video/` 全体を削除せず、対象ケースの動画と `.work/` 内だけを更新するため、手動生成した動画を保持します。
 
+素材を準備する E2E (`buildings-*` など) は、Python から `packages/pipeline` を呼びます。既定の `python3` に `packages/pipeline/requirements-dev.txt` の依存 (DracoPy、shapely など) が無い場合は、依存を入れたインタープリターを `GVF_PYTHON` に指定します。例: `GVF_PYTHON=$PWD/../pipeline/.venv/bin/python VIDEO_TARGET=buildings-asakusa-sumida-river npm run test:video`。
+
 `test:coverage` は、行 65%、分岐 80%、関数 90% を下回ると失敗する。ブラウザーを起動する CLI 本体を含むため、行カバレッジは段階的に引き上げる。
 
 - `src/lib.ts` の時間・座標・表示計算は、入力境界と決定性を単体テストする。

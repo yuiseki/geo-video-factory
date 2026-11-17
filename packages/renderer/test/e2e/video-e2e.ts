@@ -18,6 +18,18 @@ export interface VideoCase {
   skipReason?: string;
 }
 
+/**
+ * The interpreter for the prepare scripts. They import packages/pipeline, which needs
+ * packages/pipeline/requirements-dev.txt (DracoPy, shapely); point GVF_PYTHON at an interpreter
+ * that has them when the default one does not.
+ */
+export function pipelinePython(
+  env: Record<string, string | undefined> = process.env,
+  platform: string = process.platform,
+): string {
+  return env.GVF_PYTHON ?? (platform === 'win32' ? 'python' : 'python3');
+}
+
 export function prepareVideoOutput(output: string, work: string): void {
   fs.mkdirSync(output, { recursive: true });
   fs.mkdirSync(work, { recursive: true });
@@ -51,7 +63,7 @@ export function registerVideoE2E(item: VideoCase): void {
     prepareVideoOutput(output, work);
 
     if (item.prepareScript) {
-      const prepare = spawnSync('python3', [item.prepareScript, generatedProject, item.fixture], {
+      const prepare = spawnSync(pipelinePython(), [item.prepareScript, generatedProject, item.fixture], {
         cwd: process.cwd(),
         encoding: 'utf8',
         timeout: 900_000,

@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { prepareVideoOutput } from './video-e2e.js';
+import { pipelinePython, prepareVideoOutput } from './video-e2e.js';
 import { layerFormat, overlayFilter, type RenderLayer } from '../../src/compose.js';
 
 const videoName = 'buildings-tokyo-sota';
@@ -51,10 +51,7 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
   const generatedProject = path.join(renderOutput, 'project');
   prepareVideoOutput(output, work);
 
-  // The pipeline needs packages/pipeline/requirements-dev.txt (DracoPy, shapely); point
-  // GVF_PYTHON at an interpreter that has them.
-  const pythonCmd = process.env.GVF_PYTHON ?? (process.platform === 'win32' ? 'python' : 'python3');
-  const prepare = spawnSync(pythonCmd, [prepareScript, generatedProject], { cwd: process.cwd(), encoding: 'utf8', timeout: 1_800_000 });
+  const prepare = spawnSync(pipelinePython(), [prepareScript, generatedProject], { cwd: process.cwd(), encoding: 'utf8', timeout: 1_800_000 });
   assert.equal(prepare.status, 0, `${videoName} asset preparation\n${prepare.stdout}\n${prepare.stderr}`);
 
   // One continuous render of the picture, then the decorations as their own transparent layer,

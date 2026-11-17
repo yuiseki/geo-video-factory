@@ -4,7 +4,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fitLngLatBounds, projectLngLat } from '../src/map-viewport.js';
-import { prepareVideoOutput } from './e2e/video-e2e.js';
+import { pipelinePython, prepareVideoOutput } from './e2e/video-e2e.js';
 
 test('long-distance fixture separates moves from two-second geographic holds', () => {
   const fixture = JSON.parse(fs.readFileSync('test/fixtures/earth-tokyo-station.json', 'utf8')) as {
@@ -179,5 +179,15 @@ test('E2E output setup preserves manually generated real-data videos', () => {
     assert.equal(fs.readFileSync(video, 'utf8'), 'real-data-video');
   } finally {
     fs.rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test('asset preparation runs on GVF_PYTHON when set: the pipeline needs DracoPy and shapely', () => {
+  assert.equal(pipelinePython({ GVF_PYTHON: '/opt/venv/bin/python' }, 'linux'), '/opt/venv/bin/python');
+  assert.equal(pipelinePython({}, 'linux'), 'python3');
+  assert.equal(pipelinePython({}, 'win32'), 'python');
+  for (const file of ['test/e2e/video-e2e.ts', 'test/e2e/buildings-tokyo-sota.test.ts']) {
+    const source = fs.readFileSync(file, 'utf8');
+    assert.doesNotMatch(source, /spawnSync\('python3?'/, `${file} must not bypass GVF_PYTHON`);
   }
 });
