@@ -131,6 +131,8 @@ export interface LabelOverlay {
   text: string;
   /** Screen offset in 1920px design coordinates, applied after projecting `at`. */
   offset?: [number, number];
+  /** Draw a leader from the projected location to the offset label. */
+  leader?: boolean;
   at?: LngLat;
   screen?: [number, number];
   style?: string;
@@ -380,6 +382,8 @@ export interface PlateauBuildingsConfig {
 
 export interface ShotSpec {
   width?: number;
+  /** Reserved map margins in 1920px design coordinates, for example the subtitle band. */
+  cameraPadding?: { top?: number; right?: number; bottom?: number; left?: number };
   height?: number;
   fps?: number;
   projection?: 'mercator' | 'globe' | 'vertical-perspective' | { type: string };

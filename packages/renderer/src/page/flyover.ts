@@ -75,6 +75,15 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
     canvasContextAttributes: { preserveDrawingBuffer: true, antialias: true },
     pixelRatio: 1,
   }) as unknown as MapLibreMap;
+  if (spec.cameraPadding) {
+    const padding = spec.cameraPadding;
+    map.setPadding({
+      top: (padding.top ?? 0) * scale(),
+      right: (padding.right ?? 0) * scale(),
+      bottom: (padding.bottom ?? 0) * scale(),
+      left: (padding.left ?? 0) * scale(),
+    });
+  }
   configureOverlayRenderer({ map, spec, overlayEl, tintEl });
   await Promise.all([new Promise<void>((resolve) => map.once('load', resolve)), preloadChoroplethLabels(spec)]);
   if (spec.plateauBuildings) {

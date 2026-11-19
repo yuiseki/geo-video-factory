@@ -53,6 +53,7 @@ bearing は近い向きに回る (350 度 → 10 度は 20 度だけ回る)。
 { "type": "polygon", "coords": [[lng, lat], ..., 最初の点], "fill": "#4aa3ff", "fillOpacity": 0.35, "outline": "#ffffff", "width": 4 }
 { "type": "label", "at": [lng, lat], "text": "大沢崩れ", "dot": true }
 { "type": "label", "at": [lng, lat], "text": "建物名", "style": "tag", "offset": [0, -70] }
+{ "type": "label", "at": [lng, lat], "text": "鉱山", "style": "tag", "offset": [0, -90], "leader": true }
 { "type": "label", "screen": [190, 70], "text": "1974〜78年", "style": "tag" }
 { "type": "counter", "screen": [70, 120], "caption": "谷の長さ", "prefix": "約", "value": 2, "unit": "km" }
 { "type": "counter", "value": 1969, "from": 1950, "grouping": false, "unit": "年", "countUp": [0.2, 0.7] }
@@ -68,6 +69,8 @@ bearing は近い向きに回る (350 度 → 10 度は 20 度だけ回る)。
 { "type": "base", "layer": "gazo1", "show": [0.45, 1], "fade": 0.2 }
 { "type": "image", "src": "assets/mosaic_1948.png", "bbox": [west, south, east, north], "credit": "1948年の空中写真：米軍撮影(国土地理院)をつないで加工" }
 ```
+
+`leader: true` は `at` の実地点からオフセットしたラベルへ線を引き、カメラ移動に追従する。`cameraPadding: { "bottom": 260 }` をトップレベルに指定すると、字幕帯などのため地図カメラに余白を確保できる。値は 1920×1080 基準の画素で、出力サイズに比例して適用される。
 
 - 画面の座標 (`screen`) は 1920x1080 の上の px。出力の大きさが違っても同じ比率に縮む。
 - 地理座標 `at` を指定したラベルの `offset: [x, y]` は、地物の投影後に表示位置をずらす。単位は 1920×1080 の画面上の px で、負の y は上方向。`screen` 指定には適用しない。

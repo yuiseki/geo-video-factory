@@ -157,6 +157,15 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
 
   if (o.type === 'label') {
     const labelPos = o.at ? labelPosition(map.project(o.at), scale(), o.offset) : pos(o);
+    if (o.leader && o.at) {
+      const point = map.project(o.at);
+      const x = point.x / scale();
+      const y = point.y / scale();
+      const dx = o.offset?.[0] ?? 0;
+      const dy = o.offset?.[1] ?? 0;
+      const endY = y + dy + (dy < 0 ? 18 : -18);
+      el('leader', `<svg width="1920" height="1080" style="overflow:visible;pointer-events:none"><path d="M${x},${y} L${x + dx},${endY}" stroke="#182338" stroke-width="7" fill="none"/><path d="M${x},${y} L${x + dx},${endY}" stroke="#ffd36a" stroke-width="3" fill="none"/><circle cx="${x}" cy="${y}" r="7" fill="#ffd36a" stroke="#182338" stroke-width="3"/></svg>`, { left: '0px', top: '0px', opacity: inn(0.15) * out, pointerEvents: 'none' });
+    }
     if (o.style === 'tag') {
       const k = 0.5 + 0.5 * easeOutBack(inn(0.45));
       el('label tag', esc(o.text), { ...labelPos, opacity: inn(0.15) * out, transform: `translate(-50%, -50%) scale(${k})` });

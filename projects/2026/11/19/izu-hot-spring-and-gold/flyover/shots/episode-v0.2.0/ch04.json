@@ -1,0 +1,425 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.35,
+  "hillshade": 0.28,
+  "saturation": -0.05,
+  "contrast": 0.08,
+  "credits": [
+    "温泉POI・河川網：© OpenStreetMap contributors",
+    "鉱山・産金・災害史：静岡県史・伊豆半島ジオパーク・産総研・日本銀行等資料",
+    "立ち絵：坂本アヒル"
+  ],
+  "cameraPadding": {
+    "bottom": 260
+  },
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.15,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 160,
+    "side": "right",
+    "bottom": 135
+  },
+  "shots": [
+    {
+      "from": {
+        "center": [
+          138.94,
+          34.988
+        ],
+        "zoom": 12.6,
+        "pitch": 56.0,
+        "bearing": -25.0
+      },
+      "to": {
+        "center": [
+          138.93975,
+          34.9885
+        ],
+        "zoom": 12.65,
+        "pitch": 56.0,
+        "bearing": -23.75
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            138.942556,
+            34.987056
+          ],
+          "text": "大仁鉱山（瓜生野）",
+          "style": "tag",
+          "dot": false,
+          "offset": [
+            120,
+            -80
+          ],
+          "show": [
+            0,
+            1
+          ],
+          "leader": true
+        },
+        {
+          "type": "label",
+          "at": [
+            138.9374,
+            34.9946
+          ],
+          "text": "大仁温泉",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -100,
+            -40
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "screen": [
+            70,
+            350
+          ],
+          "width": 660,
+          "source": "静岡県史・伊豆半島ジオパーク資料",
+          "marks": false,
+          "text": "坑道から噴き出した高温の温泉を周辺へ給湯し、大仁温泉発展の源泉となった",
+          "show": [
+            0.05,
+            1
+          ]
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "a",
+          "text": "ここが大仁鉱山のあった地域。狩野川の近くなのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "大仁鉱山は金や銀を含む鉱石を採掘した鉱山よ。"
+        },
+        {
+          "voice": "b",
+          "text": "昭和に入って再開発され、選鉱場などの施設も整えられたわ。"
+        },
+        {
+          "voice": "a",
+          "text": "選鉱場というのは、掘り出した石から必要な成分を選ぶ場所なのだ？"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          138.93975,
+          34.9885
+        ],
+        "zoom": 12.65,
+        "pitch": 56.0,
+        "bearing": -23.75
+      },
+      "to": {
+        "center": [
+          138.9395,
+          34.989
+        ],
+        "zoom": 12.7,
+        "pitch": 56.0,
+        "bearing": -22.5
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            138.942556,
+            34.987056
+          ],
+          "text": "大仁鉱山（瓜生野）",
+          "style": "tag",
+          "dot": false,
+          "offset": [
+            120,
+            -80
+          ],
+          "show": [
+            0,
+            1
+          ],
+          "leader": true
+        },
+        {
+          "type": "label",
+          "at": [
+            138.9374,
+            34.9946
+          ],
+          "text": "大仁温泉",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -100,
+            -40
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "screen": [
+            70,
+            350
+          ],
+          "width": 660,
+          "source": "静岡県史・伊豆半島ジオパーク資料",
+          "marks": false,
+          "text": "坑道から噴き出した高温の温泉を周辺へ給湯し、大仁温泉発展の源泉となった",
+          "show": [
+            0.05,
+            1
+          ]
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ええ。鉱石を砕き、金属を含む部分を取り出す工程があるの。"
+        },
+        {
+          "voice": "b",
+          "text": "この鉱山では、坑内の掘削に伴って高温の湯が出た記録があるわ。"
+        },
+        {
+          "voice": "a",
+          "text": "金を探していたら、お湯が出てきたのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "湧き出す水は、採掘の妨げにもなり得る。でも、別の使い道もあったの。"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          138.9395,
+          34.989
+        ],
+        "zoom": 12.7,
+        "pitch": 56.0,
+        "bearing": -22.5
+      },
+      "to": {
+        "center": [
+          138.93925,
+          34.9895
+        ],
+        "zoom": 12.75,
+        "pitch": 56.0,
+        "bearing": -21.25
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            138.942556,
+            34.987056
+          ],
+          "text": "大仁鉱山（瓜生野）",
+          "style": "tag",
+          "dot": false,
+          "offset": [
+            120,
+            -80
+          ],
+          "show": [
+            0,
+            1
+          ],
+          "leader": true
+        },
+        {
+          "type": "label",
+          "at": [
+            138.9374,
+            34.9946
+          ],
+          "text": "大仁温泉",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -100,
+            -40
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "screen": [
+            70,
+            350
+          ],
+          "width": 660,
+          "source": "静岡県史・伊豆半島ジオパーク資料",
+          "marks": false,
+          "text": "坑道から噴き出した高温の温泉を周辺へ給湯し、大仁温泉発展の源泉となった",
+          "show": [
+            0.05,
+            1
+          ]
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "b",
+          "text": "その湯が周辺にも供給され、大仁の温泉の発展に関わっていったわ。"
+        },
+        {
+          "voice": "a",
+          "text": "地下での作業と、町の暮らしがつながっていたのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "地図上の地点や線は、鉱山地域と温泉地のおおよその位置関係を示しているわ。"
+        },
+        {
+          "voice": "b",
+          "text": "当時の配管や坑道の経路を、正確に描いたものではないの。"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          138.93925,
+          34.9895
+        ],
+        "zoom": 12.75,
+        "pitch": 56.0,
+        "bearing": -21.25
+      },
+      "to": {
+        "center": [
+          138.939,
+          34.99
+        ],
+        "zoom": 12.8,
+        "pitch": 56.0,
+        "bearing": -20.0
+      },
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            138.942556,
+            34.987056
+          ],
+          "text": "大仁鉱山（瓜生野）",
+          "style": "tag",
+          "dot": false,
+          "offset": [
+            120,
+            -80
+          ],
+          "show": [
+            0,
+            1
+          ],
+          "leader": true
+        },
+        {
+          "type": "label",
+          "at": [
+            138.9374,
+            34.9946
+          ],
+          "text": "大仁温泉",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -100,
+            -40
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "quote",
+          "screen": [
+            70,
+            350
+          ],
+          "width": 660,
+          "source": "静岡県史・伊豆半島ジオパーク資料",
+          "marks": false,
+          "text": "坑道から噴き出した高温の温泉を周辺へ給湯し、大仁温泉発展の源泉となった",
+          "show": [
+            0.05,
+            1
+          ]
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "a",
+          "text": "地図を読むときは、その線が何を表しているかも大事なのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "この金山が再び活発になった昭和の時代には、日本全体の事情も関わっていたわ。",
+          "speech": "このきんざんが再び活発になった昭和の時代には、日本全体の事情も関わっていたわ。"
+        }
+      ]
+    }
+  ]
+}
