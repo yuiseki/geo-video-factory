@@ -5,10 +5,10 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
-import { applyBuildingAppearance, neutralizePbr, toStudyModelWhite } from './plateau-materials.js';
+import { applyBuildingAppearance, applyBuildingOpacity, neutralizePbr, setBuildingDepthPass, toStudyModelWhite } from './plateau-materials.js';
 import { createPlateauRoofUniforms } from './plateau-facade-glsl.js';
 import { createCityProxyMaterial, createCityShadowMaterial, createCityUniforms, type CityRoofPhoto, type CityUniforms } from './city-materials.js';
-import { cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
+import { buildingOpacity, cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
 import { applyCityLight, createCityLightRig, usePhotoNeutralOutput, type CityLightRig } from './city-light-rig.js';
 
 interface ModelTile {
@@ -133,6 +133,7 @@ interface BuildingGroup {
   lights: CityLightRig;
   city: CityUniforms;
   config: PlateauBuildingsConfig;
+  currentOpacity: number;
   totalTiles: number;
   loadedTiles: () => number;
 }
@@ -223,7 +224,7 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
   } finally {
     draco.dispose();
   }
-  return { scene, localToMercator, lights, city, config, totalTiles: manifest.tiles.length, loadedTiles: () => loadedTiles };
+  return { scene, localToMercator, lights, city, config, currentOpacity: 1, totalTiles: manifest.tiles.length, loadedTiles: () => loadedTiles };
 }
 
 export async function addPlateauBuildings(
@@ -249,7 +250,15 @@ export async function addPlateauBuildings(
       renderer.resetState();
       for (const group of groups) {
         camera.projectionMatrix.fromArray(projection).multiply(group.localToMercator);
-        renderer.render(group.scene, camera);
+        if (group.currentOpacity < 0.999) {
+          setBuildingDepthPass(group.scene, true);
+          renderer.render(group.scene, camera);
+          setBuildingDepthPass(group.scene, false);
+          applyBuildingOpacity(group.scene, group.currentOpacity);
+          renderer.render(group.scene, camera);
+        } else {
+          renderer.render(group.scene, camera);
+        }
       }
     },
     onRemove: () => {
@@ -266,19 +275,24 @@ export async function addPlateauBuildings(
     for (const group of groups) {
       group.city.uCityGrowRadius.value = revealRadius(group.config.reveal, sec);
       group.city.uCityPaintRadius.value = paintRadius(group.config.reveal, sec);
+      if (group.config.opacity !== undefined) {
+        group.currentOpacity = buildingOpacity(group.config.opacity, sec);
+        applyBuildingOpacity(group.scene, group.currentOpacity);
+      }
     }
-    if (!nightKeys) return;
-    const night = keyframeValue(nightKeys, sec);
-    const light = cityLight(night);
-    for (const group of groups) {
-      applyCityLight(group.lights, light);
-      group.city.uCityWindows.value = light.windows;
-      group.city.uCityShadow.value = light.shadow;
-      group.city.uCityNight.value = night;
-    }
-    for (const id of rasterLayers) {
-      map.setPaintProperty(id, 'raster-brightness-max', light.mapBrightness);
-      map.setPaintProperty(id, 'raster-saturation', light.mapSaturation);
+    if (nightKeys) {
+      const night = keyframeValue(nightKeys, sec);
+      const light = cityLight(night);
+      for (const group of groups) {
+        applyCityLight(group.lights, light);
+        group.city.uCityWindows.value = light.windows;
+        group.city.uCityShadow.value = light.shadow;
+        group.city.uCityNight.value = night;
+      }
+      for (const id of rasterLayers) {
+        map.setPaintProperty(id, 'raster-brightness-max', light.mapBrightness);
+        map.setPaintProperty(id, 'raster-saturation', light.mapSaturation);
+      }
     }
     map.triggerRepaint();
   };

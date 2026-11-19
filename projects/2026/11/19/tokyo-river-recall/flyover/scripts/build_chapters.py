@@ -231,25 +231,43 @@ def chapter_envelope(
 
 
 def build_ch00_intro(data: dict) -> dict:
-    f01, f02 = data["f01"], data["f02"]
+    f01, f02, f03, f04, f05 = data["f01"], data["f02"], data["f03"], data["f04"], data["f05"]
+    SHIBUYA_WIDE = (139.685, 35.650, 139.714, 35.675)
     shots = [
         {
             "from": {"center": [139.6994, 35.6604], "zoom": 16.5, "pitch": 66, "bearing": 35},
-            "to": {"center": [139.7016, 35.6584], "zoom": 15.6, "pitch": 54, "bearing": 5},
+            "to": {"center": [139.7016, 35.6602], "zoom": 14.4, "pitch": 48, "bearing": 8},
             "lines": [
                 line("a", "ここ、渋谷のセンター街なのだ！ビルがぎっしりなのだ。", face="point"),
-                line("b", "でも、ビルを透かして足元を見てみましょう。", face="smile", react="surprise"),
+                line("b", "フフン、そのビルを透かして足元を見てみなさい。", face="smile", react="surprise"),
                 line("a", "うわっ！ビルの真下に青い川が出てきたのだ！？", face="surprise", react="smile"),
-                line("b", "今は暗渠になった「渋谷川」と「宇田川」の合流点よ。", speech="いまはあんきょになった、しぶやがわと、うだがわのごうりゅうてんよ。", face="point", react="surprise"),
+                line("b", "今は暗渠になった渋谷川と宇田川よ。引いて見ると、街全体が川の谷だと分かるでしょ？", speech="いまはあんきょになった、しぶやがわと、うだがわよ。ひいてみると、まちぜんたいがかわのたにだとわかるでしょ？", face="point", react="surprise"),
             ],
             "overlays": (
-                to_line_overlays(select_features(f01, SHIBUYA_BBOX, 15), C_CURR, 5)
-                + to_line_overlays(select_features(f02, SHIBUYA_BBOX, 35), C_CULV, 8, draw=[0.35, 0.85], show=[0.35, 1])
+                to_line_overlays(select_features(f01, SHIBUYA_WIDE, 20), C_CURR, 5)
+                + to_line_overlays(select_features(f02, SHIBUYA_WIDE, 55), C_CULV, 7, draw=[0.30, 0.80], show=[0.30, 1])
                 + [
-                    {"type": "label", "screen": tag_screen("OP｜渋谷センター街の足元に眠る川"), "text": "OP｜渋谷センター街の足元に眠る川", "style": "tag"},
-                    {"type": "label", "at": [139.7016, 35.6580], "text": "渋谷川（暗渠）", "dot": True, "show": [0.45, 1]},
-                    {"type": "label", "at": [139.6986, 35.6618], "text": "宇田川（暗渠）", "dot": True, "show": [0.45, 1]},
-                    {"type": "panel", "src": "assets/photos/shibuya_cat_street.jpg", "caption": "旧渋谷川上の遊歩道（キャットストリート）", "credit": "写真：Harani0403 / Wikimedia Commons（CC0）", "screen": [60, 120], "width": 440, "show": [0.55, 1]},
+                    {"type": "label", "screen": tag_screen("OP｜渋谷の街に張り巡らされた暗渠の全体像"), "text": "OP｜渋谷の街に張り巡らされた暗渠の全体像", "style": "tag"},
+                    {"type": "label", "at": [139.7016, 35.6578], "text": "渋谷川（暗渠）", "dot": True, "show": [0.45, 1]},
+                    {"type": "label", "at": [139.6982, 35.6615], "text": "宇田川（暗渠）", "dot": True, "show": [0.45, 1]},
+                    {"type": "note", "text": "3D建物：PLATEAU + 地理院・OSM補完（推定テクスチャ含む）"},
+                ]
+            ),
+        },
+        {
+            "from": {"center": [139.7022, 35.6610], "zoom": 14.7, "pitch": 50, "bearing": 12},
+            "to": {"center": [139.7044, 35.6648], "zoom": 16.6, "pitch": 60, "bearing": 25},
+            "lines": [
+                line("a", "北へ伸びているクネクネした道も、全部川だったのだ！？", face="surprise"),
+                line("b", "そう。人気の遊歩道「キャットストリート」も、実は旧渋谷川の跡なのよ。", speech="そう。にんきのゆうほどう、キャットストリートも、じつはきゅうしぶやがわのあとなのよ。", face="smile", react="surprise"),
+            ],
+            "overlays": (
+                to_line_overlays(select_features(f01, SHIBUYA_WIDE, 20), C_CURR, 5)
+                + to_line_overlays(select_features(f02, SHIBUYA_WIDE, 55), C_CULV, 8)
+                + [
+                    {"type": "label", "screen": tag_screen("OP｜ズームイン：キャットストリート（旧渋谷川）"), "text": "OP｜ズームイン：キャットストリート（旧渋谷川）", "style": "tag"},
+                    {"type": "label", "at": [139.7046, 35.6652], "text": "キャットストリート（旧渋谷川）", "dot": True, "show": [0.35, 1]},
+                    {"type": "photo_marker", "src": "assets/photos/shibuya_cat_street.jpg", "at": [139.7046, 35.6652], "caption": "旧渋谷川上の遊歩道（キャットストリート）", "credit": "写真：Harani0403 / Wikimedia Commons（CC0）", "screen": [60, 120], "width": 400, "height": 340, "show": [0.52, 1]},
                     {"type": "note", "text": "3D建物：PLATEAU + 地理院・OSM補完（推定テクスチャ含む）"},
                 ]
             ),
@@ -259,33 +277,41 @@ def build_ch00_intro(data: dict) -> dict:
             "from": {"center": [139.7016, 35.6580], "zoom": 14.2, "pitch": 46, "bearing": 0},
             "to": {"center": [139.74, 35.68], "zoom": 10.6, "pitch": 30, "bearing": 0},
             "lines": [
-                line("a", "東京には、こういう消えた川が他にもあるのか？", speech="とうきょうには、こういうきえたかわがほかにもあるのか？", face="trouble"),
-                line("b", "23区全体を見ると、いま見えている開渠の川は 369.79 km。", speech="にじゅうさんくぜんたいをみると、いまみえているかいきょのかわは、さんびゃくろくじゅうきゅうてんななきゅうキロメートル。", face="normal", react="normal"),
-                line("a", "それだけでも結構ある気がするのだ。", face="normal", react="normal"),
-                line("b", "ところが、戦後の開発で暗渠や埋立地になった川が、まだ何百キロも隠れているのよ。", speech="ところが、せんごのかいはつであんきょやうめたてちになったかわが、まだなんびゃくキロもかくれているのよ。", face="point", react="surprise"),
+                line("a", "東京には、こういう消えた川が他にもあるのか？", speech="とうきょうには、こういうきえたかわがほかにもあるのだ？", face="trouble"),
+                line("b", "23区で今見えている川は 369.79 km。でも、本当はこれだけ隠れていたのよ！", speech="にじゅうさんくでいまみえているかわは、さんびゃくろくじゅうきゅうてんななきゅうキロメートル。でも、ほんとうはこれだけかくれていたのよ！", face="point", react="surprise"),
+                line("a", "ええっ！？今の川より、なくなった川の方がずっと多いのだ！？", face="surprise", react="smile"),
+                line("b", "ラインだけで 459.54 km、面積でも 6.83 平方キロメートル分が眠っていたわ。", speech="ラインだけで、よんひゃくごじゅうきゅうてんごよんキロメートル、めんせきでも、ろくてんはちさんへいほうキロメートルぶんがねむっていたわ。", face="normal", react="surprise"),
             ],
             "overlays": (
-                to_line_overlays(select_features(f01, TOKYO_BBOX, 100, min_len_m=400), C_CURR, 3)
-                + ui_header("OP｜23区で「いま見えている川」は 369.79 km", 369.79, caption="現行開渠河川")
+                to_line_overlays(select_features(f01, TOKYO_BBOX, 80, min_len_m=450), C_CURR, 3)
+                + to_line_overlays(select_features(f02, TOKYO_BBOX, 90, min_len_m=700), C_CULV, 3, draw=[0.28, 0.72], show=[0.28, 1])
+                + to_poly_overlays(select_features(f03, TOKYO_BBOX, 55), C_CANAL, 0.65, "#ffffff", 2, show=[0.35, 1])
+                + to_line_overlays(select_features(f04, TOKYO_BBOX, 50), C_AQUED, 3, draw=[0.35, 0.78], show=[0.35, 1])
+                + to_poly_overlays(select_features(f05, TOKYO_BBOX, 55), C_FORMER, 0.5, "#c7d2fe", 1, show=[0.40, 1])
+                + ui_header("OP｜東京には、今はない川がこれだけ眠っていた！", 459.54, counter_from=0.0, caption="失われた川（ライン計）")
             ),
         },
         {
             "from": {"center": [139.72, 35.67], "zoom": 10.8, "pitch": 34, "bearing": -6},
             "to": {"center": [139.76, 35.69], "zoom": 10.7, "pitch": 30, "bearing": 4},
             "lines": [
-                line("b", "今回は商用利用もできるオープンデータだけを使って、4種類の失われた川を地図に重ねていくわ。", speech="こんかいはしょうようりようもできるオープンデータだけをつかって、よんしゅるいのうしなわれたかわをちずにかさねていくわ。", face="normal"),
-                line("a", "暗渠・掘割・上水・旧河道の4つを、消さずに全部積み上げるのだな！", speech="あんきょ、ほりわり、じょうすい、きゅうかどうのよっつを、けさずにぜんぶつみあげるのだな！", face="smile", react="smile"),
+                line("b", "今から山の手の暗渠、都心の掘割、尾根の上水、そして旧河道を詳しく見ていくわよ。", speech="いまからやまのてのあんきょ、としんのほりわり、おねのじょうすい、そしてきゅうかどうをくわしくみていくわよ。", face="point"),
+                line("a", "ボクも早く見たいのだ！オープンデータだけで全部たどってみるのだ！", face="smile", react="smile"),
             ],
             "overlays": (
-                to_line_overlays(select_features(f01, TOKYO_BBOX, 100, min_len_m=400), C_CURR, 3)
+                to_line_overlays(select_features(f01, TOKYO_BBOX, 60, min_len_m=500), C_CURR, 2)
+                + to_line_overlays(select_features(f02, TOKYO_BBOX, 70, min_len_m=800), C_CULV, 2)
+                + to_poly_overlays(select_features(f03, TOKYO_BBOX, 45), C_CANAL, 0.55, "#ffffff", 1)
+                + to_line_overlays(select_features(f04, TOKYO_BBOX, 45), C_AQUED, 3)
+                + to_poly_overlays(select_features(f05, TOKYO_BBOX, 45), C_FORMER, 0.45, "#c7d2fe", 1)
                 + [
-                    {"type": "label", "screen": tag_screen("OP｜オープンデータだけで東京の川を4段階復元"), "text": "OP｜オープンデータだけで東京の川を4段階復元", "style": "tag"},
+                    {"type": "label", "screen": tag_screen("OP｜今から4種類の「消えた川」を詳しく見ていく"), "text": "OP｜今から4種類の「消えた川」を詳しく見ていく", "style": "tag"},
                     {"type": "quote", "source": "使用データ方針", "text": "国土地理院・OSM・国土数値情報・東京都浸水実績図など商用利用可能なデータのみ使用", "marks": False, "screen": [70, 140], "width": 740},
                 ]
             ),
         },
     ]
-    return chapter_envelope(shots, plateau_area="shibuya", opacity_keyframes=[[0, 1.0], [3.5, 1.0], [6.0, 0.35], [20, 0.35]], exaggeration=1.0, hillshade=0.2)
+    return chapter_envelope(shots, plateau_area="shibuya", opacity_keyframes=[[0, 1.0], [3.0, 1.0], [5.5, 0.35], [60, 0.35]], exaggeration=1.0, hillshade=0.2)
 
 
 def build_ch01_yamanote(data: dict) -> dict:
@@ -295,7 +321,7 @@ def build_ch01_yamanote(data: dict) -> dict:
             "from": {"center": [139.63, 35.63], "zoom": 13.0, "pitch": 58, "bearing": 40},
             "to": {"center": [139.67, 35.66], "zoom": 11.7, "pitch": 48, "bearing": 15},
             "lines": [
-                line("b", "第1章は、世田谷や目黒などの「山の手」の台地からスタートよ。", speech="だいいっしょうは、せたがややめぐろなどの、やまのてのだいちからスタートよ。", face="point"),
+                line("b", "第1章は、世田谷や目黒などの「山の手」の台地から始めるわよ。", speech="だいいっしょうは、せたがややめぐろなどの、やまのてのだいちからはじめるわよ。", face="point"),
                 line("a", "一見ふつうの住宅街だけど、標高を少し強調すると細かい谷だらけなのだ！", face="surprise", react="normal"),
             ],
             "overlays": (
@@ -308,9 +334,9 @@ def build_ch01_yamanote(data: dict) -> dict:
             "from": {"center": [139.64, 35.64], "zoom": 12.2, "pitch": 45, "bearing": 10},
             "to": {"center": [139.67, 35.67], "zoom": 11.4, "pitch": 36, "bearing": 0},
             "lines": [
-                line("b", "ここにOSMの暗渠データと、標高モデルから抽出した谷筋を一気に重ねるわ。", speech="ここにオーエスエムのあんきょデータと、ひょうこうモデルからちゅうしゅつしたたにすじをいっきにかさねるわ。", face="normal"),
+                line("b", "まずはOSMの暗渠データと、標高モデルから抽出した谷筋を一気に重ねるわよ。", speech="まずはオーエスエムのあんきょデータと、ひょうこうモデルからちゅうしゅつしたたにすじをいっきにかさねるわよ。", face="normal"),
                 line("a", "すごい数なのだ！一気に 384.31 km も増えたのだ！", speech="すごいかずなのだ！いっきにさんびゃくはちじゅうよんてんさんいちキロメートルもふえたのだ！", face="surprise", react="smile"),
-                line("b", "さっきの「いま見えている川」369.79 km を、暗渠と谷筋だけで上回ってしまったのよ。", speech="さっきの、いまみえているかわ、さんびゃくろくじゅうきゅうてんななきゅうキロメートルを、あんきょとたにすじだけでうわまわってしまったのよ。", face="point", react="surprise"),
+                line("b", "さっきの「今見えている川」369.79 km を、暗渠と谷筋だけで上回ったでしょ？", speech="さっきの、いまみえているかわ、さんびゃくろくじゅうきゅうてんななきゅうキロメートルを、あんきょとたにすじだけでうわまわったでしょ？", face="point", react="surprise"),
             ],
             "overlays": (
                 to_line_overlays(select_features(f01, YAMANOTE_BBOX, 40, min_len_m=300), C_CURR, 2)
@@ -323,7 +349,7 @@ def build_ch01_yamanote(data: dict) -> dict:
             "from": {"center": [139.69, 35.63], "zoom": 12.8, "pitch": 42, "bearing": -25},
             "to": {"center": [139.65, 35.65], "zoom": 12.2, "pitch": 35, "bearing": -10},
             "lines": [
-                line("b", "水系ごとに見ると、目黒川水系は開渠が 11.66 km なのに、暗渠・谷筋は 87.94 km もあるわ。", speech="すいけいごとにみると、めぐろがわすいけいはかいきょがじゅういってんろくろくキロメートルなのに、あんきょ・たにすじははちじゅうななてんきゅうよんキロメートルもあるわ。", face="point"),
+                line("b", "水系ごとに見ると、目黒川水系は開渠が 11.66 km なのに、暗渠・谷筋は 87.94 km もあるの。", speech="すいけいごとにみると、めぐろがわすいけいはかいきょがじゅういってんろくろくキロメートルなのに、あんきょ・たにすじははちじゅうななてんきゅうよんキロメートルもあるの。", face="point"),
                 line("a", "目黒川のほとんどは、見えない支流や谷が集まってできていたのだな。", face="trouble", react="normal"),
             ],
             "overlays": (
@@ -340,8 +366,8 @@ def build_ch01_yamanote(data: dict) -> dict:
             "to": {"center": [139.670, 35.661], "zoom": 15.2, "pitch": 20, "bearing": 0},
             "lines": [
                 line("a", "代沢の北沢川緑道みたいに、今はきれいな遊歩道になっている場所も多いのだ。", speech="だいざわのきたざわがわりょくどうみたいに、いまはきれいなゆうほどうになっているばしょもおおいのだ。", face="smile"),
-                line("b", "背景を1945年の空中写真に切り替えると、ほら、暗渠になる前の川筋がくっきり見えるわ。", speech="はいけいをせんきゅうひゃくよんじゅうごねんのくうちゅうしゃしんにきりかえると、ほら、あんきょになるまえのかわすじがくっきりみえるわ。", face="point", react="surprise"),
-                line("a", "次はもっと驚く、都心のビルや高速道路の下をめぐるのだ！", face="point", react="smile"),
+                line("b", "背景を1945年の空中写真に切り替えてみなさい。暗渠になる前の川筋がくっきりよ。", speech="はいけいをせんきゅうひゃくよんじゅうごねんのくうちゅうしゃしんにきりかえてみなさい。あんきょになるまえのかわすじがくっきりよ。", face="point", react="surprise"),
+                line("a", "本当なのだ！次はもっと驚く、都心のビルや高速道路の下をめぐるのだ！", face="point", react="smile"),
             ],
             "overlays": (
                 [{"type": "base", "layer": "ort_USA10", "show": [0.4, 1], "fade": 0.25}]
@@ -383,9 +409,9 @@ def build_ch02a_ginza(data: dict) -> dict:
             "from": {"center": [139.7635, 35.6685], "zoom": 16.2, "pitch": 58, "bearing": 45},
             "to": {"center": [139.7685, 35.6695], "zoom": 15.3, "pitch": 48, "bearing": -10},
             "lines": [
-                line("a", "あっ！銀座をぐるっと囲む東京高速道路、いわゆるKK線の下も全部川だったのか！？", speech="あっ！ぎんざをぐるっとかこむとうきょうこうそくどうろ、いわゆるケーケーせんのしたもぜんぶかわだったのか！？", face="surprise"),
-                line("b", "そう。外濠川・京橋川・汐留川というお堀を埋め立てて造られた高架道路なの。", speech="そう。そとぼりがわ、きょうばしがわ、しおどめがわというおほりをうめたててつくられたこうかどうろなの。", face="point", react="surprise"),
-                line("b", "東側の築地川も、今は首都高都心環状線 C1 の掘り割りと公園になっているわ。", speech="ひがしがわのつきじがわも、いまはしゅとこうとしんかんじょうせんシーワンのほりわりとこうえんになっているわ。", face="normal", react="normal"),
+                line("a", "あっ！銀座をぐるっと囲む東京高速道路、KK線の下も全部川だったのだ！？", speech="あっ！ぎんざをぐるっとかこむとうきょうこうそくどうろ、ケーケーせんのしたもぜんぶかわだったのだ！？", face="surprise"),
+                line("b", "そう。外濠川・京橋川・汐留川というお堀を埋め立てて造られた高架道路なのよ。", speech="そう。そとぼりがわ、きょうばしがわ、しおどめがわというおほりをうめたててつくられたこうかどうろなのよ。", face="point", react="surprise"),
+                line("b", "東側の築地川も、今は首都高都心環状線 C1 の掘り割りと公園になっているの。", speech="ひがしがわのつきじがわも、いまはしゅとこうとしんかんじょうせんシーワンのほりわりとこうえんになっているの。", face="normal", react="normal"),
             ],
             "overlays": (
                 to_line_overlays(select_features(f01, GINZA_BBOX, 20), C_CURR, 3)
@@ -411,7 +437,7 @@ def build_ch02b_nihonbashi(data: dict) -> dict:
             "from": {"center": [139.7795, 35.6865], "zoom": 16.3, "pitch": 58, "bearing": 165},
             "to": {"center": [139.7785, 35.6835], "zoom": 15.8, "pitch": 50, "bearing": 175},
             "lines": [
-                line("b", "続いては日本橋・人形町エリア。オフィスビルの足元に注目よ。", face="point"),
+                line("b", "続いては日本橋・人形町エリア。オフィスビルの足元に注目しなさい。", face="point"),
                 line("a", "うわ、街の真ん中に2本ならんで水路が突き刺さっているのだ！", face="surprise"),
                 line("b", "江戸の問屋街へ荷物を運んだ「東堀留川」と「西堀留川」よ。", speech="えどのとんやがいへにもつをはこんだ、ひがしほりどめがわと、にしほりどめがわよ。", face="normal", react="normal"),
             ],
@@ -431,7 +457,7 @@ def build_ch02b_nihonbashi(data: dict) -> dict:
             "to": {"center": [139.7745, 35.6780], "zoom": 15.6, "pitch": 52, "bearing": 185},
             "lines": [
                 line("a", "この江戸橋ジャンクションの真下にも太い川があるのだ！", speech="このえどばしジャンクションのましたにもふといかわがあるのだ！", face="point"),
-                line("b", "日本橋川と京橋川をつないでいた「楓川」ね。戦後の1945年空中写真にも本物の水面が写っているわ。", speech="にほんばしがわときょうばしがわをつないでいた、かえでがわね。せんごのせんきゅうひゃくよんじゅうごねんくうちゅうしゃしんにもほんもののすいめんがうつっているわ。", face="smile", react="surprise"),
+                line("b", "日本橋川と京橋川をつないでいた「楓川」よ。1945年の空中写真にも本物の水面が写ってるでしょ？", speech="にほんばしがわときょうばしがわをつないでいた、かえでがわよ。せんきゅうひゃくよんじゅうごねんのくうちゅうしゃしんにもほんもののすいめんがうつってるでしょ？", face="smile", react="surprise"),
             ],
             "overlays": (
                 [{"type": "base", "layer": "ort_USA10", "show": [0.48, 1], "fade": 0.25}]
@@ -575,8 +601,8 @@ def build_ch04_former_channels(data: dict) -> dict:
             "from": {"center": [139.70, 35.565], "zoom": 13.2, "pitch": 45, "bearing": 20},
             "to": {"center": [139.74, 35.675], "zoom": 10.7, "pitch": 32, "bearing": 0},
             "lines": [
-                line("b", "多摩川の旧河道も含めると、合計 5.837 平方キロメートル。これで全5層の「消えた川」がすべて揃ったわ。", speech="たまがわのきゅうかどうもふくめると、ごうけい、ごてん、はちさんなな、へいほうキロメートル。これでぜんごそうの、きえたかわがすべてそろったわ。", face="smile"),
-                line("a", "すごい密度なのだ！でも、これを知っていると何か役に立つのか？", face="trouble", react="point"),
+                line("b", "多摩川の旧河道も含めると、合計 5.837 平方キロメートル。全5層の「消えた川」が揃ったわよ。", speech="たまがわのきゅうかどうもふくめると、ごうけい、ごてん、はちさんなな、へいほうキロメートル。ぜんごそうの、きえたかわがそろったわよ。", face="smile"),
+                line("a", "すごい密度なのだ！でも、これを知っていると何か役に立つのだ？", face="trouble", react="point"),
             ],
             "overlays": (
                 to_line_overlays(select_features(f01, TOKYO_BBOX, 40, min_len_m=500), C_CURR, 2)
@@ -596,7 +622,7 @@ def build_ch05_ending(data: dict) -> dict:
             "from": {"center": [139.72, 35.67], "zoom": 11.2, "pitch": 36, "bearing": -10},
             "to": {"center": [139.74, 35.68], "zoom": 10.6, "pitch": 30, "bearing": 0},
             "lines": [
-                line("b", "最後に、1974年から2019年までの「東京都 浸水実績図」を赤いポリゴンで重ねてみましょう。", speech="さいごに、せんきゅうひゃくななじゅうよねんからにせんじゅうきゅうねんまでの、とうきょうとしんすいじっせきずを、あかいポリゴンでかさねてみましょう。", face="point"),
+                line("b", "最後に、1974年から2019年までの「東京都 浸水実績図」を赤いポリゴンで重ねてみなさい。", speech="さいごに、せんきゅうひゃくななじゅうよねんからにせんじゅうきゅうねんまでの、とうきょうとしんすいじっせきずを、あかいポリゴンでかさねてみなさい。", face="point"),
                 line("a", "うわっ…！さっきまで辿ってきた昔の川と、赤い浸水エリアがぴったり重なっているのだ！", face="surprise"),
                 line("b", "23区内の浸水実績 4,759 件のうち、およそ 45.2% が、失われた川の 100 メートル以内に集中していたのよ。", speech="にじゅうさんくないのしんすいじっせき、よんせんななひゃくごじゅうきゅうけんのうち、およそよんじゅうごてんにパーセントが、うしなわれたかわのひゃくメートルいないにしゅうちゅうしていたのよ。", face="sad", react="sad"),
             ],
@@ -607,7 +633,7 @@ def build_ch05_ending(data: dict) -> dict:
                 + to_poly_overlays(select_features(f06, TOKYO_BBOX, 60), C_FLOOD, 0.55, "#fda4af", 1, show=[0.2, 1])
                 + [
                     {"type": "label", "screen": tag_screen("終章｜浸水実績の 45.2% が元・川の100m以内"), "text": "終章｜浸水実績の 45.2% が元・川の100m以内", "style": "tag"},
-                    {"type": "panel", "src": "assets/fig3_flood_overlap_validation.png", "caption": "浸水実績ポリゴンとの最短距離分布", "credit": "東京都浸水実績図（1974〜2019年）", "screen": [1080, 120], "width": 760},
+                    {"type": "panel", "src": "assets/fig3_flood_overlap_validation.png", "caption": "浸水実績ポリゴンとの最短距離分布", "credit": "東京都浸水実績図（1974〜2019年）", "screen": [1080, 95], "width": 730},
                 ]
             ),
         },
@@ -615,8 +641,8 @@ def build_ch05_ending(data: dict) -> dict:
             "from": {"center": [139.74, 35.68], "zoom": 10.8, "pitch": 38, "bearing": -10},
             "to": {"center": [139.74, 35.68], "zoom": 10.3, "pitch": 28, "bearing": 12},
             "lines": [
-                line("b", "川は埋め立てられて姿を変えても、土地の低さや水の通り道としての記憶は消えないのね。", speech="かわはうめたてられてすがたをかえても、とちのひくさやみずのとおりみちとしてのきおくはきえないのね。", face="normal"),
-                line("a", "いつもの商店街や高速道路の下にも、昔の川が眠っているかもしれないのだ。みんなも探してみてほしいのだ！", face="smile", react="smile"),
+                line("b", "川は埋め立てられて姿を変えても、土地の低さや水の通り道としての記憶は消えないのよ。", speech="かわはうめたてられてすがたをかえても、とちのひくさやみずのとおりみちとしてのきおくはきえないのよ。", face="normal"),
+                line("a", "ボクたちの街の商店街や高速道路の下にも、昔の川が眠っているかもしれないのだ。みんなも探してみてほしいのだ！", face="smile", react="smile"),
             ],
             "overlays": (
                 to_line_overlays(select_features(f01, TOKYO_BBOX, 45, min_len_m=500), C_CURR, 2)

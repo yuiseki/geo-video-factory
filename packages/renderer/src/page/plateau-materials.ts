@@ -345,4 +345,52 @@ export function applyBuildingAppearance(
   return applyPlateauBuildingAppearance(root, paletteOrOptions);
 }
 
+/** Set opacity on building meshes (skipping ground shadow materials). */
+export function applyBuildingOpacity(root: THREE.Object3D, opacity: number): void {
+  const clamped = Math.min(1, Math.max(0, opacity));
+  const isTransparent = clamped < 0.999;
+  root.traverse((obj) => {
+    const mesh = obj as THREE.Mesh;
+    if (!mesh.isMesh || !mesh.material) return;
+    const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    for (const mat of mats) {
+      if (!mat || mat.name === "city-shadow") continue;
+      mat.transparent = isTransparent;
+      mat.opacity = clamped;
+      mat.depthWrite = !isTransparent;
+      mat.colorWrite = true;
+    }
+  });
+}
+
+/** Toggle depth-only pre-pass mode on building meshes so transparent buildings render front-surface only without overdraw. */
+export function setBuildingDepthPass(root: THREE.Object3D, enabled: boolean): void {
+  root.traverse((obj) => {
+    const mesh = obj as THREE.Mesh;
+    if (!mesh.isMesh || !mesh.material) return;
+    const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    const isShadow = mats.some((mat) => mat && mat.name === "city-shadow");
+    if (isShadow) {
+      if (enabled) {
+        mesh.userData._prepassVisible = mesh.visible;
+        mesh.visible = false;
+      } else if (mesh.userData._prepassVisible !== undefined) {
+        mesh.visible = Boolean(mesh.userData._prepassVisible);
+        delete mesh.userData._prepassVisible;
+      }
+      return;
+    }
+    for (const mat of mats) {
+      if (!mat) continue;
+      if (enabled) {
+        mat.colorWrite = false;
+        mat.depthWrite = true;
+        mat.transparent = false;
+      } else {
+        mat.colorWrite = true;
+      }
+    }
+  });
+}
+
 

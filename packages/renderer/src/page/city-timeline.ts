@@ -49,6 +49,13 @@ export function paintRadius(reveal: CityReveal | undefined, t: number): number {
   return reveal?.paint?.length ? keyframeValue(reveal.paint, t) : 1e9;
 }
 
+/** Clamped building opacity (0..1) from a fixed value or [seconds, 0..1] keyframes. */
+export function buildingOpacity(opacity: number | [number, number][] | undefined, t: number): number {
+  if (opacity === undefined) return 1;
+  const raw = typeof opacity === 'number' ? opacity : keyframeValue(opacity, t);
+  return Math.min(1, Math.max(0, raw));
+}
+
 /** Meters east and north of origin, in the same local plane the city-proxy pipeline writes. */
 export function localMeters(point: [number, number], origin: [number, number]): [number, number] {
   const kx = 111_320 * Math.cos(origin[1] * Math.PI / 180);

@@ -33,6 +33,7 @@ export function createCityShadowMaterial(uniforms: CityUniforms = cityUniforms):
   const material = new THREE.MeshBasicMaterial({
     color: 0x0a0f18, transparent: true, depthWrite: false, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2,
   });
+  material.name = 'city-shadow';
   material.customProgramCacheKey = () => 'city-shadow-v1';
   material.onBeforeCompile = (shader) => {
     Object.assign(shader.uniforms, uniforms);
