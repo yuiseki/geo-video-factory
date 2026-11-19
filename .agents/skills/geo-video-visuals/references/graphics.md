@@ -1,6 +1,6 @@
 # テロップとモーショングラフィックス
 
-用語の説明は本人が整理したもの (2026-11-12)。このテンプレートでできるかどうかは [README.md](README.md) の表。重ね物の書き方は [shots.md](../../geo-video-renderer/references/shots.md) を参照する。
+用語の説明は本人が整理したもの (2026-11-12)。このテンプレートでできるかどうかは [README.md](README.md) の表。重ね物の書き方は [shots.md](../../geo-video-renderer/references/shots.md)、モーションの原則やイージング・外部表現技術の使い分けは [motion-principles.md](motion-principles.md) を参照する。
 
 ## 8. テロップ・モーショングラフィックス
 

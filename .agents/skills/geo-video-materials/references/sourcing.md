@@ -53,3 +53,25 @@
 - 地理院タイルの年代別写真（`gazo1`, `ort_old10`, `ort_USA10`, `ort_riku10`）を接合して `image` / `panel` 素材にする場合も、元タイル・範囲・取得 URL・取得日を `manifest.json` 等に記録する。
 - 地理院タイルはサーバー負荷を避けるため、取得範囲を必要な分だけに限り、多数を連続取得しない。
 - 出典例: `出典：国土地理院 地理院タイル（空中写真、1945年〜1950年）を加工して作成`（`gazo1`〜`gazo4` は `国土画像情報（国土交通省）` を明記）。
+
+---
+
+## 6. Openverse API（効果音・環境音・BGM・画像）
+
+- **概要**: Creative Commons やパブリックドメインの**音声（効果音・環境音・音楽）および画像**を横断検索できる公開 API（`https://api.openverse.org/v1/`）。基本検索は **API キー不要**で利用できる（匿名リクエストは `page_size` 上限 20、レート制限あり）。
+- **音声検索エンドポイント**: `GET https://api.openverse.org/v1/audio/`
+  - 画像検索は `GET https://api.openverse.org/v1/images/`
+- **主なクエリパラメータ**:
+  - `q`: 検索語（例: `rain`, `ambient`, `city traffic`）
+  - `category`: `sound_effect`（効果音）, `music`（音楽）, `speech`, `podcast`
+  - `license`: `cc0`, `pdm`, `by`, `by-sa`, `by-nc` 等（カンマ区切りまたは複数指定）
+  - `license_type`: `commercial`（商用可のみ）, `modification`（改変可のみ）
+  - `source`: `freesound`, `jamendo`, `wikimedia` 等
+  - `extension`: `mp3`, `wav`, `ogg` 等
+- **検索例**:
+  ```bash
+  curl "https://api.openverse.org/v1/audio/?q=rain&category=sound_effect&license=cc0,by&license_type=commercial&page_size=5"
+  ```
+- **出典・権利管理**:
+  - レスポンスに含まれる `title`, `creator`, `license`, `license_version`, `foreign_landing_url`（元ページ）を `credits.json` に記録する。
+  - Openverse 上のライセンス表示は元サイトのメタデータに依存するため、ダウンロード後はリンク先の元ページでも条件（特に帰属表記や商用可否）を一度確認する。

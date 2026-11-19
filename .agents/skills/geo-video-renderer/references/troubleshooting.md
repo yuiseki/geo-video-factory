@@ -21,3 +21,4 @@
 | 書き出しが遅い (1 コマ 0.5 秒前後)、GPU の使用率が 0% で Chromium が CPU 1 コアに張り付く | スクリーンショットの PNG 圧縮が律速。2026-11-11 の実測で PNG 428 ms、JPEG 54 ms、地図の描画とタイル待ち 37 ms。`render.mjs` は JPEG (品質 95) で撮る |
 | 再生が途中で止まる (止まる所までは正常、ffmpeg で読むとエラーなし) | CRF だけだと、地図が大きく動く所でビットレートが 46 Mbps まで跳ね、H.264 level 4.0 の上限 (25 Mbps) を超えていた。キーフレームも 217 秒に 35 個しかなかった。これが止まる原因という説明が有力で、`render.mjs` は `-maxrate 20M -bufsize 40M -level 4.1 -g fps*2` で書き出す (山は 27 Mbps、キーフレーム 117 個になった) |
 | Windows で Python のログが文字化けする、`UnicodeEncodeError` | 既定の文字コードが UTF-8 でない。環境変数 `PYTHONUTF8=1` を付けて動かす |
+| カスタム DOM/SVG 図版の動きが書き出し動画でズレる・飛ぶ | CSS `transition`/`@keyframes` や `requestAnimationFrame` は実時間に依存し、コマ撮り（`--fps`）と同期しない。`frame()` が受け取る時刻 `t` から決定論的に補間する（詳細は `geo-video-visuals` の [motion-principles.md](../../geo-video-visuals/references/motion-principles.md)） |
