@@ -1,0 +1,222 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.35,
+  "hillshade": 0.28,
+  "saturation": -0.05,
+  "contrast": 0.08,
+  "credits": [
+    "温泉POI・河川網：© OpenStreetMap contributors",
+    "鉱山・産金・災害史：静岡県史・伊豆半島ジオパーク・産総研・日本銀行等資料",
+    "立ち絵：坂本アヒル"
+  ],
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.15,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 160,
+    "side": "right",
+    "bottom": 135
+  },
+  "shots": [
+    {
+      "from": {
+        "center": [
+          138.91,
+          34.86
+        ],
+        "zoom": 9.5,
+        "pitch": 52.0,
+        "bearing": 18.0
+      },
+      "to": {
+        "center": [
+          138.91,
+          34.86
+        ],
+        "zoom": 9.5,
+        "pitch": 52.0,
+        "bearing": 18.0
+      },
+      "overlays": [
+        {
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 26,
+          "intensity": 1.2,
+          "opacity": 0.75,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "chapter",
+          "kicker": "結び",
+          "text": "温泉と金、そして試練を生んだ火山の半島",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "b",
+          "text": "伊豆半島の温泉と金山は、火山活動や地下水という共通の背景を持つことがあるわ。"
+        },
+        {
+          "voice": "a",
+          "text": "南の海から来た火山の歴史が、温泉や鉱脈につながっていたのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "ただし、地図で近いことだけで、個々の場所の原因が決まるわけではないの。"
+        },
+        {
+          "voice": "a",
+          "text": "そして、金の需要には戦争や国の政策が関わっていたんだね。"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          138.91,
+          34.86
+        ],
+        "zoom": 9.5,
+        "pitch": 52.0,
+        "bearing": 18.0
+      },
+      "to": {
+        "center": [
+          138.91,
+          34.86
+        ],
+        "zoom": 9.5,
+        "pitch": 52.0,
+        "bearing": 18.0
+      },
+      "overlays": [
+        {
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 26,
+          "intensity": 1.2,
+          "opacity": 0.75,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "b",
+          "text": "鉱山で働いた人たちの事故や、過酷な動員の歴史も忘れられないわ。"
+        },
+        {
+          "voice": "a",
+          "text": "地震で鉱滓が流出し、川や下流の暮らしに影響したこともあったのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "豊かな温泉、地下の資源、人々の仕事と被害。それぞれ違う時間の物語よ。"
+        },
+        {
+          "voice": "a",
+          "text": "同じ地図に重ねると、それぞれがどこで起きたのか見えてくるのだ。"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          138.91,
+          34.86
+        ],
+        "zoom": 9.5,
+        "pitch": 52.0,
+        "bearing": 18.0
+      },
+      "to": {
+        "center": [
+          138.91,
+          34.86
+        ],
+        "zoom": 9.5,
+        "pitch": 52.0,
+        "bearing": 18.0
+      },
+      "overlays": [
+        {
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 26,
+          "intensity": 1.2,
+          "opacity": 0.75,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "b",
+          "text": "現在の風景を見るとき、その土地に積み重なった歴史も思い出せたらいいわね。"
+        },
+        {
+          "voice": "a",
+          "text": "伊豆の温泉に入るとき、地下から町へ続く物語を考えてみるのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "ご視聴ありがとうございました。"
+        },
+        {
+          "voice": "a",
+          "text": "ありがとうなのだ！"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.35,
+  "hillshade": 0.28,
+  "saturation": -0.05,
+  "contrast": 0.08,
+  "credits": [
+    "温泉POI・河川網：© OpenStreetMap contributors",
+    "鉱山・産金・災害史：静岡県史・伊豆半島ジオパーク・産総研・日本銀行等資料",
+    "立ち絵：坂本アヒル"
+  ],
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.15,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 160,
+    "side": "right",
+    "bottom": 135
+  },
+  "shots": [
+    {
+      "from": {
+        "center": [
+          138.78,
+          34.87
+        ],
+        "zoom": 9.8,
+        "pitch": 45.0,
+        "bearing": 10.0
+      },
+      "to": {
+        "center": [
+          138.78,
+          34.87
+        ],
+        "zoom": 9.833333,
+        "pitch": 45.0,
+        "bearing": 10.666667
+      },
+      "overlays": [
+        {
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 24,
+          "intensity": 1.1,
+          "opacity": 0.65,
+          "colors": [
+            [
+              0,
+              "rgba(0, 0, 0, 0)"
+            ],
+            [
+              0.2,
+              "rgba(14, 165, 233, 0.35)"
+            ],
+            [
+              0.5,
+              "rgba(56, 189, 248, 0.65)"
+            ],
+            [
+              0.8,
+              "rgba(186, 230, 253, 0.85)"
+            ],
+            [
+              1,
+              "rgba(255, 255, 255, 0.95)"
+            ]
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "counter",
+          "screen": [
+            70,
+            60
+          ],
+          "caption": "今回選んだ鉱山",
+          "value": 9,
+          "unit": "件",
+          "scale": 1.85,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "counter",
+          "screen": [
+            70,
+            330
+          ],
+          "caption": "鉱山から最寄り温泉まで（中央値）",
+          "value": 0.34,
+          "decimals": 2,
+          "unit": "km",
+          "scale": 1.85,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.79326,
+            34.90814
+          ],
+          "text": "土肥金山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -85,
+            -35
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.942556,
+            34.987056
+          ],
+          "text": "大仁鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            95,
+            -25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.866694,
+            34.889583
+          ],
+          "text": "持越鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -10,
+            -45
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.821667,
+            34.901389
+          ],
+          "text": "清越鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            85,
+            25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.801806,
+            34.872972
+          ],
+          "text": "宇久須(伊豆珪石)",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -105,
+            30
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.995,
+            34.748
+          ],
+          "text": "縄地鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            85,
+            -15
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.928894,
+            34.696567
+          ],
+          "text": "河津(蓮台寺)鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -95,
+            25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "note",
+          "text": "選定地点の直線距離・位置は概略"
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "a",
+          "text": "土肥、大仁、持越。温泉の近くに鉱山の名前が並んでいるのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "この地図では、資料から選んだ9つの鉱山と、さっきの施設を重ねているわ。"
+        },
+        {
+          "voice": "a",
+          "text": "近い鉱山が多そうだけど、どれくらい近いのだ？"
+        },
+        {
+          "voice": "b",
+          "text": "それぞれの鉱山から最寄りの温泉関連施設まで、地図上の距離を測ったの。"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          138.78,
+          34.87
+        ],
+        "zoom": 9.833333,
+        "pitch": 45.0,
+        "bearing": 10.666667
+      },
+      "to": {
+        "center": [
+          138.78,
+          34.87
+        ],
+        "zoom": 9.866667,
+        "pitch": 45.0,
+        "bearing": 11.333333
+      },
+      "overlays": [
+        {
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 24,
+          "intensity": 1.1,
+          "opacity": 0.65,
+          "colors": [
+            [
+              0,
+              "rgba(0, 0, 0, 0)"
+            ],
+            [
+              0.2,
+              "rgba(14, 165, 233, 0.35)"
+            ],
+            [
+              0.5,
+              "rgba(56, 189, 248, 0.65)"
+            ],
+            [
+              0.8,
+              "rgba(186, 230, 253, 0.85)"
+            ],
+            [
+              1,
+              "rgba(255, 255, 255, 0.95)"
+            ]
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "counter",
+          "screen": [
+            70,
+            60
+          ],
+          "caption": "今回選んだ鉱山",
+          "value": 9,
+          "unit": "件",
+          "scale": 1.85,
+          "show": [
+            0,
+            1
+          ],
+          "from": 9,
+          "roll": false,
+          "countUp": [
+            0,
+            0.01
+          ]
+        },
+        {
+          "type": "counter",
+          "screen": [
+            70,
+            330
+          ],
+          "caption": "鉱山から最寄り温泉まで（中央値）",
+          "value": 0.34,
+          "decimals": 2,
+          "unit": "km",
+          "scale": 1.85,
+          "show": [
+            0,
+            1
+          ],
+          "from": 0.34,
+          "roll": false,
+          "countUp": [
+            0,
+            0.01
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.79326,
+            34.90814
+          ],
+          "text": "土肥金山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -85,
+            -35
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.942556,
+            34.987056
+          ],
+          "text": "大仁鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            95,
+            -25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.866694,
+            34.889583
+          ],
+          "text": "持越鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -10,
+            -45
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.821667,
+            34.901389
+          ],
+          "text": "清越鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            85,
+            25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.801806,
+            34.872972
+          ],
+          "text": "宇久須(伊豆珪石)",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -105,
+            30
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.995,
+            34.748
+          ],
+          "text": "縄地鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            85,
+            -15
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.928894,
+            34.696567
+          ],
+          "text": "河津(蓮台寺)鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -95,
+            25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "note",
+          "text": "選定地点の直線距離・位置は概略"
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "b",
+          "text": "9地点の中央値は、およそ0.34キロメートルだったわ。"
+        },
+        {
+          "voice": "a",
+          "text": "真ん中の値が340メートルくらいなのか。"
+        },
+        {
+          "voice": "b",
+          "text": "でも、9地点は選んだ鉱山だけ。位置も地区の中心を使ったものがあるの。"
+        },
+        {
+          "voice": "b",
+          "text": "温泉施設の位置と、地下の源泉の位置が同じとも限らないわ。"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          138.78,
+          34.87
+        ],
+        "zoom": 9.866667,
+        "pitch": 45.0,
+        "bearing": 11.333333
+      },
+      "to": {
+        "center": [
+          138.78,
+          34.87
+        ],
+        "zoom": 9.9,
+        "pitch": 45.0,
+        "bearing": 12.0
+      },
+      "overlays": [
+        {
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 24,
+          "intensity": 1.1,
+          "opacity": 0.65,
+          "colors": [
+            [
+              0,
+              "rgba(0, 0, 0, 0)"
+            ],
+            [
+              0.2,
+              "rgba(14, 165, 233, 0.35)"
+            ],
+            [
+              0.5,
+              "rgba(56, 189, 248, 0.65)"
+            ],
+            [
+              0.8,
+              "rgba(186, 230, 253, 0.85)"
+            ],
+            [
+              1,
+              "rgba(255, 255, 255, 0.95)"
+            ]
+          ],
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "counter",
+          "screen": [
+            70,
+            60
+          ],
+          "caption": "今回選んだ鉱山",
+          "value": 9,
+          "unit": "件",
+          "scale": 1.85,
+          "show": [
+            0,
+            1
+          ],
+          "from": 9,
+          "roll": false,
+          "countUp": [
+            0,
+            0.01
+          ]
+        },
+        {
+          "type": "counter",
+          "screen": [
+            70,
+            330
+          ],
+          "caption": "鉱山から最寄り温泉まで（中央値）",
+          "value": 0.34,
+          "decimals": 2,
+          "unit": "km",
+          "scale": 1.85,
+          "show": [
+            0,
+            1
+          ],
+          "from": 0.34,
+          "roll": false,
+          "countUp": [
+            0,
+            0.01
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.79326,
+            34.90814
+          ],
+          "text": "土肥金山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -85,
+            -35
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.942556,
+            34.987056
+          ],
+          "text": "大仁鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            95,
+            -25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.866694,
+            34.889583
+          ],
+          "text": "持越鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -10,
+            -45
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.821667,
+            34.901389
+          ],
+          "text": "清越鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            85,
+            25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.801806,
+            34.872972
+          ],
+          "text": "宇久須(伊豆珪石)",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -105,
+            30
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.995,
+            34.748
+          ],
+          "text": "縄地鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            85,
+            -15
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            138.928894,
+            34.696567
+          ],
+          "text": "河津(蓮台寺)鉱山",
+          "style": "tag",
+          "dot": true,
+          "offset": [
+            -95,
+            25
+          ],
+          "show": [
+            0.1,
+            1
+          ]
+        },
+        {
+          "type": "note",
+          "text": "選定地点の直線距離・位置は概略"
+        }
+      ],
+      "ease": "linear",
+      "lines": [
+        {
+          "voice": "a",
+          "text": "それなら、すべての鉱山と源泉が直結している証拠にはならないのだ。"
+        },
+        {
+          "voice": "b",
+          "text": "その通り。地図は関係を考える入り口で、因果関係そのものの証明ではないの。"
+        },
+        {
+          "voice": "a",
+          "text": "地下には、両方に共通する何かがあるのかな？"
+        },
+        {
+          "voice": "b",
+          "text": "鍵になるのは、伊豆半島が南の海からやってきたという長い歴史よ。"
+        }
+      ]
+    }
+  ]
+}
