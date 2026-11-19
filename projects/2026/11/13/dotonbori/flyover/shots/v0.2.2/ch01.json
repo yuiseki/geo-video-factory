@@ -1,0 +1,2002 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.2,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "credits": [
+    "地図の位置は概略",
+    "3D都市モデル：国土交通省 PLATEAU（大阪市 2025・東京都 2025）",
+    "建物外形補完・外観推定を含む"
+  ],
+  "osmLabels": true,
+  "hillshade": false,
+  "plateauBuildings": [
+    {
+      "manifest": "assets/city/minami_fixed/manifest.json",
+      "heightOffset": -38,
+      "workers": 3
+    }
+  ],
+  "shots": [
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "大阪・道頓堀のたこ焼き屋に入ったら、店員さんはみんな外国の人に見えて、",
+          "speech": "大阪・道頓堀のたこ焼き屋に入ったら、店員さんはみんな外国の人に見えて、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "道頓堀からコスモスクエアへ",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4989158,
+          34.668114499999994
+        ],
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
+      },
+      "to": {
+        "center": [
+          135.4990158,
+          34.668114499999994
+        ],
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "来ているお客さんも海外から。英語で注文が進んで、目の前には大阪名物のたこ焼き。",
+          "speech": "来ているお客さんも海外から。英語で注文が進んで、目の前には大阪名物のたこ焼き。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "photo_marker",
+          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
+          "caption": "たこ焼き（2026年11月13日撮影）",
+          "credit": "写真：yuiseki（CC0）",
+          "screen": [
+            70,
+            80
+          ],
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5006158,
+            34.668164499999996
+          ],
+          "targetLabel": "",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 45,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "そこにあるのは「大阪のたこ焼き屋」という商売のミームだけ……そんな気がしたのだ。",
+          "speech": "そこにあるのは「大阪のたこ焼き屋」という商売のミームだけ……そんな気がしたのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "でも、たこ焼きは絶品だったそうね。しかも、焼きたてではなかったのにおいしかった。",
+          "speech": "でも、たこ焼きは絶品だったそうね。しかも、焼きたてではなかったのにおいしかった。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 32,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.25,
+        "pitch": 45,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "個人の腕だけでなく、技術や段取りが店の仕組みに落とし込まれているのかもしれないわ。",
+          "speech": "個人の腕だけでなく、技術や段取りが店の仕組みに落とし込まれているのかもしれないわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "文化が空っぽになったのか。それとも、誰が働いても再現できるほど文化が強くなったのか。",
+          "speech": "文化が空っぽになったのか。それとも、誰が働いても再現できるほど文化が強くなったのか。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "今日、道頓堀で感じたこの疑問は、少し離れた南港へ向かうと、別の形で続いていくのだ。",
+          "speech": "今日、道頓堀で感じたこの疑問は、少し離れた南港へ向かうと、別の形で続いていくのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/dotonbori.jpg",
+          "caption": "道頓堀の夜景（2015年）",
+          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 1000,
+          "show": [
+            0,
+            1
+          ],
+          "motion": "out"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "目の前には、江戸時代から積み重なった道頓堀と、",
+          "speech": "目の前には、江戸時代から積み重なった道頓堀と、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 45,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "昭和の人が思い描いた未来を名前に残すコスモスクエアがある。過去と未来が、",
+          "speech": "昭和の人が思い描いた未来を名前に残すコスモスクエアがある。過去と未来が、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 45,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "いまの生活圏の中で同時に動いているのね。",
+          "speech": "いまの生活圏の中で同時に動いているのね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.2,
+        "pitch": 30,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "まずは、道頓堀の川辺から見ていくのだ。",
+          "speech": "まずは、道頓堀の川辺から見ていくのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "text": "道頓堀川",
+          "at": [
+            135.50115,
+            34.66881
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "transition": true
+    },
+    {
+      "from": {
+        "center": [
+          135.4997261,
+          34.66905619999999
+        ],
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
+      },
+      "to": {
+        "center": [
+          135.4998261,
+          34.66905619999999
+        ],
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "それにしても、道頓堀は川がタイムズスクエアみたいなのだ。どうして川沿いが、",
+          "speech": "それにしても、道頓堀は川がタイムズスクエアみたいなのだ。どうして川沿いが、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "photo_marker",
+          "src": "assets/gyazo/63fec71eed55499db29276a87216b48f.jpg",
+          "caption": "道頓堀川の風景（2026年11月13日撮影）",
+          "credit": "写真：yuiseki（CC0）",
+          "screen": [
+            70,
+            80
+          ],
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5014261,
+            34.669106199999995
+          ],
+          "targetLabel": "",
+          "show": [
+            0,
+            1
+          ],
+          "cameraAt": [
+            135.5027289,
+            34.6692927
+          ],
+          "cameraLabel": "ドン・キホーテ道頓堀店",
+          "cameraLabelAnchor": "start",
+          "cameraLabelOffset": [
+            20,
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.499604,
+          34.6688371
+        ],
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
+      },
+      "to": {
+        "center": [
+          135.499704,
+          34.6688371
+        ],
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "こんなに看板だらけになったのだ？",
+          "speech": "こんなに看板だらけになったのだ？",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "photo_marker",
+          "src": "assets/gyazo/9e289c21ab57679c2ac005f95818c4f1.jpg",
+          "caption": "道頓堀の看板（2026年11月13日）",
+          "credit": "写真：yuiseki（CC0）",
+          "screen": [
+            70,
+            80
+          ],
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.501304,
+            34.6688871
+          ],
+          "targetLabel": "",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "道頓堀川は1615年に完成した堀川。周辺には芝居小屋が集まり、劇場街として栄えたの。",
+          "speech": "道頓堀川は1615年に完成した堀川。周辺にはしばいごやが集まり、劇場街としてさかえたの。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/dotonbori/ort_1928.png",
+          "caption": "道頓堀周辺（現在の地名）：道頓堀 1928年頃",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/dotonbori/seamlessphoto.png",
+          "caption": "道頓堀周辺（現在の地名）：道頓堀 全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4978,
+          34.669
+        ],
+        "zoom": 17.7,
+        "pitch": 75,
+        "bearing": 89
+      },
+      "to": {
+        "center": [
+          135.5004,
+          34.66904
+        ],
+        "zoom": 18.0,
+        "pitch": 77,
+        "bearing": 89
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "水辺と娯楽の結びつきは、近年の観光ブームよりずっと古いのよ。",
+          "speech": "水辺と娯楽の結びつきは、近年の観光ブームよりずっと古いのよ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.5004,
+          34.66904
+        ],
+        "zoom": 18.0,
+        "pitch": 77,
+        "bearing": 89
+      },
+      "to": {
+        "center": [
+          135.503,
+          34.66906
+        ],
+        "zoom": 18.2,
+        "pitch": 77,
+        "bearing": 89
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "川ができたころから、ここは人を楽しませる場所だったのだ。川は街の裏側ではなく、",
+          "speech": "川ができたころから、ここは人を楽しませる場所だったのだ。川は街の裏側ではなく、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.503,
+          34.66906
+        ],
+        "zoom": 18.2,
+        "pitch": 77,
+        "bearing": 89
+      },
+      "to": {
+        "center": [
+          135.5055,
+          34.66904
+        ],
+        "zoom": 17.8,
+        "pitch": 75,
+        "bearing": 89
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "見世物の舞台だったのだ。",
+          "speech": "見世物の舞台だったのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そして1935年、戎橋のそばに初代グリコサインが登場する。",
+          "speech": "そして1935年、えびすばしのそばに初代グリコサインが登場する。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons/glico.jpg",
+          "caption": "道頓堀のグリコサイン（2014年）",
+          "credit": "写真：Tokumeigakarinoaoshima / Wikimedia Commons（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 1000,
+          "show": [
+            0,
+            1
+          ],
+          "motion": "in"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "広告は商品を知らせるものだけれど、長く街にあり続けると、",
+          "speech": "広告は商品を知らせるものだけれど、長く街にあり続けると、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "広告そのものが「道頓堀らしい景色」になる。",
+          "speech": "広告そのものが「道頓堀らしい景色」になる。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 45,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "大阪市もグリコサインを都市景観資源に登録しているわ。",
+          "speech": "大阪市もグリコサインを都市景観資源に登録しているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4988517,
+          34.669149
+        ],
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
+      },
+      "to": {
+        "center": [
+          135.4989517,
+          34.669149
+        ],
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
+          "speech": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "photo_marker",
+          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：yuiseki（CC0）",
+          "screen": [
+            70,
+            80
+          ],
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5005517,
+            34.669199
+          ],
+          "targetLabel": "",
+          "show": [
+            0,
+            1
+          ],
+          "cameraAt": [
+            135.5010546,
+            34.668926
+          ],
+          "cameraLabel": "グリコサイン",
+          "cameraLabelAnchor": "start",
+          "cameraLabelOffset": [
+            20,
+            45
+          ],
+          "bridgeAt": [
+            135.5012993,
+            34.6690658
+          ],
+          "bridgeLabel": "戎橋"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.5055,
+          34.66904
+        ],
+        "zoom": 17.9,
+        "pitch": 76,
+        "bearing": -90
+      },
+      "to": {
+        "center": [
+          135.5034,
+          34.66906
+        ],
+        "zoom": 18.2,
+        "pitch": 78,
+        "bearing": -90
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "その景色がまた商売を呼ぶのだ。",
+          "speech": "その景色がまた商売を呼ぶのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.5034,
+          34.66906
+        ],
+        "zoom": 18.2,
+        "pitch": 78,
+        "bearing": -90
+      },
+      "to": {
+        "center": [
+          135.5012,
+          34.66905
+        ],
+        "zoom": 18.2,
+        "pitch": 78,
+        "bearing": -90
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "川の上に立つと、両岸の看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
+          "speech": "川の上に立つと、りょうがんの看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.4995716,
+          34.6687094
+        ],
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
+      },
+      "to": {
+        "center": [
+          135.4996716,
+          34.6687094
+        ],
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
+          "speech": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "photo_marker",
+          "src": "assets/gyazo/f01c299b67d773988e5257a0fecd41cb.jpg",
+          "caption": "大阪松竹座（2026年11月13日）",
+          "credit": "写真：yuiseki（CC0）",
+          "screen": [
+            70,
+            80
+          ],
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5012716,
+            34.6687594
+          ],
+          "targetLabel": "",
+          "show": [
+            0,
+            1
+          ],
+          "cameraAt": [
+            135.5009117,
+            34.6684231
+          ],
+          "cameraLabel": "大阪松竹座",
+          "cameraLabelAnchor": "start",
+          "cameraLabelOffset": [
+            20,
+            45
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4987038,
+          34.6684091
+        ],
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
+      },
+      "to": {
+        "center": [
+          135.4988038,
+          34.6684091
+        ],
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "いまは光る街を眺める場所にもなった。",
+          "speech": "いまは光る街を眺める場所にもなった。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "photo_marker",
+          "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：yuiseki（CC0）",
+          "screen": [
+            70,
+            80
+          ],
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5004038,
+            34.6684591
+          ],
+          "targetLabel": "",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.5016,
+          34.66905
+        ],
+        "zoom": 18.0,
+        "pitch": 76,
+        "bearing": -90
+      },
+      "to": {
+        "center": [
+          135.5003,
+          34.66903
+        ],
+        "zoom": 18.1,
+        "pitch": 77,
+        "bearing": -90
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "同じ川なのに、時代ごとに使い道が足されていくのだ。",
+          "speech": "同じ川なのに、時代ごとに使い道が足されていくのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.5003,
+          34.66903
+        ],
+        "zoom": 18.1,
+        "pitch": 77,
+        "bearing": -90
+      },
+      "to": {
+        "center": [
+          135.499,
+          34.66901
+        ],
+        "zoom": 17.8,
+        "pitch": 75,
+        "bearing": -90
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "最初から観光のために設計されたわけじゃないのに、",
+          "speech": "最初から観光のために設計されたわけじゃないのに、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.499,
+          34.66901
+        ],
+        "zoom": 17.8,
+        "pitch": 75,
+        "bearing": -90
+      },
+      "to": {
+        "center": [
+          135.4978,
+          34.669
+        ],
+        "zoom": 17.4,
+        "pitch": 72,
+        "bearing": -90
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "結果として街全体が舞台装置みたいになっているのだ。",
+          "speech": "結果として街全体が舞台装置みたいになっているのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "ease": "linear"
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 32,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.95,
+        "pitch": 45,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "たこ焼きも似ているわね。味、店の動線、接客、器まで含めて、",
+          "speech": "たこ焼きも似ているわね。味、店の動線、接客、器まで含めて、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 45,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "来訪者が「大阪でたこ焼きを食べた」と感じる体験をつくっている。ただ、",
+          "speech": "来訪者が「大阪でたこ焼きを食べた」と感じる体験をつくっている。ただ、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 45,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "目の前の一店舗の観察から、街全体や働く人の出自まで決めつけないようにしたいわ。",
+          "speech": "目の前の一店舗の観察から、街全体や働く人の出自まで決めつけないようにしたいわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 32,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.95,
+        "pitch": 45,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "うん。店員さんが外国の人に見えたというのは、ある日の一店舗での観察なのだ。",
+          "speech": "うん。店員さんが外国の人に見えたというのは、ある日の一店舗での観察なのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "そこから街の人みんながいなくなった、なんて結論には飛べないのだ。",
+          "speech": "そこから街の人みんながいなくなった、なんて結論には飛べないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "それでも、国籍や母語が違う人たちが、たこ焼きを焼き、注文を受け、観光客に渡している。",
+          "speech": "それでも、国籍や母語が違う人たちが、たこ焼きを焼き、注文を受け、観光客に渡している。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons-v013/kukuru-honten.webp",
+          "caption": "たこ家道頓堀くくる 道頓堀本店",
+          "credit": "出典：たこ家道頓堀くくる公式サイト（dotonbori-kukuru.com/dotonbori-honten/）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 1000,
+          "motion": "still",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "その場で実際に文化を担っているのは、いま働いている人たちなのよね。",
+          "speech": "その場で実際に文化を担っているのは、いま働いている人たちなのよね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "「日本人が作っていること」が文化の条件なのか。それとも、",
+          "speech": "「日本人が作っていること」が文化の条件なのか。それとも、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "おいしいたこ焼きがこの場所で売られ、人がその体験を持ち帰ることが大事なのか。",
+          "speech": "おいしいたこ焼きがこの場所で売られ、人がその体験を持ち帰ることが大事なのか。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "答えは簡単じゃないけれど、少なくとも文化は、昔の姿のまま保存されるだけではないのだ。",
+          "speech": "答えは簡単じゃないけれど、少なくとも文化は、昔の姿のまま保存されるだけではないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 8.1,
+        "pitch": 15,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "ところで、隅田川でも娯楽が栄えていたと聞いたことがあるのだ。",
+          "speech": "ところで、すみだがわでも娯楽がさかえていたと聞いたことがあるのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "text": "道頓堀川",
+          "at": [
+            135.50115,
+            34.66881
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "transition": true,
+      "duration": 8.5,
+      "ease": "smooth"
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.2,
+        "pitch": 30,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そうね。次は江戸・東京の水辺の文化を見ていきましょう。",
+          "speech": "そうね。次は江戸・東京の水辺の文化を見ていきましょう。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "text": "道頓堀川",
+          "at": [
+            135.50115,
+            34.66881
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "text": "隅田川・両国",
+          "at": [
+            139.78746,
+            35.69521
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "transition": true,
+      "keys": [
+        {
+          "t": 0,
+          "center": [
+            135.50115,
+            34.66881
+          ],
+          "zoom": 8.1,
+          "pitch": 15,
+          "bearing": 0
+        },
+        {
+          "t": 0.26,
+          "center": [
+            137.65,
+            35.2
+          ],
+          "zoom": 6.1,
+          "pitch": 10,
+          "bearing": 0
+        },
+        {
+          "t": 0.64,
+          "center": [
+            137.65,
+            35.2
+          ],
+          "zoom": 6.1,
+          "pitch": 10,
+          "bearing": 0
+        },
+        {
+          "t": 1,
+          "center": [
+            139.78746,
+            35.69521
+          ],
+          "zoom": 13.5,
+          "pitch": 25,
+          "bearing": 0
+        }
+      ],
+      "duration": 11.0,
+      "ease": "smooth"
+    }
+  ]
+}

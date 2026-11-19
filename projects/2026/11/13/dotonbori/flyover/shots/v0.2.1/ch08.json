@@ -1,0 +1,495 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.2,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "credits": [
+    "地図の位置は概略",
+    "3D都市モデル：国土交通省 PLATEAU（大阪市 2025・東京都 2025）",
+    "建物外形補完・外観推定を含む"
+  ],
+  "osmLabels": true,
+  "hillshade": false,
+  "plateauBuildings": [
+    {
+      "manifest": "assets/city/minami/manifest.json",
+      "heightOffset": -38,
+      "workers": 3
+    },
+    {
+      "manifest": "assets/city/cosmosquare/manifest.json",
+      "heightOffset": -38,
+      "workers": 3
+    }
+  ],
+  "shots": [
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "道頓堀のたこ焼き屋にあったのは、空っぽのミームだけじゃない。誰かが受け継ぎ、磨き、",
+          "speech": "道頓堀のたこ焼き屋にあったのは、空っぽのミームだけじゃない。誰かが受け継ぎ、磨き、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "街の中に残る時間",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "訪れた人に届ける仕組みも、そこにあったのだ。",
+          "speech": "訪れた人に届ける仕組みも、そこにあったのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4556,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.45839999999998,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "ただ、街の文化が残るかどうかは、商品や働く人だけでは決まらない。川をどう使い、",
+          "speech": "ただ、街の文化が残るかどうかは、商品や働く人だけでは決まらない。川をどう使い、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "何を守り、誰がその場所に近づけるのか。その選択が、次の景色をつくっていくのね。",
+          "speech": "何を守り、誰がその場所に近づけるのか。その選択が、次の景色をつくっていくのね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 32,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.95,
+        "pitch": 45,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "みなさんの街にも、名前だけ残った橋や、",
+          "speech": "みなさんの街にも、名前だけ残った橋や、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4556,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.45839999999998,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "いつの間にか見えなくなった川があるかもしれないのだ。",
+          "speech": "いつの間にか見えなくなった川があるかもしれないのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 45,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 10.9,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "そして、昔に描かれた未来が今も現役で動いている場所もあるかもしれない。",
+          "speech": "そして、昔に描かれた未来が今も現役で動いている場所もあるかもしれない。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 32,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.95,
+        "pitch": 45,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "次に乗る電車や通り過ぎる建物の名前を、少しだけ昔の人の目で眺めてみてもいいわね。",
+          "speech": "次に乗る電車や通り過ぎる建物の名前を、少しだけ昔の人の目で眺めてみてもいいわね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 45,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 10.9,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "コスモスクエア行きのニュートラム。昭和の未来っぽい名前なのに、",
+          "speech": "コスモスクエア行きのニュートラム。昭和の未来っぽい名前なのに、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.457,
+          34.654
+        ],
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "今日もちゃんとぼくたちを運んでくれているのだ。",
+          "speech": "今日もちゃんとぼくたちを運んでくれているのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    }
+  ]
+}
