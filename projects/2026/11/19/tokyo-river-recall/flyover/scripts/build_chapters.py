@@ -232,24 +232,42 @@ def chapter_envelope(
 
 def build_ch00_intro(data: dict) -> dict:
     f01, f02, f03, f04, f05 = data["f01"], data["f02"], data["f03"], data["f04"], data["f05"]
+    SHIBUYA_WIDE = (139.685, 35.650, 139.714, 35.675)
     shots = [
         {
             "from": {"center": [139.6994, 35.6604], "zoom": 16.5, "pitch": 66, "bearing": 35},
-            "to": {"center": [139.7016, 35.6584], "zoom": 15.6, "pitch": 54, "bearing": 5},
+            "to": {"center": [139.7016, 35.6602], "zoom": 14.4, "pitch": 48, "bearing": 8},
             "lines": [
                 line("a", "ここ、渋谷のセンター街なのだ！ビルがぎっしりなのだ。", face="point"),
                 line("b", "フフン、そのビルを透かして足元を見てみなさい。", face="smile", react="surprise"),
                 line("a", "うわっ！ビルの真下に青い川が出てきたのだ！？", face="surprise", react="smile"),
-                line("b", "今は暗渠になった「渋谷川」と「宇田川」の合流点よ。", speech="いまはあんきょになった、しぶやがわと、うだがわのごうりゅうてんよ。", face="point", react="surprise"),
+                line("b", "今は暗渠になった渋谷川と宇田川よ。引いて見ると、街全体が川の谷だと分かるでしょ？", speech="いまはあんきょになった、しぶやがわと、うだがわよ。ひいてみると、まちぜんたいがかわのたにだとわかるでしょ？", face="point", react="surprise"),
             ],
             "overlays": (
-                to_line_overlays(select_features(f01, SHIBUYA_BBOX, 15), C_CURR, 5)
-                + to_line_overlays(select_features(f02, SHIBUYA_BBOX, 35), C_CULV, 8, draw=[0.35, 0.85], show=[0.35, 1])
+                to_line_overlays(select_features(f01, SHIBUYA_WIDE, 20), C_CURR, 5)
+                + to_line_overlays(select_features(f02, SHIBUYA_WIDE, 55), C_CULV, 7, draw=[0.30, 0.80], show=[0.30, 1])
                 + [
-                    {"type": "label", "screen": tag_screen("OP｜渋谷センター街の足元に眠る川"), "text": "OP｜渋谷センター街の足元に眠る川", "style": "tag"},
-                    {"type": "label", "at": [139.7016, 35.6580], "text": "渋谷川（暗渠）", "dot": True, "show": [0.45, 1]},
-                    {"type": "label", "at": [139.6986, 35.6618], "text": "宇田川（暗渠）", "dot": True, "show": [0.45, 1]},
-                    {"type": "panel", "src": "assets/photos/shibuya_cat_street.jpg", "caption": "旧渋谷川上の遊歩道（キャットストリート）", "credit": "写真：Harani0403 / Wikimedia Commons（CC0）", "screen": [60, 120], "width": 440, "show": [0.55, 1]},
+                    {"type": "label", "screen": tag_screen("OP｜渋谷の街に張り巡らされた暗渠の全体像"), "text": "OP｜渋谷の街に張り巡らされた暗渠の全体像", "style": "tag"},
+                    {"type": "label", "at": [139.7016, 35.6578], "text": "渋谷川（暗渠）", "dot": True, "show": [0.45, 1]},
+                    {"type": "label", "at": [139.6982, 35.6615], "text": "宇田川（暗渠）", "dot": True, "show": [0.45, 1]},
+                    {"type": "note", "text": "3D建物：PLATEAU + 地理院・OSM補完（推定テクスチャ含む）"},
+                ]
+            ),
+        },
+        {
+            "from": {"center": [139.7022, 35.6610], "zoom": 14.7, "pitch": 50, "bearing": 12},
+            "to": {"center": [139.7044, 35.6648], "zoom": 16.6, "pitch": 60, "bearing": 25},
+            "lines": [
+                line("a", "北へ伸びているクネクネした道も、全部川だったのだ！？", face="surprise"),
+                line("b", "そう。人気の遊歩道「キャットストリート」も、実は旧渋谷川の跡なのよ。", speech="そう。にんきのゆうほどう、キャットストリートも、じつはきゅうしぶやがわのあとなのよ。", face="smile", react="surprise"),
+            ],
+            "overlays": (
+                to_line_overlays(select_features(f01, SHIBUYA_WIDE, 20), C_CURR, 5)
+                + to_line_overlays(select_features(f02, SHIBUYA_WIDE, 55), C_CULV, 8)
+                + [
+                    {"type": "label", "screen": tag_screen("OP｜ズームイン：キャットストリート（旧渋谷川）"), "text": "OP｜ズームイン：キャットストリート（旧渋谷川）", "style": "tag"},
+                    {"type": "label", "at": [139.7046, 35.6652], "text": "キャットストリート（旧渋谷川）", "dot": True, "show": [0.35, 1]},
+                    {"type": "photo_marker", "src": "assets/photos/shibuya_cat_street.jpg", "at": [139.7046, 35.6652], "caption": "旧渋谷川上の遊歩道（キャットストリート）", "credit": "写真：Harani0403 / Wikimedia Commons（CC0）", "screen": [60, 120], "width": 400, "height": 340, "show": [0.52, 1]},
                     {"type": "note", "text": "3D建物：PLATEAU + 地理院・OSM補完（推定テクスチャ含む）"},
                 ]
             ),
@@ -293,7 +311,7 @@ def build_ch00_intro(data: dict) -> dict:
             ),
         },
     ]
-    return chapter_envelope(shots, plateau_area="shibuya", opacity_keyframes=[[0, 1.0], [3.5, 1.0], [6.0, 0.35], [20, 0.35]], exaggeration=1.0, hillshade=0.2)
+    return chapter_envelope(shots, plateau_area="shibuya", opacity_keyframes=[[0, 1.0], [3.0, 1.0], [5.5, 0.35], [60, 0.35]], exaggeration=1.0, hillshade=0.2)
 
 
 def build_ch01_yamanote(data: dict) -> dict:
