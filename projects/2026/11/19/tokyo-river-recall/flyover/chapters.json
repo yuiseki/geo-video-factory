@@ -1,0 +1,46 @@
+{
+  "series": "東京・消えた川の記憶",
+  "cardSeconds": 2.2,
+  "chapters": [
+    {
+      "id": "ch00-intro",
+      "title": "導入｜いまは見えない東京の川",
+      "spec": "shots/ch00-intro.json"
+    },
+    {
+      "id": "ch01-yamanote",
+      "title": "第1章｜山の手の暗渠と谷筋",
+      "spec": "shots/ch01-yamanote.json"
+    },
+    {
+      "id": "ch02a-ginza",
+      "title": "第2章①｜銀座・汐留・築地の掘割",
+      "spec": "shots/ch02a-ginza.json"
+    },
+    {
+      "id": "ch02b-nihonbashi",
+      "title": "第2章②｜日本橋・神田の入堀",
+      "spec": "shots/ch02b-nihonbashi.json"
+    },
+    {
+      "id": "ch02c-asakusa",
+      "title": "第2章③｜浅草・下町の堀と親水公園",
+      "spec": "shots/ch02c-asakusa.json"
+    },
+    {
+      "id": "ch03-aqueducts",
+      "title": "第3章｜尾根を走る旧上水",
+      "spec": "shots/ch03-aqueducts.json"
+    },
+    {
+      "id": "ch04-former-channels",
+      "title": "第4章｜荒川・多摩川の旧河道",
+      "spec": "shots/ch04-former-channels.json"
+    },
+    {
+      "id": "ch05-ending",
+      "title": "終章｜すべてを重ねた東京と浸水実績",
+      "spec": "shots/ch05-ending.json"
+    }
+  ]
+}

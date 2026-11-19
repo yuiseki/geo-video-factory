@@ -1,0 +1,6 @@
+layer,feature_count,total_length_km,total_area_km2,high,medium,estimated
+01_current_rivers,947,369.79,0.0,947,0,0
+02_culvert_and_valleys,590,384.31,0.0,165,130,295
+03_filled_canals,81,20.13,0.993,81,0,0
+04_old_aqueducts,64,55.1,0.0,64,0,0
+05_former_channels,177,0.0,5.837,115,62,0

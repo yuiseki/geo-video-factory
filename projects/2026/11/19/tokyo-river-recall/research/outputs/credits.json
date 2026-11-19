@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-11-19",
+  "commercial_use_all_verified": true,
+  "datasets": [
+    {
+      "id": "OSM_2026-08",
+      "name": "OpenStreetMap 東京23区・日本全国 凍結版 (yuiseki/osm-tokyo23-src-2026-08, osm-japan-src-2026-08)",
+      "version_or_date": "2026-08-31 snapshot",
+      "license": "ODbL-1.0",
+      "commercial_use": true,
+      "share_alike_required": true,
+      "credit_text": "© OpenStreetMap contributors (ODbL-1.0)"
+    },
+    {
+      "id": "GSI_DEM5A",
+      "name": "国土地理院 標高タイル (dem5a_z15 / dem_z14)",
+      "version_or_date": "2026-11-19 取得",
+      "license": "国土地理院コンテンツ利用規約（政府標準利用規約2.0 / CC BY 4.0互換）",
+      "commercial_use": true,
+      "share_alike_required": false,
+      "credit_text": "出典：国土地理院 標高タイル（dem5a・dem）を加工して作成"
+    },
+    {
+      "id": "GSI_CHISUI",
+      "name": "国土地理院 ベクトルタイル提供実験「地形分類（自然地形）」（治水地形分類図・土地条件図統合）",
+      "version_or_date": "2026-11-19 取得",
+      "license": "国土地理院コンテンツ利用規約（政府標準利用規約2.0 / CC BY 4.0互換）",
+      "commercial_use": true,
+      "share_alike_required": false,
+      "credit_text": "出典：国土地理院 地形分類ベクトルタイル（治水地形分類図・土地条件図）を加工して作成"
+    },
+    {
+      "id": "GSI_ORT_USA10",
+      "name": "国土地理院 空中写真（米軍撮影 1945〜1950年 ort_USA10 / 陸軍撮影 1936〜1942年 ort_riku10）",
+      "version_or_date": "2026-11-19 取得",
+      "license": "国土地理院コンテンツ利用規約（政府標準利用規約2.0 / CC BY 4.0互換）",
+      "commercial_use": true,
+      "share_alike_required": false,
+      "credit_text": "出典：国土地理院 空中写真（ort_USA10 / ort_riku10）を参照して作成"
+    },
+    {
+      "id": "GSI_LANDFORM2",
+      "name": "国土地理院 ベクトルタイル提供実験「地形分類（人工地形）」(code 11005 埋立地マスク)",
+      "version_or_date": "2026-11-19 取得",
+      "license": "国土地理院コンテンツ利用規約（政府標準利用規約2.0 / CC BY 4.0互換）",
+      "commercial_use": true,
+      "share_alike_required": false,
+      "credit_text": "出典：国土地理院 地形分類（人工地形）ベクトルタイルを加工して作成"
+    },
+    {
+      "id": "MLIT_W05",
+      "name": "国土交通省 国土数値情報 河川データ (W05-08_13_GML)",
+      "version_or_date": "2008年度版 (2026-11-19 取得)",
+      "license": "国土数値情報利用約款（商用利用可、出典明記要。原資料の単体再配布制限に配慮し比較検証・水系名参照に使用）",
+      "commercial_use": true,
+      "share_alike_required": false,
+      "credit_text": "出典：国土交通省 国土数値情報（河川データ）を参照"
+    },
+    {
+      "id": "TOKYO_FLOOD_1974_2019",
+      "name": "東京都水害リスク情報システム 浸水実績図データ (yuiseki/tokyo-flood-record-jp)",
+      "version_or_date": "1974〜2019年 (43年分、2026-10-26 取得凍結版)",
+      "license": "CC BY 4.0",
+      "commercial_use": true,
+      "share_alike_required": false,
+      "credit_text": "出典：東京都「水害リスク情報システム 浸水実績図データ」（CC BY 4.0）を加工して作成"
+    },
+    {
+      "id": "JP_ADMIN_2026_09",
+      "name": "日本の都道府県と市区町村境界データ (yuiseki/jp-admin-2026-09)",
+      "version_or_date": "2026-09 (面は2020年国勢調査)",
+      "license": "CC BY 4.0",
+      "commercial_use": true,
+      "share_alike_required": false,
+      "credit_text": "出典：yuiseki/jp-admin-2026-09（CC BY 4.0）"
+    }
+  ]
+}

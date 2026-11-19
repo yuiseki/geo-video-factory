@@ -1,0 +1,104 @@
+{
+  "fetched_at": "2026-11-19",
+  "photos": [
+    {
+      "file": "assets/photos/shibuya_stream_river.jpg",
+      "subject": "渋谷川（渋谷ストリーム付近・開渠部）",
+      "wiki_title": "File:Shibuya River, near Shibuya Stream.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Shibuya_River,_near_Shibuya_Stream.jpg",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Shibuya_River%2C_near_Shibuya_Stream.jpg/1280px-Shibuya_River%2C_near_Shibuya_Stream.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "artist": "Syced",
+      "license": "CC0",
+      "commercial_use": true,
+      "credit_text": "写真：Syced / Wikimedia Commons（CC0）"
+    },
+    {
+      "file": "assets/photos/shibuya_cat_street.jpg",
+      "subject": "旧渋谷川（キャットストリート・暗渠上の遊歩道）",
+      "wiki_title": "File:Cat Street Tokyo 2.JPG",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Cat_Street_Tokyo_2.JPG",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/46/Cat_Street_Tokyo_2.JPG/1280px-Cat_Street_Tokyo_2.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "artist": "Harani0403",
+      "license": "CC0",
+      "commercial_use": true,
+      "credit_text": "写真：Harani0403 / Wikimedia Commons（CC0）"
+    },
+    {
+      "file": "assets/photos/kitazawa_greenway_daizawa.jpg",
+      "subject": "北沢川緑道（世田谷区代沢）",
+      "wiki_title": "File:Kitazawa River, Daizawa 3-chōme.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Kitazawa_River,_Daizawa_3-ch%C5%8Dme.jpg",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/83/Kitazawa_River%2C_Daizawa_3-ch%C5%8Dme.jpg/1280px-Kitazawa_River%2C_Daizawa_3-ch%C5%8Dme.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "artist": "Shiragiku",
+      "license": "CC BY 2.5",
+      "commercial_use": true,
+      "credit_text": "写真：Shiragiku / Wikimedia Commons（CC BY 2.5）"
+    },
+    {
+      "file": "assets/photos/karasuyama_greenway.jpg",
+      "subject": "烏山川緑道（世田谷区）",
+      "wiki_title": "File:烏山川緑道.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:%E7%83%8F%E5%B1%B1%E5%B7%9D%E7%B7%91%E9%81%93.jpg",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/%E7%83%8F%E5%B1%B1%E5%B7%9D%E7%B7%91%E9%81%93.jpg/1280px-%E7%83%8F%E5%B1%B1%E5%B7%9D%E7%B7%91%E9%81%93.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "artist": "多摩に暇人",
+      "license": "CC BY 3.0",
+      "commercial_use": true,
+      "credit_text": "写真：多摩に暇人 / Wikimedia Commons（CC BY 3.0）"
+    },
+    {
+      "file": "assets/photos/tokyo_expressway_higashi_ginza.jpg",
+      "subject": "東京高速道路（KK線・東銀座付近）",
+      "wiki_title": "File:Tokyo Expressway Higashi Ginza Exit 1.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:Tokyo_Expressway_Higashi_Ginza_Exit_1.jpg",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f2/Tokyo_Expressway_Higashi_Ginza_Exit_1.jpg/1280px-Tokyo_Expressway_Higashi_Ginza_Exit_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "artist": "Ebiebi2",
+      "license": "CC0",
+      "commercial_use": true,
+      "credit_text": "写真：Ebiebi2 / Wikimedia Commons（CC0）"
+    },
+    {
+      "file": "assets/photos/tsukiji_river_park.jpg",
+      "subject": "築地川公園（入船橋から望む旧築地川跡）",
+      "wiki_title": "File:入船橋から見た築地川公園.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:%E5%85%A5%E8%88%B9%E6%A9%8B%E3%81%8B%E3%82%89%E8%A6%8B%E3%81%9F%E7%AF%89%E5%9C%B0%E5%B7%9D%E5%85%AC%E5%9C%92.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/%E5%85%A5%E8%88%B9%E6%A9%8B%E3%81%8B%E3%82%89%E8%A6%8B%E3%81%9F%E7%AF%89%E5%9C%B0%E5%B7%9D%E5%85%AC%E5%9C%92.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "artist": "ja:User:築地川",
+      "license": "CC BY 4.0",
+      "commercial_use": true,
+      "credit_text": "写真：ja:User:築地川 / Wikimedia Commons（CC BY 4.0）"
+    },
+    {
+      "file": "assets/photos/hamachogawa_greenway.jpg",
+      "subject": "浜町川緑道（中央区日本橋浜町）",
+      "wiki_title": "File:浜町川緑道(弁慶像).jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:%E6%B5%9C%E7%94%BA%E5%B7%9D%E7%B7%91%E9%81%93(%E5%BC%81%E6%85%B6%E5%83%8F).jpg",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/05/%E6%B5%9C%E7%94%BA%E5%B7%9D%E7%B7%91%E9%81%93%28%E5%BC%81%E6%85%B6%E5%83%8F%29.jpg/1280px-%E6%B5%9C%E7%94%BA%E5%B7%9D%E7%B7%91%E9%81%93%28%E5%BC%81%E6%85%B6%E5%83%8F%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "artist": "ja:User:築地川",
+      "license": "CC0",
+      "commercial_use": true,
+      "credit_text": "写真：ja:User:築地川 / Wikimedia Commons（CC0）"
+    },
+    {
+      "file": "assets/photos/tamagawa_josui_greenway.jpg",
+      "subject": "玉川上水第二緑道（旧玉川上水）",
+      "wiki_title": "File:玉川上水第二緑道.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:%E7%8E%89%E5%B7%9D%E4%B8%8A%E6%B0%B4%E7%AC%AC%E4%BA%8C%E7%B7%91%E9%81%93.jpg",
+      "image_url": "https://upload.wikimedia.org/wikipedia/commons/9/91/%E7%8E%89%E5%B7%9D%E4%B8%8A%E6%B0%B4%E7%AC%AC%E4%BA%8C%E7%B7%91%E9%81%93.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+      "artist": "多摩に暇人",
+      "license": "CC BY 3.0",
+      "commercial_use": true,
+      "credit_text": "写真：多摩に暇人 / Wikimedia Commons（CC BY 3.0）"
+    },
+    {
+      "file": "assets/photos/sanyabori_ukiyoe.jpg",
+      "subject": "名所江戸百景「真乳山山谷堀夜景」（江戸時代の山谷堀）",
+      "wiki_title": "File:NDL1312270 名所江戸百景 真乳山山谷堀夜景.jpg",
+      "page_url": "https://commons.wikimedia.org/wiki/File:NDL1312270_%E5%90%8D%E6%89%80%E6%B1%9F%E6%88%B8%E7%99%BE%E6%99%AF_%E7%9C%9F%E4%B9%B3%E5%B1%B1%E5%B1%B1%E8%B0%B7%E5%A0%80%E5%A4%9C%E6%99%AF.jpg",
+      "image_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5f/NDL1312270_%E5%90%8D%E6%89%80%E6%B1%9F%E6%88%B8%E7%99%BE%E6%99%AF_%E7%9C%9F%E4%B9%B3%E5%B1%B1%E5%B1%B1%E8%B0%B7%E5%A0%80%E5%A4%9C%E6%99%AF.jpg/1280px-NDL1312270_%E5%90%8D%E6%89%80%E6%B1%9F%E6%88%B8%E7%99%BE%E6%99%AF_%E7%9C%9F%E4%B9%B3%E5%B1%B1%E5%B1%B1%E8%B0%B7%E5%A0%80%E5%A4%9C%E6%99%AF.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
+      "artist": "広重",
+      "license": "Public domain",
+      "commercial_use": true,
+      "credit_text": "図版：広重 / Wikimedia Commons（Public domain）"
+    }
+  ]
+}

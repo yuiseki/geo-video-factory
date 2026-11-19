@@ -1,0 +1,144 @@
+{
+  "metadata": {
+    "area": "東京23区（および関連主要上水路）",
+    "crs_measurement": "EPSG:6677",
+    "crs_output": "EPSG:4326",
+    "dem_stream_threshold_km2": 0.5,
+    "w05_reference_total_km": 425.32
+  },
+  "layers": {
+    "01_current_rivers": {
+      "feature_count": 947,
+      "total_length_km": 369.79,
+      "total_area_km2": 0.0,
+      "by_confidence": {
+        "high": 947
+      },
+      "by_category": {
+        "current_river": 947
+      }
+    },
+    "02_culvert_and_valleys": {
+      "feature_count": 590,
+      "total_length_km": 384.31,
+      "total_area_km2": 0.0,
+      "by_confidence": {
+        "high": 165,
+        "medium": 130,
+        "estimated": 295
+      },
+      "by_category": {
+        "culvert_osm": 295,
+        "valley_dem": 295
+      }
+    },
+    "03_filled_canals": {
+      "feature_count": 81,
+      "total_length_km": 20.13,
+      "total_area_km2": 0.993,
+      "by_confidence": {
+        "high": 81
+      },
+      "by_category": {
+        "filled_canal": 81
+      }
+    },
+    "04_old_aqueducts": {
+      "feature_count": 64,
+      "total_length_km": 55.1,
+      "total_area_km2": 0.0,
+      "by_confidence": {
+        "high": 64
+      },
+      "by_category": {
+        "old_aqueduct": 64
+      }
+    },
+    "05_former_channels": {
+      "feature_count": 177,
+      "total_length_km": 0.0,
+      "total_area_km2": 5.837,
+      "by_confidence": {
+        "high": 115,
+        "medium": 62
+      },
+      "by_category": {
+        "former_channel": 177
+      }
+    }
+  },
+  "basin_comparison": {
+    "渋谷川・古川水系": {
+      "current_river_km": 7.62,
+      "culvert_osm_km": 12.54,
+      "valley_dem_km": 6.0,
+      "culvert_and_valley_total_km": 18.54
+    },
+    "神田川水系": {
+      "current_river_km": 47.72,
+      "culvert_osm_km": 7.64,
+      "valley_dem_km": 66.75,
+      "culvert_and_valley_total_km": 74.39
+    },
+    "目黒川水系": {
+      "current_river_km": 11.66,
+      "culvert_osm_km": 77.77,
+      "valley_dem_km": 10.16,
+      "culvert_and_valley_total_km": 87.94
+    },
+    "呑川水系": {
+      "current_river_km": 10.46,
+      "culvert_osm_km": 15.31,
+      "valley_dem_km": 5.22,
+      "culvert_and_valley_total_km": 20.53
+    },
+    "石神井川水系": {
+      "current_river_km": 21.73,
+      "culvert_osm_km": 1.87,
+      "valley_dem_km": 27.53,
+      "culvert_and_valley_total_km": 29.4
+    },
+    "立会川水系": {
+      "current_river_km": 0.87,
+      "culvert_osm_km": 10.81,
+      "valley_dem_km": 0.0,
+      "culvert_and_valley_total_km": 10.81
+    },
+    "荒川水系": {
+      "current_river_km": 84.18,
+      "culvert_osm_km": 1.33,
+      "valley_dem_km": 24.08,
+      "culvert_and_valley_total_km": 25.41
+    },
+    "多摩川水系": {
+      "current_river_km": 35.47,
+      "culvert_osm_km": 9.05,
+      "valley_dem_km": 17.46,
+      "culvert_and_valley_total_km": 26.51
+    },
+    "利根川・江戸川・江東内部河川水系": {
+      "current_river_km": 70.97,
+      "culvert_osm_km": 1.44,
+      "valley_dem_km": 0.0,
+      "culvert_and_valley_total_km": 1.44
+    }
+  },
+  "flood_overlap_validation": {
+    "total_23_polygons": 4759,
+    "inland_23_polygons": 4364,
+    "within_50m_any_recall": 1754,
+    "within_100m_any_recall": 2153,
+    "within_50m_culvert_valley": 1382,
+    "within_100m_culvert_valley": 1696,
+    "within_50m_former_channel": 441,
+    "within_100m_former_channel": 542,
+    "inland_within_50m_any_recall": 1606,
+    "inland_within_100m_any_recall": 1971,
+    "pct_50m_any_recall": 36.9,
+    "pct_100m_any_recall": 45.2,
+    "pct_50m_culvert_valley": 29.0,
+    "pct_100m_culvert_valley": 35.6,
+    "pct_inland_50m_any_recall": 36.8,
+    "pct_inland_100m_any_recall": 45.2
+  }
+}
