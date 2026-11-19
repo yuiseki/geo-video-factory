@@ -1,0 +1,94 @@
+{
+  "photos": [
+    {
+      "file": "flyover/assets/photos/atami_onsen_old.jpg",
+      "role": "Intro/Ch.2 熱海温泉（歴史絵図・資料）",
+      "commons_title": "File:Zushu atami onsen higuchi.jpg",
+      "artist": "作者不詳",
+      "license": "Public domain",
+      "commercial_ok": true,
+      "credit_text": "図版：Wikimedia Commons（Public domain）",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Zushu_atami_onsen_higuchi.jpg"
+    },
+    {
+      "file": "flyover/assets/photos/ito_onsen.jpg",
+      "role": "Intro 伊東温泉（東海館・松川）",
+      "commons_title": "File:Ito hot spring, upstream side view than Okawa Bridge.JPG",
+      "artist": "Sakaori",
+      "license": "CC BY 3.0",
+      "commercial_ok": true,
+      "credit_text": "写真：Sakaori / Wikimedia Commons（CC BY 3.0）",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ito_hot_spring,_upstream_side_view_than_Okawa_Bridge.JPG"
+    },
+    {
+      "file": "flyover/assets/photos/toi_gold_mine_mouth.jpg",
+      "role": "Ch.2/Ch.3 土肥金山（坑口）",
+      "commons_title": "File:Mouth of the Toi gold mine, Izu - Mar 29, 2009.jpg",
+      "artist": "Kiyonobu Ito",
+      "license": "CC BY 2.0",
+      "commercial_ok": true,
+      "credit_text": "写真：Kiyonobu Ito / Wikimedia Commons（CC BY 2.0）",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Mouth_of_the_Toi_gold_mine,_Izu_-_Mar_29,_2009.jpg"
+    },
+    {
+      "file": "flyover/assets/photos/ohito_mine_2011.jpg",
+      "role": "Ch.2/Outro 大仁鉱山跡（浮遊選鉱場跡と伊豆温泉村・大仁金山の看板）",
+      "commons_title": "File:Ohito mine 20110918.jpg",
+      "artist": "Batholith",
+      "license": "Public domain",
+      "commercial_ok": true,
+      "credit_text": "写真：Batholith / Wikimedia Commons（Public domain）",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ohito_mine_20110918.jpg"
+    },
+    {
+      "file": "flyover/assets/photos/ugusu_2.jpg",
+      "role": "Ch.4 伊豆珪石鉱山（宇久須の採掘場遠景）",
+      "commons_title": "File:Ugusu-2.JPG",
+      "artist": "のりまき",
+      "license": "CC0",
+      "commercial_ok": true,
+      "credit_text": "写真：のりまき / Wikimedia Commons（CC0）",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ugusu-2.JPG"
+    },
+    {
+      "file": "flyover/assets/photos/ugusu_5.jpg",
+      "role": "Ch.4 伊豆珪石鉱山（珪石・明礬石標本）",
+      "commons_title": "File:Ugusu-5.JPG",
+      "artist": "のりまき",
+      "license": "CC0",
+      "commercial_ok": true,
+      "credit_text": "写真：のりまき / Wikimedia Commons（CC0）",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Ugusu-5.JPG"
+    },
+    {
+      "file": "flyover/assets/photos/kano_river.jpg",
+      "role": "Ch.5 狩野川（清流とアユ釣り）",
+      "commons_title": "File:Kano River 2012-10-10.jpg",
+      "artist": "Batholith",
+      "license": "Public domain",
+      "commercial_ok": true,
+      "credit_text": "写真：Batholith / Wikimedia Commons（Public domain）",
+      "source_url": "https://commons.wikimedia.org/wiki/File:Kano_River_2012-10-10.jpg"
+    }
+  ],
+  "pending_candidates": [
+    {
+      "commons_title": "File:Shuzenji onsen 20110919 F.jpg",
+      "license": "Public domain",
+      "artist": "Batholith",
+      "note": "修善寺温泉（レート制限のため未取得、必要に応じ後日取得）"
+    },
+    {
+      "commons_title": "File:Ohito Mine a.jpg",
+      "license": "Public domain",
+      "artist": "Batholith",
+      "note": "大仁鉱山歴史写真（同上）"
+    },
+    {
+      "commons_title": "File:Kanogawa Typhoon 1958 a.jpg",
+      "license": "Public domain",
+      "artist": "Batholith",
+      "note": "1958年狩野川台風（同上）"
+    }
+  ]
+}

@@ -1,0 +1,2342 @@
+[
+  {
+    "id": "node/1488574071",
+    "name": "ホテルサンミ倶楽部",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09058,
+    "lon": 139.07413,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/1488574075",
+    "name": "ニューフジヤホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09715,
+    "lon": 139.07243,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/1488574083",
+    "name": "ホテル貫一",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09755,
+    "lon": 139.07414,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/1488574092",
+    "name": "熱海玉の湯ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09231,
+    "lon": 139.07432,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/1488574094",
+    "name": "福島屋旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09766,
+    "lon": 139.07318,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/1489518866",
+    "name": "大江戸温泉物語　あたみ",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09936,
+    "lon": 139.07565,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/2007341481",
+    "name": "大観荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.10218,
+    "lon": 139.07374,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/2008393718",
+    "name": "子持ち湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.97382,
+    "lon": 139.09256,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/2012226376",
+    "name": "シーサイドスパ",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.98455,
+    "lon": 139.09438,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/2014428781",
+    "name": "伊東ステーションホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97422,
+    "lon": 139.09316,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/2106551004",
+    "name": "望洋荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.1067,
+    "lon": 139.07844,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "node/2146182772",
+    "name": "川奈ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.94005,
+    "lon": 139.14006,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/2636641616",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.74377,
+    "lon": 138.9958,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/2636641661",
+    "name": "岩谷旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.74363,
+    "lon": 138.99579,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "node/2636641662",
+    "name": "嵐の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.74446,
+    "lon": 138.99506,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/2636641665",
+    "name": "海遊亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.74361,
+    "lon": 138.99771,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/2643845446",
+    "name": "中瀬隠居",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.79454,
+    "lon": 138.9348,
+    "tourism": "hotel",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/2643845451",
+    "name": "AMAGISO 天城荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.79326,
+    "lon": 138.93676,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/2643897066",
+    "name": "河津三郎の足湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.74371,
+    "lon": 138.99586,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/2779720990",
+    "name": "ホテルカターラリゾート＆スパ",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81744,
+    "lon": 139.0722,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/3324747142",
+    "name": "ホテル弥生",
+    "kind": "温泉宿・旅館",
+    "lat": 35.10311,
+    "lon": 139.08069,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/3398052593",
+    "name": "梅屋旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97212,
+    "lon": 139.09272,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/3537681423",
+    "name": "白馬荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09638,
+    "lon": 139.07345,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "node/3591730492",
+    "name": "山木旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.0947,
+    "lon": 139.07239,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/3593518099",
+    "name": "コンドミニアムホテル グランビュー熱海",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09973,
+    "lon": 139.07566,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/3593518695",
+    "name": "大月ホテル和風館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09843,
+    "lon": 139.07534,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/3593919160",
+    "name": "大湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09822,
+    "lon": 139.07112,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/3594201293",
+    "name": "佐治郎の湯（目の湯）",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09696,
+    "lon": 139.0735,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/3600343994",
+    "name": "清水町共同浴場",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.094,
+    "lon": 139.0713,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/3608440138",
+    "name": "清左衛門の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09789,
+    "lon": 139.07417,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/3608457082",
+    "name": "湯宿 みかんの木",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09754,
+    "lon": 139.07437,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/3608461659",
+    "name": "河原湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09669,
+    "lon": 139.07475,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/3879956156",
+    "name": "足湯（駅ホーム）",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.88936,
+    "lon": 139.12142,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/4104186834",
+    "name": "下田東急ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.66804,
+    "lon": 138.93836,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/4708341094",
+    "name": "とっこの湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.97045,
+    "lon": 138.92754,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/4708520598",
+    "name": "八幡野温泉郷きらの里",
+    "kind": "温泉宿・旅館",
+    "lat": 34.88189,
+    "lon": 139.10035,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/4795892037",
+    "name": "黒船ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.67551,
+    "lon": 138.95255,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/4795892044",
+    "name": "下田オーシャンパークホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.67707,
+    "lon": 138.95645,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/4796051121",
+    "name": "沢田公園露天風呂",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.77741,
+    "lon": 138.76565,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/5301957369",
+    "name": "ホテル滝亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97308,
+    "lon": 138.93227,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5302779652",
+    "name": "湯回廊 菊屋",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97094,
+    "lon": 138.92984,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5303104070",
+    "name": "宙SORA渡月荘金龍",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96887,
+    "lon": 138.92633,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5304251746",
+    "name": "あさば旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96906,
+    "lon": 138.92474,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5304252148",
+    "name": "瑞の里 ○久旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96975,
+    "lon": 138.92196,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5304252353",
+    "name": "ブリーズベイ修善寺ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96822,
+    "lon": 138.92192,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5304395998",
+    "name": "河原湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.97051,
+    "lon": 138.9274,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/5306596526",
+    "name": "本格会席と源泉の湯 伊豆修善寺 絆+",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96902,
+    "lon": 138.92036,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5307973434",
+    "name": "新井旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97046,
+    "lon": 138.92674,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5308049958",
+    "name": "修善寺石亭 鬼の栖",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97091,
+    "lon": 138.91978,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5308050334",
+    "name": "五葉館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97148,
+    "lon": 138.93047,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5308050335",
+    "name": "金福荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97134,
+    "lon": 138.9263,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5308507791",
+    "name": "白岩の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.96468,
+    "lon": 138.98365,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/5309672765",
+    "name": "小川温泉共同浴場",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.96198,
+    "lon": 138.97917,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/5317694990",
+    "name": "下田プリンスホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.69625,
+    "lon": 138.97316,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5318199138",
+    "name": "オーシャンビュー博海温泉ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.65378,
+    "lon": 138.96534,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5321845982",
+    "name": "一二三荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.99239,
+    "lon": 138.94046,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5323223601",
+    "name": "大仁ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.99638,
+    "lon": 138.94252,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5323225475",
+    "name": "ホテル オリーブの木",
+    "kind": "温泉宿・旅館",
+    "lat": 34.98952,
+    "lon": 138.94233,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5345014216",
+    "name": "伊豆長岡ホテル天坊",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03242,
+    "lon": 138.9276,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5444683247",
+    "name": "吉田亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.64238,
+    "lon": 138.78526,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5466798254",
+    "name": "富士屋旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.99291,
+    "lon": 138.9407,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5467150322",
+    "name": "白壁荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.89023,
+    "lon": 138.92547,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5491225152",
+    "name": "湯本館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.89041,
+    "lon": 138.92382,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5491225153",
+    "name": "河鹿の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.89019,
+    "lon": 138.92386,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/5496935980",
+    "name": "リブマックスリゾート天城湯ヶ島",
+    "kind": "温泉宿・旅館",
+    "lat": 34.88575,
+    "lon": 138.92326,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5496935981",
+    "name": "谷川の湯 あせび野",
+    "kind": "温泉宿・旅館",
+    "lat": 34.88778,
+    "lon": 138.92563,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5537803035",
+    "name": "ホテルウラガ",
+    "kind": "温泉宿・旅館",
+    "lat": 34.67264,
+    "lon": 138.94344,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5797570253",
+    "name": "弘法の湯 長岡店",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03011,
+    "lon": 138.93379,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/5797585653",
+    "name": "西伊豆町営やまびこ荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.8128,
+    "lon": 138.82603,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6002375224",
+    "name": "KKRホテル熱海",
+    "kind": "温泉宿・旅館",
+    "lat": 35.10191,
+    "lon": 139.0814,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6074778886",
+    "name": "風呂の湯・水の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09761,
+    "lon": 139.0734,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/6074778887",
+    "name": "小沢の湯（平左衛門の湯）",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09788,
+    "lon": 139.07268,
+    "tourism": "",
+    "amenity": "bbq"
+  },
+  {
+    "id": "node/6187998542",
+    "name": "秀花園 湯の花膳",
+    "kind": "温泉宿・旅館",
+    "lat": 35.08901,
+    "lon": 139.07663,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6248676292",
+    "name": "伊豆今井浜東急ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.75156,
+    "lon": 139.00355,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6248746340",
+    "name": "坐漁荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.8656,
+    "lon": 139.0966,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6249013685",
+    "name": "ホテルサンバレー伊豆長岡",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03526,
+    "lon": 138.92929,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6249262831",
+    "name": "伊東ホテル聚楽",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96485,
+    "lon": 139.09027,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6251165646",
+    "name": "ハトヤホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96472,
+    "lon": 139.08895,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6253239517",
+    "name": "堂ヶ島温泉ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.78695,
+    "lon": 138.7632,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6258824943",
+    "name": "牧水荘土肥館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.91366,
+    "lon": 138.79249,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6258861191",
+    "name": "明治館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.90604,
+    "lon": 138.7895,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6261280496",
+    "name": "つるや吉祥亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.83243,
+    "lon": 139.07538,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6261392359",
+    "name": "下田ビューホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.67741,
+    "lon": 138.97201,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6261429214",
+    "name": "ホテル山田屋",
+    "kind": "温泉宿・旅館",
+    "lat": 34.67102,
+    "lon": 138.96536,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6261442376",
+    "name": "西伊豆クリスタルビューホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.85465,
+    "lon": 138.77807,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6265407671",
+    "name": "里山の別邸 下田セントラルホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.71904,
+    "lon": 138.9149,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6265442670",
+    "name": "三養荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03899,
+    "lon": 138.93424,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6265523551",
+    "name": "下田大和館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.66206,
+    "lon": 138.93358,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6265591039",
+    "name": "大地の彩 花月亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.69815,
+    "lon": 138.93205,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6265593171",
+    "name": "清流荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.69699,
+    "lon": 138.93915,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6267317599",
+    "name": "月の栖 熱海聚楽ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.1012,
+    "lon": 139.07808,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6267322176",
+    "name": "淘心庵米屋",
+    "kind": "温泉宿・旅館",
+    "lat": 34.95697,
+    "lon": 139.08643,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6275894036",
+    "name": "ホテル河内屋",
+    "kind": "温泉宿・旅館",
+    "lat": 34.64864,
+    "lon": 138.86875,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6275928173",
+    "name": "古屋旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09787,
+    "lon": 139.07469,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6275939687",
+    "name": "ホテルリゾーピア熱海",
+    "kind": "温泉宿・旅館",
+    "lat": 35.10141,
+    "lon": 139.08222,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6279796844",
+    "name": "ホテルよしの",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97015,
+    "lon": 139.09082,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6279883440",
+    "name": "ホテルラヴィエ川良",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97071,
+    "lon": 139.09632,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6279906089",
+    "name": "ホテルハーヴェスト天城高原",
+    "kind": "温泉宿・旅館",
+    "lat": 34.89226,
+    "lon": 139.0285,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6279924139",
+    "name": "ホテルラフォーレ修善寺",
+    "kind": "温泉宿・旅館",
+    "lat": 34.95812,
+    "lon": 138.90693,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6282525890",
+    "name": "陽気館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96672,
+    "lon": 139.09033,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6673911858",
+    "name": "高齢者温泉交流館",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.04083,
+    "lon": 138.94124,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6673911909",
+    "name": "ホテル・アクアサンタ",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03589,
+    "lon": 138.9379,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6673911934",
+    "name": "伊古奈荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03573,
+    "lon": 138.93899,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/6679933782",
+    "name": "熱海駅前温泉浴場",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10265,
+    "lon": 139.07845,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6680029181",
+    "name": "ハトヤ大漁苑",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.99019,
+    "lon": 139.09282,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6680034026",
+    "name": "マリンスパあたみ（Ｐ無）",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09077,
+    "lon": 139.07484,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6680113990",
+    "name": "東海館お風呂",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.97172,
+    "lon": 139.09694,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6680155759",
+    "name": "舟戸の番屋",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.75289,
+    "lon": 139.00814,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6680807425",
+    "name": "壱の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.97113,
+    "lon": 138.78659,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6680868265",
+    "name": "森の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.95708,
+    "lon": 138.90961,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/6928883972",
+    "name": "水葉亭",
+    "kind": "温泉宿・旅館",
+    "lat": 35.1097,
+    "lon": 139.08575,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7330717237",
+    "name": "KKR伊豆長岡 千歳荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03669,
+    "lon": 138.93666,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7330717238",
+    "name": "香湯楼井川",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03486,
+    "lon": 138.93591,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7330717240",
+    "name": "あやめ湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.03538,
+    "lon": 138.93631,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/7330717242",
+    "name": "ホテルサンバレー 富士見",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03447,
+    "lon": 138.94166,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7330717245",
+    "name": "正平荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03427,
+    "lon": 138.93792,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7330717248",
+    "name": "伊豆長岡温泉京急ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03322,
+    "lon": 138.9411,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7343073858",
+    "name": "和田寿老人の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.96883,
+    "lon": 139.09861,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/7343294281",
+    "name": "つた垣旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96954,
+    "lon": 139.0976,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7367892936",
+    "name": "弁天の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.97469,
+    "lon": 139.09494,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/7410944119",
+    "name": "熱川プリンスホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81773,
+    "lon": 139.06873,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7658645775",
+    "name": "ホテルサンバレー アネックス",
+    "kind": "温泉宿・旅館",
+    "lat": 35.0288,
+    "lon": 138.92892,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802248086",
+    "name": "汐見荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.82895,
+    "lon": 139.07527,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253316",
+    "name": "足湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.77063,
+    "lon": 138.77048,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253704",
+    "name": "いなばや旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.72545,
+    "lon": 138.74462,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253707",
+    "name": "五輪館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.79355,
+    "lon": 138.75987,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253722",
+    "name": "粋松亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.91192,
+    "lon": 138.78952,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253728",
+    "name": "大川観光協会　磯の湯(露天風呂)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.84058,
+    "lon": 139.07679,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253729",
+    "name": "星ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.83298,
+    "lon": 139.07493,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253898",
+    "name": "乗浜荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.77794,
+    "lon": 138.76808,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253901",
+    "name": "伊豆　松崎荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.75789,
+    "lon": 138.77698,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253903",
+    "name": "なぎさの足湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.72624,
+    "lon": 138.74487,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/7802253909",
+    "name": "松海荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.90941,
+    "lon": 138.7903,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802253918",
+    "name": "大川館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.84121,
+    "lon": 139.07449,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802261091",
+    "name": "きむら旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.84138,
+    "lon": 139.0764,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802261585",
+    "name": "八幡野港",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.86895,
+    "lon": 139.10263,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/7802261985",
+    "name": "山十旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.82874,
+    "lon": 139.07544,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/8270562408",
+    "name": "ホテル海",
+    "kind": "温泉宿・旅館",
+    "lat": 34.91226,
+    "lon": 139.13864,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/8272658371",
+    "name": "富戸温泉",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.90414,
+    "lon": 139.13359,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/8278599864",
+    "name": "立ち寄り温泉;伊東高原の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.87909,
+    "lon": 139.10611,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/8421837671",
+    "name": "伊東園ホテル土肥",
+    "kind": "温泉宿・旅館",
+    "lat": 34.90312,
+    "lon": 138.78244,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/8449695096",
+    "name": "金谷旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.69934,
+    "lon": 138.9383,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/8853114150",
+    "name": "ホテルマルセイユ",
+    "kind": "温泉宿・旅館",
+    "lat": 34.67878,
+    "lon": 138.94523,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9284826681",
+    "name": "伊豆高原わんわんパラダイスホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.9027,
+    "lon": 139.1127,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9284826682",
+    "name": "ホテルアンビエント伊豆高原アネックス",
+    "kind": "温泉宿・旅館",
+    "lat": 34.90283,
+    "lon": 139.11313,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9315646858",
+    "name": "福狸亭 小川家",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03135,
+    "lon": 138.93167,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9315646859",
+    "name": "いづみ荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.032,
+    "lon": 138.93219,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9315689262",
+    "name": "頼朝の湯 本陣",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03722,
+    "lon": 138.93506,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9315689263",
+    "name": "弘法の湯 本店",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03802,
+    "lon": 138.9358,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9315696938",
+    "name": "すみよし館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.0391,
+    "lon": 138.93593,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/9459694711",
+    "name": "おゆるり",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.90763,
+    "lon": 139.0979,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/9459867527",
+    "name": "あったまり～な",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.98475,
+    "lon": 139.09457,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/10235097163",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09813,
+    "lon": 139.07144,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/10235107599",
+    "name": "青山湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09844,
+    "lon": 139.07285,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/10235107600",
+    "name": "野中の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09926,
+    "lon": 139.07326,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/10235167479",
+    "name": "延命乃湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09728,
+    "lon": 139.07183,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/10279667509",
+    "name": "伊豆山温泉走り湯浜浴場",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.11154,
+    "lon": 139.08539,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/10285454995",
+    "name": "熱海大観荘貸切露天風呂",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10183,
+    "lon": 139.07341,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/10285454996",
+    "name": "熱海大観荘足湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10176,
+    "lon": 139.07335,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/10285454997",
+    "name": "熱海大観荘山王の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10202,
+    "lon": 139.07301,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/10285454998",
+    "name": "熱海大観荘滝の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10206,
+    "lon": 139.0734,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/10285454999",
+    "name": "熱海大観荘ひのきの湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10221,
+    "lon": 139.07389,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/10285485624",
+    "name": "第一山王源泉跡",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10234,
+    "lon": 139.0747,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/10711631982",
+    "name": "南山荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03101,
+    "lon": 138.93224,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/10821743002",
+    "name": "富士見山荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.88389,
+    "lon": 138.93241,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/11003223685",
+    "name": "玉峰館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.7569,
+    "lon": 138.98279,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/11007472699",
+    "name": "足湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.75688,
+    "lon": 138.98539,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/11012076265",
+    "name": "徳造丸 海女の足湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.7708,
+    "lon": 139.04305,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/11090938747",
+    "name": "伊東園ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.9709,
+    "lon": 139.09569,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523355",
+    "name": "川端荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.72533,
+    "lon": 138.74424,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523356",
+    "name": "雲見温泉 民宿 吉右ェ門",
+    "kind": "温泉宿・旅館",
+    "lat": 34.725,
+    "lon": 138.74426,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523362",
+    "name": "松原荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.72553,
+    "lon": 138.74332,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523372",
+    "name": "温泉民宿さかんや",
+    "kind": "温泉宿・旅館",
+    "lat": 34.72088,
+    "lon": 138.7463,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523374",
+    "name": "みどり荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.72048,
+    "lon": 138.74602,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523383",
+    "name": "はしば荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.73224,
+    "lon": 138.75624,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523385",
+    "name": "石部荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.73173,
+    "lon": 138.7557,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/11107523386",
+    "name": "平六地蔵露天風呂",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.73408,
+    "lon": 138.75716,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/11276698757",
+    "name": "Foot Bath",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.74698,
+    "lon": 138.99641,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/11276698768",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.79622,
+    "lon": 138.93337,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/11276719380",
+    "name": "露天風呂",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.75247,
+    "lon": 139.00782,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/11278615829",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.89754,
+    "lon": 139.1321,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/11288167488",
+    "name": "Foot path",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09658,
+    "lon": 139.07469,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "node/11292309494",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09916,
+    "lon": 139.07545,
+    "tourism": "",
+    "amenity": ""
+  },
+  {
+    "id": "node/11502425252",
+    "name": "熱海スプリングテラスホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.1037,
+    "lon": 139.07369,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/12119857995",
+    "name": "亀の井ホテル伊豆高原",
+    "kind": "温泉宿・旅館",
+    "lat": 34.88957,
+    "lon": 139.11799,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "node/12727135186",
+    "name": "伊東園ホテル松川館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97013,
+    "lon": 139.09462,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/190712461",
+    "name": "大東館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96717,
+    "lon": 139.09026,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/191055086",
+    "name": "温泉民宿 鈴幸",
+    "kind": "温泉宿・旅館",
+    "lat": 35.00588,
+    "lon": 139.08109,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "way/191161212",
+    "name": "パレスホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.97536,
+    "lon": 139.09062,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/325909771",
+    "name": "熱海温泉 湯宿一番地",
+    "kind": "温泉宿・旅館",
+    "lat": 35.10176,
+    "lon": 139.07806,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/351989502",
+    "name": "日航亭・大湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.09819,
+    "lon": 139.07105,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/352347731",
+    "name": "熱海温泉ホテル 夢いろは",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09852,
+    "lon": 139.07277,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/403593919",
+    "name": "淡島ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03556,
+    "lon": 138.88679,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/403663193",
+    "name": "安田屋旅館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.0203,
+    "lon": 138.89743,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/403827950",
+    "name": "美春荘",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03533,
+    "lon": 138.89635,
+    "tourism": "guest_house",
+    "amenity": ""
+  },
+  {
+    "id": "way/412941880",
+    "name": "金城館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.03257,
+    "lon": 138.93252,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/421602037",
+    "name": "稲取東海ホテル湯苑",
+    "kind": "温泉宿・旅館",
+    "lat": 34.76613,
+    "lon": 139.03736,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/439439910",
+    "name": "熱海後楽園ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.08867,
+    "lon": 139.07909,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/450185100",
+    "name": "大沢温泉 依田之庄",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.75795,
+    "lon": 138.82941,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/450185112",
+    "name": "道の駅花の三聖苑伊豆松崎;かじかの湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.7578,
+    "lon": 138.82541,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/511303239",
+    "name": "家康の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.10349,
+    "lon": 139.07856,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/548862739",
+    "name": "修善寺温泉;筥湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.97055,
+    "lon": 138.92839,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/548924522",
+    "name": "万福;百笑の湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.98881,
+    "lon": 138.94247,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/552015830",
+    "name": "銀の湯会館",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.64901,
+    "lon": 138.86027,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/555365859",
+    "name": "北川温泉ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.83131,
+    "lon": 139.07506,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/556995876",
+    "name": "土肥ふじやホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.91125,
+    "lon": 138.7924,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/558699477",
+    "name": "リゾートセンター;みのり温泉",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.99239,
+    "lon": 139.05634,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/559087546",
+    "name": "堂ヶ島ホテル天遊",
+    "kind": "温泉宿・旅館",
+    "lat": 34.7875,
+    "lon": 138.76245,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/559139479",
+    "name": "西伊豆町営;せせらぎの湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.77407,
+    "lon": 138.78892,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/560084710",
+    "name": "弓ヶ浜温泉;みなと湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.63766,
+    "lon": 138.88896,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/560218582",
+    "name": "今井荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.75213,
+    "lon": 139.00392,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263364",
+    "name": "ホテルセタスロイヤル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81529,
+    "lon": 139.07142,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263367",
+    "name": "熱川大和館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81618,
+    "lon": 139.0721,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263374",
+    "name": "熱川温泉粋光",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81289,
+    "lon": 139.06993,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263375",
+    "name": "伊豆・熱川温泉たかみホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81373,
+    "lon": 139.0689,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263376",
+    "name": "伊藤園ホテル熱川",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81426,
+    "lon": 139.06852,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263392",
+    "name": "熱川館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81479,
+    "lon": 139.0711,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263399",
+    "name": "ホテルカターラリゾート＆スパ",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81755,
+    "lon": 139.07214,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560263414",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.81809,
+    "lon": 139.07501,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/560263418",
+    "name": "湯花満開 ふたりの湯宿",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81679,
+    "lon": 139.07168,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560618659",
+    "name": "源泉湯宿 大成館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.04512,
+    "lon": 139.08276,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/560716156",
+    "name": "西伊豆町営;なぎさの湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.76885,
+    "lon": 138.77459,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/561014144",
+    "name": "濤亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.6588,
+    "lon": 138.92575,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/561818694",
+    "name": "下田聚楽ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 34.67708,
+    "lon": 138.95931,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/562146764",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.89461,
+    "lon": 139.13693,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/563528573",
+    "name": "ホテル暖香園",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96911,
+    "lon": 139.09681,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/563528576",
+    "name": "ホテルハーヴェスト伊東",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96823,
+    "lon": 139.0959,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/563654709",
+    "name": "伊東遊季亭",
+    "kind": "温泉宿・旅館",
+    "lat": 34.96926,
+    "lon": 139.09476,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/564171881",
+    "name": "熱海倶楽部迎賓館",
+    "kind": "温泉宿・旅館",
+    "lat": 35.11213,
+    "lon": 139.07133,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/564198655",
+    "name": "迎賓館　熱海小嵐亭",
+    "kind": "温泉宿・旅館",
+    "lat": 35.08962,
+    "lon": 139.0669,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/564499177",
+    "name": "ホテル伊東ガーデン",
+    "kind": "温泉宿・旅館",
+    "lat": 34.9735,
+    "lon": 139.0893,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/564926033",
+    "name": "旅館立花",
+    "kind": "温泉宿・旅館",
+    "lat": 35.09272,
+    "lon": 139.073,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/565061879",
+    "name": "ホテルニューさがみや",
+    "kind": "温泉宿・旅館",
+    "lat": 35.1122,
+    "lon": 139.08699,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/565076294",
+    "name": "紀州鉄道熱海ホテル",
+    "kind": "温泉宿・旅館",
+    "lat": 35.10884,
+    "lon": 139.08241,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/568391816",
+    "name": "心湯の宿 さざな",
+    "kind": "温泉宿・旅館",
+    "lat": 34.76668,
+    "lon": 139.03792,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/568396380",
+    "name": "食べるお宿 浜の湯",
+    "kind": "温泉宿・旅館",
+    "lat": 34.76976,
+    "lon": 139.04808,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/574433061",
+    "name": "稲取赤尾ホテル 海諷廊",
+    "kind": "温泉宿・旅館",
+    "lat": 34.76942,
+    "lon": 139.04659,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/574909862",
+    "name": "天城温泉プール",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.90073,
+    "lon": 138.92495,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/578455734",
+    "name": "伊豆マリオットホテル修善寺",
+    "kind": "温泉宿・旅館",
+    "lat": 34.95515,
+    "lon": 138.91944,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/583235330",
+    "name": "白岩荘",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.9611,
+    "lon": 138.97578,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/584414394",
+    "name": "湯～トピアかんなみ",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.08228,
+    "lon": 138.95197,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/595873487",
+    "name": "源泉;駒の湯荘",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.0757,
+    "lon": 138.97839,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/659518585",
+    "name": "観音温泉",
+    "kind": "温泉宿・旅館",
+    "lat": 34.70706,
+    "lon": 138.8811,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/660882002",
+    "name": "玉翠館",
+    "kind": "温泉宿・旅館",
+    "lat": 34.81686,
+    "lon": 139.06989,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/662315600",
+    "name": "海一望絶景の宿 いなとり荘",
+    "kind": "温泉宿・旅館",
+    "lat": 34.76649,
+    "lon": 139.03965,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/667380906",
+    "name": "伊豆網代温泉松風苑",
+    "kind": "温泉宿・旅館",
+    "lat": 35.04439,
+    "lon": 139.06603,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/667410020",
+    "name": "湯の国会館",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.9324,
+    "lon": 138.934,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/667825449",
+    "name": "踊り子温泉会館",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.75879,
+    "lon": 138.9836,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/710494409",
+    "name": "妙楽湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.04861,
+    "lon": 139.05978,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/710509225",
+    "name": "北川温泉;黒根岩風呂",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.83362,
+    "lon": 139.07601,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/710511040",
+    "name": "伊豆見高入谷高原温泉",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.77676,
+    "lon": 139.00983,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/710580956",
+    "name": "しおさいの湯",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.79332,
+    "lon": 138.7605,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/710592169",
+    "name": "希望園",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.95422,
+    "lon": 138.97465,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/889976239",
+    "name": "赤沢日帰り温泉館",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.85851,
+    "lon": 139.09119,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/1000486691",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.01192,
+    "lon": 138.92053,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/1008058732",
+    "name": "オーシャンスパ Fuua",
+    "kind": "源泉・温泉浴場",
+    "lat": 35.08828,
+    "lon": 139.08014,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/1041893291",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.8165,
+    "lon": 139.07267,
+    "tourism": "",
+    "amenity": "public_bath"
+  },
+  {
+    "id": "way/1044293464",
+    "name": "熱川温泉ブルーオーシャン",
+    "kind": "温泉宿・旅館",
+    "lat": 34.80959,
+    "lon": 139.06805,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/1047643977",
+    "name": "ホテル伊豆急",
+    "kind": "温泉宿・旅館",
+    "lat": 34.68762,
+    "lon": 138.97138,
+    "tourism": "hotel",
+    "amenity": ""
+  },
+  {
+    "id": "way/1220163726",
+    "name": "(名称なし温泉施設)",
+    "kind": "源泉・温泉浴場",
+    "lat": 34.90832,
+    "lon": 139.09764,
+    "tourism": "",
+    "amenity": "public_bath"
+  }
+]

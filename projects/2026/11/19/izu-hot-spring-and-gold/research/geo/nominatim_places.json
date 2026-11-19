@@ -1,0 +1,664 @@
+{
+  "土肥金山": [
+    {
+      "place_id": 258025632,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 925478284,
+      "lat": "34.9082390",
+      "lon": "138.7933475",
+      "category": "tourism",
+      "type": "theme_park",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "tourism",
+      "name": "土肥金山",
+      "display_name": "土肥金山, 2726, 土肥, 伊豆市, 静岡県, 410-3302, 日本",
+      "boundingbox": [
+        "34.9075560",
+        "34.9087306",
+        "138.7923270",
+        "138.7941976"
+      ]
+    },
+    {
+      "place_id": 258026393,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 4381478726,
+      "lat": "34.9082634",
+      "lon": "138.7915050",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "土肥金山",
+      "display_name": "土肥金山, 国道136号, 伊豆市, 静岡県, 410-3302, 日本",
+      "boundingbox": [
+        "34.9082134",
+        "34.9083134",
+        "138.7914550",
+        "138.7915550"
+      ]
+    }
+  ],
+  "大仁鉱山": [
+    {
+      "place_id": 256830519,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 11187454492,
+      "lat": "36.0593503",
+      "lon": "139.5114030",
+      "category": "craft",
+      "type": "stonemason",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "craft",
+      "name": "鴻巣鉱山",
+      "display_name": "鴻巣鉱山, 鴻巣停車場線, 本町四丁目, 鴻巣市, 埼玉県, 365-0038, 日本",
+      "boundingbox": [
+        "36.0593003",
+        "36.0594003",
+        "139.5113530",
+        "139.5114530"
+      ]
+    }
+  ],
+  "持越鉱山": [],
+  "宇久須_伊豆珪石鉱山": [
+    {
+      "place_id": 258028201,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8755421207,
+      "lat": "34.8462247",
+      "lon": "138.7829881",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "宇久須",
+      "display_name": "宇久須, 西伊豆町, 賀茂郡, 静岡県, 410-3501, 日本",
+      "boundingbox": [
+        "34.8362247",
+        "34.8562247",
+        "138.7729881",
+        "138.7929881"
+      ]
+    },
+    {
+      "place_id": 258028084,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 5458159583,
+      "lat": "34.8532792",
+      "lon": "138.7702318",
+      "category": "natural",
+      "type": "bay",
+      "place_rank": 22,
+      "importance": 0.10667666666666664,
+      "addresstype": "bay",
+      "name": "宇久須",
+      "display_name": "宇久須, 西伊豆町, 賀茂郡, 静岡県, 410-3501, 日本",
+      "boundingbox": [
+        "34.8532292",
+        "34.8533292",
+        "138.7701818",
+        "138.7702818"
+      ]
+    },
+    {
+      "place_id": 258027910,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8465002728,
+      "lat": "34.8488856",
+      "lon": "138.7755552",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "宇久須",
+      "display_name": "宇久須, 国道136号, 宇久須, 西伊豆町, 賀茂郡, 静岡県, 410-3501, 日本",
+      "boundingbox": [
+        "34.8488356",
+        "34.8489356",
+        "138.7755052",
+        "138.7756052"
+      ]
+    }
+  ],
+  "清越鉱山": [],
+  "縄地鉱山": [
+    {
+      "place_id": 258029684,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8682508310,
+      "lat": "34.7263410",
+      "lon": "138.9745920",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "縄地",
+      "display_name": "縄地, 河津町, 賀茂郡, 静岡県, 413-0513, 日本",
+      "boundingbox": [
+        "34.7163410",
+        "34.7363410",
+        "138.9645920",
+        "138.9845920"
+      ]
+    },
+    {
+      "place_id": 258029728,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 5116847821,
+      "lat": "34.7252716",
+      "lon": "138.9815151",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "縄地",
+      "display_name": "縄地, 国道135号, 縄地, 河津町, 賀茂郡, 静岡県, 413-0513, 日本",
+      "boundingbox": [
+        "34.7252216",
+        "34.7253216",
+        "138.9814651",
+        "138.9815651"
+      ]
+    }
+  ],
+  "蓮台寺温泉": [
+    {
+      "place_id": 262857040,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 553356733,
+      "lat": "33.6471988",
+      "lon": "130.6460199",
+      "category": "amenity",
+      "type": "spa",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "amenity",
+      "name": "こうの湯温泉（伊川温泉）",
+      "display_name": "こうの湯温泉（伊川温泉）, 国道201号, 伊岐須, 飯塚市, 福岡県, 820-0017, 日本",
+      "boundingbox": [
+        "33.6467371",
+        "33.6476610",
+        "130.6456709",
+        "130.6462839"
+      ]
+    },
+    {
+      "place_id": 262855909,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 639854525,
+      "lat": "33.6470527",
+      "lon": "130.6449442",
+      "category": "amenity",
+      "type": "love_hotel",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "amenity",
+      "name": "伊川光温泉",
+      "display_name": "伊川光温泉, 国道201号, 伊岐須, 飯塚市, 福岡県, 820-0017, 日本",
+      "boundingbox": [
+        "33.6466955",
+        "33.6474036",
+        "130.6447094",
+        "130.6451749"
+      ]
+    },
+    {
+      "place_id": 262857028,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 639854533,
+      "lat": "33.6470806",
+      "lon": "130.6460295",
+      "category": "amenity",
+      "type": "public_bath",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "amenity",
+      "name": "伊川温泉;こうの湯温泉",
+      "display_name": "伊川温泉;こうの湯温泉, 国道201号, 伊岐須, 飯塚市, 福岡県, 820-0017, 日本",
+      "boundingbox": [
+        "33.6468323",
+        "33.6472821",
+        "130.6458180",
+        "130.6461583"
+      ]
+    }
+  ],
+  "土肥温泉": [
+    {
+      "place_id": 258025307,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 5108587690,
+      "lat": "34.9111220",
+      "lon": "138.7906659",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "土肥温泉",
+      "display_name": "土肥温泉, 国道136号, 伊豆市, 静岡県, 410-3302, 日本",
+      "boundingbox": [
+        "34.9110720",
+        "34.9111720",
+        "138.7906159",
+        "138.7907159"
+      ]
+    }
+  ],
+  "大仁温泉": [
+    {
+      "place_id": 260643011,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 333934470,
+      "lat": "35.1150144",
+      "lon": "132.3851452",
+      "category": "highway",
+      "type": "motorway",
+      "place_rank": 26,
+      "importance": 0.4577351370945987,
+      "addresstype": "road",
+      "name": "山陰自動車道",
+      "display_name": "山陰自動車道, 仁摩町馬路, 大田市, 島根県, 699-2502, 日本",
+      "boundingbox": [
+        "35.1108190",
+        "35.1188412",
+        "132.3838198",
+        "132.3872660"
+      ]
+    },
+    {
+      "place_id": 260640349,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 333934467,
+      "lat": "35.1369351",
+      "lon": "132.4060438",
+      "category": "highway",
+      "type": "motorway",
+      "place_rank": 26,
+      "importance": 0.4577351370945987,
+      "addresstype": "road",
+      "name": "山陰自動車道",
+      "display_name": "山陰自動車道, 仁摩町天河内, 大田市, 島根県, 699-2399, 日本",
+      "boundingbox": [
+        "35.1348762",
+        "35.1386417",
+        "132.4040972",
+        "132.4083102"
+      ]
+    },
+    {
+      "place_id": 260645024,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 333934464,
+      "lat": "35.1229272",
+      "lon": "132.3904215",
+      "category": "highway",
+      "type": "motorway",
+      "place_rank": 26,
+      "importance": 0.4577351370945987,
+      "addresstype": "road",
+      "name": "山陰自動車道",
+      "display_name": "山陰自動車道, 仁摩町馬路, 大田市, 島根県, 699-2304, 日本",
+      "boundingbox": [
+        "35.1217336",
+        "35.1239741",
+        "132.3893615",
+        "132.3916269"
+      ]
+    }
+  ],
+  "修善寺温泉": [
+    {
+      "place_id": 258022890,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 548862739,
+      "lat": "34.9705453",
+      "lon": "138.9283856",
+      "category": "amenity",
+      "type": "public_bath",
+      "place_rank": 30,
+      "importance": 0.3108696100169382,
+      "addresstype": "amenity",
+      "name": "修善寺温泉;筥湯",
+      "display_name": "修善寺温泉;筥湯, 修善寺戸田線, 伊豆市, 静岡県, 410-2416, 日本",
+      "boundingbox": [
+        "34.9704279",
+        "34.9706627",
+        "138.9282732",
+        "138.9284980"
+      ]
+    },
+    {
+      "place_id": 258023027,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 5302297932,
+      "lat": "34.9706479",
+      "lon": "138.9285907",
+      "category": "amenity",
+      "type": "parking",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "amenity",
+      "name": "修善寺温泉;筥湯",
+      "display_name": "修善寺温泉;筥湯, 修善寺戸田線, 伊豆市, 静岡県, 410-2416, 日本",
+      "boundingbox": [
+        "34.9705979",
+        "34.9706979",
+        "138.9285407",
+        "138.9286407"
+      ]
+    }
+  ],
+  "熱海温泉": [
+    {
+      "place_id": 258221955,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 710487406,
+      "lat": "35.1457298",
+      "lon": "139.0730642",
+      "category": "amenity",
+      "type": "public_bath",
+      "place_rank": 30,
+      "importance": 0.28948114726807017,
+      "addresstype": "amenity",
+      "name": "湯河原温泉;こごめの湯",
+      "display_name": "湯河原温泉;こごめの湯, 川の道, 泉, 湯河原町, 足柄下郡, 神奈川県, 413-0001, 日本",
+      "boundingbox": [
+        "35.1456114",
+        "35.1458241",
+        "139.0728318",
+        "139.0732931"
+      ]
+    },
+    {
+      "place_id": 258218642,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 325909771,
+      "lat": "35.1017096",
+      "lon": "139.0781961",
+      "category": "tourism",
+      "type": "hotel",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "tourism",
+      "name": "熱海温泉 湯宿一番地",
+      "display_name": "熱海温泉 湯宿一番地, 2, 熱海市, 静岡県, 413-0005, 日本",
+      "boundingbox": [
+        "35.1015607",
+        "35.1019626",
+        "139.0778114",
+        "139.0783051"
+      ]
+    },
+    {
+      "place_id": 258216490,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 667380906,
+      "lat": "35.0444031",
+      "lon": "139.0660301",
+      "category": "tourism",
+      "type": "hotel",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "tourism",
+      "name": "伊豆網代温泉松風苑",
+      "display_name": "伊豆網代温泉松風苑, 966, 下多賀, 熱海市, 静岡県, 413-0102, 日本",
+      "boundingbox": [
+        "35.0442120",
+        "35.0445744",
+        "139.0658086",
+        "139.0662539"
+      ]
+    }
+  ],
+  "伊東温泉": [
+    {
+      "place_id": 264498958,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 7168788696,
+      "lat": "40.7786161",
+      "lon": "141.2170112",
+      "category": "tourism",
+      "type": "hotel",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "tourism",
+      "name": "東北温泉",
+      "display_name": "東北温泉, 国道394号, 保戸沢家ノ前, 東北町, 上北郡, 青森県, 039-2644, 日本",
+      "boundingbox": [
+        "40.7785661",
+        "40.7786661",
+        "141.2169612",
+        "141.2170612"
+      ]
+    },
+    {
+      "place_id": 257214510,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 9938525394,
+      "lat": "36.9483471",
+      "lon": "140.1519336",
+      "category": "amenity",
+      "type": "public_bath",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "amenity",
+      "name": "東山道那須温泉",
+      "display_name": "東山道那須温泉, 国道294号（旧鎌倉街道）, 芋淵, 那須町, 那須郡, 栃木県, 329-3445, 日本",
+      "boundingbox": [
+        "36.9482971",
+        "36.9483971",
+        "140.1518836",
+        "140.1519836"
+      ]
+    },
+    {
+      "place_id": 258017523,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 6419050202,
+      "lat": "34.8789159",
+      "lon": "139.1058946",
+      "category": "amenity",
+      "type": "parking",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "amenity",
+      "name": "立ち寄り温泉;伊東高原の湯",
+      "display_name": "立ち寄り温泉;伊東高原の湯, 国道135号, 伊東市, 静岡県, 413-0232, 日本",
+      "boundingbox": [
+        "34.8788659",
+        "34.8789659",
+        "139.1058446",
+        "139.1059446"
+      ]
+    }
+  ],
+  "湯ヶ島温泉": [
+    {
+      "place_id": 258025142,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8276566182,
+      "lat": "34.8862093",
+      "lon": "138.9226945",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "湯ヶ島温泉",
+      "display_name": "湯ヶ島温泉, 伊東西伊豆線, 湯ケ島, 伊豆市, 静岡県, 410-3206, 日本",
+      "boundingbox": [
+        "34.8861593",
+        "34.8862593",
+        "138.9226445",
+        "138.9227445"
+      ]
+    }
+  ],
+  "熱川温泉": [
+    {
+      "place_id": 258077177,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 560263374,
+      "lat": "34.8128936",
+      "lon": "139.0699110",
+      "category": "tourism",
+      "type": "hotel",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "tourism",
+      "name": "熱川温泉粋光",
+      "display_name": "熱川温泉粋光, 1271-2, 奈良本, 東伊豆町, 賀茂郡, 静岡県, 413-0302, 日本",
+      "boundingbox": [
+        "34.8126474",
+        "34.8131387",
+        "139.0697090",
+        "139.0701584"
+      ]
+    },
+    {
+      "place_id": 258013804,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 1420977576,
+      "lat": "34.8068210",
+      "lon": "139.0535780",
+      "category": "amenity",
+      "type": "hospital",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "amenity",
+      "name": "健育会熱川温泉病院",
+      "display_name": "健育会熱川温泉病院, 熱川片瀬線, 片瀬, 東伊豆町, 賀茂郡, 静岡県, 413-0303, 日本",
+      "boundingbox": [
+        "34.8067710",
+        "34.8068710",
+        "139.0535280",
+        "139.0536280"
+      ]
+    }
+  ],
+  "稲取温泉": [
+    {
+      "place_id": 258013110,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 6472359796,
+      "lat": "34.7704084",
+      "lon": "139.0411153",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "稲取温泉",
+      "display_name": "稲取温泉, 稲取港線, 東伊豆町, 賀茂郡, 静岡県, 413-0411, 日本",
+      "boundingbox": [
+        "34.7703584",
+        "34.7704584",
+        "139.0410653",
+        "139.0411653"
+      ]
+    }
+  ],
+  "下賀茂温泉": [
+    {
+      "place_id": 258031684,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "way",
+      "osm_id": 441618428,
+      "lat": "34.6500194",
+      "lon": "138.8660062",
+      "category": "highway",
+      "type": "services",
+      "place_rank": 30,
+      "importance": 0.19320077280132728,
+      "addresstype": "highway",
+      "name": "道の駅 下賀茂温泉 湯の花",
+      "display_name": "道の駅 下賀茂温泉 湯の花, 国道136号, 下賀茂, 南伊豆町, 賀茂郡, 静岡県, 415-0303, 日本",
+      "boundingbox": [
+        "34.6492584",
+        "34.6506972",
+        "138.8656848",
+        "138.8673436"
+      ]
+    },
+    {
+      "place_id": 258032951,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 2274740976,
+      "lat": "34.6496791",
+      "lon": "138.8667371",
+      "category": "tourism",
+      "type": "information",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "tourism",
+      "name": "道の駅「下賀茂温泉 湯の花」",
+      "display_name": "道の駅「下賀茂温泉 湯の花」, 国道136号, 下賀茂, 南伊豆町, 賀茂郡, 静岡県, 415-0303, 日本",
+      "boundingbox": [
+        "34.6496291",
+        "34.6497291",
+        "138.8666871",
+        "138.8667871"
+      ]
+    }
+  ],
+  "堂ヶ島温泉": [
+    {
+      "place_id": 258025142,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8276566182,
+      "lat": "34.8862093",
+      "lon": "138.9226945",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "湯ヶ島温泉",
+      "display_name": "湯ヶ島温泉, 伊東西伊豆線, 湯ケ島, 伊豆市, 静岡県, 410-3206, 日本",
+      "boundingbox": [
+        "34.8861593",
+        "34.8862593",
+        "138.9226445",
+        "138.9227445"
+      ]
+    }
+  ]
+}

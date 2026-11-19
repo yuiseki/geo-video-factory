@@ -1,0 +1,3 @@
+interface:
+  display_name: "Geo Video Motion Diagram"
+  short_description: "静止画ではなく時間軸で因果や仕組みを伝える「動く図」を設計・実装"

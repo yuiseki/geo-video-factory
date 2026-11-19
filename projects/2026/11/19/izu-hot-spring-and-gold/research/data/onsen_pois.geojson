@@ -1,0 +1,6989 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.920528,
+          35.011922
+        ]
+      },
+      "properties": {
+        "id": "way/1000486691",
+        "name": "名称不明浴場 (way/1000486691)",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-04-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.080137,
+          35.088275
+        ]
+      },
+      "properties": {
+        "id": "way/1008058732",
+        "name": "オーシャンスパ Fuua",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-02-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072614,
+          34.817016
+        ]
+      },
+      "properties": {
+        "id": "way/1041893289",
+        "name": "熱川オーシャンリゾート",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072671,
+          34.816505
+        ]
+      },
+      "properties": {
+        "id": "way/1041893291",
+        "name": "名称不明浴場 (way/1041893291)",
+        "category": "hot_spring_bath",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-04-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072657,
+          34.81643
+        ]
+      },
+      "properties": {
+        "id": "way/1041893293",
+        "name": "ほっとぱ～く源泉足湯",
+        "category": "hot_spring_bath",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.068049,
+          34.809594
+        ]
+      },
+      "properties": {
+        "id": "way/1044293464",
+        "name": "熱川温泉ブルーオーシャン",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.971383,
+          34.687623
+        ]
+      },
+      "properties": {
+        "id": "way/1047643977",
+        "name": "ホテル伊豆急",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.079474,
+          35.088679
+        ]
+      },
+      "properties": {
+        "id": "way/1119101268",
+        "name": "熱海ベイリゾート後楽園",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.097638,
+          34.908316
+        ]
+      },
+      "properties": {
+        "id": "way/1220163726",
+        "name": "名称不明浴場 (way/1220163726)",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-11-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090258,
+          34.967173
+        ]
+      },
+      "properties": {
+        "id": "way/190712461",
+        "name": "大東館",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2012-11-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.081094,
+          35.005883
+        ]
+      },
+      "properties": {
+        "id": "way/191055086",
+        "name": "温泉民宿 鈴幸",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2012-11-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090621,
+          34.975358
+        ]
+      },
+      "properties": {
+        "id": "way/191161212",
+        "name": "パレスホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.078058,
+          35.101762
+        ]
+      },
+      "properties": {
+        "id": "way/325909771",
+        "name": "熱海温泉 湯宿一番地",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071047,
+          35.098189
+        ]
+      },
+      "properties": {
+        "id": "way/351989502",
+        "name": "日航亭・大湯",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-07-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072768,
+          35.098518
+        ]
+      },
+      "properties": {
+        "id": "way/352347731",
+        "name": "熱海温泉ホテル 夢いろは",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.080066,
+          35.085973
+        ]
+      },
+      "properties": {
+        "id": "way/396671986",
+        "name": "HOTEL ACAO",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.886793,
+          35.035559
+        ]
+      },
+      "properties": {
+        "id": "way/403593919",
+        "name": "淡島ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-11-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.897431,
+          35.020303
+        ]
+      },
+      "properties": {
+        "id": "way/403663193",
+        "name": "安田屋旅館",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-11-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.931837,
+          35.032823
+        ]
+      },
+      "properties": {
+        "id": "way/412941867",
+        "name": "一條",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-05-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.930347,
+          35.033362
+        ]
+      },
+      "properties": {
+        "id": "way/412941875",
+        "name": "茜",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-09-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932516,
+          35.032567
+        ]
+      },
+      "properties": {
+        "id": "way/412941880",
+        "name": "金城館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-04-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.03653,
+          34.766155
+        ]
+      },
+      "properties": {
+        "id": "way/421602036",
+        "name": "石花海",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.037361,
+          34.766134
+        ]
+      },
+      "properties": {
+        "id": "way/421602037",
+        "name": "稲取東海ホテル湯苑",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.079094,
+          35.088674
+        ]
+      },
+      "properties": {
+        "id": "way/439439910",
+        "name": "熱海後楽園ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.829414,
+          34.757949
+        ]
+      },
+      "properties": {
+        "id": "way/450185100",
+        "name": "大沢温泉 依田之庄",
+        "category": "hot_spring_bath",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.825406,
+          34.757795
+        ]
+      },
+      "properties": {
+        "id": "way/450185112",
+        "name": "道の駅花の三聖苑伊豆松崎;かじかの湯",
+        "category": "hot_spring_bath",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.078561,
+          35.103492
+        ]
+      },
+      "properties": {
+        "id": "way/511303239",
+        "name": "家康の湯",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.928386,
+          34.970545
+        ]
+      },
+      "properties": {
+        "id": "way/548862739",
+        "name": "修善寺温泉;筥湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-11-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.942474,
+          34.988815
+        ]
+      },
+      "properties": {
+        "id": "way/548924522",
+        "name": "万福;百笑の湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.86027,
+          34.64901
+        ]
+      },
+      "properties": {
+        "id": "way/552015830",
+        "name": "銀の湯会館",
+        "category": "hot_spring_bath",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.940574,
+          35.037602
+        ]
+      },
+      "properties": {
+        "id": "way/553801246",
+        "name": "富嶽はなぶさ",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-04-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.930957,
+          34.795471
+        ]
+      },
+      "properties": {
+        "id": "way/554597865",
+        "name": "地魚の宿 運龍",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.936836,
+          34.793173
+        ]
+      },
+      "properties": {
+        "id": "way/554599608",
+        "name": "AMAGISO 天城荘",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075035,
+          34.831681
+        ]
+      },
+      "properties": {
+        "id": "way/555365858",
+        "name": "望水",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-04-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075061,
+          34.831306
+        ]
+      },
+      "properties": {
+        "id": "way/555365859",
+        "name": "北川温泉ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.126187,
+          34.937354
+        ]
+      },
+      "properties": {
+        "id": "way/556170171",
+        "name": "サザンクロスリゾート",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-06-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074313,
+          34.831552
+        ]
+      },
+      "properties": {
+        "id": "way/556442276",
+        "name": "吉祥CAREN",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-04-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.792401,
+          34.911251
+        ]
+      },
+      "properties": {
+        "id": "way/556995876",
+        "name": "土肥ふじやホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-04-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.056344,
+          34.99239
+        ]
+      },
+      "properties": {
+        "id": "way/558699477",
+        "name": "リゾートセンター;みのり温泉",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.76245,
+          34.787501
+        ]
+      },
+      "properties": {
+        "id": "way/559087546",
+        "name": "堂ヶ島ホテル天遊",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.788917,
+          34.774071
+        ]
+      },
+      "properties": {
+        "id": "way/559139479",
+        "name": "西伊豆町営;せせらぎの湯",
+        "category": "hot_spring_bath",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.887351,
+          34.631574
+        ]
+      },
+      "properties": {
+        "id": "way/560084538",
+        "name": "季一遊",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.888963,
+          34.637659
+        ]
+      },
+      "properties": {
+        "id": "way/560084710",
+        "name": "弓ヶ浜温泉;みなと湯",
+        "category": "hot_spring_bath",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.003915,
+          34.752131
+        ]
+      },
+      "properties": {
+        "id": "way/560218582",
+        "name": "今井荘",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-05-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.002024,
+          34.75401
+        ]
+      },
+      "properties": {
+        "id": "way/560219263",
+        "name": "心のどか",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-04-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071418,
+          34.815286
+        ]
+      },
+      "properties": {
+        "id": "way/560263364",
+        "name": "ホテルセタスロイヤル",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.0721,
+          34.816184
+        ]
+      },
+      "properties": {
+        "id": "way/560263367",
+        "name": "熱川大和館",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072102,
+          34.816458
+        ]
+      },
+      "properties": {
+        "id": "way/560263368",
+        "name": "志なよし",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.069934,
+          34.812893
+        ]
+      },
+      "properties": {
+        "id": "way/560263374",
+        "name": "熱川温泉粋光",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.068896,
+          34.813731
+        ]
+      },
+      "properties": {
+        "id": "way/560263375",
+        "name": "伊豆・熱川温泉たかみホテル",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.068522,
+          34.814259
+        ]
+      },
+      "properties": {
+        "id": "way/560263376",
+        "name": "伊藤園ホテル熱川",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071099,
+          34.814788
+        ]
+      },
+      "properties": {
+        "id": "way/560263392",
+        "name": "熱川館",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072138,
+          34.817553
+        ]
+      },
+      "properties": {
+        "id": "way/560263399",
+        "name": "ホテルカターラリゾート＆スパ",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075006,
+          34.818088
+        ]
+      },
+      "properties": {
+        "id": "way/560263414",
+        "name": "名称不明浴場 (way/560263414)",
+        "category": "hot_spring_bath",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-02-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071683,
+          34.816793
+        ]
+      },
+      "properties": {
+        "id": "way/560263418",
+        "name": "湯花満開 ふたりの湯宿",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.082756,
+          35.045121
+        ]
+      },
+      "properties": {
+        "id": "way/560618659",
+        "name": "源泉湯宿 大成館",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.774594,
+          34.768854
+        ]
+      },
+      "properties": {
+        "id": "way/560716156",
+        "name": "西伊豆町営;なぎさの湯",
+        "category": "hot_spring_bath",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.893345,
+          34.636228
+        ]
+      },
+      "properties": {
+        "id": "way/560880297",
+        "name": "休暇村 南伊豆",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.855368,
+          34.649506
+        ]
+      },
+      "properties": {
+        "id": "way/560903397",
+        "name": "石花海別邸かぎや",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.925754,
+          34.658803
+        ]
+      },
+      "properties": {
+        "id": "way/561014144",
+        "name": "濤亭",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.055086,
+          34.825545
+        ]
+      },
+      "properties": {
+        "id": "way/561272324",
+        "name": "奈良偲の里 玉翠",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.954819,
+          34.677086
+        ]
+      },
+      "properties": {
+        "id": "way/561818662",
+        "name": "下田ベイクロシオ",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.959314,
+          34.677082
+        ]
+      },
+      "properties": {
+        "id": "way/561818694",
+        "name": "下田聚楽ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-08-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.136927,
+          34.894607
+        ]
+      },
+      "properties": {
+        "id": "way/562146764",
+        "name": "名称不明浴場 (way/562146764)",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.125708,
+          34.911873
+        ]
+      },
+      "properties": {
+        "id": "way/562263695",
+        "name": "Petit Hotel MaIKa",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.096805,
+          34.969109
+        ]
+      },
+      "properties": {
+        "id": "way/563528573",
+        "name": "ホテル暖香園",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.095904,
+          34.968231
+        ]
+      },
+      "properties": {
+        "id": "way/563528576",
+        "name": "ホテルハーヴェスト伊東",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-07-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.09476,
+          34.969262
+        ]
+      },
+      "properties": {
+        "id": "way/563654709",
+        "name": "伊東遊季亭",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071326,
+          35.112129
+        ]
+      },
+      "properties": {
+        "id": "way/564171881",
+        "name": "熱海倶楽部迎賓館",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2021-01-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.064542,
+          35.087922
+        ]
+      },
+      "properties": {
+        "id": "way/564198560",
+        "name": "熱海TENSUI",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.066905,
+          35.089616
+        ]
+      },
+      "properties": {
+        "id": "way/564198655",
+        "name": "迎賓館　熱海小嵐亭",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.089297,
+          34.973496
+        ]
+      },
+      "properties": {
+        "id": "way/564499177",
+        "name": "ホテル伊東ガーデン",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.078162,
+          35.10116
+        ]
+      },
+      "properties": {
+        "id": "way/564879082",
+        "name": "月の栖 熱海聚楽ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072995,
+          35.092718
+        ]
+      },
+      "properties": {
+        "id": "way/564926033",
+        "name": "旅館立花",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.086987,
+          35.112204
+        ]
+      },
+      "properties": {
+        "id": "way/565061879",
+        "name": "ホテルニューさがみや",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.082411,
+          35.108837
+        ]
+      },
+      "properties": {
+        "id": "way/565076294",
+        "name": "紀州鉄道熱海ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.777217,
+          34.969521
+        ]
+      },
+      "properties": {
+        "id": "way/565696170",
+        "name": "山市",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-11-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.777156,
+          34.969165
+        ]
+      },
+      "properties": {
+        "id": "way/565696171",
+        "name": "波止場苑",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-11-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.037921,
+          34.766676
+        ]
+      },
+      "properties": {
+        "id": "way/568391816",
+        "name": "心湯の宿 さざな",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.038383,
+          34.76742
+        ]
+      },
+      "properties": {
+        "id": "way/568391821",
+        "name": "味の宿喜久多",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.048076,
+          34.769765
+        ]
+      },
+      "properties": {
+        "id": "way/568396380",
+        "name": "食べるお宿 浜の湯",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.035096,
+          34.785823
+        ]
+      },
+      "properties": {
+        "id": "way/568449566",
+        "name": "水生の庄",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.046587,
+          34.769418
+        ]
+      },
+      "properties": {
+        "id": "way/574433061",
+        "name": "稲取赤尾ホテル 海諷廊",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.924945,
+          34.900727
+        ]
+      },
+      "properties": {
+        "id": "way/574909862",
+        "name": "天城温泉プール",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.919438,
+          34.955153
+        ]
+      },
+      "properties": {
+        "id": "way/578455734",
+        "name": "伊豆マリオットホテル修善寺",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.975781,
+          34.961095
+        ]
+      },
+      "properties": {
+        "id": "way/583235330",
+        "name": "白岩荘",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.951975,
+          35.082281
+        ]
+      },
+      "properties": {
+        "id": "way/584414394",
+        "name": "湯～トピアかんなみ",
+        "category": "hot_spring_bath",
+        "municipality": "函南町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.978387,
+          35.0757
+        ]
+      },
+      "properties": {
+        "id": "way/595873487",
+        "name": "源泉;駒の湯荘",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.907492,
+          35.110715
+        ]
+      },
+      "properties": {
+        "id": "way/606777017",
+        "name": "極楽湯三島店",
+        "category": "hot_spring_bath",
+        "municipality": "三島市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.881101,
+          34.707064
+        ]
+      },
+      "properties": {
+        "id": "way/659518585",
+        "name": "観音温泉",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.069891,
+          34.816862
+        ]
+      },
+      "properties": {
+        "id": "way/660882002",
+        "name": "玉翠館",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.039654,
+          34.76649
+        ]
+      },
+      "properties": {
+        "id": "way/662315600",
+        "name": "海一望絶景の宿 いなとり荘",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.066031,
+          35.044393
+        ]
+      },
+      "properties": {
+        "id": "way/667380906",
+        "name": "伊豆網代温泉松風苑",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.934004,
+          34.932404
+        ]
+      },
+      "properties": {
+        "id": "way/667410020",
+        "name": "湯の国会館",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.983603,
+          34.758786
+        ]
+      },
+      "properties": {
+        "id": "way/667825449",
+        "name": "踊り子温泉会館",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.895356,
+          34.634951
+        ]
+      },
+      "properties": {
+        "id": "way/668617054",
+        "name": "壺中の天 宿○文",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-04-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.05978,
+          35.048606
+        ]
+      },
+      "properties": {
+        "id": "way/710494409",
+        "name": "妙楽湯",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.076013,
+          34.833623
+        ]
+      },
+      "properties": {
+        "id": "way/710509225",
+        "name": "北川温泉;黒根岩風呂",
+        "category": "hot_spring_bath",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.009827,
+          34.776764
+        ]
+      },
+      "properties": {
+        "id": "way/710511040",
+        "name": "伊豆見高入谷高原温泉",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.760496,
+          34.793322
+        ]
+      },
+      "properties": {
+        "id": "way/710580956",
+        "name": "しおさいの湯",
+        "category": "hot_spring_bath",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.974652,
+          34.95422
+        ]
+      },
+      "properties": {
+        "id": "way/710592169",
+        "name": "希望園",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.944143,
+          35.115356
+        ]
+      },
+      "properties": {
+        "id": "way/710620453",
+        "name": "竹倉温泉;みなくち荘",
+        "category": "hot_spring_bath",
+        "municipality": "三島市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-01-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.777487,
+          34.973747
+        ]
+      },
+      "properties": {
+        "id": "way/779463364",
+        "name": "ときわや",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.09119,
+          34.858512
+        ]
+      },
+      "properties": {
+        "id": "way/889976239",
+        "name": "赤沢日帰り温泉館",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.131186,
+          34.91184
+        ]
+      },
+      "properties": {
+        "id": "way/891273260",
+        "name": "Futo House",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071439,
+          35.098134
+        ]
+      },
+      "properties": {
+        "id": "node/10235097163",
+        "name": "名称不明源泉 (node/10235097163)",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072854,
+          35.098444
+        ]
+      },
+      "properties": {
+        "id": "node/10235107599",
+        "name": "青山湯",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073264,
+          35.099261
+        ]
+      },
+      "properties": {
+        "id": "node/10235107600",
+        "name": "野中の湯",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071834,
+          35.097278
+        ]
+      },
+      "properties": {
+        "id": "node/10235167479",
+        "name": "延命乃湯",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.085391,
+          35.111543
+        ]
+      },
+      "properties": {
+        "id": "node/10279667509",
+        "name": "伊豆山温泉走り湯浜浴場",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073414,
+          35.101829
+        ]
+      },
+      "properties": {
+        "id": "node/10285454995",
+        "name": "熱海大観荘貸切露天風呂",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073889,
+          35.102208
+        ]
+      },
+      "properties": {
+        "id": "node/10285454999",
+        "name": "熱海大観荘ひのきの湯",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074699,
+          35.102341
+        ]
+      },
+      "properties": {
+        "id": "node/10285485624",
+        "name": "第一山王源泉跡",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.865781,
+          34.637642
+        ]
+      },
+      "properties": {
+        "id": "node/10304762797",
+        "name": "貸切キャンプ＆丸太ログハウス レトロ伊豆",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-01-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.866329,
+          34.637524
+        ]
+      },
+      "properties": {
+        "id": "node/10304762798",
+        "name": "貸切キャンプ＆丸太ログハウス ネイチャー伊豆",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-01-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932236,
+          35.03101
+        ]
+      },
+      "properties": {
+        "id": "node/10711631982",
+        "name": "南山荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-03-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932415,
+          34.883886
+        ]
+      },
+      "properties": {
+        "id": "node/10821743002",
+        "name": "富士見山荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.985924,
+          34.755584
+        ]
+      },
+      "properties": {
+        "id": "node/11003223667",
+        "name": "かわづの里",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.98521,
+          34.755929
+        ]
+      },
+      "properties": {
+        "id": "node/11003223668",
+        "name": "花小町",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-06-24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.982791,
+          34.756902
+        ]
+      },
+      "properties": {
+        "id": "node/11003223685",
+        "name": "玉峰館",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.982315,
+          34.75728
+        ]
+      },
+      "properties": {
+        "id": "node/11003223686",
+        "name": "峰温泉大噴湯公園",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.983096,
+          34.7578
+        ]
+      },
+      "properties": {
+        "id": "node/11003223693",
+        "name": "竹の庄",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.984028,
+          34.757174
+        ]
+      },
+      "properties": {
+        "id": "node/11007472698",
+        "name": "Surya",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.985394,
+          34.756885
+        ]
+      },
+      "properties": {
+        "id": "node/11007472699",
+        "name": "足湯",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.04305,
+          34.7708
+        ]
+      },
+      "properties": {
+        "id": "node/11012076265",
+        "name": "徳造丸 海女の足湯",
+        "category": "hot_spring_bath",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.09569,
+          34.970896
+        ]
+      },
+      "properties": {
+        "id": "node/11090938747",
+        "name": "伊東園ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-08-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.74426,
+          34.724996
+        ]
+      },
+      "properties": {
+        "id": "node/11107523356",
+        "name": "雲見温泉 民宿 吉右ェ門",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-08-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.746297,
+          34.720878
+        ]
+      },
+      "properties": {
+        "id": "node/11107523372",
+        "name": "温泉民宿さかんや",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.746417,
+          34.720549
+        ]
+      },
+      "properties": {
+        "id": "node/11107523373",
+        "name": "民宿たき",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.746025,
+          34.720477
+        ]
+      },
+      "properties": {
+        "id": "node/11107523374",
+        "name": "みどり荘",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.755701,
+          34.731727
+        ]
+      },
+      "properties": {
+        "id": "node/11107523385",
+        "name": "石部荘",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.757159,
+          34.734082
+        ]
+      },
+      "properties": {
+        "id": "node/11107523386",
+        "name": "平六地蔵露天風呂",
+        "category": "hot_spring_bath",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.093268,
+          34.898214
+        ]
+      },
+      "properties": {
+        "id": "node/11252942409",
+        "name": "グランベール伊豆",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.124145,
+          34.911219
+        ]
+      },
+      "properties": {
+        "id": "node/11274423096",
+        "name": "Hotel Parco",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.006497,
+          34.752948
+        ]
+      },
+      "properties": {
+        "id": "node/11276698754",
+        "name": "Iizuka",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.996409,
+          34.746978
+        ]
+      },
+      "properties": {
+        "id": "node/11276698757",
+        "name": "Foot Bath",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.933367,
+          34.796219
+        ]
+      },
+      "properties": {
+        "id": "node/11276698768",
+        "name": "名称不明浴場 (node/11276698768)",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-20"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.957182,
+          34.774172
+        ]
+      },
+      "properties": {
+        "id": "node/11276719373",
+        "name": "みなみ",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.007823,
+          34.752468
+        ]
+      },
+      "properties": {
+        "id": "node/11276719380",
+        "name": "露天風呂",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.129742,
+          34.909284
+        ]
+      },
+      "properties": {
+        "id": "node/11278615818",
+        "name": "Coco Terrace",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.1321,
+          34.897541
+        ]
+      },
+      "properties": {
+        "id": "node/11278615829",
+        "name": "名称不明浴場 (node/11278615829)",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.120768,
+          34.887954
+        ]
+      },
+      "properties": {
+        "id": "node/11279183069",
+        "name": "サニーサラダ",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.982858,
+          34.918851
+        ]
+      },
+      "properties": {
+        "id": "node/11282675022",
+        "name": "民宿 カプリコーン",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074688,
+          35.096577
+        ]
+      },
+      "properties": {
+        "id": "node/11288167488",
+        "name": "Foot path",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075451,
+          35.09916
+        ]
+      },
+      "properties": {
+        "id": "node/11292309494",
+        "name": "名称不明源泉 (node/11292309494)",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.08619,
+          35.041678
+        ]
+      },
+      "properties": {
+        "id": "node/11459614774",
+        "name": "海のはな",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073691,
+          35.103701
+        ]
+      },
+      "properties": {
+        "id": "node/11502425252",
+        "name": "熱海スプリングテラスホテル",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-01-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.933507,
+          35.032716
+        ]
+      },
+      "properties": {
+        "id": "node/11848578040",
+        "name": "桂の泉",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.093232,
+          34.897872
+        ]
+      },
+      "properties": {
+        "id": "node/12056467943",
+        "name": "bekka izu",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.117987,
+          34.889569
+        ]
+      },
+      "properties": {
+        "id": "node/12119857995",
+        "name": "亀の井ホテル伊豆高原",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.086722,
+          35.11293
+        ]
+      },
+      "properties": {
+        "id": "node/12155057013",
+        "name": "熱海・伊豆山　佳ら久",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-09-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.010418,
+          34.753591
+        ]
+      },
+      "properties": {
+        "id": "node/12376194088",
+        "name": "民宿まるい",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.011334,
+          34.753726
+        ]
+      },
+      "properties": {
+        "id": "node/12376194142",
+        "name": "民宿 上の田中",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.08011,
+          35.142313
+        ]
+      },
+      "properties": {
+        "id": "node/12878362101",
+        "name": "いずみの湯",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.113716,
+          34.901161
+        ]
+      },
+      "properties": {
+        "id": "node/1434347015",
+        "name": "EXIV IZU",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2011-09-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074131,
+          35.090579
+        ]
+      },
+      "properties": {
+        "id": "node/1488574071",
+        "name": "ホテルサンミ倶楽部",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073278,
+          35.091551
+        ]
+      },
+      "properties": {
+        "id": "node/1488574074",
+        "name": "ニュータカハシ",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.07243,
+          35.097153
+        ]
+      },
+      "properties": {
+        "id": "node/1488574075",
+        "name": "ニューフジヤホテル",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2015-02-07"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074144,
+          35.097554
+        ]
+      },
+      "properties": {
+        "id": "node/1488574083",
+        "name": "ホテル貫一",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072913,
+          35.090905
+        ]
+      },
+      "properties": {
+        "id": "node/1488574085",
+        "name": "大野屋",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074322,
+          35.092305
+        ]
+      },
+      "properties": {
+        "id": "node/1488574092",
+        "name": "熱海玉の湯ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.07318,
+          35.097663
+        ]
+      },
+      "properties": {
+        "id": "node/1488574094",
+        "name": "福島屋旅館",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2015-02-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075655,
+          35.099357
+        ]
+      },
+      "properties": {
+        "id": "node/1489518866",
+        "name": "大江戸温泉物語　あたみ",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.866961,
+          34.637769
+        ]
+      },
+      "properties": {
+        "id": "node/1498028894",
+        "name": "ForestCamp南伊豆",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-01-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.786541,
+          35.024157
+        ]
+      },
+      "properties": {
+        "id": "node/1697853093",
+        "name": "Seaside Inn",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.909034,
+          34.957584
+        ]
+      },
+      "properties": {
+        "id": "node/1704046618",
+        "name": "ラフォーレ修善寺",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2012-04-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.766959,
+          34.783146
+        ]
+      },
+      "properties": {
+        "id": "node/1761798105",
+        "name": "寛ぎの宿　　シーサイド堂ヶ島",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.947215,
+          34.779415
+        ]
+      },
+      "properties": {
+        "id": "node/1804881151",
+        "name": "天城温泉 禅の湯ユースホステル",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-01-24"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073744,
+          35.102179
+        ]
+      },
+      "properties": {
+        "id": "node/2007341481",
+        "name": "大観荘",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.09256,
+          34.973818
+        ]
+      },
+      "properties": {
+        "id": "node/2008393718",
+        "name": "子持ち湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-04-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.09438,
+          34.984554
+        ]
+      },
+      "properties": {
+        "id": "node/2012226376",
+        "name": "シーサイドスパ",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-01-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.093157,
+          34.97422
+        ]
+      },
+      "properties": {
+        "id": "node/2014428781",
+        "name": "伊東ステーションホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.077252,
+          35.106109
+        ]
+      },
+      "properties": {
+        "id": "node/2106551003",
+        "name": "ザ グラン リゾート エレガンテ 熱海",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2013-01-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.140065,
+          34.940047
+        ]
+      },
+      "properties": {
+        "id": "node/2146182772",
+        "name": "川奈ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-11-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.032779,
+          34.767866
+        ]
+      },
+      "properties": {
+        "id": "node/2368412227",
+        "name": "ＫＫＲ稲取",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.169069,
+          35.037963
+        ]
+      },
+      "properties": {
+        "id": "node/2395210606",
+        "name": "エクシブ 初島クラブ",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-01-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.014734,
+          35.167523
+        ]
+      },
+      "properties": {
+        "id": "node/2444074871",
+        "name": "富士箱根ランド",
+        "category": "ryokan_hotel",
+        "municipality": "函南町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2013-09-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.015453,
+          35.167654
+        ]
+      },
+      "properties": {
+        "id": "node/2444074872",
+        "name": "スコーレプラザホテル",
+        "category": "ryokan_hotel",
+        "municipality": "函南町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2013-09-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.9958,
+          34.743772
+        ]
+      },
+      "properties": {
+        "id": "node/2636641616",
+        "name": "名称不明浴場 (node/2636641616)",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2014-01-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.995058,
+          34.744459
+        ]
+      },
+      "properties": {
+        "id": "node/2636641662",
+        "name": "嵐の湯",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.997713,
+          34.743612
+        ]
+      },
+      "properties": {
+        "id": "node/2636641665",
+        "name": "海遊亭",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2014-02-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.993517,
+          34.744932
+        ]
+      },
+      "properties": {
+        "id": "node/2636655254",
+        "name": "やかた",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.989642,
+          34.745764
+        ]
+      },
+      "properties": {
+        "id": "node/2636655300",
+        "name": "離れ家 石田屋",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.934799,
+          34.794538
+        ]
+      },
+      "properties": {
+        "id": "node/2643845446",
+        "name": "中瀬隠居",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2014-01-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.99586,
+          34.743709
+        ]
+      },
+      "properties": {
+        "id": "node/2643897066",
+        "name": "河津三郎の足湯",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.08069,
+          35.103108
+        ]
+      },
+      "properties": {
+        "id": "node/3324747142",
+        "name": "ホテル弥生",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.092715,
+          34.972116
+        ]
+      },
+      "properties": {
+        "id": "node/3398052593",
+        "name": "梅屋旅館",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-18"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.072386,
+          35.094702
+        ]
+      },
+      "properties": {
+        "id": "node/3591730492",
+        "name": "山木旅館",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-10-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075435,
+          35.098047
+        ]
+      },
+      "properties": {
+        "id": "node/3593494421",
+        "name": "HOTEL MICURAS",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-04-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075661,
+          35.099729
+        ]
+      },
+      "properties": {
+        "id": "node/3593518099",
+        "name": "コンドミニアムホテル グランビュー熱海",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075339,
+          35.098433
+        ]
+      },
+      "properties": {
+        "id": "node/3593518695",
+        "name": "大月ホテル和風館",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073502,
+          35.096959
+        ]
+      },
+      "properties": {
+        "id": "node/3594201293",
+        "name": "佐治郎の湯（目の湯）",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071296,
+          35.094003
+        ]
+      },
+      "properties": {
+        "id": "node/3600343994",
+        "name": "清水町共同浴場",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-10-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074171,
+          35.097893
+        ]
+      },
+      "properties": {
+        "id": "node/3608440138",
+        "name": "清左衛門の湯",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074368,
+          35.097541
+        ]
+      },
+      "properties": {
+        "id": "node/3608457082",
+        "name": "湯宿 みかんの木",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074751,
+          35.096691
+        ]
+      },
+      "properties": {
+        "id": "node/3608461659",
+        "name": "河原湯",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.077048,
+          35.105279
+        ]
+      },
+      "properties": {
+        "id": "node/3716263326",
+        "name": "レクトーレ熱海桃山",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.121422,
+          34.889364
+        ]
+      },
+      "properties": {
+        "id": "node/3879956156",
+        "name": "足湯（駅ホーム）",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.938364,
+          34.668042
+        ]
+      },
+      "properties": {
+        "id": "node/4104186834",
+        "name": "下田東急ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.877208,
+          35.066096
+        ]
+      },
+      "properties": {
+        "id": "node/4141784496",
+        "name": "KKR沼津はまゆう",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2016-04-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.768454,
+          34.970988
+        ]
+      },
+      "properties": {
+        "id": "node/4380012387",
+        "name": "民宿 いりえ",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.945818,
+          35.115902
+        ]
+      },
+      "properties": {
+        "id": "node/4433577792",
+        "name": "Takekura Onsen",
+        "category": "hot_spring_bath",
+        "municipality": "三島市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.968056,
+          35.081386
+        ]
+      },
+      "properties": {
+        "id": "node/4705263696",
+        "name": "富士見館",
+        "category": "ryokan_hotel",
+        "municipality": "函南町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2017-02-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.927536,
+          34.970453
+        ]
+      },
+      "properties": {
+        "id": "node/4708341094",
+        "name": "とっこの湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2017-12-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.100348,
+          34.881889
+        ]
+      },
+      "properties": {
+        "id": "node/4708520598",
+        "name": "八幡野温泉郷きらの里",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.952549,
+          34.675513
+        ]
+      },
+      "properties": {
+        "id": "node/4795892037",
+        "name": "黒船ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.95645,
+          34.677065
+        ]
+      },
+      "properties": {
+        "id": "node/4795892044",
+        "name": "下田オーシャンパークホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2017-04-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.765646,
+          34.777413
+        ]
+      },
+      "properties": {
+        "id": "node/4796051121",
+        "name": "沢田公園露天風呂",
+        "category": "hot_spring_bath",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.025843,
+          34.766242
+        ]
+      },
+      "properties": {
+        "id": "node/4810659854",
+        "name": "民宿 向山",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932268,
+          34.973077
+        ]
+      },
+      "properties": {
+        "id": "node/5301957369",
+        "name": "ホテル滝亭",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932484,
+          34.971752
+        ]
+      },
+      "properties": {
+        "id": "node/5301957385",
+        "name": "桂川",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.927489,
+          34.970008
+        ]
+      },
+      "properties": {
+        "id": "node/5302681823",
+        "name": "花小道",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.929911,
+          34.97039
+        ]
+      },
+      "properties": {
+        "id": "node/5302681824",
+        "name": "AKARI et KAORI（アカリ エ カオリ）",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-03-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.929839,
+          34.970938
+        ]
+      },
+      "properties": {
+        "id": "node/5302779652",
+        "name": "湯回廊 菊屋",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.926334,
+          34.968874
+        ]
+      },
+      "properties": {
+        "id": "node/5303104070",
+        "name": "宙SORA渡月荘金龍",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.924738,
+          34.969058
+        ]
+      },
+      "properties": {
+        "id": "node/5304251746",
+        "name": "あさば旅館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.921959,
+          34.969754
+        ]
+      },
+      "properties": {
+        "id": "node/5304252148",
+        "name": "瑞の里 ○久旅館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.921922,
+          34.968224
+        ]
+      },
+      "properties": {
+        "id": "node/5304252353",
+        "name": "ブリーズベイ修善寺ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-03-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.924555,
+          34.971564
+        ]
+      },
+      "properties": {
+        "id": "node/5304395726",
+        "name": "和光",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.927404,
+          34.97051
+        ]
+      },
+      "properties": {
+        "id": "node/5304395998",
+        "name": "河原湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.920499,
+          34.970401
+        ]
+      },
+      "properties": {
+        "id": "node/5306252116",
+        "name": "柳生の庄",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2017-12-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.920355,
+          34.969019
+        ]
+      },
+      "properties": {
+        "id": "node/5306596526",
+        "name": "本格会席と源泉の湯 伊豆修善寺 絆+",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-11-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.926742,
+          34.970464
+        ]
+      },
+      "properties": {
+        "id": "node/5307973434",
+        "name": "新井旅館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2021-09-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.923878,
+          34.970163
+        ]
+      },
+      "properties": {
+        "id": "node/5307973436",
+        "name": "花月園",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2017-12-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.919775,
+          34.97091
+        ]
+      },
+      "properties": {
+        "id": "node/5308049958",
+        "name": "修善寺石亭 鬼の栖",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.93047,
+          34.971477
+        ]
+      },
+      "properties": {
+        "id": "node/5308050334",
+        "name": "五葉館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.926303,
+          34.971342
+        ]
+      },
+      "properties": {
+        "id": "node/5308050335",
+        "name": "金福荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.983652,
+          34.964682
+        ]
+      },
+      "properties": {
+        "id": "node/5308507791",
+        "name": "白岩の湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2017-12-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.979168,
+          34.961978
+        ]
+      },
+      "properties": {
+        "id": "node/5309672765",
+        "name": "小川温泉共同浴場",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.973155,
+          34.696251
+        ]
+      },
+      "properties": {
+        "id": "node/5317694990",
+        "name": "下田プリンスホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.976401,
+          34.663703
+        ]
+      },
+      "properties": {
+        "id": "node/5318198947",
+        "name": "しっぽのおやど",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.965344,
+          34.65378
+        ]
+      },
+      "properties": {
+        "id": "node/5318199138",
+        "name": "オーシャンビュー博海温泉ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.940463,
+          34.992392
+        ]
+      },
+      "properties": {
+        "id": "node/5321845982",
+        "name": "一二三荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.942521,
+          34.996382
+        ]
+      },
+      "properties": {
+        "id": "node/5323223601",
+        "name": "大仁ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.942334,
+          34.989519
+        ]
+      },
+      "properties": {
+        "id": "node/5323225475",
+        "name": "ホテル オリーブの木",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.931705,
+          35.027015
+        ]
+      },
+      "properties": {
+        "id": "node/5344336970",
+        "name": "ニュー八景園",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.927599,
+          35.032425
+        ]
+      },
+      "properties": {
+        "id": "node/5345014216",
+        "name": "伊豆長岡ホテル天坊",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2024-04-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.785262,
+          34.642375
+        ]
+      },
+      "properties": {
+        "id": "node/5444683247",
+        "name": "吉田亭",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-03-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.940696,
+          34.992913
+        ]
+      },
+      "properties": {
+        "id": "node/5466798254",
+        "name": "富士屋旅館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.92547,
+          34.890226
+        ]
+      },
+      "properties": {
+        "id": "node/5467150322",
+        "name": "白壁荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.927657,
+          34.88954
+        ]
+      },
+      "properties": {
+        "id": "node/5467150336",
+        "name": "落合楼村上",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-03-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.923822,
+          34.890411
+        ]
+      },
+      "properties": {
+        "id": "node/5491225152",
+        "name": "湯本館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.923862,
+          34.890186
+        ]
+      },
+      "properties": {
+        "id": "node/5491225153",
+        "name": "河鹿の湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.124537,
+          34.903961
+        ]
+      },
+      "properties": {
+        "id": "node/5492256621",
+        "name": "クイール ～ペットと一緒に過ごす宿～",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.927822,
+          34.888264
+        ]
+      },
+      "properties": {
+        "id": "node/5496935945",
+        "name": "たつた",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.923258,
+          34.88575
+        ]
+      },
+      "properties": {
+        "id": "node/5496935980",
+        "name": "リブマックスリゾート天城湯ヶ島",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.925632,
+          34.887778
+        ]
+      },
+      "properties": {
+        "id": "node/5496935981",
+        "name": "谷川の湯 あせび野",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-03-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.92346,
+          34.891567
+        ]
+      },
+      "properties": {
+        "id": "node/5501161832",
+        "name": "アルカナ イズ",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.943436,
+          34.672638
+        ]
+      },
+      "properties": {
+        "id": "node/5537803035",
+        "name": "ホテルウラガ",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2018-04-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.085377,
+          34.912356
+        ]
+      },
+      "properties": {
+        "id": "node/5572421922",
+        "name": "伊豆高原サイレントヒルズ",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.915478,
+          35.119266
+        ]
+      },
+      "properties": {
+        "id": "node/5603024180",
+        "name": "みしまプラザホテル",
+        "category": "ryokan_hotel",
+        "municipality": "三島市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-04-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.933793,
+          35.030107
+        ]
+      },
+      "properties": {
+        "id": "node/5797570253",
+        "name": "弘法の湯 長岡店",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.826034,
+          34.812803
+        ]
+      },
+      "properties": {
+        "id": "node/5797585653",
+        "name": "西伊豆町営やまびこ荘",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.081398,
+          35.101906
+        ]
+      },
+      "properties": {
+        "id": "node/6002375224",
+        "name": "KKRホテル熱海",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.078501,
+          35.103455
+        ]
+      },
+      "properties": {
+        "id": "node/6072119886",
+        "name": "足湯",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073403,
+          35.097614
+        ]
+      },
+      "properties": {
+        "id": "node/6074778886",
+        "name": "風呂の湯・水の湯",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.07268,
+          35.097877
+        ]
+      },
+      "properties": {
+        "id": "node/6074778887",
+        "name": "小沢の湯（平左衛門の湯）",
+        "category": "source",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.068235,
+          35.093178
+        ]
+      },
+      "properties": {
+        "id": "node/6187998541",
+        "name": "新かどや",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.076626,
+          35.089014
+        ]
+      },
+      "properties": {
+        "id": "node/6187998542",
+        "name": "秀花園 湯の花膳",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.003548,
+          34.751562
+        ]
+      },
+      "properties": {
+        "id": "node/6248676292",
+        "name": "伊豆今井浜東急ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-04-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.096596,
+          34.865601
+        ]
+      },
+      "properties": {
+        "id": "node/6248746340",
+        "name": "坐漁荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.929293,
+          35.035258
+        ]
+      },
+      "properties": {
+        "id": "node/6249013685",
+        "name": "ホテルサンバレー伊豆長岡",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090268,
+          34.964846
+        ]
+      },
+      "properties": {
+        "id": "node/6249262831",
+        "name": "伊東ホテル聚楽",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-01-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090559,
+          34.96228
+        ]
+      },
+      "properties": {
+        "id": "node/6251050609",
+        "name": "伊東小涌園",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.095122,
+          34.975882
+        ]
+      },
+      "properties": {
+        "id": "node/6251084720",
+        "name": "かめや楽寛",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.089584,
+          34.953213
+        ]
+      },
+      "properties": {
+        "id": "node/6251165645",
+        "name": "ウェルネスの森伊東",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.088949,
+          34.964721
+        ]
+      },
+      "properties": {
+        "id": "node/6251165646",
+        "name": "ハトヤホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.086744,
+          34.961328
+        ]
+      },
+      "properties": {
+        "id": "node/6251230162",
+        "name": "青山やまと",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.763684,
+          34.970986
+        ]
+      },
+      "properties": {
+        "id": "node/6251230163",
+        "name": "海のほてるいさば",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.765579,
+          34.784193
+        ]
+      },
+      "properties": {
+        "id": "node/6253239516",
+        "name": "堂ヶ島アクーユ三四郎",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.763198,
+          34.786948
+        ]
+      },
+      "properties": {
+        "id": "node/6253239517",
+        "name": "堂ヶ島温泉ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.762855,
+          34.790071
+        ]
+      },
+      "properties": {
+        "id": "node/6253239519",
+        "name": "堂ヶ島ニュー銀水",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.913409,
+          34.905608
+        ]
+      },
+      "properties": {
+        "id": "node/6253266794",
+        "name": "御宿さか屋",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.935888,
+          35.036243
+        ]
+      },
+      "properties": {
+        "id": "node/6255403869",
+        "name": "楽山やすだ",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.081139,
+          35.141679
+        ]
+      },
+      "properties": {
+        "id": "node/6255403872",
+        "name": "川堰苑いすゞホテル",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.071837,
+          35.143143
+        ]
+      },
+      "properties": {
+        "id": "node/6255413097",
+        "name": "御宿 瑞鷹",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.073894,
+          35.144447
+        ]
+      },
+      "properties": {
+        "id": "node/6255413098",
+        "name": "ゆがわら大野屋",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.792094,
+          34.914094
+        ]
+      },
+      "properties": {
+        "id": "node/6258824942",
+        "name": "玉樟園新井",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.792489,
+          34.913659
+        ]
+      },
+      "properties": {
+        "id": "node/6258824943",
+        "name": "牧水荘土肥館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.789499,
+          34.906045
+        ]
+      },
+      "properties": {
+        "id": "node/6258861191",
+        "name": "明治館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075376,
+          34.832427
+        ]
+      },
+      "properties": {
+        "id": "node/6261280496",
+        "name": "つるや吉祥亭",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074645,
+          34.831974
+        ]
+      },
+      "properties": {
+        "id": "node/6261280497",
+        "name": "北川温泉観光協会（ムーンロード）",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.972012,
+          34.677413
+        ]
+      },
+      "properties": {
+        "id": "node/6261392359",
+        "name": "下田ビューホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.965364,
+          34.671018
+        ]
+      },
+      "properties": {
+        "id": "node/6261429214",
+        "name": "ホテル山田屋",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.778067,
+          34.854651
+        ]
+      },
+      "properties": {
+        "id": "node/6261442376",
+        "name": "西伊豆クリスタルビューホテル",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.914902,
+          34.719043
+        ]
+      },
+      "properties": {
+        "id": "node/6265407671",
+        "name": "里山の別邸 下田セントラルホテル",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.934242,
+          35.038993
+        ]
+      },
+      "properties": {
+        "id": "node/6265442670",
+        "name": "三養荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.933576,
+          34.662061
+        ]
+      },
+      "properties": {
+        "id": "node/6265523551",
+        "name": "下田大和館",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-04-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932045,
+          34.698149
+        ]
+      },
+      "properties": {
+        "id": "node/6265591039",
+        "name": "大地の彩 花月亭",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.939155,
+          34.696987
+        ]
+      },
+      "properties": {
+        "id": "node/6265593171",
+        "name": "清流荘",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-03-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.966885,
+          35.078225
+        ]
+      },
+      "properties": {
+        "id": "node/6267307121",
+        "name": "大仙家",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.08643,
+          34.956968
+        ]
+      },
+      "properties": {
+        "id": "node/6267322176",
+        "name": "淘心庵米屋",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-09"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.085267,
+          35.115899
+        ]
+      },
+      "properties": {
+        "id": "node/6267385207",
+        "name": "ハートピア熱海",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.86891,
+          34.649862
+        ]
+      },
+      "properties": {
+        "id": "node/6275894035",
+        "name": "花のおもてなし南楽",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.868746,
+          34.64864
+        ]
+      },
+      "properties": {
+        "id": "node/6275894036",
+        "name": "ホテル河内屋",
+        "category": "ryokan_hotel",
+        "municipality": "南伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074689,
+          35.09787
+        ]
+      },
+      "properties": {
+        "id": "node/6275928173",
+        "name": "古屋旅館",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.082225,
+          35.101411
+        ]
+      },
+      "properties": {
+        "id": "node/6275939687",
+        "name": "ホテルリゾーピア熱海",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.087065,
+          35.113504
+        ]
+      },
+      "properties": {
+        "id": "node/6277614524",
+        "name": "星野リゾート 界 熱海",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.101084,
+          34.971406
+        ]
+      },
+      "properties": {
+        "id": "node/6277614525",
+        "name": "星野リゾート 界 アンジン",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.091419,
+          34.968579
+        ]
+      },
+      "properties": {
+        "id": "node/6277619147",
+        "name": "星野リゾート 界 伊東",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.062934,
+          35.091259
+        ]
+      },
+      "properties": {
+        "id": "node/6277619148",
+        "name": "星野リゾート リゾナーレ熱海",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-03-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090815,
+          34.970155
+        ]
+      },
+      "properties": {
+        "id": "node/6279796844",
+        "name": "ホテルよしの",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.089777,
+          34.973346
+        ]
+      },
+      "properties": {
+        "id": "node/6279805235",
+        "name": "山岸園",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.096315,
+          34.970712
+        ]
+      },
+      "properties": {
+        "id": "node/6279883440",
+        "name": "ホテルラヴィエ川良",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.028497,
+          34.892264
+        ]
+      },
+      "properties": {
+        "id": "node/6279906089",
+        "name": "ホテルハーヴェスト天城高原",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2021-11-01"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.906928,
+          34.958122
+        ]
+      },
+      "properties": {
+        "id": "node/6279924139",
+        "name": "ホテルラフォーレ修善寺",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-15"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.090328,
+          34.966715
+        ]
+      },
+      "properties": {
+        "id": "node/6282525890",
+        "name": "陽気館",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-02-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.777149,
+          34.947925
+        ]
+      },
+      "properties": {
+        "id": "node/6514556147",
+        "name": "ゆめとびら舟山",
+        "category": "ryokan_hotel",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.941238,
+          35.040833
+        ]
+      },
+      "properties": {
+        "id": "node/6673911858",
+        "name": "高齢者温泉交流館",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-08-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.937904,
+          35.035891
+        ]
+      },
+      "properties": {
+        "id": "node/6673911909",
+        "name": "ホテル・アクアサンタ",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.938987,
+          35.035726
+        ]
+      },
+      "properties": {
+        "id": "node/6673911934",
+        "name": "伊古奈荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.078453,
+          35.102654
+        ]
+      },
+      "properties": {
+        "id": "node/6679933782",
+        "name": "熱海駅前温泉浴場",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-03"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.092819,
+          34.990195
+        ]
+      },
+      "properties": {
+        "id": "node/6680029181",
+        "name": "ハトヤ大漁苑",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074841,
+          35.090772
+        ]
+      },
+      "properties": {
+        "id": "node/6680034026",
+        "name": "マリンスパあたみ（Ｐ無）",
+        "category": "hot_spring_bath",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.096937,
+          34.971715
+        ]
+      },
+      "properties": {
+        "id": "node/6680113990",
+        "name": "東海館お風呂",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-12-25"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.008137,
+          34.752893
+        ]
+      },
+      "properties": {
+        "id": "node/6680155759",
+        "name": "舟戸の番屋",
+        "category": "hot_spring_bath",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.786588,
+          34.971133
+        ]
+      },
+      "properties": {
+        "id": "node/6680807425",
+        "name": "壱の湯",
+        "category": "hot_spring_bath",
+        "municipality": "沼津市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2021-03-28"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.909614,
+          34.957077
+        ]
+      },
+      "properties": {
+        "id": "node/6680868265",
+        "name": "森の湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-01-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.085755,
+          35.109697
+        ]
+      },
+      "properties": {
+        "id": "node/6928883972",
+        "name": "水葉亭",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2019-10-30"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.953457,
+          34.775417
+        ]
+      },
+      "properties": {
+        "id": "node/7238725485",
+        "name": "福田家",
+        "category": "ryokan_hotel",
+        "municipality": "河津町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-22"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.937547,
+          35.035319
+        ]
+      },
+      "properties": {
+        "id": "node/7330717234",
+        "name": "コナステイ伊豆長岡",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.93666,
+          35.036691
+        ]
+      },
+      "properties": {
+        "id": "node/7330717237",
+        "name": "KKR伊豆長岡 千歳荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.935913,
+          35.034863
+        ]
+      },
+      "properties": {
+        "id": "node/7330717238",
+        "name": "香湯楼井川",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.936309,
+          35.035377
+        ]
+      },
+      "properties": {
+        "id": "node/7330717240",
+        "name": "あやめ湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-03-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.941662,
+          35.03447
+        ]
+      },
+      "properties": {
+        "id": "node/7330717242",
+        "name": "ホテルサンバレー 富士見",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.937922,
+          35.034272
+        ]
+      },
+      "properties": {
+        "id": "node/7330717245",
+        "name": "正平荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-03-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.938039,
+          35.036349
+        ]
+      },
+      "properties": {
+        "id": "node/7330717246",
+        "name": "LOCANDA いづい",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-03-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.941101,
+          35.033219
+        ]
+      },
+      "properties": {
+        "id": "node/7330717248",
+        "name": "伊豆長岡温泉京急ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.098608,
+          34.968831
+        ]
+      },
+      "properties": {
+        "id": "node/7343073858",
+        "name": "和田寿老人の湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.097604,
+          34.969536
+        ]
+      },
+      "properties": {
+        "id": "node/7343294281",
+        "name": "つた垣旅館",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-03-29"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.095745,
+          34.970011
+        ]
+      },
+      "properties": {
+        "id": "node/7343294748",
+        "name": "離れ きた岡",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.094942,
+          34.974685
+        ]
+      },
+      "properties": {
+        "id": "node/7367892936",
+        "name": "弁天の湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.095804,
+          34.975001
+        ]
+      },
+      "properties": {
+        "id": "node/7367892956",
+        "name": "Seven Seas Hotel",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-04-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.068729,
+          34.817727
+        ]
+      },
+      "properties": {
+        "id": "node/7410944119",
+        "name": "熱川プリンスホテル",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-06-26"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.928921,
+          35.028803
+        ]
+      },
+      "properties": {
+        "id": "node/7658645775",
+        "name": "ホテルサンバレー アネックス",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075273,
+          34.828947
+        ]
+      },
+      "properties": {
+        "id": "node/7802248086",
+        "name": "汐見荘",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-08-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.770476,
+          34.770633
+        ]
+      },
+      "properties": {
+        "id": "node/7802253316",
+        "name": "足湯",
+        "category": "hot_spring_bath",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.744005,
+          34.725766
+        ]
+      },
+      "properties": {
+        "id": "node/7802253322",
+        "name": "浜道楽",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-08-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.758236,
+          34.794836
+        ]
+      },
+      "properties": {
+        "id": "node/7802253324",
+        "name": "サンセットリゾート",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.76335,
+          34.884189
+        ]
+      },
+      "properties": {
+        "id": "node/7802253336",
+        "name": "瑠璃花",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.744623,
+          34.725448
+        ]
+      },
+      "properties": {
+        "id": "node/7802253704",
+        "name": "いなばや旅館",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.745262,
+          34.725694
+        ]
+      },
+      "properties": {
+        "id": "node/7802253706",
+        "name": "雲見園",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.759871,
+          34.793549
+        ]
+      },
+      "properties": {
+        "id": "node/7802253707",
+        "name": "五輪館",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.760204,
+          34.876843
+        ]
+      },
+      "properties": {
+        "id": "node/7802253712",
+        "name": "ふたりとわに　縁",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.790306,
+          34.909183
+        ]
+      },
+      "properties": {
+        "id": "node/7802253718",
+        "name": "美浜",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.78641,
+          34.917282
+        ]
+      },
+      "properties": {
+        "id": "node/7802253720",
+        "name": "頬杖の刻",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-08-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.789521,
+          34.911924
+        ]
+      },
+      "properties": {
+        "id": "node/7802253722",
+        "name": "粋松亭",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-08-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.076785,
+          34.840582
+        ]
+      },
+      "properties": {
+        "id": "node/7802253728",
+        "name": "大川観光協会　磯の湯(露天風呂)",
+        "category": "hot_spring_bath",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074935,
+          34.83298
+        ]
+      },
+      "properties": {
+        "id": "node/7802253729",
+        "name": "星ホテル",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-12-12"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.767479,
+          34.777683
+        ]
+      },
+      "properties": {
+        "id": "node/7802253897",
+        "name": "旅乃宿　ふかい",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.768077,
+          34.777937
+        ]
+      },
+      "properties": {
+        "id": "node/7802253898",
+        "name": "乗浜荘",
+        "category": "ryokan_hotel",
+        "municipality": "西伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-08-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.776983,
+          34.757893
+        ]
+      },
+      "properties": {
+        "id": "node/7802253901",
+        "name": "伊豆　松崎荘",
+        "category": "ryokan_hotel",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.744868,
+          34.72624
+        ]
+      },
+      "properties": {
+        "id": "node/7802253903",
+        "name": "なぎさの足湯",
+        "category": "hot_spring_bath",
+        "municipality": "松崎町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.7903,
+          34.909408
+        ]
+      },
+      "properties": {
+        "id": "node/7802253909",
+        "name": "松海荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.076701,
+          34.843381
+        ]
+      },
+      "properties": {
+        "id": "node/7802253917",
+        "name": "ザ　グランリゾート　エレガンテ伊豆",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.074487,
+          34.84121
+        ]
+      },
+      "properties": {
+        "id": "node/7802253918",
+        "name": "大川館",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.790446,
+          34.909526
+        ]
+      },
+      "properties": {
+        "id": "node/7802253994",
+        "name": "田中屋",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.790368,
+          34.908801
+        ]
+      },
+      "properties": {
+        "id": "node/7802253995",
+        "name": "わくだや",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.790346,
+          34.908705
+        ]
+      },
+      "properties": {
+        "id": "node/7802253996",
+        "name": "あさや",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.102617,
+          34.870087
+        ]
+      },
+      "properties": {
+        "id": "node/7802254001",
+        "name": "みなとや",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.076404,
+          34.841378
+        ]
+      },
+      "properties": {
+        "id": "node/7802261091",
+        "name": "きむら旅館",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.102632,
+          34.868954
+        ]
+      },
+      "properties": {
+        "id": "node/7802261585",
+        "name": "八幡野港",
+        "category": "source",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.075442,
+          34.82874
+        ]
+      },
+      "properties": {
+        "id": "node/7802261985",
+        "name": "山十旅館",
+        "category": "ryokan_hotel",
+        "municipality": "東伊豆町",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-08-11"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.138642,
+          34.912262
+        ]
+      },
+      "properties": {
+        "id": "node/8270562408",
+        "name": "ホテル海",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-19"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.133588,
+          34.904139
+        ]
+      },
+      "properties": {
+        "id": "node/8272658371",
+        "name": "富戸温泉",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.917293,
+          34.88508
+        ]
+      },
+      "properties": {
+        "id": "node/8276566176",
+        "name": "三吉",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.926761,
+          34.889672
+        ]
+      },
+      "properties": {
+        "id": "node/8276566187",
+        "name": "天城ベニ屋",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2020-12-31"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.106114,
+          34.879091
+        ]
+      },
+      "properties": {
+        "id": "node/8278599864",
+        "name": "立ち寄り温泉;伊東高原の湯",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-09-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.111144,
+          34.876864
+        ]
+      },
+      "properties": {
+        "id": "node/8292083422",
+        "name": "花吹雪",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2021-01-05"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.782444,
+          34.903118
+        ]
+      },
+      "properties": {
+        "id": "node/8421837671",
+        "name": "伊東園ホテル土肥",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-04"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.938297,
+          34.699343
+        ]
+      },
+      "properties": {
+        "id": "node/8449695096",
+        "name": "金谷旅館",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-23"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.789319,
+          34.904894
+        ]
+      },
+      "properties": {
+        "id": "node/8570317470",
+        "name": "龕附天正金鉱",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-14"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.94523,
+          34.678781
+        ]
+      },
+      "properties": {
+        "id": "node/8853114150",
+        "name": "ホテルマルセイユ",
+        "category": "ryokan_hotel",
+        "municipality": "下田市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2021-06-21"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.077503,
+          35.115351
+        ]
+      },
+      "properties": {
+        "id": "node/9213232525",
+        "name": "ラビスタ伊豆山",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.913656,
+          34.905118
+        ]
+      },
+      "properties": {
+        "id": "node/9271413250",
+        "name": "東府や Resort&SPA-Izu",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.112698,
+          34.902701
+        ]
+      },
+      "properties": {
+        "id": "node/9284826681",
+        "name": "伊豆高原わんわんパラダイスホテル",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.11313,
+          34.902833
+        ]
+      },
+      "properties": {
+        "id": "node/9284826682",
+        "name": "ホテルアンビエント伊豆高原アネックス",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-06-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.931747,
+          35.031074
+        ]
+      },
+      "properties": {
+        "id": "node/9315646857",
+        "name": "小松家八の坊",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.931672,
+          35.031353
+        ]
+      },
+      "properties": {
+        "id": "node/9315646858",
+        "name": "福狸亭 小川家",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-17"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.932192,
+          35.032003
+        ]
+      },
+      "properties": {
+        "id": "node/9315646859",
+        "name": "いづみ荘",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-07-16"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.933007,
+          35.032255
+        ]
+      },
+      "properties": {
+        "id": "node/9315646860",
+        "name": "あやめの宿",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-13"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.935064,
+          35.037217
+        ]
+      },
+      "properties": {
+        "id": "node/9315689262",
+        "name": "頼朝の湯 本陣",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2021-12-06"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.935803,
+          35.038021
+        ]
+      },
+      "properties": {
+        "id": "node/9315689263",
+        "name": "弘法の湯 本店",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.935934,
+          35.039097
+        ]
+      },
+      "properties": {
+        "id": "node/9315696938",
+        "name": "すみよし館",
+        "category": "ryokan_hotel",
+        "municipality": "伊豆の国市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-08-08"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.081017,
+          35.142316
+        ]
+      },
+      "properties": {
+        "id": "node/937350570",
+        "name": "ニューウェルシティ湯河原",
+        "category": "ryokan_hotel",
+        "municipality": "熱海市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-10-27"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.097376,
+          34.908266
+        ]
+      },
+      "properties": {
+        "id": "node/9459694708",
+        "name": "Izushaboten Village",
+        "category": "ryokan_hotel",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2023-11-02"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.0979,
+          34.907628
+        ]
+      },
+      "properties": {
+        "id": "node/9459694711",
+        "name": "おゆるり",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2025-09-10"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.094573,
+          34.984749
+        ]
+      },
+      "properties": {
+        "id": "node/9459867527",
+        "name": "あったまり～な",
+        "category": "hot_spring_bath",
+        "municipality": "伊東市",
+        "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14)",
+        "observed_at": "2022-01-30"
+      }
+    }
+  ]
+}

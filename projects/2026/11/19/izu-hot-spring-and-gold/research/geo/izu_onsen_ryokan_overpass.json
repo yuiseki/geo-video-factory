@@ -1,0 +1,5878 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2025-09-14T23:59:55Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 937350551,
+  "lat": 35.1461369,
+  "lon": 139.1043926,
+  "tags": {
+    "name": "ホテル城山",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 937350570,
+  "lat": 35.1423156,
+  "lon": 139.0810172,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "107",
+    "addr:postcode": "413-0001",
+    "addr:province": "静岡県",
+    "addr:quarter": "泉",
+    "name": "ニューウェルシティ湯河原",
+    "name:en": "New Well City Yugawara",
+    "name:ja": "ニューウェルシティ湯河原",
+    "tourism": "hotel",
+    "website": "https://www.welcity-yugawara.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 937462434,
+  "lat": 35.1414039,
+  "lon": 139.0857777,
+  "tags": {
+    "internet_access": "wlan",
+    "name": "ホテル四季彩",
+    "opening_hours": "Mo-Su 15:00-12:00",
+    "phone": "0465-60-3334",
+    "tourism": "hotel",
+    "website": "https://www.itoenhotel.com/shikisai/"
+  }
+},
+{
+  "type": "node",
+  "id": 1488574071,
+  "lat": 35.0905786,
+  "lon": 139.0741312,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "5-8",
+    "addr:postcode": "413-0023",
+    "addr:province": "静岡県",
+    "addr:quarter": "和田浜南町",
+    "name": "ホテルサンミ倶楽部",
+    "name:en": "Hotel Sanmi Club",
+    "tourism": "hotel",
+    "website": "https://www.sunmi.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 1488574075,
+  "lat": 35.0971535,
+  "lon": 139.0724301,
+  "tags": {
+    "name": "ニューフジヤホテル",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 1488574083,
+  "lat": 35.0975543,
+  "lon": 139.0741444,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "1-2",
+    "addr:postcode": "413-0012",
+    "addr:province": "静岡県",
+    "addr:quarter": "東海岸町",
+    "name": "ホテル貫一",
+    "name:en": "Hotel Kanichi",
+    "name:ja": "ホテル貫一",
+    "tourism": "hotel",
+    "website": "http://www.atamikanichi.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 1488574092,
+  "lat": 35.0923052,
+  "lon": 139.0743222,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "26-11",
+    "addr:postcode": "413-0014",
+    "addr:province": "静岡県",
+    "addr:quarter": "渚町",
+    "name": "熱海玉の湯ホテル",
+    "name:en": "Atami Tama-no-yu Hotel",
+    "tourism": "hotel",
+    "website": "https://www.tamanoyu.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 1488574094,
+  "lat": 35.0976629,
+  "lon": 139.0731799,
+  "tags": {
+    "name": "福島屋旅館",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 1489518862,
+  "lat": 35.1010481,
+  "lon": 139.0755133,
+  "tags": {
+    "name": "ファンシービジネスホテル",
+    "name:en": "Fancy Business Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 1489518866,
+  "lat": 35.0993572,
+  "lon": 139.0756548,
+  "tags": {
+    "name": "大江戸温泉物語　あたみ",
+    "name:en": "Oedo-Onsen Monogatari Hotel Atami",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 2007341481,
+  "lat": 35.1021792,
+  "lon": 139.0737444,
+  "tags": {
+    "addr:block_number": "7",
+    "addr:city": "熱海市",
+    "addr:housenumber": "1",
+    "addr:postcode": "413-0031",
+    "addr:province": "静岡県",
+    "addr:quarter": "林ガ丘町",
+    "air_conditioning": "yes",
+    "bar": "yes",
+    "brand": "ハートンホテル",
+    "email": "taikanso@atami-taikanso.com",
+    "fax": "+81-557-83-5308",
+    "internet_access": "wlan",
+    "internet_access:fee": "customers",
+    "name": "大観荘",
+    "name:en": "Atami Taiknso",
+    "name:ja": "大観荘",
+    "operator": "関西観光開発株式会社",
+    "payment:cash": "yes",
+    "payment:contactless": "yes",
+    "payment:credit_cards": "yes",
+    "phone": "+81-557-81-8137",
+    "reservation": "required",
+    "source": "survey;local knowledge",
+    "start_date": "1948",
+    "tourism": "hotel",
+    "website": "https://www.atami-taikanso.com/",
+    "website:en": "https://www.atami-taikanso.com/en/",
+    "wheelchair": "limited"
+  }
+},
+{
+  "type": "node",
+  "id": 2008393718,
+  "lat": 34.9738181,
+  "lon": 139.0925603,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "子持ち湯",
+    "source": "image;Bing,2011-12-25"
+  }
+},
+{
+  "type": "node",
+  "id": 2012226376,
+  "lat": 34.9845536,
+  "lon": 139.0943804,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "571-19",
+    "addr:postcode": "414-0002",
+    "addr:province": "静岡県",
+    "addr:quarter": "湯川",
+    "amenity": "public_bath",
+    "bath:type": "hot_spring",
+    "name": "シーサイドスパ",
+    "name:en": "Ito Marine Town Seaside Spa",
+    "name:ja": "伊東マリンタウン シーサイドスパ",
+    "source": "image;Bing,2011-12-25",
+    "website": "https://ito-marinetown.co.jp/seasidespa\t,https://ito-marinetown.co.jp/english"
+  }
+},
+{
+  "type": "node",
+  "id": 2014428781,
+  "lat": 34.9742198,
+  "lon": 139.0931573,
+  "tags": {
+    "name": "伊東ステーションホテル",
+    "name:en": "Ito Station Hotel",
+    "source": "image;Bing,2011-12-25",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 2106551004,
+  "lat": 35.1067011,
+  "lon": 139.0784399,
+  "tags": {
+    "name": "望洋荘",
+    "name:en": "Boyoso",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "node",
+  "id": 2138354901,
+  "lat": 35.1248132,
+  "lon": 138.9137515,
+  "tags": {
+    "name": "ホテル昭明館",
+    "name:en": "Hotel Shomeikan",
+    "tourism": "hotel",
+    "website": "https://showmeikan.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 2146182772,
+  "lat": 34.9400470,
+  "lon": 139.1400648,
+  "tags": {
+    "name": "川奈ホテル",
+    "name:en": "Kawana Hotel",
+    "tourism": "hotel",
+    "wikidata": "Q17209075",
+    "wikipedia": "ja:川奈ホテル"
+  }
+},
+{
+  "type": "node",
+  "id": 2575442892,
+  "lat": 35.1088173,
+  "lon": 138.8668518,
+  "tags": {
+    "name": "ホテル沼津キャッスル",
+    "name:en": "Hotel Numazu Castle",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 2636641616,
+  "lat": 34.7437718,
+  "lon": 138.9957995,
+  "tags": {
+    "amenity": "public_bath"
+  }
+},
+{
+  "type": "node",
+  "id": 2636641661,
+  "lat": 34.7436333,
+  "lon": 138.9957896,
+  "tags": {
+    "name": "岩谷旅館",
+    "name:en": "Iwatani Hotel",
+    "note": "休業中 (2014/01)",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "node",
+  "id": 2636641662,
+  "lat": 34.7444587,
+  "lon": 138.9950583,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "嵐の湯",
+    "name:en": "Arashi-no-Yu",
+    "name:ja": "嵐の湯"
+  }
+},
+{
+  "type": "node",
+  "id": 2636641665,
+  "lat": 34.7436117,
+  "lon": 138.9977131,
+  "tags": {
+    "name": "海遊亭",
+    "name:ja": "海遊亭",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 2643845446,
+  "lat": 34.7945376,
+  "lon": 138.9347990,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "中瀬隠居",
+    "phone": "05583-5-7182",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 2643845451,
+  "lat": 34.7932560,
+  "lon": 138.9367620,
+  "tags": {
+    "addr:city": "河津町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "359",
+    "addr:postcode": "413-0501",
+    "addr:province": "静岡県",
+    "addr:quarter": "梨本",
+    "name": "AMAGISO 天城荘",
+    "name:en": "Amagiso",
+    "tourism": "hotel",
+    "website": "https://www.amagisou.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 2643897066,
+  "lat": 34.7437092,
+  "lon": 138.9958598,
+  "tags": {
+    "amenity": "public_bath",
+    "fee": "no",
+    "name": "河津三郎の足湯",
+    "name:en": "Kawazu Saburo Foot Spa",
+    "name:ja": "河津三郎の足湯"
+  }
+},
+{
+  "type": "node",
+  "id": 2779720990,
+  "lat": 34.8174390,
+  "lon": 139.0722040,
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "992-1",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "name": "ホテルカターラリゾート＆スパ",
+    "name:en": "Izu Atagawa Onsen Hotel Katara Resort&Spa",
+    "source": "Survey",
+    "tourism": "hotel",
+    "website": "https://www.katara.co.jp/,https://www.katara.co.jp/en/"
+  }
+},
+{
+  "type": "node",
+  "id": 2926964935,
+  "lat": 35.1041334,
+  "lon": 138.8590930,
+  "tags": {
+    "name": "ココチホテル沼津",
+    "name:en": "CoCochi Hotel Numazu",
+    "source": "survey",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 3324747142,
+  "lat": 35.1031082,
+  "lon": 139.0806896,
+  "tags": {
+    "name": "ホテル弥生",
+    "name:en": "Hotel Yayoi",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 3398052593,
+  "lat": 34.9721160,
+  "lon": 139.0927152,
+  "tags": {
+    "name": "梅屋旅館",
+    "name:en": "Umeya Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 3537681423,
+  "lat": 35.0963788,
+  "lon": 139.0734473,
+  "tags": {
+    "addr:block_number": "18",
+    "addr:city": "熱海市",
+    "addr:country": "JP",
+    "addr:full": "静岡県熱海市銀座町7-18",
+    "addr:neighbourhood": "7",
+    "addr:postcode": "413-0013",
+    "addr:province": "静岡県",
+    "addr:suburb": "銀座町",
+    "contact:phone": "0557-81-5047",
+    "hot_spring": "yes",
+    "name": "白馬荘",
+    "source": "survey",
+    "tourism": "guest_house",
+    "website": "http://hakubasou.atami-spa.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 3591730492,
+  "lat": 35.0947025,
+  "lon": 139.0723864,
+  "tags": {
+    "mapillary": "291211519219511",
+    "name": "山木旅館",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 3593518099,
+  "lat": 35.0997290,
+  "lon": 139.0756610,
+  "tags": {
+    "name": "コンドミニアムホテル グランビュー熱海",
+    "name:en": "Condominium Hotel Grand View Atami",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 3593518695,
+  "lat": 35.0984330,
+  "lon": 139.0753390,
+  "tags": {
+    "addr:block_number": "3",
+    "addr:city": "熱海市",
+    "addr:housenumber": "19",
+    "addr:postcode": "413-0012",
+    "addr:province": "静岡県",
+    "addr:quarter": "東海岸町",
+    "name": "大月ホテル和風館",
+    "name:en": "Ohtsuki Hotel Wafuukan",
+    "name:ja": "大月ホテル和風館",
+    "tourism": "hotel",
+    "website": "https://www.wafuukan.com/",
+    "website:en": "https://www.wafuukan.com/english/"
+  }
+},
+{
+  "type": "node",
+  "id": 3593919160,
+  "lat": 35.0982197,
+  "lon": 139.0711176,
+  "tags": {
+    "access": "yes",
+    "amenity": "public_bath",
+    "bath:type": "onsen",
+    "fee": "yes",
+    "name": "大湯",
+    "name:en": "Large Spa Facility",
+    "opening_hours": "9:00-20:00",
+    "operator": "日航亭"
+  }
+},
+{
+  "type": "node",
+  "id": 3594201293,
+  "lat": 35.0969590,
+  "lon": 139.0735018,
+  "tags": {
+    "description": "熱海七湯",
+    "intermittent": "no",
+    "mapillary": "3844848542272824",
+    "name": "佐治郎の湯（目の湯）",
+    "name:en": "Sajiro No Yu Hot Spring - Me No Yu Hot Spring",
+    "name:ja": "佐治郎の湯（目の湯）",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 3600343994,
+  "lat": 35.0940027,
+  "lon": 139.0712956,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "onsen",
+    "fee": "yes",
+    "mapillary": "927824284618316",
+    "name": "清水町共同浴場",
+    "opening_hours": "Mo-Su, 11:00-21:30"
+  }
+},
+{
+  "type": "node",
+  "id": 3608440138,
+  "lat": 35.0978927,
+  "lon": 139.0741712,
+  "tags": {
+    "description": "熱海七湯",
+    "intermittent": "no",
+    "mapillary": "1452161755129149",
+    "name": "清左衛門の湯",
+    "name:en": "Seizaemon No Yu Hot Steam",
+    "name:ja": "清左衛門の湯",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 3608457082,
+  "lat": 35.0975405,
+  "lon": 139.0743683,
+  "tags": {
+    "mapillary": "576793673299651",
+    "name": "湯宿 みかんの木",
+    "name:en": "Spa Hotel Mikan-no-Ki",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 3608461659,
+  "lat": 35.0966912,
+  "lon": 139.0747506,
+  "tags": {
+    "description": "熱海七湯 (河原湯：Riverbed Hot Spring)",
+    "intermittent": "no",
+    "mapillary": "2914282075505682",
+    "name": "河原湯",
+    "name:en": "Kawara Yu Hot Spring",
+    "name:ja": "河原湯",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 3879956156,
+  "lat": 34.8893635,
+  "lon": 139.1214225,
+  "tags": {
+    "access": "yes",
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "hot_spring",
+    "fee": "no",
+    "name": "足湯（駅ホーム）",
+    "name:en": "Foot Spa",
+    "natural": "spring",
+    "opening_hours": "10:00-16:00",
+    "shower": "no",
+    "unisex": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 4104186834,
+  "lat": 34.6680416,
+  "lon": 138.9383637,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "12-1",
+    "addr:neighbourhood": "5丁目",
+    "addr:postcode": "415-8510",
+    "addr:province": "静岡県",
+    "name": "下田東急ホテル",
+    "name:en": "Shimoda Tokyu Hotel",
+    "name:ja": "下田東急ホテル",
+    "tourism": "hotel",
+    "website": "https://www.tokyuhotels.co.jp/shimoda-h/index.html,https://www.tokyuhotelsjapan.com/global/shimoda-h/",
+    "wikidata": "Q111662085"
+  }
+},
+{
+  "type": "node",
+  "id": 4350177001,
+  "lat": 34.6795854,
+  "lon": 138.9459197,
+  "tags": {
+    "name": "ビジネスホテルとん亭",
+    "name:en": "Business Hotel Tontei",
+    "name:ja": "ビジネスホテルとん亭",
+    "name:ja_rm": "Bijinesu Hoteru Tontei",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 4433577792,
+  "lat": 35.1159023,
+  "lon": 138.9458179,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "Takekura Onsen",
+    "name:fr": "Takekura Onsen",
+    "name:ja": "Takekura Onsen"
+  }
+},
+{
+  "type": "node",
+  "id": 4708341094,
+  "lat": 34.9704528,
+  "lon": 138.9275362,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "foot_bath",
+    "name": "とっこの湯",
+    "name:en": "Tokko no yu hot spring",
+    "name:fr": "Source chaude tokko no yu",
+    "name:ja": "とっこの湯"
+  }
+},
+{
+  "type": "node",
+  "id": 4708520598,
+  "lat": 34.8818891,
+  "lon": 139.1003483,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "1326-5",
+    "addr:postcode": "413-0232",
+    "addr:province": "静岡県",
+    "addr:quarter": "八幡野",
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "name": "八幡野温泉郷きらの里",
+    "name:en": "Yawatano-onsen-kyou Kira-no-sato",
+    "name:ja": "八幡野温泉郷きらの里",
+    "tourism": "hotel",
+    "website": "https://www.hotespa.net/hotels/kiranosato/"
+  }
+},
+{
+  "type": "node",
+  "id": 4795892037,
+  "lat": 34.6755133,
+  "lon": 138.9525488,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "3-8",
+    "addr:postcode": "415-8514",
+    "addr:province": "静岡県",
+    "addr:quarter": "柿崎",
+    "name": "黒船ホテル",
+    "name:en": "Izu Shimoda Onsen Kurofune Hotel",
+    "name:ja": "黒船ホテル",
+    "tourism": "hotel",
+    "website": "http://www.kurofune-hotel.com/,http://www.kurofune-hotel.com/lang/en.html"
+  }
+},
+{
+  "type": "node",
+  "id": 4795892044,
+  "lat": 34.6770651,
+  "lon": 138.9564501,
+  "tags": {
+    "name": "下田オーシャンパークホテル",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 4796051121,
+  "lat": 34.7774134,
+  "lon": 138.7656459,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "沢田公園露天風呂",
+    "name:en": "Sawadakoen onsen"
+  }
+},
+{
+  "type": "node",
+  "id": 5301957369,
+  "lat": 34.9730769,
+  "lon": 138.9322684,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "722",
+    "addr:postcode": "410-2416",
+    "addr:province": "静岡県",
+    "addr:quarter": "修善寺",
+    "name": "ホテル滝亭",
+    "name:en": "Hotel Takitei",
+    "name:ja": "ホテル滝亭",
+    "source": "GSImaps/ort",
+    "tourism": "hotel",
+    "website": "http://www.takitei.net/,http://www.takitei.net/en/"
+  }
+},
+{
+  "type": "node",
+  "id": 5302779652,
+  "lat": 34.9709377,
+  "lon": 138.9298389,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "874-1",
+    "addr:postcode": "410-2416",
+    "addr:province": "静岡県",
+    "addr:quarter": "修善寺",
+    "name": "湯回廊 菊屋",
+    "name:en": "Kikuya",
+    "name:ja": "湯回廊 菊屋",
+    "name:zh": "汤回廊菊屋",
+    "operator": "株式会社 共立メンテナンス",
+    "tourism": "hotel",
+    "website": "https://www.hotespa.net/hotels/kikuya/"
+  }
+},
+{
+  "type": "node",
+  "id": 5303104070,
+  "lat": 34.9688744,
+  "lon": 138.9263341,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "3455",
+    "addr:postcode": "410-2416",
+    "addr:province": "静岡県",
+    "addr:quarter": "修善寺",
+    "name": "宙SORA渡月荘金龍",
+    "name:en": "Sora Togetuso Kinryu",
+    "name:ja": "宙SORA渡月荘金龍",
+    "tourism": "hotel",
+    "website": "https://www.kinryu.net/"
+  }
+},
+{
+  "type": "node",
+  "id": 5304251746,
+  "lat": 34.9690577,
+  "lon": 138.9247384,
+  "tags": {
+    "name": "あさば旅館",
+    "name:en": "Asaba",
+    "tourism": "hotel",
+    "website": "https://www.asaba-ryokan.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5304252148,
+  "lat": 34.9697537,
+  "lon": 138.9219593,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "1146",
+    "addr:postcode": "410-2416",
+    "addr:province": "静岡県",
+    "addr:quarter": "修善寺",
+    "name": "瑞の里 ○久旅館",
+    "name:en": "Mizu-no-sato Maru-kyu  Hotel",
+    "name:ja": "瑞の里 ○久旅館",
+    "tourism": "hotel",
+    "website": "https://www.marukyu-ryokan.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5304252353,
+  "lat": 34.9682235,
+  "lon": 138.9219222,
+  "tags": {
+    "name": "ブリーズベイ修善寺ホテル",
+    "name:en": "Breezbay Shuzenji Hotel",
+    "operator": "BBHホテルグループ",
+    "tourism": "hotel",
+    "website": "https://breezbay-group.com/shuzenji/"
+  }
+},
+{
+  "type": "node",
+  "id": 5304395998,
+  "lat": 34.9705101,
+  "lon": 138.9274039,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "foot_bath",
+    "name": "河原湯",
+    "name:en": "Kawara Foot Spa"
+  }
+},
+{
+  "type": "node",
+  "id": 5306596526,
+  "lat": 34.9690194,
+  "lon": 138.9203550,
+  "tags": {
+    "email": "info@kizuna-shuzenji.com",
+    "name": "本格会席と源泉の湯 伊豆修善寺 絆+",
+    "name:en": "Kizuna",
+    "name:ja": "本格会席と源泉の湯 伊豆修善寺 絆+",
+    "operator": "株式会社ベリークルーズ",
+    "phone": "0558-79-3722",
+    "tourism": "hotel",
+    "website": "https://kizuna-shuzenji.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5307973434,
+  "lat": 34.9704638,
+  "lon": 138.9267420,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "874-1",
+    "addr:postcode": "410-2416",
+    "addr:province": "静岡県",
+    "addr:quarter": "修善寺",
+    "name": "新井旅館",
+    "name:en": "Arai Ryokan",
+    "tourism": "hotel",
+    "website": "http://arairyokan.net/,http://arairyokan.net/english/",
+    "wikidata": "Q11501183",
+    "wikipedia": "ja:新井旅館"
+  }
+},
+{
+  "type": "node",
+  "id": 5308049958,
+  "lat": 34.9709100,
+  "lon": 138.9197751,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "1163",
+    "addr:postcode": "410-2416",
+    "addr:province": "静岡県",
+    "addr:quarter": "修善寺",
+    "name": "修善寺石亭 鬼の栖",
+    "name:en": "Oninosumika",
+    "name:ja": "鬼の栖",
+    "tourism": "hotel",
+    "website": "http://www.sekitei.co.jp/oni/"
+  }
+},
+{
+  "type": "node",
+  "id": 5308050334,
+  "lat": 34.9714768,
+  "lon": 138.9304703,
+  "tags": {
+    "name": "五葉館",
+    "name:en": "Goyokan",
+    "tourism": "hotel",
+    "website": "http://www.goyokan.co.jp/",
+    "wikidata": "Q112009032"
+  }
+},
+{
+  "type": "node",
+  "id": 5308050335,
+  "lat": 34.9713415,
+  "lon": 138.9263033,
+  "tags": {
+    "name": "金福荘",
+    "name:en": "Kinpukuso",
+    "tourism": "hotel",
+    "website": "https://www.kinpukuso.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 5308507791,
+  "lat": 34.9646822,
+  "lon": 138.9836521,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "onsen",
+    "name": "白岩の湯",
+    "name:en": "Shiraiwa no Yu"
+  }
+},
+{
+  "type": "node",
+  "id": 5309672765,
+  "lat": 34.9619782,
+  "lon": 138.9791684,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "onsen",
+    "name": "小川温泉共同浴場",
+    "name:en": "Ogawa Onsen Public Hot Spa"
+  }
+},
+{
+  "type": "node",
+  "id": 5317694990,
+  "lat": 34.6962512,
+  "lon": 138.9731552,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "1547-1",
+    "addr:postcode": "415-8525",
+    "addr:province": "静岡県",
+    "addr:quarter": "白浜",
+    "name": "下田プリンスホテル",
+    "name:en": "Shimoda Prince Hotel",
+    "name:ja": "下田プリンスホテル",
+    "tourism": "hotel",
+    "website": "https://www.princehotels.co.jp/shimoda/,http://www.princehotels.com/shimoda/"
+  }
+},
+{
+  "type": "node",
+  "id": 5318199138,
+  "lat": 34.6537804,
+  "lon": 138.9653437,
+  "tags": {
+    "addr:block_number": "須崎926",
+    "addr:city": "下田市",
+    "addr:postcode": "4150014",
+    "addr:province": "静岡県",
+    "email": "booking@hiromispa.com",
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "name": "オーシャンビュー博海温泉ホテル",
+    "name:en": "Ocean View Hiromi SPA Hotel",
+    "phone": "+81588364868",
+    "rooms": "23",
+    "tourism": "hotel",
+    "website": "https://d-reserve.jp/calendar?hotelCode=0000001953"
+  }
+},
+{
+  "type": "node",
+  "id": 5321845982,
+  "lat": 34.9923921,
+  "lon": 138.9404629,
+  "tags": {
+    "name": "一二三荘",
+    "name:en": "Hifumi-So",
+    "tourism": "hotel",
+    "website": "https://www.123-sou.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5323223601,
+  "lat": 34.9963819,
+  "lon": 138.9425212,
+  "tags": {
+    "name": "大仁ホテル",
+    "name:en": "Ohito Hotel",
+    "tourism": "hotel",
+    "website": "http://www.itoenhotel.com/search_hotel/hotellist/819_oohito/tabid/276/Default.aspx"
+  }
+},
+{
+  "type": "node",
+  "id": 5323225475,
+  "lat": 34.9895194,
+  "lon": 138.9423342,
+  "tags": {
+    "name": "ホテル オリーブの木",
+    "name:en": "Hotel Olive no Ki",
+    "tourism": "hotel",
+    "website": "http://izu.tokinosumika.com/olive/"
+  }
+},
+{
+  "type": "node",
+  "id": 5345014216,
+  "lat": 35.0324248,
+  "lon": 138.9275993,
+  "tags": {
+    "addr:city": "伊豆の国市",
+    "addr:housenumber": "431-1",
+    "addr:postcode": "410-2211",
+    "addr:province": "静岡県",
+    "addr:quarter": "長岡",
+    "name": "伊豆長岡ホテル天坊",
+    "name:en": "Izu-nagaoka Hotel Tenbou",
+    "name:ja": "伊豆長岡ホテル天坊",
+    "phone": "0559471919",
+    "tourism": "hotel",
+    "website": "https://www.izu-tenbo.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5444683247,
+  "lat": 34.6423754,
+  "lon": 138.7852617,
+  "tags": {
+    "internet_access": "no",
+    "name": "吉田亭",
+    "tourism": "hotel",
+    "website": "http://yoshidatei.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5466798254,
+  "lat": 34.9929128,
+  "lon": 138.9406959,
+  "tags": {
+    "name": "富士屋旅館",
+    "name:en": "Fujiya Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 5467150322,
+  "lat": 34.8902262,
+  "lon": 138.9254703,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "1594",
+    "addr:postcode": "410-3206",
+    "addr:province": "静岡県",
+    "addr:quarter": "湯ヶ島",
+    "name": "白壁荘",
+    "name:en": "Shirakabe Manor",
+    "name:ja": "白壁荘",
+    "tourism": "hotel",
+    "website": "https://shirakabeso.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 5491225152,
+  "lat": 34.8904112,
+  "lon": 138.9238224,
+  "tags": {
+    "name": "湯本館",
+    "name:en": "Yumotokan Hotel",
+    "tourism": "hotel",
+    "website": "https://www.yumotokan-izu.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 5491225153,
+  "lat": 34.8901865,
+  "lon": 138.9238616,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "河鹿の湯",
+    "name:en": "Kajika-no-Yu"
+  }
+},
+{
+  "type": "node",
+  "id": 5496935980,
+  "lat": 34.8857502,
+  "lon": 138.9232582,
+  "tags": {
+    "name": "リブマックスリゾート天城湯ヶ島",
+    "name:en": "Live Max Resort Amagi Yugashima",
+    "tourism": "hotel",
+    "website": "https://www.livemax-resort.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 5496935981,
+  "lat": 34.8877776,
+  "lon": 138.9256318,
+  "tags": {
+    "name": "谷川の湯 あせび野",
+    "name:en": "Asebino",
+    "tourism": "hotel",
+    "website": "https://www.asebino.com/#1"
+  }
+},
+{
+  "type": "node",
+  "id": 5537803035,
+  "lat": 34.6726378,
+  "lon": 138.9434364,
+  "tags": {
+    "name": "ホテルウラガ",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 5603024180,
+  "lat": 35.1192664,
+  "lon": 138.9154779,
+  "tags": {
+    "addr:city": "三島市",
+    "addr:neighbourhood": "14-31",
+    "addr:postcode": "411-0855",
+    "addr:province": "静岡県",
+    "addr:quarter": "本町",
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "name": "みしまプラザホテル",
+    "name:en": "Mishima Plaza Hotel",
+    "operator": "みしまプラザホテル",
+    "rooms": "29",
+    "smoking": "isolated",
+    "tourism": "hotel",
+    "website": "https://mishimaph.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 5762711569,
+  "lat": 35.1005861,
+  "lon": 138.8607634,
+  "tags": {
+    "name": "沼津グランドホテル",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 5797570253,
+  "lat": 35.0301065,
+  "lon": 138.9337925,
+  "tags": {
+    "name": "弘法の湯 長岡店",
+    "name:en": "Kobo-no-Yu  Nagaoka Store",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 5797585653,
+  "lat": 34.8128027,
+  "lon": 138.8260341,
+  "tags": {
+    "name": "西伊豆町営やまびこ荘",
+    "name:en": "Yamabiko So",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 6002375224,
+  "lat": 35.1019065,
+  "lon": 139.0813984,
+  "tags": {
+    "name": "KKRホテル熱海",
+    "name:en": "KKR Atami Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 6074778886,
+  "lat": 35.0976138,
+  "lon": 139.0734026,
+  "tags": {
+    "description": "熱海七湯",
+    "intermittent": "no",
+    "name": "風呂の湯・水の湯",
+    "name:en": "Furo No Yu Hot Spring - Mizu No Yu Hot Spring",
+    "name:ja": "風呂の湯・水の湯",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 6074778887,
+  "lat": 35.0978768,
+  "lon": 139.0726804,
+  "tags": {
+    "amenity": "bbq",
+    "description": "熱海七湯。生卵の源泉蒸しが楽しめる泉源。",
+    "intermittent": "no",
+    "name": "小沢の湯（平左衛門の湯）",
+    "name:en": "Kosawa No Yu / Heizaemon No Yu Hot Steam",
+    "name:ja": "小沢の湯（平左衛門の湯）",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 6187998542,
+  "lat": 35.0890143,
+  "lon": 139.0766259,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "7-13",
+    "addr:postcode": "413-0023",
+    "addr:province": "静岡県",
+    "addr:quarter": "和田浜南町",
+    "name": "秀花園 湯の花膳",
+    "name:en": "Shu-kaen Yunohanazen",
+    "tourism": "hotel",
+    "website": "http://www.syukaen.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 6248676292,
+  "lat": 34.7515615,
+  "lon": 139.0035483,
+  "tags": {
+    "addr:city": "河津町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "35-1",
+    "addr:postcode": "413-0503",
+    "addr:province": "静岡県",
+    "addr:quarter": "見高今井",
+    "name": "伊豆今井浜東急ホテル",
+    "name:en": "Izu-Imaihama Tokyu Hotel",
+    "name:ja": "伊豆今井浜東急ホテル",
+    "tourism": "hotel",
+    "website": "https://www.tokyuhotels.co.jp/imaihama-h/index.html,https://www.tokyuhotelsjapan.com/global/imaihama-h/",
+    "wikidata": "Q111406771"
+  }
+},
+{
+  "type": "node",
+  "id": 6248746340,
+  "lat": 34.8656006,
+  "lon": 139.0965958,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "1741",
+    "addr:postcode": "413-0232",
+    "addr:province": "静岡県",
+    "addr:quarter": "八幡野",
+    "name": "坐漁荘",
+    "name:en": "ABBA RESORTS IZU",
+    "name:ja": "坐漁荘",
+    "tourism": "hotel",
+    "website": "http://zagyosoh.com/,http://zagyosoh.com/lang/en/"
+  }
+},
+{
+  "type": "node",
+  "id": 6249013685,
+  "lat": 35.0352579,
+  "lon": 138.9292927,
+  "tags": {
+    "addr:block_number": "659",
+    "addr:city": "伊豆の国市",
+    "addr:postcode": "410-2211",
+    "addr:province": "静岡県",
+    "addr:quarter": "長岡",
+    "name": "ホテルサンバレー伊豆長岡",
+    "name:en": "Hotel Sunvalley Izunagaoka",
+    "name:ja": "ホテルサンバレー伊豆長岡",
+    "tourism": "hotel",
+    "website": "https://www.izu3800.jp/",
+    "website:en": "https://www.izu3800.jp/lang/english/"
+  }
+},
+{
+  "type": "node",
+  "id": 6249262831,
+  "lat": 34.9648459,
+  "lon": 139.0902682,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "281",
+    "addr:postcode": "414-0055",
+    "addr:province": "静岡県",
+    "addr:quarter": "市岡",
+    "name": "伊東ホテル聚楽",
+    "name:en": "Hotel Juraku",
+    "name:ja": "伊東ホテル聚楽",
+    "tourism": "hotel",
+    "website": "http://www.hotel-juraku.co.jp/ito/"
+  }
+},
+{
+  "type": "node",
+  "id": 6251165646,
+  "lat": 34.9647209,
+  "lon": 139.0889493,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "1391",
+    "addr:postcode": "414-0055",
+    "addr:province": "静岡県",
+    "addr:quarter": "岡",
+    "internet_access": "no",
+    "name": "ハトヤホテル",
+    "name:en": "Hatoya Hotel",
+    "name:ja": "ハトヤホテル",
+    "tourism": "hotel",
+    "website": "http://www.hatoyahotel.com/home/index.html"
+  }
+},
+{
+  "type": "node",
+  "id": 6253239517,
+  "lat": 34.7869479,
+  "lon": 138.7631979,
+  "tags": {
+    "addr:city": "西伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "2960",
+    "addr:postcode": "410-3514",
+    "addr:province": "静岡県",
+    "addr:quarter": "仁科",
+    "name": "堂ヶ島温泉ホテル",
+    "name:en": "Dogashima Hot Spring Hotel",
+    "name:ja": "堂ヶ島温泉ホテル",
+    "tourism": "hotel",
+    "website": "http://www.doh.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6255403872,
+  "lat": 35.1416790,
+  "lon": 139.0811392,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "266",
+    "addr:postcode": "413-0001",
+    "addr:province": "静岡県",
+    "addr:quarter": "泉",
+    "name": "川堰苑いすゞホテル",
+    "name:en": "Isuzu Hotel",
+    "name:ja": "川堰苑いすゞホテル",
+    "tourism": "hotel",
+    "website": "https://www.isuzuhotel.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6258824943,
+  "lat": 34.9136590,
+  "lon": 138.7924886,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "289-2",
+    "addr:postcode": "410-3302",
+    "addr:province": "静岡県",
+    "addr:quarter": "土肥",
+    "internet_access": "yes",
+    "name": "牧水荘土肥館",
+    "name:en": "Bokusui-sou Toikan",
+    "name:ja": "牧水荘土肥館",
+    "tourism": "hotel",
+    "website": "https://www.toikan.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 6258861191,
+  "lat": 34.9060450,
+  "lon": 138.7894990,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "2849-3",
+    "addr:postcode": "410-3302",
+    "addr:province": "静岡県",
+    "addr:quarter": "土肥",
+    "name": "明治館",
+    "name:en": "Aoki-nagi-no-yado, Meijikan",
+    "name:ja": "明治館",
+    "tourism": "hotel",
+    "website": "https://www.meijikan.com/,https://hpdsp.jp/meijikan/en"
+  }
+},
+{
+  "type": "node",
+  "id": 6261280496,
+  "lat": 34.8324273,
+  "lon": 139.0753759,
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "北川温泉",
+    "name": "つるや吉祥亭",
+    "name:en": "Tsuruya Kisshotei",
+    "name:ja": "つるや吉祥亭",
+    "tourism": "hotel",
+    "website": "https://www.tsuruya-kisshotei.com/,https://www.tsuruya-kisshotei.com/en/",
+    "wikidata": "Q111866338"
+  }
+},
+{
+  "type": "node",
+  "id": 6261392359,
+  "lat": 34.6774125,
+  "lon": 138.9720115,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "633",
+    "addr:postcode": "415-0013",
+    "addr:province": "静岡県",
+    "addr:quarter": "柿崎",
+    "name": "下田ビューホテル",
+    "name:en": "Shimoda View Hotel",
+    "name:ja": "下田ビューホテル",
+    "tourism": "hotel",
+    "website": "http://www.viewhotel.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6261429214,
+  "lat": 34.6710177,
+  "lon": 138.9653641,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "40-61",
+    "addr:postcode": "415-0013",
+    "addr:province": "静岡県",
+    "addr:quarter": "柿崎",
+    "name": "ホテル山田屋",
+    "name:en": "Hotel Yamadaya",
+    "name:ja": "ホテル山田屋",
+    "tourism": "hotel",
+    "website": "https://www.hotel-yamadaya.com/\t,https://www.hotel-yamadaya.com/translation/"
+  }
+},
+{
+  "type": "node",
+  "id": 6261442376,
+  "lat": 34.8546512,
+  "lon": 138.7780667,
+  "tags": {
+    "addr:city": "西伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "2102-1",
+    "addr:postcode": "410-3501",
+    "addr:province": "静岡県",
+    "addr:quarter": "宇久須",
+    "name": "西伊豆クリスタルビューホテル",
+    "name:en": "Nishiizu Crystal View Hotel",
+    "name:ja": "西伊豆クリスタルビューホテル",
+    "tourism": "hotel",
+    "website": "http://www.crystal-view.jp/,http://www.crystal-view.jp/en/",
+    "wikidata": "Q112009072"
+  }
+},
+{
+  "type": "node",
+  "id": 6265407671,
+  "lat": 34.7190425,
+  "lon": 138.9149018,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "133-1",
+    "addr:postcode": "413-0711",
+    "addr:province": "静岡県",
+    "addr:quarter": "相玉",
+    "name": "里山の別邸 下田セントラルホテル",
+    "name:en": "Annex Of   Shimoda Central Hotel",
+    "name:ja": "里山の別邸 下田セントラルホテル",
+    "tourism": "hotel",
+    "website": "http://www.shimoda-central-hotel.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6265442670,
+  "lat": 35.0389935,
+  "lon": 138.9342423,
+  "tags": {
+    "addr:block_number": "270",
+    "addr:city": "伊豆の国市",
+    "addr:postcode": "410-2204",
+    "addr:province": "静岡県",
+    "addr:quarter": "墹之上",
+    "name": "三養荘",
+    "name:en": "Sanyo-so",
+    "name:ja": "三養荘",
+    "tourism": "hotel",
+    "website": "https://www.princehotels.co.jp/sanyo-so/",
+    "website:en": "https://www.princehotels.com/sanyo-so/"
+  }
+},
+{
+  "type": "node",
+  "id": 6265442671,
+  "lat": 35.1053857,
+  "lon": 138.8608609,
+  "tags": {
+    "addr:city": "沼津市",
+    "addr:housenumber": "11-2",
+    "addr:postcode": "410-0056",
+    "addr:province": "静岡県",
+    "addr:quarter": "高島屋",
+    "name": "静鉄ホテルプレジオ沼津",
+    "name:en": "Shizutetsu Hotel Prezio Numazu",
+    "name:ja": "静鉄ホテルプレジオ沼津",
+    "tourism": "hotel",
+    "website": "https://www.hotel-prezio.co.jp/numazu/",
+    "wikidata": "Q111866200"
+  }
+},
+{
+  "type": "node",
+  "id": 6265523551,
+  "lat": 34.6620607,
+  "lon": 138.9335760,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "2048",
+    "addr:postcode": "415-0028",
+    "addr:province": "静岡県",
+    "addr:quarter": "吉佐美",
+    "name": "下田大和館",
+    "name:en": "Shimoda Yamatokan",
+    "name:ja": "下田大和館",
+    "tourism": "hotel",
+    "website": "http://www.shimoda-yamatokan.co.jp/,https://www.shimoda-yamatokan.co.jp/english/index.html",
+    "wikidata": "Q111406794"
+  }
+},
+{
+  "type": "node",
+  "id": 6265591039,
+  "lat": 34.6981493,
+  "lon": 138.9320454,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "273-2",
+    "addr:postcode": "415-0031",
+    "addr:province": "静岡県",
+    "addr:quarter": "蓮台寺",
+    "name": "大地の彩 花月亭",
+    "name:en": "Daichi no irodori Kagetsutei",
+    "name:ja": "大地の彩 花月亭",
+    "tourism": "hotel",
+    "website": "https://rendaiji-kagetsutei.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6265593171,
+  "lat": 34.6969875,
+  "lon": 138.9391548,
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "2-2",
+    "addr:postcode": "415-0011",
+    "addr:province": "静岡県",
+    "addr:quarter": "河内",
+    "name": "清流荘",
+    "name:en": "Sei-ryu manor",
+    "name:ja": "清流荘",
+    "tourism": "hotel",
+    "website": "https://www.seiryuso.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6267317599,
+  "lat": 35.1012013,
+  "lon": 139.0780793,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "2-19",
+    "addr:postcode": "413-0005",
+    "addr:province": "静岡県",
+    "addr:quarter": "田原本町",
+    "name": "月の栖 熱海聚楽ホテル",
+    "name:en": "Tsuki-no-sumika Atami Juraku Hotel",
+    "name:ja": "月の栖 熱海聚楽ホテル",
+    "tourism": "hotel",
+    "website": "https://atami-juraku.co.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6267322176,
+  "lat": 34.9569679,
+  "lon": 139.0864304,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "280",
+    "addr:postcode": "414-0054",
+    "addr:province": "静岡県",
+    "addr:quarter": "鎌田",
+    "name": "淘心庵米屋",
+    "name:en": "Toushin An Komeya",
+    "name:ja": "淘心庵米屋",
+    "tourism": "hotel",
+    "website": "http://toshinan-komeya.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 6275894036,
+  "lat": 34.6486399,
+  "lon": 138.8687464,
+  "tags": {
+    "addr:city": "南伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "436-1",
+    "addr:postcode": "415-0303",
+    "addr:province": "静岡県",
+    "addr:quarter": "下賀茂",
+    "name": "ホテル河内屋",
+    "name:en": "Hotel Kawachi-ya",
+    "name:ja": "ホテル河内屋",
+    "tourism": "hotel",
+    "website": "https://www.kawatiya.net/"
+  }
+},
+{
+  "type": "node",
+  "id": 6275928173,
+  "lat": 35.0978698,
+  "lon": 139.0746894,
+  "tags": {
+    "addr:block_number": "5",
+    "addr:city": "熱海市",
+    "addr:housenumber": "24",
+    "addr:postcode": "413-0012",
+    "addr:province": "静岡県",
+    "addr:quarter": "東海岸町",
+    "name": "古屋旅館",
+    "name:en": "Furuya Ryokan",
+    "name:ja": "古屋旅館",
+    "tourism": "hotel",
+    "website": "https://atami-furuya.co.jp/",
+    "website:en": "https://atami-furuya.co.jp/eng/"
+  }
+},
+{
+  "type": "node",
+  "id": 6275939687,
+  "lat": 35.1014106,
+  "lon": 139.0822249,
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "13-93",
+    "addr:postcode": "413-0012",
+    "addr:province": "静岡県",
+    "addr:quarter": "東海岸町",
+    "name": "ホテルリゾーピア熱海",
+    "name:en": "Hotel Resorpia Atami",
+    "name:ja": "ホテルリゾーピア熱海",
+    "tourism": "hotel",
+    "website": "https://rt-clubnet.jp/hotels/smc/atami/"
+  }
+},
+{
+  "type": "node",
+  "id": 6279796844,
+  "lat": 34.9701548,
+  "lon": 139.0908151,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "745-5",
+    "addr:postcode": "414-0006",
+    "addr:province": "静岡県",
+    "addr:quarter": "松原",
+    "name": "ホテルよしの",
+    "name:en": "Hotel Yoshino",
+    "name:ja": "ホテルよしの",
+    "tourism": "hotel",
+    "website": "http://hotel-yoshino.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 6279883440,
+  "lat": 34.9707119,
+  "lon": 139.0963153,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "1-1-3",
+    "addr:postcode": "414-0027",
+    "addr:province": "静岡県",
+    "addr:quarter": "竹の内",
+    "name": "ホテルラヴィエ川良",
+    "name:en": "Hotel La Vie Kawaryou",
+    "name:ja": "ホテルラヴィエ川良",
+    "tourism": "hotel",
+    "website": "https://www.hmi-ryokan.jp/kawaryo/"
+  }
+},
+{
+  "type": "node",
+  "id": 6279906089,
+  "lat": 34.8922642,
+  "lon": 139.0284971,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "1524",
+    "addr:postcode": "410-2507",
+    "addr:province": "静岡県",
+    "addr:quarter": "冷川",
+    "name": "ホテルハーヴェスト天城高原",
+    "name:en": "Hotel Harvest Amagikougen",
+    "name:ja": "ホテルハーヴェスト天城高原",
+    "tourism": "hotel",
+    "website": "http://www.resorthotels109.com/amagikogen/,http://www.resorthotels109.com/en/amagikogen/index.html"
+  }
+},
+{
+  "type": "node",
+  "id": 6279924139,
+  "lat": 34.9581218,
+  "lon": 138.9069283,
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "1529",
+    "addr:postcode": "410-2415",
+    "addr:province": "静岡県",
+    "addr:quarter": "大平",
+    "name": "ホテルラフォーレ修善寺",
+    "name:en": "Hotel Laforet Shuzenji",
+    "name:ja": "ホテルラフォーレ修善寺",
+    "tourism": "hotel",
+    "website": "https://www.laforet.co.jp/shuzenji/,https://www.laforetszj.com/en-gb"
+  }
+},
+{
+  "type": "node",
+  "id": 6282525890,
+  "lat": 34.9667154,
+  "lon": 139.0903279,
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "2-24",
+    "addr:postcode": "414-0015",
+    "addr:province": "静岡県",
+    "addr:quarter": "末広町",
+    "name": "陽気館",
+    "name:en": "Izu Ito Onsen Yokikan",
+    "name:ja": "陽気館",
+    "tourism": "hotel",
+    "website": "http://www.yokikan.co.jp/,https://www.yokikan.co.jp/en/"
+  }
+},
+{
+  "type": "node",
+  "id": 6673911858,
+  "lat": 35.0408330,
+  "lon": 138.9412384,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "高齢者温泉交流館",
+    "website": "https://www.city.izunokuni.shizuoka.jp/sien_koureisha/kenko/koureisha/onsen/index.html"
+  }
+},
+{
+  "type": "node",
+  "id": 6673911909,
+  "lat": 35.0358912,
+  "lon": 138.9379040,
+  "tags": {
+    "name": "ホテル・アクアサンタ",
+    "name:en": "Hotel Aqua Santa",
+    "tourism": "hotel",
+    "website": "https://www.bocca1.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 6673911934,
+  "lat": 35.0357262,
+  "lon": 138.9389874,
+  "tags": {
+    "name": "伊古奈荘",
+    "name:en": "Ikona So",
+    "tourism": "hotel",
+    "website": "https://ikonaso.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 6679933782,
+  "lat": 35.1026545,
+  "lon": 139.0784533,
+  "tags": {
+    "addr:block_number": "8",
+    "addr:city": "熱海市",
+    "addr:housenumber": "16",
+    "addr:province": "静岡県",
+    "addr:quarter": "田原本町",
+    "amenity": "public_bath",
+    "bath:open_air": "no",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "charge": "500 JPY",
+    "fee": "yes",
+    "name": "熱海駅前温泉浴場",
+    "name:en": "Atami Ekimae Onsen Yokujō Public Bath",
+    "name:ja": "熱海駅前温泉浴場",
+    "opening_hours": "Th-Tu 14:00-22:00",
+    "payment:cash": "yes",
+    "phone": "+81-557-81-3417",
+    "start_date": "1947",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 6680029181,
+  "lat": 34.9901948,
+  "lon": 139.0928192,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "ハトヤ大漁苑",
+    "name:en": "Hatoya Tairyoen"
+  }
+},
+{
+  "type": "node",
+  "id": 6680034026,
+  "lat": 35.0907715,
+  "lon": 139.0748406,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "マリンスパあたみ（Ｐ無）",
+    "name:en": "Marine Spa Atami (No Parking Area)"
+  }
+},
+{
+  "type": "node",
+  "id": 6680113990,
+  "lat": 34.9717154,
+  "lon": 139.0969373,
+  "tags": {
+    "addr:block_number": "12",
+    "addr:city": "伊東市",
+    "addr:housenumber": "10",
+    "addr:postcode": "414-0022",
+    "addr:province": "静岡県",
+    "addr:quarter": "東松原町",
+    "amenity": "public_bath",
+    "bath:open_air": "no",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "charge": "500 JPY",
+    "fee": "yes",
+    "name": "東海館お風呂",
+    "name:en": "Toukaikan Ofuro",
+    "name:ja": "東海館お風呂",
+    "opening_hours": "Sa-Su,PH 11:00-12:45,13:00-14：45,15:00-16:45,17:00-19:00; Jan 1,PH,Tu[3] off",
+    "website": "https://itospa.com/spa/detail_54227.html"
+  }
+},
+{
+  "type": "node",
+  "id": 6680155759,
+  "lat": 34.7528931,
+  "lon": 139.0081369,
+  "tags": {
+    "access": "yes",
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "fee": "yes",
+    "name": "舟戸の番屋",
+    "name:en": "Funado-no-Banya",
+    "opening_hours": "10:00-16:00",
+    "shower": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 6680807425,
+  "lat": 34.9711334,
+  "lon": 138.7865880,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "壱の湯",
+    "name:en": "Ichinoyu"
+  }
+},
+{
+  "type": "node",
+  "id": 6680868265,
+  "lat": 34.9570769,
+  "lon": 138.9096136,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "森の湯"
+  }
+},
+{
+  "type": "node",
+  "id": 6928883972,
+  "lat": 35.1096972,
+  "lon": 139.0857546,
+  "tags": {
+    "name": "水葉亭",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7100936185,
+  "lat": 35.1476237,
+  "lon": 139.0713402,
+  "tags": {
+    "addr:housenumber": "616",
+    "addr:postcode": "2590314",
+    "addr:street": "湯河原宮上",
+    "name": "源泉上野屋旅館",
+    "name:en": "Ueno-ya ryokan",
+    "tourism": "hotel",
+    "website": "https://www.uenoya-net.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 7330717237,
+  "lat": 35.0366912,
+  "lon": 138.9366597,
+  "tags": {
+    "name": "KKR伊豆長岡 千歳荘",
+    "name:en": "KKR Izu Nagaoka Chitoseso",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7330717238,
+  "lat": 35.0348634,
+  "lon": 138.9359125,
+  "tags": {
+    "name": "香湯楼井川",
+    "name:en": "Kouyuro   Ikawa",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7330717240,
+  "lat": 35.0353767,
+  "lon": 138.9363089,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "あやめ湯"
+  }
+},
+{
+  "type": "node",
+  "id": 7330717242,
+  "lat": 35.0344700,
+  "lon": 138.9416617,
+  "tags": {
+    "name": "ホテルサンバレー 富士見",
+    "name:en": "Hotel Sun Valley  Fujimi",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7330717245,
+  "lat": 35.0342724,
+  "lon": 138.9379223,
+  "tags": {
+    "name": "正平荘",
+    "name:en": "Shoheiso",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7330717248,
+  "lat": 35.0332186,
+  "lon": 138.9411012,
+  "tags": {
+    "name": "伊豆長岡温泉京急ホテル",
+    "name:en": "Izu Nagaoka-Onsen Keikyu Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7343073858,
+  "lat": 34.9688312,
+  "lon": 139.0986082,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "和田寿老人の湯",
+    "name:en": "Wada Jyrurojin-no-Yu"
+  }
+},
+{
+  "type": "node",
+  "id": 7343294281,
+  "lat": 34.9695357,
+  "lon": 139.0976044,
+  "tags": {
+    "name": "つた垣旅館",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7367892936,
+  "lat": 34.9746851,
+  "lon": 139.0949421,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "弁天の湯",
+    "name:en": "Benten Spa"
+  }
+},
+{
+  "type": "node",
+  "id": 7410944119,
+  "lat": 34.8177274,
+  "lon": 139.0687287,
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "熱川温泉",
+    "name": "熱川プリンスホテル",
+    "name:en": "Atagawa Prince Hotel",
+    "tourism": "hotel",
+    "website": "https://www.atagawa-prince.co.jp/",
+    "wikidata": "Q112009108"
+  }
+},
+{
+  "type": "node",
+  "id": 7658645775,
+  "lat": 35.0288034,
+  "lon": 138.9289211,
+  "tags": {
+    "name": "ホテルサンバレー アネックス",
+    "name:en": "Hotel  Sun Valley  Annex",
+    "tourism": "hotel",
+    "website": "https://izu3800.jp/annex/"
+  }
+},
+{
+  "type": "node",
+  "id": 7802248086,
+  "lat": 34.8289474,
+  "lon": 139.0752727,
+  "tags": {
+    "name": "汐見荘",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253316,
+  "lat": 34.7706333,
+  "lon": 138.7704762,
+  "tags": {
+    "name": "足湯",
+    "name:en": "Foot Spa",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253704,
+  "lat": 34.7254475,
+  "lon": 138.7446233,
+  "tags": {
+    "name": "いなばや旅館",
+    "name:en": "Inaba  Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253707,
+  "lat": 34.7935495,
+  "lon": 138.7598711,
+  "tags": {
+    "name": "五輪館",
+    "name:en": "Gorinkan Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253722,
+  "lat": 34.9119239,
+  "lon": 138.7895212,
+  "tags": {
+    "name": "粋松亭",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253728,
+  "lat": 34.8405821,
+  "lon": 139.0767854,
+  "tags": {
+    "name": "大川観光協会　磯の湯(露天風呂)",
+    "name:en": "Oka Tourism Association  Iso-no-Yu (Air Spa)",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253729,
+  "lat": 34.8329798,
+  "lon": 139.0749347,
+  "tags": {
+    "name": "星ホテル",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253898,
+  "lat": 34.7779367,
+  "lon": 138.7680765,
+  "tags": {
+    "name": "乗浜荘",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253901,
+  "lat": 34.7578934,
+  "lon": 138.7769833,
+  "tags": {
+    "name": "伊豆　松崎荘",
+    "name:en": "Izu Matsuzaki So",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253903,
+  "lat": 34.7262403,
+  "lon": 138.7448678,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "onsen",
+    "name": "なぎさの足湯",
+    "name:en": "Nagisa  Foot Spa"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253909,
+  "lat": 34.9094084,
+  "lon": 138.7903004,
+  "tags": {
+    "name": "松海荘",
+    "name:en": "Shokai So",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802253918,
+  "lat": 34.8412099,
+  "lon": 139.0744865,
+  "tags": {
+    "name": "大川館",
+    "name:en": "Okawa Kan Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802261091,
+  "lat": 34.8413780,
+  "lon": 139.0764037,
+  "tags": {
+    "name": "きむら旅館",
+    "name:en": "Kimura Hotel",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 7802261585,
+  "lat": 34.8689540,
+  "lon": 139.1026321,
+  "tags": {
+    "name": "八幡野港",
+    "name:en": "Yawatano Port",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 7802261985,
+  "lat": 34.8287401,
+  "lon": 139.0754421,
+  "tags": {
+    "name": "山十旅館",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 8270562408,
+  "lat": 34.9122617,
+  "lon": 139.1386418,
+  "tags": {
+    "name": "ホテル海",
+    "name:en": "Hotel Umi",
+    "tourism": "hotel",
+    "website": "https://www.hotel-umi.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 8272658371,
+  "lat": 34.9041393,
+  "lon": 139.1335882,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "富戸温泉",
+    "name:en": "Futo-Onsen"
+  }
+},
+{
+  "type": "node",
+  "id": 8278599864,
+  "lat": 34.8790914,
+  "lon": 139.1061136,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "onsen",
+    "charge": "10000 JPY",
+    "fee": "yes",
+    "name": "立ち寄り温泉;伊東高原の湯",
+    "name:en": "Izu Kogen no Yu",
+    "website": "http://www.suiransou.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 8421837671,
+  "lat": 34.9031184,
+  "lon": 138.7824444,
+  "tags": {
+    "name": "伊東園ホテル土肥",
+    "name:en": "Itoen  Hotel Toi",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 8449695096,
+  "lat": 34.6993434,
+  "lon": 138.9382970,
+  "tags": {
+    "name": "金谷旅館",
+    "name:en": "Kaneya Hotel",
+    "tourism": "hotel",
+    "website": "http://kanayaryokan.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 8853114150,
+  "lat": 34.6787808,
+  "lon": 138.9452304,
+  "tags": {
+    "name": "ホテルマルセイユ",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 9284826681,
+  "lat": 34.9027013,
+  "lon": 139.1126981,
+  "tags": {
+    "name": "伊豆高原わんわんパラダイスホテル",
+    "name:en": "Izu Kogen Wanwan Paradise Hotel",
+    "operator": "株式会社 セラヴィリゾート泉郷",
+    "phone": "0557-51-6111",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 9284826682,
+  "lat": 34.9028333,
+  "lon": 139.1131300,
+  "tags": {
+    "name": "ホテルアンビエント伊豆高原アネックス",
+    "name:en": "Hotel AMBIENT   Izu Kogen Annex",
+    "operator": "株式会社 セラヴィリゾート泉郷",
+    "phone": "0557-51-5111",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 9315646858,
+  "lat": 35.0313527,
+  "lon": 138.9316720,
+  "tags": {
+    "name": "福狸亭 小川家",
+    "name:en": "Fukuritei  Ogawaya",
+    "tourism": "hotel",
+    "website": "https://fukuriteiogawaya.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 9315646859,
+  "lat": 35.0320028,
+  "lon": 138.9321924,
+  "tags": {
+    "name": "いづみ荘",
+    "name:en": "Izumiso",
+    "tourism": "hotel",
+    "website": "https://www.saneatunoyado.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 9315689262,
+  "lat": 35.0372174,
+  "lon": 138.9350643,
+  "tags": {
+    "name": "頼朝の湯 本陣",
+    "tourism": "hotel",
+    "website": "https://www.y-honjin.com/"
+  }
+},
+{
+  "type": "node",
+  "id": 9315689263,
+  "lat": 35.0380205,
+  "lon": 138.9358031,
+  "tags": {
+    "name": "弘法の湯 本店",
+    "name:en": "Kobo-no-Yu  Headquarter",
+    "tourism": "hotel",
+    "website": "https://koubounoyu.jp/honten/index.html"
+  }
+},
+{
+  "type": "node",
+  "id": 9315696938,
+  "lat": 35.0390968,
+  "lon": 138.9359341,
+  "tags": {
+    "name": "すみよし館",
+    "name:en": "Sumiyoshikan",
+    "tourism": "hotel",
+    "website": "http://www.spasumiyosikan.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 9459694711,
+  "lat": 34.9076279,
+  "lon": 139.0978998,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "おゆるり",
+    "name:en": "Oyururi"
+  }
+},
+{
+  "type": "node",
+  "id": 9459867527,
+  "lat": 34.9847493,
+  "lon": 139.0945735,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "foot_bath",
+    "name": "あったまり～な"
+  }
+},
+{
+  "type": "node",
+  "id": 9710837624,
+  "lat": 35.1250569,
+  "lon": 138.9132733,
+  "tags": {
+    "name": "ホテルマッシモ三島",
+    "name:en": "Hotel Massimo",
+    "tourism": "hotel",
+    "website": "https://www.massimo-m.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 9763822701,
+  "lat": 35.1201617,
+  "lon": 138.9121330,
+  "tags": {
+    "name": "ホテルニューかのや",
+    "name:en": "Hotel New Kanoya",
+    "tourism": "hotel",
+    "website": "http://www.tokai.or.jp/new-kanoya/"
+  }
+},
+{
+  "type": "node",
+  "id": 10234994205,
+  "lat": 35.1456680,
+  "lon": 139.1022942,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "name": "手湯",
+    "name:en": "Hot springs to warm hands",
+    "name:ja": "手湯"
+  }
+},
+{
+  "type": "node",
+  "id": 10235097163,
+  "lat": 35.0981339,
+  "lon": 139.0714389,
+  "tags": {
+    "intermittent": "no",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 10235107599,
+  "lat": 35.0984437,
+  "lon": 139.0728539,
+  "tags": {
+    "access": "customers",
+    "description": "熱海温泉ホテル夢いろはの顧客が源泉蒸しを楽しめる泉源。",
+    "intermittent": "no",
+    "name": "青山湯",
+    "name:en": "Aoyama Hot Spa",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 10235107600,
+  "lat": 35.0992611,
+  "lon": 139.0732641,
+  "tags": {
+    "description": "熱海七湯",
+    "intermittent": "no",
+    "name": "野中の湯",
+    "name:en": "Nonaka No Yu Hot Steam",
+    "name:ja": "野中の湯",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 10235167479,
+  "lat": 35.0972776,
+  "lon": 139.0718337,
+  "tags": {
+    "intermittent": "no",
+    "name": "延命乃湯",
+    "name:en": "Enmei No Yu Hot Spring",
+    "name:ja": "延命乃湯",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 10279667509,
+  "lat": 35.1115433,
+  "lon": 139.0853907,
+  "tags": {
+    "addr:housenumber": "静岡県熱海市伊豆山579-37",
+    "amenity": "public_bath",
+    "bath:open_air": "no",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "fee": "yes",
+    "name": "伊豆山温泉走り湯浜浴場",
+    "name:en": "Izusan Onsen Hasiriyu-Hama  Spa",
+    "name:ja": "伊豆山温泉走り湯浜浴場",
+    "opening_hours": "Fr-We 14:30-21:00"
+  }
+},
+{
+  "type": "node",
+  "id": 10285454995,
+  "lat": 35.1018294,
+  "lon": 139.0734141,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "fee": "yes",
+    "name": "熱海大観荘貸切露天風呂",
+    "name:en": "Atami Taikanso  Reserved Air-Spa"
+  }
+},
+{
+  "type": "node",
+  "id": 10285454996,
+  "lat": 35.1017642,
+  "lon": 139.0733504,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "description": "Foot Bath",
+    "name": "熱海大観荘足湯",
+    "name:en": "Atami Taikanso  Foot Spa",
+    "name:ja": "熱海大観荘足湯"
+  }
+},
+{
+  "type": "node",
+  "id": 10285454997,
+  "lat": 35.1020191,
+  "lon": 139.0730106,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "description": "Stunning pine forest onsen",
+    "fee": "yes",
+    "name": "熱海大観荘山王の湯",
+    "name:en": "Atami Taikanso  O-no-Yu",
+    "wheelchair": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 10285454998,
+  "lat": 35.1020647,
+  "lon": 139.0733981,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "description": "Waterfall onsen",
+    "fee": "yes",
+    "name": "熱海大観荘滝の湯",
+    "name:en": "Atami Taikanso Taki-no-Yu",
+    "name:ja": "熱海大観荘滝の湯"
+  }
+},
+{
+  "type": "node",
+  "id": 10285454999,
+  "lat": 35.1022080,
+  "lon": 139.0738892,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "description": "Hinoki cypress (Chamaecyparis obtusa) bath",
+    "fee": "yes",
+    "name": "熱海大観荘ひのきの湯",
+    "name:en": "Atami Taikanso Hinoki-no-yu",
+    "name:ja": "熱海大観荘ひのきの湯"
+  }
+},
+{
+  "type": "node",
+  "id": 10285485624,
+  "lat": 35.1023409,
+  "lon": 139.0746994,
+  "tags": {
+    "intermittent": "no",
+    "name": "第一山王源泉跡",
+    "name:en": "Site of Sanno fountainhead No.1",
+    "name:ja": "第一山王源泉跡",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 10711631982,
+  "lat": 35.0310100,
+  "lon": 138.9322364,
+  "tags": {
+    "name": "南山荘",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 10821743002,
+  "lat": 34.8838858,
+  "lon": 138.9324148,
+  "tags": {
+    "name": "富士見山荘",
+    "name:en": "Fujimi  Mountain Cottage",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 11003223685,
+  "lat": 34.7569018,
+  "lon": 138.9827914,
+  "tags": {
+    "addr:block_number": "440",
+    "addr:city": "河津町",
+    "addr:county": "賀茂郡",
+    "addr:province": "静岡県",
+    "addr:quarter": "峰",
+    "mapillary": "727016536099656",
+    "name": "玉峰館",
+    "name:en": "Tamamine Kan Hotel",
+    "phone": "0558-34-2041",
+    "tourism": "hotel",
+    "website": "https://www.gyokuhokan.jp/"
+  }
+},
+{
+  "type": "node",
+  "id": 11007472699,
+  "lat": 34.7568849,
+  "lon": 138.9853942,
+  "tags": {
+    "amenity": "public_bath",
+    "mapillary": "1284359152468742",
+    "name": "足湯",
+    "name:en": "Foot Spa"
+  }
+},
+{
+  "type": "node",
+  "id": 11012076265,
+  "lat": 34.7708004,
+  "lon": 139.0430502,
+  "tags": {
+    "addr:block_number": "774",
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:province": "静岡県",
+    "addr:quarter": "稲取",
+    "amenity": "public_bath",
+    "mapillary": "583039343938993",
+    "name": "徳造丸 海女の足湯",
+    "name:en": "Tokuzomaru   Professional Female Diver's  Foot Spa",
+    "website": "http://1930.co.jp/amimoto/asiyu"
+  }
+},
+{
+  "type": "node",
+  "id": 11072510005,
+  "lat": 35.1256142,
+  "lon": 138.9112713,
+  "tags": {
+    "addr:block_number": "10",
+    "addr:city": "三島市",
+    "addr:floor": "14",
+    "addr:neighbourhood": "2606",
+    "addr:province": "静岡県",
+    "addr:quarter": "一番町",
+    "addr:street": "一番町",
+    "building:floor": "14",
+    "ele": "57.65",
+    "name": "富士山三島東急ホテル",
+    "name:en": "Fuji Mishima Tokyu Hotel",
+    "phone": "+81 559910109",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 11090938747,
+  "lat": 34.9708959,
+  "lon": 139.0956902,
+  "tags": {
+    "name": "伊東園ホテル",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523355,
+  "lat": 34.7253326,
+  "lon": 138.7442424,
+  "tags": {
+    "name": "川端荘",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523356,
+  "lat": 34.7249959,
+  "lon": 138.7442601,
+  "tags": {
+    "name": "雲見温泉 民宿 吉右ェ門",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523362,
+  "lat": 34.7255276,
+  "lon": 138.7433165,
+  "tags": {
+    "name": "松原荘",
+    "name:en": "Matsubara So",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523372,
+  "lat": 34.7208778,
+  "lon": 138.7462967,
+  "tags": {
+    "name": "温泉民宿さかんや",
+    "name:en": "Onsen Pension  Sakanya",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523374,
+  "lat": 34.7204769,
+  "lon": 138.7460248,
+  "tags": {
+    "name": "みどり荘",
+    "name:en": "Midoroso",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523383,
+  "lat": 34.7322429,
+  "lon": 138.7562447,
+  "tags": {
+    "name": "はしば荘",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523385,
+  "lat": 34.7317265,
+  "lon": 138.7557011,
+  "tags": {
+    "name": "石部荘",
+    "name:en": "Ishibuso",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 11107523386,
+  "lat": 34.7340824,
+  "lon": 138.7571588,
+  "tags": {
+    "name": "平六地蔵露天風呂",
+    "name:en": "Heirokjizo  Air Bath",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 11150686851,
+  "lat": 35.1201398,
+  "lon": 138.9111705,
+  "tags": {
+    "name": "旅館 山月",
+    "name:en": "Sangetsu",
+    "phone": "+81559751151",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 11276698757,
+  "lat": 34.7469785,
+  "lon": 138.9964090,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "onsen",
+    "name": "Foot Bath",
+    "name:en": "Foot Bath"
+  }
+},
+{
+  "type": "node",
+  "id": 11276698768,
+  "lat": 34.7962192,
+  "lon": 138.9333672,
+  "tags": {
+    "access": "yes",
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "onsen",
+    "fee": "yes",
+    "operator": "HotSpringCave"
+  }
+},
+{
+  "type": "node",
+  "id": 11276719380,
+  "lat": 34.7524685,
+  "lon": 139.0078225,
+  "tags": {
+    "access": "customers",
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "onsen",
+    "fee": "yes",
+    "name": "露天風呂",
+    "name:en": "Air-Bath",
+    "shower": "no",
+    "toilets": "no",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 11278615829,
+  "lat": 34.8975414,
+  "lon": 139.1321004,
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 11288167488,
+  "lat": 35.0965767,
+  "lon": 139.0746875,
+  "tags": {
+    "access": "customers",
+    "amenity": "public_bath",
+    "name": "Foot path"
+  }
+},
+{
+  "type": "node",
+  "id": 11292309494,
+  "lat": 35.0991604,
+  "lon": 139.0754511,
+  "tags": {
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 11502425252,
+  "lat": 35.1037014,
+  "lon": 139.0736911,
+  "tags": {
+    "name": "熱海スプリングテラスホテル",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 12119857995,
+  "lat": 34.8895686,
+  "lon": 139.1179873,
+  "tags": {
+    "check_date": "2024-08-19",
+    "name": "亀の井ホテル伊豆高原",
+    "name:en": "Kame-no-I  Hotel   Izu Kogen",
+    "name:ja": "亀の井ホテル伊豆高原",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 12438776753,
+  "lat": 35.1254199,
+  "lon": 138.9133381,
+  "tags": {
+    "name": "ホテル・アルファーワン三島",
+    "name:en": "Hotel Alpha-1 Mishima",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 12685983302,
+  "lat": 35.1406781,
+  "lon": 139.0910712,
+  "tags": {
+    "name": "みやかみの湯",
+    "name:en": "Miyakami no yu",
+    "natural": "hot_spring"
+  }
+},
+{
+  "type": "node",
+  "id": 12685983501,
+  "lat": 35.1406826,
+  "lon": 139.0910963,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "みやかみの湯",
+    "name:en": "Miyakami no yu",
+    "opening_hours": "Mo-Su 07:00-21:00"
+  }
+},
+{
+  "type": "node",
+  "id": 12690255101,
+  "lat": 35.1451492,
+  "lon": 139.1043394,
+  "tags": {
+    "name": "城山館",
+    "name:en": "Shiroyama-kan",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 12727135186,
+  "lat": 34.9701349,
+  "lon": 139.0946185,
+  "tags": {
+    "addr:street": "静岡県伊東市寿町1番1号",
+    "name": "伊東園ホテル松川館",
+    "name:en": "Ito En Hotel Matsukawa Annex",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "node",
+  "id": 12878362101,
+  "lat": 35.1423125,
+  "lon": 139.0801098,
+  "tags": {
+    "amenity": "public_bath",
+    "name": "いずみの湯"
+  }
+},
+{
+  "type": "node",
+  "id": 12895222859,
+  "lat": 35.1040385,
+  "lon": 138.8615815,
+  "tags": {
+    "branch": "ぬまづ",
+    "name": "ダイワロイネットホテル",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 190712461,
+  "center": {
+    "lat": 34.9671730,
+    "lon": 139.0902580
+  },
+  "nodes": [
+    2013486965,
+    2013486962,
+    2013486960,
+    2013486956,
+    2013486954,
+    2013486950,
+    2013486943,
+    2013486946,
+    2013486951,
+    2013486964,
+    2013486965
+  ],
+  "tags": {
+    "building": "yes",
+    "name": "大東館",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 191055086,
+  "center": {
+    "lat": 35.0058833,
+    "lon": 139.0810943
+  },
+  "nodes": [
+    2016398673,
+    2016398638,
+    2016398636,
+    2016398644,
+    2016398639,
+    2016398664,
+    2016398673
+  ],
+  "tags": {
+    "building": "yes",
+    "name": "温泉民宿 鈴幸",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "way",
+  "id": 191161212,
+  "center": {
+    "lat": 34.9753576,
+    "lon": 139.0906210
+  },
+  "nodes": [
+    2017455239,
+    2017455203,
+    2017455211,
+    2017455190,
+    2017455180,
+    2017455178,
+    2017455171,
+    2017455164,
+    2017455208,
+    2017455206,
+    2017455243,
+    2017455247,
+    2017455235,
+    2017455239
+  ],
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "295",
+    "addr:postcode": "414-0002",
+    "addr:province": "静岡県",
+    "addr:quarter": "湯川",
+    "building": "yes",
+    "name": "パレスホテル",
+    "name:en": "Palace Hotel",
+    "name:ja": "パレスホテル",
+    "source": "image;Bing,2011-12-25",
+    "tourism": "hotel",
+    "website": "http://www.itopalace.co.jp/,http://en.itopalace.co.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 281835640,
+  "center": {
+    "lat": 35.0976353,
+    "lon": 138.9053698
+  },
+  "nodes": [
+    2858102201,
+    2858102202,
+    2858102203,
+    2858102204,
+    2858102201
+  ],
+  "tags": {
+    "building": "yes",
+    "name": "ホテル・エルムリージェンシー",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 325909771,
+  "center": {
+    "lat": 35.1017616,
+    "lon": 139.0780582
+  },
+  "nodes": [
+    3325318464,
+    3325318468,
+    3325318472,
+    3325318474,
+    3325318475,
+    3325318478,
+    3325318476,
+    3325318477,
+    3325318463,
+    3325318462,
+    3325318461,
+    3325318466,
+    3325318464
+  ],
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "2",
+    "addr:neighbourhood": "1",
+    "addr:postcode": "413-0005",
+    "addr:province": "静岡県",
+    "addr:quarter": "春日町",
+    "building": "yes",
+    "building:levels": "6",
+    "name": "熱海温泉 湯宿一番地",
+    "name:en": "Atamionsen Yu-yadoichibanchi",
+    "source": "GSI/KIBAN 2500;NARO",
+    "source_ref": "http://wiki.osm.org/wiki/GSI_KIBAN",
+    "tourism": "hotel",
+    "website": "https://www.yuyado-ichibanchi.jp/",
+    "wikidata": "Q112009013"
+  }
+},
+{
+  "type": "way",
+  "id": 351989502,
+  "center": {
+    "lat": 35.0981886,
+    "lon": 139.0710473
+  },
+  "nodes": [
+    3577809777,
+    3577809781,
+    3577809782,
+    3577819002,
+    3577809783,
+    3577819001,
+    3577809784,
+    3577809785,
+    3577809790,
+    3577809786,
+    3577809789,
+    3577809788,
+    3577809787,
+    3577809778,
+    3577809779,
+    3577809791,
+    3577809792,
+    3577818993,
+    3577818994,
+    3577818995,
+    3577818996,
+    3577818997,
+    3577818999,
+    3577818998,
+    3577809780,
+    3577819000,
+    3577809777
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "onsen",
+    "building": "yes",
+    "name": "日航亭・大湯",
+    "name:en": "Nikkotei Oyu (Onsen)",
+    "source": "GSI/KIBAN 2500;NARO",
+    "website": "https://nikkoutei.amebaownd.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 352347731,
+  "center": {
+    "lat": 35.0985182,
+    "lon": 139.0727683
+  },
+  "nodes": [
+    3581140613,
+    3581140621,
+    3581140622,
+    3581140623,
+    3581140624,
+    3581140637,
+    3581140636,
+    3581140635,
+    3581140634,
+    3581140633,
+    3581140632,
+    10235107593,
+    3581140627,
+    3581140628,
+    3581140629,
+    3581140630,
+    3581140631,
+    3581140626,
+    3581140638,
+    3581140639,
+    3581140640,
+    3581140641,
+    3581140642,
+    3581140643,
+    3581140644,
+    3581140646,
+    3581140647,
+    3581140648,
+    3581140649,
+    3581140650,
+    3581140651,
+    3581140652,
+    3581140645,
+    3581140653,
+    3581140656,
+    3581140654,
+    3581140655,
+    3581140657,
+    3581140625,
+    3581140660,
+    3581140659,
+    3581140658,
+    3581140620,
+    3581140619,
+    3581140618,
+    3581140617,
+    3581140614,
+    3581140615,
+    3581140616,
+    3581140613
+  ],
+  "tags": {
+    "addr:block_number": "4",
+    "addr:city": "熱海市",
+    "addr:housenumber": "6",
+    "addr:postcode": "413-0019",
+    "addr:province": "静岡県",
+    "addr:quarter": "咲見町",
+    "building": "hotel",
+    "internet_access": "wlan",
+    "internet_access:fee": "customers",
+    "name": "熱海温泉ホテル 夢いろは",
+    "name:en": "Atami Onsen Hotel Yumeiroha",
+    "name:ja": "熱海温泉ホテル 夢いろは",
+    "source": "survey;local knowledge",
+    "tourism": "hotel",
+    "website": "https://yumeiroha-atami.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 403593919,
+  "center": {
+    "lat": 35.0355585,
+    "lon": 138.8867925
+  },
+  "nodes": [
+    4059439404,
+    4059439405,
+    4059439402,
+    4059439403,
+    4059439398,
+    4059439399,
+    4059439393,
+    4059439391,
+    4059439390,
+    4059439389,
+    4059439188,
+    4059439187,
+    4059439185,
+    4059439174,
+    4059439163,
+    4059439165,
+    4059439167,
+    4059439170,
+    4059439176,
+    4059439182,
+    4059439183,
+    4059439161,
+    4059439160,
+    4059439153,
+    4059439155,
+    4059439151,
+    4059439162,
+    4059439168,
+    4059439184,
+    4059439186,
+    4059439392,
+    4059439396,
+    4059439394,
+    4059439397,
+    4059439395,
+    4059439400,
+    4059439401,
+    4059439404
+  ],
+  "tags": {
+    "building": "yes",
+    "name": "淡島ホテル",
+    "tourism": "hotel",
+    "wikidata": "Q85882011"
+  }
+},
+{
+  "type": "way",
+  "id": 403663193,
+  "center": {
+    "lat": 35.0203027,
+    "lon": 138.8974309
+  },
+  "nodes": [
+    4060008203,
+    4060008204,
+    4060008205,
+    4060008206,
+    4060008207,
+    4060008208,
+    4060008209,
+    4060008210,
+    4060008211,
+    4060008212,
+    4060008213,
+    4060008214,
+    4060008215,
+    4060008216,
+    4060008217,
+    4060008218,
+    4060008219,
+    4060008220,
+    4060008221,
+    4060008222,
+    4060008223,
+    4060008224,
+    4060008225,
+    4060008226,
+    4060008227,
+    4060008228,
+    4060008229,
+    4060008230,
+    4060008231,
+    4060008232,
+    4060008233,
+    4060008234,
+    4060008235,
+    4060008236,
+    4060008237,
+    4060008238,
+    4060008239,
+    4060008240,
+    4060008241,
+    4060008203
+  ],
+  "tags": {
+    "addr:city": "沼津市",
+    "addr:county": "田方郡",
+    "addr:housenumber": "19",
+    "addr:postcode": "410-0223",
+    "addr:province": "静岡県",
+    "addr:quarter": "内浦三津",
+    "building": "yes",
+    "name": "安田屋旅館",
+    "name:en": "Yasudaya Inn",
+    "name:zh-Hans": "安田屋旅馆",
+    "phone": "+81-055-943-2121",
+    "source": "GSI/KIBAN 2500;NARO",
+    "tourism": "hotel",
+    "website": "https://mitoyasudaya.com/",
+    "wikidata": "Q54941670",
+    "wikipedia": "ja:安田屋旅館"
+  }
+},
+{
+  "type": "way",
+  "id": 403827950,
+  "center": {
+    "lat": 35.0353336,
+    "lon": 138.8963459
+  },
+  "nodes": [
+    4061321233,
+    4061321234,
+    4061321235,
+    4061321236,
+    4061321233
+  ],
+  "tags": {
+    "building": "yes",
+    "name": "美春荘",
+    "source": "GSI/KIBAN 25000;NARO",
+    "tourism": "guest_house"
+  }
+},
+{
+  "type": "way",
+  "id": 412941880,
+  "center": {
+    "lat": 35.0325670,
+    "lon": 138.9325156
+  },
+  "nodes": [
+    4142642805,
+    4142642813,
+    4142642802,
+    4142642799,
+    4142642805
+  ],
+  "tags": {
+    "building": "house",
+    "building:levels": "5",
+    "name": "金城館",
+    "name:en": "kinjoukan",
+    "source": "Bing",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 421602037,
+  "center": {
+    "lat": 34.7661340,
+    "lon": 139.0373607
+  },
+  "nodes": [
+    4213551086,
+    4213551087,
+    4213551088,
+    4213551189,
+    4213551190,
+    4213551191,
+    5468433421,
+    5468432720,
+    5468432719,
+    5468432718,
+    4213551086
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "1599-1",
+    "addr:postcode": "413-0411",
+    "addr:province": "静岡県",
+    "addr:quarter": "稲取",
+    "building": "yes",
+    "name": "稲取東海ホテル湯苑",
+    "name:en": "Tokai Hotel Yuen",
+    "name:ja": "稲取東海ホテル湯苑",
+    "tourism": "hotel",
+    "website": "https://tokai-h.co.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 439439910,
+  "center": {
+    "lat": 35.0886744,
+    "lon": 139.0790940
+  },
+  "nodes": [
+    4370555117,
+    9299966749,
+    9299966748,
+    9299966747,
+    4370555118,
+    4370555119,
+    4370555120,
+    4370555121,
+    4370555106,
+    4370555107,
+    5441973932,
+    5441973931,
+    4370555123,
+    9299966750,
+    4370555117
+  ],
+  "tags": {
+    "addr:block_number": "10",
+    "addr:city": "熱海市",
+    "addr:housenumber": "1",
+    "addr:postcode": "413-8626",
+    "addr:province": "静岡県",
+    "addr:quarter": "和田浜南町",
+    "building": "yes",
+    "building:levels": "4",
+    "check_date": "2025-06-22",
+    "name": "熱海後楽園ホテル",
+    "name:en": "Atami Korakuen Hotel",
+    "tourism": "hotel",
+    "website": "https://www.atamikorakuen.co.jp/",
+    "website:en": "https://www.atamikorakuen.co.jp/en/",
+    "wikidata": "Q17191396",
+    "wikipedia": "ja:熱海後楽園ホテル"
+  }
+},
+{
+  "type": "way",
+  "id": 450185100,
+  "center": {
+    "lat": 34.7579491,
+    "lon": 138.8294144
+  },
+  "nodes": [
+    4471024289,
+    4471024290,
+    4471024291,
+    4471024292,
+    4471024289
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "onsen",
+    "building": "yes",
+    "fee": "yes",
+    "name": "大沢温泉 依田之庄",
+    "name:en": "Osawa Onsen  Ita-no-Shyo"
+  }
+},
+{
+  "type": "way",
+  "id": 450185112,
+  "center": {
+    "lat": 34.7577950,
+    "lon": 138.8254058
+  },
+  "nodes": [
+    4471024346,
+    4471024347,
+    4471024348,
+    4471024349,
+    4471024350,
+    4471024346
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "道の駅花の三聖苑伊豆松崎;かじかの湯"
+  }
+},
+{
+  "type": "way",
+  "id": 511303239,
+  "center": {
+    "lat": 35.1034918,
+    "lon": 139.0785609
+  },
+  "nodes": [
+    5001773129,
+    5001773130,
+    5001773131,
+    5001773132,
+    5001773129
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "check_date": "2025-02-24",
+    "name": "家康の湯",
+    "name:en": "Ieyasu 's  Hot Spring",
+    "note": "足湯"
+  }
+},
+{
+  "type": "way",
+  "id": 548862739,
+  "center": {
+    "lat": 34.9705453,
+    "lon": 138.9283856
+  },
+  "nodes": [
+    5302155670,
+    5302155671,
+    5302155672,
+    5302155673,
+    5302155670
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "修善寺温泉;筥湯",
+    "source": "GSImaps/ort",
+    "wikidata": "Q11386312",
+    "wikipedia": "ja:修善寺温泉"
+  }
+},
+{
+  "type": "way",
+  "id": 548924522,
+  "center": {
+    "lat": 34.9888148,
+    "lon": 138.9424744
+  },
+  "nodes": [
+    5302711923,
+    5302711924,
+    5302711925,
+    5302711926,
+    5302711927,
+    5302711928,
+    5302711929,
+    5302711930,
+    5302711931,
+    5302711932,
+    5302711933,
+    5302711934,
+    5302711935,
+    5302711936,
+    5302711937,
+    5302711938,
+    5302711939,
+    5302711940,
+    5302711941,
+    5302711942,
+    5302711943,
+    5302850288,
+    5302850289,
+    5302850290,
+    5302850291,
+    5302850292,
+    5302850293,
+    5302850294,
+    5302850287,
+    5302850295,
+    5302711923
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "万福;百笑の湯",
+    "source": "GSImaps/ort"
+  }
+},
+{
+  "type": "way",
+  "id": 552015830,
+  "center": {
+    "lat": 34.6490103,
+    "lon": 138.8602698
+  },
+  "nodes": [
+    5330312945,
+    5330312946,
+    5330312947,
+    5330312948,
+    5330312949,
+    5330312950,
+    5330312951,
+    5330312952,
+    5330312953,
+    5330312954,
+    5330312955,
+    5330312956,
+    5330312957,
+    5330312958,
+    5330312959,
+    5330312960,
+    5330312961,
+    5330312962,
+    5330312945
+  ],
+  "tags": {
+    "addr:block_number": "247",
+    "addr:city": "南伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "1",
+    "addr:province": "静岡県",
+    "addr:quarter": "下賀茂",
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "onsen",
+    "building": "yes",
+    "fee": "yes",
+    "name": "銀の湯会館",
+    "name:en": "Gin-no-Yu Hall",
+    "phone": "+81-558-63-0026",
+    "source": "GSImaps/std"
+  }
+},
+{
+  "type": "way",
+  "id": 554599608,
+  "center": {
+    "lat": 34.7931728,
+    "lon": 138.9368356
+  },
+  "nodes": [
+    5352120679,
+    5352120680,
+    5352120682,
+    5352120681,
+    5352120679
+  ],
+  "tags": {
+    "addr:city": "河津町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "359",
+    "addr:postcode": "413-0501",
+    "addr:province": "静岡県",
+    "addr:quarter": "梨本",
+    "building": "yes",
+    "name": "AMAGISO 天城荘",
+    "name:en": "Amagiso",
+    "tourism": "hotel",
+    "website": "https://www.amagisou.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 555365859,
+  "center": {
+    "lat": 34.8313061,
+    "lon": 139.0750609
+  },
+  "nodes": [
+    5358337157,
+    5358337158,
+    8221271694,
+    8221271695,
+    8221271696,
+    8221271697,
+    5358337159,
+    5358337160,
+    5358337157
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡東伊豆町",
+    "addr:housenumber": "1127-14",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "name": "北川温泉ホテル",
+    "name:en": "Hokkawa Onsen Hotel",
+    "tourism": "hotel",
+    "website": "https://hokkawaonsen.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 556995876,
+  "center": {
+    "lat": 34.9112509,
+    "lon": 138.7924008
+  },
+  "nodes": [
+    5372313925,
+    5372313926,
+    5372313927,
+    5372313928,
+    5372313925
+  ],
+  "tags": {
+    "addr:city": "伊豆市",
+    "addr:housenumber": "478-1",
+    "addr:postcode": "410-3302",
+    "addr:province": "静岡県",
+    "addr:quarter": "土肥",
+    "name": "土肥ふじやホテル",
+    "name:en": "Toi Fujiya Hotel",
+    "tourism": "hotel",
+    "website": "http://www.toi-fujiya.co.jp/,http://www.toi-fujiya.co.jp/en.html"
+  }
+},
+{
+  "type": "way",
+  "id": 558699477,
+  "center": {
+    "lat": 34.9923900,
+    "lon": 139.0563441
+  },
+  "nodes": [
+    5388614628,
+    5388614629,
+    5388614630,
+    5388614631,
+    5388614639,
+    5388614640,
+    5388614628
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "リゾートセンター;みのり温泉"
+  }
+},
+{
+  "type": "way",
+  "id": 559087546,
+  "center": {
+    "lat": 34.7875012,
+    "lon": 138.7624497
+  },
+  "nodes": [
+    5392825482,
+    5392825483,
+    5392825484,
+    5392825485,
+    5392825486,
+    5392825487,
+    5392825488,
+    5392825489,
+    5392825482
+  ],
+  "tags": {
+    "addr:city": "西伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "2962",
+    "addr:postcode": "410-3514",
+    "addr:province": "静岡県",
+    "addr:quarter": "仁科",
+    "building": "yes",
+    "building:levels": "5",
+    "name": "堂ヶ島ホテル天遊",
+    "name:en": "Nishi-Izu Dogashima Onsesn Hotel Tenyu",
+    "name:ja": "堂ヶ島ホテル天遊",
+    "tourism": "hotel",
+    "website": "https://www.tenyuu.jp/,https://www.tenyuu.jp/en/"
+  }
+},
+{
+  "type": "way",
+  "id": 559139479,
+  "center": {
+    "lat": 34.7740709,
+    "lon": 138.7889167
+  },
+  "nodes": [
+    5393393162,
+    5393393163,
+    5393393164,
+    5393393165,
+    5393393162
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "西伊豆町営;せせらぎの湯"
+  }
+},
+{
+  "type": "way",
+  "id": 560084710,
+  "center": {
+    "lat": 34.6376586,
+    "lon": 138.8889626
+  },
+  "nodes": [
+    5401243659,
+    5401243660,
+    5401243662,
+    5401243661,
+    5401243659
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "弓ヶ浜温泉;みなと湯",
+    "wikidata": "Q11487061",
+    "wikipedia": "ja:弓ヶ浜温泉 (静岡県)"
+  }
+},
+{
+  "type": "way",
+  "id": 560218582,
+  "center": {
+    "lat": 34.7521310,
+    "lon": 139.0039153
+  },
+  "nodes": [
+    5402651754,
+    5402651755,
+    12824602585,
+    12824602583,
+    12824602582,
+    12824602584,
+    12824602578,
+    12824602577,
+    12824602576,
+    12824602579,
+    5402651756,
+    12824602580,
+    12824602581,
+    5402651757,
+    5402651754
+  ],
+  "tags": {
+    "addr:city": "河津町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "127",
+    "addr:postcode": "413-0503",
+    "addr:province": "静岡県",
+    "addr:quarter": "見高",
+    "building": "yes",
+    "name": "今井荘",
+    "name:en": "Imaiso",
+    "name:ja": "今井荘",
+    "tourism": "hotel",
+    "website": "http://www.imaiso.jp/,http://www.imaiso.jp/english/",
+    "wikidata": "Q111866378"
+  }
+},
+{
+  "type": "way",
+  "id": 560263364,
+  "center": {
+    "lat": 34.8152861,
+    "lon": 139.0714183
+  },
+  "nodes": [
+    5403047736,
+    9609295603,
+    5403047737,
+    5403047738,
+    5403047739,
+    6255549714,
+    6255549715,
+    6255549716,
+    6255549717,
+    6255549718,
+    5403047740,
+    6255549719,
+    6255549720,
+    5403047741,
+    6255549712,
+    6255549713,
+    5403047736
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "980",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "name": "ホテルセタスロイヤル",
+    "name:en": "Hotel Cetus Royal",
+    "tourism": "hotel",
+    "website": "https://breezbay-group.com/atagawa-hcr/"
+  }
+},
+{
+  "type": "way",
+  "id": 560263367,
+  "center": {
+    "lat": 34.8161842,
+    "lon": 139.0720999
+  },
+  "nodes": [
+    5403047752,
+    6255549757,
+    5403047753,
+    5403047755,
+    6255549765,
+    6255549764,
+    6255549763,
+    6255549762,
+    6255549761,
+    5403047754,
+    6255549760,
+    5403047908,
+    6255549758,
+    6255549759,
+    5403047909,
+    5403047910,
+    5403047911,
+    5403047752
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "986-2",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "building:levels": "8",
+    "name": "熱川大和館",
+    "name:en": "Atagawa Yamato-kan  Hotel",
+    "tourism": "hotel",
+    "website": "http://www.at-yamatokan.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 560263374,
+  "center": {
+    "lat": 34.8128930,
+    "lon": 139.0699337
+  },
+  "nodes": [
+    5403047805,
+    5403047808,
+    6255550038,
+    6255550040,
+    6255550041,
+    6255550039,
+    6255550037,
+    6255550036,
+    5403047806,
+    5403047807,
+    6255550047,
+    6255550046,
+    6255550045,
+    6255550044,
+    6255550043,
+    6255550042,
+    5403047805
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "1271-2",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "name": "熱川温泉粋光",
+    "name:en": "Atagawa Onsen Suikou",
+    "phone": "0557-23-2345",
+    "tourism": "hotel",
+    "website": "https://www.a-suiko.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 560263375,
+  "center": {
+    "lat": 34.8137312,
+    "lon": 139.0688958
+  },
+  "nodes": [
+    5403047810,
+    5403047811,
+    5403047812,
+    5403047813,
+    5403047814,
+    5403047815,
+    5403047810
+  ],
+  "tags": {
+    "addr:block_number": "1271",
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "name": "伊豆・熱川温泉たかみホテル",
+    "note": "https://takami.yad.jp/",
+    "phone": "0557232255",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 560263376,
+  "center": {
+    "lat": 34.8142586,
+    "lon": 139.0685219
+  },
+  "nodes": [
+    5403047816,
+    5403047817,
+    5403047823,
+    5403047818,
+    5403047819,
+    5403047820,
+    5403047821,
+    5403047816
+  ],
+  "tags": {
+    "addr:block_number": "1267",
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "2",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "internet_access": "wlan",
+    "internet_access:fee": "no",
+    "name": "伊藤園ホテル熱川",
+    "phone": "+81 570 035 780",
+    "tourism": "hotel",
+    "website": "https://www.itoenhotel.com/atagawa/"
+  }
+},
+{
+  "type": "way",
+  "id": 560263392,
+  "center": {
+    "lat": 34.8147881,
+    "lon": 139.0710987
+  },
+  "nodes": [
+    5403047892,
+    6255549702,
+    6255549703,
+    5403047893,
+    5403047894,
+    5403047895,
+    5403047896,
+    5403047897,
+    5403047898,
+    5403047899,
+    5403047892
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "981-3",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "name": "熱川館",
+    "name:en": "Atagawa-kann",
+    "tourism": "hotel",
+    "website": "https://www.atagawakan.co.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 560263399,
+  "center": {
+    "lat": 34.8175529,
+    "lon": 139.0721381
+  },
+  "nodes": [
+    5403047940,
+    5403047941,
+    5403047942,
+    5403047943,
+    5403047944,
+    5403047945,
+    5403047946,
+    5403047947,
+    5403047948,
+    5403047949,
+    5403047950,
+    5403047951,
+    5403047952,
+    5403047953,
+    5403047954,
+    5403047955,
+    5403047940
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "992-1",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "building:levels": "3",
+    "name": "ホテルカターラリゾート＆スパ",
+    "name:en": "Izu Atagawa Onsen Hotel Katara Resort&Spa",
+    "tourism": "hotel",
+    "website": "https://www.katara.co.jp/,https://www.katara.co.jp/en/"
+  }
+},
+{
+  "type": "way",
+  "id": 560263414,
+  "center": {
+    "lat": 34.8180876,
+    "lon": 139.0750060
+  },
+  "nodes": [
+    5403048021,
+    5403048022,
+    5403048023,
+    5403048024,
+    5403048021
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 560263418,
+  "center": {
+    "lat": 34.8167928,
+    "lon": 139.0716828
+  },
+  "nodes": [
+    5403048037,
+    5403048038,
+    6255549737,
+    6255549738,
+    6255549736,
+    6255549735,
+    6255549734,
+    6255549733,
+    5403048039,
+    5403048040,
+    6255549732,
+    6255549731,
+    6255549730,
+    6255549729,
+    6255549728,
+    6255549727,
+    5403048037
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "987-1",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "name": "湯花満開 ふたりの湯宿",
+    "name:en": "Yubana Mankai Futari-no-yu Hotel",
+    "tourism": "hotel",
+    "website": "https://www.yubanamankai.jp/,https://www.yubanamankai.jp/english"
+  }
+},
+{
+  "type": "way",
+  "id": 560618659,
+  "center": {
+    "lat": 35.0451211,
+    "lon": 139.0827561
+  },
+  "nodes": [
+    5406485471,
+    5406485472,
+    5406485473,
+    5406485474,
+    5406485475,
+    5406485476,
+    5406485477,
+    5406485478,
+    5406485471
+  ],
+  "tags": {
+    "addr:block_number": "141",
+    "addr:city": "熱海市",
+    "addr:postcode": "413-0102",
+    "addr:province": "静岡県",
+    "addr:quarter": "下多賀",
+    "building": "yes",
+    "name": "源泉湯宿 大成館",
+    "name:en": "Atami Ajiro Hotspring Taiseikan",
+    "name:ja": "源泉湯宿 大成館",
+    "tourism": "hotel",
+    "website": "https://www.taiseikan.com/",
+    "website:en": "https://www.taiseikan.com/en/"
+  }
+},
+{
+  "type": "way",
+  "id": 560716156,
+  "center": {
+    "lat": 34.7688542,
+    "lon": 138.7745937
+  },
+  "nodes": [
+    5407184790,
+    5407184791,
+    5407184792,
+    5407184793,
+    5407184794,
+    5407184795,
+    5407184790
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "西伊豆町営;なぎさの湯"
+  }
+},
+{
+  "type": "way",
+  "id": 561014144,
+  "center": {
+    "lat": 34.6588032,
+    "lon": 138.9257542
+  },
+  "nodes": [
+    5409933924,
+    5409933925,
+    5409933926,
+    5409933927,
+    5409933928,
+    5409933929,
+    5409933930,
+    5409933931,
+    5409933932,
+    5409933933,
+    5409933924
+  ],
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "348-7",
+    "addr:postcode": "415-0028",
+    "addr:province": "静岡県",
+    "addr:quarter": "吉佐美",
+    "building": "yes",
+    "name": "濤亭",
+    "name:en": "Toutei",
+    "name:ja": "濤亭",
+    "tourism": "hotel",
+    "website": "http://www.toutei.co.jp/,http://www.toutei.co.jp/translation/"
+  }
+},
+{
+  "type": "way",
+  "id": 561818694,
+  "center": {
+    "lat": 34.6770823,
+    "lon": 138.9593139
+  },
+  "nodes": [
+    5416787974,
+    5416787975,
+    12108048855,
+    12108048854,
+    5416832507,
+    5416832508,
+    12108048853,
+    12108048852,
+    12108048851,
+    5416832509,
+    5416787976,
+    5416787977,
+    5416787978,
+    12108048850,
+    5416787979,
+    12108048847,
+    12108048848,
+    12108048849,
+    5416787974
+  ],
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "21-5",
+    "addr:postcode": "415-0013",
+    "addr:province": "静岡県",
+    "addr:quarter": "柿崎",
+    "building": "yes",
+    "building:levels": "8",
+    "name": "下田聚楽ホテル",
+    "name:en": "Shimoda Juraku Hotel",
+    "name:ja": "下田聚楽ホテル",
+    "tourism": "hotel",
+    "website": "https://www.jyuraku.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 562146764,
+  "center": {
+    "lat": 34.8946075,
+    "lon": 139.1369269
+  },
+  "nodes": [
+    5419648293,
+    5419648294,
+    5419648295,
+    5419648296,
+    5419648293
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:type": "hot_spring",
+    "leisure": "swimming_pool"
+  }
+},
+{
+  "type": "way",
+  "id": 563528573,
+  "center": {
+    "lat": 34.9691092,
+    "lon": 139.0968054
+  },
+  "nodes": [
+    5430582411,
+    5430582412,
+    7343294566,
+    7343294567,
+    7343294568,
+    5430582413,
+    5430582414,
+    5430582415,
+    7343294569,
+    7343294570,
+    7343294571,
+    7343294572,
+    7343294573,
+    7343294574,
+    5430582422,
+    7343294575,
+    7343294576,
+    7343294577,
+    7343294578,
+    5430582421,
+    7343294580,
+    7343294582,
+    7343294583,
+    7343294581,
+    7343294579,
+    7343294586,
+    7343294585,
+    7343294591,
+    7343294590,
+    7343294589,
+    7343294588,
+    7343294587,
+    5430582420,
+    5430582419,
+    7343294584,
+    5430582416,
+    5430582417,
+    5430582418,
+    5430582411
+  ],
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "1-3-6",
+    "addr:postcode": "414-0027",
+    "addr:province": "静岡県",
+    "addr:quarter": "竹の内1-3-6",
+    "building": "yes",
+    "building:levels": "5",
+    "name": "ホテル暖香園",
+    "name:en": "Ito Onsen Hotel Dankoen",
+    "name:ja": "ホテル暖香園",
+    "roof:colour": "brown",
+    "tourism": "hotel",
+    "website": "https://www.dankoen.com/,http://www.dankoen.com/en/"
+  }
+},
+{
+  "type": "way",
+  "id": 563528576,
+  "center": {
+    "lat": 34.9682312,
+    "lon": 139.0959037
+  },
+  "nodes": [
+    5430582431,
+    5430582432,
+    5430582433,
+    5430582434,
+    5430582435,
+    7343342825,
+    5430582436,
+    5430582437,
+    7343342824,
+    5430582438,
+    5430582439,
+    7343342823,
+    7343342822,
+    5430582440,
+    5430582431
+  ],
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:postcode": "414-0027",
+    "addr:province": "静岡県",
+    "addr:quarter": "竹の内",
+    "building": "yes",
+    "name": "ホテルハーヴェスト伊東",
+    "name:en": "Hotel Harvest Ito",
+    "name:ja": "ホテルハーヴェスト伊東",
+    "roof:colour": "brown",
+    "tourism": "hotel",
+    "website": "https://www.resorthotels109.com/ito/"
+  }
+},
+{
+  "type": "way",
+  "id": 563654709,
+  "center": {
+    "lat": 34.9692621,
+    "lon": 139.0947603
+  },
+  "nodes": [
+    5431488590,
+    5431488591,
+    5431488592,
+    5431488593,
+    5431488590
+  ],
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "2-8",
+    "addr:postcode": "414-0012",
+    "addr:province": "静岡県",
+    "addr:quarter": "宝町",
+    "building": "yes",
+    "name": "伊東遊季亭",
+    "name:en": "Ito-yukitei",
+    "name:ja": "伊東遊季亭",
+    "tourism": "hotel",
+    "website": "https://www.ito-yukitei.com/",
+    "wikidata": "Q111866285"
+  }
+},
+{
+  "type": "way",
+  "id": 564171881,
+  "center": {
+    "lat": 35.1121290,
+    "lon": 139.0713260
+  },
+  "nodes": [
+    5436491648,
+    5436491649,
+    5436491650,
+    5436491651,
+    8282703830,
+    8282703831,
+    8282703832,
+    8282703829,
+    5436491648
+  ],
+  "tags": {
+    "addr:block_number": "1171",
+    "addr:city": "熱海市",
+    "addr:postcode": "413-0002",
+    "addr:province": "静岡県",
+    "addr:quarter": "伊豆山",
+    "building": "yes",
+    "building:colour": "brown",
+    "building:levels": "2",
+    "building:levels:underground": "1",
+    "name": "熱海倶楽部迎賓館",
+    "name:ja": "熱海倶楽部迎賓館",
+    "phone": "+81-557-82-5335",
+    "source": "GSImaps/seamlessphoto;survey",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 564198655,
+  "center": {
+    "lat": 35.0896165,
+    "lon": 139.0669048
+  },
+  "nodes": [
+    5436650962,
+    5436650963,
+    5436650964,
+    5441850834,
+    5441850835,
+    5441850836,
+    5441850837,
+    5436650965,
+    5436650962
+  ],
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "1-16",
+    "addr:postcode": "413-0029",
+    "addr:province": "静岡県",
+    "addr:quarter": "小嵐町",
+    "building": "yes",
+    "name": "迎賓館　熱海小嵐亭",
+    "name:en": "Geihinkan Atami Koarashi-tei",
+    "tourism": "hotel",
+    "website": "https://www.koarashitei.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 564499177,
+  "center": {
+    "lat": 34.9734956,
+    "lon": 139.0892967
+  },
+  "nodes": [
+    5438807791,
+    5438807792,
+    5438807793,
+    5438807794,
+    5438807795,
+    5438807796,
+    5438807797,
+    5438807798,
+    5438807799,
+    5438807800,
+    5438807791
+  ],
+  "tags": {
+    "addr:city": "伊東市",
+    "addr:housenumber": "655",
+    "addr:postcode": "414-0006",
+    "addr:province": "静岡県",
+    "addr:quarter": "松原",
+    "building": "yes",
+    "name": "ホテル伊東ガーデン",
+    "name:en": "Hotel Ito Garden",
+    "name:ja": "ホテル伊東ガーデン",
+    "tourism": "hotel",
+    "website": "http://www.ito-garden.com/,http://www.ito-garden.com/en/"
+  }
+},
+{
+  "type": "way",
+  "id": 564879082,
+  "center": {
+    "lat": 35.1011599,
+    "lon": 139.0781622
+  },
+  "nodes": [
+    5441685502,
+    5441685503,
+    5441685504,
+    5441685505,
+    5441685502
+  ],
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "2-19",
+    "addr:postcode": "413-0011",
+    "addr:province": "静岡県",
+    "addr:quarter": "田原本町",
+    "building": "yes",
+    "name": "月の栖 熱海聚楽ホテル",
+    "name:ja": "月の栖 熱海聚楽ホテル",
+    "tourism": "hotel",
+    "website": "https://atami-juraku.co.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 564926033,
+  "center": {
+    "lat": 35.0927178,
+    "lon": 139.0729955
+  },
+  "nodes": [
+    5441973385,
+    5441973386,
+    5441973387,
+    5441973388,
+    5441973385
+  ],
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "5-13",
+    "addr:postcode": "413-0022",
+    "addr:province": "静岡県",
+    "addr:quarter": "昭和町",
+    "building": "yes",
+    "name": "旅館立花",
+    "name:en": "Ryokan Tachibana",
+    "name:ja": "旅館立花",
+    "source": "GSI/KIBAN 2500;NARO",
+    "tourism": "hotel",
+    "website": "https://www.ryokantachibana.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 565061879,
+  "center": {
+    "lat": 35.1122041,
+    "lon": 139.0869872
+  },
+  "nodes": [
+    5442997721,
+    7339604240,
+    7339604241,
+    7339604239,
+    5442997722,
+    5442997723,
+    7339604242,
+    7339604243,
+    5442997725,
+    5442997726,
+    7339604244,
+    7339604245,
+    7339604246,
+    7339604247,
+    7339604248,
+    7339604250,
+    7339604249,
+    7339604251,
+    5442997724,
+    5442997721
+  ],
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "601",
+    "addr:postcode": "413-0002",
+    "addr:province": "静岡県",
+    "addr:quarter": "伊豆山",
+    "building": "yes",
+    "name": "ホテルニューさがみや",
+    "name:en": "Hotel New Sagami-ya",
+    "name:ja": "ホテルニューさがみや",
+    "tourism": "hotel",
+    "website": "https://www.atami-sagamiya.com/",
+    "wikidata": "Q111866244"
+  }
+},
+{
+  "type": "way",
+  "id": 565076294,
+  "center": {
+    "lat": 35.1088375,
+    "lon": 139.0824107
+  },
+  "nodes": [
+    5443087449,
+    5443087450,
+    5443087452,
+    5443087451,
+    5443087449
+  ],
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "261",
+    "addr:postcode": "413-0002",
+    "addr:province": "静岡県",
+    "addr:quarter": "伊豆山",
+    "building": "yes",
+    "building:levels": "7",
+    "name": "紀州鉄道熱海ホテル",
+    "name:en": "Kisyu Tetsudo Atami Hotel",
+    "name:ja": "紀州鉄道熱海ホテル",
+    "tourism": "hotel",
+    "website": "http://www.kitetsu-hotel.jp/atami/"
+  }
+},
+{
+  "type": "way",
+  "id": 568391816,
+  "center": {
+    "lat": 34.7666756,
+    "lon": 139.0379213
+  },
+  "nodes": [
+    5468433439,
+    5468433440,
+    5468433441,
+    5468433442,
+    5468433439
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "1594-1",
+    "addr:postcode": "413-0411",
+    "addr:province": "静岡県",
+    "addr:quarter": "稲取",
+    "building": "yes",
+    "name": "心湯の宿 さざな",
+    "name:en": "SHINYU NO YADO Sazana",
+    "name:ja": "心湯の宿 さざな",
+    "tourism": "hotel",
+    "website": "http://sazana.jp/,http://sazana.jp/en/"
+  }
+},
+{
+  "type": "way",
+  "id": 568396380,
+  "center": {
+    "lat": 34.7697645,
+    "lon": 139.0480764
+  },
+  "nodes": [
+    5468472302,
+    5468472303,
+    5468472304,
+    5468472305,
+    5468472306,
+    5468472307,
+    5468472308,
+    5468472309,
+    5468472310,
+    5468472311,
+    5468472312,
+    5468472302
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "1017",
+    "addr:postcode": "413-0411",
+    "addr:province": "静岡県",
+    "addr:quarter": "稲取",
+    "building": "yes",
+    "building:levels": "10",
+    "name": "食べるお宿 浜の湯",
+    "name:en": "Hama-no-yu Hotel",
+    "name:ja": "食べるお宿 浜の湯",
+    "tourism": "hotel",
+    "website": "http://www.izu-hamanoyu.co.jp/,https://en.izu-hamanoyu.co.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 574433061,
+  "center": {
+    "lat": 34.7694177,
+    "lon": 139.0465874
+  },
+  "nodes": [
+    5513850000,
+    5513850001,
+    5513850002,
+    5513850003,
+    5513850004,
+    5513850005,
+    5513850006,
+    5513850007,
+    5513850008,
+    5513850009,
+    5513850010,
+    5513850011,
+    5513850012,
+    5513850013,
+    5513850014,
+    5513850015,
+    5513850016,
+    5513850017,
+    5513850018,
+    5513850019,
+    5513850020,
+    5513850521,
+    5513850522,
+    5513850523,
+    5513850524,
+    5513850525,
+    5513850526,
+    5513850527,
+    5513850528,
+    5513850529,
+    5513850530,
+    5513850531,
+    5513850000
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "1050",
+    "addr:postcode": "413-0411",
+    "addr:province": "静岡県",
+    "addr:quarter": "稲取",
+    "building": "yes",
+    "name": "稲取赤尾ホテル 海諷廊",
+    "name:en": "Akao Hotel Kaifurou",
+    "name:ja": "稲取赤尾ホテル 海諷廊",
+    "source": "台ノ山",
+    "tourism": "hotel",
+    "website": "https://www.akao-hotel.co.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 574909862,
+  "center": {
+    "lat": 34.9007268,
+    "lon": 138.9249454
+  },
+  "nodes": [
+    5517630031,
+    5517630040,
+    5517630032,
+    5517630033,
+    5517630034,
+    5517630035,
+    5517630037,
+    5517630036,
+    5517630031
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "building:levels": "2",
+    "name": "天城温泉プール",
+    "source": "GSImaps/std"
+  }
+},
+{
+  "type": "way",
+  "id": 578455734,
+  "center": {
+    "lat": 34.9551534,
+    "lon": 138.9194379
+  },
+  "nodes": [
+    5542583486,
+    5542583487,
+    5542583488,
+    5542583489,
+    5542583490,
+    5542583491,
+    5542583492,
+    5542583493,
+    5542583494,
+    5542583495,
+    5542583496,
+    5542583497,
+    5542583498,
+    5542583499,
+    5542583500,
+    5542583501,
+    5542583502,
+    5542583503,
+    5542583504,
+    5542583505,
+    5542583506,
+    5542583507,
+    5542583508,
+    5542583509,
+    5542583510,
+    5542583511,
+    5542583512,
+    5542583513,
+    5542583514,
+    5542583515,
+    5542583516,
+    5542583517,
+    5542583518,
+    5542583627,
+    5542583519,
+    5542583520,
+    5542583622,
+    5542583621,
+    5542583486
+  ],
+  "tags": {
+    "building": "yes",
+    "name": "伊豆マリオットホテル修善寺",
+    "name:en": "Izu Mariotte Hotel Shuzenji",
+    "source": "GSImaps/std",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 583235330,
+  "center": {
+    "lat": 34.9610952,
+    "lon": 138.9757810
+  },
+  "nodes": [
+    5576062037,
+    5576062038,
+    5576062039,
+    5576062040,
+    5576062041,
+    5576062042,
+    5576062037
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "白岩荘",
+    "source": "GSImaps/std"
+  }
+},
+{
+  "type": "way",
+  "id": 584414394,
+  "center": {
+    "lat": 35.0822808,
+    "lon": 138.9519746
+  },
+  "nodes": [
+    5586380620,
+    5586382621,
+    5586382622,
+    5586382623,
+    5586382624,
+    5586382625,
+    5586382626,
+    5586382627,
+    5586382628,
+    5586382629,
+    5586382630,
+    5586382631,
+    5586382632,
+    5586382633,
+    5586382634,
+    5586382635,
+    5586382636,
+    5586382637,
+    5586382638,
+    5586382639,
+    5586382640,
+    5586382641,
+    5586382642,
+    5586382643,
+    5586382644,
+    5586382645,
+    5586382646,
+    5586382647,
+    5586382648,
+    5586380620
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "湯～トピアかんなみ",
+    "source": "GSImaps/std"
+  }
+},
+{
+  "type": "way",
+  "id": 595873487,
+  "center": {
+    "lat": 35.0756999,
+    "lon": 138.9783867
+  },
+  "nodes": [
+    5678038941,
+    5678038942,
+    5678038943,
+    5678038944,
+    5678038945,
+    5678038946,
+    5678038947,
+    5678038948,
+    5678038949,
+    5678038950,
+    5678038951,
+    5678038952,
+    5678038953,
+    5678038954,
+    5678038955,
+    5678038956,
+    5678038957,
+    5678038958,
+    5678038959,
+    5678038960,
+    5678038961,
+    5678038962,
+    5678038963,
+    5678038964,
+    5678038965,
+    5678038966,
+    5678038967,
+    5678038968,
+    5678038969,
+    5678038970,
+    5678038941
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "源泉;駒の湯荘",
+    "source": "GSImaps/std"
+  }
+},
+{
+  "type": "way",
+  "id": 606777017,
+  "center": {
+    "lat": 35.1107148,
+    "lon": 138.9074925
+  },
+  "nodes": [
+    5752087579,
+    5752087580,
+    5752087581,
+    5752087582,
+    5752087583,
+    5752087584,
+    5752087585,
+    5752087586,
+    5752087587,
+    5752087588,
+    5752087589,
+    5752087590,
+    5752087591,
+    5752087600,
+    5752087597,
+    5752087592,
+    5752087593,
+    5752087594,
+    5752087595,
+    5752087596,
+    5752087579
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "極楽湯三島店",
+    "name:en": "Gokuraku Spa  Mishima Store",
+    "source": "GSImaps/std"
+  }
+},
+{
+  "type": "way",
+  "id": 659518585,
+  "center": {
+    "lat": 34.7070644,
+    "lon": 138.8811013
+  },
+  "nodes": [
+    6174885161,
+    6174885162,
+    6174885163,
+    6174885164,
+    6174885161
+  ],
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "1092-1",
+    "addr:postcode": "413-0712",
+    "addr:province": "静岡県",
+    "addr:quarter": "横川",
+    "building": "yes",
+    "name": "観音温泉",
+    "name:en": "Kannon Onsen",
+    "tourism": "hotel",
+    "website": "https://www.kannon-onsen.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 660882002,
+  "center": {
+    "lat": 34.8168621,
+    "lon": 139.0698911
+  },
+  "nodes": [
+    6187442249,
+    6187442250,
+    6187442251,
+    6187442252,
+    6187442253,
+    6255549940,
+    6255549941,
+    6187442254,
+    6187442255,
+    6187442256,
+    6255549942,
+    6187442249
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "971-1",
+    "addr:postcode": "413-0302",
+    "addr:province": "静岡県",
+    "addr:quarter": "奈良本",
+    "building": "yes",
+    "name": "玉翠館",
+    "name:en": "Izu Atagawa Onsen Gyokusuikan Hotel",
+    "tourism": "hotel",
+    "website": "https://www.gyokusuikan.co.jp/,https://www.gyokusuikan.co.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 662315600,
+  "center": {
+    "lat": 34.7664902,
+    "lon": 139.0396539
+  },
+  "nodes": [
+    6200574161,
+    6200574162,
+    5468433501,
+    5468433502,
+    5468433503,
+    5468433504,
+    5468433505,
+    5468433506,
+    6200574163,
+    6200574164,
+    6200574161
+  ],
+  "tags": {
+    "addr:city": "東伊豆町",
+    "addr:county": "賀茂郡",
+    "addr:housenumber": "1531",
+    "addr:postcode": "413-0411",
+    "addr:province": "静岡県",
+    "addr:quarter": "稲取",
+    "building": "yes",
+    "name": "海一望絶景の宿 いなとり荘",
+    "name:en": "Inanorisou",
+    "name:ja": "海一望絶景の宿 いなとり荘",
+    "tourism": "hotel",
+    "website": "https://www.inatoriso.com/"
+  }
+},
+{
+  "type": "way",
+  "id": 667380906,
+  "center": {
+    "lat": 35.0443932,
+    "lon": 139.0660312
+  },
+  "nodes": [
+    6248676288,
+    6248676289,
+    6248676290,
+    6248676291,
+    6248676288
+  ],
+  "tags": {
+    "addr:city": "熱海市",
+    "addr:housenumber": "966",
+    "addr:postcode": "413-0102",
+    "addr:province": "静岡県",
+    "addr:quarter": "下多賀",
+    "building": "yes",
+    "name": "伊豆網代温泉松風苑",
+    "name:en": "Izu-ajiro-onsen Syoufuen",
+    "name:ja": "伊豆網代温泉松風苑",
+    "tourism": "hotel",
+    "website": "https://shoufuen.jp/"
+  }
+},
+{
+  "type": "way",
+  "id": 667410020,
+  "center": {
+    "lat": 34.9324042,
+    "lon": 138.9340042
+  },
+  "nodes": [
+    6248995175,
+    6248995176,
+    6248995177,
+    6294020206,
+    6248995178,
+    6294020207,
+    6248995179,
+    6248995180,
+    6248995181,
+    6294020209,
+    6294020208,
+    6248995182,
+    6294020210,
+    6294020212,
+    6294020211,
+    6294020205,
+    6248995183,
+    6294020204,
+    6294020203,
+    6248995175
+  ],
+  "tags": {
+    "addr:housenumber": "188",
+    "addr:postcode": "410-3213",
+    "addr:province": "静岡県",
+    "addr:quarter": "青羽根",
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "湯の国会館",
+    "name:en": "Yu-no-kuni Kaikan Spa"
+  }
+},
+{
+  "type": "way",
+  "id": 667825449,
+  "center": {
+    "lat": 34.7587859,
+    "lon": 138.9836032
+  },
+  "nodes": [
+    6253261793,
+    6450910524,
+    6253261795,
+    6253261796,
+    6253261793
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "mapillary": "3357929854461378",
+    "name": "踊り子温泉会館",
+    "name:en": "Odoriko Onsen Hall",
+    "name:ja": "踊り子温泉会館",
+    "website": "https://www.kawazu-onsen.com/onsen/onsen.html"
+  }
+},
+{
+  "type": "way",
+  "id": 675142146,
+  "center": {
+    "lat": 35.1352391,
+    "lon": 138.8716953
+  },
+  "nodes": [
+    6322748112,
+    6322748113,
+    6322748114,
+    6322748115,
+    7301652953,
+    6322748116,
+    6322748117,
+    6322748118,
+    6322748119,
+    6322748120,
+    6322748121,
+    6322748112
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "沼津・湯河原温泉;万葉の湯"
+  }
+},
+{
+  "type": "way",
+  "id": 710486712,
+  "center": {
+    "lat": 35.1484330,
+    "lon": 139.0740684
+  },
+  "nodes": [
+    6679973962,
+    7725947833,
+    6679973963,
+    6679973964,
+    7725947834,
+    6679973962
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "Gensen Cafe"
+  }
+},
+{
+  "type": "way",
+  "id": 710487406,
+  "center": {
+    "lat": 35.1457178,
+    "lon": 139.0730625
+  },
+  "nodes": [
+    6679986314,
+    6679986315,
+    6679986316,
+    6679986317,
+    6679986318,
+    6679986319,
+    6679986320,
+    6679986321,
+    6679986314
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "湯河原温泉;こごめの湯",
+    "wikidata": "Q11563664",
+    "wikipedia": "ja:湯河原温泉"
+  }
+},
+{
+  "type": "way",
+  "id": 710494409,
+  "center": {
+    "lat": 35.0486063,
+    "lon": 139.0597801
+  },
+  "nodes": [
+    6680050051,
+    6680050052,
+    6680050053,
+    6680050054,
+    6680050055,
+    6680050056,
+    6680050057,
+    6680050058,
+    6680050051
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "妙楽湯",
+    "name:en": "Myoraku Spa"
+  }
+},
+{
+  "type": "way",
+  "id": 710509225,
+  "center": {
+    "lat": 34.8336229,
+    "lon": 139.0760134
+  },
+  "nodes": [
+    6680131553,
+    6680131554,
+    6680131555,
+    6680131556,
+    6680131553
+  ],
+  "tags": {
+    "access": "yes",
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "building": "yes",
+    "charge": "600 JPY",
+    "fee": "yes",
+    "name": "北川温泉;黒根岩風呂",
+    "name:en": "Hokkawa Onsen",
+    "opening_hours": "10:00-18:00",
+    "wheelchair": "no"
+  }
+},
+{
+  "type": "way",
+  "id": 710511040,
+  "center": {
+    "lat": 34.7767642,
+    "lon": 139.0098268
+  },
+  "nodes": [
+    6680180469,
+    6680180470,
+    6680180471,
+    6680180472,
+    6680180469
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "伊豆見高入谷高原温泉"
+  }
+},
+{
+  "type": "way",
+  "id": 710580956,
+  "center": {
+    "lat": 34.7933224,
+    "lon": 138.7604965
+  },
+  "nodes": [
+    6680731978,
+    6680731979,
+    6680731980,
+    6680731981,
+    6680731982,
+    6680731983,
+    6680731978
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "しおさいの湯"
+  }
+},
+{
+  "type": "way",
+  "id": 710592169,
+  "center": {
+    "lat": 34.9542201,
+    "lon": 138.9746518
+  },
+  "nodes": [
+    6680868203,
+    6680868208,
+    6680868204,
+    6680868205,
+    6680868206,
+    6680868207,
+    6680868203
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "希望園"
+  }
+},
+{
+  "type": "way",
+  "id": 710620453,
+  "center": {
+    "lat": 35.1153565,
+    "lon": 138.9441435
+  },
+  "nodes": [
+    6681114207,
+    7146519594,
+    7146519595,
+    6681114208,
+    7146519593,
+    7146519596,
+    6681114209,
+    6681114210,
+    6681114211,
+    7146519597,
+    7146519598,
+    6681114212,
+    7146519600,
+    7146519599,
+    6681114213,
+    6681114214,
+    6681114215,
+    6681114207
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "竹倉温泉;みなくち荘",
+    "wikidata": "Q52058036"
+  }
+},
+{
+  "type": "way",
+  "id": 889976239,
+  "center": {
+    "lat": 34.8585124,
+    "lon": 139.0911903
+  },
+  "nodes": [
+    8272595145,
+    8272595146,
+    8272595147,
+    8272595148,
+    8272595149,
+    8272595150,
+    8272595151,
+    8272595152,
+    8272595153,
+    8272595154,
+    8272595155,
+    8272595156,
+    8272595157,
+    8272595158,
+    8272595159,
+    8272595160,
+    8272595161,
+    8272595162,
+    8272595163,
+    8272595164,
+    8272595165,
+    8272595166,
+    8272595167,
+    8272595168,
+    8272595169,
+    8272595145
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "building:levels": "3",
+    "name": "赤沢日帰り温泉館"
+  }
+},
+{
+  "type": "way",
+  "id": 906719318,
+  "center": {
+    "lat": 34.8944982,
+    "lon": 139.1367701
+  },
+  "nodes": [
+    8419693526,
+    8419693527,
+    8419693528,
+    8419693529,
+    8419693526
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "building:levels": "1"
+  }
+},
+{
+  "type": "way",
+  "id": 1000486691,
+  "center": {
+    "lat": 35.0119219,
+    "lon": 138.9205284
+  },
+  "nodes": [
+    9235115010,
+    9235115011,
+    9235115012,
+    9235115013,
+    9235115010
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "foot_bath",
+    "building": "yes",
+    "opening_hours": "Mo-Su 09:00-16:40"
+  }
+},
+{
+  "type": "way",
+  "id": 1008058732,
+  "center": {
+    "lat": 35.0882750,
+    "lon": 139.0801370
+  },
+  "nodes": [
+    9299966746,
+    9299966745,
+    9299966744,
+    9299966743,
+    9299966742,
+    9299966741,
+    9299966740,
+    9299966739,
+    9299966738,
+    10235046387,
+    10235046386,
+    9299966737,
+    10235046384,
+    10235046385,
+    9299966736,
+    9299966746
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "building": "commercial",
+    "fee": "yes",
+    "name": "オーシャンスパ Fuua",
+    "name:en": "OCEAN SPA Fuua",
+    "name:ja": "オーシャンスパ Fuua"
+  }
+},
+{
+  "type": "way",
+  "id": 1041893291,
+  "center": {
+    "lat": 34.8165045,
+    "lon": 139.0726707
+  },
+  "nodes": [
+    9591644015,
+    9591644016,
+    9591644017,
+    9591644015
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "foot_bath"
+  }
+},
+{
+  "type": "way",
+  "id": 1041893292,
+  "center": {
+    "lat": 34.8165024,
+    "lon": 139.0727753
+  },
+  "nodes": [
+    9591644018,
+    9591644019,
+    9591644020,
+    9591644021,
+    9591644018
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:type": "foot_bath"
+  }
+},
+{
+  "type": "way",
+  "id": 1044293464,
+  "center": {
+    "lat": 34.8095943,
+    "lon": 139.0680486
+  },
+  "nodes": [
+    9609295579,
+    9609295580,
+    9609295593,
+    9609295592,
+    9609295591,
+    9609295590,
+    9609295589,
+    9609295587,
+    9609295594,
+    9609295595,
+    9609295596,
+    9609295597,
+    9609295598,
+    9609295599,
+    9609295600,
+    9609295588,
+    9609295601,
+    9609295602,
+    9609295581,
+    9609295582,
+    9609295583,
+    9609295584,
+    9609295585,
+    9609295586,
+    9609295579
+  ],
+  "tags": {
+    "building": "yes",
+    "name": "熱川温泉ブルーオーシャン",
+    "name:en": "Atagawa  Onsen Blue Ocean",
+    "tourism": "hotel"
+  }
+},
+{
+  "type": "way",
+  "id": 1047643977,
+  "center": {
+    "lat": 34.6876232,
+    "lon": 138.9713826
+  },
+  "nodes": [
+    9633521474,
+    9633521473,
+    9633521472,
+    9633521471,
+    9633521470,
+    9633521469,
+    9633521468,
+    9633521467,
+    9633521466,
+    9633521465,
+    9633521464,
+    9633521463,
+    9633521462,
+    9633521461,
+    9633521460,
+    9633521459,
+    9633521458,
+    9633521457,
+    9633521456,
+    9633521455,
+    9633521454,
+    9633521453,
+    9633521452,
+    9633521451,
+    9633521450,
+    9633521449,
+    9633521448,
+    9633521447,
+    9633521446,
+    9633521445,
+    9633521444,
+    9633521443,
+    9633521442,
+    9633521441,
+    9633521440,
+    9633521439,
+    9633521438,
+    9633521437,
+    9633521436,
+    9633521435,
+    9633521434,
+    9633521433,
+    9633521432,
+    9633521431,
+    9633521430,
+    9633521429,
+    9633521428,
+    9633521427,
+    9633521426,
+    9633521425,
+    9633521424,
+    9633521423,
+    9633521422,
+    9633521421,
+    9633521420,
+    9633521419,
+    9633521418,
+    9633521417,
+    9633503816,
+    9633503815,
+    9633503814,
+    9633503813,
+    9633503812,
+    9633503811,
+    9633503810,
+    9633503809,
+    9633503808,
+    9633503807,
+    9633503806,
+    9633503805,
+    1499561258,
+    9633521474
+  ],
+  "tags": {
+    "addr:city": "下田市",
+    "addr:housenumber": "2732-7",
+    "addr:postcode": "415-8512",
+    "addr:province": "静岡県",
+    "addr:quarter": "白浜",
+    "name": "ホテル伊豆急",
+    "name:en": "Hotel Izukyu",
+    "source": "GSImaps/ort",
+    "tourism": "hotel",
+    "website": "https://www.hotel-izukyu.co.jp/,http://www.hotel-izukyu.co.jp/lg_en/",
+    "wikidata": "Q111866414"
+  }
+},
+{
+  "type": "way",
+  "id": 1216989453,
+  "center": {
+    "lat": 35.1451177,
+    "lon": 139.0744651
+  },
+  "nodes": [
+    11276588297,
+    11276588298,
+    11276588299,
+    11276588300,
+    11276588297
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "fee": "no",
+    "name": "足湯"
+  }
+},
+{
+  "type": "way",
+  "id": 1217012361,
+  "center": {
+    "lat": 35.1448497,
+    "lon": 139.0714675
+  },
+  "nodes": [
+    11276718074,
+    11276718078,
+    11276718075,
+    11276718076,
+    11276718077,
+    11276718074
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "bath:open_air": "yes",
+    "bath:sand_bath": "no",
+    "bath:type": "onsen",
+    "fee": "yes",
+    "name": "惣湯テラス",
+    "phone": "0465-43-8105",
+    "url": "https://yugawarasoyu.jp/soyu-terrace/"
+  }
+},
+{
+  "type": "way",
+  "id": 1220163726,
+  "center": {
+    "lat": 34.9083160,
+    "lon": 139.0976382
+  },
+  "nodes": [
+    11306331047,
+    11306331048,
+    11306331049,
+    11306331050,
+    11306331047
+  ],
+  "tags": {
+    "amenity": "public_bath"
+  }
+},
+{
+  "type": "way",
+  "id": 1294712864,
+  "center": {
+    "lat": 35.1380665,
+    "lon": 138.8855454
+  },
+  "nodes": [
+    11998711632,
+    11998711633,
+    11998711634,
+    11998711635,
+    11998711632
+  ],
+  "tags": {
+    "amenity": "public_bath",
+    "building": "yes",
+    "name": "寮風呂"
+  }
+}
+
+  ]
+}

@@ -55,7 +55,7 @@ export function drawOverlays(si: number, shot: Shot, t: number, pass: 'map' | 'd
   if (pass === 'map') {
     spec.shots.forEach((s, i) =>
       (s.overlays || []).forEach((o, oi) => {
-        if (!['line', 'polygon', 'choropleth', 'base', 'image'].includes(o.type)) return;
+        if (!['line', 'polygon', 'choropleth', 'heatmap', 'base', 'image'].includes(o.type)) return;
         const id = `ov-${i}-${oi}`;
         const ids =
           o.type === 'line'
@@ -76,7 +76,7 @@ export function drawOverlays(si: number, shot: Shot, t: number, pass: 'map' | 'd
   (shot.overlays || []).forEach((o, oi) => {
     const a = fadeAlpha(o.show, t, o.fade ?? 0.06);
     const id = `ov-${si}-${oi}`;
-    const isMap = ['line', 'polygon', 'choropleth', 'base', 'image'].includes(o.type);
+    const isMap = ['line', 'polygon', 'choropleth', 'heatmap', 'base', 'image'].includes(o.type);
     if (isMap !== (pass === 'map')) {
       if (o.type === 'chapter' && pass === 'map') tint = Math.max(tint, 0.55 * a);
       if (o.type === 'choropleth' && pass === 'dom' && a > 0) {
@@ -87,6 +87,8 @@ export function drawOverlays(si: number, shot: Shot, t: number, pass: 'map' | 'd
     }
     if (o.type === 'base' || o.type === 'image') {
       map.setPaintProperty(id, 'raster-opacity', a);
+    } else if (o.type === 'heatmap') {
+      map.setPaintProperty(id, 'heatmap-opacity', a * (o.opacity ?? 0.85));
     } else if (o.type === 'line') {
       const frac = o.draw ? Math.min(1, Math.max(0, (t - o.draw[0]) / (o.draw[1] - o.draw[0]))) : 1;
       map.getSource(id).setData({ type: 'Feature', geometry: { type: 'LineString', coordinates: sliceLine(o.coords, frac) } });
@@ -171,6 +173,7 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
   } else if (o.type === 'counter') {
     const [x, y] = o.screen ?? [70, 160];
     const up = (1 - outCubic(inn(0.45))) * 40;
+    const sc = o.scale ?? 1;
     el(
       'counter',
       (o.caption ? `<span class="cap" style="opacity:${inn(0.3, 0.1)}">${esc(o.caption)}</span>` : '') +
@@ -178,7 +181,7 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
         `<span class="num">${o.roll ? rollingDigits(o, t) : esc(countValue(o, t))}</span>` +
         (o.unit ? `<span class="unit">${esc(o.unit)}</span>` : '') +
         `<span class="rule" style="width:${outCubic(inn(0.5, 0.2)) * 100}%"></span>`,
-      { left: x + 'px', top: y + 'px', opacity: inn(0.2) * out, transform: `translateY(${up - leave * 20}px)` },
+      { left: x + 'px', top: y + 'px', opacity: inn(0.2) * out, transformOrigin: 'top left', transform: `translateY(${up - leave * 20}px) scale(${sc})` },
     );
   } else if (o.type === 'chapter') {
     setTint(0.55 * inn(0.4) * out);

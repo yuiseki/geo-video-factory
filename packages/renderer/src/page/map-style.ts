@@ -1,5 +1,6 @@
 import { demSourceSpec } from '../lib.js';
 import { choroplethColorExpression, choroplethFocusFilters, choroplethHeightExpression } from '../choropleth.js';
+import { heatmapColorExpression, heatmapRadiusExpression, heatmapWeightExpression } from '../heatmap.js';
 import type { Shot, ShotSpec } from '../types.js';
 import { registerImageOverlay } from './map-protocols.js';
 
@@ -191,6 +192,23 @@ function overlayLayers(shots: Shot[]) {
             paint: { 'line-color': o.outline ?? '#ffffff', 'line-width': o.outlineWidth ?? 1.2 },
           });
         }
+        if (o.credit) credits.add(o.credit);
+      } else if (o.type === 'heatmap') {
+        if (!o.src && !o.data) throw new Error('heatmap overlay requires src or data');
+        sources[id] = { type: 'geojson', data: o.src ? '/' + o.src.replace(/^\/+/, '') : o.data };
+        layers.push({
+          id,
+          type: 'heatmap',
+          source: id,
+          layout: { visibility: 'none' },
+          paint: {
+            'heatmap-weight': heatmapWeightExpression(o.weightProperty),
+            'heatmap-intensity': o.intensity ?? 1.0,
+            'heatmap-color': heatmapColorExpression(o.colors),
+            'heatmap-radius': heatmapRadiusExpression(o.radius ?? 26),
+            'heatmap-opacity': o.opacity ?? 0.85,
+          },
+        });
         if (o.credit) credits.add(o.credit);
       }
     }),

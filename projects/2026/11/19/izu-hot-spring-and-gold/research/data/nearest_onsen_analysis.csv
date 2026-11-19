@@ -1,0 +1,10 @@
+mine_id,mine_name,municipality,coord_precision,has_onsen_origin,nearest_onsen_name,nearest_onsen_category,nearest_onsen_dist_km,onsen_within_1km,onsen_within_3km,onsen_within_5km
+toi_kinzan,土肥金山,伊豆市,exact_portal,True,あさや,ryokan_hotel,0.274,11,13,16
+gantsuki_tensho,龕附天正金鉱,伊豆市,exact_portal,False,明治館,ryokan_hotel,0.08,12,13,16
+ohito_mine,大仁鉱山,伊豆市,site_area,True,万福;百笑の湯,hot_spring_bath,0.195,4,25,39
+mochikoshi_mine,持越鉱山,伊豆市,site_area,False,御宿さか屋,ryokan_hotel,4.625,0,0,3
+seigoshi_mine,清越鉱山,伊豆市,site_area,False,土肥ふじやホテル,ryokan_hotel,2.89,0,8,13
+izu_keiseki_ugusu,伊豆珪石鉱山（宇久須鉱山）,西伊豆町,site_area,False,西伊豆クリスタルビューホテル,ryokan_hotel,2.974,0,1,15
+nawaji_mine,縄地鉱山,河津町,district_centroid,False,Foot Bath,hot_spring_bath,0.172,10,23,33
+kawazu_rendaiji,河津鉱山（蓮台寺鉱山）,下田市,district_centroid,True,大地の彩 花月亭,ryokan_hotel,0.338,3,6,18
+yugashima_mine,湯ヶ島鉱山,伊豆市,district_centroid,True,三吉,ryokan_hotel,1.276,0,14,14

@@ -1,0 +1,89 @@
+{
+  "project": "izu-onsen-goldrush",
+  "generated_at": "2026-11-19",
+  "crs": "EPSG:4326 ([lon, lat])",
+  "encoding": "UTF-8 (no BOM)",
+  "files": {
+    "onsen_pois.geojson": {
+      "type": "FeatureCollection (Point)",
+      "feature_count": 388,
+      "by_category": {
+        "ryokan_hotel": 298,
+        "hot_spring_bath": 78,
+        "source": 12
+      },
+      "crs": "EPSG:4326",
+      "source": "OpenStreetMap (overpass.yuiseki.net, snapshot 2025-09-14T23:59:55Z)",
+      "license": "ODbL-1.0",
+      "attribution": "© OpenStreetMap contributors"
+    },
+    "mines.geojson": {
+      "type": "FeatureCollection (Point)",
+      "feature_count": 9,
+      "crs": "EPSG:4326",
+      "source": "OpenStreetMap, Wikipedia, 静岡県史・伊豆半島ジオパーク資料",
+      "license": "ODbL-1.0 / CC BY-SA 4.0"
+    },
+    "izu_municipalities_summary.geojson": {
+      "type": "FeatureCollection (Polygon/MultiPolygon)",
+      "feature_count": 13,
+      "crs": "EPSG:4326",
+      "source": "yuiseki/jp-admin-2026-09 (e6c87b1d) + OSM POI aggregation",
+      "license": "CC-BY-4.0 / ODbL-1.0",
+      "note": "沼津市(22203)はlat<=35.085、三島市(22206)はlat<=35.120の半島側エリアにクリップして集計"
+    },
+    "izu_grid_summary.geojson": {
+      "type": "FeatureCollection (Polygon, 2km x 2km UTM 54N grid)",
+      "feature_count": 424,
+      "crs": "EPSG:4326",
+      "source": "Derived from EPSG:32654 2km grid clipped to Izu study area"
+    },
+    "kanogawa_spill_route.geojson": {
+      "type": "FeatureCollection (LineString + Point)",
+      "feature_count": 9,
+      "total_length_km": 46.084,
+      "segments_km": {
+        "mochikoshigawa": 7.094,
+        "kanogawa_to_ohito": 16.697,
+        "kanogawa_to_mouth": 22.293
+      },
+      "elevation_profile_m": {
+        "dam": 479.2,
+        "mochikoshi_bridge": 309.71,
+        "confluence": 183.55,
+        "shuzenji": 43.97,
+        "ohito": 18.4,
+        "mouth": 3.21
+      },
+      "landmarks_km": {
+        "ohito": 23.791,
+        "mouth": 46.084
+      },
+      "crs": "EPSG:4326",
+      "source": "OpenStreetMap waterways (持越川・狩野川, 2025-09-14) + 国土地理院標高タイル dem_z14 (2026-11-19取得)",
+      "license": "ODbL-1.0 / 国土地理院コンテンツ利用規約 (PDL 1.0)",
+      "attribution": "© OpenStreetMap contributors / 出典：国土地理院（標高タイルを加工して作成）"
+    },
+    "nearest_onsen_analysis.csv": {
+      "type": "CSV",
+      "row_count": 9,
+      "crs": "WGS84 Geodesic distance"
+    },
+    "spatial_stats.json": {
+      "type": "JSON",
+      "description": "NNI, Ripley's L(r)-r, mine-to-onsen distance comparison, Moran's I (2km & 5km), observation bias check"
+    },
+    "showa_gold_timeline.csv": {
+      "type": "CSV",
+      "row_count": 57,
+      "period": "1931-1987",
+      "source": "田中貴金属工業・日本銀行・産総研地質調査総合センター・静岡県史等"
+    }
+  },
+  "limitations_and_unconfirmed": [
+    "OSMのPOI登録密度は観光地（熱海・伊東等）ほど高く、小規模・非観光温泉や廃鉱の網羅性は不完全（観測バイアスあり）。",
+    "鉱山9件のうち、縄地鉱山・河津鉱山（蓮台寺）・湯ヶ島鉱山は坑口座標が未確認のため地区代表点（district_centroid）を使用。",
+    "showa_gold_timeline.csvの1931-1987年全年の連続年次統計は未取得の年をnullとしており、確認済み基準年のみ数値を記載。",
+    "ほおずき沢鉱滓堆積場の正確な堰堤座標は持越鉱山敷地代表点を使用し、持越川最寄り流路点から狩野川河口までの46.084kmを算出。"
+  ]
+}

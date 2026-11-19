@@ -1,0 +1,128 @@
+{
+  "study_area": {
+    "total_land_area_km2": 1398.49,
+    "municipality_count": 13,
+    "onsen_poi_count": 388,
+    "mine_count": 9
+  },
+  "nearest_neighbor_index_onsen": {
+    "observed_mean_nn_km": 0.3961,
+    "expected_csr_mean_nn_km": 0.9493,
+    "R_index": 0.4173,
+    "z_score": -21.96
+  },
+  "ripley_L_onsen": [
+    {
+      "radius_km": 1,
+      "obs_L_minus_r_km": 2.848,
+      "csr_median_L_minus_r_km": -0.023,
+      "csr_p025_km": -0.092,
+      "csr_p975_km": 0.062,
+      "clustered_above_95": true
+    },
+    {
+      "radius_km": 2,
+      "obs_L_minus_r_km": 2.861,
+      "csr_median_L_minus_r_km": -0.06,
+      "csr_p025_km": -0.138,
+      "csr_p975_km": 0.037,
+      "clustered_above_95": true
+    },
+    {
+      "radius_km": 5,
+      "obs_L_minus_r_km": 0.988,
+      "csr_median_L_minus_r_km": -0.347,
+      "csr_p025_km": -0.449,
+      "csr_p975_km": -0.219,
+      "clustered_above_95": true
+    },
+    {
+      "radius_km": 10,
+      "obs_L_minus_r_km": -1.664,
+      "csr_median_L_minus_r_km": -1.283,
+      "csr_p025_km": -1.483,
+      "csr_p975_km": -1.014,
+      "clustered_above_95": false
+    },
+    {
+      "radius_km": 15,
+      "obs_L_minus_r_km": -4.032,
+      "csr_median_L_minus_r_km": -2.829,
+      "csr_p025_km": -3.14,
+      "csr_p975_km": -2.485,
+      "clustered_above_95": false
+    },
+    {
+      "radius_km": 20,
+      "obs_L_minus_r_km": -5.856,
+      "csr_median_L_minus_r_km": -5.043,
+      "csr_p025_km": -5.445,
+      "csr_p975_km": -4.699,
+      "clustered_above_95": false
+    }
+  ],
+  "mine_to_onsen_proximity": {
+    "mine_mean_nearest_km": 1.425,
+    "mine_median_nearest_km": 0.338,
+    "mine_max_nearest_km": 4.625,
+    "random_land_mean_nearest_km": 2.418,
+    "random_land_median_nearest_km": 2.244
+  },
+  "grid_summary": {
+    "grid_2km_cells": 424,
+    "grid_2km_zero_onsen_pct": 75.9,
+    "grid_5km_cells": 84,
+    "grid_5km_zero_onsen_pct": 32.1
+  },
+  "spatial_autocorrelation_moran_i": {
+    "grid_2km": [
+      {
+        "I": 0.1814,
+        "expected_I": -0.0024,
+        "pseudo_p": 0.003,
+        "n": 424,
+        "k": 3
+      },
+      {
+        "I": 0.111,
+        "expected_I": -0.0024,
+        "pseudo_p": 0.003,
+        "n": 424,
+        "k": 6
+      },
+      {
+        "I": 0.0503,
+        "expected_I": -0.0024,
+        "pseudo_p": 0.015,
+        "n": 424,
+        "k": 12
+      }
+    ],
+    "grid_5km": [
+      {
+        "I": 0.033,
+        "expected_I": -0.012,
+        "pseudo_p": 0.696,
+        "n": 84,
+        "k": 3
+      },
+      {
+        "I": -0.0242,
+        "expected_I": -0.012,
+        "pseudo_p": 0.676,
+        "n": 84,
+        "k": 6
+      },
+      {
+        "I": -0.0269,
+        "expected_I": -0.012,
+        "pseudo_p": 0.52,
+        "n": 84,
+        "k": 12
+      }
+    ]
+  },
+  "observation_bias_check_11_full_munis": {
+    "spearman_rho_pop_density_vs_onsen_density": 0.3091
+  }
+}

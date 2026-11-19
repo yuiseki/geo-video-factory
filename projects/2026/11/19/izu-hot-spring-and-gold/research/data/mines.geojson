@@ -1,0 +1,252 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.79326,
+          34.90814
+        ]
+      },
+      "properties": {
+        "id": "toi_kinzan",
+        "name": "土肥金山",
+        "minerals": [
+          "金",
+          "銀"
+        ],
+        "municipality": "伊豆市",
+        "opened_year": 1577,
+        "closed_year": 1965,
+        "nearest_onsen_name": "あさや",
+        "nearest_onsen_dist_km": 0.274,
+        "onsen_within_3km": 13,
+        "has_onsen_origin": true,
+        "incident_notes": "1611年坑口から温泉（まぶ湯）湧出。昭和初期の掘削で周辺温泉が一時枯渇するも、1949年に坑内温泉を土肥温泉へ供給開始。1965年閉山。",
+        "coord_precision": "exact_portal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.79035,
+          34.90588
+        ]
+      },
+      "properties": {
+        "id": "gantsuki_tensho",
+        "name": "龕附天正金鉱",
+        "minerals": [
+          "金",
+          "銀"
+        ],
+        "municipality": "伊豆市",
+        "opened_year": 1577,
+        "closed_year": null,
+        "nearest_onsen_name": "明治館",
+        "nearest_onsen_dist_km": 0.08,
+        "onsen_within_3km": 13,
+        "has_onsen_origin": false,
+        "incident_notes": "天正年間開坑と伝わる手掘り坑道遺構。閉山年不詳。",
+        "coord_precision": "exact_portal"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.942556,
+          34.987056
+        ]
+      },
+      "properties": {
+        "id": "ohito_mine",
+        "name": "大仁鉱山",
+        "minerals": [
+          "金",
+          "銀",
+          "銅"
+        ],
+        "municipality": "伊豆市",
+        "opened_year": 1591,
+        "closed_year": 1973,
+        "nearest_onsen_name": "万福;百笑の湯",
+        "nearest_onsen_dist_km": 0.195,
+        "onsen_within_3km": 25,
+        "has_onsen_origin": true,
+        "incident_notes": "1933年帝国産金興業により近代再開。1937年に坑内から98℃の高温温泉が噴出し、大仁温泉等の源泉となった。1973年閉山。",
+        "coord_precision": "site_area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.866694,
+          34.889583
+        ]
+      },
+      "properties": {
+        "id": "mochikoshi_mine",
+        "name": "持越鉱山",
+        "minerals": [
+          "金",
+          "銀"
+        ],
+        "municipality": "伊豆市",
+        "opened_year": 1914,
+        "closed_year": 1978,
+        "nearest_onsen_name": "御宿さか屋",
+        "nearest_onsen_dist_km": 4.625,
+        "onsen_within_3km": 0,
+        "has_onsen_origin": false,
+        "incident_notes": "1978年1月14日、伊豆大島近海地震によりほおずき沢鉱滓堆積場（第1・第2堰堤）が決壊し、シアン化合物を含む鉱滓約30万トンが持越川・狩野川へ流出。",
+        "coord_precision": "site_area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.821667,
+          34.901389
+        ]
+      },
+      "properties": {
+        "id": "seigoshi_mine",
+        "name": "清越鉱山",
+        "minerals": [
+          "金",
+          "銀"
+        ],
+        "municipality": "伊豆市",
+        "opened_year": 1935,
+        "closed_year": 1976,
+        "nearest_onsen_name": "土肥ふじやホテル",
+        "nearest_onsen_dist_km": 2.89,
+        "onsen_within_3km": 8,
+        "has_onsen_origin": false,
+        "incident_notes": "中外鉱業が操業した浅熱水性金銀鉱床。持越鉱山と鉱脈系を共有し、1976年閉山。",
+        "coord_precision": "site_area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.801806,
+          34.872972
+        ]
+      },
+      "properties": {
+        "id": "izu_keiseki_ugusu",
+        "name": "伊豆珪石鉱山（宇久須鉱山）",
+        "minerals": [
+          "珪石",
+          "明礬石"
+        ],
+        "municipality": "西伊豆町",
+        "opened_year": 1897,
+        "closed_year": 2008,
+        "nearest_onsen_name": "西伊豆クリスタルビューホテル",
+        "nearest_onsen_dist_km": 2.974,
+        "onsen_within_3km": 1,
+        "has_onsen_origin": false,
+        "incident_notes": "火山性熱水変質による高純度珪石鉱山。戦時中は明礬石を国産アルミ原料として採掘。2008年閉山。",
+        "coord_precision": "site_area"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.995,
+          34.748
+        ]
+      },
+      "properties": {
+        "id": "nawaji_mine",
+        "name": "縄地鉱山",
+        "minerals": [
+          "金",
+          "銀",
+          "銅"
+        ],
+        "municipality": "河津町",
+        "opened_year": 1590,
+        "closed_year": 1960,
+        "nearest_onsen_name": "Foot Bath",
+        "nearest_onsen_dist_km": 0.172,
+        "onsen_within_3km": 23,
+        "has_onsen_origin": false,
+        "incident_notes": "16世紀末開山。1943年金鉱業整備令により一時休山、戦後再開を経て昭和30年代に閉山（代表点座標）。",
+        "coord_precision": "district_centroid"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.928894,
+          34.696567
+        ]
+      },
+      "properties": {
+        "id": "kawazu_rendaiji",
+        "name": "河津鉱山（蓮台寺鉱山）",
+        "minerals": [
+          "金",
+          "銀",
+          "銅",
+          "テルル"
+        ],
+        "municipality": "下田市",
+        "opened_year": 1600,
+        "closed_year": 1963,
+        "nearest_onsen_name": "大地の彩 花月亭",
+        "nearest_onsen_dist_km": 0.338,
+        "onsen_within_3km": 6,
+        "has_onsen_origin": true,
+        "incident_notes": "日本鉱業等が操業。坑道掘削中に65℃の高温温泉が大量湧出し、1952年に下田市街地へ引湯された（代表点座標）。",
+        "coord_precision": "district_centroid"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          138.9034,
+          34.88621
+        ]
+      },
+      "properties": {
+        "id": "yugashima_mine",
+        "name": "湯ヶ島鉱山",
+        "minerals": [
+          "金",
+          "銀"
+        ],
+        "municipality": "伊豆市",
+        "opened_year": 1590,
+        "closed_year": 1957,
+        "nearest_onsen_name": "三吉",
+        "nearest_onsen_dist_km": 1.276,
+        "onsen_within_3km": 14,
+        "has_onsen_origin": true,
+        "incident_notes": "湯ヶ島温泉に近接する金銀鉱床。天正年間より採掘され昭和32年頃休閉山（金山神社付近代表点）。",
+        "coord_precision": "district_centroid"
+      }
+    }
+  ]
+}

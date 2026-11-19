@@ -1,0 +1,358 @@
+{
+  "大仁鉱山_瓜生野": [
+    {
+      "place_id": 258022212,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8682521136,
+      "lat": "34.9874660",
+      "lon": "138.9468900",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "瓜生野",
+      "display_name": "瓜生野, 伊豆市, 静岡県, 410-2323, 日本",
+      "boundingbox": [
+        "34.9774660",
+        "34.9974660",
+        "138.9368900",
+        "138.9568900"
+      ]
+    },
+    {
+      "place_id": 258022326,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 5125637538,
+      "lat": "34.9882313",
+      "lon": "138.9457140",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "瓜生野",
+      "display_name": "瓜生野, 韮山伊豆長岡修善寺線, 瓜生野, 伊豆市, 静岡県, 410-2323, 日本",
+      "boundingbox": [
+        "34.9881813",
+        "34.9882813",
+        "138.9456640",
+        "138.9457640"
+      ]
+    }
+  ],
+  "持越鉱山_持越": [
+    {
+      "place_id": 258024508,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8682521119,
+      "lat": "34.8875660",
+      "lon": "138.8870650",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "持越",
+      "display_name": "持越, 伊豆市, 静岡県, 410-3206, 日本",
+      "boundingbox": [
+        "34.8775660",
+        "34.8975660",
+        "138.8770650",
+        "138.8970650"
+      ]
+    }
+  ],
+  "清越鉱山_土肥新田": [
+    {
+      "place_id": 258024903,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8682521130,
+      "lat": "34.9024090",
+      "lon": "138.8149920",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "土肥",
+      "display_name": "土肥, 伊豆市, 静岡県, 410-3322, 日本",
+      "boundingbox": [
+        "34.8924090",
+        "34.9124090",
+        "138.8049920",
+        "138.8249920"
+      ]
+    }
+  ],
+  "蓮台寺温泉": [
+    {
+      "place_id": 258031390,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 264191014,
+      "lat": "34.6995256",
+      "lon": "138.9412823",
+      "category": "railway",
+      "type": "station",
+      "place_rank": 30,
+      "importance": 0.29952606874347,
+      "addresstype": "railway",
+      "name": "蓮台寺",
+      "display_name": "蓮台寺, 分譲地内道路, 立野, 下田市, 静岡県, 415-8501, 日本",
+      "boundingbox": [
+        "34.6945256",
+        "34.7045256",
+        "138.9362823",
+        "138.9462823"
+      ]
+    },
+    {
+      "place_id": 258030415,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8757251672,
+      "lat": "34.6965670",
+      "lon": "138.9288940",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "蓮台寺",
+      "display_name": "蓮台寺, 下田市, 静岡県, 415-8501, 日本",
+      "boundingbox": [
+        "34.6865670",
+        "34.7065670",
+        "138.9188940",
+        "138.9388940"
+      ]
+    }
+  ],
+  "大仁温泉": [
+    {
+      "place_id": 258022506,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 264200599,
+      "lat": "34.9945978",
+      "lon": "138.9374079",
+      "category": "railway",
+      "type": "stop",
+      "place_rank": 30,
+      "importance": 0.30196001806411854,
+      "addresstype": "railway",
+      "name": "大仁",
+      "display_name": "大仁, 大仁停車場線, 大仁, 伊豆の国市, 静岡県, 410-2323, 日本",
+      "boundingbox": [
+        "34.9945478",
+        "34.9946478",
+        "138.9373579",
+        "138.9374579"
+      ]
+    },
+    {
+      "place_id": 258022935,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8205293023,
+      "lat": "34.9946130",
+      "lon": "138.9374862",
+      "category": "railway",
+      "type": "station",
+      "place_rank": 30,
+      "importance": 0.30196001806411854,
+      "addresstype": "railway",
+      "name": "大仁",
+      "display_name": "大仁, 大仁停車場線, 大仁, 伊豆の国市, 静岡県, 410-2323, 日本",
+      "boundingbox": [
+        "34.9896130",
+        "34.9996130",
+        "138.9324862",
+        "138.9424862"
+      ]
+    },
+    {
+      "place_id": 258022296,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8682521599,
+      "lat": "34.9940870",
+      "lon": "138.9402210",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "大仁",
+      "display_name": "大仁, 伊豆の国市, 静岡県, 410-2323, 日本",
+      "boundingbox": [
+        "34.9840870",
+        "35.0040870",
+        "138.9302210",
+        "138.9502210"
+      ]
+    }
+  ],
+  "熱海温泉": [
+    {
+      "place_id": 258217471,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 4674617,
+      "lat": "35.0964710",
+      "lon": "139.0717866",
+      "category": "boundary",
+      "type": "administrative",
+      "place_rank": 14,
+      "importance": 0.5163466759218838,
+      "addresstype": "city",
+      "name": "熱海市",
+      "display_name": "熱海市, 静岡県, 日本",
+      "boundingbox": [
+        "34.9553792",
+        "35.1507050",
+        "139.0278510",
+        "139.4207560"
+      ]
+    }
+  ],
+  "伊東温泉": [
+    {
+      "place_id": 258080951,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 4674444,
+      "lat": "34.9656621",
+      "lon": "139.1017290",
+      "category": "boundary",
+      "type": "administrative",
+      "place_rank": 14,
+      "importance": 0.49770743631795367,
+      "addresstype": "city",
+      "name": "伊東市",
+      "display_name": "伊東市, 静岡県, 日本",
+      "boundingbox": [
+        "34.7854536",
+        "35.0368460",
+        "139.0345730",
+        "139.3391005"
+      ]
+    }
+  ],
+  "堂ヶ島温泉": [
+    {
+      "place_id": 258029210,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 6057540246,
+      "lat": "34.7841162",
+      "lon": "138.7684522",
+      "category": "place",
+      "type": "neighbourhood",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "neighbourhood",
+      "name": "堂ヶ島",
+      "display_name": "堂ヶ島, 西伊豆町, 賀茂郡, 静岡県, 410-3514, 日本",
+      "boundingbox": [
+        "34.7741162",
+        "34.7941162",
+        "138.7584522",
+        "138.7784522"
+      ]
+    },
+    {
+      "place_id": 258027616,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8589008746,
+      "lat": "34.7828483",
+      "lon": "138.7679639",
+      "category": "highway",
+      "type": "bus_stop",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "highway",
+      "name": "堂ヶ島",
+      "display_name": "堂ヶ島, 国道136号, 堂ヶ島, 西伊豆町, 賀茂郡, 静岡県, 410-3514, 日本",
+      "boundingbox": [
+        "34.7827983",
+        "34.7828983",
+        "138.7679139",
+        "138.7680139"
+      ]
+    },
+    {
+      "place_id": 258027976,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 6253248358,
+      "lat": "34.7824095",
+      "lon": "138.7674181",
+      "category": "tourism",
+      "type": "attraction",
+      "place_rank": 30,
+      "importance": 9.99999999995449e-06,
+      "addresstype": "tourism",
+      "name": "堂ヶ島",
+      "display_name": "堂ヶ島, 2910-2, 仁科, 西伊豆町, 賀茂郡, 静岡県, 410-3514, 日本",
+      "boundingbox": [
+        "34.7823595",
+        "34.7824595",
+        "138.7673681",
+        "138.7674681"
+      ]
+    }
+  ],
+  "伊豆長岡温泉": [
+    {
+      "place_id": 258213845,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "node",
+      "osm_id": 8682523324,
+      "lat": "35.0348570",
+      "lon": "138.9261940",
+      "category": "place",
+      "type": "quarter",
+      "place_rank": 20,
+      "importance": 0.1333433333333333,
+      "addresstype": "quarter",
+      "name": "長岡",
+      "display_name": "長岡, 伊豆の国市, 静岡県, 410-2211, 日本",
+      "boundingbox": [
+        "35.0248570",
+        "35.0448570",
+        "138.9161940",
+        "138.9361940"
+      ]
+    }
+  ],
+  "下田温泉": [
+    {
+      "place_id": 258033759,
+      "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+      "osm_type": "relation",
+      "osm_id": 4674472,
+      "lat": "34.6795450",
+      "lon": "138.9453790",
+      "category": "boundary",
+      "type": "administrative",
+      "place_rank": 14,
+      "importance": 0.49805093647670473,
+      "addresstype": "city",
+      "name": "下田市",
+      "display_name": "下田市, 静岡県, 415-8501, 日本",
+      "boundingbox": [
+        "34.3724457",
+        "34.7739810",
+        "138.8124032",
+        "139.1743100"
+      ]
+    }
+  ]
+}

@@ -152,6 +152,7 @@ export interface CounterOverlay {
   caption?: string;
   prefix?: string;
   unit?: string;
+  scale?: number;
   screen?: [number, number];
   show?: TimeWindow;
   fade?: number;
@@ -306,12 +307,27 @@ export interface ChoroplethOverlay {
   fade?: number;
 }
 
+export interface HeatmapOverlay {
+  type: 'heatmap';
+  src?: string;
+  data?: unknown;
+  weightProperty?: string;
+  radius?: number;
+  intensity?: number;
+  colors?: [number, string][];
+  opacity?: number;
+  credit?: string;
+  show?: TimeWindow;
+  fade?: number;
+}
+
 export type Overlay =
   | BaseOverlay
   | ImageOverlay
   | LineOverlay
   | PolygonOverlay
   | ChoroplethOverlay
+  | HeatmapOverlay
   | LabelOverlay
   | CounterOverlay
   | ChapterOverlay
@@ -358,6 +374,8 @@ export interface PlateauBuildingsConfig {
   reveal?: CityReveal;
   /** [seconds, 0..1] keys: 0 day, 0.5 dusk, 1 night with lit windows. */
   night?: [number, number][];
+  /** Building opacity (0..1) or [seconds, 0..1] keyframes. Defaults to 1 (opaque). */
+  opacity?: number | [number, number][];
 }
 
 export interface ShotSpec {
