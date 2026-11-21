@@ -34,9 +34,18 @@ def _line_distance(p, a, b) -> float:
     return ((p[0] - a[0]) * dy - (p[1] - a[1]) * dx) / math.hypot(dx, dy)
 
 
+def _bounded_start(values, limits):
+    """Start vector clipped into its bounds, and the lower/upper bound lists for least_squares."""
+    lo = [b[0] if b else -np.inf for b in limits]
+    hi = [b[1] if b else np.inf for b in limits]
+    x0 = [min(max(v, a + 1e-9 if a > -np.inf else v), b - 1e-9 if b < np.inf else v) for v, a, b in zip(values, lo, hi)]
+    return x0, lo, hi
+
+
 def fit_camera(points: Sequence[Sequence[float]], pixels: Sequence[Sequence[float]], width: int, height: int,
                initial: dict[str, Any], fixed: dict[str, float] | None = None,
-               verticals: Sequence | None = None, edges: Sequence | None = None) -> tuple[dict[str, Any], float]:
+               verticals: Sequence | None = None, edges: Sequence | None = None,
+               bounds: dict[str, tuple[float, float]] | None = None) -> tuple[dict[str, Any], float]:
     """Least-squares camera fit; returns the camera and the RMS pixel error.
 
     - points/pixels: known 3D points (local meters) and where they appear.
@@ -76,7 +85,8 @@ def fit_camera(points: Sequence[Sequence[float]], pixels: Sequence[Sequence[floa
             out += [_line_distance(p, a, b) for p in edge["pixels"]]
         return out
 
-    result = least_squares(residuals, [start[name] for name in free], xtol=1e-12, ftol=1e-12)
+    x0, lo, hi = _bounded_start([start[name] for name in free], [(bounds or {}).get(name) for name in free])
+    result = least_squares(residuals, x0, bounds=(lo, hi), xtol=1e-12, ftol=1e-12)
     return _to_camera(values_of(result.x)), math.sqrt(float(np.mean(np.square(result.fun))))
 
 
@@ -101,7 +111,7 @@ def _view_residuals(camera, view, points3d):
     return out
 
 
-def fit_views(views: dict, initial: dict, fixed: dict, point_guess):
+def fit_views(views: dict, initial: dict, fixed: dict, point_guess, bounds: dict | None = None):
     """Bundle adjustment: several photos' cameras and shared unknown 3D points, solved together.
 
     views[name] = {"size": (w, h), "points": [pixel or None per shared point], "verticals", "edges"}
@@ -146,7 +156,9 @@ def fit_views(views: dict, initial: dict, fixed: dict, point_guess):
             out += _view_residuals(cams[name], views[name], pts)
         return out
 
-    result = least_squares(residuals, start, xtol=1e-12, ftol=1e-12, max_nfev=20000)
+    limits = [(bounds or {}).get(name, {}).get(param) for name, param in layout] + [None] * (len(start) - n_cam)
+    x0, lo, hi = _bounded_start(start, limits)
+    result = least_squares(residuals, x0, bounds=(lo, hi), xtol=1e-12, ftol=1e-12, max_nfev=20000)
     cams, pts = unpack(result.x)
     return cams, pts, math.sqrt(float(np.mean(np.square(result.fun))))
 

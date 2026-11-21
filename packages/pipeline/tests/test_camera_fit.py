@@ -87,6 +87,20 @@ class FitTests(unittest.TestCase):
         self.assertAlmostEqual(cameras["high"]["location"][2], 35.0, places=2)
         self.assertAlmostEqual(cameras["street"]["tilt"], 100, places=2)
 
+    def test_bounds_keep_parameters_inside_a_box(self):
+        truth = {"location": (12.0, -30.0, 1.6), "tilt": 98, "bearing": -40, "fov": 55, "shift_px": 0}
+        points = [(-20, 30, 25), (10, 25, 32), (-15, 28, 4), (-40, 10, 24), (5, 20, 3), (15, 22, 2), (0, 35, 40)]
+        pixels = [bg.project_point(truth, p, W, H) for p in points]
+        guess = {"location": (5.0, -20.0, 1.6), "tilt": 95, "bearing": -30, "fov": 50, "shift_px": 0}
+        # A box that excludes the true x: the fit must stop at the bound, not leave it.
+        fitted, _ = camera_fit.fit_camera(points, pixels, W, H, guess, fixed={"shift_px": 0}, bounds={"x": (0.0, 8.0)})
+        self.assertLessEqual(fitted["location"][0], 8.0 + 1e-9)
+        self.assertGreaterEqual(fitted["location"][0], 0.0)
+        # A box containing the truth still recovers it.
+        fitted, rms = camera_fit.fit_camera(points, pixels, W, H, guess, fixed={"shift_px": 0}, bounds={"x": (0.0, 20.0)})
+        self.assertLess(rms, 1e-3)
+        self.assertAlmostEqual(fitted["location"][0], 12.0, places=3)
+
     def test_report_lists_per_point_residuals_and_the_eye_position(self):
         truth = {"location": (0.0, -30.0, 1.6), "tilt": 95, "bearing": 0, "fov": 60, "shift_px": 0}
         origin = [139.70, 35.66]
