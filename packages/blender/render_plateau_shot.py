@@ -56,6 +56,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--lamp-power", type=float, default=1500.0)
     parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
     parser.add_argument("--landmarks", default=None, help="JSON of landmark masses replacing PLATEAU boxes")
+    parser.add_argument("--size", type=int, nargs=2, metavar=("W", "H"), help="override the shot's frame size")
     parser.add_argument("--washes", default=None, help="JSON of facade boxes washed by area lights")
     parser.add_argument("--spill-power", type=float, default=0.0, help="W per m2 of sign light thrown back on walls")
     parser.add_argument("--mullion-glow", type=float, default=0.0, help="emission strength of landmark mullions")
@@ -287,6 +288,8 @@ def main() -> None:
     spec = json.loads(Path(args.shot).read_text())
     project_dir = Path(args.project_dir)
     scene = reset_scene()
+    if args.size:
+        spec["width"], spec["height"] = args.size
     if args.manifest:
         spec["plateauBuildings"]["manifest"] = args.manifest
     origin = list(json.loads((project_dir / spec["plateauBuildings"]["manifest"]).read_text())["center"])
