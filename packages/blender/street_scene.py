@@ -208,7 +208,7 @@ def add_wall_spill(boxes: list[dict], power_per_m2: float = 40.0, reach: float =
         data = bpy.data.lights.new(f"Spill{index:02d}", "AREA")
         data.shape = "RECTANGLE"
         data.size, data.size_y = width, height
-        data.energy = power_per_m2 * width * height
+        data.energy = box.get("powerPerM2", power_per_m2) * width * height
         data.color = box.get("color", (1.0, 0.9, 0.8))
         light = bpy.data.objects.new(f"Spill{index:02d}", data)
         light.location = Vector(box["center"]) + n * reach

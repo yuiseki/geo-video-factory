@@ -56,6 +56,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--lamp-power", type=float, default=1500.0)
     parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
     parser.add_argument("--landmarks", default=None, help="JSON of landmark masses replacing PLATEAU boxes")
+    parser.add_argument("--washes", default=None, help="JSON of facade boxes washed by area lights")
     parser.add_argument("--spill-power", type=float, default=0.0, help="W per m2 of sign light thrown back on walls")
     parser.add_argument("--mullion-glow", type=float, default=0.0, help="emission strength of landmark mullions")
     parser.add_argument("--floodlight-face", default=None, help="picked wall box to line with floodlights")
@@ -300,6 +301,8 @@ def main() -> None:
         for landmark in json.loads(Path(args.landmarks).read_text())["landmarks"]:
             result = landmarks.replace_with_landmark(plateau_objects, landmark, origin, args.mullion_glow)
             bands = 0 if args.buildings_only else landmarks.add_landmark_bands(landmark, result["outline"], project_dir)
+            if not args.buildings_only:
+                bands += landmarks.add_landmark_lights(landmark, result["outline"])
             print(f"[blender-shot] landmark {landmark['name']}: removed {result['removedFaces']} PLATEAU faces, "
                   f"{bands} bands", flush=True)
     if args.pick_signs:
@@ -336,6 +339,9 @@ def main() -> None:
             boxes = json.loads(Path(args.sign_boxes).read_text())["boxes"] if args.sign_boxes else []
             spill = street_scene.sign_spill_boxes(entries, boxes, project_dir)
             print(f"[blender-shot] {street_scene.add_wall_spill(spill, args.spill_power)} sign spill lights", flush=True)
+        if args.washes:
+            washes = json.loads(Path(args.washes).read_text())["boxes"]
+            print(f"[blender-shot] {street_scene.add_wall_spill(washes, reach=6.0)} facade washes", flush=True)
         if args.floodlight_face:
             face = json.loads(Path(args.floodlight_face).read_text())["boxes"][0]
             top = face["center"][2] + face["halfHeight"]
