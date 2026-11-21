@@ -56,6 +56,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--lamp-power", type=float, default=1500.0)
     parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
     parser.add_argument("--landmarks", default=None, help="JSON of landmark masses replacing PLATEAU boxes")
+    parser.add_argument("--spill-power", type=float, default=0.0, help="W per m2 of sign light thrown back on walls")
+    parser.add_argument("--mullion-glow", type=float, default=0.0, help="emission strength of landmark mullions")
     parser.add_argument("--floodlight-face", default=None, help="picked wall box to line with floodlights")
     parser.add_argument("--floodlight-share", type=float, default=0.2, help="floodlight height as share from the top")
     parser.add_argument("--window-strength", type=float, default=1.6)
@@ -296,7 +298,7 @@ def main() -> None:
     cfg = spec["plateauBuildings"]
     if args.landmarks:
         for landmark in json.loads(Path(args.landmarks).read_text())["landmarks"]:
-            result = landmarks.replace_with_landmark(plateau_objects, landmark, origin)
+            result = landmarks.replace_with_landmark(plateau_objects, landmark, origin, args.mullion_glow)
             bands = 0 if args.buildings_only else landmarks.add_landmark_bands(landmark, result["outline"], project_dir)
             print(f"[blender-shot] landmark {landmark['name']}: removed {result['removedFaces']} PLATEAU faces, "
                   f"{bands} bands", flush=True)
@@ -329,6 +331,11 @@ def main() -> None:
         if args.wall_billboards:
             entries = json.loads(Path(args.wall_billboards).read_text())["entries"]
             print(f"[blender-shot] {street_scene.add_wall_billboards(entries, project_dir)} wall billboards", flush=True)
+        if args.spill_power > 0:
+            entries = json.loads(Path(args.wall_billboards).read_text())["entries"] if args.wall_billboards else []
+            boxes = json.loads(Path(args.sign_boxes).read_text())["boxes"] if args.sign_boxes else []
+            spill = street_scene.sign_spill_boxes(entries, boxes, project_dir)
+            print(f"[blender-shot] {street_scene.add_wall_spill(spill, args.spill_power)} sign spill lights", flush=True)
         if args.floodlight_face:
             face = json.loads(Path(args.floodlight_face).read_text())["boxes"][0]
             top = face["center"][2] + face["halfHeight"]

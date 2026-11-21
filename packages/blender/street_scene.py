@@ -182,6 +182,54 @@ def add_wall_billboards(entries: list[dict], project_dir: Path) -> int:
     return len(entries)
 
 
+def _mean_color(image_path: Path) -> tuple[float, float, float]:
+    image = bpy.data.images.load(str(image_path), check_existing=True)
+    probe = image.copy()
+    probe.scale(8, 8)
+    px = list(probe.pixels)
+    bpy.data.images.remove(probe)
+    n = len(px) // 4
+    rgb = [sum(px[i * 4 + c] for i in range(n)) / n for c in range(3)]
+    peak = max(rgb) or 1.0
+    return tuple(c / peak for c in rgb)  # keep hue, normalise brightness
+
+
+def add_wall_spill(boxes: list[dict], power_per_m2: float = 40.0, reach: float = 1.4) -> int:
+    """Light that signs throw back onto the facade around them (and the street below).
+
+    One area light per sign box, `reach` meters in front of it, slightly larger than the sign and
+    aimed at the wall, tinted with the sign's mean colour (`color` in the box, default warm white).
+    """
+    from mathutils import Vector
+
+    for index, box in enumerate(boxes):
+        n = Vector(box["normal"])
+        width, height = 2 * box["halfWidth"] * 1.6, 2 * box["halfHeight"] * 1.6
+        data = bpy.data.lights.new(f"Spill{index:02d}", "AREA")
+        data.shape = "RECTANGLE"
+        data.size, data.size_y = width, height
+        data.energy = power_per_m2 * width * height
+        data.color = box.get("color", (1.0, 0.9, 0.8))
+        light = bpy.data.objects.new(f"Spill{index:02d}", data)
+        light.location = Vector(box["center"]) + n * reach
+        # Area lights shine along local -Z: aim at the wall, keep the rectangle upright.
+        light.rotation_euler = (-n).to_track_quat("-Z", "Y").to_euler()
+        bpy.context.scene.collection.objects.link(light)
+    return len(boxes)
+
+
+def sign_spill_boxes(entries: list[dict], sign_boxes: list[dict], project_dir: Path) -> list[dict]:
+    """Boxes for wall spill: photo signs tinted by their image, other picked signs warm white."""
+    out = []
+    named = {e["name"] for e in entries}
+    for entry in entries:
+        box = dict(entry["box"])
+        box["color"] = _mean_color(project_dir / entry["src"])
+        out.append(box)
+    out.extend(b for b in sign_boxes if b.get("name") not in named)
+    return out
+
+
 def add_facade_floodlights(box: dict, z: float, count: int = 9, power: float = 400.0) -> None:
     """A row of facade floodlights along a wall (as on QFRONT's shoulders), aimed down the wall."""
     from mathutils import Vector

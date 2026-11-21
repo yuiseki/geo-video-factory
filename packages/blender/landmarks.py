@@ -36,7 +36,7 @@ def delete_inside(objects: list, outline_xy: list, margin: float = 1.5) -> int:
     return removed
 
 
-def glass_curtain_material(name: str = "GlassCurtain", mullion_m: float = 1.5) -> bpy.types.Material:
+def glass_curtain_material(name: str = "GlassCurtain", mullion_m: float = 1.1, mullion_glow: float = 0.0) -> bpy.types.Material:
     """Dark reflective glass with light vertical mullions every `mullion_m` meters (UV u = meters)."""
     mat = bpy.data.materials.new(name)
     mat.use_nodes = True
@@ -70,6 +70,14 @@ def glass_curtain_material(name: str = "GlassCurtain", mullion_m: float = 1.5) -
     rough.inputs["To Max"].default_value = 0.45
     links.new(mullion.outputs[0], rough.inputs["Value"])
     links.new(rough.outputs["Result"], bsdf.inputs["Roughness"])
+    if mullion_glow > 0:
+        # Lit fins, as QFRONT's vertical mullions glow at night.
+        glow = nodes.new("ShaderNodeMath")
+        glow.operation = "MULTIPLY"
+        glow.inputs[1].default_value = mullion_glow
+        links.new(mullion.outputs[0], glow.inputs[0])
+        bsdf.inputs["Emission Color"].default_value = (0.9, 0.92, 1.0, 1)
+        links.new(glow.outputs[0], bsdf.inputs["Emission Strength"])
     return mat
 
 
@@ -147,12 +155,12 @@ def add_landmark_bands(landmark: dict, smooth_outline: list, project_dir) -> int
     return len(landmark.get("bands", []))
 
 
-def replace_with_landmark(plateau_objects: list, landmark: dict, origin: list) -> dict:
+def replace_with_landmark(plateau_objects: list, landmark: dict, origin: list, mullion_glow: float = 0.0) -> dict:
     """landmark: {name, outline: [[lng, lat], ...], sharp: [indices], height, samplesPerEdge}."""
     outline = [bg.local_meters(p, origin) for p in landmark["outline"]]
     if math.dist(outline[0], outline[-1]) < 0.01:
         outline = outline[:-1]
     removed = delete_inside(plateau_objects, outline, margin=landmark.get("deleteMargin", 1.5))
     smooth = bg.smooth_closed_outline(outline, landmark.get("samplesPerEdge", 8), set(landmark.get("sharp", [])))
-    obj = extrude_outline(landmark["name"], smooth, landmark["height"], glass_curtain_material(f"{landmark['name']}Glass"))
+    obj = extrude_outline(landmark["name"], smooth, landmark["height"], glass_curtain_material(f"{landmark['name']}Glass", mullion_glow=mullion_glow))
     return {"object": obj, "removedFaces": removed, "outline": smooth}
