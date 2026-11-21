@@ -11,12 +11,27 @@ import math
 
 import bpy
 
+import blender_geo as bg
 
-def add_projector(location, tilt: float, bearing: float) -> bpy.types.Object:
+
+def camera_matrix(location, tilt: float, bearing: float, roll: float = 0.0):
+    """World matrix of a camera (looking down local -Z) from tilt, bearing and roll in degrees."""
+    from mathutils import Matrix
+
+    right, up, back = bg.camera_rotation_columns(tilt, bearing, roll)
+    return Matrix((
+        (right[0], up[0], back[0], location[0]),
+        (right[1], up[1], back[1], location[1]),
+        (right[2], up[2], back[2], location[2]),
+        (0.0, 0.0, 0.0, 1.0),
+    ))
+
+
+def add_projector(location, tilt: float, bearing: float, roll: float = 0.0) -> bpy.types.Object:
     empty = bpy.data.objects.new("PhotoProjector", None)
-    empty.location = location
-    empty.rotation_euler = (math.radians(tilt), 0.0, -math.radians(bearing))
+    empty.matrix_world = camera_matrix(location, tilt, bearing, roll)
     bpy.context.scene.collection.objects.link(empty)
+    bpy.context.view_layer.update()
     return empty
 
 

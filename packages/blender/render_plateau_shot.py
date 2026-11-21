@@ -70,6 +70,8 @@ def parse_args() -> argparse.Namespace:
     anim = parser.add_argument_group("short camera move")
     anim.add_argument("--frames", type=int, default=1)
     anim.add_argument("--dolly-m", type=float, default=0.0, help="move forward this far over the frames")
+    anim.add_argument("--pan-deg", type=float, default=0.0, help="look around in place: sweep bearing +/- this")
+    anim.add_argument("--zoom-to-fov", type=float, default=None, help="ease the vertical fov to this by the end")
     parser.add_argument("--crosswalks", default=None, help="JSON of crosswalk walking lines and widths")
     parser.add_argument("--size", type=int, nargs=2, metavar=("W", "H"), help="override the shot's frame size")
     parser.add_argument("--washes", default=None, help="JSON of facade boxes washed by area lights")
@@ -93,6 +95,7 @@ def parse_args() -> argparse.Namespace:
     eye.add_argument("--bearing", type=float, default=0.0)
     eye.add_argument("--tilt", type=float, default=90.0, help="0 looks down, 90 looks at the horizon")
     eye.add_argument("--fov", type=float, default=None, help="vertical field of view in degrees")
+    eye.add_argument("--roll", type=float, default=0.0, help="camera roll about the view axis in degrees")
     eye.add_argument("--fisheye-mm", type=float, default=None,
                      help="equisolid fisheye focal length on a 36 mm wide sensor (Cycles only)")
     eye.add_argument("--shift-px", type=float, default=0.0, help="vertical lens shift; positive lowers the horizon")
@@ -158,6 +161,8 @@ def setup_camera(scene: bpy.types.Scene, spec: dict, origin: list[float], args: 
     scene.collection.objects.link(obj)
     obj.location = cam["location"]
     obj.rotation_euler = cam["rotation_euler"]
+    if args.eye and args.roll:
+        obj.matrix_world = photo_projection.camera_matrix(cam["location"], args.tilt, args.bearing, args.roll)
     scene.camera = obj
     return obj
 
@@ -402,7 +407,7 @@ def main() -> None:
     if args.project_photo:
         fit = json.loads(Path(args.projector).read_text())["fit"]
         px, py = bg.local_meters(fit["eye"], origin)
-        projector = photo_projection.add_projector((px, py, fit["eye"][2]), fit["tilt"], fit["bearing"])
+        projector = photo_projection.add_projector((px, py, fit["eye"][2]), fit["tilt"], fit["bearing"], fit.get("roll", 0.0))
         targets = list(plateau_objects)
         if args.project_ground:
             # The cleaned photo carries the road too: project it onto the ground as well.
@@ -418,7 +423,21 @@ def main() -> None:
         scene.view_settings.look = "None"
     scene.view_settings.exposure = args.exposure
     setup_bloom(scene, args.bloom)
-    if args.frames > 1:
+    if args.frames > 1 and (args.pan_deg or args.zoom_to_fov):
+        # Look around in place: no parallax, so a projected photo stays intact. Eased sweep
+        # bearing - pan .. bearing + pan, field of view easing to `zoom_to_fov`.
+        camera.rotation_mode = "QUATERNION"
+        fov0 = math.degrees(camera.data.angle_y)
+        location = tuple(camera.location)
+        for frame in range(1, args.frames + 1):
+            t = (frame - 1) / max(1, args.frames - 1)
+            ease = 0.5 - 0.5 * math.cos(math.pi * t)
+            bearing = args.bearing + args.pan_deg * (2 * ease - 1)
+            camera.matrix_world = photo_projection.camera_matrix(location, args.tilt, bearing, args.roll)
+            camera.keyframe_insert("rotation_quaternion", frame=frame)
+            camera.data.angle_y = math.radians(fov0 + ((args.zoom_to_fov or fov0) - fov0) * ease)
+            camera.data.keyframe_insert("lens", frame=frame)
+    elif args.frames > 1:
         # Dolly forward along the view's horizontal heading.
         heading = -camera.rotation_euler.z
         start = camera.location.copy()
@@ -426,6 +445,7 @@ def main() -> None:
         camera.location.x = start.x + math.sin(heading) * args.dolly_m
         camera.location.y = start.y + math.cos(heading) * args.dolly_m
         camera.keyframe_insert("location", frame=args.frames)  # default Bezier easing
+    if args.frames > 1:
         scene.frame_start, scene.frame_end = 1, args.frames
         scene.render.fps = spec.get("fps", 24)
         scene.render.filepath = args.out.rsplit(".", 1)[0] + "_"
