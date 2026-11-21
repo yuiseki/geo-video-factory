@@ -23,6 +23,7 @@ from mathutils import Matrix
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pipeline"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import blender_geo as bg  # noqa: E402
+import landmarks  # noqa: E402
 import night_buildings  # noqa: E402
 import street_scene  # noqa: E402
 
@@ -54,6 +55,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--signal-poles", default=None, help="JSON from pipeline/street_lights.py")
     parser.add_argument("--lamp-power", type=float, default=1500.0)
     parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
+    parser.add_argument("--landmarks", default=None, help="JSON of landmark masses replacing PLATEAU boxes")
     parser.add_argument("--floodlight-face", default=None, help="picked wall box to line with floodlights")
     parser.add_argument("--floodlight-share", type=float, default=0.2, help="floodlight height as share from the top")
     parser.add_argument("--window-strength", type=float, default=1.6)
@@ -211,6 +213,19 @@ def pick_signs(scene: bpy.types.Scene, spec: dict, args: argparse.Namespace, ori
     center_blender = blender_ray(width / 2 - 0.5, height / 2 - 0.5)[1]
     print(f"[blender-shot] centre ray mine {tuple(round(c, 4) for c in center_mine)} "
           f"blender {tuple(round(c, 4) for c in center_blender)}", flush=True)
+    profiles = []
+    for profile in picks.get("profiles", []):
+        v, u_start, u_end, step = profile["row"]
+        hits = []
+        u = u_start
+        while u <= u_end:
+            ray_origin, direction = blender_ray(u, v)
+            ok, location, normal, _index, obj, _matrix = scene.ray_cast(depsgraph, ray_origin, direction)
+            if ok:
+                hits.append({"u": u, "point": list(location), "normal": list(normal), "object": obj.name})
+            u += step
+        profiles.append({"name": profile["name"], "hits": hits})
+        print(f"[blender-shot] profile {profile['name']}: {len(hits)} hits", flush=True)
     for sign in picks["signs"]:
         u0, v0, u1, v1 = sign["rect"]
         samples = []
@@ -235,7 +250,7 @@ def pick_signs(scene: bpy.types.Scene, spec: dict, args: argparse.Namespace, ori
         boxes.append(box)
         print(f"[blender-shot] pick {sign['name']}: {2 * box['halfWidth']:.1f} x {2 * box['halfHeight']:.1f} m "
               f"at z {box['center'][2]:.1f} ({box['samples']} samples on one wall)", flush=True)
-    Path(args.pick_out).write_text(json.dumps({"origin": origin, "boxes": boxes}, indent=1))
+    Path(args.pick_out).write_text(json.dumps({"origin": origin, "boxes": boxes, "profiles": profiles}, indent=1))
 
 
 def apply_clay(scene: bpy.types.Scene, plateau_objects: list) -> None:
@@ -279,6 +294,10 @@ def main() -> None:
     plateau_objects = [obj for obj in bpy.data.objects if obj not in before]
     print(f"[blender-shot] imported {tiles} tiles in {time.time() - started:.1f}s", flush=True)
     cfg = spec["plateauBuildings"]
+    if args.landmarks:
+        for landmark in json.loads(Path(args.landmarks).read_text())["landmarks"]:
+            result = landmarks.replace_with_landmark(plateau_objects, landmark, origin)
+            print(f"[blender-shot] landmark {landmark['name']}: removed {result['removedFaces']} PLATEAU faces", flush=True)
     if args.pick_signs:
         pick_signs(scene, spec, args, origin)
         return

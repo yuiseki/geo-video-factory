@@ -79,5 +79,30 @@ class SignBoxTests(unittest.TestCase):
         self.assertAlmostEqual(box["halfHeight"], 1.5)
 
 
+class OutlineTests(unittest.TestCase):
+    def test_smooth_outline_passes_through_the_original_vertices(self):
+        square = [(0, 0), (10, 0), (10, 10), (0, 10)]
+        smooth = bg.smooth_closed_outline(square, samples_per_edge=4)
+        self.assertEqual(len(smooth), 16)
+        for i, p in enumerate(square):
+            self.assertAlmostEqual(smooth[i * 4][0], p[0])
+            self.assertAlmostEqual(smooth[i * 4][1], p[1])
+        # Between corners the curve bulges outward (Catmull-Rom), so the edge midpoint is outside the square.
+        mid = smooth[2]
+        self.assertLess(mid[1], 0)
+
+    def test_smooth_outline_keeps_marked_corners_sharp(self):
+        square = [(0, 0), (10, 0), (10, 10), (0, 10)]
+        smooth = bg.smooth_closed_outline(square, samples_per_edge=4, sharp={0, 1, 2, 3})
+        self.assertAlmostEqual(smooth[2][1], 0)  # straight edge when both ends are sharp
+        self.assertAlmostEqual(smooth[2][0], 5)
+
+    def test_point_in_polygon(self):
+        square = [(0, 0), (10, 0), (10, 10), (0, 10)]
+        self.assertTrue(bg.point_in_polygon((5, 5), square))
+        self.assertFalse(bg.point_in_polygon((11, 5), square))
+        self.assertTrue(bg.point_in_polygon((10.5, 5), square, margin=1.0))
+
+
 if __name__ == "__main__":
     unittest.main()

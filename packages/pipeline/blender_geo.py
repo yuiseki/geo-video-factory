@@ -239,3 +239,50 @@ def inside_sign_box(box: dict[str, Any], point: Sequence[float]) -> bool:
     a = sum(d[i] * box["axisU"][i] for i in range(3))
     c = sum(d[i] * box["normal"][i] for i in range(3))
     return abs(a) <= box["halfWidth"] and abs(d[2]) <= box["halfHeight"] and abs(c) <= box["halfDepth"]
+
+
+def smooth_closed_outline(points, samples_per_edge: int = 6, sharp: set[int] | None = None):
+    """Closed Catmull-Rom curve through `points`; edges touching two `sharp` vertices stay straight.
+
+    Returns `len(points) * samples_per_edge` points; sample `i * samples_per_edge` is vertex `i`.
+    """
+    sharp = sharp or set()
+    n = len(points)
+    out = []
+    for i in range(n):
+        p0, p1, p2, p3 = (points[(i + k) % n] for k in (-1, 0, 1, 2))
+        straight = i in sharp and (i + 1) % n in sharp
+        # A sharp endpoint uses itself as its tangent neighbour, so the curve leaves it straight.
+        if i in sharp:
+            p0 = p1
+        if (i + 1) % n in sharp:
+            p3 = p2
+        for s in range(samples_per_edge):
+            t = s / samples_per_edge
+            if straight:
+                out.append((p1[0] + (p2[0] - p1[0]) * t, p1[1] + (p2[1] - p1[1]) * t))
+                continue
+            t2, t3 = t * t, t * t * t
+            out.append(tuple(
+                0.5 * ((2 * p1[k]) + (-p0[k] + p2[k]) * t + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t2
+                       + (-p0[k] + 3 * p1[k] - 3 * p2[k] + p3[k]) * t3)
+                for k in range(2)))
+    return out
+
+
+def point_in_polygon(point, polygon, margin: float = 0.0) -> bool:
+    """Even-odd test; with `margin`, points within that distance of an edge count as inside."""
+    x, y = point
+    inside = False
+    n = len(polygon)
+    for i in range(n):
+        (x1, y1), (x2, y2) = polygon[i], polygon[(i + 1) % n]
+        if (y1 > y) != (y2 > y) and x < x1 + (y - y1) * (x2 - x1) / (y2 - y1):
+            inside = not inside
+        if margin > 0:
+            dx, dy = x2 - x1, y2 - y1
+            length2 = dx * dx + dy * dy or 1e-12
+            t = max(0.0, min(1.0, ((x - x1) * dx + (y - y1) * dy) / length2))
+            if math.hypot(x - (x1 + dx * t), y - (y1 + dy * t)) <= margin:
+                return True
+    return inside
