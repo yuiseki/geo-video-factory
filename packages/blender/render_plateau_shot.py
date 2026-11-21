@@ -23,6 +23,7 @@ from mathutils import Matrix
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pipeline"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import blender_geo as bg  # noqa: E402
+import night_buildings  # noqa: E402
 import street_scene  # noqa: E402
 
 GLB_CACHE = Path(tempfile.mkdtemp(prefix="blender-shot-glb-"))
@@ -43,6 +44,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--clay", action="store_true", help="diagnostic: grey buildings in daylight")
     parser.add_argument("--no-dressing", action="store_true", help="skip billboards and street props")
     parser.add_argument("--daylight", action="store_true", help="diagnostic: textured buildings in daylight")
+    parser.add_argument("--night-buildings", action="store_true", help="dim photo textures, light windows and storefronts")
+    parser.add_argument("--window-share", type=float, default=0.0, help="share of lit floors; 0 = no windows")
+    parser.add_argument("--night-dim", type=float, default=0.10, help="multiplier on the daylight photo texture")
+    parser.add_argument("--window-strength", type=float, default=1.6)
+    parser.add_argument("--storefront-strength", type=float, default=2.5)
     parser.add_argument("--manifest", default=None, help="override plateauBuildings.manifest (project-relative)")
     parser.add_argument("--ground-src", default=None, help="diagnostic: replace the ground image (project-relative)")
     parser.add_argument("--ground-bbox", type=float, nargs=4, metavar=("W", "S", "E", "N"))
@@ -239,6 +245,12 @@ def main() -> None:
         apply_clay(scene, plateau_objects)
     elif args.daylight:
         apply_daylight(scene)
+    elif args.night_buildings:
+        changed = night_buildings.apply_night(
+            plateau_objects, dim=args.night_dim, window_share=args.window_share, window_strength=args.window_strength,
+            storefront_strength=args.storefront_strength,
+        )
+        print(f"[blender-shot] night materials on {changed} PLATEAU materials", flush=True)
     setup_render(scene, spec, args.engine, args.samples, args.out)
     scene.view_settings.exposure = args.exposure
     setup_bloom(scene, args.bloom)
