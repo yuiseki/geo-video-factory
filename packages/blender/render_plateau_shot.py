@@ -297,7 +297,9 @@ def main() -> None:
     if args.landmarks:
         for landmark in json.loads(Path(args.landmarks).read_text())["landmarks"]:
             result = landmarks.replace_with_landmark(plateau_objects, landmark, origin)
-            print(f"[blender-shot] landmark {landmark['name']}: removed {result['removedFaces']} PLATEAU faces", flush=True)
+            bands = 0 if args.buildings_only else landmarks.add_landmark_bands(landmark, result["outline"], project_dir)
+            print(f"[blender-shot] landmark {landmark['name']}: removed {result['removedFaces']} PLATEAU faces, "
+                  f"{bands} bands", flush=True)
     if args.pick_signs:
         pick_signs(scene, spec, args, origin)
         return

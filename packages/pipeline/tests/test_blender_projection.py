@@ -79,6 +79,33 @@ class SignBoxTests(unittest.TestCase):
         self.assertAlmostEqual(box["halfHeight"], 1.5)
 
 
+class BandTests(unittest.TestCase):
+    def test_vertex_arcs_accumulate_edge_lengths(self):
+        square = [(0, 0), (10, 0), (10, 10), (0, 10)]
+        self.assertEqual(bg.outline_vertex_arcs(square), [0, 10, 20, 30])
+
+    def test_band_on_one_edge_of_a_counter_clockwise_outline(self):
+        square = [(0, 0), (10, 0), (10, 10), (0, 10)]  # CCW; the y=0 edge faces -y
+        band = bg.outline_band(square, s0=2, s1=8, offset=0.5)
+        xs = [p[0] for p, _u in band]
+        self.assertAlmostEqual(xs[0], 2)
+        self.assertAlmostEqual(xs[-1], 8)
+        for (x, y), _u in band:
+            self.assertAlmostEqual(y, -0.5)  # pushed outward
+        # A viewer outside (y < 0) looking at the wall sees u grow to the right (+x).
+        self.assertAlmostEqual(band[0][1], 0)
+        self.assertAlmostEqual(band[-1][1], 1)
+
+    def test_band_reverses_u_on_a_clockwise_outline_and_wraps_corners(self):
+        square_cw = [(0, 0), (0, 10), (10, 10), (10, 0)]  # CW
+        band = bg.outline_band(square_cw, s0=25, s1=35, offset=0.0)  # crosses the (10,0) corner
+        points = [p for p, _u in band]
+        self.assertIn((10.0, 0.0), [(round(x, 6), round(y, 6)) for x, y in points])
+        # On the -y face (from (10,0) toward (0,0)) a viewer outside sees +x on the right, so u falls along the arc.
+        self.assertAlmostEqual(band[0][1], 1)
+        self.assertAlmostEqual(band[-1][1], 0)
+
+
 class OutlineTests(unittest.TestCase):
     def test_smooth_outline_passes_through_the_original_vertices(self):
         square = [(0, 0), (10, 0), (10, 10), (0, 10)]

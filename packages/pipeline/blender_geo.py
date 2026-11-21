@@ -286,3 +286,65 @@ def point_in_polygon(point, polygon, margin: float = 0.0) -> bool:
             if math.hypot(x - (x1 + dx * t), y - (y1 + dy * t)) <= margin:
                 return True
     return inside
+
+
+def outline_vertex_arcs(outline) -> list[float]:
+    """Arc length from vertex 0 to each vertex along a closed outline."""
+    arcs, total = [], 0.0
+    for i in range(len(outline)):
+        arcs.append(total)
+        total += math.dist(outline[i], outline[(i + 1) % len(outline)])
+    return arcs
+
+
+def _signed_area(outline) -> float:
+    return 0.5 * sum(outline[i][0] * outline[(i + 1) % len(outline)][1] - outline[(i + 1) % len(outline)][0] * outline[i][1]
+                     for i in range(len(outline)))
+
+
+def outline_band(outline, s0: float, s1: float, offset: float = 0.1):
+    """Points ((x, y), u) of a strip along a closed outline between arc lengths s0 < s1.
+
+    Points sit `offset` meters outside the wall; `u` runs 0 -> 1 from the left to the right of a
+    viewer standing outside, so an image laid on the strip reads correctly.
+    """
+    n = len(outline)
+    arcs = outline_vertex_arcs(outline)
+    total = arcs[-1] + math.dist(outline[-1], outline[0])
+    ccw = _signed_area(outline) > 0
+
+    def edge_normal(i: int):
+        (x1, y1), (x2, y2) = outline[i % n], outline[(i + 1) % n]
+        dx, dy = x2 - x1, y2 - y1
+        length = math.hypot(dx, dy) or 1.0
+        return (dy / length, -dx / length) if ccw else (-dy / length, dx / length)
+
+    def at(s: float, vertex: int | None = None):
+        s %= total
+        i = max(k for k in range(n) if arcs[k] <= s + 1e-9)
+        if vertex is not None:
+            a, b = edge_normal(vertex - 1), edge_normal(vertex)
+            nx, ny = a[0] + b[0], a[1] + b[1]
+            length = math.hypot(nx, ny) or 1.0
+            nx, ny = nx / length, ny / length
+            x, y = outline[vertex % n]
+        else:
+            length = math.dist(outline[i], outline[(i + 1) % n]) or 1.0
+            t = (s - arcs[i]) / length
+            (x1, y1), (x2, y2) = outline[i], outline[(i + 1) % n]
+            x, y = x1 + (x2 - x1) * t, y1 + (y2 - y1) * t
+            nx, ny = edge_normal(i)
+        return (x + nx * offset, y + ny * offset)
+
+    stops = [(s0, None)]
+    for k in range(2 * n):  # vertices inside (s0, s1), allowing the range to wrap once
+        s = arcs[k % n] + (total if k >= n else 0.0)
+        if s0 + 1e-9 < s < s1 - 1e-9:
+            stops.append((s, k % n))
+    stops.append((s1, None))
+    stops.sort(key=lambda item: item[0])
+    out = []
+    for s, vertex in stops:
+        u = (s - s0) / (s1 - s0)
+        out.append((at(s, vertex), u if ccw else 1.0 - u))
+    return out
