@@ -45,6 +45,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--exposure", type=float, default=0.0)
     parser.add_argument("--sky-strength", type=float, default=0.6)
     parser.add_argument("--bloom", type=float, default=0.6, help="compositor glare strength, 0 disables")
+    eye = parser.add_argument_group("street-level camera (overrides the shot's MapLibre keys)")
+    eye.add_argument("--eye", type=float, nargs=3, metavar=("LNG", "LAT", "HEIGHT_M"))
+    eye.add_argument("--bearing", type=float, default=0.0)
+    eye.add_argument("--tilt", type=float, default=90.0, help="0 looks down, 90 looks at the horizon")
+    eye.add_argument("--fov", type=float, default=None, help="vertical field of view in degrees")
+    eye.add_argument("--shift-px", type=float, default=0.0, help="vertical lens shift; positive lowers the horizon")
     return parser.parse_args(argv)
 
 
@@ -78,16 +84,21 @@ def import_plateau(spec: dict, project_dir: Path, origin: list[float], camera_xy
     return count
 
 
-def setup_camera(scene: bpy.types.Scene, spec: dict, origin: list[float], t: float) -> bpy.types.Object:
-    shot = spec["shots"][0]
-    key = bg.interpolate_keys(shot["keys"], t)
-    cam = bg.maplibre_camera(
-        center=key["center"], zoom=key["zoom"], pitch=key["pitch"], bearing=key["bearing"],
-        fov=spec.get("fov", 36.87), height_px=spec["height"], origin=origin,
-    )
+def setup_camera(scene: bpy.types.Scene, spec: dict, origin: list[float], args: argparse.Namespace) -> bpy.types.Object:
+    fov = args.fov if args.fov is not None else spec.get("fov", 36.87)
+    if args.eye:
+        cam = bg.eye_camera(args.eye, bearing=args.bearing, tilt=args.tilt, fov=fov, origin=origin)
+    else:
+        key = bg.interpolate_keys(spec["shots"][0]["keys"], args.t)
+        cam = bg.maplibre_camera(
+            center=key["center"], zoom=key["zoom"], pitch=key["pitch"], bearing=key["bearing"],
+            fov=fov, height_px=spec["height"], origin=origin,
+        )
     data = bpy.data.cameras.new("ShotCamera")
     data.sensor_fit = "VERTICAL"
     data.angle_y = cam["fov_vertical"]
+    # Blender's shift is a fraction of the larger frame side; positive moves the frame up.
+    data.shift_y = args.shift_px / max(spec["width"], spec["height"])
     data.clip_start = 0.1
     data.clip_end = 5000
     obj = bpy.data.objects.new("ShotCamera", data)
@@ -159,7 +170,7 @@ def main() -> None:
     project_dir = Path(args.project_dir)
     scene = reset_scene()
     origin = list(json.loads((project_dir / spec["plateauBuildings"]["manifest"]).read_text())["center"])
-    camera = setup_camera(scene, spec, origin, args.t)
+    camera = setup_camera(scene, spec, origin, args)
     started = time.time()
     tiles = import_plateau(spec, project_dir, origin, (camera.location.x, camera.location.y), args.radius)
     print(f"[blender-shot] imported {tiles} tiles in {time.time() - started:.1f}s", flush=True)
@@ -171,8 +182,9 @@ def main() -> None:
         street_scene.add_ground(cfg, project_dir, origin)
         if args.ground_fill > 0:
             # Soft overhead "street light" fill so the crosswalk paint reads, like a long exposure.
-            target = bg.interpolate_keys(spec["shots"][0]["keys"], args.t)["center"]
-            tx, ty = bg.local_meters(target, origin)
+            heading = -camera.rotation_euler.z  # bearing in radians
+            tx = camera.location.x + math.sin(heading) * 20
+            ty = camera.location.y + math.cos(heading) * 20
             data = bpy.data.lights.new("GroundFill", "AREA")
             data.size = 60
             data.energy = args.ground_fill

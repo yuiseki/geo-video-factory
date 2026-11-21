@@ -143,3 +143,41 @@ def strict_glb(payload: bytes) -> bytes:
     raw += b" " * ((-len(raw)) % 4)
     rest = payload[20 + length:]
     return struct.pack("<4sII", b"glTF", 2, 20 + len(raw) + len(rest)) + struct.pack("<I4s", len(raw), b"JSON") + raw + rest
+
+
+def eye_camera(eye: Sequence[float], bearing: float, tilt: float, fov: float, origin: Sequence[float]) -> dict[str, Any]:
+    """Blender camera at an eye position `[lng, lat, heightM]` (street-level shots).
+
+    `tilt` follows MapLibre's pitch: 0 looks straight down, 90 looks at the horizon.
+    """
+    x, y = local_meters(eye, origin)
+    return {
+        "location": (x, y, float(eye[2])),
+        "rotation_euler": (math.radians(tilt), 0.0, -math.radians(bearing)),
+        "fov_vertical": math.radians(fov),
+    }
+
+
+def _camera_axes(tilt: float, bearing: float):
+    rx, rz = math.radians(tilt), -math.radians(bearing)
+    cz, sz = math.cos(rz), math.sin(rz)
+
+    def rot(x: float, y: float, z: float) -> tuple[float, float, float]:
+        return (x * cz - y * sz, x * sz + y * cz, z)
+
+    right = rot(1.0, 0.0, 0.0)
+    up = rot(0.0, math.cos(rx), math.sin(rx))
+    forward = rot(0.0, math.sin(rx), -math.cos(rx))
+    return right, up, forward
+
+
+def project_point(camera: dict[str, Any], point: Sequence[float], width: int, height: int) -> tuple[float, float]:
+    """Pixel (u right, v down) of a local-meter point for a camera with location, tilt, bearing,
+    vertical fov (deg) and a vertical lens shift in pixels (positive moves the scene down)."""
+    right, up, forward = _camera_axes(camera["tilt"], camera["bearing"])
+    d = [point[i] - camera["location"][i] for i in range(3)]
+    xc = sum(d[i] * right[i] for i in range(3))
+    yc = sum(d[i] * up[i] for i in range(3))
+    zc = sum(d[i] * forward[i] for i in range(3))
+    focal = (height / 2) / math.tan(math.radians(camera["fov"]) / 2)
+    return (width / 2 + focal * xc / zc, height / 2 - focal * yc / zc + camera.get("shift_px", 0.0))
