@@ -19,21 +19,37 @@ from scipy.optimize import least_squares
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import blender_geo as bg  # noqa: E402
 
-PARAMS = ("x", "y", "z", "tilt", "bearing", "fov", "shift_px")
+PARAMS = ("x", "y", "z", "tilt", "bearing", "fov", "shift_px", "roll")
 
 
 def _to_camera(values: dict[str, float]) -> dict[str, Any]:
     return {"location": (values["x"], values["y"], values["z"]), "tilt": values["tilt"],
-            "bearing": values["bearing"], "fov": values["fov"], "shift_px": values["shift_px"]}
+            "bearing": values["bearing"], "fov": values["fov"], "shift_px": values["shift_px"],
+            "roll": values["roll"]}
+
+
+def _line_distance(p, a, b) -> float:
+    """Signed pixel distance of p from the infinite image line through a and b."""
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    return ((p[0] - a[0]) * dy - (p[1] - a[1]) * dx) / math.hypot(dx, dy)
 
 
 def fit_camera(points: Sequence[Sequence[float]], pixels: Sequence[Sequence[float]], width: int, height: int,
-               initial: dict[str, Any], fixed: dict[str, float] | None = None) -> tuple[dict[str, Any], float]:
-    """Least-squares camera fit; returns the camera and the RMS pixel error."""
+               initial: dict[str, Any], fixed: dict[str, float] | None = None,
+               verticals: Sequence | None = None, edges: Sequence | None = None) -> tuple[dict[str, Any], float]:
+    """Least-squares camera fit; returns the camera and the RMS pixel error.
+
+    - points/pixels: known 3D points (local meters) and where they appear.
+    - verticals: image segments [(u, v), (u, v)] of lines that are vertical in the world (building
+      edges, sign sides); they fix tilt and roll.
+    - edges: {"xy": (x, y), "pixels": [(u, v), (u, v)]} — a vertical building edge at a known plan
+      position (e.g. a footprint corner) seen as an image segment; it fixes bearing and position.
+    Line terms are pixel distances, so every term is in pixels.
+    """
     fixed = dict(fixed or {})
     start = {"x": initial["location"][0], "y": initial["location"][1], "z": initial["location"][2],
              "tilt": initial["tilt"], "bearing": initial["bearing"], "fov": initial["fov"],
-             "shift_px": initial.get("shift_px", 0.0)}
+             "shift_px": initial.get("shift_px", 0.0), "roll": initial.get("roll", 0.0)}
     free = [name for name in PARAMS if name not in fixed]
 
     def values_of(vector) -> dict[str, float]:
@@ -47,6 +63,17 @@ def fit_camera(points: Sequence[Sequence[float]], pixels: Sequence[Sequence[floa
         for point, pixel in zip(points, pixels):
             u, v = bg.project_point(camera, point, width, height)
             out += [u - pixel[0], v - pixel[1]]
+        for a, b in verticals or []:
+            # The world vertical through a's ray (at the depth where it meets a far vertical) must pass b.
+            origin, direction = bg.pixel_ray(camera, a[0], a[1], width, height)
+            foot = [origin[i] + direction[i] * 50.0 for i in range(3)]
+            top = bg.project_point(camera, (foot[0], foot[1], foot[2] + 10.0), width, height)
+            out.append(_line_distance(b, a, top))
+        for edge in edges or []:
+            x, y = edge["xy"]
+            a = bg.project_point(camera, (x, y, 0.0), width, height)
+            b = bg.project_point(camera, (x, y, 60.0), width, height)
+            out += [_line_distance(p, a, b) for p in edge["pixels"]]
         return out
 
     result = least_squares(residuals, [start[name] for name in free], xtol=1e-12, ftol=1e-12)
@@ -60,12 +87,20 @@ def report(spec: dict[str, Any]) -> dict[str, Any]:
         x, y = bg.local_meters(item["lngLat"], origin)
         points.append((x, y, item["altitudeM"]))
         pixels.append(item["pixel"])
-    camera, rms = fit_camera(points, pixels, spec["width"], spec["height"], spec["initial"], spec.get("fixed"))
+    edges = [{"xy": bg.local_meters(e["lngLat"], origin), "pixels": e["pixels"]} for e in spec.get("edges", [])]
+    camera, rms = fit_camera(points, pixels, spec["width"], spec["height"], spec["initial"], spec.get("fixed"),
+                             verticals=spec.get("verticals"), edges=edges)
     lng = origin[0] + camera["location"][0] / (111_320 * math.cos(math.radians(origin[1])))
     lat = origin[1] + camera["location"][1] / 110_950
+    edge_errors = {}
+    for e, local in zip(spec.get("edges", []), edges):
+        a = bg.project_point(camera, (*local["xy"], 0.0), spec["width"], spec["height"])
+        b = bg.project_point(camera, (*local["xy"], 60.0), spec["width"], spec["height"])
+        edge_errors[e.get("name", str(e["lngLat"]))] = [round(_line_distance(p, a, b), 1) for p in e["pixels"]]
     return {
         "rmsPx": rms, "eye": [lng, lat, camera["location"][2]], "bearing": camera["bearing"],
-        "tilt": camera["tilt"], "fov": camera["fov"], "shiftPx": camera["shift_px"],
+        "tilt": camera["tilt"], "fov": camera["fov"], "shiftPx": camera["shift_px"], "roll": camera["roll"],
+        "edgeResidualsPx": edge_errors,
         "residualsPx": {item["name"]: [round(a - b, 1) for a, b in
                                        zip(bg.project_point(camera, p, spec["width"], spec["height"]), item["pixel"])]
                         for item, p in zip(spec["points"], points)},

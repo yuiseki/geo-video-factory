@@ -55,6 +55,35 @@ class ProjectionTests(unittest.TestCase):
             self.assertAlmostEqual(direction[i], to_point[i] / length, places=9)
 
 
+class RollTests(unittest.TestCase):
+    def test_roll_turns_the_image_around_its_centre(self):
+        base = {"location": (0, 0, 1.6), "tilt": 90, "bearing": 0, "fov": 60, "shift_px": 0}
+        rolled = dict(base, roll=90)
+        point = (5, 50, 1.6)  # to the right of the view centre
+        u0, v0 = bg.project_point(base, point, W, H)
+        u1, v1 = bg.project_point(rolled, point, W, H)
+        self.assertAlmostEqual(v0, H / 2, places=6)
+        self.assertAlmostEqual(u1, W / 2, places=6)  # with the camera rolled 90 deg it is straight above/below
+        self.assertAlmostEqual(abs(v1 - H / 2), u0 - W / 2, places=6)
+        self.assertAlmostEqual(bg.project_point(rolled, (0, 50, 1.6), W, H)[0], W / 2, places=6)
+
+    def test_pixel_ray_inverts_projection_with_roll(self):
+        camera = {"location": (3.0, -4.0, 1.6), "tilt": 103, "bearing": -25, "fov": 64, "shift_px": 0, "roll": 4.0}
+        point = (-12.0, 30.0, 18.0)
+        u, v = bg.project_point(camera, point, W, H)
+        origin, direction = bg.pixel_ray(camera, u, v, W, H)
+        to_point = [point[i] - origin[i] for i in range(3)]
+        n = math.sqrt(sum(c * c for c in to_point))
+        for i in range(3):
+            self.assertAlmostEqual(direction[i], to_point[i] / n, places=9)
+
+    def test_rotation_columns_are_blender_camera_axes(self):
+        right, up, back = bg.camera_rotation_columns(tilt=90, bearing=0, roll=0)
+        self.assertEqual([round(c, 9) for c in right], [1, 0, 0])
+        self.assertEqual([round(c, 9) for c in up], [0, 0, 1])
+        self.assertEqual([round(c, 9) for c in back], [0, -1, 0])  # Blender cameras look down local -Z
+
+
 class SignBoxTests(unittest.TestCase):
     def test_box_from_four_wall_points(self):
         # A 6 m x 3 m sign on a wall facing south (normal -Y), bottom at 10 m.

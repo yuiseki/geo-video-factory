@@ -24,6 +24,30 @@ class FitTests(unittest.TestCase):
         self.assertAlmostEqual(fitted["tilt"], 98, places=3)
         self.assertAlmostEqual(fitted["fov"], 55, places=3)
 
+    def test_vertical_lines_and_known_edges_recover_tilt_roll_and_bearing(self):
+        truth = {"location": (4.0, -45.0, 1.6), "tilt": 104, "bearing": -12, "fov": 62, "shift_px": 0, "roll": 2.5}
+        # Two noisy-free sign centres only (too few on their own), plus verticals and two known building edges.
+        points = [(-20, 30, 25), (10, 25, 32)]
+        pixels = [bg.project_point(truth, p, W, H) for p in points]
+        verticals = []
+        for x, y in ((-30, 20), (-10, 28), (15, 22), (25, 35)):
+            a = bg.project_point(truth, (x, y, 5), W, H)
+            b = bg.project_point(truth, (x, y, 30), W, H)
+            verticals.append([a, b])
+        edges = []
+        for x, y in ((-5, 10), (12, 8)):
+            edges.append({"xy": (x, y), "pixels": [bg.project_point(truth, (x, y, 8), W, H),
+                                                   bg.project_point(truth, (x, y, 40), W, H)]})
+        guess = {"location": (0.0, -35.0, 1.6), "tilt": 98, "bearing": 0, "fov": 55, "shift_px": 0, "roll": 0}
+        fitted, rms = camera_fit.fit_camera(points, pixels, W, H, guess, fixed={"shift_px": 0, "z": 1.6},
+                                            verticals=verticals, edges=edges)
+        self.assertLess(rms, 1e-3)
+        self.assertAlmostEqual(fitted["roll"], 2.5, places=3)
+        self.assertAlmostEqual(fitted["tilt"], 104, places=3)
+        self.assertAlmostEqual(fitted["bearing"], -12, places=3)
+        self.assertAlmostEqual(fitted["fov"], 62, places=2)
+        self.assertAlmostEqual(fitted["location"][1], -45.0, places=2)
+
     def test_report_lists_per_point_residuals_and_the_eye_position(self):
         truth = {"location": (0.0, -30.0, 1.6), "tilt": 95, "bearing": 0, "fov": 60, "shift_px": 0}
         origin = [139.70, 35.66]

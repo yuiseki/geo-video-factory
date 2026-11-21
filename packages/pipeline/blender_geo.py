@@ -158,7 +158,8 @@ def eye_camera(eye: Sequence[float], bearing: float, tilt: float, fov: float, or
     }
 
 
-def _camera_axes(tilt: float, bearing: float):
+def _camera_axes(tilt: float, bearing: float, roll: float = 0.0):
+    """Right, up and forward unit vectors; `roll` (deg) turns the camera about its view axis."""
     rx, rz = math.radians(tilt), -math.radians(bearing)
     cz, sz = math.cos(rz), math.sin(rz)
 
@@ -168,13 +169,23 @@ def _camera_axes(tilt: float, bearing: float):
     right = rot(1.0, 0.0, 0.0)
     up = rot(0.0, math.cos(rx), math.sin(rx))
     forward = rot(0.0, math.sin(rx), -math.cos(rx))
+    if roll:
+        cr, sr = math.cos(math.radians(roll)), math.sin(math.radians(roll))
+        right, up = (tuple(cr * r + sr * u for r, u in zip(right, up)),
+                     tuple(-sr * r + cr * u for r, u in zip(right, up)))
     return right, up, forward
+
+
+def camera_rotation_columns(tilt: float, bearing: float, roll: float = 0.0):
+    """Columns (local X, Y, Z) of a Blender camera's world rotation: right, up, -forward."""
+    right, up, forward = _camera_axes(tilt, bearing, roll)
+    return right, up, tuple(-c for c in forward)
 
 
 def project_point(camera: dict[str, Any], point: Sequence[float], width: int, height: int) -> tuple[float, float]:
     """Pixel (u right, v down) of a local-meter point for a camera with location, tilt, bearing,
     vertical fov (deg) and a vertical lens shift in pixels (positive moves the scene down)."""
-    right, up, forward = _camera_axes(camera["tilt"], camera["bearing"])
+    right, up, forward = _camera_axes(camera["tilt"], camera["bearing"], camera.get("roll", 0.0))
     d = [point[i] - camera["location"][i] for i in range(3)]
     xc = sum(d[i] * right[i] for i in range(3))
     yc = sum(d[i] * up[i] for i in range(3))
@@ -185,7 +196,7 @@ def project_point(camera: dict[str, Any], point: Sequence[float], width: int, he
 
 def pixel_ray(camera: dict[str, Any], u: float, v: float, width: int, height: int):
     """Origin and unit direction of the ray through pixel (u, v); inverse of `project_point`."""
-    right, up, forward = _camera_axes(camera["tilt"], camera["bearing"])
+    right, up, forward = _camera_axes(camera["tilt"], camera["bearing"], camera.get("roll", 0.0))
     focal = (height / 2) / math.tan(math.radians(camera["fov"]) / 2)
     a = (u - width / 2) / focal
     b = (height / 2 + camera.get("shift_px", 0.0) - v) / focal
