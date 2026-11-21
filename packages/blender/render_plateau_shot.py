@@ -64,6 +64,7 @@ def parse_args() -> argparse.Namespace:
     proj.add_argument("--project-size", type=int, nargs=2, metavar=("W", "H"), help="photo size in pixels")
     proj.add_argument("--project-min-z", type=float, default=2.6, help="do not project below this height (people)")
     proj.add_argument("--project-mask", type=float, nargs=4, action="append", metavar=("U0", "V0", "U1", "V1"))
+    proj.add_argument("--project-ground", action="store_true", help="also project the photo onto the ground")
     proj.add_argument("--no-landmark-dressing", action="store_true", help="landmark mass only (no bands/lights)")
     proj.add_argument("--view-standard", action="store_true", help="Standard view transform (keeps photo colours)")
     anim = parser.add_argument_group("short camera move")
@@ -402,7 +403,11 @@ def main() -> None:
         fit = json.loads(Path(args.projector).read_text())["fit"]
         px, py = bg.local_meters(fit["eye"], origin)
         projector = photo_projection.add_projector((px, py, fit["eye"][2]), fit["tilt"], fit["bearing"])
-        materials = {m for obj in plateau_objects if obj.type == "MESH" for m in obj.data.materials if m}
+        targets = list(plateau_objects)
+        if args.project_ground:
+            # The cleaned photo carries the road too: project it onto the ground as well.
+            targets += [obj for obj in scene.objects if obj.name in ("AsphaltBase", "GroundPlane")]
+        materials = {m for obj in targets if obj.type == "MESH" for m in obj.data.materials if m}
         changed = photo_projection.project_onto(
             list(materials), str(project_dir / args.project_photo), projector, fit["fov"],
             args.project_size[0], args.project_size[1], min_z=args.project_min_z, masks=args.project_mask or [])
