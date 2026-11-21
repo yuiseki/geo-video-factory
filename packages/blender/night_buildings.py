@@ -11,6 +11,55 @@ from __future__ import annotations
 import bpy
 
 
+def sign_mask_group(boxes: list[dict]) -> bpy.types.NodeTree:
+    """Shader node group: 1 inside any sign box (see blender_geo.sign_box), else 0."""
+    group = bpy.data.node_groups.new("SignMask", "ShaderNodeTree")
+    group.interface.new_socket("Position", in_out="INPUT", socket_type="NodeSocketVector")
+    group.interface.new_socket("Mask", in_out="OUTPUT", socket_type="NodeSocketFloat")
+    nodes, links = group.nodes, group.links
+    inp = nodes.new("NodeGroupInput")
+    out = nodes.new("NodeGroupOutput")
+    total = None
+    for box in boxes:
+        offset = nodes.new("ShaderNodeVectorMath")
+        offset.operation = "SUBTRACT"
+        offset.inputs[1].default_value = box["center"]
+        links.new(inp.outputs["Position"], offset.inputs[0])
+        inside = None
+        for axis, half in ((box["axisU"], box["halfWidth"]), ((0.0, 0.0, 1.0), box["halfHeight"]),
+                           (box["normal"], box["halfDepth"])):
+            dot = nodes.new("ShaderNodeVectorMath")
+            dot.operation = "DOT_PRODUCT"
+            dot.inputs[1].default_value = axis
+            links.new(offset.outputs[0], dot.inputs[0])
+            absolute = nodes.new("ShaderNodeMath")
+            absolute.operation = "ABSOLUTE"
+            links.new(dot.outputs["Value"], absolute.inputs[0])
+            less = nodes.new("ShaderNodeMath")
+            less.operation = "LESS_THAN"
+            less.inputs[1].default_value = half
+            links.new(absolute.outputs[0], less.inputs[0])
+            if inside is None:
+                inside = less
+            else:
+                both = nodes.new("ShaderNodeMath")
+                both.operation = "MULTIPLY"
+                links.new(inside.outputs[0], both.inputs[0])
+                links.new(less.outputs[0], both.inputs[1])
+                inside = both
+        if total is None:
+            total = inside
+        else:
+            union = nodes.new("ShaderNodeMath")
+            union.operation = "MAXIMUM"
+            links.new(total.outputs[0], union.inputs[0])
+            links.new(inside.outputs[0], union.inputs[1])
+            total = union
+    if total is not None:
+        links.new(total.outputs[0], out.inputs["Mask"])
+    return group
+
+
 def _find_base_texture(tree: bpy.types.NodeTree):
     bsdf = next((n for n in tree.nodes if n.type == "BSDF_PRINCIPLED"), None)
     if bsdf is None or not bsdf.inputs["Base Color"].is_linked:
@@ -29,9 +78,11 @@ def apply_night(
     bay_width: float = 12.0,
     sign_strength: float = 6.0,
     sign_saturation: tuple[float, float] = (0.35, 0.65),
+    sign_boxes: list[dict] | None = None,
 ) -> int:
     """Turn the imported PLATEAU materials into night materials; returns how many were changed."""
     done = set()
+    sign_group = sign_mask_group(sign_boxes) if sign_boxes else None
     for obj in objects:
         if obj.type != "MESH":
             continue
@@ -127,6 +178,11 @@ def apply_night(
             sign.operation = "MULTIPLY"
             links.new(saturated.outputs["Result"], sign.inputs[0])
             links.new(bright.outputs["Result"], sign.inputs[1])
+            if sign_group is not None:
+                # Picked sign boxes on real walls replace the saturation guess.
+                sign = nodes.new("ShaderNodeGroup")
+                sign.node_tree = sign_group
+                links.new(geometry.outputs["Position"], sign.inputs["Position"])
             sign_power = nodes.new("ShaderNodeMath")
             sign_power.operation = "MULTIPLY"
             sign_power.inputs[1].default_value = sign_strength

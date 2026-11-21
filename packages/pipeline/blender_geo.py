@@ -181,3 +181,61 @@ def project_point(camera: dict[str, Any], point: Sequence[float], width: int, he
     zc = sum(d[i] * forward[i] for i in range(3))
     focal = (height / 2) / math.tan(math.radians(camera["fov"]) / 2)
     return (width / 2 + focal * xc / zc, height / 2 - focal * yc / zc + camera.get("shift_px", 0.0))
+
+
+def pixel_ray(camera: dict[str, Any], u: float, v: float, width: int, height: int):
+    """Origin and unit direction of the ray through pixel (u, v); inverse of `project_point`."""
+    right, up, forward = _camera_axes(camera["tilt"], camera["bearing"])
+    focal = (height / 2) / math.tan(math.radians(camera["fov"]) / 2)
+    a = (u - width / 2) / focal
+    b = (height / 2 + camera.get("shift_px", 0.0) - v) / focal
+    d = [right[i] * a + up[i] * b + forward[i] for i in range(3)]
+    n = math.sqrt(sum(c * c for c in d))
+    return tuple(camera["location"]), tuple(c / n for c in d)
+
+
+def sign_box(corners: Sequence[Sequence[float]], camera_location: Sequence[float], depth: float = 1.0) -> dict[str, Any]:
+    """Oriented box around a sign from its wall-hit corners (top-left, top-right, bottom-left, bottom-right).
+
+    The box is upright: `axisU` is horizontal along the wall, `normal` points toward the camera.
+    """
+    tl, tr, bl, br = corners
+    center = [sum(c[i] for c in corners) / 4 for i in range(3)]
+    along = [((tr[i] - tl[i]) + (br[i] - bl[i])) / 2 for i in range(2)]
+    width = math.hypot(*along)
+    axis_u = (along[0] / width, along[1] / width, 0.0)
+    normal = [axis_u[1], -axis_u[0], 0.0]  # axisU x up
+    if sum(normal[i] * (camera_location[i] - center[i]) for i in range(2)) < 0:
+        normal = [-normal[0], -normal[1], 0.0]
+    half_height = ((tl[2] - bl[2]) + (tr[2] - br[2])) / 4
+    return {
+        "center": center,
+        "axisU": list(axis_u),
+        "normal": normal,
+        "halfWidth": width / 2,
+        "halfHeight": abs(half_height),
+        "halfDepth": depth,
+    }
+
+
+def wall_extent_corners(points: Sequence[Sequence[float]], normal: Sequence[float]):
+    """Upright rectangle (top-left, top-right, bottom-left, bottom-right) spanning points on one wall."""
+    length = math.hypot(normal[0], normal[1])
+    axis = (-normal[1] / length, normal[0] / length)
+    along = [p[0] * axis[0] + p[1] * axis[1] for p in points]
+    mean = [sum(p[i] for p in points) / len(points) for i in range(2)]
+    mean_along = mean[0] * axis[0] + mean[1] * axis[1]
+    z0, z1 = min(p[2] for p in points), max(p[2] for p in points)
+
+    def corner(a: float, z: float):
+        return (mean[0] + (a - mean_along) * axis[0], mean[1] + (a - mean_along) * axis[1], z)
+
+    a0, a1 = min(along), max(along)
+    return corner(a0, z1), corner(a1, z1), corner(a0, z0), corner(a1, z0)
+
+
+def inside_sign_box(box: dict[str, Any], point: Sequence[float]) -> bool:
+    d = [point[i] - box["center"][i] for i in range(3)]
+    a = sum(d[i] * box["axisU"][i] for i in range(3))
+    c = sum(d[i] * box["normal"][i] for i in range(3))
+    return abs(a) <= box["halfWidth"] and abs(d[2]) <= box["halfHeight"] and abs(c) <= box["halfDepth"]

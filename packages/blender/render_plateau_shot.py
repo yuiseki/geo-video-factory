@@ -47,6 +47,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--night-buildings", action="store_true", help="dim photo textures, light windows and storefronts")
     parser.add_argument("--window-share", type=float, default=0.0, help="share of lit floors; 0 = no windows")
     parser.add_argument("--night-dim", type=float, default=0.10, help="multiplier on the daylight photo texture")
+    parser.add_argument("--pick-signs", default=None, help="JSON of sign rectangles picked in this view's pixels")
+    parser.add_argument("--pick-out", default=None, help="write sign boxes (wall-anchored) here and skip rendering")
+    parser.add_argument("--sign-boxes", default=None, help="JSON of sign boxes to light on PLATEAU walls")
+    parser.add_argument("--sign-strength", type=float, default=4.0)
+    parser.add_argument("--signal-poles", default=None, help="JSON from pipeline/street_lights.py")
+    parser.add_argument("--lamp-power", type=float, default=1500.0)
     parser.add_argument("--window-strength", type=float, default=1.6)
     parser.add_argument("--storefront-strength", type=float, default=2.5)
     parser.add_argument("--manifest", default=None, help="override plateauBuildings.manifest (project-relative)")
@@ -176,6 +182,59 @@ def setup_bloom(scene: bpy.types.Scene, strength: float) -> None:
     tree.links.new(glare.outputs["Image"], output.inputs[0])
 
 
+def pick_signs(scene: bpy.types.Scene, spec: dict, args: argparse.Namespace, origin: list[float]) -> None:
+    """Ray-cast picked sign rectangles onto PLATEAU walls and save upright sign boxes."""
+    picks = json.loads(Path(args.pick_signs).read_text())
+    width, height = spec["width"], spec["height"]
+    fov = args.fov if args.fov is not None else 36.87
+    camera = {"location": tuple(bg.eye_camera(args.eye, args.bearing, args.tilt, fov, origin)["location"]),
+              "tilt": args.tilt, "bearing": args.bearing, "fov": fov, "shift_px": args.shift_px}
+    bpy.context.view_layer.update()  # apply the tile matrices before ray casting
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    boxes = []
+    scene.render.resolution_x, scene.render.resolution_y = width, height
+    cam_obj = scene.camera
+    top_right, bottom_right, bottom_left, top_left = cam_obj.data.view_frame(scene=scene)
+    rotation = cam_obj.matrix_world.to_3x3()
+
+    def blender_ray(u: float, v: float):
+        fx, fy = (u + 0.5) / width, (v + 0.5) / height
+        local = top_left.lerp(top_right, fx)
+        local.y = top_left.y + (bottom_left.y - top_left.y) * fy
+        direction = (rotation @ local).normalized()
+        return cam_obj.matrix_world.translation, direction
+
+    center_mine = bg.pixel_ray(camera, width / 2, height / 2, width, height)[1]
+    center_blender = blender_ray(width / 2 - 0.5, height / 2 - 0.5)[1]
+    print(f"[blender-shot] centre ray mine {tuple(round(c, 4) for c in center_mine)} "
+          f"blender {tuple(round(c, 4) for c in center_blender)}", flush=True)
+    for sign in picks["signs"]:
+        u0, v0, u1, v1 = sign["rect"]
+        samples = []
+        for i in range(5):
+            for j in range(5):
+                u, v = u0 + (u1 - u0) * i / 4, v0 + (v1 - v0) * j / 4
+                ray_origin, direction = blender_ray(u, v)
+                ok, location, normal, _index, obj, _matrix = scene.ray_cast(depsgraph, ray_origin, direction)
+                if ok and abs(normal.z) < 0.4:
+                    samples.append((obj.name, tuple(round(c, 1) for c in normal), tuple(location)))
+        if not samples:
+            print(f"[blender-shot] pick {sign['name']}: no wall hit, skipped", flush=True)
+            continue
+        # Keep the wall most samples landed on (same object and facing), then fit its extent.
+        keys = [(s[0], s[1]) for s in samples]
+        wall = max(set(keys), key=keys.count)
+        points = [s[2] for s in samples if (s[0], s[1]) == wall]
+        hits = bg.wall_extent_corners(points, normal=wall[1])
+        box = bg.sign_box(hits, camera["location"], depth=sign.get("depth", 1.5))
+        box["samples"] = f"{len(points)}/25"
+        box["name"] = sign["name"]
+        boxes.append(box)
+        print(f"[blender-shot] pick {sign['name']}: {2 * box['halfWidth']:.1f} x {2 * box['halfHeight']:.1f} m "
+              f"at z {box['center'][2]:.1f} ({box['samples']} samples on one wall)", flush=True)
+    Path(args.pick_out).write_text(json.dumps({"origin": origin, "boxes": boxes}, indent=1))
+
+
 def apply_clay(scene: bpy.types.Scene, plateau_objects: list) -> None:
     """Diagnostic look: grey PLATEAU buildings under a daylight sun, to judge geometry alone."""
     clay = bpy.data.materials.new("Clay")
@@ -217,6 +276,9 @@ def main() -> None:
     plateau_objects = [obj for obj in bpy.data.objects if obj not in before]
     print(f"[blender-shot] imported {tiles} tiles in {time.time() - started:.1f}s", flush=True)
     cfg = spec["plateauBuildings"]
+    if args.pick_signs:
+        pick_signs(scene, spec, args, origin)
+        return
     if not args.buildings_only:
         if args.ground_src:
             # Diagnostic: lay an untouched aerial photo (e.g. the raw GSI mosaic) as the ground.
@@ -237,6 +299,9 @@ def main() -> None:
             fill = bpy.data.objects.new("GroundFill", data)
             fill.location = (tx, ty, 30)
             scene.collection.objects.link(fill)
+        if args.signal_poles:
+            poles = json.loads(Path(args.signal_poles).read_text())["poles"]
+            print(f"[blender-shot] {street_scene.add_signal_poles(poles, origin, args.lamp_power)} signal poles", flush=True)
         signs = 0 if args.no_dressing else street_scene.add_billboards(cfg, project_dir, origin)
         props = 0 if args.no_dressing else street_scene.add_street_props(cfg, origin)
         print(f"[blender-shot] added {signs} billboards and {props} street props", flush=True)
@@ -248,7 +313,8 @@ def main() -> None:
     elif args.night_buildings:
         changed = night_buildings.apply_night(
             plateau_objects, dim=args.night_dim, window_share=args.window_share, window_strength=args.window_strength,
-            storefront_strength=args.storefront_strength,
+            storefront_strength=args.storefront_strength, sign_strength=args.sign_strength,
+            sign_boxes=json.loads(Path(args.sign_boxes).read_text())["boxes"] if args.sign_boxes else None,
         )
         print(f"[blender-shot] night materials on {changed} PLATEAU materials", flush=True)
     setup_render(scene, spec, args.engine, args.samples, args.out)

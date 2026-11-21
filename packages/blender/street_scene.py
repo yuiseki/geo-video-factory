@@ -147,6 +147,39 @@ def _box(name: str, size, location, material, rotation_z: float = 0.0) -> None:
     obj.data.materials.append(material)
 
 
+def add_signal_poles(poles: list[dict], origin: list[float], lamp_power: float = 1500.0) -> int:
+    """Signal poles on the sidewalk with a red signal head and a pole-mounted street lamp.
+
+    The lamp on every signal pole is an assumption to be checked against photos.
+    """
+    metal, tree = _material("SignalPoleMetal")
+    bsdf = tree.nodes.new("ShaderNodeBsdfPrincipled")
+    bsdf.inputs["Base Color"].default_value = (0.03, 0.032, 0.035, 1)
+    bsdf.inputs["Metallic"].default_value = 0.7
+    bsdf.inputs["Roughness"].default_value = 0.35
+    tree.links.new(bsdf.outputs[0], tree.nodes.new("ShaderNodeOutputMaterial").inputs["Surface"])
+    red = _emission_material("SignalRed", (1.0, 0.05, 0.03), 40.0)
+    lamp_glow = _emission_material("LampGlow", (1.0, 0.88, 0.72), 30.0)
+    for index, pole in enumerate(poles):
+        x, y = bg.local_meters(pole["lngLat"], origin)
+        _box(f"SignalPole{index:02d}", (0.2, 0.2, 7.5), (x, y, 3.75), metal)
+        _box(f"SignalHead{index:02d}", (1.2, 0.35, 0.4), (x, y, 5.4), metal)
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.14, location=(x, y, 5.4))
+        bpy.context.active_object.data.materials.append(red)
+        _point_light(f"SignalGlow{index:02d}", (x, y, 5.2), (1.0, 0.1, 0.05), 25.0, 0.1)
+        _box(f"LampHead{index:02d}", (0.8, 0.35, 0.12), (x, y, 7.6), lamp_glow)
+        data = bpy.data.lights.new(f"PoleLamp{index:02d}", "SPOT")
+        data.energy = lamp_power
+        data.color = (1.0, 0.9, 0.78)
+        data.spot_size = math.radians(140)
+        data.spot_blend = 0.6
+        data.shadow_soft_size = 0.3
+        lamp = bpy.data.objects.new(f"PoleLamp{index:02d}", data)
+        lamp.location = (x, y, 7.5)  # spot lights point down (-Z) by default
+        bpy.context.scene.collection.objects.link(lamp)
+    return len(poles)
+
+
 def add_street_props(cfg: dict, origin: list[float]) -> int:
     pole_bsdf, tree = _material("PoleMetal")
     bsdf = tree.nodes.new("ShaderNodeBsdfPrincipled")
