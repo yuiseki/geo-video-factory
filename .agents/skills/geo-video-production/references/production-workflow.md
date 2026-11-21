@@ -51,11 +51,10 @@ MapLibre の `map.project` をカメラ更新後・各フレームで呼ぶた�
 - 章境界は音声込みで通して見聞きし、会話、無音カード、場所とカメラの到着が自然につながるか確認する。動画の冒頭・途中・末尾や章境界で、地図の欠け、ラベルの重なり・画面外への消失、字幕・写真・立ち絵の干渉、出典と読み間違いを確認する。
 - 完成動画の長さ、映像・音声のストリーム、各章の開始秒、出典を記録する。`v0.1.7` など版番号をファイル名に入れ、既存版を上書きしない。版を重ねて改善する際は `geo-video-art-direction` の [visual-review.md](../../geo-video-art-direction/references/visual-review.md) にあるビジュアル検品（縮小グレースケール構図・原寸実ウェイト・色以外の判別性）と版間振り返り表を用いる。
 - 結合後に BGM を重ねる場合は `geo-video-bgm`（[ducking-and-loudness.md](../../geo-video-bgm/references/ducking-and-loudness.md)）でダッキングと `-14 LUFS` 調整を行う。公開用サムネイルは `geo-video-thumbnail`（[thumbnail-design.md](../../geo-video-thumbnail/references/thumbnail-design.md)）で作る。
-- **仕上げ QA セット**: 完成 MP4（例: `episode.mp4`）に対して、Web 配信用軽量コピー（`episode-web.mp4`）、`ffprobe` による解像度・fps・ストリーム確認、および全体の 4×3 コンタクトシート（`contact.png`）を出力して目視検品に使う。
+- **仕上げ QA セット**: 完成 MP4（例: `episode.mp4`）に対して、`packages/pipeline/video_qa.py` で配信規格チェック（解像度・fps・`yuv420p`・`-14 LUFS` / True Peak）、黒画面・フリーズ・無音検知（`--content`）、および動画長に応じた均等間隔の 4×3 コンタクトシート（`contact.png`）を出力して目視検品する。必要に応じて Web 配信用軽量コピー（`episode-web.mp4`）も出力する。
   ```bash
+  python3 packages/pipeline/video_qa.py out/episode.mp4 --platform youtube --content --contact out/contact.png --tiles 4x3 --json
   ffmpeg -y -i out/episode.mp4 -c:v libx264 -crf 21 -preset veryfast -pix_fmt yuv420p -movflags +faststart out/episode-web.mp4
-  ffprobe -v error -show_entries format=duration,size -show_entries stream=codec_name,codec_type,width,height,r_frame_rate -of default out/episode.mp4
-  ffmpeg -y -i out/episode.mp4 -vf "fps=1/10,scale=480:-1,tile=4x3" -frames:v 1 out/contact.png
   ```
 - 公開はユーザーの具体的な依頼と既存の継続的な許可に従う。許可済みの配布先がある場合は配置し、コピー元との一致と URL の応答を確認する。
 - ある案件で得た配布先と配布許可は、別の案件に自動では広がらない。
