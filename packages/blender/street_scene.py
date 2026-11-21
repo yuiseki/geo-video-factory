@@ -147,6 +147,65 @@ def _box(name: str, size, location, material, rotation_z: float = 0.0) -> None:
     obj.data.materials.append(material)
 
 
+def _box_matrix(box: dict, lift: float):
+    """World matrix for a plane spanning a sign box: X along the wall, Y up, Z out of the wall."""
+    from mathutils import Matrix, Vector
+
+    u = Vector(box["axisU"])
+    up = Vector((0.0, 0.0, 1.0))
+    n = Vector(box["normal"])
+    center = Vector(box["center"]) + n * lift
+    return Matrix((
+        (u.x, up.x, n.x, center.x),
+        (u.y, up.y, n.y, center.y),
+        (u.z, up.z, n.z, center.z),
+        (0.0, 0.0, 0.0, 1.0),
+    ))
+
+
+def add_wall_billboards(entries: list[dict], project_dir: Path) -> int:
+    """Real-photo sign images on wall-anchored boxes (see blender_geo.sign_box), emitting light."""
+    for index, entry in enumerate(entries):
+        box = entry["box"]
+        obj = _plane(f"WallSign{index:02d}_{entry['name']}", 2 * box["halfWidth"], 2 * box["halfHeight"])
+        obj.matrix_world = _box_matrix(box, lift=0.08)
+        mat, tree = _material(f"WallSign{index:02d}")
+        out = tree.nodes.new("ShaderNodeOutputMaterial")
+        image = tree.nodes.new("ShaderNodeTexImage")
+        image.image = bpy.data.images.load(str(project_dir / entry["src"]))
+        image.interpolation = "Cubic"
+        emission = tree.nodes.new("ShaderNodeEmission")
+        emission.inputs["Strength"].default_value = entry.get("strength", 4.0)
+        tree.links.new(image.outputs["Color"], emission.inputs["Color"])
+        tree.links.new(emission.outputs[0], out.inputs["Surface"])
+        obj.data.materials.append(mat)
+    return len(entries)
+
+
+def add_facade_floodlights(box: dict, z: float, count: int = 9, power: float = 400.0) -> None:
+    """A row of facade floodlights along a wall (as on QFRONT's shoulders), aimed down the wall."""
+    from mathutils import Vector
+
+    glow = _emission_material("Floodlight", (1.0, 0.95, 0.85), 80.0)
+    u, n = Vector(box["axisU"]), Vector(box["normal"])
+    for i in range(count):
+        offset = (i / (count - 1) - 0.5) * 2 * box["halfWidth"] * 0.95
+        p = Vector((box["center"][0], box["center"][1], z)) + u * offset + n * 0.6
+        bpy.ops.mesh.primitive_uv_sphere_add(radius=0.22, location=p)
+        bpy.context.active_object.data.materials.append(glow)
+        data = bpy.data.lights.new(f"Flood{i:02d}", "SPOT")
+        data.energy = power
+        data.color = (1.0, 0.93, 0.82)
+        data.spot_size = math.radians(70)
+        data.spot_blend = 0.5
+        light = bpy.data.objects.new(f"Flood{i:02d}", data)
+        light.location = p + n * 0.3
+        # Point mostly down, slightly into the wall.
+        direction = (-n * 0.35 + Vector((0, 0, -1))).normalized()
+        light.rotation_euler = direction.to_track_quat("-Z", "Y").to_euler()
+        bpy.context.scene.collection.objects.link(light)
+
+
 def add_signal_poles(poles: list[dict], origin: list[float], lamp_power: float = 1500.0) -> int:
     """Signal poles on the sidewalk with a red signal head and a pole-mounted street lamp.
 

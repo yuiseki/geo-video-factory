@@ -53,6 +53,9 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--sign-strength", type=float, default=4.0)
     parser.add_argument("--signal-poles", default=None, help="JSON from pipeline/street_lights.py")
     parser.add_argument("--lamp-power", type=float, default=1500.0)
+    parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
+    parser.add_argument("--floodlight-face", default=None, help="picked wall box to line with floodlights")
+    parser.add_argument("--floodlight-share", type=float, default=0.2, help="floodlight height as share from the top")
     parser.add_argument("--window-strength", type=float, default=1.6)
     parser.add_argument("--storefront-strength", type=float, default=2.5)
     parser.add_argument("--manifest", default=None, help="override plateauBuildings.manifest (project-relative)")
@@ -302,6 +305,13 @@ def main() -> None:
         if args.signal_poles:
             poles = json.loads(Path(args.signal_poles).read_text())["poles"]
             print(f"[blender-shot] {street_scene.add_signal_poles(poles, origin, args.lamp_power)} signal poles", flush=True)
+        if args.wall_billboards:
+            entries = json.loads(Path(args.wall_billboards).read_text())["entries"]
+            print(f"[blender-shot] {street_scene.add_wall_billboards(entries, project_dir)} wall billboards", flush=True)
+        if args.floodlight_face:
+            face = json.loads(Path(args.floodlight_face).read_text())["boxes"][0]
+            top = face["center"][2] + face["halfHeight"]
+            street_scene.add_facade_floodlights(face, z=top * (1 - args.floodlight_share))
         signs = 0 if args.no_dressing else street_scene.add_billboards(cfg, project_dir, origin)
         props = 0 if args.no_dressing else street_scene.add_street_props(cfg, origin)
         print(f"[blender-shot] added {signs} billboards and {props} street props", flush=True)
