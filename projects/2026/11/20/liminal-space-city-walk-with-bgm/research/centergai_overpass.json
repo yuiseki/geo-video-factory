@@ -1,0 +1,174 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2025-09-14T23:59:55Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "way",
+  "id": 48391641,
+  "bounds": {
+    "minlat": 35.6607185,
+    "minlon": 139.6968548,
+    "maxlat": 35.6611692,
+    "maxlon": 139.6977527
+  },
+  "nodes": [
+    1108870901,
+    1108870932,
+    1108870955,
+    6219729334,
+    1108870925
+  ],
+  "geometry": [
+    { "lat": 35.6611692, "lon": 139.6968548 },
+    { "lat": 35.6610646, "lon": 139.6970191 },
+    { "lat": 35.6609065, "lon": 139.6972872 },
+    { "lat": 35.6607384, "lon": 139.6977034 },
+    { "lat": 35.6607185, "lon": 139.6977527 }
+  ],
+  "tags": {
+    "alt_name": "バスケットボールストリート",
+    "highway": "unclassified",
+    "lanes": "1",
+    "lit": "yes",
+    "name": "渋谷センター街",
+    "name:en": "Shibuya Center-gai Street",
+    "name:ja": "渋谷センター街",
+    "oneway": "yes",
+    "surface": "asphalt",
+    "wikidata": "Q5059296",
+    "wikipedia": "ja:渋谷センター街"
+  }
+},
+{
+  "type": "way",
+  "id": 87250185,
+  "bounds": {
+    "minlat": 35.6594821,
+    "minlon": 139.7003382,
+    "maxlat": 35.6596029,
+    "maxlon": 139.7005723
+  },
+  "nodes": [
+    291758776,
+    13038529014,
+    10577113261,
+    5244745709
+  ],
+  "geometry": [
+    { "lat": 35.6594821, "lon": 139.7005723 },
+    { "lat": 35.6595377, "lon": 139.7004418 },
+    { "lat": 35.6595787, "lon": 139.7003454 },
+    { "lat": 35.6596029, "lon": 139.7003382 }
+  ],
+  "tags": {
+    "alt_name": "バスケットボールストリート",
+    "fixme": "Should this segment be highway=pedestrian, as it leads in to a pedestrian street?",
+    "highway": "unclassified",
+    "lanes": "1",
+    "lit": "yes",
+    "name": "渋谷センター街",
+    "name:en": "Shibuya Center-gai Street",
+    "oneway": "yes",
+    "surface": "asphalt"
+  }
+},
+{
+  "type": "way",
+  "id": 542478931,
+  "bounds": {
+    "minlat": 35.6596029,
+    "minlon": 139.6985839,
+    "maxlat": 35.6604072,
+    "maxlon": 139.7003382
+  },
+  "nodes": [
+    5244745709,
+    2223657347,
+    2850364790,
+    353660488,
+    12352271655,
+    12352271628,
+    861115509,
+    2850364791,
+    5244745710,
+    1424672751,
+    614612442,
+    5244745711,
+    13038529017,
+    1745599775,
+    353659885
+  ],
+  "geometry": [
+    { "lat": 35.6596029, "lon": 139.7003382 },
+    { "lat": 35.6596395, "lon": 139.7003258 },
+    { "lat": 35.6596866, "lon": 139.7003068 },
+    { "lat": 35.6597013, "lon": 139.7002945 },
+    { "lat": 35.6597271, "lon": 139.7002653 },
+    { "lat": 35.6597623, "lon": 139.7002234 },
+    { "lat": 35.6598899, "lon": 139.7000710 },
+    { "lat": 35.6600454, "lon": 139.6998645 },
+    { "lat": 35.6600667, "lon": 139.6997830 },
+    { "lat": 35.6601213, "lon": 139.6994904 },
+    { "lat": 35.6601554, "lon": 139.6993080 },
+    { "lat": 35.6601864, "lon": 139.6992185 },
+    { "lat": 35.6602234, "lon": 139.6991122 },
+    { "lat": 35.6603270, "lon": 139.6988143 },
+    { "lat": 35.6604072, "lon": 139.6985839 }
+  ],
+  "tags": {
+    "alt_name": "バスケットボールストリート",
+    "cycleway:left": "no",
+    "highway": "service",
+    "lanes": "1",
+    "lit": "yes",
+    "motor_vehicle:conditional": "no @ (15:00-05:00; Su: 12:00-05:00)",
+    "name": "渋谷センター街",
+    "name:en": "Shibuya Center-gai Street",
+    "oneway": "yes",
+    "surface": "paving_stones",
+    "wikidata": "Q5059296",
+    "wikipedia": "ja:渋谷センター街"
+  }
+},
+{
+  "type": "way",
+  "id": 1154117302,
+  "bounds": {
+    "minlat": 35.6604072,
+    "minlon": 139.6977527,
+    "maxlat": 35.6607185,
+    "maxlon": 139.6985839
+  },
+  "nodes": [
+    1108870925,
+    353660491,
+    353659885
+  ],
+  "geometry": [
+    { "lat": 35.6607185, "lon": 139.6977527 },
+    { "lat": 35.6605605, "lon": 139.6982052 },
+    { "lat": 35.6604072, "lon": 139.6985839 }
+  ],
+  "tags": {
+    "alt_name": "バスケットボールストリート",
+    "highway": "service",
+    "lanes": "1",
+    "lit": "yes",
+    "motor_vehicle:conditional": "no @ (15:00-05:00; Su: 12:00-05:00)",
+    "name": "渋谷センター街",
+    "name:en": "Shibuya Center-gai Street",
+    "name:ja": "渋谷センター街",
+    "oneway": "yes",
+    "surface": "paving_stones",
+    "wikidata": "Q5059296",
+    "wikipedia": "ja:渋谷センター街"
+  }
+}
+
+  ]
+}

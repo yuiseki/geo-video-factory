@@ -75,6 +75,9 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
     canvasContextAttributes: { preserveDrawingBuffer: true, antialias: true },
     pixelRatio: 1,
   }) as unknown as MapLibreMap;
+  if (spec.fov !== undefined) {
+    map.setVerticalFieldOfView(spec.fov);
+  }
   if (spec.cameraPadding) {
     const padding = spec.cameraPadding;
     map.setPadding({
