@@ -147,6 +147,36 @@ def _box(name: str, size, location, material, rotation_z: float = 0.0) -> None:
     obj.data.materials.append(material)
 
 
+def add_crosswalks(crosswalks: list[dict], origin: list[float], z: float = 0.06) -> int:
+    """White zebra paint from walking lines: [{name, line: [[lng, lat], ...], width}] (first -> last point)."""
+    import bmesh
+
+    paint, tree = _material("CrosswalkPaint")
+    bsdf = tree.nodes.new("ShaderNodeBsdfPrincipled")
+    bsdf.inputs["Base Color"].default_value = (0.72, 0.72, 0.7, 1)
+    bsdf.inputs["Roughness"].default_value = 0.5
+    tree.links.new(bsdf.outputs[0], tree.nodes.new("ShaderNodeOutputMaterial").inputs["Surface"])
+    bm = bmesh.new()
+    bars = 0
+    for crosswalk in crosswalks:
+        a = bg.local_meters(crosswalk["line"][0], origin)
+        b = bg.local_meters(crosswalk["line"][-1], origin)
+        for quad in bg.crosswalk_stripes(a, b, crosswalk["width"], trim=crosswalk.get("trim", 0.8)):
+            bm.faces.new([bm.verts.new((x, y, z)) for x, y in quad])
+            bars += 1
+    bmesh.ops.recalc_face_normals(bm, faces=bm.faces)
+    for face in bm.faces:
+        if face.normal.z < 0:
+            face.normal_flip()
+    mesh = bpy.data.meshes.new("Crosswalks")
+    bm.to_mesh(mesh)
+    bm.free()
+    mesh.materials.append(paint)
+    obj = bpy.data.objects.new("Crosswalks", mesh)
+    bpy.context.scene.collection.objects.link(obj)
+    return bars
+
+
 def _box_matrix(box: dict, lift: float):
     """World matrix for a plane spanning a sign box: X along the wall, Y up, Z out of the wall."""
     from mathutils import Matrix, Vector

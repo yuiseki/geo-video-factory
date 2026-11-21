@@ -56,6 +56,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--lamp-power", type=float, default=1500.0)
     parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
     parser.add_argument("--landmarks", default=None, help="JSON of landmark masses replacing PLATEAU boxes")
+    parser.add_argument("--plain-ground", action="store_true", help="drop the shot's ground image")
+    parser.add_argument("--crosswalks", default=None, help="JSON of crosswalk walking lines and widths")
     parser.add_argument("--size", type=int, nargs=2, metavar=("W", "H"), help="override the shot's frame size")
     parser.add_argument("--washes", default=None, help="JSON of facade boxes washed by area lights")
     parser.add_argument("--spill-power", type=float, default=0.0, help="W per m2 of sign light thrown back on walls")
@@ -315,6 +317,11 @@ def main() -> None:
         if args.ground_src:
             # Diagnostic: lay an untouched aerial photo (e.g. the raw GSI mosaic) as the ground.
             cfg["groundPlane"] = {"src": args.ground_src, "bbox": args.ground_bbox, "altitudeM": 0.04, "brightness": 1.0}
+        if args.plain_ground:
+            cfg.pop("groundPlane", None)  # dark asphalt only; markings come from --crosswalks
+        if args.crosswalks:
+            crosswalks = json.loads(Path(args.crosswalks).read_text())["crosswalks"]
+            print(f"[blender-shot] {street_scene.add_crosswalks(crosswalks, origin)} crosswalk bars", flush=True)
         if cfg.get("groundPlane"):
             cfg["groundPlane"]["_wetMinRoughness"] = args.wet_roughness[0]
             cfg["groundPlane"]["_wetMaxRoughness"] = args.wet_roughness[1]

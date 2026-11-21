@@ -106,6 +106,28 @@ class BandTests(unittest.TestCase):
         self.assertAlmostEqual(band[-1][1], 0)
 
 
+class CrosswalkTests(unittest.TestCase):
+    def test_bars_cross_the_walking_line_and_repeat_along_it(self):
+        # Japanese zebra: pedestrians step over each bar, so bars span the width across the walking line.
+        stripes = bg.crosswalk_stripes((0, 0), (20, 0), width=4.0, stripe=0.45, gap=0.45, trim=1.0)
+        self.assertEqual(len(stripes), 20)  # floor((18 + 0.45) / 0.9) = 20
+        for quad in stripes:
+            xs = sorted(p[0] for p in quad)
+            ys = sorted(p[1] for p in quad)
+            self.assertAlmostEqual(xs[-1] - xs[0], 0.45)
+            self.assertAlmostEqual(ys[0], -2.0)
+            self.assertAlmostEqual(ys[-1], 2.0)
+        centers = sorted(sum(p[0] for p in q) / 4 for q in stripes)
+        self.assertAlmostEqual((centers[0] + centers[-1]) / 2, 10.0)  # centred between the curbs
+        self.assertAlmostEqual(centers[1] - centers[0], 0.9)
+
+    def test_bars_follow_a_diagonal(self):
+        stripes = bg.crosswalk_stripes((0, 0), (10, 10), width=6.0, stripe=0.45, gap=0.45, trim=0.0)
+        quad = stripes[0]
+        self.assertAlmostEqual(math.dist(quad[0], quad[1]), 0.45, places=6)
+        self.assertAlmostEqual(math.dist(quad[1], quad[2]), 6.0, places=6)
+
+
 class OutlineTests(unittest.TestCase):
     def test_smooth_outline_passes_through_the_original_vertices(self):
         square = [(0, 0), (10, 0), (10, 10), (0, 10)]

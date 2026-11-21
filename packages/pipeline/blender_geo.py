@@ -348,3 +348,32 @@ def outline_band(outline, s0: float, s1: float, offset: float = 0.1):
         u = (s - s0) / (s1 - s0)
         out.append((at(s, vertex), u if ccw else 1.0 - u))
     return out
+
+
+def crosswalk_stripes(a, b, width: float, stripe: float = 0.45, gap: float = 0.45, trim: float = 1.0):
+    """Zebra bars of a Japanese crosswalk from walking line a -> b (local meters).
+
+    Pedestrians step over each bar: bars span the full `width` across the walking line and repeat
+    along it, `stripe` deep with `gap` between them, centred between the curbs with `trim` meters
+    left clear at each end. Returns quads (4 corners each).
+    """
+    dx, dy = b[0] - a[0], b[1] - a[1]
+    length = math.hypot(dx, dy)
+    ux, uy = dx / length, dy / length
+    nx, ny = -uy, ux
+    usable = max(stripe, length - 2 * trim)
+    count = max(1, int((usable + gap) // (stripe + gap)))
+    span = count * stripe + (count - 1) * gap
+    start = (length - span) / 2
+    half = width / 2
+    quads = []
+    for k in range(count):
+        s0 = start + k * (stripe + gap)
+        s1 = s0 + stripe
+        quads.append([
+            (a[0] + ux * s0 - nx * half, a[1] + uy * s0 - ny * half),
+            (a[0] + ux * s1 - nx * half, a[1] + uy * s1 - ny * half),
+            (a[0] + ux * s1 + nx * half, a[1] + uy * s1 + ny * half),
+            (a[0] + ux * s0 + nx * half, a[1] + uy * s0 + ny * half),
+        ])
+    return quads
