@@ -25,6 +25,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import blender_geo as bg  # noqa: E402
 import landmarks  # noqa: E402
 import night_buildings  # noqa: E402
+import photo_projection  # noqa: E402
 import street_scene  # noqa: E402
 
 GLB_CACHE = Path(tempfile.mkdtemp(prefix="blender-shot-glb-"))
@@ -57,6 +58,17 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
     parser.add_argument("--landmarks", default=None, help="JSON of landmark masses replacing PLATEAU boxes")
     parser.add_argument("--plain-ground", action="store_true", help="drop the shot's ground image")
+    proj = parser.add_argument_group("photo projection")
+    proj.add_argument("--project-photo", default=None, help="real photo (project-relative) to project onto buildings")
+    proj.add_argument("--projector", default=None, help="JSON with the photo's fitted camera (camera_fit report)")
+    proj.add_argument("--project-size", type=int, nargs=2, metavar=("W", "H"), help="photo size in pixels")
+    proj.add_argument("--project-min-z", type=float, default=2.6, help="do not project below this height (people)")
+    proj.add_argument("--project-mask", type=float, nargs=4, action="append", metavar=("U0", "V0", "U1", "V1"))
+    proj.add_argument("--no-landmark-dressing", action="store_true", help="landmark mass only (no bands/lights)")
+    proj.add_argument("--view-standard", action="store_true", help="Standard view transform (keeps photo colours)")
+    anim = parser.add_argument_group("short camera move")
+    anim.add_argument("--frames", type=int, default=1)
+    anim.add_argument("--dolly-m", type=float, default=0.0, help="move forward this far over the frames")
     parser.add_argument("--crosswalks", default=None, help="JSON of crosswalk walking lines and widths")
     parser.add_argument("--size", type=int, nargs=2, metavar=("W", "H"), help="override the shot's frame size")
     parser.add_argument("--washes", default=None, help="JSON of facade boxes washed by area lights")
@@ -73,6 +85,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--ground-fill", type=float, default=0.0, help="overhead area light power in W")
     parser.add_argument("--exposure", type=float, default=0.0)
     parser.add_argument("--sky-strength", type=float, default=0.6)
+    parser.add_argument("--sky-color", default=None, help="hex colour of the night sky, e.g. #0b1426")
     parser.add_argument("--bloom", type=float, default=0.6, help="compositor glare strength, 0 disables")
     eye = parser.add_argument_group("street-level camera (overrides the shot's MapLibre keys)")
     eye.add_argument("--eye", type=float, nargs=3, metavar=("LNG", "LAT", "HEIGHT_M"))
@@ -315,9 +328,11 @@ def main() -> None:
     if args.landmarks:
         for landmark in json.loads(Path(args.landmarks).read_text())["landmarks"]:
             result = landmarks.replace_with_landmark(plateau_objects, landmark, origin, args.mullion_glow)
-            bands = 0 if args.buildings_only else landmarks.add_landmark_bands(landmark, result["outline"], project_dir)
-            if not args.buildings_only:
+            dressed = not (args.buildings_only or args.no_landmark_dressing)
+            bands = landmarks.add_landmark_bands(landmark, result["outline"], project_dir) if dressed else 0
+            if dressed:
                 bands += landmarks.add_landmark_lights(landmark, result["outline"])
+            plateau_objects.append(result["object"])
             print(f"[blender-shot] landmark {landmark['name']}: removed {result['removedFaces']} PLATEAU faces, "
                   f"{bands} bands", flush=True)
     if args.pick_signs:
@@ -369,6 +384,8 @@ def main() -> None:
         signs = 0 if args.no_dressing else street_scene.add_billboards(cfg, project_dir, origin)
         props = 0 if args.no_dressing else street_scene.add_street_props(cfg, origin)
         print(f"[blender-shot] added {signs} billboards and {props} street props", flush=True)
+    if args.sky_color:
+        spec.setdefault("sky", {})["horizon-color"] = args.sky_color
     setup_world(scene, spec, args.sky_strength)
     if args.clay:
         apply_clay(scene, plateau_objects)
@@ -381,14 +398,40 @@ def main() -> None:
             sign_boxes=json.loads(Path(args.sign_boxes).read_text())["boxes"] if args.sign_boxes else None,
         )
         print(f"[blender-shot] night materials on {changed} PLATEAU materials", flush=True)
+    if args.project_photo:
+        fit = json.loads(Path(args.projector).read_text())["fit"]
+        px, py = bg.local_meters(fit["eye"], origin)
+        projector = photo_projection.add_projector((px, py, fit["eye"][2]), fit["tilt"], fit["bearing"])
+        materials = {m for obj in plateau_objects if obj.type == "MESH" for m in obj.data.materials if m}
+        changed = photo_projection.project_onto(
+            list(materials), str(project_dir / args.project_photo), projector, fit["fov"],
+            args.project_size[0], args.project_size[1], min_z=args.project_min_z, masks=args.project_mask or [])
+        print(f"[blender-shot] projected the photo onto {changed} materials", flush=True)
     setup_render(scene, spec, args.engine, args.samples, args.out)
+    if args.view_standard:
+        scene.view_settings.view_transform = "Standard"
+        scene.view_settings.look = "None"
     scene.view_settings.exposure = args.exposure
     setup_bloom(scene, args.bloom)
+    if args.frames > 1:
+        # Dolly forward along the view's horizontal heading.
+        heading = -camera.rotation_euler.z
+        start = camera.location.copy()
+        camera.keyframe_insert("location", frame=1)
+        camera.location.x = start.x + math.sin(heading) * args.dolly_m
+        camera.location.y = start.y + math.cos(heading) * args.dolly_m
+        camera.keyframe_insert("location", frame=args.frames)  # default Bezier easing
+        scene.frame_start, scene.frame_end = 1, args.frames
+        scene.render.fps = spec.get("fps", 24)
+        scene.render.filepath = args.out.rsplit(".", 1)[0] + "_"
     if args.save_blend:
         bpy.ops.wm.save_as_mainfile(filepath=args.save_blend)
     started = time.time()
-    bpy.ops.render.render(write_still=True)
-    print(f"[blender-shot] rendered {args.engine} in {time.time() - started:.1f}s -> {args.out}", flush=True)
+    if args.frames > 1:
+        bpy.ops.render.render(animation=True)
+    else:
+        bpy.ops.render.render(write_still=True)
+    print(f"[blender-shot] rendered {args.engine} {args.frames} frame(s) in {time.time() - started:.1f}s -> {args.out}", flush=True)
 
 
 if __name__ == "__main__":
