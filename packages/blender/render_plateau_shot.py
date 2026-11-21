@@ -40,6 +40,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--radius", type=float, default=450.0, help="tile radius around the camera in meters")
     parser.add_argument("--save-blend", default=None)
     parser.add_argument("--buildings-only", action="store_true")
+    parser.add_argument("--clay", action="store_true", help="diagnostic: grey buildings in daylight")
+    parser.add_argument("--no-dressing", action="store_true", help="skip billboards and street props")
+    parser.add_argument("--daylight", action="store_true", help="diagnostic: textured buildings in daylight")
+    parser.add_argument("--manifest", default=None, help="override plateauBuildings.manifest (project-relative)")
+    parser.add_argument("--ground-src", default=None, help="diagnostic: replace the ground image (project-relative)")
+    parser.add_argument("--ground-bbox", type=float, nargs=4, metavar=("W", "S", "E", "N"))
     parser.add_argument("--wet-roughness", type=float, nargs=2, default=[0.06, 0.45])
     parser.add_argument("--ground-fill", type=float, default=0.0, help="overhead area light power in W")
     parser.add_argument("--exposure", type=float, default=0.0)
@@ -164,18 +170,51 @@ def setup_bloom(scene: bpy.types.Scene, strength: float) -> None:
     tree.links.new(glare.outputs["Image"], output.inputs[0])
 
 
+def apply_clay(scene: bpy.types.Scene, plateau_objects: list) -> None:
+    """Diagnostic look: grey PLATEAU buildings under a daylight sun, to judge geometry alone."""
+    clay = bpy.data.materials.new("Clay")
+    clay.use_nodes = True
+    bsdf = clay.node_tree.nodes["Principled BSDF"]
+    bsdf.inputs["Base Color"].default_value = (0.55, 0.55, 0.55, 1)
+    bsdf.inputs["Roughness"].default_value = 0.9
+    for obj in plateau_objects:
+        if obj.type == "MESH":
+            obj.data.materials.clear()
+            obj.data.materials.append(clay)
+    apply_daylight(scene)
+
+
+def apply_daylight(scene: bpy.types.Scene) -> None:
+    """Diagnostic light: a daylight sun and a bright sky, to inspect geometry and textures."""
+    sun = bpy.data.lights.new("DiagnosticSun", "SUN")
+    sun.energy = 3.0
+    sun.angle = math.radians(3)
+    sun_obj = bpy.data.objects.new("DiagnosticSun", sun)
+    sun_obj.rotation_euler = (math.radians(40), 0, math.radians(-35))
+    scene.collection.objects.link(sun_obj)
+    scene.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.45, 0.5, 0.6, 1)
+    scene.world.node_tree.nodes["Background"].inputs["Strength"].default_value = 1.0
+
+
 def main() -> None:
     args = parse_args()
     spec = json.loads(Path(args.shot).read_text())
     project_dir = Path(args.project_dir)
     scene = reset_scene()
+    if args.manifest:
+        spec["plateauBuildings"]["manifest"] = args.manifest
     origin = list(json.loads((project_dir / spec["plateauBuildings"]["manifest"]).read_text())["center"])
     camera = setup_camera(scene, spec, origin, args)
     started = time.time()
+    before = set(bpy.data.objects)
     tiles = import_plateau(spec, project_dir, origin, (camera.location.x, camera.location.y), args.radius)
+    plateau_objects = [obj for obj in bpy.data.objects if obj not in before]
     print(f"[blender-shot] imported {tiles} tiles in {time.time() - started:.1f}s", flush=True)
     cfg = spec["plateauBuildings"]
     if not args.buildings_only:
+        if args.ground_src:
+            # Diagnostic: lay an untouched aerial photo (e.g. the raw GSI mosaic) as the ground.
+            cfg["groundPlane"] = {"src": args.ground_src, "bbox": args.ground_bbox, "altitudeM": 0.04, "brightness": 1.0}
         if cfg.get("groundPlane"):
             cfg["groundPlane"]["_wetMinRoughness"] = args.wet_roughness[0]
             cfg["groundPlane"]["_wetMaxRoughness"] = args.wet_roughness[1]
@@ -192,10 +231,14 @@ def main() -> None:
             fill = bpy.data.objects.new("GroundFill", data)
             fill.location = (tx, ty, 30)
             scene.collection.objects.link(fill)
-        signs = street_scene.add_billboards(cfg, project_dir, origin)
-        props = street_scene.add_street_props(cfg, origin)
+        signs = 0 if args.no_dressing else street_scene.add_billboards(cfg, project_dir, origin)
+        props = 0 if args.no_dressing else street_scene.add_street_props(cfg, origin)
         print(f"[blender-shot] added {signs} billboards and {props} street props", flush=True)
     setup_world(scene, spec, args.sky_strength)
+    if args.clay:
+        apply_clay(scene, plateau_objects)
+    elif args.daylight:
+        apply_daylight(scene)
     setup_render(scene, spec, args.engine, args.samples, args.out)
     scene.view_settings.exposure = args.exposure
     setup_bloom(scene, args.bloom)
