@@ -209,6 +209,22 @@ class Plateau3DTilesTests(unittest.TestCase):
         image = Image.open(io.BytesIO(opt_bin[view['byteOffset']:view['byteOffset'] + view['byteLength']]))
         self.assertEqual(image.size, (64, 32))
 
+    def test_stripping_cesium_rtc_also_removes_it_from_extensions_required(self):
+        # Strict glTF loaders (Blender) reject files whose extensionsRequired lists an unused extension.
+        document = {
+            'extensionsUsed': ['CESIUM_RTC', 'KHR_draco_mesh_compression'],
+            'extensionsRequired': ['CESIUM_RTC', 'KHR_draco_mesh_compression'],
+            'extensions': {'CESIUM_RTC': {'center': [1.0, 2.0, 3.0]}},
+        }
+        self.assertTrue(plateau_3d._strip_cesium_rtc(document))
+        self.assertEqual(document['extensionsUsed'], ['KHR_draco_mesh_compression'])
+        self.assertEqual(document['extensionsRequired'], ['KHR_draco_mesh_compression'])
+        self.assertNotIn('extensions', document)
+
+        only_required = {'extensionsRequired': ['CESIUM_RTC']}
+        self.assertTrue(plateau_3d._strip_cesium_rtc(only_required))
+        self.assertNotIn('extensionsRequired', only_required)
+
 
 if __name__ == '__main__':
     unittest.main()
