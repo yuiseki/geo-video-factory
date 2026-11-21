@@ -48,6 +48,45 @@ class FitTests(unittest.TestCase):
         self.assertAlmostEqual(fitted["fov"], 62, places=2)
         self.assertAlmostEqual(fitted["location"][1], -45.0, places=2)
 
+    def test_two_views_recover_heights_that_one_view_cannot(self):
+        # Street-level view (edges + verticals only) and a high telephoto view, sharing six unknown points.
+        street = {"location": (0.0, -40.0, 1.6), "tilt": 100, "bearing": -5, "fov": 66, "shift_px": 0, "roll": -0.5}
+        high = {"location": (60.0, -10.0, 35.0), "tilt": 80, "bearing": -95, "fov": 25, "shift_px": 0, "roll": 1.0}
+        # Corners of three signs (as in practice: several signs' four corners).
+        truth = [(-20, 20, 26), (-12, 20, 26), (-12, 20, 18), (-20, 20, 18),
+                 (-30, 15, 14), (-27, 15, 14), (-27, 15, 6), (-30, 15, 6),
+                 (-8, 24, 12), (-2, 23, 12), (-2, 23, 9), (-8, 24, 9)]
+        size = {"street": (1920, 1280), "high": (1920, 1440)}
+        cams = {"street": street, "high": high}
+        views = {}
+        for name, cam in cams.items():
+            w, h = size[name]
+            verticals = []
+            for x, y in ((-28, 25), (-15, 22), (-5, 18)):
+                verticals.append([bg.project_point(cam, (x, y, 4), w, h), bg.project_point(cam, (x, y, 30), w, h)])
+            views[name] = {"size": size[name], "points": [bg.project_point(cam, p, w, h) for p in truth],
+                           "verticals": verticals, "edges": []}
+        # The high view must also see known corners: otherwise the shared points can slide along the
+        # street camera's rays (a scale about the street camera) while the high camera follows them.
+        for x, y in ((-35, 28), (-10, 30)):
+            views["high"]["edges"].append({"xy": (x, y), "pixels": [bg.project_point(high, (x, y, 8), 1920, 1440),
+                                                                   bg.project_point(high, (x, y, 30), 1920, 1440)]})
+        # Three known corners: two only fix the angle between them, leaving the camera free on a circle.
+        for x, y in ((-2, 10), (14, 8), (-25, 5)):
+            views["street"]["edges"].append({"xy": (x, y), "pixels": [bg.project_point(street, (x, y, 8), 1920, 1280),
+                                                                     bg.project_point(street, (x, y, 40), 1920, 1280)]})
+        initial = {
+            "street": {"location": (2.0, -35.0, 1.6), "tilt": 97, "bearing": 0, "fov": 60, "shift_px": 0, "roll": 0},
+            "high": {"location": (50.0, -20.0, 25.0), "tilt": 83, "bearing": -90, "fov": 30, "shift_px": 0, "roll": 0},
+        }
+        fixed = {"street": {"z": 1.6, "shift_px": 0}, "high": {"shift_px": 0}}
+        cameras, points, rms = camera_fit.fit_views(views, initial, fixed, point_guess=[(-15, 15, 15)] * len(truth))
+        self.assertLess(rms, 1e-3)
+        for got, want in zip(points, truth):
+            self.assertTrue(all(abs(a - b) < 1e-3 for a, b in zip(got, want)), (got, want))
+        self.assertAlmostEqual(cameras["high"]["location"][2], 35.0, places=2)
+        self.assertAlmostEqual(cameras["street"]["tilt"], 100, places=2)
+
     def test_report_lists_per_point_residuals_and_the_eye_position(self):
         truth = {"location": (0.0, -30.0, 1.6), "tilt": 95, "bearing": 0, "fov": 60, "shift_px": 0}
         origin = [139.70, 35.66]
