@@ -79,6 +79,8 @@ def parse_args() -> argparse.Namespace:
     eye.add_argument("--bearing", type=float, default=0.0)
     eye.add_argument("--tilt", type=float, default=90.0, help="0 looks down, 90 looks at the horizon")
     eye.add_argument("--fov", type=float, default=None, help="vertical field of view in degrees")
+    eye.add_argument("--fisheye-mm", type=float, default=None,
+                     help="equisolid fisheye focal length on a 36 mm wide sensor (Cycles only)")
     eye.add_argument("--shift-px", type=float, default=0.0, help="vertical lens shift; positive lowers the horizon")
     return parser.parse_args(argv)
 
@@ -128,6 +130,14 @@ def setup_camera(scene: bpy.types.Scene, spec: dict, origin: list[float], args: 
     data.angle_y = cam["fov_vertical"]
     # Blender's shift is a fraction of the larger frame side; positive moves the frame up.
     data.shift_y = args.shift_px / max(spec["width"], spec["height"])
+    if args.fisheye_mm:
+        # Ultra-wide look of phone/action cameras: equisolid fisheye (Cycles only), full-frame width.
+        data.type = "PANO"
+        data.panorama_type = "FISHEYE_EQUISOLID"
+        data.fisheye_lens = args.fisheye_mm
+        data.fisheye_fov = math.radians(180)
+        data.sensor_fit = "HORIZONTAL"
+        data.sensor_width = 36.0
     data.clip_start = 0.1
     data.clip_end = 5000
     obj = bpy.data.objects.new("ShotCamera", data)
