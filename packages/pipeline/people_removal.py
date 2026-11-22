@@ -1,0 +1,183 @@
+"""Remove people and vehicles from a real photo, keeping signs and screens untouched.
+
+Two stages, each run in the environment that has its model:
+
+1. mask (any Python with numpy, Pillow, scipy; a running ComfyUI with SAM 3.1):
+   three SAM 3.1 text-prompted passes on one image - people, signs/screens, vehicles.
+   final = (people - dilated signs) | fill_holes(vehicles), then grown and softened so motion-blur
+   trails past the detected outline are covered too.
+   - Signs are subtracted from people because billboards and screens often show people.
+   - Vehicles are never protected by signs: a wrapped car can be read as a screen.
+   - "poster" and "signboard" are kept out of the sign prompt; they matched car wraps.
+2. fill (ComfyUI's venv: torch + spandrel): LaMa (big-lama.pt) at up to MAX_SIDE px, fully
+   convolutional, then composited back into the full-size photo through the soft mask so untouched
+   pixels stay original. LaMa does not invent objects; large holes come out smooth and soft.
+   (The comfyui-inpaint-nodes LaMa node resizes to 256 px, which is why it is bypassed.)
+
+CLI:
+  people_removal.py mask <photo> <out_dir> [--url=http://127.0.0.1:8188] [--threshold=0.2]
+      -> <id>_mask.png, <id>_signs.png, <id>_vehicles.png, <id>_mask_grown.png
+  people_removal.py fill <big-lama.pt> <out_dir> <photo> <mask_grown> [<photo> <mask_grown> ...]
+      -> <photo stem>_nopeople.png
+<id> is the first three characters of the photo's stem.
+"""
+from __future__ import annotations
+
+import io
+import json
+import sys
+import time
+import urllib.request
+import uuid
+from pathlib import Path
+
+import numpy as np
+from PIL import Image, ImageFilter
+
+URL = "http://127.0.0.1:8188"
+PEOPLE_PROMPT = "person:300, crowd:20"  # "label:N" sets SAM3_Detect's max detections for that label
+SIGN_PROMPT = "billboard:60, screen:40"
+VEHICLE_PROMPT = "car:30, taxi:10, bus:5, truck:5"
+SAM_MODEL = "sam3.1_multiplex_fp16.safetensors"
+OUTPUT_NODES = {"people": "14", "signs": "24", "vehicles": "34"}
+MAX_SIDE = 2048
+GROW_FRACTION = 0.012  # of the photo's longer side
+
+
+def sam_workflow(image_name: str, people=PEOPLE_PROMPT, signs=SIGN_PROMPT, vehicles=VEHICLE_PROMPT,
+                 threshold=0.2, sign_threshold=0.25) -> dict:
+    """ComfyUI API workflow: one SAM 3.1 model, three prompted detections saved as mask images."""
+    wf = {
+        "2": {"class_type": "LoadImage", "inputs": {"image": image_name}},
+        "10": {"class_type": "CheckpointLoaderSimple", "inputs": {"ckpt_name": SAM_MODEL}},
+    }
+    for base, text, thr, prefix in ((11, people, threshold, "people_mask"), (21, signs, sign_threshold, "sign_mask"),
+                                    (31, vehicles, threshold, "vehicle_mask")):
+        b = str(base)
+        wf[b] = {"class_type": "CLIPTextEncode", "inputs": {"clip": ["10", 1], "text": text}}
+        wf[str(base + 1)] = {"class_type": "SAM3_Detect", "inputs": {
+            "model": ["10", 0], "image": ["2", 0], "threshold": thr, "refine_iterations": 2,
+            "individual_masks": False, "conditioning": [b, 0]}}
+        wf[str(base + 2)] = {"class_type": "MaskToImage", "inputs": {"mask": [str(base + 1), 0]}}
+        wf[str(base + 3)] = {"class_type": "SaveImage", "inputs": {"images": [str(base + 2), 0], "filename_prefix": prefix}}
+    return wf
+
+
+def combine_masks(people: np.ndarray, signs: np.ndarray, vehicles: np.ndarray, sign_margin: int = 9) -> np.ndarray:
+    """(people - signs dilated by sign_margin) | fill_holes(vehicles), as a 0/255 uint8 array."""
+    from scipy import ndimage
+
+    keep = np.asarray(Image.fromarray(((signs > 127) * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(sign_margin))) > 0
+    out = (people > 127) & ~keep
+    out |= ndimage.binary_fill_holes(vehicles > 127)
+    return (out * 255).astype(np.uint8)
+
+
+def grow_size(size) -> int:
+    return max(3, int(GROW_FRACTION * max(size))) | 1
+
+
+def grow_mask(mask: Image.Image) -> Image.Image:
+    """Dilate then blur: covers motion-blur trails and gives a soft edge for compositing."""
+    g = grow_size(mask.size)
+    return mask.convert("L").filter(ImageFilter.MaxFilter(g)).filter(ImageFilter.GaussianBlur(g / 3))
+
+
+def model_size(size, max_side: int = MAX_SIDE):
+    w, h = size
+    s = min(1.0, max_side / max(w, h))
+    return int(w * s) // 8 * 8, int(h * s) // 8 * 8
+
+
+def composite(photo: Image.Image, fill: Image.Image, soft_mask: Image.Image) -> Image.Image:
+    """Fill (any size) inside the soft mask, the untouched photo outside."""
+    fill = fill.convert("RGB").resize(photo.size, Image.LANCZOS)
+    return Image.composite(fill, photo.convert("RGB"), soft_mask.convert("L").resize(photo.size))
+
+
+# --- ComfyUI client (network; exercised by the mask command, not by unit tests) ---
+
+def _upload(url: str, img: Image.Image, name: str) -> str:  # pragma: no cover
+    buf = io.BytesIO()
+    img.save(buf, "PNG")
+    b = uuid.uuid4().hex
+    body = (f"--{b}\r\nContent-Disposition: form-data; name=\"image\"; filename=\"{name}\"\r\n"
+            "Content-Type: image/png\r\n\r\n").encode() + buf.getvalue() + \
+        f"\r\n--{b}\r\nContent-Disposition: form-data; name=\"overwrite\"\r\n\r\ntrue\r\n--{b}--\r\n".encode()
+    req = urllib.request.Request(url + "/upload/image", data=body,
+                                 headers={"Content-Type": f"multipart/form-data; boundary={b}"})
+    return json.load(urllib.request.urlopen(req))["name"]
+
+
+def _run(url: str, wf: dict) -> dict:  # pragma: no cover
+    req = urllib.request.Request(url + "/prompt", data=json.dumps({"prompt": wf}).encode(),
+                                 headers={"Content-Type": "application/json"})
+    pid = json.load(urllib.request.urlopen(req))["prompt_id"]
+    while True:
+        hist = json.load(urllib.request.urlopen(f"{url}/history/{pid}"))
+        if pid in hist:
+            e = hist[pid]
+            if e.get("status", {}).get("status_str") == "error":
+                raise RuntimeError(json.dumps(e["status"])[:3000])
+            outs = {}
+            for node, out in e["outputs"].items():
+                for im in out.get("images", []):
+                    q = f"filename={im['filename']}&subfolder={im['subfolder']}&type={im['type']}"
+                    outs[node] = Image.open(io.BytesIO(urllib.request.urlopen(f"{url}/view?{q}").read()))
+            return outs
+        time.sleep(1)
+
+
+def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2) -> Path:  # pragma: no cover
+    photo = Image.open(photo_path).convert("RGB")
+    outs = _run(url, sam_workflow(_upload(url, photo, "people_in.png"), threshold=threshold))
+    layers = {k: np.asarray(outs[n].convert("L").resize(photo.size)) for k, n in OUTPUT_NODES.items()}
+    stem = photo_path.stem[:3]
+    Image.fromarray(layers["signs"]).save(out_dir / f"{stem}_signs.png")
+    Image.fromarray(layers["vehicles"]).save(out_dir / f"{stem}_vehicles.png")
+    mask = Image.fromarray(combine_masks(layers["people"], layers["signs"], layers["vehicles"]))
+    mask.save(out_dir / f"{stem}_mask.png")
+    print(stem, "mask coverage", round(float((np.asarray(mask) > 127).mean()), 3), flush=True)
+    grown = out_dir / f"{stem}_mask_grown.png"
+    grow_mask(mask).save(grown)
+    return grown
+
+
+def lama_fill(model_path: str, out_dir: Path, pairs) -> None:  # pragma: no cover
+    import torch
+    from spandrel import ModelLoader
+
+    dev = "mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu"
+    model = ModelLoader().load_from_file(model_path).eval().to(dev)
+    for photo_path, mask_path in pairs:
+        photo = Image.open(photo_path).convert("RGB")
+        soft = Image.open(mask_path).convert("L").resize(photo.size)
+        w, h = model_size(photo.size)
+        img = torch.from_numpy(np.asarray(photo.resize((w, h), Image.LANCZOS), np.float32) / 255).permute(2, 0, 1)[None]
+        m = torch.from_numpy((np.asarray(soft.resize((w, h), Image.BILINEAR)) > 20).astype(np.float32))[None, None]
+        with torch.no_grad():
+            res = model(img.to(dev), m.to(dev)).clamp(0, 1).cpu()
+        fill = Image.fromarray((res[0].permute(1, 2, 0).numpy() * 255).round().astype(np.uint8))
+        composite(photo, fill, soft).save(out_dir / f"{Path(photo_path).stem}_nopeople.png")
+        print(Path(photo_path).stem[:3], "filled", flush=True)
+
+
+def main(argv) -> None:  # pragma: no cover
+    opts = {a.split("=", 1)[0]: a.split("=", 1)[1] for a in argv if a.startswith("--") and "=" in a}
+    args = [a for a in argv if not a.startswith("--")]
+    cmd = args[0]
+    if cmd == "mask":
+        out_dir = Path(args[2])
+        out_dir.mkdir(parents=True, exist_ok=True)
+        make_mask(Path(args[1]), out_dir, opts.get("--url", URL), float(opts.get("--threshold", 0.2)))
+    elif cmd == "fill":
+        out_dir = Path(args[2])
+        out_dir.mkdir(parents=True, exist_ok=True)
+        rest = args[3:]
+        lama_fill(args[1], out_dir, list(zip(rest[0::2], rest[1::2])))
+    else:
+        raise SystemExit(__doc__)
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main(sys.argv[1:])
