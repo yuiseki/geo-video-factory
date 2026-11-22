@@ -129,6 +129,28 @@ class ModelSizeTests(unittest.TestCase):
         self.assertEqual(pr.model_size((1023, 767), 2048), (1016, 760))
 
 
+class AddBoxesTests(unittest.TestCase):
+    def test_boxes_in_fractions_of_the_photo_are_added_to_the_mask(self):
+        m = np.zeros((100, 200), np.uint8)
+        m[0:5, 0:5] = 255
+        out = pr.add_boxes(m, [[0.5, 0.2, 0.6, 0.4]])
+        self.assertEqual(out[30, 110], 255)
+        self.assertEqual(out[30, 125], 0)
+        self.assertEqual(out[2, 2], 255)  # the detected part stays
+        self.assertEqual(m[30, 110], 0)  # input untouched
+
+    def test_boxes_are_clipped_to_the_photo(self):
+        out = pr.add_boxes(np.zeros((10, 10), np.uint8), [[0.9, 0.9, 1.5, 1.5]])
+        self.assertEqual(out[9, 9], 255)
+        self.assertEqual(int((out > 0).sum()), 1)
+
+    def test_additions_for_a_photo_are_read_by_its_id(self):
+        adds = {"044": [[0.4, 0.4, 0.5, 0.5]], "note": "ignored"}
+        self.assertEqual(pr.boxes_for(adds, "044"), [[0.4, 0.4, 0.5, 0.5]])
+        self.assertEqual(pr.boxes_for(adds, "117"), [])
+        self.assertEqual(pr.boxes_for(None, "044"), [])
+
+
 class SamSizeTests(unittest.TestCase):
     def test_photos_within_the_pixel_budget_are_sent_as_they_are(self):
         self.assertEqual(pr.sam_size((3840, 2560)), (3840, 2560))

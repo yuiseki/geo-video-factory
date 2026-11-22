@@ -17,7 +17,9 @@ Two stages, each run in the environment that has its model:
 CLI:
   people_removal.py mask <photo> <out_dir> [--url=http://127.0.0.1:8188] [--threshold=0.2]
       -> <id>_people.png, <id>_signs.png, <id>_vehicles.png (raw SAM layers), <id>_mask.png, <id>_mask_grown.png
-  people_removal.py remix <out_dir> <id> ...   rebuild the masks from the saved layers after a rule change
+  people_removal.py remix <out_dir> <id> ... [--add=<additions.json>]
+      rebuild the masks from the saved layers after a rule change; additions.json adds hand-drawn boxes
+      for what detection missed: {"<id>": [[x0, y0, x1, y1], ...]} in fractions of the photo
   people_removal.py fill <big-lama.pt> <out_dir> <photo> <mask_grown> [...] [--max-side=1024] [--suffix=_nopeople]
       -> <photo stem>_nopeople.png
 <id> is the first three characters of the photo's stem.
@@ -106,6 +108,22 @@ def combine_masks(people: np.ndarray, signs: np.ndarray, vehicles: np.ndarray, s
     return (out * 255).astype(np.uint8)
 
 
+def add_boxes(mask: np.ndarray, boxes) -> np.ndarray:
+    """Mask with hand-drawn boxes [x0, y0, x1, y1] (fractions of the photo) added: for what detection missed."""
+    out = mask.copy()
+    h, w = out.shape
+    for x0, y0, x1, y1 in boxes:
+        c0, c1 = max(0, int(x0 * w)), min(w, max(int(x0 * w) + 1, int(np.ceil(x1 * w))))
+        r0, r1 = max(0, int(y0 * h)), min(h, max(int(y0 * h) + 1, int(np.ceil(y1 * h))))
+        out[r0:r1, c0:c1] = 255
+    return out
+
+
+def boxes_for(additions, stem: str) -> list:
+    """The boxes listed for photo `stem` in an additions file {"<id>": [[x0, y0, x1, y1], ...], ...}."""
+    return list((additions or {}).get(stem) or [])
+
+
 def grow_size(size) -> int:
     return max(3, int(GROW_FRACTION * max(size))) | 1
 
@@ -183,10 +201,12 @@ def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2) -> Path: 
     return remix(out_dir, stem)
 
 
-def remix(out_dir: Path, stem: str) -> Path:  # pragma: no cover
-    """Rebuild <stem>_mask.png and _mask_grown.png from the saved SAM layers (no detection rerun)."""
+def remix(out_dir: Path, stem: str, additions=None) -> Path:  # pragma: no cover
+    """Rebuild <stem>_mask.png and _mask_grown.png from the saved SAM layers (no detection rerun),
+    plus any hand-drawn boxes for this photo in `additions`."""
     layers = {k: np.asarray(Image.open(out_dir / f"{stem}_{k}.png").convert("L")) for k in OUTPUT_NODES}
-    mask = Image.fromarray(combine_masks(layers["people"], layers["signs"], layers["vehicles"]))
+    combined = combine_masks(layers["people"], layers["signs"], layers["vehicles"])
+    mask = Image.fromarray(add_boxes(combined, boxes_for(additions, stem)))
     mask.save(out_dir / f"{stem}_mask.png")
     print(stem, "mask coverage", round(float((np.asarray(mask) > 127).mean()), 3), flush=True)
     grown = out_dir / f"{stem}_mask_grown.png"
@@ -222,8 +242,9 @@ def main(argv) -> None:  # pragma: no cover
         out_dir.mkdir(parents=True, exist_ok=True)
         make_mask(Path(args[1]), out_dir, opts.get("--url", URL), float(opts.get("--threshold", 0.2)))
     elif cmd == "remix":
+        additions = json.loads(Path(opts["--add"]).read_text()) if "--add" in opts else None
         for stem in args[2:]:
-            remix(Path(args[1]), stem)
+            remix(Path(args[1]), stem, additions)
     elif cmd == "fill":
         out_dir = Path(args[2])
         out_dir.mkdir(parents=True, exist_ok=True)
