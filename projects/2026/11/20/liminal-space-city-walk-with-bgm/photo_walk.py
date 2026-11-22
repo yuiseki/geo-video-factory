@@ -3,7 +3,7 @@
 A stand-in for the 3D walk until the photos are projected in Blender: it checks the order, the pace
 and whether the cleaned photos hold up at normal speed with the music.
 
-usage: python3 photo_walk.py <flyover_dir> <version>   (needs ffmpeg; Pillow not required)
+usage: python3 photo_walk.py <flyover_dir> <version>   (needs ffmpeg and Pillow)
   -> <flyover_dir>/out/photo-walk-v<version>/photo-walk-v<version>.mp4  (1280x720, 24 fps, -14 LUFS)
 Never overwrites: refuses if the output exists.
 """
@@ -19,6 +19,7 @@ ZOOM = 0.08  # push-in over HOLD: a slow step forward
 # v0.2.0: Center-gai added; 288 dropped (its car light trails contradict the empty city).
 # v0.2.1: the karaoke shop without the people inside (centergai_v2/139).
 # v0.3.0: opens standing at the corner (220); the Tokyu Toyoko view (147) in the crossing.
+# v0.3.1: push-ins drawn with Pillow at sub-pixel positions (zoompan juddered).
 SHOTS = [
     ("buildings_night_v2/220", 0.5, "standing at the corner of the crossing"),
     ("262", 0.5, "crossing, street level"),
@@ -61,14 +62,33 @@ def find(fly: Path, i: str) -> Path:
     raise SystemExit(f"no people-removed photo for {i}")
 
 
-def clip_filter(focus: float) -> str:
-    """Cover a 2x canvas, place the 16:9 window at `focus`, then push in slowly toward its centre."""
+def push_in(photo: Path, focus: float, out: Path) -> None:
+    """Write one push-in clip. Frames are drawn with Pillow at sub-pixel positions: ffmpeg's zoompan crops
+    at whole pixels and the slow zoom judders (11/23: mean second temporal difference 6.6 with zoompan on a
+    2x canvas, 3.1 on 4x, 1.2 here). The photo is first shrunk to the window (Lanczos), so the affine
+    transform only ever enlarges by up to ZOOM and does not alias."""
+    from PIL import Image
     n = int(HOLD * FPS)
-    cw, ch = 2 * W, 2 * H
-    return (f"scale={cw}:{ch}:force_original_aspect_ratio=increase,"
-            f"crop={cw}:{ch}:(iw-{cw})/2:min(max(0\\,ih*{focus}-{ch}/2)\\,ih-{ch}),"
-            f"zoompan=z='1+{ZOOM}*on/{n}':x='iw/2-(iw/zoom/2)':y='ih/2-(ih/zoom/2)':d={n}:s={W}x{H}:fps={FPS},"
-            "setsar=1,format=yuv420p")
+    src = Image.open(photo).convert("RGB")
+    sw, sh = src.size
+    ww, wh = (sh * W / H, sh) if sw / sh > W / H else (sw, sw * H / W)  # 16:9 window covering the photo
+    k = W / ww
+    src = src.resize((max(W, round(sw * k)), max(H, round(sh * k))), Image.LANCZOS)
+    sw, sh, ww, wh = src.size[0], src.size[1], ww * k, wh * k
+    x0, y0 = (sw - ww) / 2, min(max(0.0, sh * focus - wh / 2), sh - wh)
+    enc = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24",
+                            "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-crf", "12",
+                            "-preset", "fast", "-pix_fmt", "yuv420p", str(out)], stdin=subprocess.PIPE)
+    for i in range(n):
+        z = 1 + ZOOM * i / n
+        cw, ch = ww / z, wh / z
+        s = cw / W
+        frame = src.transform((W, H), Image.AFFINE, (s, 0, x0 + (ww - cw) / 2, 0, s, y0 + (wh - ch) / 2),
+                              Image.BICUBIC)
+        enc.stdin.write(frame.tobytes())
+    enc.stdin.close()
+    if enc.wait() != 0:
+        raise SystemExit(f"encoding {out} failed")
 
 
 def main(fly: Path, version: str) -> None:
@@ -77,10 +97,14 @@ def main(fly: Path, version: str) -> None:
     if out.exists():
         raise SystemExit(f"{out} exists; pick a new version")
     out_dir.mkdir(parents=True, exist_ok=True)
+    clips = out_dir / "clips"
+    clips.mkdir(exist_ok=True)
     args, chains = ["ffmpeg", "-loglevel", "error", "-y"], []
     for k, (i, focus, _) in enumerate(SHOTS):
-        args += ["-loop", "1", "-t", str(HOLD), "-i", str(find(fly, i))]
-        chains.append(f"[{k}:v]{clip_filter(focus)}[c{k}]")
+        clip = clips / f"{k:02d}.mp4"
+        push_in(find(fly, i), focus, clip)
+        args += ["-i", str(clip)]
+        chains.append(f"[{k}:v]setsar=1,format=yuv420p[c{k}]")
     step = HOLD - FADE
     total = step * (len(SHOTS) - 1) + HOLD
     prev = "c0"
