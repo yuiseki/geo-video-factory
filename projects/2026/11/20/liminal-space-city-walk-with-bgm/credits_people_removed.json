@@ -287,7 +287,7 @@
    "url": "https://commons.wikimedia.org/wiki/File:H%26M_in_Shibuya_night.jpg",
    "license": "CC0 1.0",
    "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
-   "output": "flyover/out/people_removal_cc0/night_v1/118_H_M_in_Shibuya_night_nopeople.png"
+   "output": "flyover/out/people_removal_cc0/night_v2/118_H_M_in_Shibuya_night_nopeople.png"
   },
   {
    "id": "190",
