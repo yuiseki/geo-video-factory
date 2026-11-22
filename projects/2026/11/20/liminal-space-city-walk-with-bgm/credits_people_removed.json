@@ -175,7 +175,7 @@
    "url": "https://commons.wikimedia.org/wiki/File:Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg",
    "license": "CC0 1.0",
    "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
-   "output": "flyover/out/people_removal_cc0/crossing_night_v6/262_Shibuya_scramble_crossing_empty_at_2am_on_a_weekday_nopeople.png"
+   "output": "flyover/out/people_removal_cc0/crossing_night_v8/262_Shibuya_scramble_crossing_empty_at_2am_on_a_weekday_nopeople.png"
   },
   {
    "id": "271",

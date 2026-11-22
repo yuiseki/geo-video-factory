@@ -57,7 +57,7 @@ INDOOR = [
     ("qfront_v2/090", 0.5, "TSUTAYA: the aisle bends away"),
 ]
 # current version of each photo (later folders first); see HANDOVER-2026-11-22.md
-DIRS = ["crossing_night_v7b", "crossing_night_v7", "night_v2", "crossing_night_v6", "night_v1"]
+DIRS = ["crossing_night_v8", "crossing_night_v7b", "crossing_night_v7", "night_v2", "crossing_night_v6", "night_v1"]
 GRADE = ("rgbashift=rh=-1:bh=1,colorbalance=rs=0.04:bs=0.08:rm=0.02:bm=0.05,"
          "vignette=PI/5,noise=alls=4:allf=t")
 BGM = "assets/bgm/vaporwave_mallsoft.wav"

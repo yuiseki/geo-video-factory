@@ -1,5 +1,5 @@
 {
- "note": "Hand-drawn boxes added to the people-removal masks for what SAM 3.1 missed ([x0, y0, x1, y1], fractions of the photo). Use: people_removal.py remix <out_dir> <id> --add=mask_additions.json. 044: the white car in the distance, also read as a screen and dropped by the sign rule (2026-11-23). 118: a white vehicle blur at the bottom right, also read as a sign (2026-11-23). 305: the dark stain left where a car was, and distant cars dropped by the min_vehicle_bottom rule. 139: the dark stain (2026-11-23). 132 (shibuya_centergai/132_Shibuya_Center_Gai.jpg): a white van read as a sign, and the three people in front of it dropped with it (2026-11-23). Ids are the first three characters of the photo stem; a <photo folder>/<id> key (remix --folder=) wins over a bare id, for ids that repeat across folders. shibuya_centergai/139: people inside the karaoke shop, protected as a screen behind the glass. shibuya_buildings_night/220: the shadow of the two people in front, and two small marks on the road. crossing_night/258: parked cars in the upper left of an overhead view, dropped by the min_vehicle_bottom rule (cars sit high in the frame in aerial shots). qfront/090: the one person at the far end of the TSUTAYA aisle (SAM read faces on DVD covers instead). night/267: the dark stain left where a parked car was (lower left).",
+ "note": "Hand-drawn boxes added to the people-removal masks for what SAM 3.1 missed ([x0, y0, x1, y1], fractions of the photo). Use: people_removal.py remix <out_dir> <id> --add=mask_additions.json. 044: the white car in the distance, also read as a screen and dropped by the sign rule (2026-11-23). 118: a white vehicle blur at the bottom right, also read as a sign (2026-11-23). 305: the dark stain left where a car was, and distant cars dropped by the min_vehicle_bottom rule. 139: the dark stain (2026-11-23). 132 (shibuya_centergai/132_Shibuya_Center_Gai.jpg): a white van read as a sign, and the three people in front of it dropped with it (2026-11-23). Ids are the first three characters of the photo stem; a <photo folder>/<id> key (remix --folder=) wins over a bare id, for ids that repeat across folders. shibuya_centergai/139: people inside the karaoke shop, protected as a screen behind the glass. shibuya_buildings_night/220: the shadow of the two people in front, and two small marks on the road. crossing_night/258: parked cars in the upper left of an overhead view, dropped by the min_vehicle_bottom rule (cars sit high in the frame in aerial shots). qfront/090: the one person at the far end of the TSUTAYA aisle (SAM read faces on DVD covers instead). night/267: the dark stain left where a parked car was (lower left). crossing_night/262: a security guard standing in front of the white hoarding (protected as part of the sign).",
  "044": [
   [
    0.448,
@@ -108,6 +108,14 @@
    0.83,
    0.27,
    0.965
+  ]
+ ],
+ "crossing_night/262": [
+  [
+   0.256,
+   0.516,
+   0.273,
+   0.553
   ]
  ]
 }
