@@ -254,5 +254,63 @@
    "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
    "output": "flyover/out/people_removal_cc0/crossing_night_v6/308__X_52847949120__nopeople.png"
   }
- ]
+ ],
+ "streets": [
+  {
+   "id": "044",
+   "file": "assets/photos/crossing_night_cc0/night/044_B36A1070.jpg",
+   "title": "B36A1070",
+   "creator": "mine33NY",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/165898707@N06/46169115684",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/044_B36A1070_nopeople.png"
+  },
+  {
+   "id": "117",
+   "file": "assets/photos/crossing_night_cc0/night/117_Gusto_Shibuya-D_genzaka.jpg",
+   "title": "File:Gusto Shibuya-Dōgenzaka.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Gusto_Shibuya-D%C5%8Dgenzaka.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/117_Gusto_Shibuya-D_genzaka_nopeople.png"
+  },
+  {
+   "id": "118",
+   "file": "assets/photos/crossing_night_cc0/night/118_H_M_in_Shibuya_night.jpg",
+   "title": "File:H&M in Shibuya night.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:H%26M_in_Shibuya_night.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/118_H_M_in_Shibuya_night_nopeople.png"
+  },
+  {
+   "id": "190",
+   "file": "assets/photos/crossing_night_cc0/night/190_Reikyo_2026-01-17.jpg",
+   "title": "File:Reikyo 2026-01-17.jpg",
+   "creator": "Asanagi",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Reikyo_2026-01-17.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/190_Reikyo_2026-01-17_nopeople.png"
+  },
+  {
+   "id": "267",
+   "file": "assets/photos/crossing_night_cc0/night/267_Shibuya_Japan_Unsplash_wH5oonip-eg_.jpg",
+   "title": "File:Shibuya, Japan (Unsplash wH5oonip-eg).jpg",
+   "creator": "Redd Angelo reddangelo16",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya,_Japan_(Unsplash_wH5oonip-eg).jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/267_Shibuya_Japan_Unsplash_wH5oonip-eg__nopeople.png"
+  }
+ ],
+ "streets_note": "通りの写真 (night_v1) のうち使えるもの。ライセンスは取得時の manifest の記録 (CC0)。公開前に Commons / Flickr のページで一度確かめる。"
 }
