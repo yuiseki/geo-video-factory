@@ -150,6 +150,11 @@ class AddBoxesTests(unittest.TestCase):
         self.assertEqual(pr.boxes_for(adds, "117"), [])
         self.assertEqual(pr.boxes_for(None, "044"), [])
 
+    def test_a_key_with_the_photo_folder_wins_over_the_bare_id(self):
+        adds = {"139": [[0.5, 0.6, 0.9, 0.7]], "shibuya_centergai/139": [[0.1, 0.1, 0.2, 0.2]]}
+        self.assertEqual(pr.boxes_for(adds, "139", "shibuya_centergai"), [[0.1, 0.1, 0.2, 0.2]])
+        self.assertEqual(pr.boxes_for(adds, "139", "crossing_night"), [[0.5, 0.6, 0.9, 0.7]])
+
 
 class SamSizeTests(unittest.TestCase):
     def test_photos_within_the_pixel_budget_are_sent_as_they_are(self):

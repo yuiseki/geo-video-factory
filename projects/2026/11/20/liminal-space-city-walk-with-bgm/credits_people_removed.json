@@ -323,5 +323,41 @@
    "output": "flyover/out/people_removal_cc0/night_v1/267_Shibuya_Japan_Unsplash_wH5oonip-eg__nopeople.png"
   }
  ],
- "streets_note": "通りの写真 (night_v1) のうち使えるもの。ライセンスは取得時の manifest の記録 (CC0)。公開前に Commons / Flickr のページで一度確かめる。"
+ "streets_note": "通りの写真 (night_v1) のうち使えるもの。ライセンスは取得時の manifest の記録 (CC0)。公開前に Commons / Flickr のページで一度確かめる。",
+ "centergai": [
+  {
+   "id": "129",
+   "file": "flyover/assets/photos/shibuya_centergai/129_Shibuya_Center_Gai.jpg",
+   "title": "Shibuya Center Gai",
+   "creator": "Dick Thomas Johnson",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/31029865@N06/8440986614",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/centergai_v1/129_Shibuya_Center_Gai_nopeople.png"
+  },
+  {
+   "id": "132",
+   "file": "flyover/assets/photos/shibuya_centergai/132_Shibuya_Center_Gai.jpg",
+   "title": "Shibuya Center Gai",
+   "creator": "Dick Thomas Johnson",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/31029865@N06/8439895927",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/centergai_v2/132_Shibuya_Center_Gai_nopeople.png"
+  },
+  {
+   "id": "139",
+   "file": "flyover/assets/photos/shibuya_centergai/139_Shibuya_Center_Gai.jpg",
+   "title": "Shibuya Center Gai",
+   "creator": "Dick Thomas Johnson",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/31029865@N06/32982119261",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/centergai_v2/139_Shibuya_Center_Gai_nopeople.png"
+  }
+ ],
+ "centergai_note": "センター街の写真 (research/photos_manifest.json の shibuya_centergai) のうち使えるもの。CC BY 2.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。3 枚とも 2026-11-23 に Flickr のページで CC BY 2.0 (creativecommons.org/licenses/by/2.0) と確かめた。"
 }

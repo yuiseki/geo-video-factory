@@ -14,19 +14,23 @@ from pathlib import Path
 W, H, FPS = 1280, 720, 24
 HOLD, FADE = 5.5, 1.5  # seconds on screen per photo, crossfade length
 ZOOM = 0.08  # push-in over HOLD: a slow step forward
-# (id, vertical focus 0-1 for the 16:9 window, note). Walking order: the crossing at street level,
-# looking up in the middle, out toward the side streets, deeper streets, fade out under the trees.
+# (id or folder/id, vertical focus 0-1 for the 16:9 window, note). Walking order: the crossing at street
+# level, looking up in the middle, into Center-gai, out by Dogenzaka, fade out under the trees.
+# v0.2.0: Center-gai added; 288 dropped (its car light trails contradict the empty city).
+# v0.2.1: the karaoke shop without the people inside (centergai_v2/139).
 SHOTS = [
     ("262", 0.5, "crossing, street level"),
     ("138", 0.5, "crossing, the crosswalk ahead"),
     ("305", 0.5, "crossing toward TSUTAYA"),
     ("212", 0.5, "crossing, wide"),
     ("199", 0.62, "middle of the crossing, looking up"),
-    ("288", 0.5, "light trails past TSUTAYA"),
     ("278", 0.5, "screens around the crossing"),
     ("068", 0.5, "screens, low angle"),
     ("308", 0.5, "looking straight up"),
-    ("118", 0.55, "out of the crossing, H&M"),
+    ("centergai_v2/132", 0.55, "into Center-gai: shutters and rubbish"),
+    ("centergai_v1/129", 0.5, "deep in Center-gai"),
+    ("centergai_v2/139", 0.45, "karaoke shop from above"),
+    ("118", 0.55, "back out by H&M"),
     ("117", 0.55, "corner on Dogenzaka"),
     ("267", 0.6, "karaoke street"),
     ("190", 0.5, "Reikyo on Dogenzaka"),
@@ -40,6 +44,13 @@ BGM = "assets/bgm/vaporwave_mallsoft.wav"
 
 
 def find(fly: Path, i: str) -> Path:
+    """`id` searches DIRS in order; `folder/id` looks only in that folder (ids repeat across photo sets)."""
+    if "/" in i:
+        d, i = i.split("/", 1)
+        hits = sorted((fly / "out/people_removal_cc0" / d).glob(f"{i}*_nopeople.png"))
+        if hits:
+            return hits[0]
+        raise SystemExit(f"no people-removed photo for {d}/{i}")
     for d in DIRS:
         hits = sorted((fly / "out/people_removal_cc0" / d).glob(f"{i}*_nopeople.png"))
         if hits:
