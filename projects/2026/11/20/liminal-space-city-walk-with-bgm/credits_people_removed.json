@@ -384,5 +384,30 @@
    "output": "flyover/out/people_removal_cc0/buildings_night_v2/220_Shibuya_Tokyo_By_night_hdsr_S5_18_nopeople.png"
   }
  ],
- "crossing_cc_by_note": "交差点の地上視点の写真 (research/photos_buildings_night_manifest.json) のうち使えるもの。CC BY 4.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。2 枚とも 2026-11-23 に Commons の extmetadata (LicenseShortName) で CC BY 4.0 と確かめた。"
+ "crossing_cc_by_note": "交差点の地上視点の写真 (research/photos_buildings_night_manifest.json) のうち使えるもの。CC BY 4.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。2 枚とも 2026-11-23 に Commons の extmetadata (LicenseShortName) で CC BY 4.0 と確かめた。",
+ "qfront": [
+  {
+   "id": "090",
+   "file": "flyover/assets/photos/qfront/090_SHIBUYA_TSUTAYA_53331352235_.jpg",
+   "title": "File:SHIBUYA TSUTAYA (53331352235).jpg",
+   "creator": "Dick Thomas Johnson from Tokyo, Japan",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:SHIBUYA_TSUTAYA_(53331352235).jpg",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/qfront_v2/090_SHIBUYA_TSUTAYA_53331352235__nopeople.png"
+  },
+  {
+   "id": "083",
+   "file": "flyover/assets/photos/qfront/083_SHIBUYA_TSUTAYA_53331234639_.jpg",
+   "title": "File:SHIBUYA TSUTAYA (53331234639).jpg",
+   "creator": "Dick Thomas Johnson from Tokyo, Japan",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:SHIBUYA_TSUTAYA_(53331234639).jpg",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/qfront_v1/083_SHIBUYA_TSUTAYA_53331234639__nopeople.png"
+  }
+ ],
+ "qfront_note": "QFRONT の SHIBUYA TSUTAYA の売り場 (research/photos_qfront_manifest.json) のうち使えるもの。CC BY 2.0 は表記が必須。2 枚とも 2026-11-23 に Flickr のページ (31029865@N06/53331234639, 53331352235) で CC BY 2.0 と確かめた。"
 }

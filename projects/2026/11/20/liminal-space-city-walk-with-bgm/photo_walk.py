@@ -3,8 +3,9 @@
 A stand-in for the 3D walk until the photos are projected in Blender: it checks the order, the pace
 and whether the cleaned photos hold up at normal speed with the music.
 
-usage: python3 photo_walk.py <flyover_dir> <version> [--first-person]   (needs ffmpeg and Pillow)
+usage: python3 photo_walk.py <flyover_dir> <version> [--first-person] [--indoor]   (needs ffmpeg and Pillow)
   --first-person: start at the corner, without the establishing shot from above
+  --indoor: step into the empty TSUTAYA aisles after the karaoke shop
   -> <flyover_dir>/out/photo-walk-v<version>/photo-walk-v<version>.mp4  (1920x1080, 24 fps, -14 LUFS)
 Never overwrites: refuses if the output exists.
 """
@@ -49,6 +50,12 @@ SHOTS = [
     ("190", 0.5, "Reikyo on Dogenzaka"),
     ("044", 0.5, "tree-lined slope, fade out"),
 ]
+# --indoor: into the QFRONT TSUTAYA rental floor after the karaoke shop, an empty aisle like the Backrooms
+INDOOR_AFTER = "centergai_v2/139"
+INDOOR = [
+    ("qfront_v1/083", 0.5, "TSUTAYA: an empty DVD aisle"),
+    ("qfront_v2/090", 0.5, "TSUTAYA: the aisle bends away"),
+]
 # current version of each photo (later folders first); see HANDOVER-2026-11-22.md
 DIRS = ["crossing_night_v7b", "crossing_night_v7", "night_v2", "crossing_night_v6", "night_v1"]
 GRADE = ("rgbashift=rh=-1:bh=1,colorbalance=rs=0.04:bs=0.08:rm=0.02:bm=0.05,"
@@ -71,9 +78,13 @@ def find(fly: Path, i: str) -> Path:
     raise SystemExit(f"no people-removed photo for {i}")
 
 
-def main(fly: Path, version: str, first_person: bool = False) -> None:
-    """first_person: start at the corner, without the establishing shot from above (v0.3.x)."""
-    shots = SHOTS[1:] if first_person else SHOTS
+def main(fly: Path, version: str, first_person: bool = False, indoor: bool = False) -> None:
+    """first_person: start at the corner, without the establishing shot from above (v0.3.x).
+    indoor: step into the TSUTAYA aisles after the karaoke shop (v0.5.x)."""
+    shots = SHOTS[1:] if first_person else list(SHOTS)
+    if indoor:
+        k = [i for i, _, _ in shots].index(INDOOR_AFTER) + 1
+        shots = shots[:k] + INDOOR + shots[k:]
     out_dir = fly / "out" / f"photo-walk-v{version}"
     out = out_dir / f"photo-walk-v{version}.mp4"
     if out.exists():
@@ -126,4 +137,4 @@ def credits_text(used) -> str:
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]), sys.argv[2], "--first-person" in sys.argv[3:])
+    main(Path(sys.argv[1]), sys.argv[2], "--first-person" in sys.argv[3:], "--indoor" in sys.argv[3:])
