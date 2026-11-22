@@ -63,6 +63,21 @@ class CombineMasksTests(unittest.TestCase):
         self.assertEqual(out[10, 70], 0)
         self.assertEqual(out[45, 20], 255)
 
+    def test_a_vehicle_reaching_the_sky_is_a_building(self):
+        vehicles = blank()
+        vehicles[2:58, 60:90] = 255  # a tower seen from below, read as the front of a bus
+        out = pr.combine_masks(blank(), blank(), vehicles)
+        self.assertEqual(out[40, 70], 0)
+
+    def test_a_person_mostly_on_a_sign_is_dropped_with_its_fringe(self):
+        people, signs = blank(), blank()
+        signs[10:30, 10:40] = 255
+        people[12:34, 12:38] = 255  # sign art read as a person, spilling below the sign
+        people[40:55, 60:66] = 255  # a pedestrian
+        out = pr.combine_masks(people, signs, blank(), sign_margin=3)
+        self.assertEqual(out[32, 20], 0)
+        self.assertEqual(out[45, 62], 255)
+
     def test_soft_inputs_are_thresholded(self):
         people = blank()
         people[0:5, 0:5] = 100  # below half: not a person

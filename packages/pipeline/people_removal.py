@@ -65,24 +65,34 @@ def sam_workflow(image_name: str, people=PEOPLE_PROMPT, signs=SIGN_PROMPT, vehic
 
 
 def combine_masks(people: np.ndarray, signs: np.ndarray, vehicles: np.ndarray, sign_margin: int = 9,
-                  max_sign_overlap: float = 0.7, min_vehicle_bottom: float = 0.4) -> np.ndarray:
+                  max_sign_overlap: float = 0.7, min_vehicle_bottom: float = 0.4, min_vehicle_top: float = 0.1,
+                  max_person_sign_overlap: float = 0.5) -> np.ndarray:
     """(people - signs dilated by sign_margin) | real vehicles with holes filled, as a 0/255 uint8 array.
 
-    A vehicle region is dropped when at least `max_sign_overlap` of it is sign (a curved billboard
-    looks like the side of a bus) or when its lowest pixel is above `min_vehicle_bottom` of the
-    image height (vehicles stand on the road; strips of light near the roofline do not).
+    False detections seen on night street photos, and the rule that drops each:
+    - sign art read as a person: a person region at least `max_person_sign_overlap` on (dilated) signs
+      is dropped whole, so its fringe outside the sign does not stay in the mask.
+    - a curved billboard read as the side of a bus: a vehicle region at least `max_sign_overlap` sign.
+    - strips of light near the roofline: a vehicle region ending above `min_vehicle_bottom` of the height.
+    - a tower seen from below read as the front of a bus: a vehicle region reaching above `min_vehicle_top`.
     """
     from scipy import ndimage
 
     sign = signs > 127
     keep = np.asarray(Image.fromarray((sign * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(sign_margin))) > 0
-    out = (people > 127) & ~keep
+    out = np.zeros(people.shape, bool)
+    labels, _ = ndimage.label(people > 127)
+    for i, sl in enumerate(ndimage.find_objects(labels), start=1):
+        part = labels[sl] == i
+        if keep[sl][part].mean() < max_person_sign_overlap:
+            out[sl] |= part & ~keep[sl]
     veh = ndimage.binary_fill_holes(vehicles > 127)
-    labels, n = ndimage.label(veh)
+    labels, _ = ndimage.label(veh)
     h = veh.shape[0]
     for i, sl in enumerate(ndimage.find_objects(labels), start=1):
         part = labels[sl] == i
-        if sign[sl][part].mean() >= max_sign_overlap or sl[0].stop <= min_vehicle_bottom * h:
+        if (sign[sl][part].mean() >= max_sign_overlap or sl[0].stop <= min_vehicle_bottom * h
+                or sl[0].start < min_vehicle_top * h):
             continue
         out[sl] |= part
     return (out * 255).astype(np.uint8)
