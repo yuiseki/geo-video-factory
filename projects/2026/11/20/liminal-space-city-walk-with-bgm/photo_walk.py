@@ -11,6 +11,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[5] / "packages/pipeline"))
+from photo_push import write_push_in  # noqa: E402  (sub-pixel push-in; zoompan juddered)
+
 W, H, FPS = 1280, 720, 24
 HOLD, FADE = 5.5, 1.5  # seconds on screen per photo, crossfade length
 ZOOM = 0.08  # push-in over HOLD: a slow step forward
@@ -66,35 +69,6 @@ def find(fly: Path, i: str) -> Path:
     raise SystemExit(f"no people-removed photo for {i}")
 
 
-def push_in(photo: Path, focus: float, out: Path) -> None:
-    """Write one push-in clip. Frames are drawn with Pillow at sub-pixel positions: ffmpeg's zoompan crops
-    at whole pixels and the slow zoom judders (11/23: mean second temporal difference 6.6 with zoompan on a
-    2x canvas, 3.1 on 4x, 1.2 here). The photo is first shrunk to the window (Lanczos), so the affine
-    transform only ever enlarges by up to ZOOM and does not alias."""
-    from PIL import Image
-    n = int(HOLD * FPS)
-    src = Image.open(photo).convert("RGB")
-    sw, sh = src.size
-    ww, wh = (sh * W / H, sh) if sw / sh > W / H else (sw, sw * H / W)  # 16:9 window covering the photo
-    k = W / ww
-    src = src.resize((max(W, round(sw * k)), max(H, round(sh * k))), Image.LANCZOS)
-    sw, sh, ww, wh = src.size[0], src.size[1], ww * k, wh * k
-    x0, y0 = (sw - ww) / 2, min(max(0.0, sh * focus - wh / 2), sh - wh)
-    enc = subprocess.Popen(["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24",
-                            "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-crf", "12",
-                            "-preset", "fast", "-pix_fmt", "yuv420p", str(out)], stdin=subprocess.PIPE)
-    for i in range(n):
-        z = 1 + ZOOM * i / n
-        cw, ch = ww / z, wh / z
-        s = cw / W
-        frame = src.transform((W, H), Image.AFFINE, (s, 0, x0 + (ww - cw) / 2, 0, s, y0 + (wh - ch) / 2),
-                              Image.BICUBIC)
-        enc.stdin.write(frame.tobytes())
-    enc.stdin.close()
-    if enc.wait() != 0:
-        raise SystemExit(f"encoding {out} failed")
-
-
 def main(fly: Path, version: str) -> None:
     out_dir = fly / "out" / f"photo-walk-v{version}"
     out = out_dir / f"photo-walk-v{version}.mp4"
@@ -106,7 +80,7 @@ def main(fly: Path, version: str) -> None:
     args, chains = ["ffmpeg", "-loglevel", "error", "-y"], []
     for k, (i, focus, _) in enumerate(SHOTS):
         clip = clips / f"{k:02d}.mp4"
-        push_in(find(fly, i), focus, clip)
+        write_push_in(find(fly, i), clip, focus, ZOOM, HOLD, FPS, (W, H))
         args += ["-i", str(clip)]
         chains.append(f"[{k}:v]setsar=1,format=yuv420p[c{k}]")
     step = HOLD - FADE
