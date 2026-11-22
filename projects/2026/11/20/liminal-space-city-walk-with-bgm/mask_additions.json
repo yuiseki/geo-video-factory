@@ -1,0 +1,4 @@
+{
+ "note": "Hand-drawn boxes added to the people-removal masks for what SAM 3.1 missed ([x0, y0, x1, y1], fractions of the photo). Use: people_removal.py remix <out_dir> <id> --add=mask_additions.json. 044: the white car in the distance, also read as a screen and dropped by the sign rule (2026-11-23).",
+ "044": [[0.448, 0.42, 0.508, 0.50]]
+}
