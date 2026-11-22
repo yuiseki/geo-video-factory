@@ -164,7 +164,7 @@
    "url": "https://commons.wikimedia.org/wiki/File:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence.jpg",
    "license": "CC0 1.0",
    "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
-   "output": "flyover/out/people_removal_cc0/crossing_night_v6/261_Shibuya_scramble_crossing_during_Halloween_2023_actually_les_nopeople.png"
+   "output": "flyover/out/people_removal_cc0/aerial_v1/261_Shibuya_scramble_crossing_during_Halloween_2023_actually_les_nopeople.png"
   },
   {
    "id": "262",
