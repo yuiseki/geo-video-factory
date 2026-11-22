@@ -75,26 +75,32 @@ def combine_masks(people: np.ndarray, signs: np.ndarray, vehicles: np.ndarray, s
     - a curved billboard read as the side of a bus: a vehicle region at least `max_sign_overlap` sign.
     - strips of light near the roofline: a vehicle region ending above `min_vehicle_bottom` of the height.
     - a tower seen from below read as the front of a bus: a vehicle region reaching above `min_vehicle_top`.
+      The same tower's lower part is often also read as a crowd: a person region at least
+      `max_person_sign_overlap` on such a tower is dropped. (Reaching the top alone does not drop a person:
+      passers-by close to the camera and pedestrians in aerial shots do.)
     """
     from scipy import ndimage
 
     sign = signs > 127
     keep = np.asarray(Image.fromarray((sign * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(sign_margin))) > 0
     out = np.zeros(people.shape, bool)
+    h = people.shape[0]
+    towers = np.zeros(people.shape, bool)  # vehicle regions reaching the sky: buildings
+    veh = ndimage.binary_fill_holes(vehicles > 127)
+    labels, _ = ndimage.label(veh)
+    for i, sl in enumerate(ndimage.find_objects(labels), start=1):
+        part = labels[sl] == i
+        if sl[0].start < min_vehicle_top * h:
+            towers[sl] |= part
+            continue
+        if sign[sl][part].mean() >= max_sign_overlap or sl[0].stop <= min_vehicle_bottom * h:
+            continue
+        out[sl] |= part
     labels, _ = ndimage.label(people > 127)
     for i, sl in enumerate(ndimage.find_objects(labels), start=1):
         part = labels[sl] == i
-        if keep[sl][part].mean() < max_person_sign_overlap:
+        if keep[sl][part].mean() < max_person_sign_overlap and towers[sl][part].mean() < max_person_sign_overlap:
             out[sl] |= part & ~keep[sl]
-    veh = ndimage.binary_fill_holes(vehicles > 127)
-    labels, _ = ndimage.label(veh)
-    h = veh.shape[0]
-    for i, sl in enumerate(ndimage.find_objects(labels), start=1):
-        part = labels[sl] == i
-        if (sign[sl][part].mean() >= max_sign_overlap or sl[0].stop <= min_vehicle_bottom * h
-                or sl[0].start < min_vehicle_top * h):
-            continue
-        out[sl] |= part
     return (out * 255).astype(np.uint8)
 
 
