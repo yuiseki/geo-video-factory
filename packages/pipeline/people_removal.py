@@ -43,6 +43,8 @@ SAM_MODEL = "sam3.1_multiplex_fp16.safetensors"
 OUTPUT_NODES = {"people": "14", "signs": "24", "vehicles": "34"}
 MAX_SIDE = 1024  # compared 512-2048 on two night photos: larger repeats stripes, smaller brings back blobs
 GROW_FRACTION = 0.012  # of the photo's longer side
+# Largest image SAM 3.1 has handled on the 11/22-23 runs (3840x2560); a 3840x5760 photo ran the GPU (MPS) out of memory.
+SAM_MAX_PIXELS = 3840 * 2560
 
 
 def sam_workflow(image_name: str, people=PEOPLE_PROMPT, signs=SIGN_PROMPT, vehicles=VEHICLE_PROMPT,
@@ -120,6 +122,17 @@ def model_size(size, max_side: int = MAX_SIDE):
     return int(w * s) // 8 * 8, int(h * s) // 8 * 8
 
 
+def sam_size(size, max_pixels: int = None):
+    """Size to send to SAM 3.1: the photo's own size, or shrunk (same shape) to max_pixels.
+    The masks come back at this size and are resized to the photo."""
+    max_pixels = max_pixels or SAM_MAX_PIXELS
+    w, h = size
+    if w * h <= max_pixels:
+        return w, h
+    s = (max_pixels / (w * h)) ** 0.5
+    return int(w * s), int(h * s)
+
+
 def composite(photo: Image.Image, fill: Image.Image, soft_mask: Image.Image) -> Image.Image:
     """Fill (any size) inside the soft mask, the untouched photo outside."""
     fill = fill.convert("RGB").resize(photo.size, Image.LANCZOS)
@@ -161,7 +174,8 @@ def _run(url: str, wf: dict) -> dict:  # pragma: no cover
 
 def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2) -> Path:  # pragma: no cover
     photo = Image.open(photo_path).convert("RGB")
-    outs = _run(url, sam_workflow(_upload(url, photo, "people_in.png"), threshold=threshold))
+    sent = photo.resize(sam_size(photo.size), Image.LANCZOS) if sam_size(photo.size) != photo.size else photo
+    outs = _run(url, sam_workflow(_upload(url, sent, "people_in.png"), threshold=threshold))
     layers = {k: np.asarray(outs[n].convert("L").resize(photo.size)) for k, n in OUTPUT_NODES.items()}
     stem = photo_path.stem[:3]
     for k, a in layers.items():

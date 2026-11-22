@@ -301,6 +301,17 @@
    "output": "flyover/out/people_removal_cc0/night_v1/190_Reikyo_2026-01-17_nopeople.png"
   },
   {
+   "id": "199",
+   "file": "assets/photos/crossing_night_cc0/night/199_Shibuya_Unsplash_.jpg",
+   "title": "File:Shibuya (Unsplash).jpg",
+   "creator": "Redd Angelo reddangelo16",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_(Unsplash).jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/199_Shibuya_Unsplash__nopeople.png"
+  },
+  {
    "id": "267",
    "file": "assets/photos/crossing_night_cc0/night/267_Shibuya_Japan_Unsplash_wH5oonip-eg_.jpg",
    "title": "File:Shibuya, Japan (Unsplash wH5oonip-eg).jpg",

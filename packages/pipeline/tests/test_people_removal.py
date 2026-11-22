@@ -129,6 +129,18 @@ class ModelSizeTests(unittest.TestCase):
         self.assertEqual(pr.model_size((1023, 767), 2048), (1016, 760))
 
 
+class SamSizeTests(unittest.TestCase):
+    def test_photos_within_the_pixel_budget_are_sent_as_they_are(self):
+        self.assertEqual(pr.sam_size((3840, 2560)), (3840, 2560))
+        self.assertEqual(pr.sam_size((1024, 683)), (1024, 683))
+
+    def test_a_tall_22_megapixel_photo_is_shrunk_to_the_budget_keeping_its_shape(self):
+        w, h = pr.sam_size((3840, 5760))
+        self.assertLessEqual(w * h, pr.SAM_MAX_PIXELS)
+        self.assertGreater(w * h, 0.98 * pr.SAM_MAX_PIXELS)
+        self.assertAlmostEqual(h / w, 1.5, places=2)
+
+
 class CompositeTests(unittest.TestCase):
     def test_only_masked_pixels_change(self):
         photo = Image.new("RGB", (40, 20), (10, 20, 30))
