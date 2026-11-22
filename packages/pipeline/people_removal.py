@@ -9,15 +9,16 @@ Two stages, each run in the environment that has its model:
    - Signs are subtracted from people because billboards and screens often show people.
    - Vehicles are never protected by signs: a wrapped car can be read as a screen.
    - "poster" and "signboard" are kept out of the sign prompt; they matched car wraps.
-2. fill (ComfyUI's venv: torch + spandrel): LaMa (big-lama.pt) at up to MAX_SIDE px, fully
+2. fill (ComfyUI's venv: torch + spandrel): LaMa (big-lama.pt) at up to MAX_SIDE (1024) px, fully
    convolutional, then composited back into the full-size photo through the soft mask so untouched
    pixels stay original. LaMa does not invent objects; large holes come out smooth and soft.
    (The comfyui-inpaint-nodes LaMa node resizes to 256 px, which is why it is bypassed.)
 
 CLI:
   people_removal.py mask <photo> <out_dir> [--url=http://127.0.0.1:8188] [--threshold=0.2]
-      -> <id>_mask.png, <id>_signs.png, <id>_vehicles.png, <id>_mask_grown.png
-  people_removal.py fill <big-lama.pt> <out_dir> <photo> <mask_grown> [<photo> <mask_grown> ...]
+      -> <id>_people.png, <id>_signs.png, <id>_vehicles.png (raw SAM layers), <id>_mask.png, <id>_mask_grown.png
+  people_removal.py remix <out_dir> <id> ...   rebuild the masks from the saved layers after a rule change
+  people_removal.py fill <big-lama.pt> <out_dir> <photo> <mask_grown> [...] [--max-side=1024] [--suffix=_nopeople]
       -> <photo stem>_nopeople.png
 <id> is the first three characters of the photo's stem.
 """
@@ -40,7 +41,7 @@ SIGN_PROMPT = "billboard:60, screen:40"
 VEHICLE_PROMPT = "car:30, taxi:10, bus:5, truck:5"
 SAM_MODEL = "sam3.1_multiplex_fp16.safetensors"
 OUTPUT_NODES = {"people": "14", "signs": "24", "vehicles": "34"}
-MAX_SIDE = 2048
+MAX_SIDE = 1024  # compared 512-2048 on two night photos: larger repeats stripes, smaller brings back blobs
 GROW_FRACTION = 0.012  # of the photo's longer side
 
 
@@ -63,13 +64,27 @@ def sam_workflow(image_name: str, people=PEOPLE_PROMPT, signs=SIGN_PROMPT, vehic
     return wf
 
 
-def combine_masks(people: np.ndarray, signs: np.ndarray, vehicles: np.ndarray, sign_margin: int = 9) -> np.ndarray:
-    """(people - signs dilated by sign_margin) | fill_holes(vehicles), as a 0/255 uint8 array."""
+def combine_masks(people: np.ndarray, signs: np.ndarray, vehicles: np.ndarray, sign_margin: int = 9,
+                  max_sign_overlap: float = 0.7, min_vehicle_bottom: float = 0.4) -> np.ndarray:
+    """(people - signs dilated by sign_margin) | real vehicles with holes filled, as a 0/255 uint8 array.
+
+    A vehicle region is dropped when at least `max_sign_overlap` of it is sign (a curved billboard
+    looks like the side of a bus) or when its lowest pixel is above `min_vehicle_bottom` of the
+    image height (vehicles stand on the road; strips of light near the roofline do not).
+    """
     from scipy import ndimage
 
-    keep = np.asarray(Image.fromarray(((signs > 127) * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(sign_margin))) > 0
+    sign = signs > 127
+    keep = np.asarray(Image.fromarray((sign * 255).astype(np.uint8)).filter(ImageFilter.MaxFilter(sign_margin))) > 0
     out = (people > 127) & ~keep
-    out |= ndimage.binary_fill_holes(vehicles > 127)
+    veh = ndimage.binary_fill_holes(vehicles > 127)
+    labels, n = ndimage.label(veh)
+    h = veh.shape[0]
+    for i, sl in enumerate(ndimage.find_objects(labels), start=1):
+        part = labels[sl] == i
+        if sign[sl][part].mean() >= max_sign_overlap or sl[0].stop <= min_vehicle_bottom * h:
+            continue
+        out[sl] |= part
     return (out * 255).astype(np.uint8)
 
 
@@ -133,8 +148,14 @@ def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2) -> Path: 
     outs = _run(url, sam_workflow(_upload(url, photo, "people_in.png"), threshold=threshold))
     layers = {k: np.asarray(outs[n].convert("L").resize(photo.size)) for k, n in OUTPUT_NODES.items()}
     stem = photo_path.stem[:3]
-    Image.fromarray(layers["signs"]).save(out_dir / f"{stem}_signs.png")
-    Image.fromarray(layers["vehicles"]).save(out_dir / f"{stem}_vehicles.png")
+    for k, a in layers.items():
+        Image.fromarray(a).save(out_dir / f"{stem}_{k}.png")
+    return remix(out_dir, stem)
+
+
+def remix(out_dir: Path, stem: str) -> Path:  # pragma: no cover
+    """Rebuild <stem>_mask.png and _mask_grown.png from the saved SAM layers (no detection rerun)."""
+    layers = {k: np.asarray(Image.open(out_dir / f"{stem}_{k}.png").convert("L")) for k in OUTPUT_NODES}
     mask = Image.fromarray(combine_masks(layers["people"], layers["signs"], layers["vehicles"]))
     mask.save(out_dir / f"{stem}_mask.png")
     print(stem, "mask coverage", round(float((np.asarray(mask) > 127).mean()), 3), flush=True)
@@ -143,7 +164,7 @@ def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2) -> Path: 
     return grown
 
 
-def lama_fill(model_path: str, out_dir: Path, pairs) -> None:  # pragma: no cover
+def lama_fill(model_path: str, out_dir: Path, pairs, max_side: int = MAX_SIDE, suffix: str = "_nopeople") -> None:  # pragma: no cover
     import torch
     from spandrel import ModelLoader
 
@@ -152,13 +173,13 @@ def lama_fill(model_path: str, out_dir: Path, pairs) -> None:  # pragma: no cove
     for photo_path, mask_path in pairs:
         photo = Image.open(photo_path).convert("RGB")
         soft = Image.open(mask_path).convert("L").resize(photo.size)
-        w, h = model_size(photo.size)
+        w, h = model_size(photo.size, max_side)
         img = torch.from_numpy(np.asarray(photo.resize((w, h), Image.LANCZOS), np.float32) / 255).permute(2, 0, 1)[None]
         m = torch.from_numpy((np.asarray(soft.resize((w, h), Image.BILINEAR)) > 20).astype(np.float32))[None, None]
         with torch.no_grad():
             res = model(img.to(dev), m.to(dev)).clamp(0, 1).cpu()
         fill = Image.fromarray((res[0].permute(1, 2, 0).numpy() * 255).round().astype(np.uint8))
-        composite(photo, fill, soft).save(out_dir / f"{Path(photo_path).stem}_nopeople.png")
+        composite(photo, fill, soft).save(out_dir / f"{Path(photo_path).stem}{suffix}.png")
         print(Path(photo_path).stem[:3], "filled", flush=True)
 
 
@@ -170,11 +191,15 @@ def main(argv) -> None:  # pragma: no cover
         out_dir = Path(args[2])
         out_dir.mkdir(parents=True, exist_ok=True)
         make_mask(Path(args[1]), out_dir, opts.get("--url", URL), float(opts.get("--threshold", 0.2)))
+    elif cmd == "remix":
+        for stem in args[2:]:
+            remix(Path(args[1]), stem)
     elif cmd == "fill":
         out_dir = Path(args[2])
         out_dir.mkdir(parents=True, exist_ok=True)
         rest = args[3:]
-        lama_fill(args[1], out_dir, list(zip(rest[0::2], rest[1::2])))
+        lama_fill(args[1], out_dir, list(zip(rest[0::2], rest[1::2])), int(opts.get("--max-side", MAX_SIDE)),
+                  opts.get("--suffix", "_nopeople"))
     else:
         raise SystemExit(__doc__)
 

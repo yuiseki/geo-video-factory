@@ -33,12 +33,35 @@ class CombineMasksTests(unittest.TestCase):
 
     def test_vehicles_are_never_protected_by_signs_and_their_holes_are_filled(self):
         signs, vehicles = blank(), blank()
-        signs[:, :] = 255  # a wrapped car read as a screen
-        vehicles[10:30, 10:50] = 255
-        vehicles[15:25, 20:40] = 0  # SAM missed the wrap in the middle
+        vehicles[30:50, 10:50] = 255
+        vehicles[35:45, 20:40] = 0  # SAM missed the wrap in the middle...
+        signs[35:45, 20:40] = 255  # ...and read it as a screen
         out = pr.combine_masks(blank(), signs, vehicles)
-        self.assertEqual(out[20, 30], 255)
+        self.assertEqual(out[40, 30], 255)
         self.assertEqual(out[5, 5], 0)
+
+    def test_a_vehicle_that_is_mostly_a_sign_is_a_billboard(self):
+        signs, vehicles = blank(), blank()
+        signs[30:58, 5:40] = 255
+        vehicles[32:56, 8:38] = 255  # a curved billboard read as the side of a bus
+        out = pr.combine_masks(blank(), signs, vehicles)
+        self.assertEqual(out[40, 20], 0)
+
+    def test_a_half_wrapped_car_is_still_removed(self):
+        signs, vehicles = blank(), blank()
+        vehicles[40:58, 10:50] = 255
+        signs[40:58, 10:30] = 255  # the wrap is read as a screen
+        out = pr.combine_masks(blank(), signs, vehicles)
+        self.assertEqual(out[50, 40], 255)
+        self.assertEqual(out[50, 20], 255)
+
+    def test_a_vehicle_floating_in_the_upper_part_is_not_a_vehicle(self):
+        vehicles = blank()
+        vehicles[5:15, 60:90] = 255  # a light strip near the roofline
+        vehicles[40:55, 10:30] = 255  # a car on the road
+        out = pr.combine_masks(blank(), blank(), vehicles)
+        self.assertEqual(out[10, 70], 0)
+        self.assertEqual(out[45, 20], 255)
 
     def test_soft_inputs_are_thresholded(self):
         people = blank()
