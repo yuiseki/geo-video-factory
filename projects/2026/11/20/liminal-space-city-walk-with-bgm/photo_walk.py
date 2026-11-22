@@ -4,7 +4,7 @@ A stand-in for the 3D walk until the photos are projected in Blender: it checks 
 and whether the cleaned photos hold up at normal speed with the music.
 
 usage: python3 photo_walk.py <flyover_dir> <version>   (needs ffmpeg and Pillow)
-  -> <flyover_dir>/out/photo-walk-v<version>/photo-walk-v<version>.mp4  (1280x720, 24 fps, -14 LUFS)
+  -> <flyover_dir>/out/photo-walk-v<version>/photo-walk-v<version>.mp4  (1920x1080, 24 fps, -14 LUFS)
 Never overwrites: refuses if the output exists.
 """
 import subprocess
@@ -14,7 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[5] / "packages/pipeline"))
 from photo_push import write_push_in  # noqa: E402  (sub-pixel push-in; zoompan juddered)
 
-W, H, FPS = 1280, 720, 24
+W, H, FPS = 1920, 1080, 24  # 1080p: packages/pipeline/video_qa.py requires it for YouTube
 HOLD, FADE = 5.5, 1.5  # seconds on screen per photo, crossfade length
 ZOOM = 0.08  # push-in over HOLD: a slow step forward
 # (id or folder/id, vertical focus 0-1 for the 16:9 window, note). Walking order: the crossing at street
@@ -26,6 +26,7 @@ ZOOM = 0.08  # push-in over HOLD: a slow step forward
 # v0.4.0: an establishing shot from above (258) before the first-person walk. An alternative to v0.3.1,
 #         not a replacement: whether to break the first person once is an editing choice.
 # v0.4.1: 258 without the parked cars left in its upper left (crossing_night_v8).
+# v0.4.2: 1920x1080 (video_qa failed 720p for YouTube).
 SHOTS = [
     ("crossing_night_v8/258", 0.5, "the empty crossing from above, before stepping in"),
     ("buildings_night_v2/220", 0.5, "standing at the corner of the crossing"),
