@@ -1,5 +1,5 @@
 {
- "note": "Hand-drawn boxes added to the people-removal masks for what SAM 3.1 missed ([x0, y0, x1, y1], fractions of the photo). Use: people_removal.py remix <out_dir> <id> --add=mask_additions.json. 044: the white car in the distance, also read as a screen and dropped by the sign rule (2026-11-23). 118: a white vehicle blur at the bottom right, also read as a sign (2026-11-23).",
+ "note": "Hand-drawn boxes added to the people-removal masks for what SAM 3.1 missed ([x0, y0, x1, y1], fractions of the photo). Use: people_removal.py remix <out_dir> <id> --add=mask_additions.json. 044: the white car in the distance, also read as a screen and dropped by the sign rule (2026-11-23). 118: a white vehicle blur at the bottom right, also read as a sign (2026-11-23). 305: the dark stain left where a car was, and distant cars dropped by the min_vehicle_bottom rule. 139: the dark stain (2026-11-23).",
  "044": [
   [
    0.448,
@@ -14,6 +14,34 @@
    0.755,
    0.995,
    0.855
+  ]
+ ],
+ "305": [
+  [
+   0.36,
+   0.36,
+   0.73,
+   0.54
+  ],
+  [
+   0.82,
+   0.21,
+   1.0,
+   0.37
+  ]
+ ],
+ "139": [
+  [
+   0.52,
+   0.6,
+   0.95,
+   0.73
+  ],
+  [
+   0.28,
+   0.66,
+   0.62,
+   0.735
   ]
  ]
 }

@@ -76,7 +76,7 @@
    "url": "https://commons.wikimedia.org/wiki/File:Loud_cars_near_Shibuya_Scramble_crossing_8.jpg",
    "license": "CC0 1.0",
    "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
-   "output": "flyover/out/people_removal_cc0/crossing_night_v6/139_Loud_cars_near_Shibuya_Scramble_crossing_8_nopeople.png"
+   "output": "flyover/out/people_removal_cc0/crossing_night_v7b/139_Loud_cars_near_Shibuya_Scramble_crossing_8_nopeople.png"
   },
   {
    "id": "146",
@@ -241,7 +241,7 @@
    "url": "https://commons.wikimedia.org/wiki/File:Waiting_people_in_Shibuya_Crossing_20140416.jpg",
    "license": "CC0 1.0",
    "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
-   "output": "flyover/out/people_removal_cc0/crossing_night_v6/305_Waiting_people_in_Shibuya_Crossing_20140416_nopeople.png"
+   "output": "flyover/out/people_removal_cc0/crossing_night_v7/305_Waiting_people_in_Shibuya_Crossing_20140416_nopeople.png"
   },
   {
    "id": "308",
