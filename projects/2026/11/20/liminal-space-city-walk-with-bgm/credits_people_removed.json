@@ -268,6 +268,17 @@
    "output": "flyover/out/people_removal_cc0/night_v2/044_B36A1070_nopeople.png"
   },
   {
+   "id": "087",
+   "file": "assets/photos/crossing_night_cc0/night/087_Bus_depot_in_Shibuya.jpg",
+   "title": "File:Bus depot in Shibuya.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Bus_depot_in_Shibuya.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v3/087_Bus_depot_in_Shibuya_nopeople.png"
+  },
+  {
    "id": "117",
    "file": "assets/photos/crossing_night_cc0/night/117_Gusto_Shibuya-D_genzaka.jpg",
    "title": "File:Gusto Shibuya-Dōgenzaka.jpg",
