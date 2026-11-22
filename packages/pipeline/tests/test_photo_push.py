@@ -47,6 +47,35 @@ class AffineTests(unittest.TestCase):
         self.assertTrue(any(abs(v - round(v)) > 1e-3 for v in steps[1:]))
 
 
+class PanTests(unittest.TestCase):
+    WIN = (0.0, 0.0, 1280.0, 720.0)
+
+    def edges(self, t, pan):
+        s, _, cx, _, _, cy = pp.affine_at(self.WIN, (1280, 720), 0.08, t, pan)
+        return cx, cx + s * 1280, cy, cy + s * 720
+
+    def test_the_view_stays_inside_the_window_while_panning(self):
+        for pan in (0.15, -0.15):
+            for t in (0.0, 0.5, 1.0):
+                left, right, top, bottom = self.edges(t, pan)
+                self.assertGreaterEqual(left, -1e-9)
+                self.assertLessEqual(right, 1280 + 1e-9)
+                self.assertGreaterEqual(top, -1e-9)
+                self.assertLessEqual(bottom, 720 + 1e-9)
+
+    def test_a_positive_pan_moves_right_and_a_negative_one_left(self):
+        def centre(t, pan):
+            left, right, _, _ = self.edges(t, pan)
+            return (left + right) / 2
+        self.assertLess(centre(0.0, 0.15), centre(1.0, 0.15))
+        self.assertGreater(centre(0.0, -0.15), centre(1.0, -0.15))
+        self.assertAlmostEqual(centre(0.5, 0.15), 640)
+
+    def test_no_pan_is_the_plain_push_in(self):
+        self.assertEqual(pp.affine_at(self.WIN, (1280, 720), 0.08, 0.3, 0.0),
+                         pp.affine_at(self.WIN, (1280, 720), 0.08, 0.3))
+
+
 class FramesTests(unittest.TestCase):
     def test_frames_have_the_output_size_and_count(self):
         img = Image.fromarray((np.indices((90, 160)).sum(0) % 255).astype(np.uint8)).convert("RGB")

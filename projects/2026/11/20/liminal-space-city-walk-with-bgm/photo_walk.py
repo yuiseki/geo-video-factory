@@ -19,6 +19,7 @@ from photo_push import write_push_in  # noqa: E402  (sub-pixel push-in; zoompan 
 W, H, FPS = 1920, 1080, 24  # 1080p: packages/pipeline/video_qa.py requires it for YouTube
 HOLD, FADE = 5.5, 1.5  # seconds on screen per photo, crossfade length
 ZOOM = 0.08  # push-in over HOLD: a slow step forward
+PAN = 0.15  # and the head turns: each shot slides sideways across 13% of the photo, alternating right and left
 # (id or folder/id, vertical focus 0-1 for the 16:9 window, note). Walking order: the crossing at street
 # level, looking up in the middle, into Center-gai, out by Dogenzaka, fade out under the trees.
 # v0.2.0: Center-gai added; 288 dropped (its car light trails contradict the empty city).
@@ -28,6 +29,7 @@ ZOOM = 0.08  # push-in over HOLD: a slow step forward
 # v0.4.0: an establishing shot from above (258) before the first-person walk. An alternative to v0.3.1,
 #         not a replacement: whether to break the first person once is an editing choice.
 # v0.4.1: 258 without the parked cars left in its upper left (crossing_night_v8).
+# v0.6.0: the camera also pans left and right (PAN), alternating each shot.
 # v0.5.3: opens with 262 instead of 220 (a seam from the fill above 220's bollard); 220 dropped.
 # v0.4.2: 1920x1080 (video_qa failed 720p for YouTube).
 SHOTS = [
@@ -95,7 +97,7 @@ def main(fly: Path, version: str, first_person: bool = False, indoor: bool = Fal
     args, chains = ["ffmpeg", "-loglevel", "error", "-y"], []
     for k, (i, focus, _) in enumerate(shots):
         clip = clips / f"{k:02d}.mp4"
-        write_push_in(find(fly, i), clip, focus, ZOOM, HOLD, FPS, (W, H))
+        write_push_in(find(fly, i), clip, focus, ZOOM, HOLD, FPS, (W, H), pan=PAN if k % 2 == 0 else -PAN)
         args += ["-i", str(clip)]
         chains.append(f"[{k}:v]setsar=1,format=yuv420p[c{k}]")
     step = HOLD - FADE
