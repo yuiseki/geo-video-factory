@@ -57,3 +57,5 @@ Python 実装の行カバレッジは 70% を下回ると失敗する。`package
 - `test/map-style.test.ts`: 既定のスタイルのレイヤー数・ソース数、オーバーレイ 1 つあたりの追加数、500 ショットの組み立て時間。
 - `test/texture-tone.test.ts`: 2048x2048 のテクスチャの解析時間。
 - `test/bundle-budget.test.ts`: `dist/src/page/flyover.js` の大きさ (現状 約 2.8MB、上限 3.4MB)。上げるときは理由をコミットに書く。
+
+`src/page/tile-math.ts` はタイルプロトコル (`imgtile`、`gsiclear`) の純粋な計算で、ブラウザ API を使わず Node で単体テストする。`src/render.ts` の ffmpeg の引数 (`mp4EncodeArgs`、`stillsSheetArgs`、`loudnormSecondPass`) も同じ方針で、`main()` から切り出してテストする。
