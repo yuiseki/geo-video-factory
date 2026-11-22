@@ -320,7 +320,7 @@
    "url": "https://commons.wikimedia.org/wiki/File:Shibuya,_Japan_(Unsplash_wH5oonip-eg).jpg",
    "license": "CC0 1.0",
    "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
-   "output": "flyover/out/people_removal_cc0/night_v1/267_Shibuya_Japan_Unsplash_wH5oonip-eg__nopeople.png"
+   "output": "flyover/out/people_removal_cc0/night_v2/267_Shibuya_Japan_Unsplash_wH5oonip-eg__nopeople.png"
   }
  ],
  "streets_note": "通りの写真 (night_v1) のうち使えるもの。ライセンスは取得時の manifest の記録 (CC0)。公開前に Commons / Flickr のページで一度確かめる。",
