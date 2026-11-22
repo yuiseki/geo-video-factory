@@ -20,7 +20,11 @@ ZOOM = 0.08  # push-in over HOLD: a slow step forward
 # v0.2.1: the karaoke shop without the people inside (centergai_v2/139).
 # v0.3.0: opens standing at the corner (220); the Tokyu Toyoko view (147) in the crossing.
 # v0.3.1: push-ins drawn with Pillow at sub-pixel positions (zoompan juddered).
+# v0.4.0: an establishing shot from above (258) before the first-person walk. An alternative to v0.3.1,
+#         not a replacement: whether to break the first person once is an editing choice.
+# v0.4.1: 258 without the parked cars left in its upper left (crossing_night_v8).
 SHOTS = [
+    ("crossing_night_v8/258", 0.5, "the empty crossing from above, before stepping in"),
     ("buildings_night_v2/220", 0.5, "standing at the corner of the crossing"),
     ("262", 0.5, "crossing, street level"),
     ("138", 0.5, "crossing, the crosswalk ahead"),
