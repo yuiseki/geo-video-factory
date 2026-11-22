@@ -359,5 +359,30 @@
    "output": "flyover/out/people_removal_cc0/centergai_v2/139_Shibuya_Center_Gai_nopeople.png"
   }
  ],
- "centergai_note": "センター街の写真 (research/photos_manifest.json の shibuya_centergai) のうち使えるもの。CC BY 2.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。3 枚とも 2026-11-23 に Flickr のページで CC BY 2.0 (creativecommons.org/licenses/by/2.0) と確かめた。"
+ "centergai_note": "センター街の写真 (research/photos_manifest.json の shibuya_centergai) のうち使えるもの。CC BY 2.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。3 枚とも 2026-11-23 に Flickr のページで CC BY 2.0 (creativecommons.org/licenses/by/2.0) と確かめた。",
+ "crossing_cc_by": [
+  {
+   "id": "147",
+   "file": "flyover/assets/photos/shibuya_buildings_night/147_Tokyu_Department_Store_Shibuya_Toyoko_2018.jpg",
+   "title": "File:Tokyu Department Store Shibuya Toyoko 2018.jpg",
+   "creator": "Wpcpey",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Tokyu_Department_Store_Shibuya_Toyoko_2018.jpg",
+   "license": "CC BY 4.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/buildings_night_v1/147_Tokyu_Department_Store_Shibuya_Toyoko_2018_nopeople.png"
+  },
+  {
+   "id": "220",
+   "file": "flyover/assets/photos/shibuya_buildings_night/220_Shibuya_Tokyo_By_night_hdsr_S5_18.jpg",
+   "title": "File:Shibuya (Tokyo) By night hdsr S5 18.jpg",
+   "creator": "Hyppolyte de Saint-Rambert",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_(Tokyo)_By_night_hdsr_S5_18.jpg",
+   "license": "CC BY 4.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/buildings_night_v2/220_Shibuya_Tokyo_By_night_hdsr_S5_18_nopeople.png"
+  }
+ ],
+ "crossing_cc_by_note": "交差点の地上視点の写真 (research/photos_buildings_night_manifest.json) のうち使えるもの。CC BY 4.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。2 枚とも 2026-11-23 に Commons の extmetadata (LicenseShortName) で CC BY 4.0 と確かめた。"
 }

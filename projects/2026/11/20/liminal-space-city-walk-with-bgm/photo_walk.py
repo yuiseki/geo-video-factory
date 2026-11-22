@@ -18,10 +18,13 @@ ZOOM = 0.08  # push-in over HOLD: a slow step forward
 # level, looking up in the middle, into Center-gai, out by Dogenzaka, fade out under the trees.
 # v0.2.0: Center-gai added; 288 dropped (its car light trails contradict the empty city).
 # v0.2.1: the karaoke shop without the people inside (centergai_v2/139).
+# v0.3.0: opens standing at the corner (220); the Tokyu Toyoko view (147) in the crossing.
 SHOTS = [
+    ("buildings_night_v2/220", 0.5, "standing at the corner of the crossing"),
     ("262", 0.5, "crossing, street level"),
     ("138", 0.5, "crossing, the crosswalk ahead"),
     ("305", 0.5, "crossing toward TSUTAYA"),
+    ("buildings_night_v1/147", 0.55, "crossing toward the Tokyu Toyoko store"),
     ("212", 0.5, "crossing, wide"),
     ("199", 0.62, "middle of the crossing, looking up"),
     ("278", 0.5, "screens around the crossing"),
