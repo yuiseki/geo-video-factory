@@ -49,3 +49,11 @@ Python 実装の行カバレッジは 70% を下回ると失敗する。`package
 不具合を直すときは、その不具合を再現するテストを追加して失敗を確認する。テストが通る最小の修正を入れた後、重複だけを整理する。
 
 `terrain-mt-fuji-seasonal` は Sentinel-2 と地理院オルソから四季画像を初回取得・生成し、`.work/terrain-mt-fuji-seasonal/project/fuji-seasons/` にキャッシュします。Python の `numpy`、`Pillow`、`pyproj`、`scipy` とネットワーク接続が必要です。冬の雪は Sentinel-2 の SCL 積雪分類を使用します。
+
+## 性能の回帰を防ぐテスト
+
+壁時計の閾値は CI の揺れに耐えるよう余裕を大きく取り、構造の予算 (数えられるもの) を主にする。
+
+- `test/map-style.test.ts`: 既定のスタイルのレイヤー数・ソース数、オーバーレイ 1 つあたりの追加数、500 ショットの組み立て時間。
+- `test/texture-tone.test.ts`: 2048x2048 のテクスチャの解析時間。
+- `test/bundle-budget.test.ts`: `dist/src/page/flyover.js` の大きさ (現状 約 2.8MB、上限 3.4MB)。上げるときは理由をコミットに書く。
