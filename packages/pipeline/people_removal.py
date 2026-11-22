@@ -15,9 +15,9 @@ Two stages, each run in the environment that has its model:
    (The comfyui-inpaint-nodes LaMa node resizes to 256 px, which is why it is bypassed.)
 
 CLI:
-  people_removal.py mask <photo> <out_dir> [--url=http://127.0.0.1:8188] [--threshold=0.2]
+  people_removal.py mask <photo> <out_dir> [--url=http://127.0.0.1:8188] [--threshold=0.2] [--aerial]
       -> <id>_people.png, <id>_signs.png, <id>_vehicles.png (raw SAM layers), <id>_mask.png, <id>_mask_grown.png
-  people_removal.py remix <out_dir> <id> ... [--add=<additions.json>] [--folder=<photo folder>]
+  people_removal.py remix <out_dir> <id> ... [--add=<additions.json>] [--folder=<photo folder>] [--aerial]
       rebuild the masks from the saved layers after a rule change; additions.json adds hand-drawn boxes
       for what detection missed: {"<id>": [[x0, y0, x1, y1], ...]} in fractions of the photo
   people_removal.py fill <big-lama.pt> <out_dir> <photo> <mask_grown> [...] [--max-side=1024] [--suffix=_nopeople]
@@ -128,6 +128,13 @@ def boxes_for(additions, stem: str, folder: str = None) -> list:
     return list(additions.get(stem) or [])
 
 
+def view_rules(aerial: bool = False) -> dict:
+    """combine_masks keyword overrides for the camera's viewpoint. From above, parked and passing cars sit high
+    in the frame, so the street-level rule that drops vehicle regions ending in the upper 40% (strips of light
+    near the roofline) would drop them and leave them in the photo (aerial 258 and 261, 2026-11-23)."""
+    return {"min_vehicle_bottom": 0.0} if aerial else {}
+
+
 def grow_size(size) -> int:
     return max(3, int(GROW_FRACTION * max(size))) | 1
 
@@ -194,7 +201,7 @@ def _run(url: str, wf: dict) -> dict:  # pragma: no cover
         time.sleep(1)
 
 
-def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2) -> Path:  # pragma: no cover
+def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2, aerial=False) -> Path:  # pragma: no cover
     photo = Image.open(photo_path).convert("RGB")
     sent = photo.resize(sam_size(photo.size), Image.LANCZOS) if sam_size(photo.size) != photo.size else photo
     outs = _run(url, sam_workflow(_upload(url, sent, "people_in.png"), threshold=threshold))
@@ -202,14 +209,14 @@ def make_mask(photo_path: Path, out_dir: Path, url=URL, threshold=0.2) -> Path: 
     stem = photo_path.stem[:3]
     for k, a in layers.items():
         Image.fromarray(a).save(out_dir / f"{stem}_{k}.png")
-    return remix(out_dir, stem)
+    return remix(out_dir, stem, aerial=aerial)
 
 
-def remix(out_dir: Path, stem: str, additions=None, folder: str = None) -> Path:  # pragma: no cover
+def remix(out_dir: Path, stem: str, additions=None, folder: str = None, aerial=False) -> Path:  # pragma: no cover
     """Rebuild <stem>_mask.png and _mask_grown.png from the saved SAM layers (no detection rerun),
     plus any hand-drawn boxes for this photo in `additions`."""
     layers = {k: np.asarray(Image.open(out_dir / f"{stem}_{k}.png").convert("L")) for k in OUTPUT_NODES}
-    combined = combine_masks(layers["people"], layers["signs"], layers["vehicles"])
+    combined = combine_masks(layers["people"], layers["signs"], layers["vehicles"], **view_rules(aerial))
     mask = Image.fromarray(add_boxes(combined, boxes_for(additions, stem, folder)))
     mask.save(out_dir / f"{stem}_mask.png")
     print(stem, "mask coverage", round(float((np.asarray(mask) > 127).mean()), 3), flush=True)
@@ -244,11 +251,12 @@ def main(argv) -> None:  # pragma: no cover
     if cmd == "mask":
         out_dir = Path(args[2])
         out_dir.mkdir(parents=True, exist_ok=True)
-        make_mask(Path(args[1]), out_dir, opts.get("--url", URL), float(opts.get("--threshold", 0.2)))
+        make_mask(Path(args[1]), out_dir, opts.get("--url", URL), float(opts.get("--threshold", 0.2)),
+                  "--aerial" in argv)
     elif cmd == "remix":
         additions = json.loads(Path(opts["--add"]).read_text()) if "--add" in opts else None
         for stem in args[2:]:
-            remix(Path(args[1]), stem, additions, opts.get("--folder"))
+            remix(Path(args[1]), stem, additions, opts.get("--folder"), "--aerial" in argv)
     elif cmd == "fill":
         out_dir = Path(args[2])
         out_dir.mkdir(parents=True, exist_ok=True)

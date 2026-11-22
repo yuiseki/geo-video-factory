@@ -156,6 +156,19 @@ class AddBoxesTests(unittest.TestCase):
         self.assertEqual(pr.boxes_for(adds, "139", "crossing_night"), [[0.5, 0.6, 0.9, 0.7]])
 
 
+class AerialTests(unittest.TestCase):
+    def test_aerial_photos_keep_cars_high_in_the_frame(self):
+        people = np.zeros((100, 100), np.uint8)
+        signs = np.zeros((100, 100), np.uint8)
+        vehicles = np.zeros((100, 100), np.uint8)
+        vehicles[20:30, 40:60] = 255  # a parked car seen from above, ending above 40% of the height
+        self.assertEqual(pr.combine_masks(people, signs, vehicles)[25, 50], 0)
+        self.assertEqual(pr.combine_masks(people, signs, vehicles, **pr.view_rules(aerial=True))[25, 50], 255)
+
+    def test_street_level_rules_are_the_defaults(self):
+        self.assertEqual(pr.view_rules(aerial=False), {})
+
+
 class SamSizeTests(unittest.TestCase):
     def test_photos_within_the_pixel_budget_are_sent_as_they_are(self):
         self.assertEqual(pr.sam_size((3840, 2560)), (3840, 2560))
