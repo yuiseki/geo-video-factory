@@ -3,7 +3,8 @@
 A stand-in for the 3D walk until the photos are projected in Blender: it checks the order, the pace
 and whether the cleaned photos hold up at normal speed with the music.
 
-usage: python3 photo_walk.py <flyover_dir> <version>   (needs ffmpeg and Pillow)
+usage: python3 photo_walk.py <flyover_dir> <version> [--first-person]   (needs ffmpeg and Pillow)
+  --first-person: start at the corner, without the establishing shot from above
   -> <flyover_dir>/out/photo-walk-v<version>/photo-walk-v<version>.mp4  (1920x1080, 24 fps, -14 LUFS)
 Never overwrites: refuses if the output exists.
 """
@@ -70,7 +71,9 @@ def find(fly: Path, i: str) -> Path:
     raise SystemExit(f"no people-removed photo for {i}")
 
 
-def main(fly: Path, version: str) -> None:
+def main(fly: Path, version: str, first_person: bool = False) -> None:
+    """first_person: start at the corner, without the establishing shot from above (v0.3.x)."""
+    shots = SHOTS[1:] if first_person else SHOTS
     out_dir = fly / "out" / f"photo-walk-v{version}"
     out = out_dir / f"photo-walk-v{version}.mp4"
     if out.exists():
@@ -79,19 +82,19 @@ def main(fly: Path, version: str) -> None:
     clips = out_dir / "clips"
     clips.mkdir(exist_ok=True)
     args, chains = ["ffmpeg", "-loglevel", "error", "-y"], []
-    for k, (i, focus, _) in enumerate(SHOTS):
+    for k, (i, focus, _) in enumerate(shots):
         clip = clips / f"{k:02d}.mp4"
         write_push_in(find(fly, i), clip, focus, ZOOM, HOLD, FPS, (W, H))
         args += ["-i", str(clip)]
         chains.append(f"[{k}:v]setsar=1,format=yuv420p[c{k}]")
     step = HOLD - FADE
-    total = step * (len(SHOTS) - 1) + HOLD
+    total = step * (len(shots) - 1) + HOLD
     prev = "c0"
-    for k in range(1, len(SHOTS)):
+    for k in range(1, len(shots)):
         chains.append(f"[{prev}][c{k}]xfade=transition=fade:duration={FADE}:offset={step * k:.2f}[x{k}]")
         prev = f"x{k}"
     chains.append(f"[{prev}]{GRADE},fade=t=in:d=1.5,fade=t=out:st={total - 3:.2f}:d=3,format=yuv420p[v]")
-    a = len(SHOTS)
+    a = len(shots)
     args += ["-stream_loop", "-1", "-i", str(fly / BGM)]
     chains.append(f"[{a}:a]atrim=0:{total:.2f},afade=t=in:d=2,afade=t=out:st={total - 3.5:.2f}:d=3.5,"
                   "loudnorm=I=-14:TP=-1.5:LRA=11[a]")
@@ -100,8 +103,8 @@ def main(fly: Path, version: str) -> None:
              "-ar", "48000", str(out)]
     subprocess.run(args, check=True)
     (out_dir / "shots.txt").write_text("".join(f"{i}\t{find(fly, i).relative_to(fly)}\t{note}\n"
-                                               for i, _, note in SHOTS))
-    (out_dir / "credits.txt").write_text(credits_text([find(fly, i).relative_to(fly) for i, _, _ in SHOTS]))
+                                               for i, _, note in shots))
+    (out_dir / "credits.txt").write_text(credits_text([find(fly, i).relative_to(fly) for i, _, _ in shots]))
     print(out, f"{total:.1f} s")
 
 
@@ -123,4 +126,4 @@ def credits_text(used) -> str:
 
 
 if __name__ == "__main__":
-    main(Path(sys.argv[1]), sys.argv[2])
+    main(Path(sys.argv[1]), sys.argv[2], "--first-person" in sys.argv[3:])
