@@ -98,7 +98,25 @@ def main(fly: Path, version: str) -> None:
     subprocess.run(args, check=True)
     (out_dir / "shots.txt").write_text("".join(f"{i}\t{find(fly, i).relative_to(fly)}\t{note}\n"
                                                for i, _, note in SHOTS))
+    (out_dir / "credits.txt").write_text(credits_text([find(fly, i).relative_to(fly) for i, _, _ in SHOTS]))
     print(out, f"{total:.1f} s")
+
+
+def credits_text(used) -> str:
+    """Description-box credits for the photos used, in order, from credits_people_removed.json."""
+    import json
+    doc = json.loads((Path(__file__).parent / "credits_people_removed.json").read_text())
+    rows = {r["output"]: r for k, v in doc.items() if isinstance(v, list) for r in v if "output" in r}
+    lines = ["写真 (人と車を SAM 3.1 のマスクと LaMa の塗りで消し、色を調整):"]
+    for u in used:
+        r = rows.get(f"flyover/{u}")
+        if r is None:
+            raise SystemExit(f"no credit for {u}")
+        who = r["creator"] or "作者名なし"
+        lines.append(f"- {r['title'].removeprefix('File:')} / {who} / {r['license']} / {r['url']}")
+    lines += ["", "BGM: ローカル合成 (flyover/scripts/generate_vaporwave_bgm.py)",
+              "人の検出: SAM 3.1 / 塗り: LaMa (Apache-2.0)", ""]
+    return "\n".join(lines)
 
 
 if __name__ == "__main__":
