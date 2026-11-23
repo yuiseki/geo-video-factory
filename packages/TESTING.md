@@ -66,3 +66,25 @@ Python 実装の行カバレッジは 70% を下回ると失敗する。`package
 - `registerMapProtocols(add)` は `addProtocol` を差し込める。`test/map-protocols.test.ts` が偽の `OffscreenCanvas` と `fetch` でタイルプロトコルを通す。
 - `voice.ts` の合成は、`fetch` の差し替えと、偽の実行ファイル (シェルスクリプト) で通す。実際の音声エンジンは使わない。
 - `batchUntexturedMeshes` (描画呼び出しを 1 つにまとめる) は three.js だけで動くので、`test/plateau-buildings.test.ts` で件数を数える。
+
+## 動画 E2E の性能と空白コマの検査
+
+共通ランナー (`test/e2e/video-e2e.ts`) と `buildings-tokyo-sota` は、書き出しのたびに次を検査する。
+
+- 書き出した動画のコマ数が、レンダラーの報告と一致する。
+- 輝度の幅が無い (真っ黒、真っ白、平坦な) コマが無い。意図した黒からの立ち上げがあるケースは `allowBlankFrames` で許す。
+- 生成中に「タイルの読み込み前に撮った」警告や HTTP 4xx/5xx が出ていない。
+- 1 コマあたりの書き出し時間 (ブラウザ起動、タイル読み込み、撮影、エンコードの全体) が、`test/perf-baseline.json` の基準値の 3 倍を超えない。超えても差が 50 ms 未満なら許す。
+
+基準値は 1 回の実測で、タイルはネットワークから取るため、ばらつきは 2 割ほど (同じ条件で 2 回測って確かめた)。
+
+```bash
+# 基準値を測り直す (遅くなる変更を意図して入れたとき、または GPU の違う機械で)
+GVF_PERF_UPDATE=1 VIDEO_TARGET=<ケース名> npm run test:video
+# 一時的に検査を外す (GPU の無い機械、SwiftShader)
+GVF_PERF=off npm run test:video
+# 許す倍率を変える
+GVF_PERF_FACTOR=2 npm run test:video
+```
+
+基準値は GPU (ANGLE) で測った値。CI のように GPU が無い環境では `GVF_PERF=off` にする。ケースごとの 1 回分の記録は `dist/test/video/.work/<ケース名>/perf.json` に出る。

@@ -1,0 +1,66 @@
+{
+  "base": {
+    "frames": 2,
+    "msPerFrame": 619.2
+  },
+  "buildings-asakusa": {
+    "frames": 60,
+    "msPerFrame": 310.7
+  },
+  "buildings-asakusa-sumida-river": {
+    "frames": 504,
+    "msPerFrame": 104.9
+  },
+  "buildings-tokyo-sota:map": {
+    "frames": 900,
+    "msPerFrame": 334.6
+  },
+  "buildings-tokyo-sota:overlay": {
+    "frames": 900,
+    "msPerFrame": 84.6
+  },
+  "character-yukkuri": {
+    "frames": 88,
+    "msPerFrame": 70
+  },
+  "character-zunda-metan": {
+    "frames": 171,
+    "msPerFrame": 88.9
+  },
+  "choropleth-3d-japan-pref": {
+    "frames": 36,
+    "msPerFrame": 79.6
+  },
+  "choropleth-3d-japan-pref-to-tokyo23": {
+    "frames": 87,
+    "msPerFrame": 65.5
+  },
+  "choropleth-3d-tokyo23": {
+    "frames": 36,
+    "msPerFrame": 106
+  },
+  "earth-tokyo-station": {
+    "frames": 123,
+    "msPerFrame": 70
+  },
+  "globe-hormuz-to-tokyo": {
+    "frames": 152,
+    "msPerFrame": 71.8
+  },
+  "narration-zunda-metan": {
+    "frames": 82,
+    "msPerFrame": 151.1
+  },
+  "terrain-mt-fuji": {
+    "frames": 120,
+    "msPerFrame": 77.4
+  },
+  "terrain-mt-fuji-seasonal": {
+    "frames": 288,
+    "msPerFrame": 132.6
+  },
+  "terrain-mt-omuroyama": {
+    "frames": 160,
+    "msPerFrame": 62.1
+  }
+}
