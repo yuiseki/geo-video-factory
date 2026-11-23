@@ -129,3 +129,18 @@ test('perf budget: batching 5000 small meshes takes under 3 s and leaves one dra
   assert.equal(meshes(root).length, 1);
   assert.ok(ms < 3000, `${ms.toFixed(0)} ms`);
 });
+
+import { FACADE_ANISOTROPY, tuneMaterials } from '../src/page/plateau-buildings.js';
+
+test('tuneMaterials samples facade textures with anisotropic filtering (oblique views of walls stay sharp)', () => {
+  assert.ok(FACADE_ANISOTROPY >= 8);
+  const root = new THREE.Group();
+  const textured = new THREE.MeshStandardMaterial();
+  textured.map = new THREE.Texture();
+  const plain = new THREE.MeshStandardMaterial();
+  const geometry = new THREE.BufferGeometry();
+  root.add(new THREE.Mesh(geometry, textured), new THREE.Mesh(geometry, plain), new THREE.Mesh(geometry, [textured, plain]));
+  tuneMaterials(root);
+  assert.equal(textured.map!.anisotropy, FACADE_ANISOTROPY);
+  assert.equal(plain.map, null);
+});

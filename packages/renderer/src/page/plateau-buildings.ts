@@ -105,6 +105,9 @@ export function batchUntexturedMeshes(root: THREE.Object3D): void {
   root.add(new THREE.Mesh(merged, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.92, metalness: 0 })));
 }
 
+/** glTF facade textures default to no anisotropic filtering: walls seen at a low angle turn to mush. */
+export const FACADE_ANISOTROPY = 16;
+
 export function tuneMaterials(root: THREE.Object3D): void {
   root.traverse((object) => {
     const mesh = object as THREE.Mesh;
@@ -117,6 +120,8 @@ export function tuneMaterials(root: THREE.Object3D): void {
       material.side = THREE.DoubleSide;
       neutralizePbr(material);
       toStudyModelWhite(material);
+      const map = (material as THREE.MeshStandardMaterial).map;
+      if (map) map.anisotropy = FACADE_ANISOTROPY;
     }
   });
 }
