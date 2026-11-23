@@ -30,6 +30,8 @@ export interface VideoCase {
   noVoice?: boolean;
   expectAudio?: boolean;
   skipReason?: string;
+  /** `--supersample N`: render N times larger and scale down; the output size must stay width x height. */
+  supersample?: number;
   /** Frames allowed to be blank (e.g. an intended fade from black). Default 0. */
   allowBlankFrames?: number;
 }
@@ -115,6 +117,7 @@ export function registerVideoE2E(item: VideoCase): void {
       '--out', frameOutput,
       ...(item.noVoice === false ? [] : ['--no-voice']),
       '--raw-audio',
+      ...(item.supersample ? ['--supersample', String(item.supersample)] : []),
     ];
     const startedAt = performance.now();
     const render = spawnSync(process.execPath, renderArgs, { encoding: 'utf8', timeout: 420_000, env: renderEnv });

@@ -5,6 +5,7 @@
 //                   [--no-voice]     skip VOICEVOX; time the lines from their length (draft)
 //                   [--raw-audio]    skip loudnorm/BGM mixing
 //                   [--check-label-overlap]
+//                   [--supersample 2]  render 2x larger and scale down (1 to 4): sharper, slower
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -14,6 +15,17 @@ import { chromium } from 'playwright';
 import { prepareNarration } from './voice.js';
 import type { ShotSpec } from './types.js';
 import { layerFormat, previewZoomOffset, type RenderLayer } from './compose.js';
+import {
+  downscaleFilter,
+  loudnormSecondPass,
+  LOUDNORM_TARGET,
+  mp4EncodeArgs,
+  parseLoudnormJson,
+  parseSupersample,
+  stillsSheetArgs,
+  supersampledSize,
+  transparentEncodeArgs,
+} from './ffmpeg-args.js';
 
 const PACKAGE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
@@ -132,31 +144,6 @@ export function resolveRequestFile(urlPath: string, packageRoot: string, project
   return candidate;
 }
 
-export function mp4EncodeArgs(fps: number, mp4: string): string[] {
-  return [
-    '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-maxrate', '20M', '-bufsize', '40M',
-    '-profile:v', 'high', '-level:v', '4.1', '-g', String(fps * 2), '-movflags', '+faststart', mp4,
-  ];
-}
-
-export function stillsSheetArgs(framesDir: string, frameExt: string, sheet: string, count: number): string[] {
-  const cols = Math.min(4, count);
-  return [
-    '-v', 'error', '-y', '-i', path.join(framesDir, '%05d.' + frameExt),
-    '-vf', `scale=480:-1,tile=${cols}x${Math.ceil(count / cols)}`, '-frames:v', '1', sheet,
-  ];
-}
-
-const LOUDNORM_TARGET = 'I=-14:TP=-1.5:LRA=11';
-
-export function parseLoudnormJson(stderr: string): Record<string, string> {
-  return JSON.parse(stderr.slice(stderr.lastIndexOf('{'), stderr.lastIndexOf('}') + 1)) as Record<string, string>;
-}
-
-export function loudnormSecondPass(j: Record<string, string>): string {
-  return `loudnorm=${LOUDNORM_TARGET}:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`;
-}
-
 declare global {
   interface Window {
     FLY_READY?: boolean;
@@ -176,7 +163,7 @@ async function main(): Promise<void> {
   };
   const specPath = args.find((a) => a.endsWith('.json'));
   if (!specPath) {
-    console.error('usage: node render.js <shots.json> [--project dir] [--out dir] [--fps n] [--size WxH] [--stills sec] [--from s --to s] [--layer all|map|overlay]');
+    console.error('usage: node render.js <shots.json> [--project dir] [--out dir] [--fps n] [--size WxH] [--stills sec] [--from s --to s] [--layer all|map|overlay] [--supersample 1-4]');
     process.exit(2);
   }
 
@@ -184,9 +171,13 @@ async function main(): Promise<void> {
   const spec = JSON.parse(fs.readFileSync(specPath, 'utf8')) as ShotSpec;
   const designWidth = spec.width ?? 1920;
   const [w, h] = parseSize(opt('size', `${spec.width ?? 1920}x${spec.height ?? 1080}`) ?? '1920x1080');
-  spec.zoomOffset = previewZoomOffset(designWidth, w);
-  spec.width = w;
-  spec.height = h;
+  // supersampling renders larger (same framing, finer tiles) and scales down when encoding
+  const supersample = parseSupersample(opt('supersample'));
+  const [rw, rh] = supersampledSize([w, h], supersample);
+  const downscale = downscaleFilter([w, h], supersample);
+  spec.zoomOffset = previewZoomOffset(designWidth, rw);
+  spec.width = rw;
+  spec.height = rh;
   const fps = Number(opt('fps', String(spec.fps ?? 30)));
   const out = path.resolve(opt('out', path.join(projectRoot, 'out', path.basename(specPath, '.json')))!);
 
@@ -252,7 +243,7 @@ async function main(): Promise<void> {
   const t0 = Date.now();
 
   const renderRange = async (workerIndex: number, [start, end]: [number, number]) => {
-    const page = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
+    const page = await browser.newPage({ viewport: { width: rw, height: rh }, deviceScaleFactor: 1 });
     page.on('console', (m) => {
       if (m.type() === 'error' && !m.text().startsWith('Failed to load resource:')) console.error('[page]', m.text());
     });
@@ -369,15 +360,13 @@ async function main(): Promise<void> {
       console.error('note: --from/--to renders the picture only (no audio)');
     }
 
-    const codec = format.transparent
-      ? ['-c:v', 'qtrle', '-pix_fmt', 'argb', mp4]
-      : null;
+    const codec = format.transparent ? transparentEncodeArgs(mp4, downscale) : null;
     const r = codec ? spawnSync('ffmpeg', [...ff, ...codec], { stdio: 'inherit' }) : spawnSync(
       'ffmpeg',
       [
         ...ff,
         ...audio,
-        ...mp4EncodeArgs(fps, mp4),
+        ...mp4EncodeArgs(fps, mp4, downscale),
       ],
       { stdio: 'inherit' },
     );

@@ -88,3 +88,5 @@ GVF_PERF_FACTOR=2 npm run test:video
 ```
 
 基準値は GPU (ANGLE) で測った値。CI のように GPU が無い環境では `GVF_PERF=off` にする。ケースごとの 1 回分の記録は `dist/test/video/.work/<ケース名>/perf.json` に出る。
+
+`--supersample N` の E2E は `base-supersample` (出力の大きさが `--supersample` 無しと同じ 640x360 のままで、空白コマが無いこと) で確かめる。引数の組み立て (`parseSupersample`、`downscaleFilter`、`mp4EncodeArgs` の `-vf`) は `test/ffmpeg-args.test.ts`。
