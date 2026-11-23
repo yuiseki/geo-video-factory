@@ -47,8 +47,15 @@ def plan(cams_path, work):
     eb, bb, pb = pose(cams[kb])
     back = np.array([math.sin(math.radians(bb)), math.cos(math.radians(bb)), 0.0])   # B's forward
     toward_q = math.radians(bearing_to(eb, AIM))
+    to_q = np.array([math.sin(toward_q), math.cos(toward_q), 0.0])
     # the walk ends WALK_END_BACK m from B's eye toward Q-FRONT; the pan slides the rest of the way
-    walk_end = eb + WALK_END_BACK * np.array([math.sin(toward_q), math.cos(toward_q), 0.0])
+    walk_end = eb + WALK_END_BACK * to_q
+    if START_BACK:
+        # line mode: start START_BACK m behind B's eye on the line from Q-FRONT through it (the station
+        # side), walk straight facing Q-FRONT, and turn on the spot at B's eye
+        ea = eb - START_BACK * to_q
+        ba, pa = bearing_to(ea, AIM), pb
+        walk_end = eb.copy()
     A, B = [], []
     n = int(WALK * FPS)
     for i in range(n):
@@ -114,7 +121,13 @@ def splice(work, out):
     print("frames", len(seq), "->", out)
 
 
+START_BACK = 0.0
+
 if __name__ == "__main__":
+    opts = dict(a[2:].split("=", 1) for a in sys.argv if a.startswith("--") and "=" in a)
+    START_BACK = float(opts.get("start-back", 0))      # e.g. 30: line mode from the station side
+    WALK = float(opts.get("walk", WALK))
+    PUSH = float(opts.get("push", PUSH))
     if sys.argv[1] == "plan":
         plan(sys.argv[2], Path(sys.argv[3]))
     else:
