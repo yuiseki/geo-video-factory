@@ -26,6 +26,8 @@ STRETCH = float(opts.get("stretch", 2.6))
 sys.path.insert(0, str(repo / "packages/pipeline"))
 sys.path.insert(0, str(repo / "packages/blender"))
 import photo_projection  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import ground_materials  # noqa: E402
 
 out.mkdir(parents=True, exist_ok=True)
 for o in list(bpy.data.objects):
@@ -92,7 +94,46 @@ def asphalt():
     return m
 
 
-bpy.context.active_object.data.materials.append(asphalt())
+bpy.context.active_object.data.materials.append(ground_materials.aged_asphalt() if "--aged" in argv else asphalt())
+
+
+def add_crosswalks(path, lon0=139.70055, lat0=35.65950):
+    """Zebra bars from crosswalks.json (OSM lines in lon/lat + width) as faint emissive quads on the ground."""
+    import blender_geo as bg
+    k = math.cos(math.radians(lat0)) * 6378137 * math.pi / 180
+    kn = 6378137 * math.pi / 180
+    m = bpy.data.materials.new("zebra")
+    m.use_nodes = True
+    nt = m.node_tree
+    for nd in list(nt.nodes):
+        if nd.type != "OUTPUT_MATERIAL":
+            nt.nodes.remove(nd)
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 6
+    ramp = nt.nodes.new("ShaderNodeValToRGB")   # worn paint
+    ramp.color_ramp.elements[0].color = (0.06, 0.06, 0.065, 1)
+    ramp.color_ramp.elements[1].color = (0.16, 0.16, 0.17, 1)
+    nt.links.new(noise.outputs["Fac"], ramp.inputs["Fac"])
+    em = nt.nodes.new("ShaderNodeEmission")
+    nt.links.new(ramp.outputs["Color"], em.inputs["Color"])
+    nt.links.new(em.outputs[0], nt.nodes["Material Output"].inputs["Surface"])
+    verts, faces = [], []
+    for cw in json.load(open(path))["crosswalks"]:
+        (a, b) = [((lon - lon0) * k, (lat - lat0) * kn) for lon, lat in cw["line"][:2]]
+        for q in bg.crosswalk_stripes(a, b, cw["width"]):
+            i = len(verts)
+            verts += [(x, y, ground + 0.02) for x, y in q]
+            faces.append((i, i + 1, i + 2, i + 3))
+    me = bpy.data.meshes.new("zebra")
+    me.from_pydata(verts, [], faces)
+    o = bpy.data.objects.new("zebra", me)
+    o.data.materials.append(ground_materials.worn_paint() if "--aged" in argv else m)
+    bpy.context.scene.collection.objects.link(o)
+    return len(faces)
+
+
+if "crosswalks" in opts:
+    print("zebra bars", add_crosswalks(opts["crosswalks"]))
 
 
 def cam_matrix(c, shift=(0.0, 0.0, 0.0)):
@@ -116,6 +157,8 @@ for key in reversed(keys):
 sc = bpy.context.scene
 sc.render.engine = "BLENDER_EEVEE"
 sc.eevee.taa_render_samples = 16
+if "--aged" in argv:
+    sc.eevee.use_raytracing = True   # wet patches reflect the photo facades
 c0 = cams[render_key]
 sc.render.resolution_x, sc.render.resolution_y = 960, round(960 * c0["height"] / c0["width"])
 sc.world = bpy.data.worlds.new("night")
@@ -144,6 +187,13 @@ def look_matrix(pos, bearing, pitch):
     cols = [right, up, -fwd]
     return Matrix([[cols[0][i], cols[1][i], cols[2][i], pos[i]] for i in range(3)] + [[0, 0, 0, 1]])
 
+
+if "frames" in opts:
+    # --frames=<json>: [{"x", "y", "z", "bearing", "pitch", "out"}, ...] rendered as given (paths made outside)
+    for fr in json.load(open(opts["frames"])):
+        view.matrix_world = look_matrix((fr["x"], fr["y"], fr["z"]), fr["bearing"], fr["pitch"])
+        sc.render.filepath = fr["out"]
+        bpy.ops.render.render(write_still=True)
 
 if "path" in opts:
     # --path=x,y,bearing;x,y,bearing;... waypoints at eye height; the first one may be "photo" (render_key's pose)
