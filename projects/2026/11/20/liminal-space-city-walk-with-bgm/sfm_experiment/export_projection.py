@@ -1,7 +1,9 @@
 """export_projection.py <model> <tris.npz> <align.json> <solution idx> <images> <out_dir> <radius_m> <key> [<key> ...]
 Write what the Blender projection test needs: PLATEAU triangles within radius of the first camera (mesh.npz)
 and, for each photo, its camera in the PLATEAU ENU frame (cams.json: eye, world->camera rotation in COLMAP
-axes, vertical fov, image size, photo path). The pose is the global skyline fit (skyline.py fit)."""
+axes, vertical fov, image size, photo path). The pose is the global skyline fit (skyline.py fit), or, when
+<align.json> is a placement of place_on_plateau.py (it has "basis"), that placement.
+With the key "all" every registered photo is exported under the last three characters of its file stem."""
 import json
 import sys
 import zlib  # noqa: F401  load the system zlib before pycolmap: the Linux wheel (4.2.1) brings its own, and
@@ -32,12 +34,21 @@ out = Path(out)
 out.mkdir(parents=True, exist_ok=True)
 rec = pycolmap.Reconstruction(model)
 al = json.load(open(align))
-sol = al["solutions"][int(idx)]
-s, Rm, t = sol["scale"], np.array(sol["R"]), np.array(sol["t"])
-R0, A = np.array(al["R_level"]), np.array(al["model_anchor"])
+if "basis" in al:  # a placement of place_on_plateau.py: X_w = s A (B X - o) + t; the solution idx is unused
+    c, sn = np.cos(al["yaw"]), np.sin(al["yaw"])
+    s, Rm, t = al["scale"], np.array([[c, -sn, 0], [sn, c, 0], [0, 0, 1]]), np.array(al["t"])
+    R0 = np.array(al["basis"])
+    A = R0.T @ np.array([*al["centroid"], al["z_cam_median"]])
+    al["ground_z"] = al["ground"]
+else:
+    sol = al["solutions"][int(idx)]
+    s, Rm, t = sol["scale"], np.array(sol["R"]), np.array(sol["t"])
+    R0, A = np.array(al["R_level"]), np.array(al["model_anchor"])
 cams = {}
+if keys == ["all"]:
+    keys = sorted(Path(i.name).stem[-3:] for i in rec.images.values())
 for key in keys:
-    im = [i for i in rec.images.values() if key in i.name][0]
+    im = [i for i in rec.images.values() if key in Path(i.name).stem][0]
     cam = rec.cameras[im.camera_id]
     Rc = im.cam_from_world().rotation.matrix()
     Rw = Rc @ R0.T @ Rm.T

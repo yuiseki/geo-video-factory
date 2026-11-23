@@ -12,9 +12,21 @@ Writes view_<name>.png stills (camera shifted right / forward) and frames/ for a
        the sky), light grey walls, a brighter road, and the Standard view transform (AgX, the default,
        greys out a daylight photo; the photos are already display-referred).
   --sky=r,g,b/r,g,b   horizon / zenith colour the camera sees (linear), default 0.72,0.80,0.90/0.20,0.38,0.75;
-                      the road is always lit by the default sky
+                      the road is always lit by the default sky. Without --day one colour: the night sky
+                      (default 0.01,0.012,0.03). A photo whose sky is black needs a black world, or the gaps
+                      between the buildings show as dark blue boxes
   --sun=az,el[,w]     a sun lamp from compass azimuth az at elevation el (deg), strength w (default 2):
                       building shadows on the road. Photos are emission and are not lit by it.
+  --ground-photo=<key>[,<key>]   these photos also land on the ground (a paved plaza in front of the photographer).
+                      Nothing tests what stands in between: where the photo shows a tree or a wall, its picture is
+                      smeared along the ground behind it, so stay near where the photo was taken
+  --backdrop=<key>[,<key>]   these photos also land on a far dome around their own viewpoint: the sky, clouds, cranes
+                      and distant buildings that PLATEAU has no geometry for. Photo sky that lands on a wall then
+                      continues into the same sky behind it instead of standing out against the world colour.
+                      Outside the photo's frame the dome is transparent (the world shows)
+  --size=WxH          frame size (default 960 wide, as tall as the photo's shape). The photo's width fills the frame's
+                      width: a wider shape such as 1920x1080 cuts the photo's top and bottom, which leaves room to tilt
+  --zoom=z            narrow the field of view z times: room to pan before the photo's edge comes into the frame
   --ground-gain= --ground-glow= --ground-wet=   road albedo multiplier (4; 1.5 with a sun), ambient emission
                       strength (1; 0.35 with a sun), wet mirror patches (0 = dry; the night default is 1)
 """
@@ -35,6 +47,9 @@ opts = dict(a[2:].split("=", 1) for a in argv[4:] if a.startswith("--") and "=" 
 # --stretch=<m> is the height below which the facade colour above is stretched down (2.6 = old default,
 # 0 = project the photo all the way down, for people-removed photos)
 STRETCH = float(opts.get("stretch", 2.6))
+GROUND_PHOTOS = [k for k in opts.get("ground-photo", "").split(",") if k]
+BACKDROP_PHOTOS = [k for k in opts.get("backdrop", "").split(",") if k]
+BACKDROP_RADIUS = 1500.0   # far enough for no visible parallax over a few metres, inside the camera's clip range
 DAY = "--day" in argv
 SKY_DEFAULT = "0.72,0.80,0.90/0.20,0.38,0.75"   # horizon / zenith, linear
 SUN = [float(v) for v in opts["sun"].split(",")] if "sun" in opts else None
@@ -113,7 +128,8 @@ def asphalt():
     return m
 
 
-bpy.context.active_object.data.materials.append(ground_materials.aged_asphalt(*GROUND) if "--aged" in argv else asphalt())
+ground_mat = ground_materials.aged_asphalt(*GROUND) if "--aged" in argv else asphalt()
+bpy.context.active_object.data.materials.append(ground_mat)
 
 
 def add_crosswalks(path, lon0=139.70055, lat0=35.65950):
@@ -165,6 +181,23 @@ def cam_matrix(c, shift=(0.0, 0.0, 0.0)):
     return Matrix([[cols[0][i], cols[1][i], cols[2][i], loc[i]] for i in range(3)] + [[0, 0, 0, 1]])
 
 
+def add_backdrop(eye):
+    """A dome around `eye` that shows nothing by itself (transparent): only what a photo projects onto it."""
+    bpy.ops.mesh.primitive_uv_sphere_add(radius=BACKDROP_RADIUS, location=tuple(eye), segments=48, ring_count=24)
+    dome = bpy.context.object
+    dome.name = "backdrop"
+    dome.visible_shadow = False
+    mat = bpy.data.materials.new("backdrop")
+    mat.use_nodes = True
+    nodes, links = mat.node_tree.nodes, mat.node_tree.links
+    nodes.clear()
+    clear = nodes.new("ShaderNodeBsdfTransparent")
+    output = nodes.new("ShaderNodeOutputMaterial")
+    links.new(clear.outputs[0], output.inputs["Surface"])
+    dome.data.materials.append(mat)
+    return mat
+
+
 for key in reversed(keys):
     c = cams[key]
     proj_obj = photo_projection.add_projector((0, 0, 0), 90, 0)
@@ -172,6 +205,12 @@ for key in reversed(keys):
     bpy.context.view_layer.update()
     photo_projection.project_onto([wall], opts.get(f"photo-{key}", c["photo"]), proj_obj, c["fov_v"],
                                   c["width"], c["height"], min_z=ground + STRETCH)
+    if key in GROUND_PHOTOS:
+        photo_projection.project_onto([ground_mat], opts.get(f"photo-{key}", c["photo"]), proj_obj, c["fov_v"],
+                                      c["width"], c["height"], min_z=ground - 1.0)
+    if key in BACKDROP_PHOTOS:
+        photo_projection.project_onto([add_backdrop(c["eye"])], opts.get(f"photo-{key}", c["photo"]), proj_obj,
+                                      c["fov_v"], c["width"], c["height"], min_z=ground - 1.0)
 
 sc = bpy.context.scene
 sc.render.engine = "BLENDER_EEVEE"
@@ -179,7 +218,11 @@ sc.eevee.taa_render_samples = 16
 if "--aged" in argv:
     sc.eevee.use_raytracing = True   # wet patches reflect the photo facades
 c0 = cams[render_key]
-sc.render.resolution_x, sc.render.resolution_y = 960, round(960 * c0["height"] / c0["width"])
+if "size" in opts:
+    RW, RH = (int(v) for v in opts["size"].split("x"))
+else:
+    RW, RH = 960, round(960 * c0["height"] / c0["width"])
+sc.render.resolution_x, sc.render.resolution_y = RW, RH
 sc.world = bpy.data.worlds.new("day" if DAY else "night")
 sc.world.use_nodes = True
 if DAY:
@@ -221,10 +264,13 @@ if DAY:
         sun.matrix_world = Matrix([[side[i], up[i], to_sun[i], 0.0] for i in range(3)] + [[0, 0, 0, 1]])
         sc.collection.objects.link(sun)
 else:
-    sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.01, 0.012, 0.03, 1)
+    night = [float(v) for v in opts.get("sky", "0.01,0.012,0.03").split(",")]
+    sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (*night, 1)
 cam_data = bpy.data.cameras.new("view")
 cam_data.sensor_fit = "VERTICAL"
-cam_data.angle_y = math.radians(c0["fov_v"])
+# the photo's field of view across the frame's width, whatever the frame's shape; --zoom narrows it
+half_w = math.tan(math.radians(c0["fov_v"]) / 2) * c0["width"] / c0["height"] / float(opts.get("zoom", 1))
+cam_data.angle_y = 2 * math.atan(half_w * RH / RW)
 cam_data.clip_start, cam_data.clip_end = 0.3, 3000
 view = bpy.data.objects.new("view", cam_data)
 sc.collection.objects.link(view)
