@@ -46,3 +46,34 @@ test('perf budget: analysing a 2048x2048 atlas stays under 1 s', () => {
   const ms = performance.now() - t0;
   assert.ok(ms < 1000, `took ${ms.toFixed(0)} ms`);
 });
+
+test('analyzeTextureTone: an image without pixel data is sampled through a 32px canvas, or neutral without a document', () => {
+  const g = globalThis as Record<string, unknown>;
+  const prev = g.document;
+  try {
+    const img = { width: 100, height: 100 };
+    g.document = undefined;
+    assert.deepEqual(analyzeTextureTone({ image: img } as never), { tone: 1, bland: false });
+
+    let sampled = 0;
+    g.document = {
+      createElement: () => ({
+        width: 0,
+        height: 0,
+        getContext: () => ({
+          drawImage: (_i: unknown, _x: number, _y: number, w: number, h: number) => { sampled = w * h; },
+          getImageData: () => ({ data: solid(255, 255, 255, 255, 32 * 32) }),
+        }),
+      }),
+    };
+    assert.equal(analyzeTextureTone({ image: { ...img } } as never).tone, 0.64);
+    assert.equal(sampled, 32 * 32, 'a big atlas is downsampled before analysis');
+
+    g.document = { createElement: () => ({ getContext: () => null }) };
+    assert.deepEqual(analyzeTextureTone({ image: { ...img } } as never), { tone: 1, bland: false });
+    g.document = { createElement: () => { throw new Error('no canvas'); } };
+    assert.deepEqual(analyzeTextureTone({ image: { ...img } } as never), { tone: 1, bland: false });
+  } finally {
+    g.document = prev;
+  }
+});

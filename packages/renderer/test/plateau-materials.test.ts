@@ -261,3 +261,16 @@ describe("applyBuildingAppearance", () => {
     assert.match(options.key(), /-5-/);
   });
 });
+
+describe("plateau-materials: glTF feature ids", () => {
+  it("aliases _FEATURE_ID_0 to _batchid so the batch-id shaders keep working", () => {
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute("position", new THREE.BufferAttribute(new Float32Array(9), 3));
+    geometry.setAttribute("_FEATURE_ID_0", new THREE.BufferAttribute(new Float32Array(3), 1));
+    const root = new THREE.Group();
+    root.add(new THREE.Mesh(geometry, new THREE.MeshStandardMaterial()));
+    applyPlateauBuildingAppearance(root, {});
+    assert.ok(geometry.getAttribute("_batchid"));
+    assert.equal(geometry.getAttribute("_batchid"), geometry.getAttribute("_FEATURE_ID_0"));
+  });
+});

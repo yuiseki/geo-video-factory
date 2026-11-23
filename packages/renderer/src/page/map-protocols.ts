@@ -2,8 +2,10 @@ import * as maplibregl from 'maplibre-gl';
 import { gsiToTerrarium, terrariumRGB } from '../lib.js';
 import { clearNoDataPixels, imageTileRect, parseImgTileUrl } from './tile-math.js';
 
-function registerGsiDem(): void {
-  maplibregl.addProtocol('gsidem', async (params, abort) => {
+type AddProtocol = typeof maplibregl.addProtocol;
+
+function registerGsiDem(add: AddProtocol): void {
+  add('gsidem', async (params, abort) => {
     const url = params.url.replace('gsidem://', 'https://');
     const res = await fetch(url, { signal: abort.signal });
     const canvas = new OffscreenCanvas(256, 256);
@@ -35,8 +37,8 @@ function registerGsiDem(): void {
 
 // Old photo tiles in JPEG paint "no data" black (sea, gaps between flights). Make near-black transparent
 // so the current photo shows through instead of black holes.
-function registerClearBlack(): void {
-  maplibregl.addProtocol('gsiclear', async (params, abort) => {
+function registerClearBlack(add: AddProtocol): void {
+  add('gsiclear', async (params, abort) => {
     const res = await fetch(params.url.replace('gsiclear://', 'https://'), { signal: abort.signal });
     if (!res.ok) {
       const empty = new OffscreenCanvas(256, 256);
@@ -56,8 +58,8 @@ function registerClearBlack(): void {
 
 const IMAGES: Record<string, { src: string; bbox: [number, number, number, number]; bitmap?: Promise<ImageBitmap> }> = {};
 
-function registerImageTiles(): void {
-  maplibregl.addProtocol('imgtile', async (params) => {
+function registerImageTiles(add: AddProtocol): void {
+  add('imgtile', async (params) => {
     const { id, z, x, y } = parseImgTileUrl(params.url);
     const im = IMAGES[id]!;
     im.bitmap ??= fetch(im.src)
@@ -75,10 +77,11 @@ function registerImageTiles(): void {
   });
 }
 
-export function registerMapProtocols(): void {
-  registerGsiDem();
-  registerClearBlack();
-  registerImageTiles();
+/** `add` is injectable so the handlers can be exercised without a browser. */
+export function registerMapProtocols(add: AddProtocol = maplibregl.addProtocol): void {
+  registerGsiDem(add);
+  registerClearBlack(add);
+  registerImageTiles(add);
 }
 
 export function registerImageOverlay(id: string, src: string, bbox: [number, number, number, number]): void {

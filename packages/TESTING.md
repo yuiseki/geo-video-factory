@@ -20,7 +20,7 @@ VIDEO_TARGET=terrain-mt-omuroyama npm run test:video
 
 素材を準備する E2E (`buildings-*` など) は、Python から `packages/pipeline` を呼びます。既定の `python3` に `packages/pipeline/requirements-dev.txt` の依存 (DracoPy、shapely など) が無い場合は、依存を入れたインタープリターを `GVF_PYTHON` に指定します。例: `GVF_PYTHON=$PWD/../pipeline/.venv/bin/python VIDEO_TARGET=buildings-asakusa-sumida-river npm run test:video`。
 
-`test:coverage` は、行 65%、分岐 80%、関数 90% を下回ると失敗する。ブラウザーを起動する CLI 本体を含むため、行カバレッジは段階的に引き上げる。
+`test:coverage` は、行 85%、分岐 87%、関数 95% を下回ると失敗する (現状は行 88%、分岐 90%、関数 98%)。残りの未カバーは、ブラウザーを起動する `render.ts` の `main()` と、WebGL が要る `plateau-buildings.ts` の読み込みで、E2E の領域。
 
 - `src/lib.ts` の時間・座標・表示計算は、入力境界と決定性を単体テストする。
 - `src/voice.ts` は、VOICEVOX を呼ばない draft モード、WAV、字幕、クレジット、立ち絵検査を単体テストする。
@@ -59,3 +59,10 @@ Python 実装の行カバレッジは 70% を下回ると失敗する。`package
 - `test/bundle-budget.test.ts`: `dist/src/page/flyover.js` の大きさ (現状 約 2.8MB、上限 3.4MB)。上げるときは理由をコミットに書く。
 
 `src/page/tile-math.ts` はタイルプロトコル (`imgtile`、`gsiclear`) の純粋な計算で、ブラウザ API を使わず Node で単体テストする。`src/render.ts` の ffmpeg の引数 (`mp4EncodeArgs`、`stillsSheetArgs`、`loudnormSecondPass`) も同じ方針で、`main()` から切り出してテストする。
+
+## ブラウザなしで試す部品
+
+- `test/support/fake-dom.ts`: `document` と、呼び出しを記録する地図の偽物。`overlays.ts` と `choropleth-dom.ts` のテストが使う。DOM の本物 (jsdom) は入れない。
+- `registerMapProtocols(add)` は `addProtocol` を差し込める。`test/map-protocols.test.ts` が偽の `OffscreenCanvas` と `fetch` でタイルプロトコルを通す。
+- `voice.ts` の合成は、`fetch` の差し替えと、偽の実行ファイル (シェルスクリプト) で通す。実際の音声エンジンは使わない。
+- `batchUntexturedMeshes` (描画呼び出しを 1 つにまとめる) は three.js だけで動くので、`test/plateau-buildings.test.ts` で件数を数える。

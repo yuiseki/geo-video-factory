@@ -21,11 +21,13 @@ function cacheKey(o: ChoroplethOverlay): string {
 export async function preloadChoroplethLabels(spec: ShotSpec): Promise<void> {
   labelCache.clear();
   const tasks: Promise<void>[] = [];
+  const requested = new Set<string>();
   for (const shot of spec.shots) {
     for (const o of shot.overlays || []) {
       if (o.type !== 'choropleth' || !o.labelProperty) continue;
       const key = cacheKey(o);
-      if (labelCache.has(key)) continue;
+      if (labelCache.has(key) || requested.has(key)) continue;
+      requested.add(key);
       if (o.data) {
         labelCache.set(key, extractChoroplethLabelPoints(o.data, o.labelProperty, o.property));
       } else if (o.src) {

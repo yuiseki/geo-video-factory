@@ -218,3 +218,13 @@ test('counterNumber returns the raw counting value for rolling digits', () => {
   assert.equal(counterNumber({ value: 2000 }, 0.1), 2000);
   assert.equal(counterNumber({ value: '19,756' }, 0.1), null);
 });
+
+test('shotCameraKeys: explicit keys win, from/to become a two-key move, a lone end stands in for the other', async () => {
+  const { shotCameraKeys } = await import('../src/lib.js');
+  const cam = (z: number) => ({ center: [0, 0] as [number, number], zoom: z, pitch: 0, bearing: 0 });
+  const keys = [{ t: 0, ...cam(1) }, { t: 0.5, ...cam(2) }, { t: 1, ...cam(3) }];
+  assert.equal(shotCameraKeys({ duration: 1, keys }), keys);
+  assert.deepEqual(shotCameraKeys({ duration: 1, from: cam(1), to: cam(5) }), [{ t: 0, ...cam(1) }, { t: 1, ...cam(5) }]);
+  assert.deepEqual(shotCameraKeys({ duration: 1, to: cam(5) }), [{ t: 0, ...cam(5) }, { t: 1, ...cam(5) }]);
+  assert.deepEqual(shotCameraKeys({ duration: 1, from: cam(2) }), [{ t: 0, ...cam(2) }, { t: 1, ...cam(2) }]);
+});
