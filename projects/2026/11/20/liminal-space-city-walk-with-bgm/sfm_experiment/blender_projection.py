@@ -18,6 +18,11 @@ from mathutils import Matrix
 argv = sys.argv[sys.argv.index("--") + 1:]
 repo, proj, out, render_key = Path(argv[0]), Path(argv[1]), Path(argv[2]), argv[3]
 keys = [a for a in argv[4:] if not a.startswith("--")]
+opts = dict(a[2:].split("=", 1) for a in argv[4:] if a.startswith("--") and "=" in a)
+# --photo-<key>=<path> swaps in another version of a photo (e.g. with people removed);
+# --stretch=<m> is the height below which the facade colour above is stretched down (2.6 = old default,
+# 0 = project the photo all the way down, for people-removed photos)
+STRETCH = float(opts.get("stretch", 2.6))
 sys.path.insert(0, str(repo / "packages/pipeline"))
 sys.path.insert(0, str(repo / "packages/blender"))
 import photo_projection  # noqa: E402
@@ -75,8 +80,8 @@ for key in reversed(keys):
     proj_obj = photo_projection.add_projector((0, 0, 0), 90, 0)
     proj_obj.matrix_world = cam_matrix(c)
     bpy.context.view_layer.update()
-    photo_projection.project_onto([wall], c["photo"], proj_obj, c["fov_v"], c["width"], c["height"],
-                                  min_z=ground + 2.6)
+    photo_projection.project_onto([wall], opts.get(f"photo-{key}", c["photo"]), proj_obj, c["fov_v"],
+                                  c["width"], c["height"], min_z=ground + STRETCH)
 
 sc = bpy.context.scene
 sc.render.engine = "BLENDER_EEVEE"
