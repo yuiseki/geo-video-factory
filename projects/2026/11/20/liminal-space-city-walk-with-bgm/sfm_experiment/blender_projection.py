@@ -62,7 +62,37 @@ def flat(name, rgb):
 wall = flat("wall", (0.05, 0.05, 0.06))
 obj.data.materials.append(wall)
 bpy.ops.mesh.primitive_plane_add(size=1400, location=(cams[render_key]["eye"][0], cams[render_key]["eye"][1], ground))
-bpy.context.active_object.data.materials.append(flat("ground", (0.03, 0.03, 0.035)))
+
+
+def asphalt():
+    """Synthesised ground: dark asphalt grain as weak emission (the scene has no lamps)."""
+    m = bpy.data.materials.new("asphalt")
+    m.use_nodes = True
+    nt = m.node_tree
+    for nd in list(nt.nodes):
+        if nd.type != "OUTPUT_MATERIAL":
+            nt.nodes.remove(nd)
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 0.9
+    noise.inputs["Detail"].default_value = 12
+    fine = nt.nodes.new("ShaderNodeTexNoise")
+    fine.inputs["Scale"].default_value = 40
+    mixc = nt.nodes.new("ShaderNodeMix")
+    mixc.data_type = "RGBA"
+    mixc.inputs["Factor"].default_value = 0.5
+    nt.links.new(noise.outputs["Fac"], mixc.inputs["A"])
+    nt.links.new(fine.outputs["Fac"], mixc.inputs["B"])
+    ramp = nt.nodes.new("ShaderNodeValToRGB")
+    ramp.color_ramp.elements[0].color = (0.010, 0.010, 0.012, 1)
+    ramp.color_ramp.elements[1].color = (0.045, 0.043, 0.048, 1)
+    nt.links.new(mixc.outputs["Result"], ramp.inputs["Fac"])
+    em = nt.nodes.new("ShaderNodeEmission")
+    nt.links.new(ramp.outputs["Color"], em.inputs["Color"])
+    nt.links.new(em.outputs[0], nt.nodes["Material Output"].inputs["Surface"])
+    return m
+
+
+bpy.context.active_object.data.materials.append(asphalt())
 
 
 def cam_matrix(c, shift=(0.0, 0.0, 0.0)):
@@ -104,6 +134,46 @@ for name, shift in (("0_photo_pose", (0, 0, 0)), ("1_right5m", (5, 0, 0)), ("2_r
     view.matrix_world = cam_matrix(c0, shift)
     sc.render.filepath = str(out / f"view_{name}.png")
     bpy.ops.render.render(write_still=True)
+
+def look_matrix(pos, bearing, pitch):
+    """Camera matrix at pos looking along compass bearing (deg, clockwise from north) and pitch (deg up)."""
+    b, p = math.radians(bearing), math.radians(pitch)
+    fwd = np.array([math.sin(b) * math.cos(p), math.cos(b) * math.cos(p), math.sin(p)])
+    right = np.array([math.cos(b), -math.sin(b), 0.0])
+    up = np.cross(right, fwd)
+    cols = [right, up, -fwd]
+    return Matrix([[cols[0][i], cols[1][i], cols[2][i], pos[i]] for i in range(3)] + [[0, 0, 0, 1]])
+
+
+if "path" in opts:
+    # --path=x,y,bearing;x,y,bearing;... waypoints at eye height; the first one may be "photo" (render_key's pose)
+    fwd0 = np.array(c0["Rw"]).T[:, 2]
+    b0 = math.degrees(math.atan2(fwd0[0], fwd0[1]))
+    pitch = math.degrees(math.asin(fwd0[2]))
+    eye_h = c0["eye"][2]
+    wps = []
+    for w in opts["path"].split(";"):
+        if w == "photo":
+            wps.append((c0["eye"][0], c0["eye"][1], b0))
+        else:
+            wps.append(tuple(float(v) for v in w.split(",")))
+    seg = [math.dist(wps[i][:2], wps[i + 1][:2]) for i in range(len(wps) - 1)]
+    total = sum(seg)
+    N = int(float(opts.get("seconds", 10)) * 24)
+    (out / "frames").mkdir(exist_ok=True)
+    for i in range(N):
+        d = total * (0.5 - 0.5 * math.cos(math.pi * i / (N - 1)))
+        k = 0
+        while k < len(seg) - 1 and d > seg[k]:
+            d -= seg[k]
+            k += 1
+        f = min(1.0, d / seg[k]) if seg[k] else 1.0
+        a, b = wps[k], wps[k + 1]
+        db = (b[2] - a[2] + 180) % 360 - 180
+        pos = (a[0] + f * (b[0] - a[0]), a[1] + f * (b[1] - a[1]), eye_h)
+        view.matrix_world = look_matrix(pos, a[2] + f * db, pitch * (1 - (k + f) / len(seg)) + 3 * (k + f) / len(seg))
+        sc.render.filepath = str(out / "frames" / f"{i:04d}.png")
+        bpy.ops.render.render(write_still=True)
 
 if "--clip" in sys.argv:
     (out / "frames").mkdir(exist_ok=True)
