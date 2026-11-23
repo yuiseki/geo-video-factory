@@ -285,7 +285,10 @@ export function buildMapStyle(spec: ShotSpec) {
       ...ov.layers,
     ],
     // 3D buildings carry true heights; exaggerated terrain would bury them.
-    terrain: { source: 'dem', exaggeration: spec.exaggeration ?? (spec.plateauBuildings ? 1 : 1.3) },
+    // exaggeration: 0 disables terrain mesh completely for flat street-level renders.
+    ...((spec.exaggeration ?? (spec.plateauBuildings ? 1 : 1.3)) > 0
+      ? { terrain: { source: 'dem', exaggeration: spec.exaggeration ?? (spec.plateauBuildings ? 1 : 1.3) } }
+      : {}),
     sky: spec.sky ?? {
       'sky-color': '#6f9fd6',
       'horizon-color': '#dce8f5',

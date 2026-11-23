@@ -1,0 +1,56 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "fov": 55,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "sky": {
+    "sky-color": "#060612",
+    "horizon-color": "#26143d",
+    "fog-color": "#1d1030",
+    "sky-horizon-blend": 0.68,
+    "horizon-fog-blend": 0.78,
+    "fog-ground-blend": 0.55
+  },
+  "credits": [
+    "建物: 国土交通省 PLATEAU (渋谷区 2025)",
+    "路面・外壁テクスチャ: ComfyUI (SDXL Base 1.0 + ControlNet)"
+  ],
+  "plateauBuildings": {
+    "manifest": "assets/buildings-shibuya-upscaled/manifest.json",
+    "heightOffset": -39,
+    "workers": 3,
+    "appearance": true,
+    "facadeTextures": {
+      "glass": "assets/materials/mat_facade_glass.png",
+      "shutter": "assets/materials/mat_facade_shutter.png",
+      "wallMix": 0.92,
+      "tileMeters": [14, 14],
+      "groundZ": 0,
+      "shutterHeight": 4.5
+    },
+    "night": [
+      [0, 0.86]
+    ]
+  },
+  "shots": [
+    {
+      "duration": 10.0,
+      "ease": "linear",
+      "keys": [
+        { "t": 0.0, "center": [139.70042, 35.6596], "zoom": 20.8, "pitch": 84, "bearing": -45 },
+        { "t": 1.0, "center": [139.69986, 35.66004], "zoom": 20.9, "pitch": 84, "bearing": -58 }
+      ],
+      "overlays": [
+        {
+          "type": "image",
+          "src": "assets/ground/shibuya_crossing_procedural_4x.png",
+          "bbox": [139.69749748706818, 35.659000466530415, 139.7011023759842, 35.66100103417491]
+        }
+      ]
+    }
+  ]
+}

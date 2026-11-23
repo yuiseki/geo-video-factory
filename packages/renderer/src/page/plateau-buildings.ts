@@ -5,8 +5,9 @@ import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
 import type { PlateauBuildingsConfig } from '../types.js';
 import { tileHeightOffset, wgs84Ecef } from './plateau-coordinates.js';
-import { applyBuildingAppearance, applyBuildingOpacity, neutralizePbr, setBuildingDepthPass, toStudyModelWhite } from './plateau-materials.js';
-import { createPlateauRoofUniforms } from './plateau-facade-glsl.js';
+import { applyBuildingAppearance, applyBuildingOpacity, neutralizePbr, resolveIdVariants, setBuildingDepthPass, toStudyModelWhite } from './plateau-materials.js';
+import { createPlateauFacadeTextureUniforms, createPlateauRoofUniforms } from './plateau-facade-glsl.js';
+import { populatePlateauStreetScene } from './plateau-street-scene.js';
 import { createCityProxyMaterial, createCityShadowMaterial, createCityUniforms, type CityRoofPhoto, type CityUniforms } from './city-materials.js';
 import { buildingOpacity, cityLight, keyframeValue, localMeters, paintRadius, revealRadius } from './city-timeline.js';
 import { applyCityLight, createCityLightRig, usePhotoNeutralOutput, type CityLightRig } from './city-light-rig.js';
@@ -79,7 +80,15 @@ export function batchUntexturedMeshes(root: THREE.Object3D): void {
     if (!mesh.isMesh || Array.isArray(mesh.material)) return;
     const mat = mesh.material as THREE.MeshStandardMaterial;
     if (!mat || mat.map) return;
-    if (!mesh.geometry.attributes.position || !mesh.geometry.attributes._batchid) return;
+    const batchAttr =
+      mesh.geometry.attributes._batchid ??
+      mesh.geometry.attributes._BATCHID ??
+      mesh.geometry.attributes._FEATURE_ID_0 ??
+      mesh.geometry.attributes._feature_id_0;
+    if (!mesh.geometry.attributes.position || !batchAttr) return;
+    if (!mesh.geometry.attributes._batchid) {
+      mesh.geometry.setAttribute('_batchid', batchAttr);
+    }
     candidates.push(mesh);
   });
   if (candidates.length <= 16) return;
@@ -160,6 +169,7 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
   scene.add(lights.ambient, lights.sun, lights.fill);
   const city = createCityUniforms();
   const roofUniforms = createPlateauRoofUniforms();
+  const facadeUniforms = createPlateauFacadeTextureUniforms();
   const growOrigin = config.reveal ? localMeters(config.reveal.center, center) : [0, 0];
   city.uCityGrowOrigin.value.set(growOrigin[0]!, growOrigin[1]!);
   city.uCityGrowWidth.value = config.reveal?.width ?? 120;
@@ -187,6 +197,7 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
     roofUniforms.uPlateauRoofSize.value.set(x1 - x0, y1 - y0);
     roofUniforms.uPlateauRoofOn.value = 1;
   }
+  await populatePlateauStreetScene(scene, config, center, facadeUniforms);
   let cursor = 0;
   let loadedTiles = 0;
   const loadWorker = async () => {
@@ -218,7 +229,8 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
       } else if (config.appearance !== false) {
         // No building is left flat: photo textures stay, untextured buildings get a facade and the
         // aerial photo on their roofs as the paint wave passes. appearance: false is untouched PLATEAU.
-        applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl, true, { city, roof: roofUniforms });
+        const variants = resolveIdVariants(tile.ids, config.facadeTextures?.idVariants);
+        applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl, true, { city, roof: roofUniforms, facade: facadeUniforms }, variants);
       }
       scene.add(gltf.scene);
       loadedTiles++;

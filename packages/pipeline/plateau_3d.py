@@ -186,11 +186,12 @@ def tile_texture_limit(
 
 def _strip_cesium_rtc(document: dict[str, Any]) -> bool:
     changed = False
-    if 'CESIUM_RTC' in document.get('extensionsUsed', []):
-        document['extensionsUsed'] = [ext for ext in document['extensionsUsed'] if ext != 'CESIUM_RTC']
-        if not document['extensionsUsed']:
-            document.pop('extensionsUsed', None)
-        changed = True
+    for key in ('extensionsUsed', 'extensionsRequired'):
+        if 'CESIUM_RTC' in document.get(key, []):
+            document[key] = [ext for ext in document[key] if ext != 'CESIUM_RTC']
+            if not document[key]:
+                document.pop(key, None)
+            changed = True
     if 'CESIUM_RTC' in document.get('extensions', {}):
         document['extensions'].pop('CESIUM_RTC', None)
         if not document['extensions']:

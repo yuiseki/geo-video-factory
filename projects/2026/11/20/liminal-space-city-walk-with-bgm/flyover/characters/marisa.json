@@ -1,0 +1,24 @@
+{
+  "name": "魔理沙 (たぬき式ゆっくり)",
+  "source": "たぬき式ゆっくり「たぬき魔理沙」(PNGパーツ)。動画での利用・収益化・商用利用・改変可、クレジット任意。同梱の TERMS.txt および東方Projectガイドライン https://touhou-project.news/guideline/ に従う。",
+  "order": ["体", "顔色", "口", "目", "髪", "眉", "他"],
+  "width": 360,
+  "min_width": 820,
+  "base": {
+    "体": "体_00",
+    "髪": "髪_04",
+    "他": "服_01",
+    "顔色": "顔_00",
+    "眉": "眉_00",
+    "目": "目_00"
+  },
+  "blink": { "目": "目_00.0" },
+  "faces": {
+    "normal":   { "mouth_open": "口_00.4", "mouth_closed": "口_00.1" },
+    "smile":    { "select": { "目": "目_19", "顔色": "顔_01" }, "blink": { "目": "目_19" }, "mouth_open": "口_07.4", "mouth_closed": "口_07.0" },
+    "surprise": { "select": { "目": "目_15", "眉": "眉_07" }, "blink": { "目": "目_15.0" }, "mouth_open": "口_03.4", "mouth_closed": "口_22" },
+    "trouble":  { "select": { "目": "目_03", "眉": "眉_06" }, "blink": { "目": "目_03.0" }, "mouth_open": "口_09",   "mouth_closed": "口_20" },
+    "point":    { "select": { "眉": "眉_05", "目": "目_13" }, "blink": { "目": "目_13.0" }, "mouth_open": "口_05",   "mouth_closed": "口_10" },
+    "sad":      { "select": { "眉": "眉_06", "目": "目_03", "顔色": "顔_00" }, "blink": { "目": "目_03.0" }, "mouth_open": "口_09.2", "mouth_closed": "口_20" }
+  }
+}

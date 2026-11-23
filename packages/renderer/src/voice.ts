@@ -87,8 +87,12 @@ export function buildOpenJTalkArgs({ dic, voice, speed, halfTone, outFile }: Ope
 }
 
 function resolveExistingPath(explicit: string | undefined, envName: string, candidates: string[], label: string): string {
+  if (explicit !== undefined) {
+    if (explicit && fs.existsSync(explicit)) return explicit;
+    throw new Error(`Open JTalk ${label} not found: ${explicit}`);
+  }
   const fromEnv = process.env[envName]?.trim();
-  for (const candidate of [explicit, fromEnv, ...candidates]) {
+  for (const candidate of [fromEnv, ...candidates]) {
     if (candidate && fs.existsSync(candidate)) return candidate;
   }
   throw new Error(`Open JTalk ${label} not found (set tts.openjtalk or ${envName})`);

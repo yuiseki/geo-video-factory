@@ -10,6 +10,7 @@ export interface MapLibreMap {
   getSource: (id: string) => { setData: (data: unknown) => void };
   project: (lngLat: LngLat) => { x: number; y: number };
   setPadding: (padding: { top: number; right: number; bottom: number; left: number }) => void;
+  setVerticalFieldOfView: (fov: number) => void;
   getZoom: () => number;
   getPitch: () => number;
 }

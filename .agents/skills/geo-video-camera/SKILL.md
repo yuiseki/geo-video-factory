@@ -7,6 +7,7 @@ description: 地図・地形・3D都市動画のカメラを、主題、位置�
 
 各シーンで視聴者が理解する対象と位置関係を一文で決め、静止を含む候補から最小限の動きを選ぶ。MapLibreの `center`、`zoom`、`pitch`、`bearing` は実機の位置、画角、姿勢を独立制御するものではないため、映像上の近似として扱う。
 
+- ショットレシピカード集（イージング規約・2.5D/3D 焦点固定・発話/BGM ビート同期・定番10型）： [references/shot-recipes.md](references/shot-recipes.md)
 - 空撮技法の選択と組み合わせ： [references/drone-camera.md](references/drone-camera.md)
 - 一般的なカメラ用語： [references/camera.md](references/camera.md)
 - 速度、章境界、ラベル、写真線、3D範囲の検品： [references/camera-and-label-review.md](references/camera-and-label-review.md)

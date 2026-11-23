@@ -19,6 +19,14 @@ test('buildMapStyle turns off paint transitions: a frame shows its own time, not
   assert.deepEqual(style.transition, { duration: 0, delay: 0 });
 });
 
+test('buildMapStyle omits terrain mesh when exaggeration is 0 to prevent oblique street distortion', () => {
+  const flatStyle = buildMapStyle({ exaggeration: 0, shots: [{ duration: 1, overlays: [] }] }) as Record<string, unknown>;
+  assert.equal('terrain' in flatStyle, false);
+
+  const terrainStyle = buildMapStyle({ exaggeration: 1, shots: [{ duration: 1, overlays: [] }] }) as Record<string, unknown>;
+  assert.deepEqual(terrainStyle.terrain, { source: 'dem', exaggeration: 1 });
+});
+
 type Style = {
   sources: Record<string, Record<string, unknown>>;
   layers: Array<Record<string, any>>;

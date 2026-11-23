@@ -1,0 +1,47 @@
+{
+  "project": "liminal-space-city-walk-with-bgm",
+  "version": "v1.0.0",
+  "title": "真夜中の渋谷を彷徨う ― Backrooms × Vaporwave",
+  "sources": [
+    {
+      "name": "地理院タイル（全国最新写真シームレス・標高タイル）",
+      "provider": "国土地理院",
+      "usage": "3D地形基盤、およびスクランブル交差点・センター街路面テクスチャの元画像（zoom 18）",
+      "processing": "SDXL + ControlNet Tile による深夜化変換、RealESRGAN_x4plus 4x 超解像、決定論的横断歩道・舗装・ネオン反射の描画"
+    },
+    {
+      "name": "3D都市モデル（Project PLATEAU 渋谷区 2025 LOD2 テクスチャ付き）",
+      "provider": "国土交通省",
+      "url": "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json",
+      "usage": "渋谷スクランブル交差点〜渋谷センター街周辺の3D建物形状と外観テクスチャ",
+      "processing": "RealESRGAN_x4plus 4x 超解像（最大 4096px）、夜間ライティング適用"
+    },
+    {
+      "name": "OpenStreetMap 道路中心線データ（渋谷センター街）",
+      "provider": "OpenStreetMap contributors",
+      "license": "ODbL",
+      "usage": "渋谷センター街の通り中心線とカメラ方位角の算出"
+    },
+    {
+      "name": "渋谷スクランブル交差点・渋谷センター街 参考写真（143枚）",
+      "provider": "Wikimedia Commons / Openverse",
+      "license": "CC0 / Public domain / CC BY / CC BY-SA（NC・ND除外、詳細は research/photos_manifest.json）",
+      "usage": "景観・看板・夜景雰囲気の参考データ（プロトタイプ検証）"
+    },
+    {
+      "name": "BGM: Vaporwave Mallsoft / Slushwave Ambient Loop",
+      "provider": "ローカル合成（flyover/scripts/generate_vaporwave_bgm.py）",
+      "license": "CC0相当（自前生成）",
+      "usage": "全編BGM（-14 LUFS マスタリング）"
+    },
+    {
+      "name": "使用モデル（ローカル画像処理）",
+      "items": [
+        "RealESRGAN_x4plus (BSD-3-Clause)",
+        "Stable Diffusion XL Base 1.0 (CreativeML Open RAIL++-M)",
+        "xinsir/controlnet-tile-sdxl-1.0 (Apache 2.0)",
+        "sdxl-vae-fp16-fix (MIT)"
+      ]
+    }
+  ]
+}

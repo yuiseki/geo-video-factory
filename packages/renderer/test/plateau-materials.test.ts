@@ -5,11 +5,13 @@ import {
   analyzeTextureTone,
   applyBuildingAppearance,
   applyPlateauBuildingAppearance,
+  applyWetGroundShader,
   neutralizePbr,
-  plateauRoofUniforms
+  plateauRoofUniforms,
+  resolveIdVariants
 } from "../src/page/plateau-materials.js";
 import { createCityUniforms } from "../src/page/city-materials.js";
-import { createPlateauRoofUniforms } from "../src/page/plateau-facade-glsl.js";
+import { createPlateauFacadeTextureUniforms, createPlateauRoofUniforms } from "../src/page/plateau-facade-glsl.js";
 
 function makeSolidTexture(r: number, g: number, b: number, a = 255): THREE.DataTexture {
   const data = new Uint8Array(4 * 4 * 4);
@@ -259,6 +261,76 @@ describe("applyBuildingAppearance", () => {
     const options = scene();
     applyBuildingAppearance(options.root, { palette: [], seed: 5 });
     assert.match(options.key(), /-5-/);
+  });
+
+  it("injects ComfyUI facade texture uniforms when facade uniforms are provided", () => {
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    geometry.setAttribute("_batchid", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    const tex = new THREE.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1, THREE.RGBAFormat);
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ map: tex }));
+    const root = new THREE.Group();
+    root.add(mesh);
+    const city = createCityUniforms();
+    const roof = createPlateauRoofUniforms();
+    const facade = createPlateauFacadeTextureUniforms();
+    facade.uComfyWallMix.value = 0.85;
+    applyPlateauBuildingAppearance(root, { seed: 3, uniforms: { city, roof, facade } });
+    const shader = {
+      uniforms: {} as Record<string, THREE.IUniform>,
+      vertexShader: "#include <common>\n#include <begin_vertex>",
+      fragmentShader: "#include <common>\n#include <color_fragment>\n#include <map_fragment>\n#include <dithering_fragment>"
+    };
+    (mesh.material as THREE.MeshStandardMaterial).onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    assert.match(shader.fragmentShader, /uComfyGlass/);
+    assert.match(shader.fragmentShader, /uComfyShutter/);
+    assert.match(shader.fragmentShader, /uComfyAtlas/);
+    assert.equal(shader.uniforms.uComfyWallMix!.value, 0.85);
+  });
+
+  it("aliases uppercase _BATCHID attribute to _batchid for PLATEAU GLB compatibility", () => {
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    geometry.setAttribute("_BATCHID", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xffffff }));
+    const root = new THREE.Group();
+    root.add(mesh);
+    applyPlateauBuildingAppearance(root, { variants: [2, 4], seed: 1 });
+    assert.ok(geometry.getAttribute("_batchid"), "_BATCHID should be aliased to _batchid");
+  });
+
+  it("maps tile building IDs to atlas variant indices via resolveIdVariants and flips WebGL atlas row", () => {
+    const ids = ["bldg_qfront", "bldg_unknown", "bldg_seibu"];
+    const variants = resolveIdVariants(ids, { bldg_qfront: 0, bldg_seibu: 3 });
+    assert.deepEqual(variants, [0, null, 3]);
+
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    geometry.setAttribute("_BATCHID", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    const tex = new THREE.DataTexture(new Uint8Array([255, 255, 255, 255]), 1, 1, THREE.RGBAFormat);
+    const mesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ map: tex }));
+    const root = new THREE.Group();
+    root.add(mesh);
+    applyPlateauBuildingAppearance(root, { variants, seed: 1 });
+    const shader = {
+      uniforms: {} as Record<string, THREE.IUniform>,
+      vertexShader: "#include <common>\n#include <begin_vertex>",
+      fragmentShader: "#include <common>\n#include <color_fragment>\n#include <map_fragment>\n#include <dithering_fragment>"
+    };
+    (mesh.material as THREE.MeshStandardMaterial).onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    assert.match(shader.fragmentShader, /1\.0 - floor\(cVar \/ 3\.0\)/, "must flip Y row for 3x2 WebGL texture atlas");
+    assert.match(shader.fragmentShader, /fract\(cUv\.y\)/, "must tile vertically with fract(cUv.y), never clamp");
+    assert.match(shader.fragmentShader, /uComfyVariantMap/, "must bind per-building variant lookup texture");
+    assert.match(shader.fragmentShader, /cComfyWindowGlow/, "must add night interior window glow on ComfyUI facades");
+  });
+
+  it("enhances Three.js wet ground material with micro-roughness specular contrast", () => {
+    const mat = new THREE.MeshBasicMaterial();
+    applyWetGroundShader(mat);
+    const shader = {
+      uniforms: {} as Record<string, THREE.IUniform>,
+      vertexShader: "#include <common>\n#include <begin_vertex>",
+      fragmentShader: "#include <common>\n#include <map_fragment>\n#include <dithering_fragment>"
+    };
+    mat.onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    assert.match(shader.fragmentShader, /wetPuddleMask/, "wet ground shader should modulate puddle specular contrast");
   });
 });
 

@@ -26,6 +26,143 @@ export type PlateauRoofUniforms = ReturnType<typeof createPlateauRoofUniforms>;
 /** The default set, for materials created without a scene of their own. */
 export const plateauRoofUniforms = createPlateauRoofUniforms();
 
+/** Optional ComfyUI/custom tileable facade textures mapped onto building walls in meters. */
+export function createPlateauFacadeTextureUniforms() {
+  return {
+    uComfyGlass: { value: blankTexture as THREE.Texture },
+    uComfyShutter: { value: blankTexture as THREE.Texture },
+    uComfyAtlas: { value: blankTexture as THREE.Texture },
+    uComfyAtlasOn: { value: 0 },
+    uComfyWallMix: { value: 0 },
+    uComfyTileMeters: { value: new THREE.Vector2(14, 14) },
+    uComfyGroundZ: { value: 0 },
+    uComfyShutterHeight: { value: 4.5 },
+  };
+}
+
+export type PlateauFacadeTextureUniforms = ReturnType<typeof createPlateauFacadeTextureUniforms>;
+
+export const plateauFacadeTextureUniforms = createPlateauFacadeTextureUniforms();
+
+export function resolveIdVariants(
+  ids: string[] | undefined,
+  idVariants: Record<string, number> | undefined,
+): Array<number | null> | undefined {
+  if (!idVariants || !ids?.length) return undefined;
+  return ids.map((id) => (idVariants[id] !== undefined ? idVariants[id]! : null));
+}
+
+function parseHexBytes(hex: string | null | undefined): [number, number, number, number] | null {
+  if (!hex || !/^#[0-9a-f]{6}([0-9a-f]{2})?$/i.test(hex)) return null;
+  return [
+    Number.parseInt(hex.slice(1, 3), 16),
+    Number.parseInt(hex.slice(3, 5), 16),
+    Number.parseInt(hex.slice(5, 7), 16),
+    hex.length === 9 ? Number.parseInt(hex.slice(7, 9), 16) : 255,
+  ];
+}
+
+export function paletteTexture(palette: Array<string | null>): THREE.DataTexture {
+  const count = Math.max(1, palette.length);
+  const data = new Uint8Array(count * 4);
+  for (let i = 0; i < count; i++) {
+    const rgb = parseHexBytes(palette[i]);
+    if (rgb) {
+      data[i * 4] = rgb[0];
+      data[i * 4 + 1] = rgb[1];
+      data[i * 4 + 2] = rgb[2];
+      data[i * 4 + 3] = rgb[3];
+    } else {
+      data[i * 4] = 177;
+      data[i * 4 + 1] = 177;
+      data[i * 4 + 2] = 177;
+      data[i * 4 + 3] = 0;
+    }
+  }
+  const texture = new THREE.DataTexture(data, count, 1, THREE.RGBAFormat);
+  texture.colorSpace = THREE.SRGBColorSpace;
+  texture.magFilter = THREE.NearestFilter;
+  texture.minFilter = THREE.NearestFilter;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+export function variantTexture(variants: Array<number | null>): THREE.DataTexture {
+  const count = Math.max(1, variants.length);
+  const data = new Uint8Array(count * 4);
+  for (let i = 0; i < count; i++) {
+    const v = variants[i];
+    if (v !== null && v !== undefined && Number.isFinite(v)) {
+      data[i * 4] = Math.max(0, Math.min(255, Math.round(v)));
+      data[i * 4 + 3] = 255;
+    }
+  }
+  const texture = new THREE.DataTexture(data, count, 1, THREE.RGBAFormat);
+  texture.magFilter = THREE.NearestFilter;
+  texture.minFilter = THREE.NearestFilter;
+  texture.needsUpdate = true;
+  return texture;
+}
+
+export function applyWetGroundShader(material: THREE.MeshBasicMaterial): void {
+  material.customProgramCacheKey = () => "wet-ground-v1";
+  material.onBeforeCompile = (shader) => {
+    shader.fragmentShader = shader.fragmentShader.replace(
+      "#include <map_fragment>",
+      `#include <map_fragment>
+float wetLuma = dot(diffuseColor.rgb, vec3(0.299, 0.587, 0.114));
+float wetPuddleMask = 1.0 - smoothstep(0.08, 0.34, wetLuma);
+float wetZebraMask = smoothstep(0.38, 0.68, wetLuma);
+vec3 wetChroma = diffuseColor.rgb - vec3(wetLuma);
+diffuseColor.rgb = mix(diffuseColor.rgb * 0.86 + wetChroma * 0.75, diffuseColor.rgb * 1.16, wetZebraMask);
+diffuseColor.rgb += max(wetChroma, vec3(0.0)) * wetPuddleMask * 0.55;`,
+    );
+  };
+  material.needsUpdate = true;
+}
+
+export function comfyFacadeMapGlsl(variantSize: number): string {
+  const variantLookup = variantSize > 0
+    ? `float vIdx = clamp(floor(vPlateauFeatureId + 0.5), 0.0, uComfyVariantSize - 1.0);
+    vec4 vSample = texture2D(uComfyVariantMap, vec2((vIdx + 0.5) / uComfyVariantSize, 0.5));
+    if (vSample.a > 0.5) {
+      cVar = floor(vSample.r * 255.0 + 0.5);
+    }`
+    : "";
+  return `if (uComfyWallMix > 0.001) {
+  vec3 cfn = normalize(vPlateauWorldNormal);
+  float cWall = smoothstep(0.58, 0.90, 1.0 - abs(cfn.z));
+  float cAxis = abs(cfn.x) > abs(cfn.y) ? vPlateauWorldPos.y : vPlateauWorldPos.x;
+  vec2 cUv = vec2(cAxis / uComfyTileMeters.x, (vPlateauWorldPos.z - uComfyGroundZ) / uComfyTileMeters.y);
+  vec3 cFacadeTex;
+  if (uComfyAtlasOn > 0.5) {
+    float cVar = mod(floor(vPlateauFeatureId + 0.5 + uPlateauSeed * 7.0), 6.0);
+    ${variantLookup}
+    vec2 cCell = vec2(mod(cVar, 3.0), 1.0 - floor(cVar / 3.0));
+    vec2 cLocal = vec2(fract(cUv.x), fract(cUv.y));
+    cFacadeTex = texture2D(uComfyAtlas, (cCell + cLocal) / vec2(3.0, 2.0)).rgb;
+  } else {
+    vec3 cGlass = texture2D(uComfyGlass, cUv).rgb;
+    vec3 cShutter = texture2D(uComfyShutter, cUv).rgb;
+    float cIsGround = 1.0 - smoothstep(uComfyShutterHeight - 0.6, uComfyShutterHeight + 0.6, vPlateauWorldPos.z - uComfyGroundZ);
+    cFacadeTex = mix(cGlass, cShutter, cIsGround);
+  }
+  float cDirShade = 0.85 + 0.22 * clamp(dot(normalize(cfn.xy + 1e-5), normalize(vec2(-0.5, -0.8))), -1.0, 1.0);
+  float cGroundAo = mix(0.76, 1.0, smoothstep(0.0, 3.2, max(0.0, vPlateauWorldPos.z - uComfyGroundZ)));
+  cFacadeTex = min(vec3(1.0), cFacadeTex * 1.65) * cDirShade * cGroundAo;
+  diffuseColor.rgb = mix(diffuseColor.rgb, cFacadeTex, cWall * uComfyWallMix);
+}`;
+}
+
+export const COMFY_WINDOW_GLOW = `if (uComfyWallMix > 0.001) {
+  float cSparseLit = step(1.0 - uCityWindows * 0.28, plateauHash(facadeCell + 7.9));
+  vec3 cWinCol = mix(vec3(1.0, 0.78, 0.48), vec3(0.72, 0.88, 1.0), step(0.6, plateauHash(facadeCell + 1.9)));
+  vec3 cComfyWindowGlow = cWinCol * facadeWall * facadeWindow * cSparseLit * uCityWindows * uComfyWallMix * 0.38;
+  gl_FragColor.rgb += cComfyWindowGlow;
+  gl_FragColor.rgb *= 1.0 - facadeWall * facadeBand * uComfyWallMix * 0.12;
+}
+`;
+
 // Curtain wall for untextured walls: storeys, mullions, glass reflecting the sky, floor slabs.
 // An estimate for the picture, never a survey of the real facade.
 export const UNTEXTURED_FACADE = `float curtainWall = facadeWall * plateauTall * vPlateauPaint;
