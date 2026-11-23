@@ -1,9 +1,11 @@
-"""sfm_try.py <photos_root> <work_dir> <subfolder> [<subfolder> ...] [--threads=N]
+"""sfm_try.py <photos_root> <work_dir> <subfolder> [<subfolder> ...] [--threads=N] [--camera=single]
 Feasibility test: can COLMAP (pycolmap) register the collected Shibuya crossing photos into one model?
 Photos are symlinked flat as <folder>__<file> into work/images, SIFT (darkness adaptive) at 1600 px,
 exhaustive matching, incremental mapping. Prints how many images each model registered.
 --threads caps the extraction threads (default: all cores). Each thread holds one image's SIFT pyramid,
-so on a many-core host under a memory cap the default can be killed: match it to the CPU quota."""
+so on a many-core host under a memory cap the default can be killed: match it to the CPU quota.
+--camera=single shares one set of intrinsics among all photos: only for a set taken with one camera at
+one zoom (the default estimates a focal length per photo, which a mixed collection needs)."""
 import sys
 import time
 from pathlib import Path
@@ -11,6 +13,7 @@ from pathlib import Path
 import pycolmap
 
 threads = [int(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--threads=")]
+single = "--camera=single" in sys.argv
 sys.argv = [a for a in sys.argv if not a.startswith("--")]
 root, work = Path(sys.argv[1]), Path(sys.argv[2])
 img_dir = work / "images"
@@ -35,7 +38,8 @@ if not db.exists():
     ex.sift.estimate_affine_shape = False
     if threads:
         ex.num_threads = threads[0]
-    pycolmap.extract_features(db, img_dir, camera_mode=pycolmap.CameraMode.PER_IMAGE, extraction_options=ex)
+    mode = pycolmap.CameraMode.SINGLE if single else pycolmap.CameraMode.PER_IMAGE
+    pycolmap.extract_features(db, img_dir, camera_mode=mode, extraction_options=ex)
     print("extract", round(time.time() - t), "s", flush=True)
     t = time.time()
     pycolmap.match_exhaustive(db)
