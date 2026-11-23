@@ -1,7 +1,7 @@
 // Browser entry point: coordinates map setup and deterministic frame rendering.
 import * as maplibregl from 'maplibre-gl';
-import { cameraAt, locate } from '../lib.js';
-import type { CameraKey, Shot, ShotSpec } from '../types.js';
+import { cameraAt, locate, shotCameraKeys } from '../lib.js';
+import type { ShotSpec } from '../types.js';
 import { buildMapStyle } from './map-style.js';
 import { registerMapProtocols } from './map-protocols.js';
 import type { MapLibreMap } from './map-types.js';
@@ -23,13 +23,6 @@ function settle(timeoutMs = 40000): Promise<'idle' | 'timeout'> {
     });
     map.triggerRepaint();
   });
-}
-
-function keysOf(shot: Shot): CameraKey[] {
-  if (shot.keys) return shot.keys;
-  const from = shot.from ?? shot.to!;
-  const to = shot.to ?? shot.from!;
-  return [{ t: 0, ...from }, { t: 1, ...to }];
 }
 
 const scale = () => (spec.width ?? 1920) / 1920;
@@ -60,7 +53,7 @@ async function init(s: ShotSpec): Promise<'idle' | 'timeout'> {
   const style = buildMapStyle(spec);
   document.getElementById('credit')!.textContent = [...style.credits, ...(spec.credits ?? [])].join('\n');
   const { credits: _credits, ...mapStyle } = style;
-  const first = cameraAt(keysOf(spec.shots[0]!), 0);
+  const first = cameraAt(shotCameraKeys(spec.shots[0]!), 0);
   map = new maplibregl.Map({
     container: 'map',
     style: mapStyle as unknown as maplibregl.StyleSpecification,
@@ -99,7 +92,7 @@ async function frame(sec: number): Promise<'idle' | 'timeout'> {
   setOverlayTime(sec);
   const { index, t } = locate(spec.shots, sec);
   const shot = spec.shots[index]!;
-  const cam = cameraAt(keysOf(shot), t, shot.ease ?? 'inOut', {
+  const cam = cameraAt(shotCameraKeys(shot), t, shot.ease ?? 'inOut', {
     path: shot.path,
     curve: shot.curve,
     width: spec.width,

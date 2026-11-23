@@ -25,7 +25,7 @@ interface ModelTile {
   facade_colors?: (string | null)[];
 }
 
-interface ModelManifest {
+export interface ModelManifest {
   format: 'geo-video-factory.plateau-3d/1';
   center?: [number, number];
   /** Aerial photo for the roofs of untextured PLATEAU buildings, in local meters around center. */
@@ -41,7 +41,7 @@ export interface PlateauRenderStats {
   objectCount: number;
 }
 
-function rowBasis(longitude: number, latitude: number): THREE.Matrix4 {
+export function rowBasis(longitude: number, latitude: number): THREE.Matrix4 {
   const lambda = longitude * Math.PI / 180;
   const phi = latitude * Math.PI / 180;
   const east = [-Math.sin(lambda), Math.cos(lambda), 0];
@@ -55,11 +55,11 @@ function rowBasis(longitude: number, latitude: number): THREE.Matrix4 {
   );
 }
 
-function yUpToZUp(): THREE.Matrix4 {
+export function yUpToZUp(): THREE.Matrix4 {
   return new THREE.Matrix4().set(1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, 0, 0, 0, 1);
 }
 
-async function readManifest(path: string): Promise<{ manifest: ModelManifest; url: URL }> {
+export async function readManifest(path: string): Promise<{ manifest: ModelManifest; url: URL }> {
   const url = new URL(path, window.location.origin + '/');
   const response = await fetch(url);
   if (!response.ok) throw new Error(`PLATEAU manifest ${response.status}: ${url}`);
@@ -71,7 +71,7 @@ async function readManifest(path: string): Promise<{ manifest: ModelManifest; ur
   return { manifest, url };
 }
 
-function batchUntexturedMeshes(root: THREE.Object3D): void {
+export function batchUntexturedMeshes(root: THREE.Object3D): void {
   root.updateMatrixWorld(true);
   const identity = new THREE.Matrix4();
   const candidates: THREE.Mesh[] = [];
@@ -114,7 +114,7 @@ function batchUntexturedMeshes(root: THREE.Object3D): void {
   root.add(new THREE.Mesh(merged, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.92, metalness: 0 })));
 }
 
-function tuneMaterials(root: THREE.Object3D): void {
+export function tuneMaterials(root: THREE.Object3D): void {
   root.traverse((object) => {
     const mesh = object as THREE.Mesh;
     if (!mesh.isMesh) return;

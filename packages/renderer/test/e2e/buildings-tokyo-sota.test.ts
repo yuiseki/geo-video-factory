@@ -3,7 +3,8 @@ import assert from 'node:assert/strict';
 import { spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
-import { pipelinePython, prepareVideoOutput } from './video-e2e.js';
+import { checkRenderSpeed, lumaFrames, pipelinePython, prepareVideoOutput } from './video-e2e.js';
+import { blankFrames, parseFrameCount } from '../support/perf.js';
 import { layerFormat, overlayFilter, type RenderLayer } from '../../src/compose.js';
 
 const videoName = 'buildings-tokyo-sota';
@@ -26,17 +27,21 @@ function probeVideo(video: string): { width: number; height: number; duration: n
   return { width: stream.width, height: stream.height, duration: Number(metadata.format.duration) };
 }
 
-function renderLayer(project: string, outDir: string, layer: RenderLayer): string {
+function renderLayer(project: string, outDir: string, layer: RenderLayer): { video: string; frames: number; ms: number } {
   fs.rmSync(outDir, { recursive: true, force: true });
   const renderEnv = { ...process.env };
   delete renderEnv.NODE_V8_COVERAGE;
+  const startedAt = performance.now();
   const render = spawnSync(
     process.execPath,
     ['dist/src/render.js', path.join(project, fixture), '--project', project, '--out', outDir, '--no-voice', '--layer', layer],
     { encoding: 'utf8', timeout: 3_600_000, env: renderEnv },
   );
+  const ms = performance.now() - startedAt;
   assert.equal(render.status, 0, `${layer}\n${render.stdout}\n${render.stderr}`);
-  return path.join(outDir, `${path.basename(outDir)}.${layerFormat(layer).video}`);
+  const frames = parseFrameCount(render.stdout);
+  assert.ok(frames && frames > 0, `${layer}: renderer did not report a frame count`);
+  return { video: path.join(outDir, `${path.basename(outDir)}.${layerFormat(layer).video}`), frames, ms };
 }
 
 const target = process.env.VIDEO_TARGET?.trim();
@@ -56,9 +61,11 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
 
   // One continuous render of the picture, then the decorations as their own transparent layer,
   // laid over at the end (text is never baked into the 3D render).
-  const picture = renderLayer(generatedProject, path.join(renderOutput, 'render', 'map'), 'map');
-  const decorations = renderLayer(generatedProject, path.join(renderOutput, 'render', 'overlay'), 'overlay');
+  const pictureRun = renderLayer(generatedProject, path.join(renderOutput, 'render', 'map'), 'map');
+  const decorationsRun = renderLayer(generatedProject, path.join(renderOutput, 'render', 'overlay'), 'overlay');
 
+  const picture = pictureRun.video;
+  const decorations = decorationsRun.video;
   const finalVideo = path.join(output, `${videoName}.mp4`);
   const compose = spawnSync(
     'ffmpeg',
@@ -70,6 +77,13 @@ test(`E2E: renderer writes ${videoName}.mp4`, {
   const metadata = probeVideo(finalVideo);
   assert.deepEqual([metadata.width, metadata.height], [1280, 720]);
   assert.ok(metadata.duration >= 59.5, `${videoName}.mp4 is too short`);
+
+  const luma = lumaFrames(finalVideo);
+  assert.equal(luma.length, pictureRun.frames, 'the final video holds every rendered frame');
+  assert.deepEqual(blankFrames(luma).slice(0, 10), [], `${videoName}.mp4 has blank frames`);
+  // the 3D picture is the cost that grows with the city; the decoration layer is cheap and tracked apart
+  checkRenderSpeed(`${videoName}:map`, pictureRun.frames, pictureRun.ms, path.join(renderOutput, 'perf-map.json'));
+  checkRenderSpeed(`${videoName}:overlay`, decorationsRun.frames, decorationsRun.ms, path.join(renderOutput, 'perf-overlay.json'));
 });
 
 test(`${videoName} fixture: one continuous 60 s render from West Shinjuku to Hamura`, () => {
