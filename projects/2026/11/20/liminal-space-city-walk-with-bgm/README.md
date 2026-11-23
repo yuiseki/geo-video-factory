@@ -35,3 +35,5 @@
 ## 出典・権利管理
 
 詳細は [credits.json](credits.json) および [research/photos_manifest.json](research/photos_manifest.json) を参照してください。画像・動画・音声・GLB ファイルは `.gitignore` により Git 管理対象外です。
+
+画像生成モデルのライセンスと、このプロジェクトの立場 (作者が求めるクレジット表記を受け入れる、モデルを販売も配布もしない) は [research/generation_model_licences.md](research/generation_model_licences.md) にあります。
