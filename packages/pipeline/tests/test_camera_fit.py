@@ -1,3 +1,4 @@
+import random
 import sys
 import unittest
 from pathlib import Path
@@ -48,8 +49,8 @@ class FitTests(unittest.TestCase):
         self.assertAlmostEqual(fitted["fov"], 62, places=2)
         self.assertAlmostEqual(fitted["location"][1], -45.0, places=2)
 
-    def test_two_views_recover_heights_that_one_view_cannot(self):
-        # Street-level view (edges + verticals only) and a high telephoto view, sharing six unknown points.
+    def _two_view_problem(self):
+        # Street-level view (edges + verticals only) and a high telephoto view, sharing twelve unknown points.
         street = {"location": (0.0, -40.0, 1.6), "tilt": 100, "bearing": -5, "fov": 66, "shift_px": 0, "roll": -0.5}
         high = {"location": (60.0, -10.0, 35.0), "tilt": 80, "bearing": -95, "fov": 25, "shift_px": 0, "roll": 1.0}
         # Corners of three signs (as in practice: several signs' four corners).
@@ -80,12 +81,29 @@ class FitTests(unittest.TestCase):
             "high": {"location": (50.0, -20.0, 25.0), "tilt": 83, "bearing": -90, "fov": 30, "shift_px": 0, "roll": 0},
         }
         fixed = {"street": {"z": 1.6, "shift_px": 0}, "high": {"shift_px": 0}}
-        cameras, points, rms = camera_fit.fit_views(views, initial, fixed, point_guess=[(-15, 15, 15)] * len(truth))
+        return views, initial, fixed, truth
+
+    def test_two_views_recover_heights_that_one_view_cannot(self):
+        views, initial, fixed, truth = self._two_view_problem()
+        # Distinct starting points. Starting every point at one place (the same guess twelve times) is a
+        # degenerate start: the fit stops in a local minimum at about 4.2 px, on every scipy we tried.
+        point_guess = [(-30 + 3 * i, 12 + (i % 3) * 6, 6 + 2 * i) for i in range(len(truth))]
+        cameras, points, rms = camera_fit.fit_views(views, initial, fixed, point_guess=point_guess)
         self.assertLess(rms, 1e-3)
         for got, want in zip(points, truth):
             self.assertTrue(all(abs(a - b) < 1e-3 for a, b in zip(got, want)), (got, want))
         self.assertAlmostEqual(cameras["high"]["location"][2], 35.0, places=2)
         self.assertAlmostEqual(cameras["street"]["tilt"], 100, places=2)
+
+    def test_two_view_fit_converges_from_jittered_starting_points(self):
+        # The fit must not depend on one lucky starting layout: points started 2 m (sigma) around a
+        # common centre, with a fixed seed, all reach the exact solution.
+        views, initial, fixed, truth = self._two_view_problem()
+        rng = random.Random(0)
+        for trial in range(5):
+            guess = [(-15 + rng.gauss(0, 2), 15 + rng.gauss(0, 2), 15 + rng.gauss(0, 2)) for _ in truth]
+            _, _, rms = camera_fit.fit_views(views, initial, fixed, point_guess=guess)
+            self.assertLess(rms, 1e-3, f"trial {trial}")
 
     def test_bounds_keep_parameters_inside_a_box(self):
         truth = {"location": (12.0, -30.0, 1.6), "tilt": 98, "bearing": -40, "fov": 55, "shift_px": 0}
