@@ -3,6 +3,10 @@
     "frames": 2,
     "msPerFrame": 619.2
   },
+  "base-supersample": {
+    "frames": 2,
+    "msPerFrame": 680.4
+  },
   "buildings-asakusa": {
     "frames": 60,
     "msPerFrame": 310.7
