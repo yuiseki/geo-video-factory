@@ -76,8 +76,8 @@ class G:
         return self.m
 
 
-def _asphalt_value(g):
-    """(albedo value, wet mask) shared by both materials."""
+def _asphalt_value(g, wetness=1.0):
+    """(albedo value, wet mask) shared by both materials. wetness 0 is a dry road (no mirror patches)."""
     grain = g.noise(55, 2)
     mottle = g.noise(0.12, 6)
     vor = g.node("ShaderNodeTexVoronoi", Vector=g.pos, Scale=0.045)   # repaired patches, each its own shade
@@ -87,21 +87,23 @@ def _asphalt_value(g):
     v = g.math("ADD", v, g.math("MULTIPLY", grain, 0.016))
     v = g.math("ADD", v, tone)
     v = g.math("SUBTRACT", v, g.math("MULTIPLY", tracks, 0.012))
-    wet = g.band(g.noise(0.06, 3), 0.56, 0.62)
+    wet = g.math("MULTIPLY", g.band(g.noise(0.06, 3), 0.56, 0.62), wetness)
     v = g.math("MULTIPLY", v, g.math("SUBTRACT", 1.0, g.math("MULTIPLY", wet, 0.45)))
     return v, wet
 
 
-def aged_asphalt():
+def aged_asphalt(gain=1.0, glow=1.0, wetness=1.0):
+    """gain multiplies the albedo (the night values are those of a street lit by signs; daylight needs
+    about 1.5x under a sun lamp), glow is the strength of the stand-in ambient emission (lower it when a sun lamp lights)."""
     g = G("aged_asphalt")
-    v, wet = _asphalt_value(g)
+    v, wet = _asphalt_value(g, wetness)
     rough = g.math("SUBTRACT", 0.9, g.math("MULTIPLY", wet, 0.8))
-    return g.finish(v, rough, tint=(0.95, 0.96, 1.0))
+    return g.finish(g.math("MULTIPLY", v, gain), rough, tint=(0.95, 0.96, 1.0), glow=glow)
 
 
-def worn_paint():
+def worn_paint(gain=1.0, glow=1.0, wetness=1.0):
     g = G("worn_paint")
-    base, wet = _asphalt_value(g)
+    base, wet = _asphalt_value(g, wetness)
     holes = g.band(g.noise(2.6, 8), 0.40, 0.47)                      # 1 where paint remains
     scuff = g.band(g.noise(0.8, 3, stretch=(0.25, 6.0, 1.0)), 0.5, 0.75)   # tyre-worn lanes
     cover = g.math("MULTIPLY", holes, g.math("SUBTRACT", 1.0, g.math("MULTIPLY", scuff, 0.7)))
@@ -109,4 +111,4 @@ def worn_paint():
     paint = g.math("SUBTRACT", 0.17, grime)
     v = g.math("ADD", g.math("MULTIPLY", base, g.math("SUBTRACT", 1.0, cover)), g.math("MULTIPLY", paint, cover))
     rough = g.math("SUBTRACT", g.math("ADD", 0.9, g.math("MULTIPLY", cover, -0.35)), g.math("MULTIPLY", wet, 0.5))
-    return g.finish(v, rough, tint=(0.98, 0.98, 0.96))
+    return g.finish(g.math("MULTIPLY", v, gain), rough, tint=(0.98, 0.98, 0.96), glow=glow)

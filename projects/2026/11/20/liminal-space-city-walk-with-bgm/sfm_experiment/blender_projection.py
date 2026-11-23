@@ -5,6 +5,18 @@ blender -b --factory-startup -P blender_projection.py -- <repo> <proj_dir> <out_
   render_key: whose camera the views start from; the photos are projected in the given order, the
               first one last (on top)
 Writes view_<name>.png stills (camera shifted right / forward) and frames/ for a short side-step clip.
+
+--day: daylight look for daytime photos. The night defaults are a near-black world, near-black walls where
+       no photo lands and a road as dark as one lit by signs; with daytime photos the gaps between them
+       then read as holes. --day gives a sky gradient (the photo's sky lands on nothing, so the world is
+       the sky), light grey walls, a brighter road, and the Standard view transform (AgX, the default,
+       greys out a daylight photo; the photos are already display-referred).
+  --sky=r,g,b/r,g,b   horizon / zenith colour the camera sees (linear), default 0.72,0.80,0.90/0.20,0.38,0.75;
+                      the road is always lit by the default sky
+  --sun=az,el[,w]     a sun lamp from compass azimuth az at elevation el (deg), strength w (default 2):
+                      building shadows on the road. Photos are emission and are not lit by it.
+  --ground-gain= --ground-glow= --ground-wet=   road albedo multiplier (4; 1.5 with a sun), ambient emission
+                      strength (1; 0.35 with a sun), wet mirror patches (0 = dry; the night default is 1)
 """
 import json
 import math
@@ -23,6 +35,13 @@ opts = dict(a[2:].split("=", 1) for a in argv[4:] if a.startswith("--") and "=" 
 # --stretch=<m> is the height below which the facade colour above is stretched down (2.6 = old default,
 # 0 = project the photo all the way down, for people-removed photos)
 STRETCH = float(opts.get("stretch", 2.6))
+DAY = "--day" in argv
+SKY_DEFAULT = "0.72,0.80,0.90/0.20,0.38,0.75"   # horizon / zenith, linear
+SUN = [float(v) for v in opts["sun"].split(",")] if "sun" in opts else None
+GROUND_GAIN = float(opts.get("ground-gain", (1.5 if SUN else 4.0) if DAY else 1.0))
+GROUND_GLOW = float(opts.get("ground-glow", (0.35 if SUN else 1.0) if DAY else 1.0))
+GROUND_WET = float(opts.get("ground-wet", 0.0 if DAY else 1.0))
+GROUND = (GROUND_GAIN, GROUND_GLOW, GROUND_WET)
 sys.path.insert(0, str(repo / "packages/pipeline"))
 sys.path.insert(0, str(repo / "packages/blender"))
 import photo_projection  # noqa: E402
@@ -61,7 +80,7 @@ def flat(name, rgb):
     return m
 
 
-wall = flat("wall", (0.05, 0.05, 0.06))
+wall = flat("wall", (0.42, 0.42, 0.44) if DAY else (0.05, 0.05, 0.06))
 obj.data.materials.append(wall)
 bpy.ops.mesh.primitive_plane_add(size=1400, location=(cams[render_key]["eye"][0], cams[render_key]["eye"][1], ground))
 
@@ -94,7 +113,7 @@ def asphalt():
     return m
 
 
-bpy.context.active_object.data.materials.append(ground_materials.aged_asphalt() if "--aged" in argv else asphalt())
+bpy.context.active_object.data.materials.append(ground_materials.aged_asphalt(*GROUND) if "--aged" in argv else asphalt())
 
 
 def add_crosswalks(path, lon0=139.70055, lat0=35.65950):
@@ -127,7 +146,7 @@ def add_crosswalks(path, lon0=139.70055, lat0=35.65950):
     me = bpy.data.meshes.new("zebra")
     me.from_pydata(verts, [], faces)
     o = bpy.data.objects.new("zebra", me)
-    o.data.materials.append(ground_materials.worn_paint() if "--aged" in argv else m)
+    o.data.materials.append(ground_materials.worn_paint(*GROUND) if "--aged" in argv else m)
     bpy.context.scene.collection.objects.link(o)
     return len(faces)
 
@@ -161,9 +180,48 @@ if "--aged" in argv:
     sc.eevee.use_raytracing = True   # wet patches reflect the photo facades
 c0 = cams[render_key]
 sc.render.resolution_x, sc.render.resolution_y = 960, round(960 * c0["height"] / c0["width"])
-sc.world = bpy.data.worlds.new("night")
+sc.world = bpy.data.worlds.new("day" if DAY else "night")
 sc.world.use_nodes = True
-sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.01, 0.012, 0.03, 1)
+if DAY:
+    # sky gradient by the view ray's elevation: pale at the horizon, blue overhead
+    wn, wl = sc.world.node_tree.nodes, sc.world.node_tree.links
+    coord = wn.new("ShaderNodeTexCoord")
+    sep = wn.new("ShaderNodeSeparateXYZ")
+    wl.new(coord.outputs["Generated"], sep.inputs[0])
+
+    def sky_ramp(spec):
+        horizon, zenith = [[float(v) for v in part.split(",")] for part in spec.split("/")]
+        ramp = wn.new("ShaderNodeValToRGB")      # z = sin(elevation): 0 at the horizon, 0.7 at 45 deg
+        ramp.color_ramp.elements[0].position, ramp.color_ramp.elements[0].color = 0.0, (*horizon, 1)
+        ramp.color_ramp.elements[1].position, ramp.color_ramp.elements[1].color = 0.7, (*zenith, 1)
+        wl.new(sep.outputs["Z"], ramp.inputs["Fac"])
+        return ramp
+
+    # --sky is what the camera sees (matched to the top photo's sky, so photo sky that lands on a building
+    # does not stand out). The light on the road comes from the default sky whatever --sky says: a deep
+    # blue sky tints the road blue, and two scenes with different skies would not share a road colour.
+    seen, light = sky_ramp(opts.get("sky", SKY_DEFAULT)), sky_ramp(SKY_DEFAULT)
+    path = wn.new("ShaderNodeLightPath")
+    mix = wn.new("ShaderNodeMixRGB")
+    wl.new(path.outputs["Is Camera Ray"], mix.inputs["Fac"])
+    wl.new(light.outputs["Color"], mix.inputs["Color1"])
+    wl.new(seen.outputs["Color"], mix.inputs["Color2"])
+    wl.new(mix.outputs["Color"], wn["Background"].inputs["Color"])
+    sc.view_settings.view_transform = "Standard"
+    if SUN:
+        az, el = math.radians(SUN[0]), math.radians(SUN[1])
+        lamp = bpy.data.lights.new("sun", "SUN")
+        lamp.energy = SUN[2] if len(SUN) > 2 else 2.0
+        lamp.angle = math.radians(1.5)
+        sun = bpy.data.objects.new("sun", lamp)
+        to_sun = np.array([math.sin(az) * math.cos(el), math.cos(az) * math.cos(el), math.sin(el)])
+        side = np.cross((0.0, 0.0, 1.0), to_sun)
+        side /= np.linalg.norm(side)
+        up = np.cross(to_sun, side)              # a lamp shines down its -Z, so +Z points at the sun
+        sun.matrix_world = Matrix([[side[i], up[i], to_sun[i], 0.0] for i in range(3)] + [[0, 0, 0, 1]])
+        sc.collection.objects.link(sun)
+else:
+    sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.01, 0.012, 0.03, 1)
 cam_data = bpy.data.cameras.new("view")
 cam_data.sensor_fit = "VERTICAL"
 cam_data.angle_y = math.radians(c0["fov_v"])

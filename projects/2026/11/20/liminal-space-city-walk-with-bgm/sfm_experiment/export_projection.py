@@ -4,6 +4,8 @@ and, for each photo, its camera in the PLATEAU ENU frame (cams.json: eye, world-
 axes, vertical fov, image size, photo path). The pose is the global skyline fit (skyline.py fit)."""
 import json
 import sys
+import zlib  # noqa: F401  load the system zlib before pycolmap: the Linux wheel (4.2.1) brings its own, and
+#                    with it loaded first np.savez_compressed aborts in free() and the process hangs
 from pathlib import Path
 
 import numpy as np
