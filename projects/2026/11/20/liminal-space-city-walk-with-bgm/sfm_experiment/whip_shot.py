@@ -42,7 +42,7 @@ def pose(c):
 
 def plan(cams_path, work):
     cams = json.load(open(cams_path))
-    ka, kb = [k for k in cams if "018" in k][0], [k for k in cams if "005" in k][0]
+    ka, kb = [k for k in cams if A_KEY in k][0], [k for k in cams if B_KEY in k][0]
     ea, ba, pa = pose(cams[ka])
     eb, bb, pb = pose(cams[kb])
     back = np.array([math.sin(math.radians(bb)), math.cos(math.radians(bb)), 0.0])   # B's forward
@@ -54,6 +54,11 @@ def plan(cams_path, work):
         # line mode: start START_BACK m behind B's eye on the line from Q-FRONT through it (the station
         # side), walk straight facing Q-FRONT, and turn on the spot at B's eye
         ea = eb - START_BACK * to_q
+        ba, pa = bearing_to(ea, AIM), pb
+        walk_end = eb.copy()
+    if START is not None:
+        # given start (x, y): walk straight to B's eye facing Q-FRONT, turn on the spot at B's eye
+        ea = np.array([START[0], START[1], eb[2]])
         ba, pa = bearing_to(ea, AIM), pb
         walk_end = eb.copy()
     A, B = [], []
@@ -122,9 +127,14 @@ def splice(work, out):
 
 
 START_BACK = 0.0
+START = None
+A_KEY, B_KEY = "018", "005"
 
 if __name__ == "__main__":
     opts = dict(a[2:].split("=", 1) for a in sys.argv if a.startswith("--") and "=" in a)
+    A_KEY, B_KEY = opts.get("a", A_KEY), opts.get("b", B_KEY)
+    if "start" in opts:
+        START = tuple(float(v) for v in opts["start"].split(","))
     START_BACK = float(opts.get("start-back", 0))      # e.g. 30: line mode from the station side
     WALK = float(opts.get("walk", WALK))
     PUSH = float(opts.get("push", PUSH))
