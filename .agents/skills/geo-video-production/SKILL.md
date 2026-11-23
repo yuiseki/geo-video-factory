@@ -17,6 +17,8 @@ description: 地理・歴史解説動画を企画し、章別制作、素材管�
 
 複数章では章ごとに独立したショットJSONと出力先を持たせ、章間に無音のタイトルカードなど明確な編集点を置く。独立章は資源上限を共有し、最大3並列を目安にする。既存成果物を上書きせず、版番号付きで残す。
 
+企画から最終書き出しまでのロール別チェックリスト（監督/脚本・撮影・美術・特効・音響）、工程ごとの品質ゲート（Pass/Fail条件）、動画タイプ別の推奨パイプラインは [references/preproduction-gates.md](references/preproduction-gates.md) を読む。
+
 素材収集、写真のEXIFと撮影地点、章パイプライン、結合、公開、ハッシュとHTTP応答の確認が必要な場合は [references/production-workflow.md](references/production-workflow.md) を読む。
 
 地名の座標、川や路線の形、経路を調べるときは [references/osm-services.md](references/osm-services.md) (Nominatim、Overpass、Valhalla、ベクトルタイル)。報道や資料から台本を書くときは [references/script-from-sources.md](references/script-from-sources.md)、概要欄、チャプター、タグ、縦長版を作るときは [references/publishing.md](references/publishing.md) を読む。

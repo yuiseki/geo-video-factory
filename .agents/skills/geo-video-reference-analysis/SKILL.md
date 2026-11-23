@@ -12,7 +12,7 @@ description: 利用者が「良い」と感じた動画 (YouTube など) を受�
 1. 利用者に聞く: 動画の URL、どこが良いと感じたか (一言でよい)、比べたい自分の動画があるか。良いと感じた点は分析の出発点であって結論ではない。
 2. 取得する: 本体 (1080p)、メタデータ、概要欄、サムネイル、字幕を、リポジトリの外の保管庫に 1 本 1 フォルダで置く。[references/acquire.md](references/acquire.md)
 3. 測る: 画面の切り替わり、音量と無音、話す速さ、コマの一覧、章の頭、カメラと写真の動き、見た目の変化。[references/measure.md](references/measure.md)
-4. 見る: コマの一覧と字幕を時刻つきで読み、冒頭、骨組み、区切り、画の文法、終わり方、誠実さ、題とサムネイルを観点ごとに書く。[references/viewpoints.md](references/viewpoints.md)
+4. 見る: コマの一覧と字幕を時刻つきで読み、冒頭、骨組み、区切り、画の文法、終わり方、誠実さ、題とサムネイルを観点ごとに書く。[references/viewpoints.md](references/viewpoints.md)。導入や見せ場をショット単位で逆算分解し、再現手段まで落とすときは [references/shot-deconstruction.md](references/shot-deconstruction.md)。
 5. 数字を読む: 再生数を登録者数や公開からの日数で割り、同じチャンネルの別の動画と並べる。[references/metrics.md](references/metrics.md)
 6. 報告する: 分析と、自分たちの動画への持ち帰りの候補を、テンプレートでできるか (○ △ ×) を添えて出す。どれを取り入れるかは利用者が決める。[references/report.md](references/report.md)
 

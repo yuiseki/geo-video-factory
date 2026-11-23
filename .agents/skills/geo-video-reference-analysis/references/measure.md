@@ -9,6 +9,7 @@ python3 $S/transcript.py $D/<ID>.ja.vtt --duration <秒> --out $D/transcript.txt
 python3 $S/media.py $D/<ID>.mp4 $D --info $D/<ID>.info.json
 python3 $S/look_changes.py $D/<ID>.mp4
 uv run --with opencv-python-headless --with numpy python $S/motion.py $D/<ID>.mp4 $D/motion.tsv
+python3 $S/shot_plan.py --cuts $D/cuts.txt --motion $D/motion.tsv --transcript $D/transcript.txt --info $D/<ID>.info.json --out $D/SHOT_PLAN.md
 ```
 
 テストは `python3 scripts/tests/test_scripts.py`。
@@ -25,6 +26,7 @@ uv run --with opencv-python-headless --with numpy python $S/motion.py $D/<ID>.mp
 | 章の頭 | `media.py` → `chapters/all.jpg` | チャプターごとに開始の 0.5、1.5、3 秒後のコマを 1 行に。区切りの絵の作りが並べて見える |
 | 見た目の変化 | `look_changes.py` | 明るさか色の濃さが 2 秒で大きく変わった回数 (1 分あたり) と、同じ見た目が続いた最長の秒数 |
 | カメラと写真の動き | `motion.py` | 0.5 秒ごとに寄る、引く、上下左右、止まっている、カットを判定し、時間の割合と速さの中央値を出す |
+| ショット分解雛形 | `shot_plan.py` → `SHOT_PLAN.md` | `cuts.txt`、`motion.tsv`、`transcript.txt`、`info.json` を結合し、4 層構造のショット一覧・統計・再現プラン雛形を生成する ([shot-deconstruction.md](shot-deconstruction.md)) |
 
 ## 測り方の限界
 
