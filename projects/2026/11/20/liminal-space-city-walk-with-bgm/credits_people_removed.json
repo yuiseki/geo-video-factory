@@ -1,0 +1,424 @@
+{
+ "note": "夜の交差点の写真 22 枚 (人と車を消したもの) の出典。ライセンスは 2026-11-22 に、Wikimedia Commons の extmetadata (LicenseShortName) と Openverse API で、22 枚とも CC0 であることを確かめた。rawpixel の 3 枚 (072/073/074) は Openverse の記録のみで、rawpixel のページは自動取得で 403。CC0 は表記の義務がないが、動画の概要欄に作者と改変を書く。",
+ "tools": [
+  {
+   "name": "SAM 3.1 (sam3.1_multiplex_fp16)",
+   "use": "人、看板、車の検出"
+  },
+  {
+   "name": "LaMa big-lama.pt",
+   "license": "Apache-2.0",
+   "use": "消した部分の塗り"
+  }
+ ],
+ "photos": [
+  {
+   "id": "068",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/068_Tokyo_night_in_Autumn.jpg",
+   "title": "Tokyo night in Autumn",
+   "creator": "clvs7",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/182866455@N04/49246245403",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/068_Tokyo_night_in_Autumn_nopeople.png"
+  },
+  {
+   "id": "072",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/072_Free_Shibuya_Crossing_night_image.jpg",
+   "title": "Free Shibuya Crossing night image",
+   "creator": null,
+   "source": "openverse/rawpixel",
+   "url": "https://www.rawpixel.com/image/5917595/image-public-domain-free-city",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/072_Free_Shibuya_Crossing_night_image_nopeople.png"
+  },
+  {
+   "id": "073",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/073_Free_Shibuya_crossing_image.jpg",
+   "title": "Free Shibuya crossing image",
+   "creator": null,
+   "source": "openverse/rawpixel",
+   "url": "https://www.rawpixel.com/image/5927361/photo-image-background-public-domain-person",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/073_Free_Shibuya_crossing_image_nopeople.png"
+  },
+  {
+   "id": "074",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/074_Shibuya_Crossing_Tokyo_Japan_-.jpg",
+   "title": "Shibuya Crossing Tokyo, Japan -",
+   "creator": null,
+   "source": "openverse/rawpixel",
+   "url": "https://www.rawpixel.com/image/6111493/shibuya-crossing-tokyo-japan-unknown-date",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/074_Shibuya_Crossing_Tokyo_Japan_-_nopeople.png"
+  },
+  {
+   "id": "138",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/138_Loud_cars_near_Shibuya_Scramble_crossing_7.jpg",
+   "title": "File:Loud cars near Shibuya Scramble crossing 7.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Loud_cars_near_Shibuya_Scramble_crossing_7.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/138_Loud_cars_near_Shibuya_Scramble_crossing_7_nopeople.png"
+  },
+  {
+   "id": "139",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/139_Loud_cars_near_Shibuya_Scramble_crossing_8.jpg",
+   "title": "File:Loud cars near Shibuya Scramble crossing 8.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Loud_cars_near_Shibuya_Scramble_crossing_8.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v7b/139_Loud_cars_near_Shibuya_Scramble_crossing_8_nopeople.png"
+  },
+  {
+   "id": "146",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/146_Night_view_of_Shibuya_Tokyo_November_2026.jpg",
+   "title": "File:Night view of Shibuya, Tokyo, November 2026.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Night_view_of_Shibuya,_Tokyo,_November_2026.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/146_Night_view_of_Shibuya_Tokyo_November_2026_nopeople.png"
+  },
+  {
+   "id": "212",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/212_Shibuya_Crossing_2026-01-17.jpg",
+   "title": "File:Shibuya Crossing 2026-01-17.jpg",
+   "creator": "Asanagi",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_Crossing_2026-01-17.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/212_Shibuya_Crossing_2026-01-17_nopeople.png"
+  },
+  {
+   "id": "213",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/213_Shibuya_Crossing_Kis-My-Ft2_album_billboard_2024.jpg",
+   "title": "File:Shibuya Crossing Kis-My-Ft2 album billboard 2024.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_Crossing_Kis-My-Ft2_album_billboard_2024.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/213_Shibuya_Crossing_Kis-My-Ft2_album_billboard_2024_nopeople.png"
+  },
+  {
+   "id": "214",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/214_Shibuya_Crossing_in_Tokyo_at_night_20140404131650_2741813174.jpg",
+   "title": "File:Shibuya Crossing in Tokyo at night 20140404131650 (27418131742).jpg",
+   "creator": "Yiannis Theologos Michellis",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_Crossing_in_Tokyo_at_night_20140404131650_(27418131742).jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/214_Shibuya_Crossing_in_Tokyo_at_night_20140404131650_2741813174_nopeople.png"
+  },
+  {
+   "id": "253",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/253_Shibuya_crossing_seen_from_Shibuya_Stream_2024.jpg",
+   "title": "File:Shibuya crossing seen from Shibuya Stream, 2024.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_crossing_seen_from_Shibuya_Stream,_2024.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/253_Shibuya_crossing_seen_from_Shibuya_Stream_2024_nopeople.png"
+  },
+  {
+   "id": "258",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/258_Shibuya_scramble_av_night_from_Stream.jpg",
+   "title": "File:Shibuya scramble av night from Stream.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_scramble_av_night_from_Stream.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v8/258_Shibuya_scramble_av_night_from_Stream_nopeople.png"
+  },
+  {
+   "id": "260",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/260_Shibuya_scramble_crossing_during_Halloween_2023_actually_les.jpg",
+   "title": "File:Shibuya scramble crossing during Halloween 2023, actually less crowded than usual, high police presence 3.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence_3.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/260_Shibuya_scramble_crossing_during_Halloween_2023_actually_les_nopeople.png"
+  },
+  {
+   "id": "261",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/261_Shibuya_scramble_crossing_during_Halloween_2023_actually_les.jpg",
+   "title": "File:Shibuya scramble crossing during Halloween 2023, actually less crowded than usual, high police presence.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/aerial_v1/261_Shibuya_scramble_crossing_during_Halloween_2023_actually_les_nopeople.png"
+  },
+  {
+   "id": "262",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/262_Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg",
+   "title": "File:Shibuya scramble crossing empty at 2am on a weekday.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v8/262_Shibuya_scramble_crossing_empty_at_2am_on_a_weekday_nopeople.png"
+  },
+  {
+   "id": "271",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/271_Shibuya-ekimae_Intersection_at_night_20140416.jpg",
+   "title": "File:Shibuya-ekimae Intersection at night 20140416.jpg",
+   "creator": "Yiannis Theologos Michellis",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya-ekimae_Intersection_at_night_20140416.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/271_Shibuya-ekimae_Intersection_at_night_20140416_nopeople.png"
+  },
+  {
+   "id": "278",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/278_The_front_of_Shibuya_Station_Crossing_20211126_01.jpg",
+   "title": "File:The front of Shibuya Station Crossing 20211126 01.jpg",
+   "creator": "先従隗始",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:The_front_of_Shibuya_Station_Crossing_20211126_01.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/278_The_front_of_Shibuya_Station_Crossing_20211126_01_nopeople.png"
+  },
+  {
+   "id": "279",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/279_The_front_of_Shibuya_Station_Crossing_20211126_02.jpg",
+   "title": "File:The front of Shibuya Station Crossing 20211126 02.jpg",
+   "creator": "先従隗始",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:The_front_of_Shibuya_Station_Crossing_20211126_02.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/279_The_front_of_Shibuya_Station_Crossing_20211126_02_nopeople.png"
+  },
+  {
+   "id": "288",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/288_Tokyo_Japan_Unsplash_O8-DB1epegE_.jpg",
+   "title": "File:Tokyo, Japan (Unsplash O8-DB1epegE).jpg",
+   "creator": "Aaron Ang aaronandrewang",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Tokyo,_Japan_(Unsplash_O8-DB1epegE).jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/288_Tokyo_Japan_Unsplash_O8-DB1epegE__nopeople.png"
+  },
+  {
+   "id": "303",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/303_Views_of_central_Shibuya_10.jpg",
+   "title": "File:Views of central Shibuya 10.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Views_of_central_Shibuya_10.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/303_Views_of_central_Shibuya_10_nopeople.png"
+  },
+  {
+   "id": "305",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/305_Waiting_people_in_Shibuya_Crossing_20140416.jpg",
+   "title": "File:Waiting people in Shibuya Crossing 20140416.jpg",
+   "creator": "Yiannis Theologos Michellis",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Waiting_people_in_Shibuya_Crossing_20140416.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v7/305_Waiting_people_in_Shibuya_Crossing_20140416_nopeople.png"
+  },
+  {
+   "id": "308",
+   "file": "assets/photos/crossing_night_cc0/crossing_night/308__X_52847949120_.jpg",
+   "title": "File:「X」社に。 (52847949120).jpg",
+   "creator": "Alex Hamilton from London, UK, United Kingdom",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:%E3%80%8CX%E3%80%8D%E7%A4%BE%E3%81%AB%E3%80%82_(52847949120).jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/crossing_night_v6/308__X_52847949120__nopeople.png"
+  }
+ ],
+ "streets": [
+  {
+   "id": "044",
+   "file": "assets/photos/crossing_night_cc0/night/044_B36A1070.jpg",
+   "title": "B36A1070",
+   "creator": "mine33NY",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/165898707@N06/46169115684",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v2/044_B36A1070_nopeople.png"
+  },
+  {
+   "id": "087",
+   "file": "assets/photos/crossing_night_cc0/night/087_Bus_depot_in_Shibuya.jpg",
+   "title": "File:Bus depot in Shibuya.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Bus_depot_in_Shibuya.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v3/087_Bus_depot_in_Shibuya_nopeople.png"
+  },
+  {
+   "id": "117",
+   "file": "assets/photos/crossing_night_cc0/night/117_Gusto_Shibuya-D_genzaka.jpg",
+   "title": "File:Gusto Shibuya-Dōgenzaka.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Gusto_Shibuya-D%C5%8Dgenzaka.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/117_Gusto_Shibuya-D_genzaka_nopeople.png"
+  },
+  {
+   "id": "118",
+   "file": "assets/photos/crossing_night_cc0/night/118_H_M_in_Shibuya_night.jpg",
+   "title": "File:H&M in Shibuya night.jpg",
+   "creator": "Syced",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:H%26M_in_Shibuya_night.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v2/118_H_M_in_Shibuya_night_nopeople.png"
+  },
+  {
+   "id": "190",
+   "file": "assets/photos/crossing_night_cc0/night/190_Reikyo_2026-01-17.jpg",
+   "title": "File:Reikyo 2026-01-17.jpg",
+   "creator": "Asanagi",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Reikyo_2026-01-17.jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/190_Reikyo_2026-01-17_nopeople.png"
+  },
+  {
+   "id": "199",
+   "file": "assets/photos/crossing_night_cc0/night/199_Shibuya_Unsplash_.jpg",
+   "title": "File:Shibuya (Unsplash).jpg",
+   "creator": "Redd Angelo reddangelo16",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_(Unsplash).jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v1/199_Shibuya_Unsplash__nopeople.png"
+  },
+  {
+   "id": "267",
+   "file": "assets/photos/crossing_night_cc0/night/267_Shibuya_Japan_Unsplash_wH5oonip-eg_.jpg",
+   "title": "File:Shibuya, Japan (Unsplash wH5oonip-eg).jpg",
+   "creator": "Redd Angelo reddangelo16",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya,_Japan_(Unsplash_wH5oonip-eg).jpg",
+   "license": "CC0 1.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/night_v2/267_Shibuya_Japan_Unsplash_wH5oonip-eg__nopeople.png"
+  }
+ ],
+ "streets_note": "通りの写真 (night_v1) のうち使えるもの。ライセンスは取得時の manifest の記録 (CC0)。公開前に Commons / Flickr のページで一度確かめる。",
+ "centergai": [
+  {
+   "id": "129",
+   "file": "flyover/assets/photos/shibuya_centergai/129_Shibuya_Center_Gai.jpg",
+   "title": "Shibuya Center Gai",
+   "creator": "Dick Thomas Johnson",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/31029865@N06/8440986614",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/centergai_v1/129_Shibuya_Center_Gai_nopeople.png"
+  },
+  {
+   "id": "132",
+   "file": "flyover/assets/photos/shibuya_centergai/132_Shibuya_Center_Gai.jpg",
+   "title": "Shibuya Center Gai",
+   "creator": "Dick Thomas Johnson",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/31029865@N06/8439895927",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/centergai_v2/132_Shibuya_Center_Gai_nopeople.png"
+  },
+  {
+   "id": "139",
+   "file": "flyover/assets/photos/shibuya_centergai/139_Shibuya_Center_Gai.jpg",
+   "title": "Shibuya Center Gai",
+   "creator": "Dick Thomas Johnson",
+   "source": "openverse/flickr",
+   "url": "https://www.flickr.com/photos/31029865@N06/32982119261",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/centergai_v2/139_Shibuya_Center_Gai_nopeople.png"
+  }
+ ],
+ "centergai_note": "センター街の写真 (research/photos_manifest.json の shibuya_centergai) のうち使えるもの。CC BY 2.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。3 枚とも 2026-11-23 に Flickr のページで CC BY 2.0 (creativecommons.org/licenses/by/2.0) と確かめた。",
+ "crossing_cc_by": [
+  {
+   "id": "147",
+   "file": "flyover/assets/photos/shibuya_buildings_night/147_Tokyu_Department_Store_Shibuya_Toyoko_2018.jpg",
+   "title": "File:Tokyu Department Store Shibuya Toyoko 2018.jpg",
+   "creator": "Wpcpey",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Tokyu_Department_Store_Shibuya_Toyoko_2018.jpg",
+   "license": "CC BY 4.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/buildings_night_v1/147_Tokyu_Department_Store_Shibuya_Toyoko_2018_nopeople.png"
+  },
+  {
+   "id": "220",
+   "file": "flyover/assets/photos/shibuya_buildings_night/220_Shibuya_Tokyo_By_night_hdsr_S5_18.jpg",
+   "title": "File:Shibuya (Tokyo) By night hdsr S5 18.jpg",
+   "creator": "Hyppolyte de Saint-Rambert",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:Shibuya_(Tokyo)_By_night_hdsr_S5_18.jpg",
+   "license": "CC BY 4.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/buildings_night_v2/220_Shibuya_Tokyo_By_night_hdsr_S5_18_nopeople.png"
+  }
+ ],
+ "crossing_cc_by_note": "交差点の地上視点の写真 (research/photos_buildings_night_manifest.json) のうち使えるもの。CC BY 4.0 は表記が必須: 作者名、題、取得元、ライセンス、改変したことを画面か概要欄に書く。2 枚とも 2026-11-23 に Commons の extmetadata (LicenseShortName) で CC BY 4.0 と確かめた。",
+ "qfront": [
+  {
+   "id": "090",
+   "file": "flyover/assets/photos/qfront/090_SHIBUYA_TSUTAYA_53331352235_.jpg",
+   "title": "File:SHIBUYA TSUTAYA (53331352235).jpg",
+   "creator": "Dick Thomas Johnson from Tokyo, Japan",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:SHIBUYA_TSUTAYA_(53331352235).jpg",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/qfront_v2/090_SHIBUYA_TSUTAYA_53331352235__nopeople.png"
+  },
+  {
+   "id": "083",
+   "file": "flyover/assets/photos/qfront/083_SHIBUYA_TSUTAYA_53331234639_.jpg",
+   "title": "File:SHIBUYA TSUTAYA (53331234639).jpg",
+   "creator": "Dick Thomas Johnson from Tokyo, Japan",
+   "source": "wikimedia_commons",
+   "url": "https://commons.wikimedia.org/wiki/File:SHIBUYA_TSUTAYA_(53331234639).jpg",
+   "license": "CC BY 2.0",
+   "modified": "人と車を除去 (SAM 3.1 のマスク + LaMa の塗り)",
+   "output": "flyover/out/people_removal_cc0/qfront_v1/083_SHIBUYA_TSUTAYA_53331234639__nopeople.png"
+  }
+ ],
+ "qfront_note": "QFRONT の SHIBUYA TSUTAYA の売り場 (research/photos_qfront_manifest.json) のうち使えるもの。CC BY 2.0 は表記が必須。2 枚とも 2026-11-23 に Flickr のページ (31029865@N06/53331234639, 53331352235) で CC BY 2.0 と確かめた。"
+}

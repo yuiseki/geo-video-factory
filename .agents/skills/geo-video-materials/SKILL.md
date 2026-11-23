@@ -12,6 +12,8 @@ description: 地理動画に使うイラスト（いらすとや等）、写真�
 - **素材ごとの取得手順と出典書式**: いらすとや、Wikimedia Commons、EXPERIENCE JAPAN PICTOGRAMS、立ち絵、過去空中写真の取得方法と規約。→ [references/sourcing.md](references/sourcing.md)
 - **権利確認・重複監査・EXIF・Gyazo ID 管理**: 見た目の重複判定、CC0 の適用範囲、元画像の EXIF と `photo_geo.py`、`.gitleaks.toml` の許可リスト運用。→ [references/rights-and-audit.md](references/rights-and-audit.md)
 
+- **実写真から人と車を消す**: SAM 3.1 で人・看板・車を分けて検出し、看板の中の人を残し、LaMa で塗る。やめた方法とその理由、検品の観点。→ [references/people-removal.md](references/people-removal.md)
+
 ## 関連スキルとの境界
 
 - 動画全体の企画・章構成・パイプライン実行・公開用概要欄の作成は `geo-video-production` を使う。
