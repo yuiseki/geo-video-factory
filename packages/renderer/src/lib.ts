@@ -196,6 +196,14 @@ export function sliceLine(coords: LngLat[], frac: number): LngLat[] {
   return out;
 }
 
+/** A shot's camera keys: explicit `keys`, or a two-key move from `from` to `to` (either may stand in for the other). */
+export function shotCameraKeys(shot: Shot): CameraKey[] {
+  if (shot.keys) return shot.keys;
+  const from = shot.from ?? shot.to!;
+  const to = shot.to ?? shot.from!;
+  return [{ t: 0, ...from }, { t: 1, ...to }];
+}
+
 export function locate(shots: Shot[], sec: number): { index: number; t: number; sec: number } {
   let start = 0;
   for (let i = 0; i < shots.length; i++) {

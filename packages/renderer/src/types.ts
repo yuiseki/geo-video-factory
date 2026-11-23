@@ -363,6 +363,63 @@ export interface BgmConfig {
   volume?: number;
 }
 
+export interface PlateauFacadeTextures {
+  /** Upper-floor / curtain-wall facade texture (tiled in meters). */
+  glass?: string;
+  /** Ground-floor / shutter storefront texture (tiled in meters). */
+  shutter?: string;
+  /** Optional 3x2 building-facade atlas texture selected per building ID. */
+  atlas?: string;
+  /** Optional mapping from building ID (e.g. "bldg_...") to atlas cell index (0..5). */
+  idVariants?: Record<string, number>;
+  /** Blend factor onto building walls: 0..1 (defaults to 1 when provided). */
+  wallMix?: number;
+  /** World-space tile size in meters [width, height]. Defaults to [14, 14]. */
+  tileMeters?: [number, number];
+  /** Ground-floor base elevation in local Z meters. Defaults to 0. */
+  groundZ?: number;
+  /** Ground-floor shutter band height in meters. Defaults to 4.5. */
+  shutterHeight?: number;
+}
+
+export interface BillboardConfig {
+  /** Image path (project-root-relative or URL) for the cropped billboard/sign. */
+  src: string;
+  /** [lng, lat] of the billboard center on the building facade. */
+  center: LngLat;
+  /** Altitude of the billboard center in local Z meters (matching heightOffset). */
+  altitudeM: number;
+  /** Width of the billboard in meters. */
+  widthM: number;
+  /** Height of the billboard in meters. */
+  heightM: number;
+  /** Facing azimuth in degrees clockwise from north (0 = N, 90 = E, 180 = S, 270 = W). */
+  bearing: number;
+  /** Emissive night glow brightness multiplier (defaults to 1.0). */
+  glow?: number;
+}
+
+export interface GroundPlaneConfig {
+  /** Image path for high-res flat ground texture rendered in Three.js with anisotropic filtering. */
+  src: string;
+  /** [west, south, east, north] in WGS84 degrees. */
+  bbox: [number, number, number, number];
+  /** Local Z altitude in meters (defaults to 0.05). */
+  altitudeM?: number;
+  /** Brightness multiplier (defaults to 1.0). */
+  brightness?: number;
+}
+
+export interface StreetPropConfig {
+  kind: 'lamp' | 'signal' | 'arch' | 'wash' | 'kiosk';
+  center: LngLat;
+  altitudeM?: number;
+  heightM?: number;
+  widthM?: number;
+  bearing?: number;
+  color?: string;
+}
+
 export interface PlateauBuildingsConfig {
   /** URL or project-root-relative path to a geo-video-factory.plateau-3d/1 manifest. */
   manifest: string;
@@ -372,6 +429,14 @@ export interface PlateauBuildingsConfig {
   workers?: number;
   /** Recolor buildings with the orthophoto palette. Defaults to true. The facade pattern is always applied. */
   appearance?: boolean;
+  /** Optional ComfyUI/custom tileable facade textures mapped onto building walls in meters. */
+  facadeTextures?: PlateauFacadeTextures;
+  /** Optional 3D emissive billboard/sign planes placed on building facades. */
+  billboards?: BillboardConfig[];
+  /** Optional flat Three.js ground plane (avoids MapLibre raster oblique distortion & night desaturation). */
+  groundPlane?: GroundPlaneConfig;
+  /** Optional 3D street furniture (lamps, traffic signals, street arches) for human scale. */
+  streetProps?: StreetPropConfig[];
   /** Buildings rise out of the ground in a wave from a point (city-proxy tiles). */
   reveal?: CityReveal;
   /** [seconds, 0..1] keys: 0 day, 0.5 dusk, 1 night with lit windows. */
@@ -386,6 +451,8 @@ export interface ShotSpec {
   cameraPadding?: { top?: number; right?: number; bottom?: number; left?: number };
   height?: number;
   fps?: number;
+  /** Vertical field of view in degrees (MapLibre default is ~36.87). */
+  fov?: number;
   projection?: 'mercator' | 'globe' | 'vertical-perspective' | { type: string };
   base?: string;
   dem?: 'gsi' | 'mapterhorn' | string;

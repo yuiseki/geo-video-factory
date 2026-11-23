@@ -19,7 +19,8 @@ description: 地理・歴史・土木解説動画における「動く図（モ�
 ## 読む資料
 
 - モーショングラフィックスの原則・イージング・文字組： [references/motion-grammar.md](references/motion-grammar.md)
-- 決定論的アニメーション実装規約（時刻 `t` 駆動・SVG/DOM・圧縮耐性）： [references/deterministic-engine.md](references/deterministic-engine.md)
+- 決定論的アニメーション実装規約（時刻 `t` 駆動・シーク可能タイムライン・解析解スプリング）： [references/deterministic-engine.md](references/deterministic-engine.md)
+- AI エージェント向け決定論違反アンチパターン集と修正例： [references/agent-motion-antipatterns.md](references/agent-motion-antipatterns.md)
 - 動く図の型と現行レンダラーとの接続（標準オーバーレイ vs 事前生成）： [references/diagram-patterns.md](references/diagram-patterns.md)
 
 ## 完了前の確認

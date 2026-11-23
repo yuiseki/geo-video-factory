@@ -132,6 +132,31 @@ export function resolveRequestFile(urlPath: string, packageRoot: string, project
   return candidate;
 }
 
+export function mp4EncodeArgs(fps: number, mp4: string): string[] {
+  return [
+    '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18', '-maxrate', '20M', '-bufsize', '40M',
+    '-profile:v', 'high', '-level:v', '4.1', '-g', String(fps * 2), '-movflags', '+faststart', mp4,
+  ];
+}
+
+export function stillsSheetArgs(framesDir: string, frameExt: string, sheet: string, count: number): string[] {
+  const cols = Math.min(4, count);
+  return [
+    '-v', 'error', '-y', '-i', path.join(framesDir, '%05d.' + frameExt),
+    '-vf', `scale=480:-1,tile=${cols}x${Math.ceil(count / cols)}`, '-frames:v', '1', sheet,
+  ];
+}
+
+const LOUDNORM_TARGET = 'I=-14:TP=-1.5:LRA=11';
+
+export function parseLoudnormJson(stderr: string): Record<string, string> {
+  return JSON.parse(stderr.slice(stderr.lastIndexOf('{'), stderr.lastIndexOf('}') + 1)) as Record<string, string>;
+}
+
+export function loudnormSecondPass(j: Record<string, string>): string {
+  return `loudnorm=${LOUDNORM_TARGET}:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`;
+}
+
 declare global {
   interface Window {
     FLY_READY?: boolean;
@@ -308,12 +333,7 @@ async function main(): Promise<void> {
 
   if (stills) {
     const sheet = path.join(out, 'stills.jpg');
-    const cols = Math.min(4, times.length);
-    const r = spawnSync(
-      'ffmpeg',
-      ['-v', 'error', '-y', '-i', path.join(out, 'frames', '%05d.' + format.frame), '-vf', `scale=480:-1,tile=${cols}x${Math.ceil(times.length / cols)}`, '-frames:v', '1', sheet],
-      { stdio: 'inherit' },
-    );
+    const r = spawnSync('ffmpeg', stillsSheetArgs(path.join(out, 'frames'), format.frame, sheet, times.length), { stdio: 'inherit' });
     if (r.status !== 0) {
       console.error('ffmpeg failed while creating stills sheet');
       process.exit(1);
@@ -338,12 +358,10 @@ async function main(): Promise<void> {
         const mixFilter = (v: number, b: number) =>
           spec.bgm?.src ? `[${b}:a]volume=${spec.bgm.volume ?? 0.12}[b];[${v}:a][b]amix=inputs=2:duration=first:normalize=0` : `[${v}:a]anull`;
         const mix = mixFilter(0, 1);
-        const target = 'I=-14:TP=-1.5:LRA=11';
-        const m = spawnSync('ffmpeg', ['-hide_banner', '-nostats', ...inputs, '-filter_complex', `${mix},loudnorm=${target}:print_format=json`, '-f', 'null', '-'], {
+        const m = spawnSync('ffmpeg', ['-hide_banner', '-nostats', ...inputs, '-filter_complex', `${mix},loudnorm=${LOUDNORM_TARGET}:print_format=json`, '-f', 'null', '-'], {
           encoding: 'utf8',
         });
-        const j = JSON.parse(m.stderr.slice(m.stderr.lastIndexOf('{'), m.stderr.lastIndexOf('}') + 1)) as Record<string, string>;
-        const second = `loudnorm=${target}:measured_I=${j.input_i}:measured_TP=${j.input_tp}:measured_LRA=${j.input_lra}:measured_thresh=${j.input_thresh}:offset=${j.target_offset}:linear=true`;
+        const second = loudnormSecondPass(parseLoudnormJson(m.stderr));
         ff.push(...inputs);
         audio = ['-filter_complex', `${mixFilter(1, 2)},${second}[a]`, '-map', '0:v', '-map', '[a]', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000', '-ac', '2'];
       }
@@ -359,25 +377,7 @@ async function main(): Promise<void> {
       [
         ...ff,
         ...audio,
-        '-c:v',
-        'libx264',
-        '-pix_fmt',
-        'yuv420p',
-        '-crf',
-        '18',
-        '-maxrate',
-        '20M',
-        '-bufsize',
-        '40M',
-        '-profile:v',
-        'high',
-        '-level:v',
-        '4.1',
-        '-g',
-        String(fps * 2),
-        '-movflags',
-        '+faststart',
-        mp4,
+        ...mp4EncodeArgs(fps, mp4),
       ],
       { stdio: 'inherit' },
     );

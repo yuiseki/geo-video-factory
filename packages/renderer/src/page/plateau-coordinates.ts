@@ -33,3 +33,22 @@ export function ecefToEnu(point: Ecef, origin: LngLatHeight): Ecef {
     Math.cos(phi) * Math.cos(lambda) * dx + Math.cos(phi) * Math.sin(lambda) * dy + Math.sin(phi) * dz,
   ];
 }
+
+/**
+ * Convert a glTF Y-up vertex (relative to tile `rtc` in ECEF) into local `[eastM, northM, upM]`
+ * meters around `center`, applying `yUpToZUp`, `rowBasis(center)`, and `heightOffset`.
+ */
+export function gltfVertexToEnu(
+  vertexYUp: [number, number, number],
+  rtc: Ecef,
+  center: [number, number],
+  heightOffset = 0,
+): Ecef {
+  const ecefPoint: Ecef = [
+    rtc[0] + vertexYUp[0],
+    rtc[1] - vertexYUp[2],
+    rtc[2] + vertexYUp[1],
+  ];
+  const enu = ecefToEnu(ecefPoint, [center[0], center[1], 0]);
+  return [enu[0], enu[1], enu[2] + heightOffset];
+}

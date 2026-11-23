@@ -2,7 +2,7 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
 import { MercatorCoordinate } from 'maplibre-gl';
-import { ecefToEnu, wgs84Ecef } from '../src/page/plateau-coordinates.js';
+import { ecefToEnu, gltfVertexToEnu, wgs84Ecef } from '../src/page/plateau-coordinates.js';
 import { tileHeightOffset } from '../src/page/plateau-coordinates.js';
 
 test('ground-based proxy buildings do not inherit the PLATEAU ellipsoid height correction', () => {
@@ -100,4 +100,20 @@ test('OSM proxy 4-corner footprint projects through ECEF -> ENU -> Mercator back
     assert.ok(Math.abs(merc.y - expected.y) < 1e-8, `merc.y diff: ${Math.abs(merc.y - expected.y)}`);
     assert.ok(Math.abs(merc.z - expected.z) < 1e-8, `merc.z diff: ${Math.abs(merc.z - expected.z)}`);
   }
+});
+
+test('gltfVertexToEnu applies yUpToZUp and rowBasis so glTF Y-up vertices match true local ENU meters', () => {
+  const center: [number, number] = [139.7005, 35.66];
+  const rtc = wgs84Ecef([139.7002, 35.6598, 54]);
+  const targetEcef = wgs84Ecef([139.70039, 35.65973, 74]);
+  const vertexYUp: [number, number, number] = [
+    targetEcef[0] - rtc[0],
+    targetEcef[2] - rtc[2],
+    -(targetEcef[1] - rtc[1]),
+  ];
+  const enu = gltfVertexToEnu(vertexYUp, rtc, center, -54);
+  const expectedEnu = ecefToEnu(targetEcef, [center[0], center[1], 0]);
+  assert.ok(Math.abs(enu[0] - expectedEnu[0]) < 1e-6);
+  assert.ok(Math.abs(enu[1] - expectedEnu[1]) < 1e-6);
+  assert.ok(Math.abs(enu[2] - (expectedEnu[2] - 54)) < 1e-6);
 });

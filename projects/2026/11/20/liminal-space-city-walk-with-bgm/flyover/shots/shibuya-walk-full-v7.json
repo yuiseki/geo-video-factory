@@ -1,0 +1,100 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "sky": {
+    "sky-color": "#060612",
+    "horizon-color": "#26143d",
+    "fog-color": "#1d1030",
+    "sky-horizon-blend": 0.68,
+    "horizon-fog-blend": 0.78,
+    "fog-ground-blend": 0.55
+  },
+  "credits": [
+    "建物: 国土交通省 PLATEAU (渋谷区 2025)"
+  ],
+  "plateauBuildings": {
+    "manifest": "assets/buildings-shibuya/manifest.json",
+    "heightOffset": -39,
+    "workers": 3,
+    "recolorFromOrtho": false,
+    "night": [
+      [
+        0,
+        0.86
+      ]
+    ]
+  },
+  "shots": [
+    {
+      "duration": 254.81,
+      "ease": "linear",
+      "keys": [
+        {
+          "t": 0.0,
+          "center": [
+            139.70055,
+            35.65948
+          ],
+          "zoom": 21.4,
+          "pitch": 85,
+          "bearing": -45
+        },
+        {
+          "t": 0.1471,
+          "center": [
+            139.70022,
+            35.65976
+          ],
+          "zoom": 21.5,
+          "pitch": 85,
+          "bearing": -45
+        },
+        {
+          "t": 0.2721,
+          "center": [
+            139.69993,
+            35.65999
+          ],
+          "zoom": 21.6,
+          "pitch": 85,
+          "bearing": -46
+        },
+        {
+          "t": 0.358,
+          "center": [
+            139.69968,
+            35.66009
+          ],
+          "zoom": 21.6,
+          "pitch": 85,
+          "bearing": -68
+        },
+        {
+          "t": 0.6412,
+          "center": [
+            139.69881,
+            35.66033
+          ],
+          "zoom": 21.5,
+          "pitch": 85,
+          "bearing": -67
+        },
+        {
+          "t": 1.0,
+          "center": [
+            139.69775,
+            35.66072
+          ],
+          "zoom": 21.5,
+          "pitch": 85,
+          "bearing": -66
+        }
+      ]
+    }
+  ]
+}

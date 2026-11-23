@@ -9,6 +9,7 @@ description: 地理動画の画面全体の構図、タイポグラフィの尺�
 
 ## 読む資料
 
+- 作品ごとのスタイル仕様書（`STYLE.md`）のテンプレートと運用： [references/style-sheet.md](references/style-sheet.md)
 - 構図・文字造形・情報密度・時間の設計基準： [references/composition-and-type.md](references/composition-and-type.md)
 - 完了前検品と版間振り返りの手順： [references/visual-review.md](references/visual-review.md)
 

@@ -1,0 +1,146 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "fov": 58,
+  "base": "seamlessphoto",
+  "world": false,
+  "dem": "gsi",
+  "hillshade": false,
+  "sky": {
+    "sky-color": "#060612",
+    "horizon-color": "#26143d",
+    "fog-color": "#1d1030",
+    "sky-horizon-blend": 0.68,
+    "horizon-fog-blend": 0.78,
+    "fog-ground-blend": 0.55
+  },
+  "credits": [
+    "建物: 国土交通省 PLATEAU (渋谷区 2025)",
+    "外壁: ComfyUI (SDXL + ControlNet) / 看板: 渋谷参考写真より切り抜き"
+  ],
+  "plateauBuildings": {
+    "manifest": "assets/buildings-shibuya-upscaled/manifest.json",
+    "heightOffset": -39,
+    "workers": 3,
+    "appearance": true,
+    "facadeTextures": {
+      "atlas": "assets/materials/facades_atlas.png",
+      "idVariants": {
+        "bldg_0bce351e-ed3e-4ce8-bab8-5740fcd33a5a": 0,
+        "bldg_eb2f8b5e-2878-4a15-8848-6eb36df63ff1": 0,
+        "bldg_3d0b9c8a-e23c-4023-975d-c0f595ffc601": 0,
+        "bldg_c8fd32da-a5b4-4eea-8f77-8b5cec0abb3d": 1,
+        "bldg_103e424a-fceb-458b-853e-d26fcbbb1aa3": 1,
+        "bldg_878d7173-c8dd-402a-be0c-e40190ea3efd": 2,
+        "bldg_5e891186-4803-48a0-9664-284f212881ac": 2
+      },
+      "wallMix": 1.0,
+      "tileMeters": [18, 24],
+      "groundZ": 15
+    },
+    "billboards": [
+      {
+        "src": "assets/billboards/sign_qfront_screen.png",
+        "center": [139.70039, 35.65973],
+        "altitudeM": 31.0,
+        "widthM": 15,
+        "heightM": 10.5,
+        "bearing": 156,
+        "glow": 1.15
+      },
+      {
+        "src": "assets/billboards/sign_salonpas.png",
+        "center": [139.70012, 35.65982],
+        "altitudeM": 41.5,
+        "widthM": 9,
+        "heightM": 10,
+        "bearing": 138,
+        "glow": 1.25
+      },
+      {
+        "src": "assets/billboards/sign_rakuten.png",
+        "center": [139.70013, 35.65980],
+        "altitudeM": 32.2,
+        "widthM": 9,
+        "heightM": 8,
+        "bearing": 138,
+        "glow": 1.15
+      },
+      {
+        "src": "assets/billboards/sign_dmmtv.png",
+        "center": [139.70014, 35.65978],
+        "altitudeM": 24.8,
+        "widthM": 9,
+        "heightM": 7.5,
+        "bearing": 138,
+        "glow": 1.1
+      },
+      {
+        "src": "assets/billboards/sign_taiseido.png",
+        "center": [139.70015, 35.65976],
+        "altitudeM": 20.0,
+        "widthM": 9,
+        "heightM": 2.4,
+        "bearing": 138,
+        "glow": 1.15
+      },
+      {
+        "src": "assets/billboards/sign_sansenri.png",
+        "center": [139.70003, 35.65971],
+        "altitudeM": 27.5,
+        "widthM": 2.8,
+        "heightM": 9.5,
+        "bearing": 145,
+        "glow": 1.2
+      },
+      {
+        "src": "assets/billboards/sign_monja.png",
+        "center": [139.69995, 35.65969],
+        "altitudeM": 30.0,
+        "widthM": 2.8,
+        "heightM": 9.5,
+        "bearing": 145,
+        "glow": 1.1
+      },
+      {
+        "src": "assets/billboards/sign_nishimura_top.png",
+        "center": [139.69987, 35.65963],
+        "altitudeM": 38.0,
+        "widthM": 11,
+        "heightM": 6.5,
+        "bearing": 145,
+        "glow": 1.05
+      },
+      {
+        "src": "assets/billboards/sign_109mens.png",
+        "center": [139.70083, 35.66008],
+        "altitudeM": 37.0,
+        "widthM": 12,
+        "heightM": 7,
+        "bearing": 220,
+        "glow": 1.15
+      }
+    ],
+    "night": [
+      [0, 0.86]
+    ]
+  },
+  "shots": [
+    {
+      "duration": 4.0,
+      "ease": "linear",
+      "keys": [
+        { "t": 0.0, "center": [139.70050, 35.65942], "zoom": 20.4, "pitch": 82, "bearing": -42 },
+        { "t": 1.0, "center": [139.70032, 35.65958], "zoom": 20.6, "pitch": 83, "bearing": -45 }
+      ],
+      "overlays": [
+        {
+          "type": "image",
+          "src": "assets/ground/shibuya_crossing_procedural_4x.png",
+          "bbox": [139.69749748706818, 35.659000466530415, 139.7011023759842, 35.66100103417491]
+        }
+      ]
+    }
+  ]
+}
