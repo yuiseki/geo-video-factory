@@ -102,7 +102,7 @@ def inspect_image_file(path: Path) -> dict:
         gps = _extract_exif_gps(exif) if exif else None
 
         small = ImageOps.exif_transpose(im).convert("L").resize((96, 72))
-        px = list(small.getdata())
+        px = list(small.tobytes())  # mode L: one byte per pixel, row by row
         mean_luma = sum(px) / max(1, len(px))
         top_px = px[: 96 * 24]
         top_luma = sum(top_px) / max(1, len(top_px))
