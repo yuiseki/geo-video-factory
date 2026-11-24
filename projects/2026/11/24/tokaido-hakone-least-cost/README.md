@@ -15,8 +15,15 @@
 | 宿場の座標 | Wikidata クラス Q75093704 (東海道の宿場、55 件) | CC0 |
 | 標高 | 国土地理院 標高タイル | PDL1.0 |
 
-## 分析の作業場所
+## 分析の作業場所と結果の要約（2026-11-24）
 
-GeoAI-master-skills の `projects/tokaido-least-cost-path/`。計画 (`EXPERIMENT_PLAN.md`)、関数とテスト (`scripts/tokaido.py`、`scripts/test_tokaido.py`)、取得 (`scripts/fetch.py`)、実行 (`scripts/run.py`) を置いた。`projects/` は GeoAI-master-skills では git に入らないので、同じ機械の上でだけ引き継げる。無ければ、手順書から作り直す。
+`GeoAI-master-skills` の `projects/tokaido-least-cost-path/`。計画 (`EXPERIMENT_PLAN.md`)、純粋関数・ソルバーとテスト (`scripts/tokaido.py`、`scripts/test_tokaido.py`、11 件通過)、取得 (`scripts/fetch.py`)、DEM 前処理 (`scripts/prepare_dems.py`)、実行 (`scripts/run.py`)、報告 (`report.md`、`check_project.py --level full` で `ok` 確認済) を置いた。`projects/` は `GeoAI-master-skills` では git に入らないため、引き継ぎ用の WGS84 経路・帯・宿場データ [tokaido_hakone_wgs84.geojson](tokaido_hakone_wgs84.geojson)（OSM ODbL / 地理院標高 PDL1.0 由来）と史実・手順書をこのディレクトリへ残す。
 
-手順は [brief.md](brief.md)。
+- **C0 (sanity)**: PASS（4 区間の再計算時間比 `1.0〜1.000682`、芦ノ湖マスク 17,623 セル適用済みで箱根宿は有効陸地 `728.28 m`、道路欠損 0 件）。
+- **C1 (時間比 `<= 1.15`)**: FAIL（小田原→三島の旧東海道 `7.526 時間`・`31.711 km` は最小経路 `6.317 時間`・`28.271 km` の `1.1914 倍`。逆向き三島→小田原も `1.2148 倍`、東坂の小田原→箱根宿は `1.2021 倍`、西坂の箱根宿→三島は `1.1309 倍`）。
+- **C2 (1.05 倍帯内 `>= 50%`)**: PASS（旧東海道の `100.0%`［`1.0`］が `1.05` 倍帯［`86.01 km²`］に収まり、`1.01` 倍帯［`23.05 km²`］にも `83.27%` が入る。`1.01` 倍帯を外れるのは `13.11〜18.38 km`［`5.27 km`、元箱根・箱根宿・箱根関所のため芦ノ湖畔へ降りた区間］のみで、最大張り出しでも `1.0292 倍`）。
+- **C3 (箱根宿が 1.05 倍帯内)**: PASS（箱根宿は最小の `1.017 倍`）。
+- **足柄峠まわり・感度分析**: 足柄峠まわり（関本・御殿場経由）は `10.085 時間`・`47.96 km`・最高 `749.1 m`（箱根最小の `1.5965 倍`）。芦ノ湖マスク有無、40 m / 10 m z14 格子、勾配上限 30% / 25%、広域範囲の 7 条件すべてで `C1=FAIL`（`1.1904〜1.2113 倍`）・`C2=PASS`（`0.9997〜1.0`）・`C3=PASS`（`1.0169〜1.0195 倍`）が不変。
+- **次の段階**: 本人による地図・縦断図の目視確認のうえ、姉妹企画 [../tokaido-rail-hakone-bypass/](../tokaido-rail-hakone-bypass/)（徒歩=箱根 vs 明治鉄道=御殿場 vs 昭和鉄道=丹那）と合わせて動画の台本・ショット JSON 作成へ進む。
+
+手順は [brief.md](brief.md)、史実の確認表は [facts.md](facts.md)。
