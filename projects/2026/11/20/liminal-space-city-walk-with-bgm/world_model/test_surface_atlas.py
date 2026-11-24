@@ -137,5 +137,47 @@ class SurfaceAtlasTest(unittest.TestCase):
         self.assertEqual(canvas.max(), 1)
 
 
+class Agreement(unittest.TestCase):
+    def test_the_photo_the_others_contradict_loses_its_patch(self):
+        # four photos see four texels of one patch; photo 0 is the sharpest but has a passer-by in front
+        colours = np.zeros((4, 4, 3), np.float32)
+        colours[0] = 20.0
+        colours[1:] = 200.0
+        weights = np.array([[9.0] * 4, [5.0] * 4, [4.0] * 4, [3.0] * 4], np.float32)
+        views = np.repeat(np.arange(4)[:, None], 4, axis=1).astype(np.int16)
+        patch = np.zeros(4, int)
+        plain, took = sa.fuse_by_face(colours, weights, views, patch)
+        self.assertTrue((took == 0).all())
+        voted, took = sa.fuse_by_face(colours, weights, views, patch, agree=20.0)
+        self.assertTrue((took == 1).all())
+        np.testing.assert_allclose(voted, 200.0)
+
+
+class Smoothing(unittest.TestCase):
+    def test_a_slightly_better_view_gives_way_to_the_neighbours(self):
+        # three patches in a row; the middle one marginally prefers view 1, its neighbours clearly view 0
+        score = np.array([[10.0, 1.0], [9.0, 10.0], [10.0, 1.0]])
+        pairs = [(0, 1), (1, 2)]
+        self.assertEqual(sa.smooth_labels(score, pairs, strength=0.0).tolist(), [0, 1, 0])
+        self.assertEqual(sa.smooth_labels(score, pairs, strength=0.7).tolist(), [0, 0, 0])
+
+    def test_a_view_that_did_not_see_the_patch_is_never_taken(self):
+        score = np.array([[10.0, 0.0], [0.0, 3.0], [10.0, 0.0]])
+        self.assertEqual(sa.smooth_labels(score, [(0, 1), (1, 2)], strength=5.0).tolist(), [0, 1, 0])
+
+
+class Exposure(unittest.TestCase):
+    def test_gain_brings_a_dim_photo_to_the_others_and_is_limited(self):
+        colours = np.full((5, 50, 3), 100.0, np.float32)
+        colours[0] = 80.0      # a little dim
+        colours[3] = 10.0      # a night photo: not to be rescued
+        weights = np.ones((5, 50), np.float32)
+        views = np.repeat(np.arange(5)[:, None], 50, axis=1).astype(np.int16)
+        g = sa.exposure_gains(colours, weights, views)
+        self.assertAlmostEqual(g[0], 1.25, places=2)
+        self.assertAlmostEqual(g[1], 1.0, places=2)
+        self.assertAlmostEqual(g[3], 1.6, places=2)
+
+
 if __name__ == "__main__":
     unittest.main()

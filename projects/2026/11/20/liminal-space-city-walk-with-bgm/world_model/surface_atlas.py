@@ -255,19 +255,95 @@ def fuse(colours, weights, few=3):
     return out, count
 
 
-def fuse_by_face(colours, weights, views, face_of, cap=400.0):
-    """One colour per texel, taking each face from as few photos as possible.
+def exposure_gains(colours, weights, views, few=3, limit=(0.6, 1.6)):
+    """One brightness gain per view, bringing each photo to what the photos agree on.
+
+    The gain is the median, over the texels `few` or more photos saw, of (median luminance / this photo's
+    luminance), clipped to `limit`: enough to even out exposure and haze between photos of the same kind of
+    light, not enough to turn a night photo into a day one. Views nobody can be compared with keep 1.0.
+    """
+    lum = np.array([0.2126, 0.7152, 0.0722], np.float32)
+    median, count = fuse(colours, weights, few=few)
+    ref = median @ lum
+    gains = np.ones(int(views.max()) + 1 if views.size else 0)
+    ratios = [[] for _ in gains]
+    for k in range(len(weights)):
+        mine = colours[k] @ lum
+        ok = (weights[k] > 0) & (count >= few) & (mine > 8) & (ref > 8)
+        order = np.argsort(views[k][ok], kind="stable")
+        v, r = views[k][ok][order], (ref[ok] / mine[ok])[order]
+        cuts = np.flatnonzero(np.diff(v)) + 1
+        for part_v, part_r in zip(np.split(v, cuts), np.split(r, cuts)):
+            if len(part_v):
+                ratios[int(part_v[0])].append(part_r)
+    for i, parts in enumerate(ratios):
+        if parts:
+            gains[i] = float(np.clip(np.median(np.concatenate(parts)), *limit))
+    return gains
+
+
+def smooth_labels(score, pairs, strength=0.7, rounds=6):
+    """One view per group, preferring the view the neighbouring groups took.
+
+    score (groups, views) >= 0; pairs (m, 2) are neighbouring groups. Each group starts on its best view and is
+    then revisited: a view's worth is log(score / the group's best) + strength x (neighbours on that view), so at
+    0.7 a view half as good wins when one more neighbour uses it. Fewer seams, and a sign or a video screen that
+    changed between photos comes from one photo instead of a mosaic of several. Views with no score are never taken.
+    """
+    top = score.max(axis=1, keepdims=True)
+    worth = np.where(score > 0, np.log(np.maximum(score, 1e-30) / np.maximum(top, 1e-30)), -np.inf)
+    label = worth.argmax(axis=1)
+    pairs = np.asarray(pairs, int).reshape(-1, 2)
+    if len(pairs) == 0:
+        return label
+    both = np.concatenate([pairs, pairs[:, ::-1]])
+    for _ in range(rounds):
+        votes = np.zeros_like(score, dtype=float)
+        np.add.at(votes, (both[:, 0], label[both[:, 1]]), 1.0)
+        new = (worth + strength * votes).argmax(axis=1)
+        if (new == label).all():
+            break
+        label = new
+    return label
+
+
+def fuse_by_face(colours, weights, views, face_of, cap=400.0, agree=None, few=3, pairs=None, strength=0.7):
+    """One colour per texel, taking each face (or patch of one: `face_of` is any grouping) from as few photos
+    as possible.
 
     A median over photos of different years and standing points blurs what does not sit exactly on the model's
-    plane (signs, sashes, anything the coarse model flattens). Here each face ranks the photos by how much of it
+    plane (signs, sashes, anything the coarse model flattens). Here each group ranks the photos by how much of it
     they saw (the sum of their weights, each capped at `cap` pixels per square metre: detail finer than the atlas
     earns nothing), and every texel takes the best-ranked photo among those kept for it.
+
+    `agree` (a colour distance, 0..255) makes the rank also depend on the other photos: a photo's score on a
+    group is multiplied by exp(-d / agree), d being its mean distance from the per-texel median where `few` or
+    more photos saw the texel. The median is blurred but it is what most photos agree on, so the photo with a
+    passer-by, a bus, a different season's sign or a wrong pose on that patch loses to one without.
+    `pairs` (neighbouring groups) smooths the choice across groups, see smooth_labels.
     Returns (colours (n, 3), NaN where unseen; the view taken (n), -1 where unseen)."""
     n_views, n_faces = int(views.max()) + 1, int(face_of.max()) + 1
     score = np.zeros((n_faces, max(n_views, 1)))
     seen = weights > 0
     for k in range(len(weights)):
         np.add.at(score, (face_of[seen[k]], views[k][seen[k]]), np.minimum(weights[k][seen[k]], cap))
+    if agree:
+        median, count = fuse(colours, weights, few=few)
+        judged = count >= few
+        dist, hits = np.zeros_like(score), np.zeros_like(score)
+        for k in range(len(weights)):
+            m = seen[k] & judged
+            d = np.abs(colours[k][m] - median[m]).mean(axis=1)
+            np.add.at(dist, (face_of[m], views[k][m]), d)
+            np.add.at(hits, (face_of[m], views[k][m]), 1)
+        # a photo nobody can vouch for on this group is treated as an average disagreement, not as perfect
+        mean = np.where(hits > 0, dist / np.maximum(hits, 1), float(agree))
+        score = score * np.exp(-mean / float(agree))
+    if pairs is not None and len(pairs):
+        # the smoothed choice wins wherever that photo saw the texel; elsewhere the plain ranking still applies
+        label = smooth_labels(score, pairs, strength)
+        score = score.copy()
+        score[np.arange(n_faces), label] = score.max() * 2 + 1
     rank = np.where(seen, score[face_of[None, :], np.maximum(views, 0)], -1.0)
     pick = rank.argmax(axis=0)
     cols = np.arange(weights.shape[1])

@@ -1,4 +1,4 @@
-"""build_atlas.py <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3]
+"""build_atlas.py <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean]
        [--only=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
@@ -37,15 +37,22 @@ def main(argv):
         cams = {k: c for k, c in cams.items() if any(word in k for word in opts["only"].split(","))}
     # every texel that lies on a face, as one long list: the atlas is mostly empty, and one call per photo over
     # the list is far faster than one per face
-    where, points, normal_of, face_of = [], [], [], []
+    where, points, normal_of, face_of, patch_of = [], [], [], [], []
+    patch_px = max(1, int(round(float(opts.get("patch", 0)) / texel))) if float(opts.get("patch", 0)) > 0 else 10 ** 9
     for f, ((pts, mask, normal, _), (y, x)) in enumerate(zip(charts, pos)):
         yy, xx = np.nonzero(mask)
         where.append((y + yy) * width + x + xx)
         points.append(pts[mask])
         normal_of.append(np.broadcast_to(normal, (len(yy), 3)))
         face_of.append(np.full(len(yy), f))
+        patch_of.append(np.stack([np.full(len(yy), f), yy // patch_px, xx // patch_px], axis=1))
     where, points, normal_of = np.concatenate(where), np.concatenate(points), np.concatenate(normal_of)
     face_of = np.concatenate(face_of)
+    # --patch=3 lets every 3 m square of a face choose its own photo instead of the whole face choosing one
+    patches, face_of = np.unique(np.concatenate(patch_of), axis=0, return_inverse=True)
+    face_of = face_of.ravel()
+    index = {tuple(p): i for i, p in enumerate(patches.tolist())}
+    pairs = [(i, index[q]) for (f, y, x), i in index.items() for q in ((f, y + 1, x), (f, y, x + 1)) if q in index]
     stack = sa.TopK(len(where), int(opts.get("keep", 6)))
     corners_xyz = tris.reshape(-1, 3)
     used = {}
@@ -66,22 +73,43 @@ def main(argv):
         if used[key]:
             stack.add(colours, weights, view=len(used) - 1)
         print(key[-50:], "saw", used[key], "texels", flush=True)
+    gains = None
+    if opts.get("expose", "1") != "0" and used:
+        cols_, w_, v_ = stack.arrays(views=True)
+        gains = sa.exposure_gains(cols_, w_, v_, few=int(opts.get("few", 3)))
+        stack.colours *= gains[np.maximum(v_, 0)][..., None].astype(np.float32)
     if opts.get("fuse", "face") == "face":
-        part, chosen = sa.fuse_by_face(*stack.arrays(views=True), face_of, cap=1.0 / texel ** 2)
+        part, chosen = sa.fuse_by_face(*stack.arrays(views=True), face_of, cap=1.0 / texel ** 2,
+                                       agree=float(opts.get("agree", 0)) or None, few=int(opts.get("few", 3)),
+                                       pairs=np.array(pairs).reshape(-1, 2), strength=float(opts.get("smooth", 0.7)))
         took = np.bincount(chosen[chosen >= 0], minlength=len(used))
         used = {k: [n, int(took[i])] for i, (k, n) in enumerate(used.items())}      # texels seen, texels taken
     else:
-        part, _ = sa.fuse(*stack.arrays(), few=int(opts.get("few", 3)))
+        part, _ = sa.fuse(*stack.arrays(), few=int(opts.get("few", 3)),
+                                       pairs=np.array(pairs).reshape(-1, 2), strength=float(opts.get("smooth", 0.7)))
     fused = np.full((rows * width, 3), np.nan, np.float32)
     fused[where] = part
     count = np.zeros(rows * width, np.int32)
     count[where] = stack.count
     fused, count = fused.reshape(rows, width, 3), count.reshape(rows, width)
+    if opts.get("fill") == "mean" and np.isfinite(part).any():
+        # a face no photo saw takes the mean colour of what was seen: of its own face where there is some, of the
+        # whole building otherwise. seen.png still says which texels are observed and which are this guess.
+        seen_t = np.isfinite(part[:, 0])
+        whole = part[seen_t].mean(axis=0)
+        real_face = np.concatenate([np.full(len(c[1].nonzero()[0]), f) for f, c in enumerate(charts)])
+        tot = np.zeros((len(charts), 3)); num = np.zeros(len(charts))
+        np.add.at(tot, real_face[seen_t], part[seen_t]); np.add.at(num, real_face[seen_t], 1)
+        mean = np.where(num[:, None] > 0, tot / np.maximum(num, 1)[:, None], whole)
+        guess = part.copy()
+        guess[~seen_t] = mean[real_face[~seen_t]]
+        fused.reshape(-1, 3)[where] = guess
     atlas = np.where(np.isnan(fused), np.array(UNSEEN, np.float32), fused).clip(0, 255).astype(np.uint8)
     Image.fromarray(atlas).save(out / "atlas.png")
     Image.fromarray((np.clip(count, 0, 5) * 51).astype(np.uint8)).save(out / "seen.png")
 
-    report = {"building": name, "texel_m": texel, "atlas": [width, rows], "photos": used, "faces": []}
+    report = {"building": name, "texel_m": texel, "atlas": [width, rows], "photos": used, "faces": [],
+              "gains": None if gains is None else dict(zip(used, np.round(gains, 3).tolist()))}
     lines, vt = ["mtllib model.mtl", "usemtl atlas"], 1
     for g, (points, mask, normal, corners), (y, x) in zip(groups, charts, pos):
         r, k = mask.shape

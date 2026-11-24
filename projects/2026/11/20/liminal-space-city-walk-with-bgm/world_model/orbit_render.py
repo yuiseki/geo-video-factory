@@ -116,6 +116,7 @@ bpy.ops.mesh.primitive_plane_add(size=4000, location=(0, 0, ground))
 road = bpy.data.materials.new("road")
 road.use_nodes = True
 road.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
+road.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0   # no sun glint on the asphalt
 bpy.context.object.data.materials.append(road)
 look_out = opts.get("look") == "out"   # stand at the centre and turn, instead of circling it
 
@@ -132,4 +133,6 @@ for i in range(frames):
         cam.location = (ring[0], ring[1], ground + height)
     sc.render.filepath = str(out_dir / f"f{i:04d}.jpg")
     bpy.ops.render.render(write_still=True)
+    if i == 0:   # EEVEE draws the first frame before the textures are ready: it comes out blank
+        bpy.ops.render.render(write_still=True)
 print("rendered", frames, "frames; centre", centre.round(1).tolist(), "ground", round(ground, 1))
