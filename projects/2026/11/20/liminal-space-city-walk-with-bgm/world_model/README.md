@@ -13,10 +13,14 @@ ground_ortho.py   地面。地理院シームレス空中写真を 1 枚の高�
 ground_from_above.py  地面。高い所から撮った写真を地面に写し、互いに合わせて中央値を取る
 orbit_render.py   Blender で周回、または交差点に立って見回す。--save で .blend
 contact_sheet.py  書き出したフレームの一覧
+camera_path.py    数個のキー (目、注視点、レンズ、回転) からカメラの動きを作り、建物との距離を検査する
+magic_shots.py    実物のカメラでは撮れない動き (見上げて回る、ドリーズーム、裏返る、真上から落ちる)
+path_render.py    保存した .blend を開き、magic_shots の 1 ショットを描く
+time_blend.py     同じ動きを昼と夜で描いた 2 本を、動きの途中で時間が変わる 1 本にする
 frame_check.py    前後のフレームから明るさが飛んだフレーム (真っ黒、暗転) を探す
 ```
 
-テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above test_frame_check`
+テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above test_frame_check test_camera_path test_time_blend`
 
 実データを読む実行は、ホストの資源制限ルールに従ってメモリと CPU に上限を掛ける。
 
