@@ -8,7 +8,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import title_cards as tc  # noqa: E402
+from video import title_cards as tc  # noqa: E402
 
 SIZE = (1280, 720)
 W, H = SIZE

@@ -3,7 +3,7 @@ from unittest.mock import patch
 
 from support import import_pipeline
 
-photo_geo = import_pipeline('photo_geo')
+photo_geo = import_pipeline('geo.photo_geo')
 
 
 class FakeExif:

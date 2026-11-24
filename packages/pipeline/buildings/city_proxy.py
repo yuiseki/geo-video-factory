@@ -20,6 +20,10 @@ x = east, y = altitude, z = -north, meters), with absolute orthometric altitude,
 marked `frame: "enu"`. Pitched roofs, facade colors and windows are illustrations, not survey data.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import colorsys
 import hashlib
@@ -30,10 +34,10 @@ from typing import Any, Callable
 
 from PIL import Image
 
-from building_heights import ONE_STORY_M, calibrate_height_model, estimate_height, footprint_area_m2
-from facade_archetypes import STYLE_CODES, classify_facade, facade_wall_color, roof_stats
-from glb_spatial import _ecef
-from city_geometry import SHADOW_CELL_M, SHADOW_LIFT_M, SHADOW_PER_M, _flat_roof, _Mesh, _pitched, _shadow_glb, _walls  # noqa: F401
+from buildings.building_heights import ONE_STORY_M, calibrate_height_model, estimate_height, footprint_area_m2
+from buildings.facade_archetypes import STYLE_CODES, classify_facade, facade_wall_color, roof_stats
+from buildings.glb_spatial import _ecef
+from buildings.city_geometry import SHADOW_CELL_M, SHADOW_LIFT_M, SHADOW_PER_M, _flat_roof, _Mesh, _pitched, _shadow_glb, _walls  # noqa: F401
 
 GROUND_SINK_M = 0.4
 

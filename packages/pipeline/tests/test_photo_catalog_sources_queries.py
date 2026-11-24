@@ -8,7 +8,7 @@ import urllib.parse
 
 from support import import_pipeline
 
-sources = import_pipeline('photo_catalog_sources')
+sources = import_pipeline('photos.photo_catalog_sources')
 
 CC0_URL = 'https://creativecommons.org/publicdomain/zero/1.0/'
 

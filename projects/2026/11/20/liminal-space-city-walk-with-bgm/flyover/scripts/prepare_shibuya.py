@@ -32,7 +32,7 @@ def main() -> None:
         return
 
     sys.path.insert(0, str(repository_dir / "packages/pipeline"))
-    from plateau_3d import prepare_tiles
+    from buildings.plateau_3d import prepare_tiles
 
     manifest = prepare_tiles(
         TILESET_URL,

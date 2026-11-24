@@ -9,7 +9,7 @@ from PIL import Image
 
 from support import import_pipeline
 
-gf = import_pipeline('gsi_footprints')
+gf = import_pipeline('buildings.gsi_footprints')
 
 
 def _varint(value: int) -> bytes:

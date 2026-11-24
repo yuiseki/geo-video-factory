@@ -57,7 +57,7 @@ varying float vShadowGrow;`)
 }
 
 /**
- * Material for `city-proxy` tiles (see packages/pipeline/city_proxy.py). Expects vertex colors,
+ * Material for `city-proxy` tiles (see packages/pipeline/buildings/city_proxy.py). Expects vertex colors,
  * uv = (meters along the wall, meters above the building's ground), _style = (style, eave height)
  * and _batchid, in a Y-up local frame. Windows are a deterministic illustration per building.
  */

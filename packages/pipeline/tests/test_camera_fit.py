@@ -5,8 +5,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import blender_geo as bg  # noqa: E402
-import camera_fit  # noqa: E402
+from buildings import blender_geo as bg  # noqa: E402
+from video import camera_fit  # noqa: E402
 
 W, H = 1920, 1280
 

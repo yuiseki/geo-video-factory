@@ -1,6 +1,10 @@
 """Seasonal color-transfer pipeline: Sentinel-2 L2A STAC/COG + GSI ortho + vegetation mask."""
 
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import argparse
 import json
@@ -15,7 +19,7 @@ from PIL import Image
 from pyproj import Transformer
 from scipy.ndimage import gaussian_filter, map_coordinates
 
-from cog_tiff import _read_u32_array, decode_deflate_rgb_tile, parse_tiff_ifd
+from geo.cog_tiff import _read_u32_array, decode_deflate_rgb_tile, parse_tiff_ifd
 
 STAC_SEARCH_URL = "https://earth-search.aws.element84.com/v1/search"
 USER_AGENT = "geo-video-factory/1.0"

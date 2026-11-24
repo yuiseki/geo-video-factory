@@ -7,7 +7,7 @@ from PIL import Image
 
 from support import import_pipeline
 
-part_sprites = import_pipeline("part_sprites")
+part_sprites = import_pipeline("narration.part_sprites")
 
 
 def make_png(path: Path, size: tuple[int, int], box: tuple[int, int, int, int], color: tuple[int, int, int, int]) -> None:

@@ -18,12 +18,12 @@
 部位ごとのフォルダ（`体`, `顔色`, `口`, `目`, `髪`, `眉`, `他`）に分かれた PNG パーツを重ねて、レンダラー互換の `<face>_<eyes o|c>_<mouth o|c>.png` と `sheet.png` を生成する。
 
 ```bash
-python3 packages/pipeline/part_sprites.py \
+python3 packages/pipeline/narration/part_sprites.py \
   <project>/characters/reimu.json \
   "tmp/__models/たぬき式ゆっくり/たぬき霊夢" \
   <project>/assets/chara/reimu
 
-python3 packages/pipeline/part_sprites.py \
+python3 packages/pipeline/narration/part_sprites.py \
   <project>/characters/marisa.json \
   "tmp/__models/たぬき式ゆっくり/たぬき魔理沙" \
   <project>/assets/chara/marisa
@@ -36,7 +36,7 @@ python3 packages/pipeline/part_sprites.py \
 
 ### AquesTalk（`AquesTalkPlayer.app`：ゆっくり霊夢 `f1`・ゆっくり魔理沙 `f2`）
 
-macOS に `AquesTalkPlayer.app` がインストールされている環境では、`tts.engine` に `"aquestalk"` を指定すると `packages/pipeline/aquestalk_tts.py` 経由で `f1`（霊夢）・`f2`（魔理沙）のゆっくりボイスを直接合成する。
+macOS に `AquesTalkPlayer.app` がインストールされている環境では、`tts.engine` に `"aquestalk"` を指定すると `packages/pipeline/narration/aquestalk_tts.py` 経由で `f1`（霊夢）・`f2`（魔理沙）のゆっくりボイスを直接合成する。
 
 ```json
 "tts": { "engine": "aquestalk", "padStart": 0.2, "pause": 0.2, "padEnd": 0.3 },

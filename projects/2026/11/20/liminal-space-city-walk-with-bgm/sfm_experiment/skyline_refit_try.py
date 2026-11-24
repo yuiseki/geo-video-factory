@@ -18,7 +18,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import skyline_match as sm  # noqa: E402
+from geo import skyline_match as sm  # noqa: E402
 
 ph = np.load(sys.argv[1])
 z = np.load(sys.argv[2])

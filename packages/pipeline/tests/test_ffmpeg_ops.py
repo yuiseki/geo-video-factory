@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from support import import_pipeline
 
-ffmpeg_ops = import_pipeline('ffmpeg_ops')
+ffmpeg_ops = import_pipeline('video.ffmpeg_ops')
 
 
 def _probe_json(

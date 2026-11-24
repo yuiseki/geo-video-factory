@@ -5,6 +5,10 @@ detection (black/freeze/silence), and uniform-interval contact sheet generation
 with burned-in timecodes and optional platform safe-zone guides.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import argparse
 from fractions import Fraction
@@ -359,9 +363,9 @@ def run_cli(argv: list[str] | None = None) -> tuple[int, str]:
         )
     if args.storyboard:
         try:
-            from video_inspect import build_adaptive_storyboard
+            from video.video_inspect import build_adaptive_storyboard
         except ImportError:
-            from packages.pipeline.video_inspect import build_adaptive_storyboard
+            from packages.pipeline.video.video_inspect import build_adaptive_storyboard
         report['storyboard'] = build_adaptive_storyboard(
             args.input, args.storyboard, budget=args.storyboard_budget,
             timeline_path=args.storyboard.with_suffix('.timeline.txt'), overwrite=args.overwrite,

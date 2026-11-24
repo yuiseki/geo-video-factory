@@ -5,8 +5,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import blender_geo as bg  # noqa: E402
-import sign_geometry as sg  # noqa: E402
+from buildings import blender_geo as bg  # noqa: E402
+from buildings import sign_geometry as sg  # noqa: E402
 
 W, H = 1920, 1280
 CAMERA = {"location": (0.0, -40.0, 1.6), "tilt": 100, "bearing": 10, "fov": 60, "shift_px": 0}

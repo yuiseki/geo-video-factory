@@ -6,7 +6,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import skyline_match as sm  # noqa: E402
+from geo import skyline_match as sm  # noqa: E402
 
 BINS = 720  # half a degree
 

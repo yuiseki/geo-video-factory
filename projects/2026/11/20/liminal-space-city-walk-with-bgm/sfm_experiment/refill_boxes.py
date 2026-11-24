@@ -6,6 +6,6 @@ torch, where the repository may sit elsewhere)."""
 import sys
 
 sys.path.insert(0, sys.argv[4])
-import people_removal as pr  # noqa: E402
+from photos import people_removal as pr  # noqa: E402
 
 pr.refill_boxes(sys.argv[5], sys.argv[1], sys.argv[2], sys.argv[3], [pr.parse_box(a) for a in sys.argv[6:]])

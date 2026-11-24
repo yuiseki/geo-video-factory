@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from support import import_pipeline
 
-chapter_pipeline = import_pipeline('chapter_pipeline')
+chapter_pipeline = import_pipeline('video.chapter_pipeline')
 
 
 class ChapterPipelineTests(unittest.TestCase):

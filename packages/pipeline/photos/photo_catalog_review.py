@@ -1,5 +1,9 @@
 """Image inspection, deduplication, contact sheet generation, pruning, and index merging."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 from datetime import datetime
 import hashlib
@@ -8,7 +12,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageOps
 
-from photo_catalog_rules import find_gitleaks_hex32_matches, is_strict_cc0
+from photos.photo_catalog_rules import find_gitleaks_hex32_matches, is_strict_cc0
 
 
 def file_sha256(path: Path) -> str:

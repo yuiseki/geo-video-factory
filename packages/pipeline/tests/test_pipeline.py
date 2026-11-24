@@ -5,8 +5,8 @@ from pathlib import Path
 PIPELINE_DIR = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PIPELINE_DIR))
 
-import shot_effects
-import photo_geo
+from video import shot_effects
+from geo import photo_geo
 
 
 class PipelineTests(unittest.TestCase):

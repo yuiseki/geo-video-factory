@@ -13,12 +13,12 @@ OSMの施設388件は、記録された候補から選んだ標本です。施�
 
 ## 書き出し
 
-Node.js、Playwright、ffmpeg、Python、Pillow、日本語フォント、VOICEVOXエンジンを用意します。立ち絵は坂本アヒル氏のPSDを `packages/pipeline/psd_sprites.py` で `flyover/assets/chara/{zundamon,metan}/` に書き出します。PSD自体と生成画像はリポジトリに含めません。資源制限はホストの規則に従ってください。
+Node.js、Playwright、ffmpeg、Python、Pillow、日本語フォント、VOICEVOXエンジンを用意します。立ち絵は坂本アヒル氏のPSDを `packages/pipeline/narration/psd_sprites.py` で `flyover/assets/chara/{zundamon,metan}/` に書き出します。PSD自体と生成画像はリポジトリに含めません。資源制限はホストの規則に従ってください。
 
 ```sh
 cd packages/renderer && npm run build && cd ../..
 python3 projects/2026/11/19/izu-hot-spring-and-gold/flyover/scripts/build_episode.py
-python3 packages/pipeline/chapter_pipeline.py \
+python3 packages/pipeline/video/chapter_pipeline.py \
   projects/2026/11/19/izu-hot-spring-and-gold/flyover/chapters-v0.2.0.json \
   --out projects/2026/11/19/izu-hot-spring-and-gold/flyover/out/episode-v0.2.0 \
   --workers 2

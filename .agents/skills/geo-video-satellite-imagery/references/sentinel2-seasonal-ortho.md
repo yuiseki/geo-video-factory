@@ -4,7 +4,7 @@
 
 ## 1. 仕組みの概要
 
-`packages/pipeline/seasonal_ortho.py` は以下の流れで季節テクスチャを生成する（GDAL / `rasterio` 不要、標準 Python + `numpy` + `Pillow` + `pyproj` のみ）。
+`packages/pipeline/geo/seasonal_ortho.py` は以下の流れで季節テクスチャを生成する（GDAL / `rasterio` 不要、標準 Python + `numpy` + `Pillow` + `pyproj` のみ）。
 
 1. **STAC API で候補シーンを検索 (`search_sentinel2_scene`)**
    - エンドポイント: `https://earth-search.aws.element84.com/v1/search`（認証不要）

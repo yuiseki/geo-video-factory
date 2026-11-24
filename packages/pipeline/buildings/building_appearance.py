@@ -1,5 +1,9 @@
 """Orthophoto-colored facade helpers and re-exports for PLATEAU/OSM 3D buildings."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import colorsys
 import hashlib
@@ -12,7 +16,7 @@ from typing import Any, Iterable
 
 from PIL import Image
 
-from glb_spatial import (
+from buildings.glb_spatial import (
     WGS84_A,
     WGS84_E2,
     _accessor_values,
@@ -27,8 +31,8 @@ from glb_spatial import (
     _transform_point,
     extract_glb_feature_centroids,
 )
-from osm_proxy import build_osm_proxy_tiles
-from plateau_3d import glb_chunks
+from buildings.osm_proxy import build_osm_proxy_tiles
+from buildings.plateau_3d import glb_chunks
 
 __all__ = [
     'WGS84_A',

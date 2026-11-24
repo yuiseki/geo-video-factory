@@ -9,8 +9,8 @@ import numpy as np
 from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-import photo_place as pp  # noqa: E402
-import skyline_match as sm  # noqa: E402
+from geo import photo_place as pp  # noqa: E402
+from geo import skyline_match as sm  # noqa: E402
 
 BINS = 360
 

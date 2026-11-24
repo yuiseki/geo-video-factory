@@ -101,7 +101,7 @@ test('buildOpenJTalkArgs formats CLI flags and prepareNarration emits Open JTalk
 test('buildAquesTalkArgs formats CLI flags and prepareNarration emits AquesTalk credits', async () => {
   assert.deepEqual(
     buildAquesTalkArgs({
-      script: '/repo/packages/pipeline/aquestalk_tts.py',
+      script: '/repo/packages/pipeline/narration/aquestalk_tts.py',
       voiceId: 'f1',
       speed: 1.1,
       outFile: '/tmp/out.wav',
@@ -109,7 +109,7 @@ test('buildAquesTalkArgs formats CLI flags and prepareNarration emits AquesTalk 
       appDir: '/Applications/AquesTalkPlayer.app',
     }),
     [
-      '/repo/packages/pipeline/aquestalk_tts.py',
+      '/repo/packages/pipeline/narration/aquestalk_tts.py',
       '--voice', 'f1',
       '--speed', '1.1',
       '--out', '/tmp/out.wav',

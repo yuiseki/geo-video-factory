@@ -3,7 +3,7 @@
 Experiment: geometry-guided facade texturing. The wall is not found in the photos; it is taken from the
 OpenStreetMap outline of the named building (moved onto the reconstruction's wall points) and the PLATEAU
 ground height. Every texel of that wall is projected into every registered photo and the views are fused
-(packages/pipeline/facade_ortho.py). Writes the median and best-view textures, how many photos saw each
+(packages/pipeline/buildings/facade_ortho.py). Writes the median and best-view textures, how many photos saw each
 texel, how much they disagree, a plan of the guide and a few single views. Nothing handles occlusion yet."""
 import zlib  # noqa: F401
 import json
@@ -18,7 +18,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import facade_ortho as fo  # noqa: E402
+from buildings import facade_ortho as fo  # noqa: E402
 
 model, images, placement, osm, name, out = sys.argv[1:7]
 STEP = float(sys.argv[7]) if len(sys.argv) > 7 else 0.05

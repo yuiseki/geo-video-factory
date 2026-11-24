@@ -5,7 +5,7 @@ bell notes on the pentatonic scale with an echo, a breath of filtered noise, and
 With --night-from the chords turn to B minor from that second on (rounded to a chord boundary), the bells drop an
 octave and thin out. The piece fades in over 3 s and out over 7 s. 48 kHz, 16 bit, stereo; the loudness is left
 to the mastering step (ffmpeg loudnorm).
-The code lives in packages/pipeline/ambient_bgm.py, where it is tested; this file only keeps the command line of
+The code lives in packages/pipeline/narration/ambient_bgm.py, where it is tested; this file only keeps the command line of
 this project working."""
 import sys
 from pathlib import Path

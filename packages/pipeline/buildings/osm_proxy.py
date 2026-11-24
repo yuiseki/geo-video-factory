@@ -1,5 +1,9 @@
 """OSM building footprint extrusion to PLATEAU-compatible GLB proxy tiles."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import hashlib
 import json
@@ -10,7 +14,7 @@ from typing import Any
 
 from PIL import Image
 
-from glb_spatial import _area, _ecef, _point_in_polygon
+from buildings.glb_spatial import _area, _ecef, _point_in_polygon
 
 
 def _height(properties: dict[str, Any]) -> float:
@@ -252,7 +256,7 @@ def build_osm_proxy_tiles(
     plateau_footprints: list[dict[str, Any]] | None = None,
 ) -> dict[str, Any]:
     """Extrude OSM footprints to local GLB and append them to the renderer manifest."""
-    from building_appearance import assign_facade_colors, normalize_citygml_color, sample_polygon_color
+    from buildings.building_appearance import assign_facade_colors, normalize_citygml_color, sample_polygon_color
 
     if kind not in ('osm-proxy', 'citygml-proxy'):
         raise ValueError(f'unsupported building proxy kind: {kind}')

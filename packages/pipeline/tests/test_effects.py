@@ -2,7 +2,7 @@ import unittest
 
 from support import import_pipeline
 
-shot_effects = import_pipeline('shot_effects')
+shot_effects = import_pipeline('video.shot_effects')
 
 
 class ShotEffectsTests(unittest.TestCase):

@@ -30,7 +30,7 @@ node ../../../../packages/renderer/dist/src/render.js shots/dotonbori.json --pro
 章別レンダリングは、作業全体を一つの資源制限スコープで囲みます。指定した出力先は新規作成され、既存の出力は上書きしません。章ごとに無音のタイトルカードを挿入し、結合後の全音声を同じ基準で正規化します。
 
 ```bash
-python3 ../../../../packages/pipeline/chapter_pipeline.py chapters.json --out out/新しい出力名 --workers 3
+python3 ../../../../packages/pipeline/video/chapter_pipeline.py chapters.json --out out/新しい出力名 --workers 3
 ```
 
 ## 地名表示の試作

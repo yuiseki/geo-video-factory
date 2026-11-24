@@ -4,7 +4,7 @@
 
 ## 原則：生コマンドではなく型付きヘルパーを使う
 
-エージェントが生の `ffmpeg` コマンド文字列を組み立てると、入力ファイルの上書き・`-pix_fmt` やサンプルレートの欠落・フィルタ構文ミスが起きやすい。必ず `packages/pipeline/ffmpeg_ops.py` と `packages/pipeline/video_qa.py` を通して **事前プローブ → 編集（ドライラン確認） → 事後検品** の順で処理する。
+エージェントが生の `ffmpeg` コマンド文字列を組み立てると、入力ファイルの上書き・`-pix_fmt` やサンプルレートの欠落・フィルタ構文ミスが起きやすい。必ず `packages/pipeline/video/ffmpeg_ops.py` と `packages/pipeline/video/video_qa.py` を通して **事前プローブ → 編集（ドライラン確認） → 事後検品** の順で処理する。
 
 - 出力先ガード：入力と同じパスへの上書きを拒否し、既存出力ファイルも `--overwrite` 明示なしでは上書きしない。
 - ロスレス優先：映像の再エンコードが不要な操作（ダッキング・2-pass 正規化・トリム・結合）は既定で `-c:v copy`（ストリームコピー）を使う。
@@ -15,7 +15,7 @@
 末尾フェードアウト開始秒（`duration - 2` など）と音声ストリームの有無を先に確認する。
 
 ```bash
-python3 packages/pipeline/ffmpeg_ops.py probe episode_voice_only.mp4 --json
+python3 packages/pipeline/video/ffmpeg_ops.py probe episode_voice_only.mp4 --json
 ```
 
 ### 2. BGM ダッキング合成（`duck-bgm`）
@@ -23,7 +23,7 @@ python3 packages/pipeline/ffmpeg_ops.py probe episode_voice_only.mp4 --json
 `sidechaincompress` + `amix` + `loudnorm` を型付き引数で組み立てる。まず `--dry-run --json` でコマンドを確認してから実行する。
 
 ```bash
-python3 packages/pipeline/ffmpeg_ops.py duck-bgm \
+python3 packages/pipeline/video/ffmpeg_ops.py duck-bgm \
   episode_voice_only.mp4 bgm.wav \
   -o episode_with_bgm_v0.1.0.mp4 \
   --volume 0.35 --threshold 0.04 --ratio 8 \
@@ -36,7 +36,7 @@ python3 packages/pipeline/ffmpeg_ops.py duck-bgm \
 単発の 1-pass `loudnorm` より精度の高い EBU R128 2-pass 正規化を適用したい場合（BGM なし音声のみ、または最終仕上げ）は `loudnorm` サブコマンドを使う。映像は `-c:v copy` のまま音声のみ `linear=true` で正規化する。
 
 ```bash
-python3 packages/pipeline/ffmpeg_ops.py loudnorm \
+python3 packages/pipeline/video/ffmpeg_ops.py loudnorm \
   episode_with_bgm_v0.1.0.mp4 \
   -o episode_master_v0.1.0.mp4 \
   -I -14 --tp -1.5 --lra 11
@@ -47,7 +47,7 @@ python3 packages/pipeline/ffmpeg_ops.py loudnorm \
 書き出し後は `video_qa.py` でラウドネス（`-14 LUFS +/- 2`、トゥルーピーク `-1.0 dBTP` 以下）、無音・黒画面・フリーズ異常、必要ならコンタクトシートを確認する。
 
 ```bash
-python3 packages/pipeline/video_qa.py episode_master_v0.1.0.mp4 \
+python3 packages/pipeline/video/video_qa.py episode_master_v0.1.0.mp4 \
   --platform youtube --content --json
 ```
 

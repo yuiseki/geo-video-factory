@@ -4,6 +4,10 @@ OSM `highway=traffic_signals` nodes sit on the carriageway (stop lines), while t
 on the sidewalk corner. Each node is moved to the nearest PLATEAU road LOD3 sidewalk vertex.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import argparse
 import json
@@ -41,8 +45,8 @@ def snap_points(points, candidates, max_distance: float):
 
 def sidewalk_vertices(manifest_path: Path, origin: Sequence[float]) -> list[tuple[float, float]]:  # pragma: no cover - I/O
     """Local-meter vertices of PLATEAU road LOD3 features whose function is 歩道部."""
-    import glb_spatial
-    import plateau_3d
+    from buildings import glb_spatial
+    from buildings import plateau_3d
 
     manifest = json.loads(manifest_path.read_text())
     vertices = []

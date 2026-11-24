@@ -9,7 +9,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import camera_path as cp  # noqa: E402
+from video import camera_path as cp  # noqa: E402
 
 
 def cam(bearing=0.0, pitch=0.0, eye=(10.0, 20.0, 1.6)):

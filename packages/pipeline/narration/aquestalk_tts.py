@@ -2,7 +2,7 @@
 """Synthesize Yukkuri (AquesTalk1) WAV audio via an installed AquesTalkPlayer.app.
 
 Usage:
-  python3 packages/pipeline/aquestalk_tts.py --voice f1 --speed 1.0 --out out.wav --text "こんにちは"
+  python3 packages/pipeline/narration/aquestalk_tts.py --voice f1 --speed 1.0 --out out.wav --text "こんにちは"
 """
 from __future__ import annotations
 

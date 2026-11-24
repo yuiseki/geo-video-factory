@@ -22,7 +22,7 @@ from scipy import optimize
 from scipy.spatial import cKDTree
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import skyline_match as sm  # noqa: E402
+from geo import skyline_match as sm  # noqa: E402
 
 ph, z = np.load(sys.argv[1]), np.load(sys.argv[2])
 rec = pycolmap.Reconstruction(sys.argv[3])

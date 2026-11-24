@@ -4,7 +4,7 @@ from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[4] / 'packages' / 'pipeline'))
-from photo_geo import exif_coordinates, linked_photo
+from geo.photo_geo import exif_coordinates, linked_photo
 
 ROOT = Path(__file__).resolve().parent
 spec = json.loads((ROOT / 'shots/dotonbori.v0.1.3.json').read_text())

@@ -8,11 +8,11 @@ from PIL import Image
 
 from support import import_pipeline
 
-cp = import_pipeline('city_proxy')
-bh = import_pipeline('building_heights')
-gs = import_pipeline('glb_spatial')
-p3 = import_pipeline('plateau_3d')
-fa = import_pipeline('facade_archetypes')
+cp = import_pipeline('buildings.city_proxy')
+bh = import_pipeline('buildings.building_heights')
+gs = import_pipeline('buildings.glb_spatial')
+p3 = import_pipeline('buildings.plateau_3d')
+fa = import_pipeline('buildings.facade_archetypes')
 
 BBOX = [139.30, 35.74, 139.34, 35.77]
 LAT0 = 35.755

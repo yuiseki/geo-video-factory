@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """Tokyo urban photo collector CLI (strict CC0 or CC0+CC-BY non-SA), review sheet builder, and index manager."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import argparse
 from collections import defaultdict
@@ -10,8 +14,8 @@ from pathlib import Path
 import re
 import time
 
-import photo_catalog_sources as _sources
-from photo_catalog_review import (
+from photos import photo_catalog_sources as _sources
+from photos.photo_catalog_review import (
     _count_dict,
     _extract_exif_gps,
     build_contact_sheets,
@@ -22,7 +26,7 @@ from photo_catalog_review import (
     merge_area_manifests,
     prune_manifest,
 )
-from photo_catalog_rules import (
+from photos.photo_catalog_rules import (
     DISALLOWED_LICENSE_RE,
     GITLEAKS_HEX32_RE,
     MONTH_NAMES,
@@ -42,7 +46,7 @@ from photo_catalog_rules import (
     select_diverse_candidates,
     strip_html,
 )
-from photo_catalog_sources import (
+from photos.photo_catalog_sources import (
     USER_AGENT,
     _retry_wait_seconds,
     download_bytes_with_retry,

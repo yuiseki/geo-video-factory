@@ -10,7 +10,7 @@ push 3 s at 24 fps. Scene A renders the walk and the first 60 % of the pan, scen
 pan and the push; the overlap is cross-faded over the whole frame.
 
 --swap=wipe (v0.6.3 on): both scenes render the whole pan from the same cameras, and scene B wipes in
-from the side the camera turns toward (packages/pipeline/whip_pan.py says why). plan also writes plan.json.
+from the side the camera turns toward (packages/pipeline/photos/whip_pan.py says why). plan also writes plan.json.
   plan:   --sub=16 (samples per pan frame)  --pan=1.0 (s)  --render=<key> (the render_key given to
           blender_projection.py; its fov places the wipe; default --a)
           --overlap-in=0 (s: the pan starts this long before the walk ends)
@@ -30,7 +30,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import whip_pan as wp  # noqa: E402
+from photos import whip_pan as wp  # noqa: E402
 
 FPS, WALK, PAN, PUSH, SUB = 24, 6.0, 1.0, 3.0, 5
 AIM = (-15.0, 30.0)          # Q-FRONT's corner seen from the crossing (ENU m)

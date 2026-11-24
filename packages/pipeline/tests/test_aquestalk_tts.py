@@ -7,7 +7,7 @@ from unittest.mock import Mock, patch
 
 from support import import_pipeline
 
-aquestalk_tts = import_pipeline("aquestalk_tts")
+aquestalk_tts = import_pipeline("narration.aquestalk_tts")
 
 
 class AquesTalkTtsTests(unittest.TestCase):

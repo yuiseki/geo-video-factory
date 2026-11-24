@@ -1,5 +1,9 @@
 """Wikimedia Commons & Openverse API query and retry helpers for photo catalogs."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import json
 import sys
@@ -8,7 +12,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from photo_catalog_rules import _license_allowed, strip_html
+from photos.photo_catalog_rules import _license_allowed, strip_html
 
 USER_AGENT = "GeoVideoFactoryPhotoCollector/2.0 (https://github.com/yuiseki/geo-video-factory)"
 

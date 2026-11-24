@@ -5,7 +5,7 @@ Run inside Blender:
     --shot <shot.json> --project-dir <dir that shot paths are relative to> \
     --out <frame.png> [--engine EEVEE|CYCLES] [--t 0.0] [--samples 64]
 
-Geometry and camera math live in packages/pipeline/blender_geo.py (unit tested without bpy).
+Geometry and camera math live in packages/pipeline/buildings/blender_geo.py (unit tested without bpy).
 """
 from __future__ import annotations
 
@@ -22,7 +22,7 @@ from mathutils import Matrix
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pipeline"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import blender_geo as bg  # noqa: E402
+from buildings import blender_geo as bg  # noqa: E402
 import landmarks  # noqa: E402
 import night_buildings  # noqa: E402
 import photo_projection  # noqa: E402
@@ -53,7 +53,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--pick-out", default=None, help="write sign boxes (wall-anchored) here and skip rendering")
     parser.add_argument("--sign-boxes", default=None, help="JSON of sign boxes to light on PLATEAU walls")
     parser.add_argument("--sign-strength", type=float, default=4.0)
-    parser.add_argument("--signal-poles", default=None, help="JSON from pipeline/street_lights.py")
+    parser.add_argument("--signal-poles", default=None, help="JSON from pipeline/buildings/street_lights.py")
     parser.add_argument("--lamp-power", type=float, default=1500.0)
     parser.add_argument("--wall-billboards", default=None, help="JSON of real-photo signs on picked wall boxes")
     parser.add_argument("--landmarks", default=None, help="JSON of landmark masses replacing PLATEAU boxes")

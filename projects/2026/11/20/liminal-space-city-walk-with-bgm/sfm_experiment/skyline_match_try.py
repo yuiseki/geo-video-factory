@@ -1,7 +1,7 @@
 """skyline_match_try.py <sparse_model_dir> <images_dir> <placement.json> <plateau tris.npz> <out_dir>
                         [grid_m=2] [margin_m=30] [heights above the ground, comma separated = 1.5,3,4.5,6,7.5]
 Experiment: can one photograph be placed on PLATEAU by exhaustive search, with the line between the buildings
-and the sky as the only cost (packages/pipeline/skyline_match.py)? The photos here have known poses (an SfM
+and the sky as the only cost (packages/pipeline/geo/skyline_match.py)? The photos here have known poses (an SfM
 model placed on PLATEAU), so the answer can be checked. Roll and pitch are taken from the known pose; the
 search covers the standing point (a grid around the cameras, a few heights) and every turn about the vertical.
 Stage 1 (always): the sky masks, the photo's roofline against the model's at the true pose (masks.jpg,
@@ -21,7 +21,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import skyline_match as sm  # noqa: E402
+from geo import skyline_match as sm  # noqa: E402
 
 model, images, placement, tris_path, out = sys.argv[1:6]
 GRID = float(sys.argv[6]) if len(sys.argv) > 6 else 2.0

@@ -1,5 +1,9 @@
 """Freeze the PLATEAU 3D Tiles visible in a scene into fixed, local GLB assets."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import argparse
 from concurrent.futures import ThreadPoolExecutor
@@ -311,9 +315,9 @@ def prepare_tiles(
         optimized = _resize_glb_textures(glb, limit)
         model_path.write_bytes(optimized)
         try:
-            from building_appearance import extract_glb_feature_centroids
+            from buildings.building_appearance import extract_glb_feature_centroids
         except ImportError:
-            from .building_appearance import extract_glb_feature_centroids
+            from buildings.building_appearance import extract_glb_feature_centroids
         rtc_floats = [float(v) for v in rtc]
         return {
             'source': item['uri'], 'glb': model_path.relative_to(output_dir).as_posix(),
@@ -361,17 +365,17 @@ def main() -> None:
     manifest = prepare_tiles(args.tileset_url, args.bbox, args.out, max_texture_dimension=args.max_texture_dimension, workers=args.workers)
     ortho = None
     if args.orthophoto:
-        from building_appearance import apply_orthophoto_palette
+        from buildings.building_appearance import apply_orthophoto_palette
         manifest = apply_orthophoto_palette(args.out, args.orthophoto, seed=args.seed)
         with Image.open(args.orthophoto) as source:
             ortho = source.convert('RGB')
     citygml_features = _load_features(args.citygml_geojson, '--citygml-geojson') if args.citygml_geojson else None
     if citygml_features is not None:
-        from building_appearance import apply_citygml_colors, build_osm_proxy_tiles
+        from buildings.building_appearance import apply_citygml_colors, build_osm_proxy_tiles
         manifest = apply_citygml_colors(args.out, citygml_features)
         manifest = build_osm_proxy_tiles(citygml_features, args.bbox, args.out, kind='citygml-proxy', seed=args.seed, orthophoto=ortho)
     if args.osm_geojson:
-        from building_appearance import build_osm_proxy_tiles
+        from buildings.building_appearance import build_osm_proxy_tiles
         features = _load_features(args.osm_geojson, '--osm-geojson')
         plateau_ids = {str(identifier) for tile in manifest.get('tiles', []) for identifier in tile.get('ids', [])}
         manifest = build_osm_proxy_tiles(features, args.bbox, args.out, plateau_ids=plateau_ids, seed=args.seed, orthophoto=ortho, plateau_footprints=citygml_features)

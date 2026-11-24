@@ -122,7 +122,7 @@ def fetch_osm_buildings(bbox: list[float], out_path: Path) -> list[dict]:
 def prepare_orthophoto(bbox: list[float], out_path: Path, bounds_path: Path) -> tuple[Image.Image, list[float]]:
     if out_path.exists() and bounds_path.exists():
         return Image.open(out_path).convert("RGB"), json.loads(bounds_path.read_text(encoding="utf-8"))
-    from seasonal_ortho import fetch_gsi_ortho_mosaic
+    from geo.seasonal_ortho import fetch_gsi_ortho_mosaic
 
     mosaic, bounds = fetch_gsi_ortho_mosaic(tuple(bbox), zoom=16)
     img = Image.fromarray(mosaic).convert("RGB")
@@ -170,12 +170,12 @@ def main() -> None:
     sota_manifest_path = sota_dir / "manifest.json"
 
     sys.path.insert(0, str(repository_dir / "packages/pipeline"))
-    from plateau_3d import prepare_tiles
-    from building_appearance import apply_orthophoto_palette
-    from building_heights import calibrate_height_model, footprint_area_m2
-    from city_proxy import build_city_proxy_tile, wall_hex
-    from glb_spatial import extract_glb_feature_heights
-    from gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
+    from buildings.plateau_3d import prepare_tiles
+    from buildings.building_appearance import apply_orthophoto_palette
+    from buildings.building_heights import calibrate_height_model, footprint_area_m2
+    from buildings.city_proxy import build_city_proxy_tile, wall_hex
+    from buildings.glb_spatial import extract_glb_feature_heights
+    from buildings.gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
 
     if not cache_is_complete(baseline_manifest_path):
         manifest = prepare_tiles(

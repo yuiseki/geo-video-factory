@@ -1,11 +1,11 @@
 # 3D Buildings
 
-3D Buildings は `pipeline/plateau_3d.py` で3D Tilesをシーン範囲に切り出し、GLBとローカルマニフェストに固定した後、rendererのMapLibreカスタムレイヤーで描画します。再生中にPLATEAUの配信サーバーへタイルを問い合わせません。
+3D Buildings は `pipeline/buildings/plateau_3d.py` で3D Tilesをシーン範囲に切り出し、GLBとローカルマニフェストに固定した後、rendererのMapLibreカスタムレイヤーで描画します。再生中にPLATEAUの配信サーバーへタイルを問い合わせません。
 
 ## データ準備
 
 ```sh
-python3 packages/pipeline/plateau_3d.py 'https://example.invalid/tileset.json' \
+python3 packages/pipeline/buildings/plateau_3d.py 'https://example.invalid/tileset.json' \
   --bbox 139.775 35.680 139.810 35.718 \
   --out projects/example/assets/plateau \
   --orthophoto projects/example/assets/ortho.png \
@@ -18,7 +18,7 @@ python3 packages/pipeline/plateau_3d.py 'https://example.invalid/tileset.json' \
 
 ### 外観パレットと OSM 補完
 
-- `--orthophoto` を指定すると、`pipeline/building_appearance.py` が PLATEAU 各建物の footprint 領域（または重心の近傍）から代表色をサンプリングし、屋上緑化・防水シート等の緑・紫成分を抑えて明度・彩度を調和させた `facade_colors` を `manifest.json` に記録します。元の写真テクスチャのみを持つ建物は `null` となり、元のテクスチャが保持されます。
+- `--orthophoto` を指定すると、`pipeline/buildings/building_appearance.py` が PLATEAU 各建物の footprint 領域（または重心の近傍）から代表色をサンプリングし、屋上緑化・防水シート等の緑・紫成分を抑えて明度・彩度を調和させた `facade_colors` を `manifest.json` に記録します。元の写真テクスチャのみを持つ建物は `null` となり、元のテクスチャが保持されます。
 - `--osm-geojson` を指定すると、PLATEAU の建物 ID および `feature_centroids` に含まれない OSM 建物ポリゴン（`Polygon` / `MultiPolygon`、穴あきポリゴン対応）を `height` または `building:levels × 3m` で押し出し、`_BATCHID` と `facade_colors` を備えたローカル GLB（`kind: "osm-proxy"`）として `manifest.json` へ追記します。
 - `--citygml-geojson` に CityGML から用意した建物 footprint と高さの FeatureCollection を渡すと、詳細タイルに ID がない建物を `citygml-proxy` として追加します。`height` はメートル、位置は WGS84 の経度・緯度で指定します。既存の `color` 属性（未調和の明色や屋上緑化色は自動調和）またはオルソ由来の色を利用します。CityGML 自体の GeoJSON 変換はこの CLI の対象外です。
 - 両方の GeoJSON を渡した場合、OSM 建物と CityGML footprint の交差面積が OSM 建物の面積の 10% を超える建物は除外します。CityGML footprint を渡さない場合は従来の重心内包判定にフォールバックするため、部分重複の検出は不完全です。この空間判定には Shapely 2 が必要です。Draco 圧縮タイルの建物単位の位置・色の抽出には DracoPy 2 が必要です。両方とも `packages/pipeline/requirements-dev.txt` に記載しています。

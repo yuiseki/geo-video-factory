@@ -4,13 +4,13 @@
 
 | スクリプト | 本体 |
 |---|---|
-| `plateau_tris.py` | `packages/pipeline/plateau_mesh.py` |
-| `single_photo_place_try.py` | `packages/pipeline/photo_place.py` |
-| `refill_boxes.py` | `packages/pipeline/people_removal.py` の `refill` |
-| `make_path.py` | `packages/pipeline/camera_path.py` |
-| `check_frames.py` | `packages/pipeline/frame_check.py` |
+| `plateau_tris.py` | `packages/pipeline/buildings/plateau_mesh.py` |
+| `single_photo_place_try.py` | `packages/pipeline/geo/photo_place.py` |
+| `refill_boxes.py` | `packages/pipeline/photos/people_removal.py` の `refill` |
+| `make_path.py` | `packages/pipeline/video/camera_path.py` |
+| `check_frames.py` | `packages/pipeline/video/frame_check.py` |
 
-それ以外はテストのない使い捨てで、共通パッケージの正本ではありません。続けるなら、使う部分を `packages/pipeline/` へ移し、テストを付けてから使います (振り向きのタイミング、シャッター、ワイプの計算は `packages/pipeline/whip_pan.py` へ移し、テストを付けた)。結果と判断は `../HANDOVER-2026-11-22.md` の「残っていること」7 に書いています。
+それ以外はテストのない使い捨てで、共通パッケージの正本ではありません。続けるなら、使う部分を `packages/pipeline/` へ移し、テストを付けてから使います (振り向きのタイミング、シャッター、ワイプの計算は `packages/pipeline/photos/whip_pan.py` へ移し、テストを付けた)。結果と判断は `../HANDOVER-2026-11-22.md` の「残っていること」7 に書いています。
 
 必要なもの: プロジェクトの venv に `pycolmap==4.2.1` (BSD-3-Clause)、`scipy`、`Pillow`、`DracoPy`。写真と PLATEAU の GLB は `flyover/assets/` (commit しない) にあります。下の `<work>` は作業用のディレクトリで、commit しません。
 
@@ -29,8 +29,8 @@
 | 9 | `export_projection.py <model> <tris.npz> <align.json> 5 <images> <proj_dir> 350 <key>...` → `blender -b --factory-startup -P blender_projection.py -- <repo> <proj_dir> <out_dir> <render_key> <key>... [--clip]` | 7 の全体合わせのカメラを Blender の投影器にし (`packages/blender/photo_projection.py`)、写真を PLATEAU (半径 350 m、13 万面) に貼って別の視点から描く | 11/23: 018 + 023 で、右へ 15 m、前へ 20 m、上へ 8 m 動かしても TSUTAYA の建物が立体として崩れない。右 12 m + 前 6 m の 5 秒の動画 (120 枚) を 15 秒で書き出せた。残る問題は後述 |
 | 10 | `place_on_footprints.py <model> <images> <overpass buildings.json> <名前の一部> <prefix>` | 建物 1 棟のモデルを地図へ置く。上方向はカメラの横軸とカメラ位置の広がりの共通の法線、位置は EXIF の GPS の重心の近く、向きは壁の点 (上から見た図) を OSM の建物の輪郭に重ねる全探索 (向き × 縮尺 × ずれ) | 自分で撮った 40 枚 (1 台、3 分): 壁の点の 90% が輪郭から 2 m 以内。向きは決まる。縮尺は 3.1〜4.2 m/単位の解が並び、決まらない |
 | 11 | `place_on_plateau.py <model> <10 の json> <tris.npz> <prefix>` | 10 の解を初期値に、縮尺を 24 段に振り、各縮尺で向きとずれ (東・北・上) を PLATEAU の面までの距離で合わせ直す | 最小は 1 つ (4.0 m/単位)。点の中央値 0.52 m、76% が 1 m 以内。3.8〜4.4 は差が 2% 以内 |
-| 12 | `facade_texture_try.py <model> <images> <11 の json> <overpass buildings.json> <名前の一部> <out_dir> [texel_m] [upright\|lean\|relief]` | 建物の形をガイドに、外壁の正射テクスチャを作る。OSM の輪郭を壁の点へ寄せて垂直の面を立て、面の上の点を 1 つずつ各写真へ投影して画素を読み (`packages/pipeline/facade_ortho.py`、テストあり)、写真どうしの中央値を取る | 40 枚、1 棟の西面: 輪郭 326 m のうち点のある 104 m、5 cm/テクセルで 2171 × 1200。面の 88% がどれかの写真に写り、中央値で 13〜14 枚が重なる。面を点へ寄せる `relief` で屋上のロゴまで読める |
-| 13 | `skyline_match_try.py <model> <images> <placement.json> <tris.npz> <out_dir> [grid_m] [margin_m] [heights]` | 評価関数の項を 1 つだけ (建物と空の境目、`packages/pipeline/skyline_match.py`) 使い、写真 1 枚ごとに立ち位置と方位を全幅探索する。ロールと上下の傾きは既知とする。`grid_m` を 0 にすると、与えた姿勢での費用だけを出す | 1 棟の 40 枚、2 m の格子 × 高さ 5 段の 9,250 か所 × 0.5° 刻みの 720 方位。11 の置き方を正解とすると、1 位は中央値で 27.4 m 離れ、10 m 以内は 0 枚。正解のほうが違っていた (14) |
+| 12 | `facade_texture_try.py <model> <images> <11 の json> <overpass buildings.json> <名前の一部> <out_dir> [texel_m] [upright\|lean\|relief]` | 建物の形をガイドに、外壁の正射テクスチャを作る。OSM の輪郭を壁の点へ寄せて垂直の面を立て、面の上の点を 1 つずつ各写真へ投影して画素を読み (`packages/pipeline/buildings/facade_ortho.py`、テストあり)、写真どうしの中央値を取る | 40 枚、1 棟の西面: 輪郭 326 m のうち点のある 104 m、5 cm/テクセルで 2171 × 1200。面の 88% がどれかの写真に写り、中央値で 13〜14 枚が重なる。面を点へ寄せる `relief` で屋上のロゴまで読める |
+| 13 | `skyline_match_try.py <model> <images> <placement.json> <tris.npz> <out_dir> [grid_m] [margin_m] [heights]` | 評価関数の項を 1 つだけ (建物と空の境目、`packages/pipeline/geo/skyline_match.py`) 使い、写真 1 枚ごとに立ち位置と方位を全幅探索する。ロールと上下の傾きは既知とする。`grid_m` を 0 にすると、与えた姿勢での費用だけを出す | 1 棟の 40 枚、2 m の格子 × 高さ 5 段の 9,250 か所 × 0.5° 刻みの 720 方位。11 の置き方を正解とすると、1 位は中央値で 27.4 m 離れ、10 m 以内は 0 枚。正解のほうが違っていた (14) |
 | 14 | `skyline_refit_try.py <photos.npz> <model_grid.npz> <out_dir> <合わせる写真> <読む写真> [result.json] [placement.json]` | カメラ全体をまとめて動かし (中心まわりの縮尺と回転、ずれ)、13 の費用の平均を最小にする。合わせに使わない写真で読む | 半分ずつ別々に合わせて、ほぼ同じ動き (北へ −22 m と −18 m、回転 −6.5° と −5.0°)。費用は 1.50 → 0.51、使っていない写真で 1.67 → 0.74 |
 | 15 | `skyline_points_try.py <photos.npz> <model_grid.npz> <model> <placement.json> <tris.npz> <out_dir> <合わせる写真>` | 14 の探索の上位 400 升の中で、SfM の点と PLATEAU の面の距離が最小になる動きを探す | 両方を満たす動きが 1 つ: 縮尺 ×0.987、回転 −6.3°、北へ −21.0 m、下へ 1.6 m。空の費用 0.61 (最小 0.60)、点の中央値 0.53 m、76% が 1 m 以内、カメラは地面から 3.3 m |
 | 16 | `single_photo_place_try.py <photo> <tris.npz> <out_dir> <east> <north> <hfov_deg> [--radius --grid --pitch=a:b:step --roll --fov-range --sky=blue\|bright\|dark --heading=<from>:<to>]` | 写真 1 枚を SfM なしで PLATEAU に置く。与えた点のまわりの立ち位置 × 向き × 上向き × ロール × 画角を全部試し、建物と空の境目の費用が最小の姿勢を書き出す (`result.json`、`overlay.jpg`、`cams.json`、`mesh.npz`)。9 の投影へそのまま渡せる | 昼の写真は費用 0.4〜0.5 で重ね描きが合う (東京駅、銀座、渋谷 2 枚)。夜は 1.5〜1.6 |
@@ -72,7 +72,7 @@
 - COLMAP のカメラから Blender の投影器への変換: 世界→カメラの回転 Rw の転置の列を、Blender の X = x、Y = −y、Z = −z にする (Blender は −Z を向き、+Y が上)。縦の画角は 2 atan(高さ / 2 / 焦点距離)。主点は中央、半径方向の歪み (SIMPLE_RADIAL の k ≈ 0.03) は無視した。
 - 1 つの相似変換では全部の写真は合わない。遠いカメラ群とのつながりが弱く、モデルが少し歪んでいると考える。
 - 横断歩道をまっすぐ歩く (11/23、v0.8.0、`walk_shot.py rank|plan|encode`): 振り向き (v0.4.0〜v0.7.0) は、どの版も違和感が残った。向きを変えると、写真が写していない面が画面に入り、別の写真へ切り替える必要が出る。首を振らず、1 枚の写真の中を、横断歩道に沿って一定の速さで歩く形に変えた。写真の軸に沿って前へ進む間は、画面に入るものはすべて元の目の位置からも画角の内側にあった (軸からの横のずれ d、奥行き z の点は、前へ進んだカメラの画角に入るなら、元の位置では d / z がさらに小さい)。だから、横断歩道の上で、横断歩道の向きに撮った写真が要る。
-- 写真と横断歩道は測って選ぶ (`packages/pipeline/photo_walk.py`、テストあり): 写真 × 横断歩道 × 向きの全部について、歩く線 (横断歩道の中心線に平行で、写真の目の位置を通る線。幅の内側に収める) の上の 9 点で、画面のうち写真が写していた割合 (地面より上の光線だけ数える。地面は合成で描くため) を測る。合格の条件は、割合の最小が 0.95 以上、写真の目の位置から線までが 2 m 以内、目の高さが地面から 4 m 以内。渋谷の 62 枚 × 6 本 × 2 向き = 744 通りで、合格は 1 通りだけだった (018、斜めの横断歩道を南東から北西へ、29.8 m、写真の軸との差 0.2°、中心線から右へ 1.7 m)。次点は、位置が横断歩道から 5〜14 m 離れているか (023、039、006)、割合が 0.91 以下 (049) で落ちる。遮蔽は見ていないので、合格は「画角の上では足りる」までを言う。
+- 写真と横断歩道は測って選ぶ (`packages/pipeline/photos/photo_walk.py`、テストあり): 写真 × 横断歩道 × 向きの全部について、歩く線 (横断歩道の中心線に平行で、写真の目の位置を通る線。幅の内側に収める) の上の 9 点で、画面のうち写真が写していた割合 (地面より上の光線だけ数える。地面は合成で描くため) を測る。合格の条件は、割合の最小が 0.95 以上、写真の目の位置から線までが 2 m 以内、目の高さが地面から 4 m 以内。渋谷の 62 枚 × 6 本 × 2 向き = 744 通りで、合格は 1 通りだけだった (018、斜めの横断歩道を南東から北西へ、29.8 m、写真の軸との差 0.2°、中心線から右へ 1.7 m)。次点は、位置が横断歩道から 5〜14 m 離れているか (023、039、006)、割合が 0.91 以下 (049) で落ちる。遮蔽は見ていないので、合格は「画角の上では足りる」までを言う。
 - 上向きは 3° にした (`plan --pitch=3`): 写真の上向き (14°) のままだと、縞が画面の下 3 分の 1 にしか入らない。3° では縞が下半分に入り、割合の最小は 0.993 で変わらない (上向きを下げて増えるのは地面で、地面は写真の仕事ではない)。歩きの揺れは付けていない。縁石に近い終わりの数秒は、縞が画面から出て、建物の写真が引き伸ばされて甘くなる。
 - 形をガイドにした外壁のテクスチャ (11/23、`facade_texture_try.py`): 写真だけから形を作る SfM や 3DGS ではなく、すでにある形 (OSM の輪郭、PLATEAU の地面の高さ) に沿って写真の外壁を集める課題として組んだ。既存研究と既存実装の採否は `../research/facade_texturing_related_work.md`。面の上の点から写真へ投影する向き (出力から回す) にすると、射影変換も消失点もいらず、歪みの補正も投影の式に入る。
 - OSM の輪郭はそのままでは面にならない: 壁の点は輪郭より中央値で 0.37 m 外 (−1.3〜+4.7 m)。0.5 m ごとに点の中央値へ寄せた線 (`fit_curtain`) を面の足元にした。

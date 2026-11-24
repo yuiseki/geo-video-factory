@@ -45,6 +45,6 @@
 |---|---|---|
 | 写真と形状の位置合わせ | `sfm_experiment/place_on_footprints.py`、`place_on_plateau.py` (1 か所で撮った写真の組) | 1 枚ずつの位置合わせ。PLATEAU の面の上で写真どうしが一致するように姿勢を直す |
 | 写真の選択 | 全部使う | OpenFACADES の可視範囲、PLATEAU SNAP の「撮れる面」 |
-| 正射変換 | `packages/pipeline/facade_ortho.py` | PLATEAU SNAP の面ごとの処理 |
+| 正射変換 | `packages/pipeline/buildings/facade_ortho.py` | PLATEAU SNAP の面ごとの処理 |
 | 統合 | 中央値、最良の 1 枚 | orthofacade の隠れの扱い、mvs-texturing の継ぎ目の色合わせ |
 | 写っていない所 | なし | 生成 (ComfyUI)。形を保つ条件づけは別の試験 |

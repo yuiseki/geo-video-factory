@@ -14,9 +14,9 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[5] / "packages/pipeline"))
-from photo_push import write_push_in  # noqa: E402  (sub-pixel push-in; zoompan juddered)
+from photos.photo_push import write_push_in  # noqa: E402  (sub-pixel push-in; zoompan juddered)
 
-W, H, FPS = 1920, 1080, 24  # 1080p: packages/pipeline/video_qa.py requires it for YouTube
+W, H, FPS = 1920, 1080, 24  # 1080p: packages/pipeline/video/video_qa.py requires it for YouTube
 HOLD, FADE = 5.5, 1.5  # seconds on screen per photo, crossfade length
 ZOOM = 0.08  # push-in over HOLD: a slow step forward
 PAN = 0.15  # and the head turns: each shot slides sideways across 13% of the photo, alternating right and left

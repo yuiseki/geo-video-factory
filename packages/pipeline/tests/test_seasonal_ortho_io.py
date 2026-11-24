@@ -17,7 +17,7 @@ from pyproj import Transformer
 
 from support import import_pipeline
 
-seasonal_ortho = import_pipeline('seasonal_ortho')
+seasonal_ortho = import_pipeline('geo.seasonal_ortho')
 
 # A 32x32 px raster of four 16x16 tiles, 10 m pixels, already in Web Mercator.
 ORIGIN_X, ORIGIN_Y, RES = 15_440_000.0, 4_210_000.0, 10.0

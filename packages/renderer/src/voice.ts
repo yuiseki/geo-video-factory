@@ -132,7 +132,7 @@ export function buildAquesTalkArgs({ script, voiceId, speed, outFile, text, appD
 
 function synthAquesTalk(tts: TtsConfig, voice: VoiceConfig, text: string, file: string): void {
   const python = tts.aquestalk?.python ?? process.env.PYTHON?.trim() ?? 'python3';
-  const script = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..', '..', 'pipeline', 'aquestalk_tts.py');
+  const script = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..', '..', '..', 'pipeline', 'narration', 'aquestalk_tts.py');
   const appDir = tts.aquestalk?.appDir ?? process.env.AQUESTALK_APP_DIR?.trim();
   const args = buildAquesTalkArgs({
     script,

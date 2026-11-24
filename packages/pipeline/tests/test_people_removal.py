@@ -7,7 +7,7 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import people_removal as pr  # noqa: E402
+from photos import people_removal as pr  # noqa: E402
 
 
 def blank(w=100, h=60):

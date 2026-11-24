@@ -5,7 +5,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import photo_walk as pw  # noqa: E402
+from photos import photo_walk as pw  # noqa: E402
 
 
 def photo(x=0.0, y=0.0, z=1.6, bearing=0.0, pitch=0.0, fov_v=50.0, width=1920, height=1280, **more):

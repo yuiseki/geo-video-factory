@@ -7,7 +7,7 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import photo_push as pp  # noqa: E402
+from photos import photo_push as pp  # noqa: E402
 
 
 class CoverWindowTests(unittest.TestCase):

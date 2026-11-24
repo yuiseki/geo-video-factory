@@ -10,7 +10,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import ambient_bgm as bgm  # noqa: E402
+from narration import ambient_bgm as bgm  # noqa: E402
 
 SR = bgm.SR
 

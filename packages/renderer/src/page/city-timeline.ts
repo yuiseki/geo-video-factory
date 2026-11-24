@@ -85,7 +85,7 @@ const mix3 = (a: Rgb, b: Rgb, t: number): Rgb =>
 
 /**
  * Where the lights stand, in the scene's east / north / up meters. The ground shadows are baked
- * for this sun (packages/pipeline/city_proxy.py SHADOW_PER_M).
+ * for this sun (packages/pipeline/buildings/city_proxy.py SHADOW_PER_M).
  */
 export const SUN_POSITION: readonly [number, number, number] = [-300, -450, 450];
 export const FILL_POSITION: readonly [number, number, number] = [300, 200, 400];

@@ -4,12 +4,16 @@ Coordinates are local meters (x east, y north); vertices are written glTF Y-up a
 See city_proxy.py for how they are assembled into a renderer tile.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import json
 import math
 import struct
 
-from osm_proxy import _triangulate_polygon
+from buildings.osm_proxy import _triangulate_polygon
 
 ROOF_OVERHANG_M = 0.35
 # The renderer's sun stands at (-300, -450, 450) (east, north, up): shadows fall to the

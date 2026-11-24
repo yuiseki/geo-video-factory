@@ -27,7 +27,7 @@
 実データを読む書き出しは、ホストの資源制限ルールに従ってメモリと CPU の上限を掛けて流す。
 
 ```bash
-python3 packages/pipeline/chapter_pipeline.py projects/YYYY/MM/DD/<slug>/chapters.json --out projects/YYYY/MM/DD/<slug>/out/新しい版 --workers 3 --check-label-overlap
+python3 packages/pipeline/video/chapter_pipeline.py projects/YYYY/MM/DD/<slug>/chapters.json --out projects/YYYY/MM/DD/<slug>/out/新しい版 --workers 3 --check-label-overlap
 ```
 
 Pillow、Noto Sans CJK、ffmpeg、ffprobe、Node.js、Playwright、VOICEVOX が必要。各章は 1920×1080・24fps・H.264/AAC stereo で統一し、結合後に全編を音量正規化する。完成物は `episode.mp4`、章の開始秒は `chapters.json`。このパイプラインは BGM を混ぜないため、`bgm` 指定があれば停止する。BGM が必要なら結合後に権利と音量を確認して別途重ねる。既存の出力先は上書きしない。`--voice-cache` は既存キャッシュを章ごとに複製し、並列書き込みの衝突を避ける。実行中にタイル取得・ブラウザー・時間切れのエラーがあればログを確認し、修正して新しい出力先で再生成する。
@@ -51,10 +51,10 @@ MapLibre の `map.project` をカメラ更新後・各フレームで呼ぶた�
 - 章境界は音声込みで通して見聞きし、会話、無音カード、場所とカメラの到着が自然につながるか確認する。動画の冒頭・途中・末尾や章境界で、地図の欠け、ラベルの重なり・画面外への消失、字幕・写真・立ち絵の干渉、出典と読み間違いを確認する。
 - 完成動画の長さ、映像・音声のストリーム、各章の開始秒、出典を記録する。`v0.1.7` など版番号をファイル名に入れ、既存版を上書きしない。版を重ねて改善する際は `geo-video-art-direction` の [visual-review.md](../../geo-video-art-direction/references/visual-review.md) にあるビジュアル検品（縮小グレースケール構図・原寸実ウェイト・色以外の判別性）と版間振り返り表を用いる。
 - 結合後に BGM を重ねる場合は `geo-video-bgm`（[ducking-and-loudness.md](../../geo-video-bgm/references/ducking-and-loudness.md)）でダッキングと `-14 LUFS` 調整を行う。公開用サムネイルは `geo-video-thumbnail`（[thumbnail-design.md](../../geo-video-thumbnail/references/thumbnail-design.md)）で作る。
-- **仕上げ QA セット**: 完成 MP4（例: `episode.mp4`）に対して、`packages/pipeline/video_qa.py` で配信規格チェック（解像度・fps・`yuv420p`・`-14 LUFS` / True Peak）、黒画面・フリーズ・無音検知（`--content`）、均等間隔の 4×3 コンタクトシート（`contact.png`）、および変化点重視の適応的ストーリーボード（`--storyboard`）を出力して目視検品する。気になる区間は `video_inspect.py` の `zoom`（連続フレーム）や `frame --crop`（原寸拡大）で 2 段階確認し、必要に応じて Web 配信用軽量コピー（`episode-web.mp4`）も出力する。
+- **仕上げ QA セット**: 完成 MP4（例: `episode.mp4`）に対して、`packages/pipeline/video/video_qa.py` で配信規格チェック（解像度・fps・`yuv420p`・`-14 LUFS` / True Peak）、黒画面・フリーズ・無音検知（`--content`）、均等間隔の 4×3 コンタクトシート（`contact.png`）、および変化点重視の適応的ストーリーボード（`--storyboard`）を出力して目視検品する。気になる区間は `video_inspect.py` の `zoom`（連続フレーム）や `frame --crop`（原寸拡大）で 2 段階確認し、必要に応じて Web 配信用軽量コピー（`episode-web.mp4`）も出力する。
   ```bash
-  python3 packages/pipeline/video_qa.py out/episode.mp4 --platform youtube --content --contact out/contact.png --tiles 4x3 --storyboard out/storyboard.jpg --json
-  python3 packages/pipeline/video_inspect.py zoom out/episode.mp4 --start 12.0 --end 15.0 --out out/zoom.jpg
+  python3 packages/pipeline/video/video_qa.py out/episode.mp4 --platform youtube --content --contact out/contact.png --tiles 4x3 --storyboard out/storyboard.jpg --json
+  python3 packages/pipeline/video/video_inspect.py zoom out/episode.mp4 --start 12.0 --end 15.0 --out out/zoom.jpg
   ffmpeg -y -i out/episode.mp4 -c:v libx264 -crf 21 -preset veryfast -pix_fmt yuv420p -movflags +faststart out/episode-web.mp4
   ```
 - 公開はユーザーの具体的な依頼と既存の継続的な許可に従う。許可済みの配布先がある場合は配置し、コピー元との一致と URL の応答を確認する。

@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from support import import_pipeline
 
-video_qa = import_pipeline('video_qa')
+video_qa = import_pipeline('video.video_qa')
 
 
 def _sample_ffprobe_json(
@@ -287,7 +287,7 @@ class VideoQaTests(unittest.TestCase):
                 'pix_fmt': 'yuv420p', 'audio_codec': 'aac', 'channels': 2,
             }
             fake_sb = {'outputs': [str(sb)], 'keyframes': 12, 'timeline': 'TIMELINE', 'timestamps': [0.0]}
-            video_inspect = import_pipeline('video_inspect')
+            video_inspect = import_pipeline('video.video_inspect')
             with patch.object(video_qa, 'probe_media', return_value=ok_meta), \
                  patch.object(video_qa, 'measure_loudness', return_value={'lufs': -14.0, 'tp': -1.5, 'lra': 6.0}), \
                  patch.object(video_inspect, 'build_adaptive_storyboard', return_value=fake_sb) as mock_sb:

@@ -3,14 +3,18 @@ Every triangle of the PLATEAU tiles that plateau_3d.py prepared (<buildings_dir>
 in one local frame: metres east, north and up from the ellipsoid at <lon> <lat>. This is the mesh that the
 skyline search (skyline_match.py, photo_place.py) and the photo projection read; the renderer's own tiles stay
 as they are. Writes tris (n, 3, 3) float32 and origin (lon, lat). Draco-compressed tiles need DracoPy."""
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 import json
 import sys
 from pathlib import Path
 
 import numpy as np
 
-import glb_spatial as gs
-from plateau_3d import glb_chunks
+from buildings import glb_spatial as gs
+from buildings.plateau_3d import glb_chunks
 
 
 def enu_frame(lon, lat):

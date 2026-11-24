@@ -10,9 +10,9 @@ PROJECT = Path(__file__).resolve().parent
 REPO = PROJECT.parents[4]
 PIPELINE = REPO / 'packages' / 'pipeline'
 sys.path.insert(0, str(PIPELINE))
-from building_heights import calibrate_height_model
-from city_proxy import build_city_proxy_tile
-from gsi_footprints import fetch_gsi_buildings, dem_sampler, orthophoto_texture
+from buildings.building_heights import calibrate_height_model
+from buildings.city_proxy import build_city_proxy_tile
+from buildings.gsi_footprints import fetch_gsi_buildings, dem_sampler, orthophoto_texture
 
 BBOX = [140.69, 41.755, 140.78, 41.805]
 ASSETS = PROJECT / 'assets'

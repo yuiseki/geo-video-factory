@@ -134,7 +134,7 @@ bpy.context.active_object.data.materials.append(ground_mat)
 
 def add_crosswalks(path, lon0=139.70055, lat0=35.65950):
     """Zebra bars from crosswalks.json (OSM lines in lon/lat + width) as faint emissive quads on the ground."""
-    import blender_geo as bg
+    from buildings import blender_geo as bg
     k = math.cos(math.radians(lat0)) * 6378137 * math.pi / 180
     kn = 6378137 * math.pi / 180
     m = bpy.data.materials.new("zebra")

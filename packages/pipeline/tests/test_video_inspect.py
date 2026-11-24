@@ -7,8 +7,8 @@ from PIL import Image
 
 from support import import_pipeline
 
-storyboard = import_pipeline('storyboard')
-video_inspect = import_pipeline('video_inspect')
+storyboard = import_pipeline('video.storyboard')
+video_inspect = import_pipeline('video.video_inspect')
 
 
 def _solid_sig(val: int, size: int = 1000) -> bytes:

@@ -6,7 +6,7 @@ import numpy as np
 
 from support import import_pipeline
 
-seasonal_ortho = import_pipeline('seasonal_ortho')
+seasonal_ortho = import_pipeline('geo.seasonal_ortho')
 
 
 def _make_minimal_tiled_tiff(tile_offsets: list[int], tile_counts: list[int]) -> bytes:

@@ -84,7 +84,7 @@
 
 ## 3. 検品時の照合（STYLE.md × visual-review）
 
-[visual-review.md](visual-review.md) の完了前 4 段階チェックを行う際、各章のコンタクトシート（`packages/pipeline/video_qa.py --contact` 等）を横に並べ、次を照合する。
+[visual-review.md](visual-review.md) の完了前 4 段階チェックを行う際、各章のコンタクトシート（`packages/pipeline/video/video_qa.py --contact` 等）を横に並べ、次を照合する。
 
 1. **パレットと空・霧の一貫性**: 章の境界で背景の彩度・暗面（`tint`）・空や霧の色が意図せず段差になっていないか。
 2. **文字階層と実ウェイト**: `STYLE.md` で定めた 3 層のサイズ差が、実際の 1080p フレーム上で再現されているか。

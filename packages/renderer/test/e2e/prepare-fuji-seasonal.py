@@ -28,7 +28,7 @@ def main() -> None:
     seasons = ('summer', 'autumn', 'winter', 'spring')
     if not manifest.is_file() or not all((output / f'{name}.jpg').is_file() for name in seasons):
         sys.path.insert(0, str(renderer.parents[1] / 'packages/pipeline'))
-        import seasonal_ortho
+        from geo import seasonal_ortho
         seasonal_ortho.main([
             '--bbox', '138.61,35.24,138.86,35.48', '--zoom', '12', '--out-dir', str(output),
             '--season', 'summer=2024-07-15T00:00:00Z/2024-08-31T23:59:59Z',

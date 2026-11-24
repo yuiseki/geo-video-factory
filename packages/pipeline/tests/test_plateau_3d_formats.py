@@ -14,7 +14,7 @@ from PIL import Image
 
 from support import import_pipeline
 
-plateau_3d = import_pipeline('plateau_3d')
+plateau_3d = import_pipeline('buildings.plateau_3d')
 
 BBOX = [139.75, 35.65, 139.85, 35.75]
 
@@ -487,9 +487,9 @@ class CommandLineTests(unittest.TestCase):
                     '--orthophoto', str(ortho_path), '--citygml-geojson', str(root / 'citygml.geojson'), '--osm-geojson', str(root / 'osm.geojson')]
             stdout = io.StringIO()
             with patch.object(plateau_3d, 'prepare_tiles', return_value=prepared) as prepare, \
-                 patch('building_appearance.apply_orthophoto_palette', return_value=prepared) as palette, \
-                 patch('building_appearance.apply_citygml_colors', return_value=prepared) as colors, \
-                 patch('building_appearance.build_osm_proxy_tiles', return_value=proxied) as proxy, \
+                 patch('buildings.building_appearance.apply_orthophoto_palette', return_value=prepared) as palette, \
+                 patch('buildings.building_appearance.apply_citygml_colors', return_value=prepared) as colors, \
+                 patch('buildings.building_appearance.build_osm_proxy_tiles', return_value=proxied) as proxy, \
                  patch.object(sys, 'argv', argv), contextlib.redirect_stdout(stdout):
                 plateau_3d.main()
 
@@ -513,7 +513,7 @@ class CommandLineTests(unittest.TestCase):
             prepared = {'format': 'geo-video-factory.plateau-3d/1', 'tile_count': 2, 'tiles': [{'ids': []}]}
             stdout = io.StringIO()
             with patch.object(plateau_3d, 'prepare_tiles', return_value=prepared) as prepare, \
-                 patch('building_appearance.build_osm_proxy_tiles') as proxy, \
+                 patch('buildings.building_appearance.build_osm_proxy_tiles') as proxy, \
                  patch.object(sys, 'argv', [*self.ARGV, '--out', directory]), contextlib.redirect_stdout(stdout):
                 plateau_3d.main()
         self.assertEqual(prepare.call_args.kwargs, {'max_texture_dimension': 2048, 'workers': 3})
@@ -527,7 +527,7 @@ class CommandLineTests(unittest.TestCase):
                     path = Path(directory) / 'input.geojson'
                     path.write_text(json.dumps(content), encoding='utf-8')
                     with patch.object(plateau_3d, 'prepare_tiles', return_value={'tiles': []}), \
-                         patch('building_appearance.build_osm_proxy_tiles') as proxy, \
+                         patch('buildings.building_appearance.build_osm_proxy_tiles') as proxy, \
                          patch.object(sys, 'argv', [*self.ARGV, '--out', directory, flag, str(path)]), \
                          self.assertRaisesRegex(ValueError, f'{flag} must contain a GeoJSON FeatureCollection'):
                         plateau_3d.main()

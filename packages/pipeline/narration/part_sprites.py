@@ -5,7 +5,7 @@ and writes <outdir>/<face>_<eyes o|c>_<mouth o|c>.png plus sheet.png,
 matching the sprite layout expected by the renderer's reaction overlay.
 
 Usage:
-  python3 packages/pipeline/part_sprites.py <character.json> <parts_dir> <outdir>
+  python3 packages/pipeline/narration/part_sprites.py <character.json> <parts_dir> <outdir>
 """
 from __future__ import annotations
 

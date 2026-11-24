@@ -10,8 +10,8 @@ from PIL import Image, ImageDraw
 
 from support import import_pipeline
 
-appearance = import_pipeline('building_appearance')
-plateau_3d = import_pipeline('plateau_3d')
+appearance = import_pipeline('buildings.building_appearance')
+plateau_3d = import_pipeline('buildings.plateau_3d')
 
 
 class BuildingAppearanceTests(unittest.TestCase):

@@ -11,7 +11,7 @@ description: 地理解説動画のBGM選定・ローカル合成、VOICEVOX音�
 
 1. **声の帯域と音量を邪魔しない**: 解説動画では声が主役。BGM 単体を一定音量で敷くだけでなく、発話中は自動で音量を下げる（ダッキング）。
 2. **章パイプラインとは結合後に混ぜる**: `chapter_pipeline.py` は章結合時に `bgm` 指定を受け付けないため、結合済み動画（`episode.mp4`）に対して後処理でダッキング＋音量正規化を行う。
-3. **生 FFmpeg ではなく型付きヘルパーを使う**: 事前プローブ・ダッキング・2-pass 正規化は `packages/pipeline/ffmpeg_ops.py` を使い（上書き防止・`-c:v copy` ロスレス優先・`--dry-run` 対応）、仕上げ後に `packages/pipeline/video_qa.py` で LUFS と異常区間を検品する。
+3. **生 FFmpeg ではなく型付きヘルパーを使う**: 事前プローブ・ダッキング・2-pass 正規化は `packages/pipeline/video/ffmpeg_ops.py` を使い（上書き防止・`-c:v copy` ロスレス優先・`--dry-run` 対応）、仕上げ後に `packages/pipeline/video/video_qa.py` で LUFS と異常区間を検品する。
 4. **権利と出典を明確にする**: 外部音源を使う場合は利用規約・クレジット表記条件を記録し、権利確認を省きたい場合はローカルでライセンスクリーンな BGM を合成する。
 
 ## 読む資料

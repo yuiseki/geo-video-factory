@@ -8,7 +8,7 @@ blender -b --factory-startup -P packages/blender/render_plateau_shot.py -- \
   --out <frame.png> --engine EEVEE --samples 32
 ```
 
-- 座標とカメラの計算は `packages/pipeline/blender_geo.py` にあり、bpy なしで単体テストしています (`packages/pipeline/tests/test_blender_geo.py`)。
+- 座標とカメラの計算は `packages/pipeline/buildings/blender_geo.py` にあり、bpy なしで単体テストしています (`packages/pipeline/tests/test_blender_geo.py`)。
   - MapLibre のカメラ (center、zoom、pitch、bearing、縦の fov) を、地面 z=0 の上の Blender のカメラに変換します。
   - PLATEAU のタイルは、glTF の取り込み座標 (= `rtc` からの ECEF の差) を ENU に変換します。レンダラーの `gltfVertexToEnu` と同じ式です。
 - 読む項目: `plateauBuildings.manifest` / `heightOffset` / `groundPlane` / `billboards` / `streetProps`、`fov`、`sky`、`shots[0].keys`。

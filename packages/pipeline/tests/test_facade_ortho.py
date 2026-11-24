@@ -6,7 +6,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import facade_ortho as fo  # noqa: E402
+from buildings import facade_ortho as fo  # noqa: E402
 
 
 def look_at(eye, target):

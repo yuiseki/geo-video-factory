@@ -1,5 +1,9 @@
 """GLB/glTF spatial decoding, node hierarchy transforms, and WGS84 coordinate helpers."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import math
 import re
@@ -11,7 +15,7 @@ try:
 except ImportError:  # optional runtime acceleration for Draco-compressed GLBs
     DracoPy = None
 
-from plateau_3d import glb_chunks
+from buildings.plateau_3d import glb_chunks
 
 WGS84_A = 6378137.0
 WGS84_E2 = 6.69437999014e-3

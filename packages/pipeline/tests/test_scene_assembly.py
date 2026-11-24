@@ -12,7 +12,7 @@ from PIL import Image, ImageFont
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import scene_assembly as sa  # noqa: E402
+from video import scene_assembly as sa  # noqa: E402
 
 FF = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin"]
 

@@ -11,8 +11,8 @@ import numpy as np
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-import glb_spatial  # noqa: E402
-import plateau_mesh as pm  # noqa: E402
+from buildings import glb_spatial  # noqa: E402
+from buildings import plateau_mesh as pm  # noqa: E402
 
 # At lon 0, lat 0 the frame is easy to read: ECEF x is up, y is east, z is north. A tile's local glTF position
 # (x, y, z) sits at rtc + (x, -z, y), so east = -z, north = y, up = x.

@@ -54,7 +54,7 @@ def adaptive_sheets(src: str, out: pathlib.Path, budget: int) -> dict:
     pipeline_dir = pathlib.Path(__file__).resolve().parents[4] / 'packages' / 'pipeline'
     if str(pipeline_dir) not in sys.path:
         sys.path.insert(0, str(pipeline_dir))
-    import video_inspect
+    from video import video_inspect
     out.mkdir(parents=True, exist_ok=True)
     return video_inspect.build_adaptive_storyboard(
         pathlib.Path(src), out / 'storyboard.jpg',

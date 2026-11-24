@@ -18,6 +18,10 @@ The timeline arithmetic and the ffmpeg command lines are functions that return v
 checked without encoding anything; assemble() is the only function that runs them.
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import argparse
 import json
@@ -28,9 +32,9 @@ from typing import Any
 
 from PIL import Image
 
-import ambient_bgm
-import ffmpeg_ops
-import title_cards
+from narration import ambient_bgm
+from video import ffmpeg_ops
+from video import title_cards
 
 FFMPEG = ["ffmpeg", "-hide_banner", "-loglevel", "error", "-nostdin"]
 # The clips are intermediates that get encoded once more when they are joined: near-lossless, so that the

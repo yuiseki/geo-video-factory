@@ -4,8 +4,8 @@ import unittest
 
 from support import import_pipeline
 
-bh = import_pipeline('building_heights')
-gs = import_pipeline('glb_spatial')
+bh = import_pipeline('buildings.building_heights')
+gs = import_pipeline('buildings.glb_spatial')
 
 
 def _glb(local_verts, batch_ids):

@@ -23,7 +23,7 @@ python3 $S/shot_plan.py --cuts $D/cuts.txt --motion $D/motion.tsv --transcript $
 | 画面の切り替わり | `media.py` → `cuts.txt` | ffmpeg の scene が 0.25 を超えた時刻。カットの数と間隔。溶ける切り替え (ディゾルブ) は数に入りにくい |
 | 音量と無音 | `media.py` → `loudness.txt` | 統合ラウドネス (LUFS) とラウドネスレンジ。-50 dB 以下が 0.5 秒以上続く無音の数は、BGM が敷かれ続けているかの目安 (BGM があると 0 に近い) |
 | コマの一覧 | `media.py` → `sheets/` | 20 秒おきのコマを 4x4 に並べ、上部の黒帯に時刻 (映像を隠さない)。展開の速い動画は `--sheet-step 10`。変化点を重点抽出する場合は `--adaptive --budget 32` で `adaptive/storyboard.jpg` と `adaptive/timeline.txt` を出力 |
-| 局所の動き・文字 | `packages/pipeline/video_inspect.py` (`zoom` / `frame`) | 注目区間を `zoom --start <t1> --end <t2>` で連続フレーム展開し、細かい文字や図解は `frame --t <t> --crop x,y,w,h` で原寸確認する |
+| 局所の動き・文字 | `packages/pipeline/video/video_inspect.py` (`zoom` / `frame`) | 注目区間を `zoom --start <t1> --end <t2>` で連続フレーム展開し、細かい文字や図解は `frame --t <t> --crop x,y,w,h` で原寸確認する |
 | 章の頭 | `media.py` → `chapters/all.jpg` | チャプターごとに開始の 0.5、1.5、3 秒後のコマを 1 行に。区切りの絵の作りが並べて見える |
 | 見た目の変化 | `look_changes.py` | 明るさか色の濃さが 2 秒で大きく変わった回数 (1 分あたり) と、同じ見た目が続いた最長の秒数 |
 | カメラと写真の動き | `motion.py` | 0.5 秒ごとに寄る、引く、上下左右、止まっている、カットを判定し、時間の割合と速さの中央値を出す |

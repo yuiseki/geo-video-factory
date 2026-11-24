@@ -3,12 +3,12 @@
                             [--key=<name in cams.json>] [--mesh-radius=600] [--sky=blue|bright|dark] [--dark-below=45]
                             [--heading=<from>:<to>]
 Place ONE photograph on PLATEAU with nothing but the line between the buildings and the sky. The search and the
-files it writes are packages/pipeline/photo_place.py; this file keeps the command line of the experiment."""
+files it writes are packages/pipeline/geo/photo_place.py; this file keeps the command line of the experiment."""
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import photo_place  # noqa: E402
+from geo import photo_place  # noqa: E402
 
 if __name__ == "__main__":
     photo_place.main()

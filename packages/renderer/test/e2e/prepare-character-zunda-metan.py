@@ -50,7 +50,7 @@ def generate_from_psd(repo_root: Path, char_name: str, psd_path: Path, out_dir: 
     if not psd_path.is_file():
         raise FileNotFoundError(f"{ENV_VARS[char_name]} does not exist: {psd_path}")
     cfg_path = repo_root / ".agents/skills/geo-video-renderer/assets/template/characters" / f"{char_name}.json"
-    psd_script = repo_root / "packages/pipeline/psd_sprites.py"
+    psd_script = repo_root / "packages/pipeline/narration/psd_sprites.py"
     shutil.rmtree(out_dir, ignore_errors=True)
     subprocess.run(
         ["uv", "run", "--with", "psd-tools", "python", str(psd_script), str(cfg_path), str(psd_path), str(out_dir)],

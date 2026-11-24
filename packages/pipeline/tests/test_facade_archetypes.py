@@ -5,7 +5,7 @@ from PIL import Image
 
 from support import import_pipeline
 
-fa = import_pipeline('facade_archetypes')
+fa = import_pipeline('buildings.facade_archetypes')
 
 BBOX = [139.30, 35.74, 139.34, 35.77]
 

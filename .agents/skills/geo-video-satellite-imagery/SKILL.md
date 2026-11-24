@@ -10,7 +10,7 @@ Sentinel-2 L2A などの衛星データを使って、地理院オルソへの�
 ## 責務と使い分け
 
 - **Sentinel-2 L2A 検索・雲判定・季節色度転写**: Element84 Earth Search STAC API からのシーン検索、対象 `bbox` 内 SCL 雲マスク判定、HTTP Range による COG 読み込み、NDVI 植生マスクと CIE L\*a\*b\* 色転写による地理院オルソの季節変換、クレジット表記。→ [references/sentinel2-seasonal-ortho.md](references/sentinel2-seasonal-ortho.md)
-- **実装本体**: `packages/pipeline/seasonal_ortho.py`（単体テスト: `packages/pipeline/tests/test_seasonal_ortho.py`）
+- **実装本体**: `packages/pipeline/geo/seasonal_ortho.py`（単体テスト: `packages/pipeline/tests/test_seasonal_ortho.py`）
 
 ## 関連スキルとの境界
 

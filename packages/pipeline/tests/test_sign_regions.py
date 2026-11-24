@@ -6,7 +6,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import sign_regions as sr  # noqa: E402
+from buildings import sign_regions as sr  # noqa: E402
 
 
 def polygon_mask(w, h, corners):

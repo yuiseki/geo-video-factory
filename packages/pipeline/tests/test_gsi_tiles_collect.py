@@ -14,7 +14,7 @@ from PIL import Image
 
 from support import import_pipeline
 
-gsi_tiles = import_pipeline('gsi_tiles')
+gsi_tiles = import_pipeline('geo.gsi_tiles')
 
 CENTER = [135.50115, 34.66881]
 BASE = 'https://cyberjapandata.gsi.go.jp/xyz'

@@ -12,7 +12,7 @@ sys.modules.setdefault('psd_tools', fake_psd_tools)
 
 from support import import_pipeline
 
-psd_sprites = import_pipeline('psd_sprites')
+psd_sprites = import_pipeline('narration.psd_sprites')
 
 
 class Node:

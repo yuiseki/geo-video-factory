@@ -19,6 +19,10 @@ mask.jpg (the sky that was read), costmap.png (the cost of the best pose at ever
 overlay.jpg (the model's edges and roofline drawn on the photo at the found pose: the check that matters), and
 cams.json + mesh.npz for a projection of the photo onto the model. Nothing is printed during the coarse search.
 """
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 import json
 import multiprocessing
 import sys
@@ -29,7 +33,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage
 
-import skyline_match as sm
+from geo import skyline_match as sm
 
 BINS, TAU, WORK_W = 720, 5.0, 1300
 SKIES = ("blue", "bright", "dark")

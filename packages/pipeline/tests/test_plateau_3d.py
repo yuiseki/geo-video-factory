@@ -9,7 +9,7 @@ import io
 
 from support import import_pipeline
 
-plateau_3d = import_pipeline('plateau_3d')
+plateau_3d = import_pipeline('buildings.plateau_3d')
 
 
 class Plateau3DTilesTests(unittest.TestCase):
@@ -121,7 +121,7 @@ class Plateau3DTilesTests(unittest.TestCase):
             self.assertEqual(json.loads((Path(directory) / 'manifest.json').read_text())['format'], 'geo-video-factory.plateau-3d/1')
 
     def test_prepare_tiles_records_feature_centroids_from_batched_glb(self):
-        from building_appearance import _ecef
+        from buildings.building_appearance import _ecef
         rtc = list(_ecef(139.8, 35.7))
         binary = struct.pack('<3f', 0.0, 0.0, 0.0) + bytes([0, 0, 0, 0])
         document = {
@@ -173,7 +173,7 @@ class Plateau3DTilesTests(unittest.TestCase):
             osm_path.write_text(json.dumps({'type': 'FeatureCollection', 'features': []}), encoding='utf-8')
             fake_manifest = {'format': 'geo-video-factory.plateau-3d/1', 'tiles': [{'ids': ['gml-1', 'gml-2']}]}
             with patch.object(plateau_3d, 'prepare_tiles', return_value=fake_manifest), \
-                 patch('building_appearance.build_osm_proxy_tiles', return_value=fake_manifest) as mock_proxy, \
+                 patch('buildings.building_appearance.build_osm_proxy_tiles', return_value=fake_manifest) as mock_proxy, \
                  patch.object(sys, 'argv', ['plateau_3d.py', 'https://tiles.example/root.json', '--bbox', '139.7', '35.6', '139.9', '35.8', '--out', str(root / 'out'), '--osm-geojson', str(osm_path)]):
                 plateau_3d.main()
             mock_proxy.assert_called_once()

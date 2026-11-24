@@ -13,12 +13,12 @@ ROOT = Path(__file__).resolve().parents[5]
 PROJECT = Path(__file__).resolve().parent
 sys.path.insert(0, str(ROOT / 'packages/pipeline'))
 
-from building_appearance import apply_orthophoto_palette
-from building_heights import calibrate_height_model, footprint_area_m2
-from city_proxy import build_city_proxy_tile, wall_hex
-from glb_spatial import extract_glb_feature_heights
-from gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
-from plateau_3d import prepare_tiles
+from buildings.building_appearance import apply_orthophoto_palette
+from buildings.building_heights import calibrate_height_model, footprint_area_m2
+from buildings.city_proxy import build_city_proxy_tile, wall_hex
+from buildings.glb_spatial import extract_glb_feature_heights
+from buildings.gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
+from buildings.plateau_3d import prepare_tiles
 from shapely.geometry import Point, shape
 from shapely.strtree import STRtree
 

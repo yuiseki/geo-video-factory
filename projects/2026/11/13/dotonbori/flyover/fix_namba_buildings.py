@@ -19,10 +19,10 @@ SRC_CITY = SRC_AREA / "city"
 DST_CITY = FLYOVER / "assets/city/minami_fixed"
 
 sys.path.insert(0, str(ROOT / "packages/pipeline"))
-import glb_spatial
-from building_heights import calibrate_height_model, footprint_area_m2
-from city_proxy import build_city_proxy_tile
-from gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
+from buildings import glb_spatial
+from buildings.building_heights import calibrate_height_model, footprint_area_m2
+from buildings.city_proxy import build_city_proxy_tile
+from buildings.gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
 from shapely.geometry import Point, shape
 from shapely.strtree import STRtree
 

@@ -1,5 +1,9 @@
 """FFmpeg-backed adaptive storyboard, zoom, and full-frame inspection CLI."""
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import argparse
 import json
@@ -12,7 +16,7 @@ from typing import Any
 from PIL import Image
 
 try:
-    from storyboard import (
+    from video.storyboard import (
         TILES_PER_SHEET,
         choose_grid,
         compose_storyboard,
@@ -23,7 +27,7 @@ try:
         select_keyframes,
     )
 except ImportError:
-    from packages.pipeline.storyboard import (
+    from packages.pipeline.video.storyboard import (
         TILES_PER_SHEET,
         choose_grid,
         compose_storyboard,

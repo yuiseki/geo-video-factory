@@ -16,12 +16,12 @@
 坂本アヒル氏の立ち絵素材（PSD、PSDTool 対応：ずんだもん 2.3、四国めたん 2.1 で確認済み）を使う。PSD ファイル自体はリポジトリに含めない。
 
 ```bash
-uv run --with psd-tools python packages/pipeline/psd_sprites.py \
+uv run --with psd-tools python packages/pipeline/narration/psd_sprites.py \
   <project>/characters/zundamon.json \
   tmp/__models/zunda/ずんだもん立ち絵素材2.3.psd \
   <project>/assets/chara/zundamon
 
-uv run --with psd-tools python packages/pipeline/psd_sprites.py \
+uv run --with psd-tools python packages/pipeline/narration/psd_sprites.py \
   <project>/characters/metan.json \
   tmp/__models/metan/四国めたん立ち絵素材2.1.psd \
   <project>/assets/chara/metan

@@ -30,7 +30,7 @@ class _FakeHTTPResponse:
 class CC0PhotoCollectorTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
-        cls.mod = import_pipeline("cc0_photo_collector")
+        cls.mod = import_pipeline("photos.cc0_photo_collector")
 
     def test_is_strict_cc0_accepts_only_cc0(self):
         m = self.mod

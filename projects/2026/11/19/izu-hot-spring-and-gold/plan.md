@@ -139,4 +139,4 @@ Wikipedia「Category:静岡県の鉱山」および各鉱山記事・関連資�
    - 1978年伊豆大島近海の地震・持越鉱山鉱滓流出に関する静岡県防災資料等の確認。
 2. **素材収集・監査**：Wikimedia Commons 等の写真収集、出典・ライセンス記録、SVG断面図の設計。
 3. **台本執筆（`script.md`）**：VOICEVOX 読み上げを想定した掛け合い台本の作成。
-4. **ショット JSON 作成と章別レンダリング**：`packages/renderer` と `packages/pipeline/chapter_pipeline.py` を用いた制作・検品。
+4. **ショット JSON 作成と章別レンダリング**：`packages/renderer` と `packages/pipeline/video/chapter_pipeline.py` を用いた制作・検品。

@@ -6,6 +6,10 @@ view of the actual scene. Run as a script on a JSON with `width`, `height`, `ori
 `points`: [{"name", "lngLat", "altitudeM", "pixel": [u, v]}].
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import json
 import math
@@ -17,7 +21,7 @@ import numpy as np
 from scipy.optimize import least_squares
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import blender_geo as bg  # noqa: E402
+from buildings import blender_geo as bg  # noqa: E402
 
 PARAMS = ("x", "y", "z", "tilt", "bearing", "fov", "shift_px", "roll")
 

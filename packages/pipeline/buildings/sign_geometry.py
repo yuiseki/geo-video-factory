@@ -1,6 +1,6 @@
 """3D shape and placement of signs from real photos.
 
-Given a photo's camera (pipeline/camera_fit.py) and a sign's four corners in the photo
+Given a photo's camera (pipeline/video/camera_fit.py) and a sign's four corners in the photo
 (top-left, top-right, bottom-right, bottom-left), the corners are found in 3D either
 - on a known wall plane (one photo; walls come from building footprints), or
 - by triangulating rays from two or more photos (no wall needed).
@@ -10,6 +10,10 @@ Coordinates are local meters (x east, y north, z up), as in blender_geo.
 CLI: sign_geometry.py <signs.json> <out.json> [--rectify <photo> <dir>]
 """
 from __future__ import annotations
+import sys as _sys
+from pathlib import Path as _Path
+if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
+    _sys.path.insert(0, str(_Path(__file__).resolve().parents[1]))
 
 import json
 import math
@@ -20,7 +24,7 @@ from typing import Sequence
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import blender_geo as bg  # noqa: E402
+from buildings import blender_geo as bg  # noqa: E402
 
 Vec = tuple[float, float, float]
 

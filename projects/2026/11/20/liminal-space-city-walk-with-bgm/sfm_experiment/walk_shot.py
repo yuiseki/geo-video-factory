@@ -3,7 +3,7 @@
    walk_shot.py encode <work_dir> <out.mp4>
 
 A straight walk along a crosswalk through one projected photo, no head turn (v0.8.0 on). The photo and the
-crosswalk are chosen by measurement, not by eye: packages/pipeline/photo_walk.py rates how much of each
+crosswalk are chosen by measurement, not by eye: packages/pipeline/photos/photo_walk.py rates how much of each
 frame of the walk the photo saw, and says which gate a candidate misses.
 
 rank: survey.json is a list with one row per registered photo ({"name", "x", "y", "h" (eye height above
@@ -24,7 +24,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import photo_walk as pw  # noqa: E402
+from photos import photo_walk as pw  # noqa: E402
 
 FPS = 24
 ORIGIN = (139.70055, 35.65950)

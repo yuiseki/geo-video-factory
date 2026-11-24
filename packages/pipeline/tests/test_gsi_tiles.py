@@ -7,7 +7,7 @@ from PIL import Image
 
 from support import import_pipeline
 
-gsi_tiles = import_pipeline('gsi_tiles')
+gsi_tiles = import_pipeline('geo.gsi_tiles')
 
 
 def png_bytes(rgb: tuple[int, int, int], size: tuple[int, int] = (256, 256)) -> bytes:

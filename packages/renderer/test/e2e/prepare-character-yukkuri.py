@@ -62,7 +62,7 @@ def main() -> None:
     shutil.copy2(fixture, project / fixture.name)
 
     sys.path.insert(0, str(repo_root / "packages/pipeline"))
-    import part_sprites
+    from narration import part_sprites
 
     configs = {
         "reimu": ((45, 30, 30, 255), (210, 40, 50, 255)),

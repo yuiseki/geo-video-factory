@@ -1,13 +1,13 @@
 # 実写真から人と車を消す
 
-無人の街を見せたいが、実在の写真には人と車が写っている。生成画像を参照にせず、CC0 / CC BY の実写真を正本として残したまま、人と車だけを消す手順。実装は `packages/pipeline/people_removal.py`。
+無人の街を見せたいが、実在の写真には人と車が写っている。生成画像を参照にせず、CC0 / CC BY の実写真を正本として残したまま、人と車だけを消す手順。実装は `packages/pipeline/photos/people_removal.py`。
 
 ## 手順
 
 1. マスク (ComfyUI と SAM 3.1 が動いていること)
 
    ```bash
-   python3 -I packages/pipeline/people_removal.py mask <photo> <out_dir> [--url=http://127.0.0.1:8188]
+   python3 -I packages/pipeline/photos/people_removal.py mask <photo> <out_dir> [--url=http://127.0.0.1:8188]
    ```
 
    SAM 3.1 の文字指定の検出を 1 枚に 3 回かける。人、看板・画面、車。
@@ -35,7 +35,7 @@
 2. 塗り (torch と spandrel のある環境。ComfyUI の venv で動く)
 
    ```bash
-   <comfyui-venv>/bin/python -I packages/pipeline/people_removal.py fill big-lama.pt <out_dir> <photo> <mask_grown> ...
+   <comfyui-venv>/bin/python -I packages/pipeline/photos/people_removal.py fill big-lama.pt <out_dir> <photo> <mask_grown> ...
    ```
 
    LaMa (`big-lama.pt`, Apache-2.0) を長辺 1024 px までで全体にかけ、ぼかしたマスクで元の写真に重ねる。マスクの外の画素は元のまま。
@@ -71,8 +71,8 @@ LaMa の限界: 人の群れや車のような大きな穴は、なめらかで�
 人を消した写真の看板を、文字のない自前の絵に替える。
 
 ```bash
-python3 -I packages/pipeline/sign_regions.py <out_dir> <id> ...   # SAM の看板の層から 4 隅 -> <id>_signs.json
-python3 -I packages/pipeline/sign_replace.py <photo> <out_dir>/<id>_signs.json <out.png>
+python3 -I packages/pipeline/buildings/sign_regions.py <out_dir> <id> ...   # SAM の看板の層から 4 隅 -> <id>_signs.json
+python3 -I packages/pipeline/buildings/sign_replace.py <photo> <out_dir>/<id>_signs.json <out.png>
 ```
 
 - `sign_regions.py` は、看板の領域ごとに端の 4 点 (左上、右上、右下、左下) を取る。`fill` (領域の面積 ÷ 4 隅の四角形の面積) が 0.8 未満のもの、三角形のように 4 隅が取れないものは `skipped` に分ける。

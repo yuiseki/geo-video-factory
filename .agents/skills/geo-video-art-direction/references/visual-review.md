@@ -5,7 +5,7 @@
 ## 完了前の 4 段階チェック
 
 ### 1. 縮小・グレースケール構図チェック
-- 代表フレーム（または `--stills` 一覧、`packages/pipeline/video_qa.py --contact` の 4×3 コンタクトシート、あるいは変化点を重点抽出した `packages/pipeline/video_inspect.py storyboard`）を小さく表示し、必要なら彩度を落として見る。
+- 代表フレーム（または `--stills` 一覧、`packages/pipeline/video/video_qa.py --contact` の 4×3 コンタクトシート、あるいは変化点を重点抽出した `packages/pipeline/video/video_inspect.py storyboard`）を小さく表示し、必要なら彩度を落として見る。
 - ストーリーボードやコンタクトシートは、タイル上部の黒帯に時刻を出し映像自体を隠さない形式で出力し、四隅の要素や出典を見落とさないようにする。
 - **確認点**:
   - 主図（地図・写真・数値）の占有意図がひと目でわかるか。
@@ -13,7 +13,7 @@
   - 文字と図が団子にならず、視線の入口が 1 つに定まっているか。
 
 ### 2. 原寸字面・実ウェイトチェック
-- 100% 原寸のフレーム（または `python3 packages/pipeline/video_inspect.py frame <mp4> --t <時刻> --crop x,y,w,h --out check.png` で切り出した拡大図）を開き、タイトル・数値・地名・字幕・出典の文字を確認する。
+- 100% 原寸のフレーム（または `python3 packages/pipeline/video/video_inspect.py frame <mp4> --t <時刻> --crop x,y,w,h --out check.png` で切り出した拡大図）を開き、タイトル・数値・地名・字幕・出典の文字を確認する。
 - **確認点**:
   - 指定した太字（Black/Bold）が代替フォントで細く化けていないか。
   - 3 層のサイズ差（主見出し ＞ 凡例・地名 ＞ 出典・識別子）が保たれているか。
@@ -25,7 +25,7 @@
   - 数値・単位・ラベル語・線の太さや破線・凡例テキストだけで、どれが異常／高値／比較対象か判別できるか。
 
 ### 4. 通常速度の動画・干渉チェック
-- 静止画だけで完了とせず、音声付き MP4 を通常速度で再生する。チラつき・カメラの急加速・境界の干渉が疑われる区間は、`python3 packages/pipeline/video_inspect.py zoom <mp4> --start <t1> --end <t2> --out zoom.jpg` で連続フレームを並べて確認する。
+- 静止画だけで完了とせず、音声付き MP4 を通常速度で再生する。チラつき・カメラの急加速・境界の干渉が疑われる区間は、`python3 packages/pipeline/video/video_inspect.py zoom <mp4> --start <t1> --end <t2> --out zoom.jpg` で連続フレームを並べて確認する。
 - **確認点**:
   - 字幕（`subtitle`）、立ち絵（`reaction`）、出典、主図や地名ラベルが重なっていないか。
   - 動いている要素が「局面や移動の説明」になっており、意味のない常時揺れ・点滅になっていないか。

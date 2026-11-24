@@ -7,7 +7,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-import whip_pan as wp  # noqa: E402
+from photos import whip_pan as wp  # noqa: E402
 
 
 class TimingTests(unittest.TestCase):
