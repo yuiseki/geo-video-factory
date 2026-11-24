@@ -3,6 +3,6 @@ source = packages/pipeline
 omit = packages/pipeline/tests/*
 
 [report]
-fail_under = 70
+fail_under = 85
 show_missing = True
 skip_covered = False

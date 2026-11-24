@@ -40,7 +40,7 @@ python3 -m pip install -r packages/pipeline/requirements-dev.txt
 packages/test.sh
 ```
 
-Python 実装の行カバレッジは 70% を下回ると失敗する。`packages/test.sh` は TypeScript の型検査も実行する。GitHub Actions は push と pull request で同じスクリプトを実行する。
+Python 実装の行カバレッジは 85% を下回ると失敗する。`packages/test.sh` は TypeScript の型検査も実行する。GitHub Actions は push と pull request で同じスクリプトを実行する。
 
 - FFmpeg、ffprobe、Node.js の呼び出しは mock に置き換え、コマンドと結果検査をテストする。
 - EXIF と PSD は小さな fake オブジェクトで分岐をテストする。
