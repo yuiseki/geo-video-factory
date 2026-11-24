@@ -13,9 +13,10 @@ ground_ortho.py   地面。地理院シームレス空中写真を 1 枚の高�
 ground_from_above.py  地面。高い所から撮った写真を地面に写し、互いに合わせて中央値を取る
 orbit_render.py   Blender で周回、または交差点に立って見回す。--save で .blend
 contact_sheet.py  書き出したフレームの一覧
+frame_check.py    前後のフレームから明るさが飛んだフレーム (真っ黒、暗転) を探す
 ```
 
-テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above`
+テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above test_frame_check`
 
 実データを読む実行は、ホストの資源制限ルールに従ってメモリと CPU に上限を掛ける。
 
@@ -80,6 +81,8 @@ contact_sheet.py  書き出したフレームの一覧
   間に合わず真っ白に出るので 2 度描く。
 - 1 プロセスで数百フレームを描くと、GPU を他と分け合うホストでは途中で黙って止まることがあった
   (落ちずに眠る)。--only で数十フレームずつに分け、timeout を掛け、欠けた区間だけ描き直す。
+- Blender を 2 つ同時に同じ GPU で走らせると、片方が真っ黒か暗いフレームを成功として書き出した。
+  同時に走らせず、書き出した後に frame_check.py で明るさの飛びを見る。
 
 ## 出典
 
