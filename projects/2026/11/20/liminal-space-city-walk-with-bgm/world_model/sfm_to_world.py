@@ -93,14 +93,19 @@ def main(argv):
     for s in scales:
         start = (s, A, Cw_mean - s * A @ Cs_mean)
         sim, med, frac = sim3.fit_to_surface(sub, surf, normals, start, anchors=soft, trim=trim, rounds=6, tree=tree)
-        tried.append((med / max(frac, 1e-3), sim, med, frac, s))
-        print(f"  start scale {s:8.3f} -> scale {sim[0]:8.3f}, median {med:.2f} m, kept {frac:.2f}")
+        ok = sim3.plausible(sim, s)
+        near1 = sim3.support(sub, tree, sim, within=1.0) if ok else 0.0
+        tried.append((-near1, sim, med, frac, s))
+        print(f"  start scale {s:8.3f} -> scale {sim[0]:8.3f}, median {med:.2f} m, kept {frac:.2f}, "
+              f"within 1 m {near1:.2f}{'' if ok else ' (scale ran away, rejected)'}")
     tried.sort(key=lambda r: r[0])
+    if tried[0][0] == 0.0:
+        raise SystemExit("every start ran away: no alignment")
     sim, med, frac = sim3.fit_to_surface(pts, surf, normals, tried[0][1], anchors=soft, trim=trim, rounds=10, tree=tree)
     print(f"fit: scale {sim[0]:.4f}, median distance {med:.2f} m over {frac:.0%} of the points")
 
     cams, report = {}, {"scale": sim[0], "turn": sim[1].tolist(), "shift": sim[2].tolist(), "median_m": med,
-                        "kept": frac, "points": len(pts), "starts": [[r[4], r[1][0], r[2], r[3]] for r in tried],
+                        "kept": frac, "within_1m": sim3.support(pts, tree, sim), "points": len(pts), "starts": [[r[4], r[1][0], r[2], r[3]] for r in tried],
                         "anchors": {}}
     for name, (Rs, Cs, cam) in images.items():
         Rw, eye = sim3.camera(sim, Rs, Cs)

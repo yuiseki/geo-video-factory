@@ -104,3 +104,20 @@ def fit_to_surface(points, surf_pts, surf_normals, sim0, anchors=(), anchor_sigm
         d2 = np.abs(np.einsum("ij,ij->i", apply(sim, P) - Q, N))
         med, frac = float(np.median(d2)), float(keep.mean())
     return sim, med, frac
+
+
+def support(points, tree, sim, within=1.0):
+    """Fraction of the points that land within `within` metres of the surface samples in `tree`.
+
+    This, not the median residual, is what to compare fits by: a fit that
+    shrinks the whole cloud onto one wall has a perfect median and is wrong,
+    and it is caught by also bounding how far the scale may drift (see
+    plausible()).
+    """
+    d, _ = tree.query(apply(sim, np.asarray(points, float)))
+    return float((d < within).mean())
+
+
+def plausible(sim, start_scale, drift=1.6):
+    """False when the refined scale left [start/drift, start*drift]: the cloud collapsed or blew up."""
+    return start_scale / drift <= sim[0] <= start_scale * drift

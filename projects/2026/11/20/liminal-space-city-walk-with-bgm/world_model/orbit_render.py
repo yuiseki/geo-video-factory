@@ -2,7 +2,14 @@
 
 usage: blender -b --factory-startup -P orbit_render.py -- <out_dir> <scene tris.npz>
            [--frames=48] [--size=960x540] [--radius=110] [--height=45] [--centre=x,y,z]
-           [--arc=0,360] [--save=scene.blend] <model.obj>...
+           [--arc=0,360] [--lens=28] [--context-radius=] [--ground=z]
+           [--drop=<buildings.npz>:name,name] [--look=out] [--aim=h]
+           [--save=scene.blend] <model.obj>...
+
+--drop removes the context triangles the textured models replace (they would
+z-fight). --look=out stands at the centre at --height and turns, aiming at
+--aim metres above the ground on the ring of --radius: the view from the
+crossing rather than of a building.
 
 The models are drawn unlit (emission): the photos already carry the light of
 their day, so shading them again would light them twice. The rest of the
@@ -34,6 +41,14 @@ if "context-radius" in opts:
     cx0, cy0 = (float(v) for v in opts.get("centre", "0,0,0").split(",")[:2])
     cen = tris.mean(axis=1)
     tris = tris[np.hypot(cen[:, 0] - cx0, cen[:, 1] - cy0) < float(opts["context-radius"])]
+if "drop" in opts:   # --drop=<buildings.npz>:name,name -- the textured models replace these triangles
+    path, names = opts["drop"].rsplit(":", 1)
+    held = np.load(path)
+    key = lambda t: {tuple(r) for r in np.round(t.mean(axis=1) * 20).astype(np.int64).tolist()}
+    gone = set().union(*(key(held[n].astype(np.float64)) for n in names.split(",")))
+    keep = np.array([tuple(r) not in gone for r in np.round(tris.mean(axis=1) * 20).astype(np.int64).tolist()])
+    print("dropped", int((~keep).sum()), "context triangles")
+    tris = tris[keep]
 mesh = bpy.data.meshes.new("context")
 mesh.from_pydata(tris.reshape(-1, 3).tolist(), [], np.arange(len(tris) * 3).reshape(-1, 3).tolist())
 ctx = bpy.data.objects.new("context", mesh)
@@ -62,11 +77,6 @@ for path in models:
             nt.links.new(em.outputs[0], out.inputs["Surface"])
             mat.use_backface_culling = False
 lo, hi = np.min(lo, axis=0), np.max(hi, axis=0)
-# the textured copy sits on the same faces as the grey context: push the
-# context's copy of those faces out of the way by drawing the models slightly
-# in front is not possible for closed solids, so drop the context triangles
-# that lie inside the models' bounding boxes instead (done by the caller via
-# --drop, a .npy of triangle indices) -- see build_atlas.py report.
 if "centre" in opts:
     centre = np.array([float(v) for v in opts["centre"].split(",")])
 else:
@@ -89,6 +99,7 @@ con.track_axis, con.up_axis = "TRACK_NEGATIVE_Z", "UP_Y"
 
 sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN"))
 sun.data.energy = 3.0
+sun.data.use_shadow = False   # a city of this extent overflows the EEVEE shadow buffer
 sun.rotation_euler = (math.radians(50), 0, math.radians(200))
 sc.collection.objects.link(sun)
 sc.world = bpy.data.worlds.new("sky")
@@ -100,13 +111,25 @@ sc.view_settings.view_transform = "Standard"
 sc.render.resolution_x, sc.render.resolution_y = RW, RH
 sc.render.image_settings.file_format = "JPEG"
 ground = float(opts.get("ground", lo[2]))
+# PLATEAU buildings carry no ground: without a plane the sky shows under them
+bpy.ops.mesh.primitive_plane_add(size=4000, location=(0, 0, ground))
+road = bpy.data.materials.new("road")
+road.use_nodes = True
+road.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
+bpy.context.object.data.materials.append(road)
+look_out = opts.get("look") == "out"   # stand at the centre and turn, instead of circling it
 
 if "save" in opts:
     bpy.ops.file.pack_all()
     bpy.ops.wm.save_as_mainfile(filepath=str(out_dir / opts["save"]))
 for i in range(frames):
     a = math.radians(a0 + (a1 - a0) * i / frames)   # compass bearing of the camera from the centre
-    cam.location = (centre[0] + radius * math.sin(a), centre[1] + radius * math.cos(a), ground + height)
+    ring = (centre[0] + radius * math.sin(a), centre[1] + radius * math.cos(a))
+    if look_out:
+        cam.location = (centre[0], centre[1], ground + height)
+        target.location = (ring[0], ring[1], ground + float(opts.get("aim", height)))
+    else:
+        cam.location = (ring[0], ring[1], ground + height)
     sc.render.filepath = str(out_dir / f"f{i:04d}.jpg")
     bpy.ops.render.render(write_still=True)
 print("rendered", frames, "frames; centre", centre.round(1).tolist(), "ground", round(ground, 1))

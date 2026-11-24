@@ -61,5 +61,19 @@ class Sim3Test(unittest.TestCase):
         np.testing.assert_allclose(sim3.apply(sim, pts_sfm), obs, atol=0.3)
 
 
+class Choosing(unittest.TestCase):
+    def test_support_counts_points_near_the_surface(self):
+        from scipy.spatial import cKDTree
+        surf = np.array([[x, y, 0.0] for x in range(10) for y in range(10)])
+        pts = np.array([[2.0, 2.0, 0.2], [3.0, 3.0, 5.0]])
+        ident = (1.0, np.eye(3), np.zeros(3))
+        self.assertAlmostEqual(sim3.support(pts, cKDTree(surf), ident, within=1.0), 0.5)
+
+    def test_collapsed_scale_is_not_plausible(self):
+        self.assertFalse(sim3.plausible((0.002, np.eye(3), np.zeros(3)), 13.0))
+        self.assertTrue(sim3.plausible((35.0, np.eye(3), np.zeros(3)), 30.0))
+        self.assertFalse(sim3.plausible((60.0, np.eye(3), np.zeros(3)), 30.0))
+
+
 if __name__ == "__main__":
     unittest.main()
