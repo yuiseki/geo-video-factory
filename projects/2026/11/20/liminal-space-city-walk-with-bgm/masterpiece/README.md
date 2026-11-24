@@ -5,8 +5,8 @@
 | ファイル | すること |
 |---|---|
 | `plan_v*.json` | 場面の順番、地名 (日本語と英語)、画面右下の出典、エンドカードの行。`"night": true` の最初の場面から BGM が短調に変わる |
-| `assemble.py <plan.json> <場面の置き場> <作業用の新しいディレクトリ> <out.mp4>` | 題字 5 秒、場面 (各 336 フレーム = 14 秒)、エンドカード 12 秒を 1 秒のクロスフェードでつなぎ、BGM を合成して −14 LUFS / −1.5 dBTP に整える。出力も作業用ディレクトリも新しい名前でないと止まる |
-| `generate_ambient_bgm.py <out.wav> <秒> [--night-from=<秒>]` | 正弦波と雑音だけで合成する BGM (ニ長調、夜はロ短調)。録音の素材を使わないので、権利の確認が要らない |
+| `assemble.py <plan.json> <場面の置き場> <作業用の新しいディレクトリ> <out.mp4>` | 題字 5 秒、場面 (各 336 フレーム = 14 秒)、エンドカード 12 秒を 1 秒のクロスフェードでつなぎ、BGM を合成して −14 LUFS / −1.5 dBTP に整える。出力も作業用ディレクトリも新しい名前でないと止まる。本体は `packages/pipeline/scene_assembly.py` (つなぐ段) と `title_cards.py` (題字、地名、出典、エンドカードの描画) で、このファイルは呼び出すだけ |
+| `generate_ambient_bgm.py <out.wav> <秒> [--night-from=<秒>]` | 正弦波と雑音だけで合成する BGM (ニ長調、夜はロ短調)。録音の素材を使わないので、権利の確認が要らない。本体は `packages/pipeline/ambient_bgm.py` |
 
 実行はホストの資源制限の規則に従って流します (ffmpeg は上限を引き継ぎます)。フォントは Noto CJK で、`FONT_SERIF` と `FONT_SANS` で場所を変えられます。
 
