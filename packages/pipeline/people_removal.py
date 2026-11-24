@@ -22,6 +22,9 @@ CLI:
       for what detection missed: {"<id>": [[x0, y0, x1, y1], ...]} in fractions of the photo
   people_removal.py fill <big-lama.pt> <out_dir> <photo> <mask_grown> [...] [--max-side=1024] [--suffix=_nopeople]
       -> <photo stem>_nopeople.png
+  people_removal.py refill <big-lama.pt> <photo> <out png> <work_dir> <x0,y0,x1,y1> ... [--pad=300]
+      fill hand-drawn boxes (pixels of the photo) each inside its own crop: for the few people that detection
+      missed in a photo that is otherwise done. Runs on the CPU in seconds; the rest of the photo is untouched.
 <id> is the first three characters of the photo's stem.
 """
 from __future__ import annotations
@@ -43,6 +46,7 @@ SIGN_PROMPT = "billboard:60, screen:40"
 VEHICLE_PROMPT = "car:30, taxi:10, bus:5, truck:5"
 SAM_MODEL = "sam3.1_multiplex_fp16.safetensors"
 OUTPUT_NODES = {"people": "14", "signs": "24", "vehicles": "34"}
+BOX_PAD = 300  # context around a hand-drawn box, in pixels of the photo
 MAX_SIDE = 1024  # compared 512-2048 on two night photos: larger repeats stripes, smaller brings back blobs
 GROW_FRACTION = 0.012  # of the photo's longer side
 # Largest image SAM 3.1 has handled on the 11/22-23 runs (3840x2560); a 3840x5760 photo ran the GPU (MPS) out of memory.
@@ -126,6 +130,25 @@ def boxes_for(additions, stem: str, folder: str = None) -> list:
     if folder and f"{folder}/{stem}" in additions:
         return list(additions[f"{folder}/{stem}"])
     return list(additions.get(stem) or [])
+
+
+def parse_box(spec: str) -> tuple:
+    """ "x0,y0,x1,y1" in pixels of the photo."""
+    parts = spec.split(",")
+    if len(parts) != 4:
+        raise ValueError(f"a box is x0,y0,x1,y1 in pixels: {spec!r}")
+    return tuple(int(v) for v in parts)
+
+
+def box_crop(size, box, pad: int = BOX_PAD) -> tuple:
+    """The crop (x0, y0, x1, y1) a box is filled in: the box plus pad pixels of context, clipped to the photo,
+    with its origin and its size in multiples of 8 so that the fill model sees the crop at its own scale."""
+    (w, h), (x0, y0, x1, y1) = size, box
+    if not (0 <= x0 < x1 <= w and 0 <= y0 < y1 <= h):
+        raise ValueError(f"box {tuple(box)} is empty or outside the {w}x{h} photo")
+    cx0, cy0 = max(0, x0 - pad) // 8 * 8, max(0, y0 - pad) // 8 * 8
+    cx1, cy1 = min(w, x1 + pad), min(h, y1 + pad)
+    return cx0, cy0, cx0 + (cx1 - cx0) // 8 * 8, cy0 + (cy1 - cy0) // 8 * 8
 
 
 def view_rules(aerial: bool = False) -> dict:
@@ -244,6 +267,24 @@ def lama_fill(model_path: str, out_dir: Path, pairs, max_side: int = MAX_SIDE, s
         print(Path(photo_path).stem[:3], "filled", flush=True)
 
 
+def refill_boxes(model_path: str, photo_path, out_path, work_dir, boxes, pad: int = BOX_PAD, fill=None) -> None:
+    """Fill each box of the photo inside its own crop and paste the crops back. `fill` stands in for lama_fill."""
+    fill = fill or lama_fill
+    photo_path, work = Path(photo_path), Path(work_dir)
+    work.mkdir(parents=True, exist_ok=True)
+    im = Image.open(photo_path).convert("RGB")
+    for i, (x0, y0, x1, y1) in enumerate(boxes):
+        cx0, cy0, cx1, cy1 = box_crop(im.size, (x0, y0, x1, y1), pad)
+        mask = np.zeros((cy1 - cy0, cx1 - cx0), np.uint8)
+        mask[y0 - cy0:y1 - cy0, x0 - cx0:x1 - cx0] = 255
+        stem = f"{photo_path.stem[:3]}_{i}"
+        im.crop((cx0, cy0, cx1, cy1)).save(work / f"{stem}.png")
+        grow_mask(Image.fromarray(mask)).save(work / f"{stem}_mask_grown.png")
+        fill(model_path, work, [(str(work / f"{stem}.png"), str(work / f"{stem}_mask_grown.png"))])
+        im.paste(Image.open(work / f"{stem}_nopeople.png").convert("RGB"), (cx0, cy0))
+    im.save(out_path)
+
+
 def main(argv) -> None:  # pragma: no cover
     opts = {a.split("=", 1)[0]: a.split("=", 1)[1] for a in argv if a.startswith("--") and "=" in a}
     args = [a for a in argv if not a.startswith("--")]
@@ -263,6 +304,9 @@ def main(argv) -> None:  # pragma: no cover
         rest = args[3:]
         lama_fill(args[1], out_dir, list(zip(rest[0::2], rest[1::2])), int(opts.get("--max-side", MAX_SIDE)),
                   opts.get("--suffix", "_nopeople"))
+    elif cmd == "refill":
+        refill_boxes(args[1], args[2], args[3], args[4], [parse_box(a) for a in args[5:]],
+                     int(opts.get("--pad", BOX_PAD)))
     else:
         raise SystemExit(__doc__)
 

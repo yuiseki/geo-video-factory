@@ -198,6 +198,55 @@ class CompositeTests(unittest.TestCase):
         self.assertEqual(out.size, (40, 20))
 
 
+class BoxRefillTests(unittest.TestCase):
+    def test_the_crop_is_the_box_plus_context_on_an_8_pixel_grid(self):
+        self.assertEqual(pr.box_crop((4000, 3000), (1000, 900, 1100, 1200), pad=300), (696, 600, 1400, 1496))
+
+    def test_the_crop_stops_at_the_photo_and_keeps_a_size_in_multiples_of_8(self):
+        x0, y0, x1, y1 = pr.box_crop((1001, 703), (900, 600, 1000, 700), pad=300)
+        self.assertEqual((x0, y0), (600, 296))
+        self.assertLessEqual(x1, 1001)
+        self.assertLessEqual(y1, 703)
+        self.assertEqual(((x1 - x0) % 8, (y1 - y0) % 8), (0, 0))
+
+    def test_a_box_outside_the_photo_or_empty_is_refused(self):
+        for box in ((90, 10, 120, 20), (10, 10, 10, 20), (-5, 0, 10, 10), (30, 20, 20, 30)):
+            with self.assertRaises(ValueError, msg=box):
+                pr.box_crop((100, 100), box)
+
+    def test_box_specs_are_four_integers(self):
+        self.assertEqual(pr.parse_box("10,20,30,40"), (10, 20, 30, 40))
+        with self.assertRaisesRegex(ValueError, "x0,y0,x1,y1"):
+            pr.parse_box("10,20,30")
+
+    def test_each_box_is_filled_inside_its_own_crop_and_pasted_back(self):
+        import tempfile
+        calls = []
+
+        def green_fill(model, work, pairs, *a, **k):
+            for photo, mask in pairs:
+                with Image.open(photo) as crop, Image.open(mask) as grown:
+                    calls.append((model, crop.size, np.array(grown)))
+                    Image.new("RGB", crop.size, (0, 255, 0)).save(Path(work) / f"{Path(photo).stem}_nopeople.png")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            Image.new("RGB", (640, 480), (200, 0, 0)).save(tmp / "abcdef.png")
+            pr.refill_boxes("lama.pt", tmp / "abcdef.png", tmp / "out.png", tmp / "work",
+                            [(100, 100, 140, 160), (500, 300, 520, 330)], pad=40, fill=green_fill)
+            out = np.asarray(Image.open(tmp / "out.png"))
+            self.assertEqual(sorted(p.name for p in (tmp / "work").iterdir())[:3],
+                             ["abc_0.png", "abc_0_mask_grown.png", "abc_0_nopeople.png"])
+        self.assertEqual(len(calls), 2)
+        self.assertEqual(calls[0][0], "lama.pt")
+        self.assertEqual(calls[0][1], (120, 144))             # 56..176 by 56..200 after the 8-pixel grid
+        self.assertEqual(calls[0][2][70, 60], 255)            # the box, inside the crop
+        self.assertEqual(calls[0][2][2, 2], 0)
+        self.assertEqual(tuple(out[130, 120]), (0, 255, 0))   # the crop came back from the fill
+        self.assertEqual(tuple(out[10, 10]), (200, 0, 0))     # far from every box: the photo
+        self.assertEqual(tuple(out[315, 510]), (0, 255, 0))
+
+
 class WorkflowTests(unittest.TestCase):
     def test_three_sam_passes_share_one_model_and_one_image(self):
         wf = pr.sam_workflow("in.png", people="person:300", signs="billboard:60", vehicles="car:30")
