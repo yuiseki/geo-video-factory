@@ -140,6 +140,25 @@ class ReadCogMercatorBboxTests(unittest.TestCase):
         self.assertEqual(out.shape, (4, 4))
         np.testing.assert_allclose(out, [[10, 10, 20, 20], [10, 10, 20, 20], [30, 30, 40, 40], [30, 30, 40, 40]], atol=1e-3)
 
+    def test_an_output_grid_equal_to_the_source_grid_returns_the_source_pixels(self):
+        """A pixel's value belongs to its centre. Reading the grid the file already has must give the file back,
+        not each pixel averaged with its right-hand and lower neighbour (a shift of half a pixel)."""
+        ramp = (np.arange(16, dtype=np.uint8) * 10)
+        across = np.tile(ramp, (16, 1))[..., None]
+        blob, _, _ = make_cog([across, across, across, across])
+        out = self.read(RangeServer(blob), bbox_for_pixels(0, 0, 16, 16), 16, 16)
+        np.testing.assert_allclose(out, across[..., 0], atol=1e-2)
+        down = np.tile(ramp[:, None], (1, 16))[..., None]
+        blob, _, _ = make_cog([down, down, down, down])
+        out = self.read(RangeServer(blob), bbox_for_pixels(0, 0, 16, 16), 16, 16)
+        np.testing.assert_allclose(out, down[..., 0], atol=1e-2)
+
+    def test_a_window_inside_the_image_is_not_shifted_either(self):
+        across = np.tile(np.arange(16, dtype=np.uint8) * 10, (16, 1))[..., None]
+        blob, _, _ = make_cog([across, across, across, across])
+        out = self.read(RangeServer(blob), bbox_for_pixels(4, 4, 12, 12), 8, 8)
+        np.testing.assert_allclose(out, across[4:12, 4:12, 0], atol=1e-2)
+
     def test_only_tiles_intersecting_the_bbox_are_requested(self):
         blob, offsets, counts = make_cog([constant_tile(v) for v in (10, 20, 30, 40)])
         server = RangeServer(blob)

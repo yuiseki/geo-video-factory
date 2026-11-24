@@ -12,7 +12,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 
-from photos.photo_catalog_rules import _license_allowed, strip_html
+from photos.photo_catalog_rules import _license_allowed, licence_name_and_url, strip_html
 
 USER_AGENT = "GeoVideoFactoryPhotoCollector/2.0 (https://github.com/yuiseki/geo-video-factory)"
 
@@ -239,6 +239,7 @@ def fetch_commons_details(
             lic_url = strip_html(meta.get("LicenseUrl", {}).get("value", ""))
             if not _license_allowed(lic_short, lic_url, license_mode):
                 continue
+            lic_short, lic_url = licence_name_and_url(lic_short, lic_url)
 
             artist = strip_html(meta.get("Artist", {}).get("value", "")) or "Unknown"
             desc = strip_html(meta.get("ImageDescription", {}).get("value", ""))
@@ -256,8 +257,8 @@ def fetch_commons_details(
                     "source": "wikimedia_commons",
                     "title": page.get("title", ""),
                     "creator": artist[:120],
-                    "license": lic_short or "CC0",
-                    "license_url": lic_url or "https://creativecommons.org/publicdomain/zero/1.0/",
+                    "license": lic_short,
+                    "license_url": lic_url,
                     "description": desc[:300],
                     "categories": cats[:400],
                     "datetime": dt[:80],

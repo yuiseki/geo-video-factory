@@ -179,9 +179,11 @@ def extract_gml_ids(payload: bytes, batch_table: dict[str, Any] | None = None) -
 
 
 def tile_texture_limit(
-    region: list[float], center: tuple[float, float] | list[float],
+    region: list[float] | None, center: tuple[float, float] | list[float],
     near_dimension: int = 2048, far_dimension: int = 1024,
 ) -> int:
+    if region is None:  # a leaf whose position is unknown may be right under the camera
+        return near_dimension
     west, south, east, north = (math.degrees(v) for v in region[:4])
     cx, cy = float(center[0]), float(center[1])
     near = not (east < cx - 0.003 or west > cx + 0.003 or north < cy - 0.0025 or south > cy + 0.0025)
@@ -308,7 +310,7 @@ def prepare_tiles(
             raise ValueError(f'unsupported 3D Tiles content at {item["uri"]}: {raw[:4]!r}')
         document, _, _ = glb_chunks(glb)
         rtc = rtc if rtc is not None else document.get('extensions', {}).get('CESIUM_RTC', {}).get('center', [0, 0, 0])
-        if len(rtc) != 3 or any(not isinstance(v, (int, float)) for v in rtc):
+        if not isinstance(rtc, (list, tuple)) or len(rtc) != 3 or any(not isinstance(v, (int, float)) for v in rtc):
             raise ValueError(f'invalid RTC center in {item["uri"]}')
         model_path = models_dir / f'{hashlib.sha256(item["uri"].encode()).hexdigest()[:20]}.glb'
         limit = tile_texture_limit(item['region'], center, max_texture_dimension, far_dim)

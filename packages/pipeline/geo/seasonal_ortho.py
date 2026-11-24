@@ -225,8 +225,10 @@ def read_cog_mercator_bbox(
             y0_p, x0_p = (ty - ty0) * th, (tx - tx0) * tw
             patch[y0_p : y0_p + th, x0_p : x0_p + tw] = tile_arr
 
-    rel_r = row_f - ty0 * th
-    rel_c = col_f - tx0 * tw
+    # col_f and row_f count from the image's top-left corner, while map_coordinates puts sample i at i, the
+    # pixel's centre. Without the half pixel every value is averaged with its right-hand and lower neighbour.
+    rel_r = row_f - 0.5 - ty0 * th
+    rel_c = col_f - 0.5 - tx0 * tw
     out = np.zeros((out_h, out_w, samples), dtype=np.float32)
     for ch in range(samples):
         out[..., ch] = map_coordinates(patch[..., ch].astype(np.float32), [rel_r, rel_c], order=1, mode="nearest")

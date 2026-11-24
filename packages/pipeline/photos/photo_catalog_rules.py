@@ -75,6 +75,26 @@ def is_ccby_nosa_or_cc0(license_short: str, license_url: str = "") -> bool:
     return False
 
 
+CC0_URL = "https://creativecommons.org/publicdomain/zero/1.0/"
+
+
+def licence_name_and_url(license_short: str, license_url: str) -> tuple[str, str]:
+    """Fill in a missing licence name or URL from the other one, for a licence that already passed the filter.
+
+    Nothing is assumed to be CC0: an attribution licence known only by its URL keeps its own name, and one known
+    only by a name without a version gets no URL rather than a guessed one."""
+    short, url = (license_short or "").strip(), (license_url or "").strip()
+    if is_strict_cc0(short, url):
+        return short or "CC0", url or CC0_URL
+    by_url = re.search(r"creativecommons\.org/licenses/by/(\d+(?:\.\d+)?)", url, re.IGNORECASE)
+    if not short and by_url:
+        short = f"CC BY {by_url.group(1)}"
+    by_name = re.fullmatch(r"cc[ -]by[ -](\d+(?:\.\d+)?)", short, re.IGNORECASE)
+    if not url and by_name:
+        url = f"https://creativecommons.org/licenses/by/{by_name.group(1)}/"
+    return short, url
+
+
 def _license_allowed(license_short: str, license_url: str, license_mode: str) -> bool:
     if license_mode == "ccby_nosa":
         return is_ccby_nosa_or_cc0(license_short, license_url)

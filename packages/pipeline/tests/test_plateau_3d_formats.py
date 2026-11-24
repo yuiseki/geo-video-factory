@@ -369,6 +369,24 @@ class PrepareTilesTests(unittest.TestCase):
                     plateau_3d.prepare_tiles('https://tiles.example/root.json', BBOX, Path(directory), fetcher=never, **kwargs)
             self.assertEqual(list(Path(directory).iterdir()), [])
 
+    def test_a_tile_without_any_bounding_region_is_kept_at_the_near_texture_size(self):
+        """iter_leaf_contents keeps a leaf whose position is unknown; it may be right under the camera, so it
+        keeps the larger texture."""
+        glb = make_glb({'asset': {'version': '2.0'}})
+        resources = {
+            'https://tiles.example/root.json': json.dumps({'root': {'content': {'uri': 'tile.glb'}}}).encode(),
+            'https://tiles.example/tile.glb': glb,
+        }
+        with tempfile.TemporaryDirectory() as directory:
+            manifest = self.prepare(resources, directory, max_texture_dimension=2048, far_texture_dimension=512)
+            self.assertEqual([(t['region'], t['texture_limit']) for t in manifest['tiles']], [(None, 2048)])
+
+    def test_an_rtc_center_that_is_not_a_list_is_reported_as_invalid(self):
+        feature = json.dumps({'RTC_CENTER': 5}).encode()
+        resources = single_tile_resources(make_b3dm(make_glb({'asset': {'version': '2.0'}}), feature=feature))
+        with tempfile.TemporaryDirectory() as directory, self.assertRaisesRegex(ValueError, 'invalid RTC center'):
+            self.prepare(resources, directory)
+
     def test_external_tilesets_are_followed_relative_to_their_own_url(self):
         glb = make_glb({'asset': {'version': '2.0'}})
         root = {'root': {'boundingVolume': {'region': COVERING_REGION}, 'children': [

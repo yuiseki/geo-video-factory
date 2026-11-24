@@ -347,6 +347,38 @@ class CommonsDetailsTests(unittest.TestCase):
             [('File:Attribution.jpg', 'CC BY 4.0', by_url), ('File:Zero.jpg', 'CC0', CC0_URL)],
         )
 
+    def test_a_licence_known_only_by_its_url_is_recorded_under_its_own_name(self):
+        """Commons sometimes leaves LicenseShortName empty. An attribution licence must never be written down as CC0:
+        the credit it requires would be dropped."""
+        by_url = 'https://creativecommons.org/licenses/by/4.0'
+        pages = [
+            commons_page('File:ByUrlOnly.jpg', license_short='', license_url=by_url),
+            commons_page('File:By2UrlOnly.jpg', license_short='', license_url='https://creativecommons.org/licenses/by/2.0/deed.en'),
+            commons_page('File:ZeroUrlOnly.jpg', license_short='', license_url=CC0_URL),
+            commons_page('File:ByNameOnly.jpg', license_short='CC BY 3.0', license_url=''),
+            commons_page('File:ZeroNameOnly.jpg', license_short='CC0', license_url=''),
+        ]
+        records = sources.fetch_commons_details(
+            [p['title'] for p in pages], license_mode='ccby_nosa', sleep_fn=no_sleep, fetch_fn=ScriptedFetch(details_payload(*pages)),
+        )
+        self.assertEqual(
+            [(r['title'], r['license'], r['license_url']) for r in records],
+            [
+                ('File:ByUrlOnly.jpg', 'CC BY 4.0', by_url),
+                ('File:By2UrlOnly.jpg', 'CC BY 2.0', 'https://creativecommons.org/licenses/by/2.0/deed.en'),
+                ('File:ZeroUrlOnly.jpg', 'CC0', CC0_URL),
+                ('File:ByNameOnly.jpg', 'CC BY 3.0', 'https://creativecommons.org/licenses/by/3.0/'),
+                ('File:ZeroNameOnly.jpg', 'CC0', CC0_URL),
+            ],
+        )
+
+    def test_an_attribution_licence_without_a_version_gets_no_invented_url(self):
+        pages = [commons_page('File:ByBare.jpg', license_short='CC BY', license_url='')]
+        records = sources.fetch_commons_details(
+            ['File:ByBare.jpg'], license_mode='ccby_nosa', sleep_fn=no_sleep, fetch_fn=ScriptedFetch(details_payload(*pages)),
+        )
+        self.assertEqual([(r['license'], r['license_url']) for r in records], [('CC BY', '')])
+
     def test_titles_are_requested_in_batches_of_25(self):
         titles = [f'File:{i}.jpg' for i in range(60)]
         fetch = ScriptedFetch(details_payload(commons_page('File:0.jpg')), {}, details_payload(commons_page('File:50.jpg')))
