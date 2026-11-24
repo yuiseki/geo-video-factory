@@ -30,6 +30,6 @@ jobs:
       - name: Install ffmpeg (the compose tests run real filter graphs)
         run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
       - name: Install Python test dependencies
-        run: python3 -m pip install --only-binary=:all: -r packages/pipeline/requirements-dev.txt
+        run: "python3 -m pip install --only-binary=:all: -r packages/pipeline/requirements-dev.txt"
       - name: Test packages
         run: packages/test.sh
