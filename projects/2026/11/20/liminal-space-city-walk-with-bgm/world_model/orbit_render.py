@@ -4,13 +4,15 @@ usage: blender -b --factory-startup -P orbit_render.py -- <out_dir> <scene tris.
            [--frames=48] [--size=960x540] [--radius=110] [--height=45] [--centre=x,y,z]
            [--arc=0,360] [--lens=28] [--context-radius=] [--ground=z]
            [--drop=<buildings.npz>:name,name] [--look=out] [--aim=h]
-           [--save=scene.blend] [--sky=r,g,b] [--sun=3.0] <model.obj>...
+           [--save=scene.blend] [--sky=r,g,b] [--sun=3.0] [--only=first,last] <model.obj>...
 
 --drop removes the context triangles the textured models replace (they would
 z-fight). --look=out stands at the centre at --height and turns, aiming at
 --aim metres above the ground on the ring of --radius: the view from the
 crossing rather than of a building. --sky and --sun set the backdrop and the light on the
-untextured context (a night layer wants both low).
+untextured context (a night layer wants both low). --only renders frames first..last-1 of the
+same move and skips the ones already on disk: a long render in one process can hang on a busy
+GPU, so run it in pieces under a timeout and run the piece again when it stops.
 
 The models are drawn unlit (emission): the photos already carry the light of
 their day, so shading them again would light them twice. The rest of the
@@ -124,7 +126,11 @@ look_out = opts.get("look") == "out"   # stand at the centre and turn, instead o
 if "save" in opts:
     bpy.ops.file.pack_all()
     bpy.ops.wm.save_as_mainfile(filepath=str(out_dir / opts["save"]))
-for i in range(frames):
+first, last = (int(v) for v in opts.get("only", f"0,{frames}").split(","))
+warm = True   # EEVEE draws the first frame of a process before the textures are ready: it comes out blank
+for i in range(first, min(last, frames)):
+    if (out_dir / f"f{i:04d}.jpg").exists():
+        continue
     a = math.radians(a0 + (a1 - a0) * i / frames)   # compass bearing of the camera from the centre
     ring = (centre[0] + radius * math.sin(a), centre[1] + radius * math.cos(a))
     if look_out:
@@ -134,6 +140,7 @@ for i in range(frames):
         cam.location = (ring[0], ring[1], ground + height)
     sc.render.filepath = str(out_dir / f"f{i:04d}.jpg")
     bpy.ops.render.render(write_still=True)
-    if i == 0:   # EEVEE draws the first frame before the textures are ready: it comes out blank
+    if warm:
         bpy.ops.render.render(write_still=True)
+        warm = False
 print("rendered", frames, "frames; centre", centre.round(1).tolist(), "ground", round(ground, 1))
