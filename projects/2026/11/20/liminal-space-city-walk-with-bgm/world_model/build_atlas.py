@@ -85,8 +85,7 @@ def main(argv):
         took = np.bincount(chosen[chosen >= 0], minlength=len(used))
         used = {k: [n, int(took[i])] for i, (k, n) in enumerate(used.items())}      # texels seen, texels taken
     else:
-        part, _ = sa.fuse(*stack.arrays(), few=int(opts.get("few", 3)),
-                                       pairs=np.array(pairs).reshape(-1, 2), strength=float(opts.get("smooth", 0.7)))
+        part, _ = sa.fuse(*stack.arrays(), few=int(opts.get("few", 3)))
     fused = np.full((rows * width, 3), np.nan, np.float32)
     fused[where] = part
     count = np.zeros(rows * width, np.int32)

@@ -1,5 +1,5 @@
 """sfm_to_world.py <sparse model dir> <images dir> <scene tris.npz> <out_dir> <anchor cams.json>... [--radius=450]
-       [--min-track=3] [--trim=3.0]
+       [--min-track=3] [--trim=3.0] [--min-points=40]
 
 Every photo of an SfM model as a camera in the city model's metric frame.
 
@@ -43,12 +43,13 @@ def main(argv):
     model_dir, img_dir, scene, out = Path(pos[0]), Path(pos[1]), pos[2], Path(pos[3])
     out.mkdir(parents=True, exist_ok=True)
     rec = pycolmap.Reconstruction(str(model_dir))
-    images = {}
+    images, seen = {}, {}
     for img in rec.images.values():
         if hasattr(img, "has_pose") and not img.has_pose:
             continue
         pose = img.cam_from_world() if callable(img.cam_from_world) else img.cam_from_world
         images[img.name] = (pose.rotation.matrix(), np.array(img.projection_center()), rec.cameras[img.camera_id])
+        seen[img.name] = int(sum(1 for p in img.points2D if p.has_point3D()))
     real = {name: (img_dir / name).resolve() for name in images}
 
     anchors = {}
@@ -107,12 +108,18 @@ def main(argv):
     cams, report = {}, {"scale": sim[0], "turn": sim[1].tolist(), "shift": sim[2].tolist(), "median_m": med,
                         "kept": frac, "within_1m": sim3.support(pts, tree, sim), "points": len(pts), "starts": [[r[4], r[1][0], r[2], r[3]] for r in tried],
                         "anchors": {}}
+    min_points = int(opts.get("min-points", 40))
     for name, (Rs, Cs, cam) in images.items():
+        if seen[name] < min_points and name not in anchors:
+            # a photo hung on a handful of matches (an interior, a close-up of a poster) is registered but not placed
+            print(f"left out, {seen[name]} points: {name[:70]}")
+            continue
         Rw, eye = sim3.camera(sim, Rs, Cs)
         params, extra = intrinsics(cam)
         cams[Path(name).stem] = {"name": name, "photo": str(real[name]), "eye": eye.tolist(), "Rw": Rw.tolist(),
                                  "width": cam.width, "height": cam.height, "model": "PINHOLE", "params": params,
                                  "distortion": extra, "sfm_model": cam.model.name,
+                                 "sfm_points": seen[name],   # few points: a pose not to trust
                                  "fov_v": float(np.degrees(2 * np.arctan(cam.height / 2 / params[1])))}
         if name in anchors:
             Ra, ea = anchors[name]

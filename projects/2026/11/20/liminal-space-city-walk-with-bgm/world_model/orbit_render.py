@@ -4,12 +4,13 @@ usage: blender -b --factory-startup -P orbit_render.py -- <out_dir> <scene tris.
            [--frames=48] [--size=960x540] [--radius=110] [--height=45] [--centre=x,y,z]
            [--arc=0,360] [--lens=28] [--context-radius=] [--ground=z]
            [--drop=<buildings.npz>:name,name] [--look=out] [--aim=h]
-           [--save=scene.blend] <model.obj>...
+           [--save=scene.blend] [--sky=r,g,b] [--sun=3.0] <model.obj>...
 
 --drop removes the context triangles the textured models replace (they would
 z-fight). --look=out stands at the centre at --height and turns, aiming at
 --aim metres above the ground on the ring of --radius: the view from the
-crossing rather than of a building.
+crossing rather than of a building. --sky and --sun set the backdrop and the light on the
+untextured context (a night layer wants both low).
 
 The models are drawn unlit (emission): the photos already carry the light of
 their day, so shading them again would light them twice. The rest of the
@@ -98,13 +99,13 @@ con.target = target
 con.track_axis, con.up_axis = "TRACK_NEGATIVE_Z", "UP_Y"
 
 sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN"))
-sun.data.energy = 3.0
+sun.data.energy = float(opts.get("sun", 3.0))
 sun.data.use_shadow = False   # a city of this extent overflows the EEVEE shadow buffer
 sun.rotation_euler = (math.radians(50), 0, math.radians(200))
 sc.collection.objects.link(sun)
 sc.world = bpy.data.worlds.new("sky")
 sc.world.use_nodes = True
-sc.world.node_tree.nodes["Background"].inputs[0].default_value = (0.62, 0.74, 0.9, 1)
+sc.world.node_tree.nodes["Background"].inputs[0].default_value = (*(float(v) for v in opts.get("sky", "0.62,0.74,0.9").split(",")), 1)
 sc.render.engine = "BLENDER_EEVEE"
 sc.eevee.taa_render_samples = 16
 sc.view_settings.view_transform = "Standard"
