@@ -5,6 +5,7 @@
 | ディレクトリ | 中身 |
 |---|---|
 | [tokaido-hakone-least-cost](tokaido-hakone-least-cost/) | 旧東海道の箱根越えは、歩く時間の最小の経路か |
+| [tokaido-rail-hakone-bypass](tokaido-rail-hakone-bypass/) | 東海道線はなぜ箱根を避けたか（御殿場線・旧東海道・丹那経由の勾配比較） |
 | [izu-bakumatsu-site-necessity](izu-bakumatsu-site-necessity/) | 下田の見張所と韮山反射炉は、なぜそこにあるのか |
 | [site-necessity-ideas](site-necessity-ideas/) | 同じ型で問える、ほかの題材の案 |
 
