@@ -192,6 +192,7 @@ class VideoQaTests(unittest.TestCase):
             self.assertEqual(cmd[0], 'ffmpeg')
             vf = cmd[cmd.index('-vf') + 1]
             self.assertIn('fps=12/120.000', vf)
+            self.assertIn('pad=iw:ih+28:0:28:black', vf)
             self.assertIn('drawtext=', vf)
             self.assertIn('pts', vf)
             self.assertIn('drawbox=', vf)
@@ -273,6 +274,29 @@ class VideoQaTests(unittest.TestCase):
                 code, payload = video_qa.run_cli([str(src), '--platform', 'youtube', '--json'])
             self.assertEqual(code, 1)
             self.assertFalse(json.loads(payload)['compliance']['ok'])
+
+    def test_cli_storyboard_invokes_adaptive_storyboard(self):
+        with TemporaryDirectory() as tmp:
+            root = Path(tmp)
+            src = root / 'episode.mp4'
+            src.write_bytes(b'video')
+            sb = root / 'storyboard.jpg'
+            ok_meta = {
+                'duration': 60.0, 'size_bytes': 10_000_000, 'width': 1920, 'height': 1080,
+                'fps': 24.0, 'vfr_suspected': False, 'video_codec': 'h264',
+                'pix_fmt': 'yuv420p', 'audio_codec': 'aac', 'channels': 2,
+            }
+            fake_sb = {'outputs': [str(sb)], 'keyframes': 12, 'timeline': 'TIMELINE', 'timestamps': [0.0]}
+            video_inspect = import_pipeline('video_inspect')
+            with patch.object(video_qa, 'probe_media', return_value=ok_meta), \
+                 patch.object(video_qa, 'measure_loudness', return_value={'lufs': -14.0, 'tp': -1.5, 'lra': 6.0}), \
+                 patch.object(video_inspect, 'build_adaptive_storyboard', return_value=fake_sb) as mock_sb:
+                code, payload = video_qa.run_cli([
+                    str(src), '--platform', 'youtube', '--storyboard', str(sb), '--storyboard-budget', '16', '--json',
+                ])
+            self.assertEqual(code, 0)
+            mock_sb.assert_called_once()
+            self.assertEqual(json.loads(payload)['storyboard']['keyframes'], 12)
 
 
 if __name__ == '__main__':
