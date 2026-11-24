@@ -11,7 +11,7 @@ import math
 
 import bpy
 
-import blender_geo as bg
+from buildings import blender_geo as bg
 
 
 def camera_matrix(location, tilt: float, bearing: float, roll: float = 0.0):

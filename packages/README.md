@@ -49,14 +49,14 @@ rendererは動画開始前にマニフェストとモデルを読み込み、WGS
 
 | モジュール | すること |
 |---|---|
-| `plateau_mesh.py` | `plateau_3d.py` が固定したタイルの全三角形を、1 つの東・北・上 (メートル) の座標系へ集めて `tris.npz` に書く |
-| `skyline_match.py` | 建物と空の境界線を、モデルと写真の両方から読み、立ち位置と向きごとの費用を出す |
-| `photo_place.py` | 写真 1 枚の位置・向き・上向き・ロール・画角を全幅探索し、`result.json`、重ね描き、`cams.json`、`mesh.npz` を書く |
-| `people_removal.py` | 検出マスクを広げて人を埋める。見落としは箱で囲んで埋め直す (`refill`) |
-| `camera_path.py` | 写真の位置と向きを基準にしたキーフレームから、フレームごとのカメラを作る |
-| `frame_check.py` | 書き出したフレームの明るさを全部確かめ、暗いフレームを挙げる |
-| `title_cards.py`、`scene_assembly.py` | 題字・地名・出典のカードを描き、場面をクロスフェードでつないで音量を整える |
-| `ambient_bgm.py` | 正弦波と雑音だけで BGM を合成する |
+| `buildings/plateau_mesh.py` | `buildings/plateau_3d.py` が固定したタイルの全三角形を、1 つの東・北・上 (メートル) の座標系へ集めて `tris.npz` に書く |
+| `geo/skyline_match.py` | 建物と空の境界線を、モデルと写真の両方から読み、立ち位置と向きごとの費用を出す |
+| `geo/photo_place.py` | 写真 1 枚の位置・向き・上向き・ロール・画角を全幅探索し、`result.json`、重ね描き、`cams.json`、`mesh.npz` を書く |
+| `photos/people_removal.py` | 検出マスクを広げて人を埋める。見落としは箱で囲んで埋め直す (`refill`) |
+| `video/camera_path.py` | 写真の位置と向きを基準にしたキーフレームから、フレームごとのカメラを作る |
+| `video/frame_check.py` | 書き出したフレームの明るさを全部確かめ、暗いフレームを挙げる |
+| `video/title_cards.py`、`video/scene_assembly.py` | 題字・地名・出典のカードを描き、場面をクロスフェードでつないで音量を整える |
+| `narration/ambient_bgm.py` | 正弦波と雑音だけで BGM を合成する |
 
 `photo_place.py` が費用の低い偽の位置を返すことがあります。重ね描き (`overlay.jpg`) と、2 番目以降の候補との費用の差 (`result.json` の `rivals`) を必ず見ます。
 

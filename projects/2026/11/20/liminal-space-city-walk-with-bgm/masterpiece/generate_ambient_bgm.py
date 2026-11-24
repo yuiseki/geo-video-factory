@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-import ambient_bgm  # noqa: E402
+from narration import ambient_bgm  # noqa: E402
 
 if __name__ == "__main__":
     sys.exit(ambient_bgm.main(sys.argv[1:]))

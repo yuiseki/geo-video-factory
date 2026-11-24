@@ -11,7 +11,7 @@ import bmesh
 import bpy
 from mathutils import Vector
 
-import blender_geo as bg
+from buildings import blender_geo as bg
 
 
 def delete_inside(objects: list, outline_xy: list, margin: float = 1.5) -> int:

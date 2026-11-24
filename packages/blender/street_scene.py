@@ -11,7 +11,7 @@ from pathlib import Path
 
 import bpy
 
-import blender_geo as bg
+from buildings import blender_geo as bg
 
 BILLBOARD_STRENGTH = 3.0
 
