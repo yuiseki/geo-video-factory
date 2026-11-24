@@ -282,6 +282,52 @@ def exposure_gains(colours, weights, views, few=3, limit=(0.6, 1.6)):
     return gains
 
 
+def view_agreement(colours, weights, views, close=25.0, sample=200000, seed=0):
+    """How alike each pair of photos is where both saw the same texel.
+
+    Returns (share, pairs): share[i, j] is the fraction of the texels both kept where their colours are within
+    `close` (mean absolute difference, 0..255), pairs[i, j] how many texels that was. A fraction rather than a
+    mean distance: a video screen or one replaced billboard should not make two photos of the same year look
+    like strangers.
+    """
+    n_views = int(views.max()) + 1
+    cols = np.arange(weights.shape[1])
+    if len(cols) > sample:
+        cols = np.random.default_rng(seed).choice(len(cols), sample, replace=False)
+    c, w, v = colours[:, cols], weights[:, cols], views[:, cols]
+    near, pairs = np.zeros((n_views, n_views)), np.zeros((n_views, n_views))
+    for a in range(len(w)):
+        for b in range(a + 1, len(w)):
+            both = (w[a] > 0) & (w[b] > 0)
+            ok = np.abs(c[a][both] - c[b][both]).mean(axis=1) < close
+            for i, j in ((v[a][both], v[b][both]), (v[b][both], v[a][both])):
+                np.add.at(near, (i, j), ok)
+                np.add.at(pairs, (i, j), 1)
+    return near / np.maximum(pairs, 1), pairs
+
+
+def view_clusters(share, pairs, k=2, enough=300):
+    """Photos grouped into k sets that look alike (average linkage on 1 - share): the eras of a facade.
+
+    Pairs that share fewer than `enough` texels say nothing and take the mean of the rest. Returns a label per
+    view, 0 for the largest set.
+    """
+    from scipy.cluster.hierarchy import fcluster, linkage
+    from scipy.spatial.distance import squareform
+    known = pairs >= enough
+    np.fill_diagonal(known, False)
+    d = np.where(known, 1 - share, (1 - share)[known].mean() if known.any() else 0.5)
+    np.fill_diagonal(d, 0)
+    d = (d + d.T) / 2
+    if len(d) <= k:
+        return np.zeros(len(d), int)
+    raw = fcluster(linkage(squareform(d, checks=False), "average"), k, "maxclust")
+    order = np.argsort(-np.bincount(raw))
+    rank = np.empty_like(order)
+    rank[order] = np.arange(len(order))
+    return rank[raw]
+
+
 def smooth_labels(score, pairs, strength=0.7, rounds=6):
     """One view per group, preferring the view the neighbouring groups took.
 
@@ -297,17 +343,25 @@ def smooth_labels(score, pairs, strength=0.7, rounds=6):
     if len(pairs) == 0:
         return label
     both = np.concatenate([pairs, pairs[:, ::-1]])
-    for _ in range(rounds):
+    pull = np.broadcast_to(np.asarray(strength, float), (len(pairs),))   # one strength, or one per pair
+    pull = np.concatenate([pull, pull])
+    half = np.arange(len(score)) % 2 == 0
+    still = 0
+    for r in range(2 * rounds):
         votes = np.zeros_like(score, dtype=float)
-        np.add.at(votes, (both[:, 0], label[both[:, 1]]), 1.0)
-        new = (worth + strength * votes).argmax(axis=1)
-        if (new == label).all():
-            break
+        np.add.at(votes, (both[:, 0], label[both[:, 1]]), pull)
+        # half of the groups move at a time: when all move at once, two neighbours swap views for ever
+        turn = half if r % 2 == 0 else ~half
+        new = np.where(turn, (worth + votes).argmax(axis=1), label)
+        still = still + 1 if (new == label).all() else 0
         label = new
+        if still == 2:
+            break
     return label
 
 
-def fuse_by_face(colours, weights, views, face_of, cap=400.0, agree=None, few=3, pairs=None, strength=0.7):
+def fuse_by_face(colours, weights, views, face_of, cap=400.0, agree=None, few=3, pairs=None, strength=0.7,
+                 changing=None, hold=8.0):
     """One colour per texel, taking each face (or patch of one: `face_of` is any grouping) from as few photos
     as possible.
 
@@ -321,6 +375,10 @@ def fuse_by_face(colours, weights, views, face_of, cap=400.0, agree=None, few=3,
     more photos saw the texel. The median is blurred but it is what most photos agree on, so the photo with a
     passer-by, a bus, a different season's sign or a wrong pose on that patch loses to one without.
     `pairs` (neighbouring groups) smooths the choice across groups, see smooth_labels.
+    `changing` (a colour distance; needs `agree`) marks the groups whose photos disagree with each other by more
+    than that on average: a video screen, a billboard that was replaced. There the median means nothing, so
+    agreement is not asked of the photos, and neighbouring changing groups hold on to the same photo `hold` times
+    harder: the screen shows one moment instead of a mosaic of several.
     Returns (colours (n, 3), NaN where unseen; the view taken (n), -1 where unseen)."""
     n_views, n_faces = int(views.max()) + 1, int(face_of.max()) + 1
     score = np.zeros((n_faces, max(n_views, 1)))
@@ -338,7 +396,15 @@ def fuse_by_face(colours, weights, views, face_of, cap=400.0, agree=None, few=3,
             np.add.at(hits, (face_of[m], views[k][m]), 1)
         # a photo nobody can vouch for on this group is treated as an average disagreement, not as perfect
         mean = np.where(hits > 0, dist / np.maximum(hits, 1), float(agree))
-        score = score * np.exp(-mean / float(agree))
+        factor = np.exp(-mean / float(agree))
+        moving = np.zeros(n_faces, bool)
+        if changing:
+            moving = dist.sum(axis=1) / np.maximum(hits.sum(axis=1), 1) > float(changing)
+            factor[moving] = 1.0
+            if pairs is not None and len(pairs):
+                pairs = np.asarray(pairs, int).reshape(-1, 2)
+                strength = np.where(moving[pairs[:, 0]] & moving[pairs[:, 1]], strength * hold, strength)
+        score = score * factor
     if pairs is not None and len(pairs):
         # the smoothed choice wins wherever that photo saw the texel; elsewhere the plain ranking still applies
         label = smooth_labels(score, pairs, strength)

@@ -1,4 +1,4 @@
-"""build_atlas.py <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean]
+"""build_atlas.py <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0]
        [--only=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
@@ -16,6 +16,7 @@ import surface_atlas as sa
 
 Image.MAX_IMAGE_PIXELS = None
 UNSEEN = (128, 128, 128)
+ROOF = (92, 92, 96)
 
 
 def main(argv):
@@ -28,6 +29,11 @@ def main(argv):
     tris = np.load(Path(work) / "buildings.npz")[name].astype(float)
     scene = np.load(scene_path)["tris"].astype(float)
     groups = sa.planar_faces(tris)
+    if "split" in opts:
+        # one plane can run through many buildings of a street; cut it into cells so that a chart is not a
+        # mostly empty rectangle as long as the street
+        cell = np.floor(tris.mean(axis=1) / float(opts["split"])).astype(np.int64)
+        groups = [g[(cell[g] == c).all(axis=1)] for g in groups for c in np.unique(cell[g], axis=0)]
     charts = [sa.chart(tris[g], texel) for g in groups]
     pos, rows = sa.pack([c[1].shape for c in charts], width)
     cams = {}
@@ -78,9 +84,21 @@ def main(argv):
         cols_, w_, v_ = stack.arrays(views=True)
         gains = sa.exposure_gains(cols_, w_, v_, few=int(opts.get("few", 3)))
         stack.colours *= gains[np.maximum(v_, 0)][..., None].astype(np.float32)
+    eras = None
+    if int(opts.get("eras", 1)) > 1 and used:
+        # the facade was refitted, or repainted, during the years the photos span: keep one of its looks
+        cols_, w_, v_ = stack.arrays(views=True)
+        share, both = sa.view_agreement(cols_, w_, v_, close=float(opts.get("agree", 25)) or 25.0)
+        eras = sa.view_clusters(share, both, k=int(opts["eras"]))
+        want = int(opts.get("era", 0))
+        stack.weights[(eras != want)[np.maximum(v_, 0)] | (v_ < 0)] = 0
+        names = list(used)
+        for e in range(int(eras.max()) + 1):
+            print("era", e, [names[i][-40:] for i in np.nonzero(eras == e)[0]][:40], flush=True)
     if opts.get("fuse", "face") == "face":
         part, chosen = sa.fuse_by_face(*stack.arrays(views=True), face_of, cap=1.0 / texel ** 2,
                                        agree=float(opts.get("agree", 0)) or None, few=int(opts.get("few", 3)),
+                                       changing=float(opts.get("changing", 0)) or None,
                                        pairs=np.array(pairs).reshape(-1, 2), strength=float(opts.get("smooth", 0.7)))
         took = np.bincount(chosen[chosen >= 0], minlength=len(used))
         used = {k: [n, int(took[i])] for i, (k, n) in enumerate(used.items())}      # texels seen, texels taken
@@ -100,6 +118,10 @@ def main(argv):
         tot = np.zeros((len(charts), 3)); num = np.zeros(len(charts))
         np.add.at(tot, real_face[seen_t], part[seen_t]); np.add.at(num, real_face[seen_t], 1)
         mean = np.where(num[:, None] > 0, tot / np.maximum(num, 1)[:, None], whole)
+        # roofs are hardly ever seen from the street; the few texels a sign bled onto must not paint them
+        flat = np.array([abs(c[2][2]) > 0.5 for c in charts])
+        thin = num < 0.2 * np.bincount(real_face, minlength=len(charts))
+        mean[flat & thin] = ROOF
         guess = part.copy()
         guess[~seen_t] = mean[real_face[~seen_t]]
         fused.reshape(-1, 3)[where] = guess
@@ -108,7 +130,8 @@ def main(argv):
     Image.fromarray((np.clip(count, 0, 5) * 51).astype(np.uint8)).save(out / "seen.png")
 
     report = {"building": name, "texel_m": texel, "atlas": [width, rows], "photos": used, "faces": [],
-              "gains": None if gains is None else dict(zip(used, np.round(gains, 3).tolist()))}
+              "gains": None if gains is None else dict(zip(used, np.round(gains, 3).tolist())),
+              "eras": None if eras is None else dict(zip(used, eras.tolist()))}
     lines, vt = ["mtllib model.mtl", "usemtl atlas"], 1
     for g, (points, mask, normal, corners), (y, x) in zip(groups, charts, pos):
         r, k = mask.shape

@@ -179,5 +179,40 @@ class Exposure(unittest.TestCase):
         self.assertAlmostEqual(g[3], 1.6, places=2)
 
 
+class ChangingSurface(unittest.TestCase):
+    def test_a_screen_takes_one_moment(self):
+        # two neighbouring patches of a screen, three photos showing three different pictures; photo 0 saw
+        # patch A a little better, photo 1 saw patch B a little better
+        n = 40
+        face_of = np.repeat([0, 1], n // 2)
+        colours = np.stack([np.full((n, 3), v, np.float32) for v in (20.0, 120.0, 230.0)])
+        weights = np.ones((3, n), np.float32)
+        weights[0, : n // 2] = 1.3
+        weights[1, n // 2:] = 1.3
+        views = np.repeat(np.arange(3)[:, None], n, axis=1)
+        pairs = np.array([[0, 1]])
+        _, plain = sa.fuse_by_face(colours, weights, views, face_of, cap=10.0, pairs=pairs, strength=0.1)
+        self.assertEqual(len(set(plain.tolist())), 2)
+        _, held = sa.fuse_by_face(colours, weights, views, face_of, cap=10.0, agree=25.0, pairs=pairs, strength=0.1,
+                                  changing=30.0)
+        self.assertEqual(len(set(held.tolist())), 1)
+
+
+class Eras(unittest.TestCase):
+    def test_two_eras_of_a_facade(self):
+        # five photos of one wall: three after a refit (light), two before (dark); a small screen differs in all
+        rng = np.random.default_rng(0)
+        n = 2000
+        base = [200.0, 205.0, 195.0, 60.0, 65.0]
+        colours = np.stack([np.full((n, 3), b, np.float32) for b in base])
+        colours[:, :200] = rng.uniform(0, 255, (5, 200, 3))
+        weights = np.ones((5, n), np.float32)
+        views = np.repeat(np.arange(5)[:, None], n, axis=1)
+        share, pairs = sa.view_agreement(colours, weights, views)
+        self.assertGreater(share[0, 1], 0.85)
+        self.assertLess(share[0, 3], 0.1)
+        self.assertEqual(sa.view_clusters(share, pairs, k=2).tolist(), [0, 0, 0, 1, 1])
+
+
 if __name__ == "__main__":
     unittest.main()
