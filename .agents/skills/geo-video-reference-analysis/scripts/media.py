@@ -44,9 +44,22 @@ def loudness(src: str) -> dict:
 
 def sheets(src: str, out: pathlib.Path, step: float) -> None:
     out.mkdir(parents=True, exist_ok=True)
-    stamp = "drawtext=text='%{pts\\:hms}':x=8:y=8:fontsize=28:fontcolor=white:box=1:boxcolor=black@0.6"
+    stamp = "pad=iw:ih+32:0:32:black,drawtext=text='%{pts\\:hms}':x=8:y=4:fontsize=24:fontcolor=white"
     run(['ffmpeg', '-nostdin', '-y', '-i', src, '-an', '-vf',
          f'fps=1/{step},scale=480:-1,{stamp},tile=4x4', '-q:v', '4', str(out / 'sheet_%02d.jpg')])
+
+
+def adaptive_sheets(src: str, out: pathlib.Path, budget: int) -> dict:
+    import sys
+    pipeline_dir = pathlib.Path(__file__).resolve().parents[4] / 'packages' / 'pipeline'
+    if str(pipeline_dir) not in sys.path:
+        sys.path.insert(0, str(pipeline_dir))
+    import video_inspect
+    out.mkdir(parents=True, exist_ok=True)
+    return video_inspect.build_adaptive_storyboard(
+        pathlib.Path(src), out / 'storyboard.jpg',
+        budget=budget, timeline_path=out / 'timeline.txt', overwrite=True,
+    )
 
 
 def chapter_heads(src: str, chapters: list[dict], out: pathlib.Path) -> None:
@@ -78,6 +91,8 @@ def main() -> None:
     ap.add_argument('--info')
     ap.add_argument('--sheet-step', type=float, default=20)
     ap.add_argument('--cut-threshold', type=float, default=0.25)
+    ap.add_argument('--adaptive', action='store_true', help='Also generate adaptive keyframe storyboard and timeline')
+    ap.add_argument('--budget', type=int, default=32, help='Keyframe budget for --adaptive (default: 32)')
     a = ap.parse_args()
     out = pathlib.Path(a.outdir)
     out.mkdir(parents=True, exist_ok=True)
@@ -88,6 +103,9 @@ def main() -> None:
     (out / 'loudness.txt').write_text(json.dumps(ld) + '\n')
     sheets(a.video, out / 'sheets', a.sheet_step)
     msg = f'cuts {len(c)} | {ld["integrated_lufs"]} LUFS, LRA {ld["lra_lu"]} LU, silences {ld["silences"]}'
+    if a.adaptive:
+        ad = adaptive_sheets(a.video, out / 'adaptive', a.budget)
+        msg += f' | adaptive {ad["keyframes"]} frames'
     if a.info:
         chapters = json.loads(pathlib.Path(a.info).read_text(encoding='utf-8')).get('chapters') or []
         if chapters:

@@ -289,7 +289,8 @@ def build_contact_sheet(
     ]
     if use_drawtext:
         filters.append(
-            "drawtext=text='%{pts\\:hms}':fontcolor=white:fontsize=h/14:box=1:boxcolor=black@0.6:boxborderw=4:x=8:y=8"
+            "pad=iw:ih+28:0:28:black,"
+            "drawtext=text='%{pts\\:hms}':fontcolor=white:fontsize=20:x=8:y=4"
         )
     if safe:
         filters.extend(_safe_zone_boxes(safe))
@@ -323,6 +324,8 @@ def run_cli(argv: list[str] | None = None) -> tuple[int, str]:
     parser.add_argument('--platform', choices=sorted(PLATFORMS), default='youtube')
     parser.add_argument('--content', action='store_true', help='Detect black, frozen, and silent spans')
     parser.add_argument('--contact', type=Path, default=None, help='Output path for contact sheet PNG')
+    parser.add_argument('--storyboard', type=Path, default=None, help='Output path for adaptive storyboard JPG')
+    parser.add_argument('--storyboard-budget', type=int, default=16, help='Max keyframes for adaptive storyboard')
     parser.add_argument('--tiles', default='4x3', help='Contact sheet grid COLSxROWS (default: 4x3)')
     parser.add_argument('--safe', choices=sorted(PLATFORMS), default=None, help='Overlay platform UI safe zones')
     parser.add_argument('--overwrite', action='store_true')
@@ -353,6 +356,15 @@ def run_cli(argv: list[str] | None = None) -> tuple[int, str]:
         report['contact'] = build_contact_sheet(
             args.input, args.contact, duration=meta['duration'],
             tiles=parse_tiles(args.tiles), safe=args.safe, overwrite=args.overwrite,
+        )
+    if args.storyboard:
+        try:
+            from video_inspect import build_adaptive_storyboard
+        except ImportError:
+            from packages.pipeline.video_inspect import build_adaptive_storyboard
+        report['storyboard'] = build_adaptive_storyboard(
+            args.input, args.storyboard, budget=args.storyboard_budget,
+            timeline_path=args.storyboard.with_suffix('.timeline.txt'), overwrite=args.overwrite,
         )
 
     report['ok'] = ok
