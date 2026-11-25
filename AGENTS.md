@@ -101,7 +101,7 @@ PLATEAU++ は次の優先順位で、カメラに収まる範囲の全建物を�
 
 - 範囲はカメラの全行程で画面に入る地面から決める。用意した範囲の外が映るところまでカメラを引かない。
 - 手順と実装は `geo-video-3d-buildings` スキル。PLATEAU と補完を 1 つの manifest にする例は `packages/renderer/test/e2e/prepare-buildings-tokyo-sota.py`。
-- 補完の形状は今の実装では地理院の建物外形を使い、高さに OSM の `height` と `building:levels` を使う。
+- 補完の形状は今の実装では地理院の建物外形を使い、高さに OSM の `building:levels` を優先し、無ければ `height` を使う。
 
 ## 進め方の原則
 

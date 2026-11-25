@@ -78,6 +78,14 @@ class HeightModelTest(unittest.TestCase):
         prior = bh.PRIOR_HEIGHTS['3102'][bh.area_bin(400)]
         self.assertTrue(prior * 0.85 <= height <= prior * 1.15)
 
+    def test_levels_win_over_height_when_both_are_tagged(self):
+        # mappers fill building:levels; a height tag is rarer and was seen copied from a whole complex
+        model = bh.calibrate_height_model([])
+        props = {'vt_code': 3102, 'height': '179.95', 'building:levels': '9'}
+        self.assertEqual(bh.estimate_height(props, 400, model, 'a'), (9 * bh.STORY_M, 'osm:levels'))
+        self.assertEqual(bh.estimate_height({'vt_code': 3102, 'height': '31', 'building:levels': '0'}, 400, model, 'a'),
+                         (31.0, 'osm:height'))
+
     def test_levels_below_one_are_not_storeys_and_fall_back_to_the_model(self):
         model = bh.calibrate_height_model([])
         for bad in ('0.8', '0', '-1', 'two'):

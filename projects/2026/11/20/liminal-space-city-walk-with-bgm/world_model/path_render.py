@@ -19,7 +19,7 @@ import numpy as np
 from mathutils import Matrix
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import camera_path as cp  # noqa: E402
+import world_camera as cp  # noqa: E402
 
 argv = sys.argv[sys.argv.index("--") + 1:]
 opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))

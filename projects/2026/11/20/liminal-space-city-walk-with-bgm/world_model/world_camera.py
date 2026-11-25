@@ -1,4 +1,4 @@
-"""camera_path.py <shots module> <scene tris.npz>
+"""world_camera.py <shots module> <scene tris.npz>
 Camera moves as a few keys (eye, target, lens, roll) and the frames between them. With arguments, prints for
 every shot how close the camera comes to a building, so that a move through a wall is caught before rendering.
 

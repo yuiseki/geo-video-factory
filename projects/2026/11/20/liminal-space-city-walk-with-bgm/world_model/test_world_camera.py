@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-import camera_path as cp
+import world_camera as cp
 
 
 class Sample(unittest.TestCase):

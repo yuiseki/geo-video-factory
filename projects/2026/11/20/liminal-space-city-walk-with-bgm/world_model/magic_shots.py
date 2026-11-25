@@ -1,7 +1,7 @@
 """Camera moves that only a model can do: nobody can stand, fly or wait where these cameras go.
 Local east/north/up metres; the crossing's centre is (10, -20) and its ground is at z = 52.8.
-Check with: python camera_path.py magic_shots <scene tris.npz>"""
-from camera_path import circle
+Check with: python world_camera.py magic_shots <scene tris.npz>"""
+from world_camera import circle
 
 X = (10.0, -20.0)          # the centre of the crossing
 G = 52.8                   # ground

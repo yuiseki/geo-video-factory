@@ -2,12 +2,13 @@
 
 OpenStreetMap convention: mappers fill `building:levels`; `height` is entered only by someone who
 measured the building or checked construction documents, so that guesses do not enter as data.
-`height` is therefore rare but strong, and `building:levels` is the field to expect.
+`building:levels` is the field to expect and is used first: a `height` tag is rare, and on a
+footprint that is only a piece of a large complex it carries the height of the whole complex.
 
-Order of evidence, strongest first, and the source is kept with every estimate:
+Order of evidence, first used first, and the source is kept with every estimate:
 
-1. a measured OSM `height` tag                      -> 'osm:height'
-2. an OSM `building:levels` tag x STORY_M            -> 'osm:levels'
+1. an OSM `building:levels` tag x STORY_M            -> 'osm:levels'
+2. an OSM `height` tag                               -> 'osm:height'
 3. the median measured height of buildings of the same GSI structure class and floor-area bin,
    calibrated on PLATEAU buildings nearby when enough of them exist, otherwise PRIOR_HEIGHTS
                                                       -> 'model:<vt_code>'
@@ -87,12 +88,12 @@ def _positive(raw: Any) -> float | None:
 
 def estimate_height(properties: dict[str, Any], area_m2: float, model: dict[str, Any], identifier: str) -> tuple[float, str]:
     """Return (height in meters, source of the estimate); never lower than one story."""
-    height = _positive(properties.get('height'))
-    if height is not None:
-        return max(height, ONE_STORY_M), 'osm:height'
     levels = _positive(properties.get('building:levels'))
     if levels is not None and levels >= 1:  # "0.8" or "0" are not storeys
         return max(levels * STORY_M, ONE_STORY_M), 'osm:levels'
+    height = _positive(properties.get('height'))
+    if height is not None:
+        return max(height, ONE_STORY_M), 'osm:height'
     code = str(properties.get('vt_code') or '3101')
     table = (model.get('heights') or {}).get(code) or PRIOR_HEIGHTS.get(code) or PRIOR_HEIGHTS['3101']
     base = table[area_bin(area_m2)]

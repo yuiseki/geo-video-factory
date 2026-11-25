@@ -144,9 +144,13 @@ def build_city_proxy_tile(
         identifier = str(feat.get('id'))
         props = dict(feat.get('properties') or {})
         if osm_tree is not None:
+            # the same building in both datasets: most of each outline is shared (intersection over union).
+            # Coverage of the footprint alone let a small piece inside a tower complex take the tower's tags.
             best, best_share = None, 0.5
             for j in osm_tree.query(polygon):
-                share = polygon.intersection(osm_shapes[int(j)]).area / polygon.area
+                other = osm_shapes[int(j)]
+                common = polygon.intersection(other).area
+                share = common / (polygon.area + other.area - common)
                 if share > best_share:
                     best, best_share = int(j), share
             if best is not None:

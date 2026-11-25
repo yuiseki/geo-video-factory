@@ -107,6 +107,20 @@ class CityProxyTest(unittest.TestCase):
         record = json.loads((Path(directory) / tile['buildings']).read_text())['buildings'][0]
         self.assertEqual((record['height'], record['source']), (31.0, 'osm:height'))
 
+    def test_a_fragment_inside_a_large_osm_building_does_not_take_its_tags(self):
+        # a small GSI piece inside a tower complex's OSM outline became a 180 m needle
+        tower = rect(139.33, 35.75, 100, 80)
+        piece = rect(139.33 + 10 / KX, 35.75 + 10 / KY, 15, 15)
+        same = rect(139.32, 35.75, 20, 20)
+        features = [feature('gsi/piece', piece, vt_code=3102), feature('gsi/same', same, vt_code=3102)]
+        osm = [feature('way/tower', tower, height='180', **{'building:levels': '35'}),
+               feature('way/same', rect(139.32, 35.75, 21, 19), **{'building:levels': '4'})]
+        directory, manifest = self.build(features, osm_features=osm)
+        tile, _, _ = read(directory, manifest)
+        records = {r['id']: r for r in json.loads((Path(directory) / tile['buildings']).read_text())['buildings']}
+        self.assertTrue(records['gsi/piece']['source'].startswith('model:'))
+        self.assertEqual((records['gsi/same']['height'], records['gsi/same']['source']), (12.0, 'osm:levels'))
+
     def test_roof_color_comes_from_the_orthophoto_and_walls_differ_from_it(self):
         image = Image.new('RGB', (400, 300), (40, 120, 40))
         west, south, east, north = BBOX

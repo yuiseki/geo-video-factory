@@ -1,6 +1,6 @@
 import unittest
 
-import frame_check as fc
+import frame_jumps as fc
 
 
 class FrameCheck(unittest.TestCase):
