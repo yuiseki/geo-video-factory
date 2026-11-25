@@ -259,6 +259,32 @@ def extract_glb_feature_heights(payload: bytes, rtc: list[float], tile_ids: list
     return result
 
 
+def extract_glb_feature_shapes(payload: bytes, rtc: list[float], tile_ids: list[str]) -> dict[str, dict[str, Any]]:
+    """Per feature: WGS84 centroid, vertical extent, footprint area in m2 (convex hull of its vertices) and the
+    area of the part above 80 % of its height ('top'), what buildings.plausibility judges."""
+    from buildings.building_heights import footprint_area_m2
+
+    heights = extract_glb_feature_heights(payload, rtc, tile_ids)
+    points = _feature_ecef_points(payload, rtc, tile_ids)
+    for index, identifier in enumerate(tile_ids):
+        item = heights.get(str(identifier))
+        if item is None:
+            continue
+        vertices = points[index]
+        step = max(1, len(vertices) // 2000)
+        lonlats = [tuple(round(c, 8) for c in _geodetic(v)) for v in vertices[::step]]
+        hull = _convex_hull(lonlats)
+        item['area'] = footprint_area_m2(hull) if hull else 0.0
+        # the footprint of the part above 80 % of the height: all of it for a block, a little for a tower
+        lam, phi = math.radians(item['lonlat'][0]), math.radians(item['lonlat'][1])
+        up = (math.cos(phi) * math.cos(lam), math.cos(phi) * math.sin(lam), math.sin(phi))
+        ups = [sum(v[a] * up[a] for a in range(3)) for v in vertices[::step]]
+        cut = min(ups) + 0.8 * (max(ups) - min(ups))
+        top = _convex_hull([p for p, u in zip(lonlats, ups) if u >= cut])
+        item['top'] = footprint_area_m2(top) if top else 0.0
+    return heights
+
+
 def _point_in_ring(point: tuple[float, float], ring: list[list[float]]) -> bool:
     longitude, latitude = point
     inside = False

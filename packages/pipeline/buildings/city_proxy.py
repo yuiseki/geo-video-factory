@@ -35,6 +35,7 @@ from typing import Any, Callable
 from PIL import Image
 
 from buildings.building_heights import ONE_STORY_M, calibrate_height_model, estimate_height, footprint_area_m2
+from buildings.plausibility import cap_height
 from buildings.facade_archetypes import STYLE_CODES, classify_facade, facade_wall_color, roof_stats
 from buildings.glb_spatial import _ecef
 from buildings.city_geometry import SHADOW_CELL_M, SHADOW_LIFT_M, SHADOW_PER_M, _flat_roof, _Mesh, _pitched, _shadow_glb, _walls  # noqa: F401
@@ -161,6 +162,8 @@ def build_city_proxy_tile(
         outer = feat['geometry']['coordinates'][0]
         area = footprint_area_m2(outer)
         height, source = estimate_height(props, area, model, identifier)
+        if cap_height(height, area) < height:                  # buildings.plausibility: no needles
+            height, source = cap_height(height, area), source + '+capped'
         code = str(props.get('vt_code') or '3101')
         ground_samples = [ground(lon, lat) for lon, lat in outer[:-1]] + [ground(*polygon.centroid.coords[0])]
         base = min(ground_samples) - GROUND_SINK_M

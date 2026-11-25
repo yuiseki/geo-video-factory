@@ -100,7 +100,8 @@ PLATEAU++ は次の優先順位で、カメラに収まる範囲の全建物を�
 3. PLATEAU に建物モデルが無い所だけ、OpenStreetMap などから建物を合成する。
 
 - 範囲はカメラの全行程で画面に入る地面から決める。用意した範囲の外が映るところまでカメラを引かない。
-- 手順と実装は `geo-video-3d-buildings` スキル。PLATEAU と補完を 1 つの manifest にする例は `packages/renderer/test/e2e/prepare-buildings-tokyo-sota.py`。
+- 作るのは `OVERPASS_URL=<自前> python -m buildings.plateau_pp <出力先> --bbox=w,s,e,n` (packages/pipeline)。プロジェクトで組み立て手順を書き直さず、範囲と seed だけ渡す。手順の解説は `geo-video-3d-buildings` スキル。
+- 実在しえない建物 (床面積 1 m² で高さ 150 m の針、塔の高さで押し出された複合施設、巨大な板) は `buildings/plausibility.py` が PLATEAU から外し、空いた所は補完が埋める。外した建物は manifest の `removed_buildings` に残る。新しい罠に会ったら、プロジェクトで直さず plausibility にテストと規則を足す。
 - 補完の形状は今の実装では地理院の建物外形を使い、高さに OSM の `building:levels` を優先し、無ければ `height` を使う。
 
 ## 進め方の原則

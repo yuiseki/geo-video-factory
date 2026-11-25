@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Replace oversized Namba station / Namba Parks PLATEAU blocks with GSI+OSM city-proxy buildings."""
+"""Replace oversized Namba station / Namba Parks PLATEAU blocks with GSI+OSM city-proxy buildings.
+
+Superseded: packages/pipeline/buildings/plateau_pp.py now finds these by their shape (buildings/plausibility.py)
+for any box, without a hand-drawn rectangle. Kept as the record of how v0.2.x of this project was built."""
 from __future__ import annotations
 
 import json

@@ -121,6 +121,16 @@ class CityProxyTest(unittest.TestCase):
         self.assertTrue(records['gsi/piece']['source'].startswith('model:'))
         self.assertEqual((records['gsi/same']['height'], records['gsi/same']['source']), (12.0, 'osm:levels'))
 
+    def test_a_small_footprint_never_becomes_a_needle(self):
+        # whatever the tags say, a 5 m x 5 m footprint is not 180 m tall (buildings.plausibility)
+        piece = rect(139.32, 35.75, 5, 5)
+        osm = [feature('way/mast', rect(139.32, 35.75, 5.2, 5.2), height='180')]
+        directory, manifest = self.build([feature('gsi/piece', piece, vt_code=3102)], osm_features=osm)
+        tile, _, _ = read(directory, manifest)
+        record = json.loads((Path(directory) / tile['buildings']).read_text())['buildings'][0]
+        self.assertLessEqual(record['height'], 12 * 5 + 1)
+        self.assertTrue(record['source'].endswith('+capped'))
+
     def test_roof_color_comes_from_the_orthophoto_and_walls_differ_from_it(self):
         image = Image.new('RGB', (400, 300), (40, 120, 40))
         west, south, east, north = BBOX
