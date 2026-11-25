@@ -182,3 +182,38 @@ def _stream_dive_qfront():
 
 
 SHOTS["stream_dive_qfront"] = {"frames": 300, "ease": False, "keys": _stream_dive_qfront()}
+
+
+def _scramble_dive_crossing():
+    # the PLATEAU++ descent ends falling straight down onto Shibuya Scramble Square (roof 230 m, its top
+    # around (175, -123)), north up: carry on falling inside the tower, turn toward Hachiko, leave through
+    # the west wall over Shibuya Station, pass above the Hachiko statue and land on the crossing facing QFRONT.
+    # Until the camera is out, the target is 100 m along the line of sight (see _stream_dive_qfront).
+    tower, hachi = (175.0, -123.0), (5.0, -49.0)
+    face = (QF[0], QF[1], G + 15)
+
+    def look(eye, east, north, up):
+        m = math.sqrt(east * east + north * north + up * up)
+        return (eye[0] + 100 * east / m, eye[1] + 100 * north / m, eye[2] + 100 * up / m)
+
+    def toward(eye, p):
+        return look(eye, p[0] - eye[0], p[1] - eye[1], p[2] - eye[2])
+
+    ahead = (hachi[0], hachi[1], G)
+    e0, e1, e2 = (*tower, G + 215), (*tower, G + 110), (*tower, G + 96)
+    e3 = (168.0, -120.0, G + 92)
+    e4 = (118.0, -98.0, G + 85)
+    e5 = (60.0, -73.0, G + 62)
+    e6 = (hachi[0], hachi[1], G + 28)
+    return [
+        _k(e0, look(e0, 0, 0.02, -1), 18, t=0.0),
+        _k(e1, look(e1, 0, 0.25, -1), 18, t=0.20),
+        _k(e2, look(e2, 0, 1, -0.4), 18, t=0.30),
+        _k(e3, toward(e3, ahead), 18, t=0.38),
+        _k(e4, toward(e4, ahead), 18, t=0.50),
+        _k(e5, toward(e5, (X[0], X[1], G)), 18, t=0.64),
+        _k(e6, toward(e6, face), 20, t=0.80),
+        _k((X[0], X[1], G + 4), face, 22, t=1.0)]
+
+
+SHOTS["scramble_dive_crossing"] = {"frames": 300, "ease": False, "keys": _scramble_dive_crossing()}
