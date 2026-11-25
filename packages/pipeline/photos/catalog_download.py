@@ -36,6 +36,12 @@ def picture_hash(data: bytes) -> str:
         return dhash_of(im)
 
 
+def standard_thumb(url, width=1920):
+    """A Commons thumbnail at one of the widths Wikimedia keeps rendered (1280, 1920, ...). Other widths are
+    drawn on request and throttled: at 2560 px a download took about a minute."""
+    return re.sub(r"/thumb/(.+)/\d+px-([^/]+)$", rf"/thumb/\1/{width}px-\2", url)
+
+
 def _name(i, title):
     stem = re.sub(r"\.[A-Za-z0-9]+$", "", title.split(":", 1)[-1])
     return f"{i:03d}_" + re.sub(r"[^0-9A-Za-z_-]+", "_", stem).strip("_")[:80] + ".jpg"
@@ -49,14 +55,19 @@ def download(rows, photos_dir, manifest_path, flyover_dir, fetch=None, sleep=tim
     out = []
     for i, row in enumerate(rows, 1):
         rec = dict(row)
+        path = photos_dir / _name(i, row["title"])
+        if path.exists():                                     # a run that stopped part way: carry on
+            seen.add(picture_hash(path.read_bytes()))
+            rec.update(status="downloaded", local_path=str(path.relative_to(flyover_dir)), bytes=path.stat().st_size)
+            out.append(rec)
+            continue
         try:
-            data = fetch(row["download_url"])
+            data = fetch(standard_thumb(row["download_url"]))
             h = picture_hash(data)
             if h in seen:
                 rec["status"] = "same picture already on disk"
             else:
                 seen.add(h)
-                path = photos_dir / _name(i, row["title"])
                 path.write_bytes(data)
                 rec.update(status="downloaded", local_path=str(path.relative_to(flyover_dir)), bytes=len(data))
         except Exception as exc:   # recorded per photo: one broken file does not stop the set

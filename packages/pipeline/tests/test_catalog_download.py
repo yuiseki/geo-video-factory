@@ -31,6 +31,15 @@ class Select(unittest.TestCase):
         self.assertEqual([r["title"] for r in near], ["File:Near crossing.jpg", "File:Also near (2).JPG"])
 
 
+class Thumbnails(unittest.TestCase):
+    def test_a_commons_thumbnail_is_asked_for_at_a_standard_width(self):
+        url = "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/X.jpg/2560px-X.jpg"
+        self.assertEqual(cd.standard_thumb(url), "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/X.jpg/1920px-X.jpg")
+
+    def test_other_urls_are_left_alone(self):
+        self.assertEqual(cd.standard_thumb("https://live.staticflickr.com/1/2_o.jpg"), "https://live.staticflickr.com/1/2_o.jpg")
+
+
 class Download(unittest.TestCase):
     def test_files_and_a_manifest_with_their_sources(self):
         out = Path(tempfile.mkdtemp())
@@ -55,6 +64,20 @@ class Download(unittest.TestCase):
                                sleep=lambda s: None, known=known)
         self.assertEqual(manifest["photos"][0]["status"], "same picture already on disk")
         self.assertNotIn("local_path", manifest["photos"][0])
+
+    def test_a_file_already_downloaded_is_not_fetched_again(self):
+        out = Path(tempfile.mkdtemp())
+        photos = out / "assets/photos/test_set"
+        calls = []
+
+        def fetch(url):
+            calls.append(url)
+            return _jpeg((200, 0, 0))
+
+        cd.download(ROWS[:1], photos, out / "m.json", out, fetch=fetch, sleep=lambda s: None)
+        m = cd.download(ROWS[:1], photos, out / "m.json", out, fetch=fetch, sleep=lambda s: None)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(m["photos"][0]["status"], "downloaded")
 
     def test_a_failed_download_is_recorded_not_hidden(self):
         out = Path(tempfile.mkdtemp())
