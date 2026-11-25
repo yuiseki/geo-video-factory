@@ -15,10 +15,12 @@ orbit_render.py   Blender で周回、または交差点に立って見回す。
 contact_sheet.py  書き出したフレームの一覧
 world_camera.py    数個のキー (目、注視点、レンズ、回転) からカメラの動きを作り、建物との距離を検査する
 magic_shots.py    実物のカメラでは撮れない動き (見上げて回る、ドリーズーム、裏返る、真上から落ちる)
+pp_scene.py       PLATEAU++ (PLATEAU の写真テクスチャつき建物と補完の建物) にアトラスと地面を重ねた .blend を作る
 path_render.py    保存した .blend を開き、magic_shots の 1 ショットを描く
+render_shot_wd.sh path_render.py を見張りつきで回す。25 秒フレームが出なければ止めて残りを描き直す
 time_blend.py     同じ動きを昼と夜で描いた 2 本を、動きの途中で時間が変わる 1 本にする
 edit_frames.py    番号付きフレームのクリップをつなぐ (カット、クロスフェード、動きの途中の昼夜切り替え、暗転)
-render_edit.sh    つないだフレームに BGM を敷いて mp4 にする (-14 LUFS)
+render_edit.sh    つないだフレームを mp4 にする。BGM を渡せば敷いて -14 LUFS に揃える
 frame_jumps.py    前後のフレームから明るさが飛んだフレーム (真っ黒、暗転) を探す
 ```
 
@@ -101,3 +103,11 @@ frame_jumps.py    前後のフレームから明るさが飛んだフレーム (
 - 地面: 国土地理院 シームレス空中写真
 - 写真: 個々の作者とライセンスは `flyover/assets/` 側の記録に従う。テクスチャに使った写真は
   build_atlas.py の report.json の `photos` に、取った画素数つきで残る。
+
+描画
+
+- 保存した .blend とこのディレクトリのコードを別の機械へ写せば、ショットやフレーム範囲を分けて並列に描ける。
+  Apple Silicon の Blender 5.3 は EEVEE が止まらず 1 フレーム約 1.5 秒で、Linux の snap 版より何倍も速かった。
+- アトラスは壁と視線の角度が浅い写真 (`surface_atlas.observe` の `min_cos=0.12`、壁から約 7 度) まで採る。
+  そうした写真では数画素が何メートルもの壁に引き伸ばされ、斜めの縞になる。seen.png は見た写真の枚数しか持たないので、
+  描画側では消せない。いまはその画角を編集で外している。

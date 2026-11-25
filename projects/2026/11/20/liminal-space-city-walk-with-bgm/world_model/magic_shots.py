@@ -131,3 +131,16 @@ def _stream_to_qfront():
 
 
 SHOTS["stream_to_qfront"] = {"frames": 270, "keys": _stream_to_qfront()}
+
+
+def _orbit(centre_xyz, radius, height, a0, a1, lens):
+    # orbit_render.py: camera on the ring at ground + height, looking at the centre point
+    ring = circle(centre_xyz[:2], radius, G - 0.2 + height, a0, a1, n=25)
+    return [_k(p, centre_xyz, lens) for p in ring]
+
+
+# the moves of the v5 clips (orbit_render.py), so that they can be drawn from any saved scene
+SHOTS["pan"] = {"frames": 360, "ease": False, "keys": [
+    _k((10, -20, G - 0.2 + 2.2), p, 18) for p in circle((10, -20), 100, G - 0.2 + 18, 180, 540, n=49)]}
+SHOTS["arc_qfront"] = {"frames": 180, "ease": False, "keys": _orbit((-12, 43, 75), 85, 30, 130, 210, 24)}
+SHOTS["arc_ekimae"] = {"frames": 180, "ease": False, "keys": _orbit((-53, -33, 70), 70, 25, 45, 140, 24)}
