@@ -118,6 +118,10 @@ photo_guard.py    photo_blocklist.tsv に載った写真を、写真を読むす
 - photo_sources_v0.2.tsv は、v0.2 の映像の壁と地面に入りうる写真 126 枚の出典 (ライセンス、作者、題名、URL)。
   出典の一覧 (research/*manifest.json) とファイルの SHA-1 で照合し、一覧にない写真は Wikimedia Commons を
   SHA-1 で引いた。Commons の題名でしか照合できなかった写真は found_by にそう書いてある。
+- 取得元は Wikimedia Commons と Openverse (その先の Flickr、rawpixel)。出典の一覧は research/ の
+  photos_manifest.json、photos_buildings_night_manifest.json、photos_qfront_manifest.json、
+  photos_crossing_night_cc0_manifest.json、tokyo_cc0/、tokyo_ccby/。assets/photos の 2,324 枚はすべてこのどれかと
+  パスか SHA-1 で照合でき、食い違いは無かった (2026-11-25)。
 - CC BY-SA の写真は使わない。建物に貼った映像は改変物になり、映像ごと同じライセンスにしなければならないため。
   消さずに photo_blocklist.tsv に SHA-1 と dHash を残し、build_atlas、ground_from_above、time_layers、
   overlay_check、sfm_try はそこに載った写真を拒む。dHash は縮小や再圧縮した複製も捕まえる (距離 6 ビット以内)。
