@@ -35,7 +35,8 @@ class Guard(unittest.TestCase):
     def test_another_photo_passes(self):
         other = _photo(self.dir / "cc0.jpg", 2)
         pg.check(other, self.list)
-        self.assertEqual(pg.open_photo(other, self.list).size, (640, 480))
+        with pg.open_photo(other, self.list) as im:
+            self.assertEqual(im.size, (640, 480))
 
     def test_open_photo_refuses_before_reading(self):
         with self.assertRaises(pg.BlockedPhoto):
@@ -54,6 +55,20 @@ class Guard(unittest.TestCase):
         self.assertEqual(lines[0].split("\t"), list(pg.COLUMNS))
         self.assertEqual(len(lines), 3)
         self.assertEqual(lines[1:], sorted(lines[1:]))
+
+    def test_the_command_adds_and_checks(self):
+        from unittest import mock
+        other = _photo(self.dir / "cc0.jpg", 2)
+        with mock.patch.object(pg, "BLOCKLIST", self.dir / "cli.tsv"):
+            pg.main(["add", "CC BY-SA 4.0", "File:Other.jpg", "share-alike", str(other)])
+            with self.assertRaises(SystemExit) as caught:
+                pg.main(["check", str(other)])
+            self.assertEqual(caught.exception.code, 1)
+            with self.assertRaises(SystemExit) as caught:
+                pg.main(["check", str(self.blocked)])          # listed in self.list, not in cli.tsv
+            self.assertEqual(caught.exception.code, 0)
+            with self.assertRaises(SystemExit):
+                pg.main([])
 
     def test_the_repository_blocklist_loads(self):
         rows = pg.read_blocklist()

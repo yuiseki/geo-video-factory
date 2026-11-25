@@ -15,5 +15,25 @@ class FrameCheck(unittest.TestCase):
         self.assertEqual(fc.odd_frames([0, 100, 100, 100, 100, 5]), [0, 5])
 
 
+class Command(unittest.TestCase):
+    def test_a_white_frame_is_found_and_moved_aside(self):
+        import io
+        import tempfile
+        from contextlib import redirect_stdout
+        from pathlib import Path
+
+        from PIL import Image
+
+        d = Path(tempfile.mkdtemp())
+        for i in range(6):
+            Image.new("RGB", (64, 36), (255, 255, 255) if i == 3 else (60, 60, 60)).save(d / f"f{i:04d}.jpg")
+        out = io.StringIO()
+        with redirect_stdout(out):
+            fc.main([str(d), "--move"])
+        self.assertIn("odd f0003.jpg", out.getvalue())
+        self.assertTrue((d / "bad0_f0003.jpg").exists())
+        self.assertFalse((d / "f0003.jpg").exists())
+
+
 if __name__ == "__main__":
     unittest.main()

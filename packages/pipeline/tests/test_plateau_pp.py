@@ -51,6 +51,38 @@ class Overpass(unittest.TestCase):
             self.assertEqual(plateau_pp.overpass_endpoint(), "https://example.invalid/api/interpreter")
 
 
+class OsmBuildings(unittest.TestCase):
+    def test_ways_become_closed_polygons_with_their_tags_and_are_cached(self):
+        reply = {"elements": [
+            {"type": "node", "id": 1, "lon": 139.0, "lat": 35.0}, {"type": "node", "id": 2, "lon": 139.001, "lat": 35.0},
+            {"type": "node", "id": 3, "lon": 139.001, "lat": 35.001},
+            {"type": "way", "id": 10, "nodes": [1, 2, 3, 1], "tags": {"building": "yes", "building:levels": "3"}},
+            {"type": "way", "id": 11, "nodes": [1, 2, 3], "tags": {"building": "no"}},
+            {"type": "way", "id": 12, "nodes": [1, 2], "tags": {"building": "yes"}}]}
+
+        class Reply:
+            def __enter__(self):
+                return self
+
+            def __exit__(self, *a):
+                return False
+
+            def read(self):
+                return json.dumps(reply).encode()
+
+        out = Path(tempfile.mkdtemp()) / "osm.geojson"
+        with mock.patch.dict(os.environ, {"OVERPASS_URL": "https://example.invalid/api"}), \
+                mock.patch("urllib.request.urlopen", return_value=Reply()) as urlopen:
+            features = plateau_pp.fetch_osm_buildings([139.0, 35.0, 139.01, 35.01], out)
+            again = plateau_pp.fetch_osm_buildings([139.0, 35.0, 139.01, 35.01], out)
+        self.assertEqual(urlopen.call_count, 1)
+        self.assertEqual([f["id"] for f in features], ["way/10"])
+        ring = features[0]["geometry"]["coordinates"][0]
+        self.assertEqual(ring[0], ring[-1])
+        self.assertEqual(features[0]["properties"]["building:levels"], "3")
+        self.assertEqual(again, features)
+
+
 class RoofTexture(unittest.TestCase):
     def test_bounds_in_local_metres(self):
         e = plateau_pp.roof_texture_entry("r.jpg", [139.0, 35.0, 139.01, 35.01], [139.005, 35.005])

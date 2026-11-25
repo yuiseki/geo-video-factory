@@ -1,6 +1,11 @@
 [run]
 source = packages/pipeline
-omit = packages/pipeline/tests/*
+omit =
+    packages/pipeline/tests/*
+    # Blender scripts: they run inside Blender (blender -b -P ...) and import bpy, which CI does not have
+    packages/pipeline/world_model/orbit_render.py
+    packages/pipeline/world_model/path_render.py
+    packages/pipeline/world_model/pp_scene.py
 
 [report]
 fail_under = 85

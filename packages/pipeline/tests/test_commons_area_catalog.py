@@ -76,6 +76,31 @@ class Search(unittest.TestCase):
             cac.search_circle((139.7, 35.66), 3.0, fetch_fn=fetch, sleep_fn=lambda s: None, max_offset=5)
 
 
+class Area(unittest.TestCase):
+    def test_a_full_circle_is_split_into_four_smaller_ones(self):
+        sizes = []
+
+        def fetch(url, sleep_fn=None):
+            q = _q(url)
+            radius = int(q["srsearch"].split("nearcoord:")[1].split("m,")[0])
+            sizes.append(radius)
+            if radius > 2000:                               # the first, large circle is too full
+                return {"query": {"searchinfo": {"totalhits": 20000}, "search": []}}
+            return {"query": {"searchinfo": {"totalhits": 1}, "search": [{"title": f"File:{len(sizes)}.jpg"}]}}
+
+        bbox = (139.70, 35.66, 139.72, 35.67)                # one 4 km cell
+        titles = cac.search_area(bbox, 4.0, fetch_fn=fetch, sleep_fn=lambda s: None, log=lambda m: None)
+        self.assertEqual(len(titles), 8)                     # 4 circles x 2 statements
+        self.assertEqual(sorted(set(sizes))[0], round(cac.radius_for(2.0) * 1000))
+
+    def test_polygons_of_a_feature_collection(self):
+        poly = {"type": "Polygon", "coordinates": [[[0, 0], [1, 0], [1, 1], [0, 0]]]}
+        multi = {"type": "MultiPolygon", "coordinates": [poly["coordinates"], poly["coordinates"]]}
+        fc = {"type": "FeatureCollection", "features": [{"type": "Feature", "geometry": poly},
+                                                        {"type": "Feature", "geometry": multi}]}
+        self.assertEqual(len(cac.polygons(fc)), 3)
+
+
 class Catalog(unittest.TestCase):
     def test_inside_keeps_points_in_the_polygon(self):
         square = [[(139.0, 35.0), (140.0, 35.0), (140.0, 36.0), (139.0, 36.0), (139.0, 35.0)]]

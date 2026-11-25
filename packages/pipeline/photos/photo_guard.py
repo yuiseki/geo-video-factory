@@ -45,8 +45,8 @@ def entry(path, licence, title, reason):
         return {"sha1": sha1_of(path), "dhash": dhash_of(im), "licence": licence, "title": title, "reason": reason}
 
 
-def read_blocklist(path=BLOCKLIST):
-    path = Path(path)
+def read_blocklist(path=None):
+    path = Path(path or BLOCKLIST)
     if not path.exists():
         return []
     with path.open(newline="") as f:
@@ -60,6 +60,7 @@ def write_blocklist(path, rows):
         w.writerow(COLUMNS)
         for r in sorted(unique.values(), key=lambda r: (r["sha1"])):
             w.writerow([r[k] for k in COLUMNS])
+    _cache.pop(str(Path(path).resolve()), None)          # a list read before this write is stale
 
 
 _cache = {}
@@ -73,9 +74,9 @@ def _listed(path):
     return _cache[key]
 
 
-def check(photo, blocklist=BLOCKLIST):
+def check(photo, blocklist=None):
     """Raise BlockedPhoto if the photo, or a resized copy of it, is on the list."""
-    by_sha, by_hash = _listed(blocklist)
+    by_sha, by_hash = _listed(blocklist or BLOCKLIST)
     hit = by_sha.get(sha1_of(photo))
     if hit is None:
         with Image.open(photo) as im:
@@ -85,7 +86,7 @@ def check(photo, blocklist=BLOCKLIST):
         raise BlockedPhoto(f"{photo}: listed in the photo blocklist ({hit['licence']}, {hit['title']}: {hit['reason']})")
 
 
-def drop_blocked(cams, blocklist=BLOCKLIST):
+def drop_blocked(cams, blocklist=None):
     """{key: camera} without the cameras whose photo is listed; prints each one it drops."""
     kept = {}
     for key, cam in cams.items():
@@ -97,7 +98,7 @@ def drop_blocked(cams, blocklist=BLOCKLIST):
     return kept
 
 
-def open_photo(photo, blocklist=BLOCKLIST):
+def open_photo(photo, blocklist=None):
     check(photo, blocklist)
     return Image.open(photo)
 
