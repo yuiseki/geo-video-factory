@@ -101,3 +101,33 @@ def _handover_dive():
 
 
 SHOTS["handover_dive"] = {"frames": 240, "keys": _handover_dive()}
+
+
+def _burst_out():
+    # out of the inside of QFRONT through its screen wall, over the crossing, turning towards the Ekimae building
+    d = (0.407, -0.914)                       # the screen face looks to bearing 156
+    at = lambda s, z: (QF[0] + s * d[0], QF[1] + s * d[1], G + z)
+    return [_k(at(-2.5, 20), at(40, 12), 16, t=0.0),
+            _k(at(14, 15), at(60, 6), 16, t=0.3),
+            _k((12, -14, G + 6), (EK[0], EK[1], G + 8), 18, t=0.7),
+            _k((22, -30, G + 2.0), (EK[0], EK[1], G + 14), 18, t=1.0)]
+
+
+SHOTS["burst_out"] = {"frames": 210, "keys": _burst_out()}
+
+
+ST = (241.0, -254.0)                          # Shibuya Stream (OSM way 521438304), 180 m tall
+
+
+def _stream_to_qfront():
+    # out of the wall of Shibuya Stream, where the map dive went in, north-west over the station side, down to
+    # the front of QFRONT
+    look = (QF[0], QF[1], G + 20)
+    return [_k((212, -230, G + 37), look, 18, t=0.0),
+            _k((150, -185, G + 37), look, 18, t=0.25),
+            _k((80, -120, G + 30), look, 18, t=0.5),
+            _k((20, -46, G + 14), look, 16, t=0.78),
+            _k((2, 2, G + 2.0), (QF[0], QF[1], G + 16), 15, t=1.0)]
+
+
+SHOTS["stream_to_qfront"] = {"frames": 270, "keys": _stream_to_qfront()}

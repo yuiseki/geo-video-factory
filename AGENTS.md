@@ -89,6 +89,20 @@ projects/YYYY/MM/DD/<slug>/     個々の動画の作業場所
 
 必要なもの: Node.js 22+、Playwright の Chromium、ffmpeg と ffprobe、Python 3 と Pillow、Noto Sans CJK、VOICEVOX エンジン (既定は `http://127.0.0.1:50021`)。
 
+## 「PLATEAU」は PLATEAU++ を指す
+
+「PLATEAU を描いて」「PLATEAU の建物で」のように言われたら、常に PLATEAU++ を用意する。「PLATEAU だけで」のような例外の注文があるときだけ従う。
+
+PLATEAU++ は次の優先順位で、カメラに収まる範囲の全建物をテクスチャ付きでそろえたもの。
+
+1. PLATEAU の元の建物モデルと、元のテクスチャ (テクスチャ付き LOD2 の tileset)。元のテクスチャの上に合成外壁 (`facadeTextures` など) を重ねて消さない。
+2. PLATEAU にテクスチャが無い建物だけ、地理院オルソなどから外壁の色と屋根を合成する。
+3. PLATEAU に建物モデルが無い所だけ、OpenStreetMap などから建物を合成する。
+
+- 範囲はカメラの全行程で画面に入る地面から決める。用意した範囲の外が映るところまでカメラを引かない。
+- 手順と実装は `geo-video-3d-buildings` スキル。PLATEAU と補完を 1 つの manifest にする例は `packages/renderer/test/e2e/prepare-buildings-tokyo-sota.py`。
+- 補完の形状は今の実装では地理院の建物外形を使い、高さに OSM の `height` と `building:levels` を使う。
+
 ## 進め方の原則
 
 - 静止画の一覧で完了としない。通常速度の音声付き動画で、カメラの加速、章の境界、ラベルの重なり、写真マーカーの追従、読み、字幕の同期を確かめる。

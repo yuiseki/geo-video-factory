@@ -7,6 +7,8 @@ description: PLATEAU、OpenStreetMap、地理院オルソを組み合わせ、Ce
 
 PLATEAU を主役に、欠損を OSM と地理院オルソで補い、動画レンダリングに耐える都市モデルを作る。
 
+「PLATEAU を描いて」は、例外の注文が無い限り、この PLATEAU++ (元のモデルと元のテクスチャ、テクスチャが無い建物だけオルソで合成、モデルが無い建物だけ OSM などで合成) を指す。定義は `AGENTS.md`。
+
 ## 責務
 
 - PLATEAU の公開 3D Tiles を調査し、対象範囲の leaf tile を事前に固定する。

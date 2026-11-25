@@ -14,5 +14,10 @@ class Schedule(unittest.TestCase):
         self.assertEqual(ef.schedule([10], [5]), ([0], 10))
 
 
+class Black(unittest.TestCase):
+    def test_a_black_clip_is_that_many_empty_frames(self):
+        self.assertEqual(ef.frames_of({"black": 3}), [None, None, None])
+
+
 if __name__ == "__main__":
     unittest.main()
