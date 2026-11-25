@@ -49,13 +49,28 @@ class Search(unittest.TestCase):
         self.assertEqual(len(titles), 4)
         self.assertTrue(any("P275=Q6938433" in s for s in seen))
         self.assertTrue(any("P6216=Q19652" in s for s in seen))
-        self.assertTrue(all("nearcoord:3.0km,35.66,139.7" in s for s in seen))
+        # a radius with a decimal point ("2.97km") is silently ignored by CirrusSearch, which then searches
+        # the whole of Commons: whole metres only
+        self.assertTrue(all("nearcoord:3000m,35.66,139.7" in s for s in seen))
 
-    def test_a_full_circle_is_reported(self):
+    def test_a_full_circle_is_reported_from_the_total_before_paging(self):
+        calls = []
+
+        def fetch(url, sleep_fn=None):
+            calls.append(url)
+            return {"query": {"searchinfo": {"totalhits": 12000}, "search": [{"title": "File:x.jpg"}]},
+                    "continue": {"sroffset": 500}}
+
+        with self.assertRaises(cac.CircleFull):
+            cac.search_circle((139.7, 35.66), 3.0, fetch_fn=fetch, sleep_fn=lambda s: None)
+        self.assertEqual(len(calls), 1)
+
+    def test_a_search_that_stops_at_the_limit_is_full_even_without_a_total(self):
         def fetch(url, sleep_fn=None):
             q = _q(url)
             off = int(q.get("sroffset", 0))
-            return {"query": {"search": [{"title": f"File:x{off}.jpg"}]}, "continue": {"sroffset": off + 1}}
+            more = {"continue": {"sroffset": off + 1}} if off + 1 < 5 else {}
+            return {"query": {"search": [{"title": f"File:x{off}.jpg"}]}, **more}
 
         with self.assertRaises(cac.CircleFull):
             cac.search_circle((139.7, 35.66), 3.0, fetch_fn=fetch, sleep_fn=lambda s: None, max_offset=5)

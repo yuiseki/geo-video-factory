@@ -66,19 +66,24 @@ def search_circle(centre, radius_km, fetch_fn=None, sleep_fn=time.sleep, max_off
     lon, lat = centre
     titles = []
     for statement in STATEMENTS:
-        srsearch = f"{statement} nearcoord:{radius_km}km,{lat},{lon} filetype:bitmap"
+        # whole metres: a radius like "2.97km" is ignored without a word, and the whole of Commons comes back
+        srsearch = f"{statement} nearcoord:{int(round(radius_km * 1000))}m,{lat},{lon} filetype:bitmap"
         offset = 0
         while True:
             params = {"action": "query", "list": "search", "srsearch": srsearch, "srnamespace": "6",
-                      "srlimit": "500", "sroffset": str(offset), "format": "json"}
+                      "srlimit": "500", "sroffset": str(offset), "srinfo": "totalhits", "format": "json"}
             data = fetch("https://commons.wikimedia.org/w/api.php?" + urllib.parse.urlencode(params), sleep_fn=sleep_fn)
+            total = data.get("query", {}).get("searchinfo", {}).get("totalhits")
+            if total is not None and total >= max_offset:
+                raise CircleFull(f"{srsearch}: {total} results, more than the search will page through")
             batch = data.get("query", {}).get("search", [])
             titles += [b["title"] for b in batch]
+            offset += len(batch)
+            if offset >= max_offset:
+                raise CircleFull(f"{srsearch}: stopped at {offset}, the search's limit")
             if "continue" not in data or not batch:
                 break
-            offset = int(data["continue"].get("sroffset", offset + len(batch)))
-            if offset >= max_offset:
-                raise CircleFull(f"{srsearch}: more than {max_offset} results")
+            offset = int(data["continue"].get("sroffset", offset))
             sleep_fn(1.0)
         sleep_fn(1.0)
     return titles
