@@ -95,7 +95,21 @@ def licence_name_and_url(license_short: str, license_url: str) -> tuple[str, str
     return short, url
 
 
+def is_cc0_or_public_domain(license_short: str, license_url: str = "") -> bool:
+    """CC0, or public domain (Commons' "Public domain", PD-* templates, the Public Domain Mark): no attribution
+    needed and no share-alike. Anything with BY, SA or NC in it is refused."""
+    if is_strict_cc0(license_short, license_url):
+        return True
+    low = (license_short or "").strip().lower()
+    if not low or re.search(r"\b(by|sa|nc|nd|gfdl)\b", low):
+        return False
+    return low.startswith(("public domain", "pd-", "pd ", "pdm")) or low == "pd" or \
+        "creativecommons.org/publicdomain/mark" in (license_url or "").lower()
+
+
 def _license_allowed(license_short: str, license_url: str, license_mode: str) -> bool:
+    if license_mode == "cc0_pd":
+        return is_cc0_or_public_domain(license_short, license_url)
     if license_mode == "ccby_nosa":
         return is_ccby_nosa_or_cc0(license_short, license_url)
     return is_strict_cc0(license_short, license_url)
