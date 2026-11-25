@@ -72,3 +72,32 @@ SHOTS = {
     "inception_roll": {"frames": 180, "keys": _inception_roll()},
     "time_arc": {"frames": 180, "keys": _time_arc()},
 }
+
+
+def maplibre_eye(centre_xy, ground, zoom, pitch, bearing, fov_v=36.87, height_px=720, lat=35.6595):
+    """Where a MapLibre camera (centre on the ground, zoom, pitch, bearing, vertical fov) stands, in local
+    metres, and the Blender lens (36 mm sensor across a 16:9 frame) with the same field of view."""
+    import math
+    m_per_px = 2 * math.pi * 6378137 * math.cos(math.radians(lat)) / (512 * 2 ** zoom)
+    d = 0.5 * height_px / math.tan(math.radians(fov_v) / 2) * m_per_px
+    h, v = d * math.sin(math.radians(pitch)), d * math.cos(math.radians(pitch))
+    b = math.radians(bearing)
+    eye = (centre_xy[0] - h * math.sin(b), centre_xy[1] - h * math.cos(b), ground + v)
+    fov_h = 2 * math.atan(math.tan(math.radians(fov_v) / 2) * 16 / 9)
+    return eye, 18 / math.tan(fov_h / 2)
+
+
+HAND = {"zoom": 18.7, "pitch": 55, "bearing": -24}     # the last camera of the PLATEAU++ descent (map)
+
+
+def _handover_dive():
+    # from the map's last camera down to the zebra crossing, then skim towards QFRONT
+    eye, lens = maplibre_eye(X, G, **HAND)
+    return [_k(eye, (X[0], X[1], G), lens, t=0.0),
+            _k((44, -96, G + 58), (X[0] - 6, X[1] + 8, G + 4), lens, t=0.35),
+            _k((26, -56, G + 32), (QF[0], QF[1], G + 6), 22, t=0.6),
+            _k((16, -36, G + 6), (QF[0], QF[1], G + 10), 18, t=0.82),
+            _k((10, -22, G + 1.6), (QF[0], QF[1], G + 14), 15, t=1.0)]
+
+
+SHOTS["handover_dive"] = {"frames": 240, "keys": _handover_dive()}

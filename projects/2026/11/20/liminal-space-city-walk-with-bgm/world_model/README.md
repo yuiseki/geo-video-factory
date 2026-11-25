@@ -17,10 +17,12 @@ camera_path.py    数個のキー (目、注視点、レンズ、回転) から�
 magic_shots.py    実物のカメラでは撮れない動き (見上げて回る、ドリーズーム、裏返る、真上から落ちる)
 path_render.py    保存した .blend を開き、magic_shots の 1 ショットを描く
 time_blend.py     同じ動きを昼と夜で描いた 2 本を、動きの途中で時間が変わる 1 本にする
+edit_frames.py    番号付きフレームのクリップをつなぐ (カット、クロスフェード、動きの途中の昼夜切り替え、暗転)
+render_edit.sh    つないだフレームに BGM を敷いて mp4 にする (-14 LUFS)
 frame_check.py    前後のフレームから明るさが飛んだフレーム (真っ黒、暗転) を探す
 ```
 
-テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above test_frame_check test_camera_path test_time_blend`
+テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above test_frame_check test_camera_path test_time_blend test_fill_frames test_edit_frames`
 
 実データを読む実行は、ホストの資源制限ルールに従ってメモリと CPU に上限を掛ける。
 
@@ -87,6 +89,11 @@ frame_check.py    前後のフレームから明るさが飛んだフレーム (
   (落ちずに眠る)。--only で数十フレームずつに分け、timeout を掛け、欠けた区間だけ描き直す。
 - Blender を 2 つ同時に同じ GPU で走らせると、片方が真っ黒か暗いフレームを成功として書き出した。
   同時に走らせず、書き出した後に frame_check.py で明るさの飛びを見る。
+- 単独で走らせても、ときどき 1 フレームで黙って止まる。止まったフレームを単独で描き直すと普通に描ける
+  ので、カメラ位置やテクスチャの大きさは原因ではなかった。原因は分かっていない。新しいフレームが
+  25 秒出なければ止めて続きから描く見張りを付けると、止まっても失うのは 1 分足らずで済む。
+- 地図 (MapLibre) の最後のカメラを Blender に換算して継ぐ (magic_shots.maplibre_eye) と、縮尺が
+  合わなかった。描き比べて地図側のズームを合わせた (18.7 で計算したものに 19.3)。理由は確かめていない。
 
 ## 出典
 
