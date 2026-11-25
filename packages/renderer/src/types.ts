@@ -429,6 +429,15 @@ export interface PlateauBuildingsConfig {
   workers?: number;
   /** Recolor buildings with the orthophoto palette. Defaults to true. The facade pattern is always applied. */
   appearance?: boolean;
+  /**
+   * Where the manifest's aerial roof photo goes: 'untextured' (default) only on buildings PLATEAU ships
+   * without a texture; 'all' also on the upward faces of photo-textured ones (pale, coarse PLATEAU roofs).
+   */
+  roofPhoto?: 'untextured' | 'all';
+  /** A sharper aerial photo (project-root path) of part of the area, [west, south, east, north]; the manifest's elsewhere. */
+  roofPhotoNear?: { image: string; bbox: [number, number, number, number] };
+  /** With roofPhoto 'all': photo-textured roofs above this height (scene metres) keep the PLATEAU photo. */
+  roofPhotoMaxZ?: number;
   /** Optional ComfyUI/custom tileable facade textures mapped onto building walls in meters. */
   facadeTextures?: PlateauFacadeTextures;
   /** Optional 3D emissive billboard/sign planes placed on building facades. */

@@ -199,9 +199,49 @@ describe("untextured PLATEAU buildings in the enhanced render", () => {
     assert.match(a.fragmentShader, /curtainGlass/);
     assert.match(a.fragmentShader, /houseWindow/, "low buildings get a house facade, not a glass tower");
     assert.match(a.fragmentShader, /uPlateauRoofPhoto/);
+    assert.match(a.fragmentShader, /uPlateauRoofNear/);
+    assert.doesNotMatch(a.fragmentShader, /uPlateauRoofMaxZ/, "an untextured roof has nothing better than the aerial photo");
     assert.equal(a.uniforms.uPlateauRoofPhoto, plateauRoofUniforms.uPlateauRoofPhoto, "roof photo uniforms are shared");
     const b = compile(photo);
     assert.doesNotMatch(b.fragmentShader, /curtainGlass/);
+  });
+});
+
+describe("roofs of photo-textured PLATEAU buildings", () => {
+  const compile = (mesh: THREE.Mesh) => {
+    const shader = {
+      uniforms: {} as Record<string, THREE.IUniform>,
+      vertexShader: "#include <common>\n#include <begin_vertex>",
+      fragmentShader: "#include <common>\n#include <map_fragment>\n#include <color_fragment>\n#include <dithering_fragment>"
+    };
+    (mesh.material as THREE.MeshStandardMaterial).onBeforeCompile(shader as THREE.WebGLProgramParametersWithUniforms, {} as THREE.WebGLRenderer);
+    return shader;
+  };
+  const photoMesh = () => {
+    const geometry = new THREE.BoxGeometry(10, 10, 20);
+    geometry.setAttribute("_batchid", new THREE.BufferAttribute(new Float32Array(geometry.attributes.position!.count), 1));
+    return new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ map: makeSolidTexture(120, 110, 100) }));
+  };
+  it("keep their own photo by default", () => {
+    const mesh = photoMesh();
+    applyPlateauBuildingAppearance(mesh, { seed: 3 });
+    assert.doesNotMatch(compile(mesh).fragmentShader, /uPlateauRoofPhoto/);
+  });
+  it("take the aerial photo on upward faces when asked, walls keep the PLATEAU photo", () => {
+    const mesh = photoMesh();
+    const roof = createPlateauRoofUniforms();
+    applyPlateauBuildingAppearance(mesh, { seed: 3, roofPhotoOnTextured: true, uniforms: { city: createCityUniforms(), roof } });
+    const shader = compile(mesh);
+    assert.match(shader.fragmentShader, /plateauRoofUp/);
+    assert.equal(shader.uniforms.uPlateauRoofPhoto, roof.uPlateauRoofPhoto);
+    assert.doesNotMatch(shader.fragmentShader, /vPlateauPaint/, "the paint wave belongs to untextured buildings");
+    assert.match(shader.fragmentShader, /uPlateauRoofMaxZ/, "tall roofs keep the PLATEAU photo: the aerial photo leans there");
+    assert.match(shader.fragmentShader, /uPlateauRoofNear/, "a sharper photo near the subject, the wide one elsewhere");
+    assert.equal(shader.uniforms.uPlateauRoofMaxZ, roof.uPlateauRoofMaxZ);
+    const key = (mesh.material as THREE.MeshStandardMaterial).customProgramCacheKey();
+    const plain = photoMesh();
+    applyPlateauBuildingAppearance(plain, { seed: 3 });
+    assert.notEqual(key, (plain.material as THREE.MeshStandardMaterial).customProgramCacheKey());
   });
 });
 

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """PLATEAU++ for the Shibuya descent: every building the camera can see, with a texture.
 
-    prepare_shibuya_plateau_pp.py <out dir> [--bbox=w,s,e,n]
+    prepare_shibuya_plateau_pp.py <out dir> [--bbox=w,s,e,n] [--cache=dir]
 
 1. PLATEAU 2025 LOD2 3D Tiles with their own photo textures, for every leaf tile in the box.
 2. PLATEAU buildings without a texture: a facade colour from the GSI orthophoto, the orthophoto on the roof.
@@ -45,7 +45,7 @@ def main(argv: list[str]) -> None:
     from shapely.geometry import Point, shape
     from shapely.strtree import STRtree
 
-    cache = out.parent / (out.name + "-cache")
+    cache = Path(opts["cache"]).resolve() if "cache" in opts else out.parent / (out.name + "-cache")
     plateau_dir = out
     if not (plateau_dir / "manifest.json").exists():
         m = prepare_tiles(sota.TILESET_URL, bbox, plateau_dir, max_texture_dimension=2048,

@@ -18,6 +18,13 @@ export function createPlateauRoofUniforms() {
     uPlateauRoofMin: { value: new THREE.Vector2(0, 0) },
     uPlateauRoofSize: { value: new THREE.Vector2(1, 1) },
     uPlateauRoofOn: { value: 0 },
+    // a sharper photo of part of the area (super-resolved); the wide one is used outside it
+    uPlateauRoofNear: { value: blankTexture as THREE.Texture },
+    uPlateauRoofNearMin: { value: new THREE.Vector2(0, 0) },
+    uPlateauRoofNearSize: { value: new THREE.Vector2(1, 1) },
+    uPlateauRoofNearOn: { value: 0 },
+    // photo-textured roofs above this height keep their PLATEAU photo: the aerial photo leans there
+    uPlateauRoofMaxZ: { value: 1e6 },
   };
 }
 
@@ -207,3 +214,20 @@ float hsiding = houseWall * (1.0 - smoothstep(0.0, 0.12, fract(vPlateauWorldPos.
 gl_FragColor.rgb *= 1.0 - hsiding * 0.10;
 gl_FragColor.rgb += vec3(1.0, 0.72, 0.40) * houseWindow * step(1.0 - uCityWindows * 0.6, cpanel) * uCityWindows;
 `;
+
+/** The aerial photo on upward faces (shared by untextured and, on request, photo-textured PLATEAU). */
+export const ROOF_PHOTO_UNIFORMS = [
+  "uniform sampler2D uPlateauRoofPhoto;", "uniform vec2 uPlateauRoofMin;", "uniform vec2 uPlateauRoofSize;",
+  "uniform float uPlateauRoofOn;", "uniform sampler2D uPlateauRoofNear;", "uniform vec2 uPlateauRoofNearMin;",
+  "uniform vec2 uPlateauRoofNearSize;", "uniform float uPlateauRoofNearOn;",
+].join("\n");
+export function roofPhotoGlsl(belowMaxZ: boolean): string {
+  return `
+float plateauRoofUp = smoothstep(0.72, 0.92, abs(normalize(vPlateauWorldNormal).z));
+vec2 plateauNearUv = (vPlateauWorldPos.xy - uPlateauRoofNearMin) / uPlateauRoofNearSize;
+float plateauNearIn = uPlateauRoofNearOn * step(0.0, plateauNearUv.x) * step(plateauNearUv.x, 1.0) * step(0.0, plateauNearUv.y) * step(plateauNearUv.y, 1.0);
+vec3 plateauRoofColor = mix(texture2D(uPlateauRoofPhoto, (vPlateauWorldPos.xy - uPlateauRoofMin) / uPlateauRoofSize).rgb,
+  texture2D(uPlateauRoofNear, plateauNearUv).rgb, plateauNearIn);
+${belowMaxZ ? "plateauRoofUp *= 1.0 - smoothstep(uPlateauRoofMaxZ - 3.0, uPlateauRoofMaxZ + 3.0, vPlateauWorldPos.z);" : ""}
+diffuseColor.rgb = mix(diffuseColor.rgb, plateauRoofColor, plateauRoofUp * uPlateauRoofOn);`;
+}

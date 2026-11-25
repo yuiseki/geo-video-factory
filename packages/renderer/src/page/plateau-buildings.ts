@@ -197,6 +197,16 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
     roofUniforms.uPlateauRoofSize.value.set(x1 - x0, y1 - y0);
     roofUniforms.uPlateauRoofOn.value = 1;
   }
+  if (config.roofPhotoNear) {
+    const [w, s, e, n] = config.roofPhotoNear.bbox;
+    const [x0, y0] = localMeters([w, s], center);
+    const [x1, y1] = localMeters([e, n], center);
+    roofUniforms.uPlateauRoofNear.value = await loadPhoto(new URL(config.roofPhotoNear.image, window.location.origin + '/').href);
+    roofUniforms.uPlateauRoofNearMin.value.set(x0, y0);
+    roofUniforms.uPlateauRoofNearSize.value.set(x1 - x0, y1 - y0);
+    roofUniforms.uPlateauRoofNearOn.value = 1;
+  }
+  if (config.roofPhotoMaxZ !== undefined) roofUniforms.uPlateauRoofMaxZ.value = config.roofPhotoMaxZ;
   await populatePlateauStreetScene(scene, config, center, facadeUniforms);
   let cursor = 0;
   let loadedTiles = 0;
@@ -230,7 +240,7 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
         // No building is left flat: photo textures stay, untextured buildings get a facade and the
         // aerial photo on their roofs as the paint wave passes. appearance: false is untouched PLATEAU.
         const variants = resolveIdVariants(tile.ids, config.facadeTextures?.idVariants);
-        applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl, true, { city, roof: roofUniforms, facade: facadeUniforms }, variants);
+        applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl, true, { city, roof: roofUniforms, facade: facadeUniforms }, variants, config.roofPhoto === "all");
       }
       scene.add(gltf.scene);
       loadedTiles++;
