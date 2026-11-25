@@ -1,0 +1,54 @@
+{
+ "width": 1280,
+ "height": 720,
+ "fps": 30,
+ "fov": 36.87,
+ "base": "seamlessphoto",
+ "world": false,
+ "dem": "gsi",
+ "hillshade": false,
+ "sky": {
+  "sky-color": "#9ec3ea",
+  "horizon-color": "#dfe9f3",
+  "fog-color": "#dfe9f3",
+  "sky-horizon-blend": 0.6,
+  "horizon-fog-blend": 0.7,
+  "fog-ground-blend": 0.9
+ },
+ "credits": [
+  "建物: 国土交通省 PLATEAU (2025 東京都 LOD2 テクスチャ付き) / 国土地理院 基盤地図・空中写真 / © OpenStreetMap contributors"
+ ],
+ "plateauBuildings": {
+  "manifest": "assets/buildings-shibuya-pp-v3/manifest.json",
+  "heightOffset": -39,
+  "workers": 3
+ },
+ "shots": [
+  {
+   "duration": 10.0,
+   "ease": "smooth",
+   "keys": [
+    {
+     "t": 0.0,
+     "center": [
+      139.700611,
+      35.65932
+     ],
+     "zoom": 14.0,
+     "pitch": 0,
+     "bearing": 0
+    },
+    {
+     "t": 1.0,
+     "center": [
+      139.703169,
+      35.657211
+     ],
+     "zoom": 19.8,
+     "pitch": 0,
+     "bearing": 0
+    }
+   ]
+  }
+ ]
+}

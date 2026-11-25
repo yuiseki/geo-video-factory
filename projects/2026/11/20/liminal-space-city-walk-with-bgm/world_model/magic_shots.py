@@ -1,6 +1,8 @@
 """Camera moves that only a model can do: nobody can stand, fly or wait where these cameras go.
 Local east/north/up metres; the crossing's centre is (10, -20) and its ground is at z = 52.8.
 Check with: python world_camera.py magic_shots <scene tris.npz>"""
+import math
+
 from world_camera import circle
 
 X = (10.0, -20.0)          # the centre of the crossing
@@ -144,3 +146,39 @@ SHOTS["pan"] = {"frames": 360, "ease": False, "keys": [
     _k((10, -20, G - 0.2 + 2.2), p, 18) for p in circle((10, -20), 100, G - 0.2 + 18, 180, 540, n=49)]}
 SHOTS["arc_qfront"] = {"frames": 180, "ease": False, "keys": _orbit((-12, 43, 75), 85, 30, 130, 210, 24)}
 SHOTS["arc_ekimae"] = {"frames": 180, "ease": False, "keys": _orbit((-53, -33, 70), 70, 25, 45, 140, 24)}
+
+
+def _stream_dive_qfront():
+    # the PLATEAU++ descent ends falling straight down onto the Stream tower, north up: carry on falling inside
+    # it the same way, level out at 70 m, turn to QFRONT and come out of the tower's west wall. The straight
+    # line to QFRONT runs through Shibuya Scramble Square (230 m, centre about (156, -126)), so the way out
+    # passes south of it, between it and Sakura Stage, and turns to QFRONT over the station.
+    # Until the camera is out, the target is 100 m along the line of sight, so the spline turns the view
+    # instead of swinging a far target around.
+    tower, top = (270.0, -272.0), 160
+    face = (QF[0], QF[1], G + 22)
+
+    def look(eye, east, north, up):
+        m = math.sqrt(east * east + north * north + up * up)
+        return (eye[0] + 100 * east / m, eye[1] + 100 * north / m, eye[2] + 100 * up / m)
+
+    def toward(eye):
+        return look(eye, face[0] - eye[0], face[1] - eye[1], face[2] - eye[2])
+
+    e0, e1, e2 = (*tower, G + top), (*tower, G + 85), (*tower, G + 74)
+    e3 = (262.0, -268.0, G + 71)
+    e4 = (205.0, -235.0, G + 70)
+    e5 = (140.0, -205.0, G + 68)
+    return [
+        _k(e0, look(e0, 0, 0.02, -1), 18, t=0.0),
+        _k(e1, look(e1, 0, 0.25, -1), 18, t=0.20),
+        _k(e2, look(e2, 0, 1, -0.35), 18, t=0.30),
+        _k(e3, toward(e3), 18, t=0.38),
+        _k(e4, toward(e4), 18, t=0.50),
+        _k(e5, toward(e5), 18, t=0.62),
+        _k((60.0, -140.0, G + 55), face, 20, t=0.76),
+        _k((22.0, -50.0, G + 25), face, 22, t=0.90),
+        _k((2, 2, G + 2), (QF[0], QF[1], G + 12), 22, t=1.0)]
+
+
+SHOTS["stream_dive_qfront"] = {"frames": 300, "ease": False, "keys": _stream_dive_qfront()}
