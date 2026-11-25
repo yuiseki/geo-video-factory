@@ -3,6 +3,10 @@
 usage: blender -b --factory-startup -P pp_scene.py -- <out.blend> <PLATEAU++ manifest.json>
            [--radius=700] [--centre=10,-20] [--proxy-lift=33.5] [--dim=1.0] [--sky=r,g,b] [--sun=3.0]
            [--atlas=<model.obj>,...] [--ground=<model.obj>,...]
+           [--water=<metres above the crossing>] [--water-colour=r,g,b] [--water-roughness=0.03] [--ripple=0.04]
+
+--water floods the streets with a still, mirroring lake that many metres above the crossing's ground
+(1.5 hides the smeared bottom of the walls left where people and cars were removed).
 
 The buildings are PLATEAU++ (packages/pipeline: PLATEAU models with their own photo textures, filled-in
 buildings where PLATEAU has none), every tile whose centre lies within --radius metres of --centre.
@@ -28,6 +32,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipe
 from buildings import blender_geo as bg  # noqa: E402
 
 ORIGIN = (139.7005, 35.6595)
+GROUND_Z = 52.8                 # the crossing's ground on the ellipsoid, as the PLATEAU tiles give it
 argv = sys.argv[sys.argv.index("--") + 1:]
 opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
 out_blend, manifest_path = [Path(a) for a in argv if not a.startswith("--")][:2]
@@ -140,6 +145,31 @@ road.use_nodes = True
 road.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
 road.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
 bpy.context.object.data.materials.append(road)
+
+if "water" in opts:
+    # a still lake over the streets: hides the bottom metres of the walls, where removed people and cars
+    # leave smears, and mirrors the city above (EEVEE raytraced reflections)
+    level = GROUND_Z + float(opts["water"])
+    bpy.ops.mesh.primitive_plane_add(size=2 * radius + 400, location=(cx, cy, level))
+    water = bpy.data.materials.new("water")
+    water.use_nodes = True
+    nt = water.node_tree
+    bsdf = nt.nodes["Principled BSDF"]
+    bsdf.inputs["Base Color"].default_value = (*(float(v) for v in opts.get("water-colour", "0.02,0.035,0.04").split(",")), 1)
+    bsdf.inputs["Roughness"].default_value = float(opts.get("water-roughness", 0.03))
+    bsdf.inputs["IOR"].default_value = 1.33
+    noise = nt.nodes.new("ShaderNodeTexNoise")
+    noise.inputs["Scale"].default_value = 0.6
+    noise.inputs["Detail"].default_value = 4.0
+    bump = nt.nodes.new("ShaderNodeBump")
+    bump.inputs["Strength"].default_value = float(opts.get("ripple", 0.04))
+    nt.links.new(noise.outputs["Fac"], bump.inputs["Height"])
+    nt.links.new(bump.outputs["Normal"], bsdf.inputs["Normal"])
+    bpy.context.object.data.materials.append(water)
+    bpy.context.object.name = "water"
+    sc.eevee.use_raytracing = True
+    sc.eevee.ray_tracing_options.resolution_scale = "1"
+    print("water at", level)
 
 sun = bpy.data.objects.new("sun", bpy.data.lights.new("sun", "SUN"))
 sun.data.energy = float(opts.get("sun", 3.0))
