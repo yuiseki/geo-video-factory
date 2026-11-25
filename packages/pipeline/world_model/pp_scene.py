@@ -24,9 +24,7 @@ from pathlib import Path
 import bpy
 from mathutils import Matrix
 
-HERE = Path(__file__).resolve().parent
-REPO = HERE.parents[5]
-sys.path.insert(0, str(REPO / "packages/pipeline"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipeline
 from buildings import blender_geo as bg  # noqa: E402
 
 ORIGIN = (139.7005, 35.6595)

@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-import photo_guard as pg
+from photos import photo_guard as pg
 
 
 def _photo(path, seed, size=(640, 480)):

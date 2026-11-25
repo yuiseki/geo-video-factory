@@ -1,4 +1,4 @@
-"""frame_jumps.py <frames dir> [--tol=0.3] [--move]
+"""python -m world_model.frame_jumps <frames dir> [--tol=0.3] [--move]
 Frames of one camera move whose brightness jumps away from their neighbours: a renderer that lost its
 textures draws a black or a dimmed frame and still reports success. Prints the odd frames; with --move
 renames each to bad_<name> so that a resumable render draws it again."""

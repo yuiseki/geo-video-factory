@@ -2,9 +2,7 @@ import unittest
 
 import numpy as np
 
-import time_layers
-
-
+from world_model import time_layers
 class TimeLayers(unittest.TestCase):
     def test_brightness_reads_only_the_top_quarter(self):
         im = np.zeros((40, 10, 3), np.uint8)

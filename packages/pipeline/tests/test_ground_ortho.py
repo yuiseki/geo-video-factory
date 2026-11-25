@@ -1,6 +1,6 @@
 import unittest
 
-import ground_ortho as go
+from world_model import ground_ortho as go
 
 
 class Tiles(unittest.TestCase):

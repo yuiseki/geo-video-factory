@@ -1,9 +1,13 @@
 """Camera moves that only a model can do: nobody can stand, fly or wait where these cameras go.
 Local east/north/up metres; the crossing's centre is (10, -20) and its ground is at z = 52.8.
-Check with: python world_camera.py magic_shots <scene tris.npz>"""
+Check with (from packages/pipeline): python -m world_model.world_camera <this file> <scene tris.npz>
+Drawn by packages/pipeline/world_model/render_shot_wd.sh, which passes this file to path_render.py."""
 import math
+import sys
+from pathlib import Path
 
-from world_camera import circle
+sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
+from world_model.world_camera import circle  # noqa: E402
 
 X = (10.0, -20.0)          # the centre of the crossing
 G = 52.8                   # ground

@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-import time_blend as tb
+from world_model import time_blend as tb
 
 
 class Weight(unittest.TestCase):

@@ -12,8 +12,8 @@ from pathlib import Path
 
 import pycolmap
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "world_model"))
-import photo_guard  # noqa: E402  photo_blocklist.tsv: never take these in
+sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
+from photos import photo_guard  # noqa: E402  photo_blocklist.tsv: never take these in
 
 threads = [int(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--threads=")]
 single = "--camera=single" in sys.argv

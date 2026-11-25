@@ -1,6 +1,6 @@
 """Render one camera move of a shots module through a saved scene (Blender, run with -b <scene.blend> -P).
 
-usage: blender -b <scene.blend> -P path_render.py -- <out_dir> <shots module> <shot> [--size=1280x720]
+usage: blender -b <scene.blend> -P path_render.py -- <out_dir> <shots module or shots.py> <shot> [--size=1280x720]
            [--only=first,last] [--step=1] [--samples=16]
 
 The scene is what orbit_render.py --save wrote. --step=6 draws every sixth frame (a preview; the frame
@@ -10,7 +10,6 @@ long move can run in pieces under a timeout.
 Some views hang EEVEE for good (the process sleeps, every time, on the same frame). Before a frame is drawn a
 marker f####.try is left; a later run that finds it draws that frame from a camera moved by a few centimetres,
 and after two such tries leaves the frame out (f####.stuck) so the move goes on. fill_frames.py fills the gap."""
-import importlib
 import sys
 from pathlib import Path
 
@@ -18,15 +17,15 @@ import bpy
 import numpy as np
 from mathutils import Matrix
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import world_camera as cp  # noqa: E402
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipeline
+from world_model import world_camera as cp  # noqa: E402
 
 argv = sys.argv[sys.argv.index("--") + 1:]
 opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
 out_dir, module, name = [a for a in argv if not a.startswith("--")]
 out_dir = Path(out_dir)
 out_dir.mkdir(parents=True, exist_ok=True)
-shot = importlib.import_module(module).SHOTS[name]
+shot = cp.load_shots(module)[name]
 path = cp.sample(shot["keys"], shot["frames"], shot.get("ease", True))
 
 sc = bpy.context.scene

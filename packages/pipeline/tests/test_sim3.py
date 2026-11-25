@@ -3,9 +3,7 @@ import unittest
 import numpy as np
 from scipy.spatial.transform import Rotation
 
-import sim3
-
-
+from world_model import sim3
 def box_room(size=(60.0, 40.0, 30.0)):
     """Four walls and a floor as triangles, looking inward."""
     x, y, z = size

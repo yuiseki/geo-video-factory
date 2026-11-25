@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-import surface_atlas as sa
+from world_model import surface_atlas as sa
 
 
 def wall(x0, x1, z0, z1, y):

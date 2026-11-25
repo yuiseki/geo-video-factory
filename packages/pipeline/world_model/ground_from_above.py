@@ -1,4 +1,4 @@
-"""ground_from_above.py <work_dir> <scene tris.npz> <ground_ortho out dir> <out_dir> [--centre=x,y] [--half=160]
+"""python -m world_model.ground_from_above <work_dir> <scene tris.npz> <ground_ortho out dir> <out_dir> [--centre=x,y] [--half=160]
        [--res=0.1] [--z=<ground height>] [--above=40] [--keep=8] [--few=3] [--zoom=18] [--dim=1.0] [--near=20] [--align=2] [--reach=6] [--model=similarity|homography]
        <cams.json>...
 
@@ -21,10 +21,10 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-import ground_ortho as go
-import photo_guard
-import surface_atlas as sa
-from geometry_map import to_enu
+from world_model import ground_ortho as go
+from photos import photo_guard
+from world_model import surface_atlas as sa
+from world_model.geometry_map import to_enu
 
 Image.MAX_IMAGE_PIXELS = None
 LUM = np.array([0.2126, 0.7152, 0.0722], np.float32)

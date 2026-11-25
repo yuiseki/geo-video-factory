@@ -1,4 +1,4 @@
-"""overlay_check.py <cams.json> <scene tris.npz> <out.jpg> [--columns=3] <key>...
+"""python -m world_model.overlay_check <cams.json> <scene tris.npz> <out.jpg> [--columns=3] <key>...
 
 Draw the outlines of the geometry prior over the photos, as each camera in
 cams.json sees it, and tile them. This is the check that a pose is right: the
@@ -12,8 +12,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-import photo_guard
-import surface_atlas as sa
+from photos import photo_guard
+from world_model import surface_atlas as sa
 
 
 def edges(depth, jump=0.08):

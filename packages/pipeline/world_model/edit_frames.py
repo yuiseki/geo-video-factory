@@ -1,4 +1,4 @@
-"""edit_frames.py <edit.json> <out_dir>
+"""python -m world_model.edit_frames <edit.json> <out_dir>
 Joins clips of numbered frames into one numbered sequence: cuts, crossfades, a day-to-night change inside one
 move, and a fade to black. Directories in the edit list may use $VARS (expanded from the environment), so the
 list carries no machine paths.
@@ -18,7 +18,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-import time_blend as tb
+from world_model import time_blend as tb
 
 
 def frames_of(clip):

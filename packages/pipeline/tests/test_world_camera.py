@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-import world_camera as cp
+from world_model import world_camera as cp
 
 
 class Sample(unittest.TestCase):
@@ -61,6 +61,18 @@ class Helpers(unittest.TestCase):
     def test_clearance(self):
         d = cp.clearance(np.array([[0, 0, 0], [0, 0, 5.0]]), np.array([[0, 0, 1.0], [9, 9, 9]]))
         np.testing.assert_allclose(d, [1, 4])
+
+
+class LoadShots(unittest.TestCase):
+    def test_a_shots_file_is_loaded_by_its_path(self):
+        import tempfile
+        from pathlib import Path
+        f = Path(tempfile.mkdtemp()) / "my_shots.py"
+        f.write_text("SHOTS = {'a': {'frames': 2, 'keys': []}}\n")
+        self.assertEqual(cp.load_shots(str(f))["a"]["frames"], 2)
+
+    def test_a_module_name_still_works(self):
+        self.assertIn("one", cp.load_shots("shots_fixture"))       # tests/ is on the path when they run
 
 
 if __name__ == "__main__":

@@ -1,10 +1,12 @@
-"""world_camera.py <shots module> <scene tris.npz>
+"""python -m world_model.world_camera <shots module or shots.py> <scene tris.npz>
 Camera moves as a few keys (eye, target, lens, roll) and the frames between them. With arguments, prints for
 every shot how close the camera comes to a building, so that a move through a wall is caught before rendering.
 
 Only numpy: Blender's Python imports this too (path_render.py)."""
 import importlib
+import importlib.util
 import sys
+from pathlib import Path
 
 import numpy as np
 
@@ -64,9 +66,20 @@ def clearance(points, surface):
     return cKDTree(surface).query(points)[0]
 
 
+def load_shots(spec):
+    """SHOTS of a shots module, given by its import name or by the path of its .py file (a project keeps its
+    own camera moves next to its other files)."""
+    if spec.endswith(".py"):
+        loader = importlib.util.spec_from_file_location(Path(spec).stem, spec)
+        module = importlib.util.module_from_spec(loader)
+        loader.loader.exec_module(module)
+        return module.SHOTS
+    return importlib.import_module(spec).SHOTS
+
+
 def main(argv):
-    import sim3
-    shots = importlib.import_module(argv[0]).SHOTS
+    from world_model import sim3
+    shots = load_shots(argv[0])
     tris = np.load(argv[1])["tris"].astype(float)
     surf, _ = sim3.sample_surface(tris[np.linalg.norm(tris.mean(axis=1)[:, :2], axis=1) < 400], spacing=1.0)
     for name, shot in shots.items():

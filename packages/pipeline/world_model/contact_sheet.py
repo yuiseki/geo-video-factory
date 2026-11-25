@@ -1,4 +1,4 @@
-"""contact_sheet.py <out.jpg> <columns> <frame>... -- tile frames into one image for a quick look."""
+"""python -m world_model.contact_sheet <out.jpg> <columns> <frame>... -- tile frames into one image for a quick look."""
 import sys
 from PIL import Image
 

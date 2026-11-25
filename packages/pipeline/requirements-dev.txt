@@ -5,3 +5,4 @@ shapely>=2,<3
 numpy>=1.26,<2.3
 scipy>=1.11,<2
 pyproj>=3.6,<4
+opencv-python-headless>=4.8,<6

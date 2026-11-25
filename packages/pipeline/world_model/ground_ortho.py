@@ -1,4 +1,4 @@
-"""ground_ortho.py <work_dir> <out_dir> [--radius=300] [--zoom=18] [--z=<ground height>] [--dim=1.0] [--centre=x,y]
+"""python -m world_model.ground_ortho <work_dir> <out_dir> [--radius=300] [--zoom=18] [--z=<ground height>] [--dim=1.0] [--centre=x,y]
 
 The ground of the world model: the GSI seamless aerial photo laid flat at one height, as an OBJ with its texture.
 <work_dir>/buildings.npz gives the origin of the local east/north/up frame (geometry_map.py).
@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from geometry_map import to_enu
+from world_model.geometry_map import to_enu
 
 URL = "https://cyberjapandata.gsi.go.jp/xyz/seamlessphoto/{z}/{x}/{y}.jpg"
 

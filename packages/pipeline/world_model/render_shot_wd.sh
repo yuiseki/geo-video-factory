@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# render_shot_wd.sh <scene.blend> <out dir> <shot> <first> <last>
-# Frames first..last-1 of one magic_shots move, drawn by path_render.py from a saved scene. Blender is stopped
-# after 25 s without a new frame and started again on the frames still missing (EEVEE sometimes sleeps on a
-# frame). Set BLENDER to the binary when it is not on PATH. Run under the host's resource limits.
+# render_shot_wd.sh <scene.blend> <out dir> <shots.py> <shot> <first> <last>
+# Frames first..last-1 of one move of a shots file (a project's camera moves, e.g. magic_shots.py), drawn by
+# path_render.py from a saved scene. Blender is stopped after 25 s without a new frame and started again on
+# the frames still missing (EEVEE sometimes sleeps on a frame). Set BLENDER to the binary when it is not on
+# PATH. Run under the host's resource limits.
 set -u
 here=$(cd "$(dirname "$0")" && pwd)
-blend=$1; out=$2; shot=$3; first=$4; last=$5
+blend=$1; out=$2; shots=$(cd "$(dirname "$3")" && pwd)/$(basename "$3"); shot=$4; first=$5; last=$6
 blender=${BLENDER:-blender}
 mkdir -p "$out"
 count() { local n=0; for i in $(seq "$first" $((last - 1))); do
@@ -13,7 +14,7 @@ count() { local n=0; for i in $(seq "$first" $((last - 1))); do
 want=$((last - first))
 for try in $(seq 1 40); do
   [ "$(count)" -ge "$want" ] && break
-  "$blender" -b "$blend" -P "$here/path_render.py" -- "$out" magic_shots "$shot" --only="$first,$last" >> "$out/blender.log" 2>&1 &
+  "$blender" -b "$blend" -P "$here/path_render.py" -- "$out" "$shots" "$shot" --only="$first,$last" >> "$out/blender.log" 2>&1 &
   pid=$!; seen=$(count); last_t=$(date +%s)
   sleep 20
   while kill -0 $pid 2>/dev/null; do

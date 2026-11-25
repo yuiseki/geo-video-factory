@@ -1,4 +1,4 @@
-"""sfm_to_world.py <sparse model dir> <images dir> <scene tris.npz> <out_dir> <anchor cams.json>... [--radius=450]
+"""python -m world_model.sfm_to_world <sparse model dir> <images dir> <scene tris.npz> <out_dir> <anchor cams.json>... [--radius=450]
        [--min-track=3] [--trim=3.0] [--min-points=40]
 
 Every photo of an SfM model as a camera in the city model's metric frame.
@@ -23,9 +23,7 @@ import numpy as np
 import pycolmap
 from scipy.spatial import cKDTree
 
-import sim3
-
-
+from world_model import sim3
 def intrinsics(cam):
     p = list(cam.params)
     model = cam.model.name

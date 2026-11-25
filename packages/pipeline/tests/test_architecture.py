@@ -37,7 +37,7 @@ class ArchitectureTests(unittest.TestCase):
             self.assertFalse(NOT_OURS.intersection(path.relative_to(PIPELINE_DIR).parts), path)
 
     def test_no_script_imports_a_pipeline_module_by_its_old_flat_name(self):
-        """The modules live in subpackages (buildings, geo, photos, video, narration). A script that still says
+        """The modules live in subpackages (buildings, geo, photos, video, narration, world_model). A script that still says
         `import ambient_bgm` only fails when someone runs it, and the Blender scripts cannot be run in CI at all."""
         names = sorted({p.stem for p in pipeline_modules() if p.parent != PIPELINE_DIR and p.stem != "__init__"})
         flat = re.compile(r"^\s*(?:import (?:%s)\b|from (?:%s) import\b)" % ("|".join(names), "|".join(names)))

@@ -1,4 +1,4 @@
-"""time_blend.py <day frames dir> <night frames dir> <out_dir> [--mode=fade|wipe|rise] [--from=0.3] [--to=0.7]
+"""python -m world_model.time_blend <day frames dir> <night frames dir> <out_dir> [--mode=fade|wipe|rise] [--from=0.3] [--to=0.7]
        [--soft=0.25] [--reverse]
 One camera move rendered through two time layers, joined into a move during which the time changes.
 fade: the whole picture; wipe: an edge crosses from the left; rise: the night climbs from the bottom.

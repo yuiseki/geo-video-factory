@@ -1,4 +1,4 @@
-"""geometry_map.py <tris.npz> <work_dir> <name=osm_way_id>...
+"""python -m world_model.geometry_map <tris.npz> <work_dir> <name=osm_way_id>...
 The prior of the world model: which PLATEAU triangles belong to each named building.
 Footprints come from OpenStreetMap ways (read once from OVERPASS_URL and cached in <work_dir>), triangles
 are assigned by their centroid, and the result is drawn from above so that the assignment can be checked
@@ -12,9 +12,8 @@ from pathlib import Path
 
 import numpy as np
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[6] / "packages" / "pipeline"))
-from buildings import glb_spatial as gs  # noqa: E402
-from buildings.plateau_mesh import enu_frame  # noqa: E402
+from buildings import glb_spatial as gs
+from buildings.plateau_mesh import enu_frame
 
 OVERPASS = os.environ.get("OVERPASS_URL", "https://overpass.yuiseki.net/api/interpreter")
 

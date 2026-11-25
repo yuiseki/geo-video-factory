@@ -1,6 +1,6 @@
 import unittest
 
-import frame_jumps as fc
+from world_model import frame_jumps as fc
 
 
 class FrameCheck(unittest.TestCase):

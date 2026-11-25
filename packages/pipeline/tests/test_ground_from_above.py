@@ -2,7 +2,7 @@ import unittest
 
 import numpy as np
 
-import ground_from_above as ga
+from world_model import ground_from_above as ga
 
 
 class Pieces(unittest.TestCase):

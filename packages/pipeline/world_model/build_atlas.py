@@ -1,4 +1,4 @@
-"""build_atlas.py <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0]
+"""python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0]
        [--only=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
@@ -12,8 +12,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-import photo_guard
-import surface_atlas as sa
+from photos import photo_guard
+from world_model import surface_atlas as sa
 
 Image.MAX_IMAGE_PIXELS = None
 UNSEEN = (128, 128, 128)

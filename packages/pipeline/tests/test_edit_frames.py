@@ -1,6 +1,6 @@
 import unittest
 
-import edit_frames as ef
+from world_model import edit_frames as ef
 
 
 class Schedule(unittest.TestCase):

@@ -6,7 +6,7 @@ set -euo pipefail
 here=$(cd "$(dirname "$0")" && pwd)
 edit=$1; out=$2; bgm=${3:-}
 mkdir -p "$out"
-python "$here/edit_frames.py" "$edit" "$out/frames"
+PYTHONPATH="$here/..${PYTHONPATH:+:$PYTHONPATH}" python -m world_model.edit_frames "$edit" "$out/frames"
 n=$(ls "$out/frames" | wc -l)
 fps=$(python -c "import json,sys; print(json.load(open(sys.argv[1])).get('fps', 30))" "$edit")
 dur=$(python -c "print($n / $fps)")

@@ -1,4 +1,4 @@
-"""time_layers.py <cams.json> <out_dir> [--scene=tris.npz] [--day=0.42] [--night=0.22]
+"""python -m world_model.time_layers <cams.json> <out_dir> [--scene=tris.npz] [--day=0.42] [--night=0.22]
 
 Split posed photos into time layers by how bright the sky is: day, dusk,
 night. With --scene the sky is the pixels where the posed camera sees no
@@ -15,9 +15,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-import photo_guard
-
-
+from photos import photo_guard
 def sky_brightness(image):
     """Median luminance (0..1) of the top quarter of an RGB uint8 image."""
     top = np.asarray(image, dtype=np.float32)[: max(1, image.shape[0] // 4)]
@@ -48,7 +46,7 @@ def main(argv):
                 im.draft("RGB", (640, 640))
                 b = sky_brightness(np.asarray(im.convert("RGB")))
             else:
-                import surface_atlas as sa
+                from world_model import surface_atlas as sa
                 sky = ~np.isfinite(sa.depth_buffer(tris, cam, scale=480 / cam["width"]))
                 sky[sky.shape[0] * 2 // 3:] = False   # below the horizon "no geometry" is the ground
                 b = masked_brightness(np.asarray(im.convert("RGB").resize(sky.shape[::-1])), sky)

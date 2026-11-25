@@ -1,4 +1,4 @@
-"""fill_frames.py <frames dir> <frames> [--step=1]
+"""python -m world_model.fill_frames <frames dir> <frames> [--step=1]
 Writes the frames a render left out (missing f####.jpg among 0, step, 2*step, ... < frames) as a copy of the
 nearest earlier frame, so that ffmpeg gets an unbroken numbered sequence f%04d at the step, renumbered from 0
 into <frames dir>/seq/. Prints which frames were filled: a filled frame is a held picture, not a drawn one."""
