@@ -12,6 +12,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+import photo_guard
 import surface_atlas as sa
 
 
@@ -35,7 +36,7 @@ def main(argv):
         cam = cams[key]
         scale = 640 / cam["width"]
         e = edges(sa.depth_buffer(tris, cam, scale=scale))
-        with Image.open(cam["photo"]) as im:
+        with photo_guard.open_photo(cam["photo"]) as im:
             rgb = np.asarray(im.convert("RGB").resize((e.shape[1], e.shape[0]))).copy()
         rgb[e] = (255, 0, 0)
         tile = Image.new("RGB", (640, 480))

@@ -12,6 +12,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+import photo_guard
 import surface_atlas as sa
 
 Image.MAX_IMAGE_PIXELS = None
@@ -41,6 +42,7 @@ def main(argv):
         cams.update(json.loads(Path(f).read_text()))
     if "only" in opts:
         cams = {k: c for k, c in cams.items() if any(word in k for word in opts["only"].split(","))}
+    cams = photo_guard.drop_blocked(cams)              # photo_blocklist.tsv: never paint these
     # every texel that lies on a face, as one long list: the atlas is mostly empty, and one call per photo over
     # the list is far faster than one per face
     where, points, normal_of, face_of, patch_of = [], [], [], [], []
@@ -70,7 +72,7 @@ def main(argv):
         px, py = pc[front, 0] / pc[front, 2] * fx + cx, pc[front, 1] / pc[front, 2] * fy + cy
         if not ((px > 0) & (px < cam["width"]) & (py > 0) & (py < cam["height"])).any():
             continue
-        image = np.asarray(Image.open(cam["photo"]).convert("RGB"))
+        image = np.asarray(photo_guard.open_photo(cam["photo"]).convert("RGB"))
         if image.shape[1] != cam["width"]:
             raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
         depth = sa.depth_buffer(scene, cam)

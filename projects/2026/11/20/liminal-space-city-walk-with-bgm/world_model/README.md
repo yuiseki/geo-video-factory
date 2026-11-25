@@ -22,9 +22,10 @@ time_blend.py     同じ動きを昼と夜で描いた 2 本を、動きの途�
 edit_frames.py    番号付きフレームのクリップをつなぐ (カット、クロスフェード、動きの途中の昼夜切り替え、暗転)
 render_edit.sh    つないだフレームを mp4 にする。BGM を渡せば敷いて -14 LUFS に揃える
 frame_jumps.py    前後のフレームから明るさが飛んだフレーム (真っ黒、暗転) を探す
+photo_guard.py    photo_blocklist.tsv に載った写真を、写真を読むすべての所で拒む (SHA-1 と見た目のハッシュ)
 ```
 
-テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above test_frame_jumps test_world_camera test_time_blend test_fill_frames test_edit_frames`
+テスト: `python -m unittest test_surface_atlas test_sim3 test_time_layers test_ground_ortho test_ground_from_above test_frame_jumps test_world_camera test_time_blend test_fill_frames test_edit_frames test_photo_guard`
 
 実データを読む実行は、ホストの資源制限ルールに従ってメモリと CPU に上限を掛ける。
 
@@ -111,3 +112,13 @@ frame_jumps.py    前後のフレームから明るさが飛んだフレーム (
 - アトラスは壁と視線の角度が浅い写真 (`surface_atlas.observe` の `min_cos=0.12`、壁から約 7 度) まで採る。
   そうした写真では数画素が何メートルもの壁に引き伸ばされ、斜めの縞になる。seen.png は見た写真の枚数しか持たないので、
   描画側では消せない。いまはその画角を編集で外している。
+
+写真の来歴
+
+- photo_sources_v0.2.tsv は、v0.2 の映像の壁と地面に入りうる写真 126 枚の出典 (ライセンス、作者、題名、URL)。
+  出典の一覧 (research/*manifest.json) とファイルの SHA-1 で照合し、一覧にない写真は Wikimedia Commons を
+  SHA-1 で引いた。Commons の題名でしか照合できなかった写真は found_by にそう書いてある。
+- CC BY-SA の写真は使わない。建物に貼った映像は改変物になり、映像ごと同じライセンスにしなければならないため。
+  消さずに photo_blocklist.tsv に SHA-1 と dHash を残し、build_atlas、ground_from_above、time_layers、
+  overlay_check、sfm_try はそこに載った写真を拒む。dHash は縮小や再圧縮した複製も捕まえる (距離 6 ビット以内)。
+- 同じ写真がライセンス違いで 2 度上がっていることがある (CC BY と CC BY-SA)。決着するまでリストに載せておく。

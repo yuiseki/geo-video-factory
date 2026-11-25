@@ -15,6 +15,8 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+import photo_guard
+
 
 def sky_brightness(image):
     """Median luminance (0..1) of the top quarter of an RGB uint8 image."""
@@ -41,7 +43,7 @@ def main(argv):
     layers, measured = {}, {}
     tris = np.load(opts["scene"])["tris"].astype(np.float64) if "scene" in opts else None
     for key, cam in sorted(cams.items()):
-        with Image.open(cam["photo"]) as im:
+        with photo_guard.open_photo(cam["photo"]) as im:
             if tris is None:
                 im.draft("RGB", (640, 640))
                 b = sky_brightness(np.asarray(im.convert("RGB")))

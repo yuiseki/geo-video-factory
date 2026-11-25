@@ -22,6 +22,7 @@ import numpy as np
 from PIL import Image
 
 import ground_ortho as go
+import photo_guard
 import surface_atlas as sa
 from geometry_map import to_enu
 
@@ -128,7 +129,7 @@ def main(argv):
     cams = {}
     for f in pos[4:]:
         cams.update(json.loads(Path(f).read_text()))
-    cams = high(cams, z0, float(opts.get("above", 40)))
+    cams = photo_guard.drop_blocked(high(cams, z0, float(opts.get("above", 40))))
     scene = np.load(scene_path)["tris"].astype(float)
     # a photo from behind a window or on a roof deck stands inside the model of its own building: the model's
     # wall or parapet, a metre ahead, would hide the whole ground. Nothing nearer than --near is let to hide it.
@@ -151,7 +152,7 @@ def main(argv):
         stack = sa.TopK(n * n, int(opts.get("keep", 8)))
         used = {}
         for key, cam in cams.items():
-            image = np.asarray(Image.open(cam["photo"]).convert("RGB"))
+            image = np.asarray(photo_guard.open_photo(cam["photo"]).convert("RGB"))
             if image.shape[1] != cam["width"]:
                 raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
             colours, weights = sa.observe(image, points, up, cam, sa.depth_buffer(scene, cam, near=near))

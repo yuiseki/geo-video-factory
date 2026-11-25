@@ -12,6 +12,9 @@ from pathlib import Path
 
 import pycolmap
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "world_model"))
+import photo_guard  # noqa: E402  photo_blocklist.tsv: never take these in
+
 threads = [int(a.split("=", 1)[1]) for a in sys.argv if a.startswith("--threads=")]
 single = "--camera=single" in sys.argv
 sys.argv = [a for a in sys.argv if not a.startswith("--")]
@@ -22,6 +25,11 @@ n = 0
 for sub in sys.argv[3:]:
     for p in sorted((root / sub).iterdir()):
         if p.suffix.lower() in (".jpg", ".jpeg", ".png", ".webp"):
+            try:
+                photo_guard.check(p)
+            except photo_guard.BlockedPhoto as e:
+                print("dropped", e, flush=True)
+                continue
             link = img_dir / f"{sub.replace('/', '_')}__{p.name}"
             if not link.exists():
                 link.symlink_to(p)
