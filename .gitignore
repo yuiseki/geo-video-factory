@@ -41,6 +41,7 @@ projects/**/*.mp3
 projects/**/*.m4a
 projects/**/*.aac
 projects/**/*.ogg
+projects/**/*.pbf
 # VOICEVOX /speaker_info dumps embed portraits, icons and voice samples as base64.
 # Fetch them again from the engine when needed.
 projects/**/assets/voicevox/
