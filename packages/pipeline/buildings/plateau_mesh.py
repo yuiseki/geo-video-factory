@@ -56,18 +56,47 @@ def glb_parts(payload, rtc):
                 yield np.c_[rtc[0] + w[:, 0], rtc[1] - w[:, 2], rtc[2] + w[:, 1]], faces
 
 
+def _local_parts(payload):
+    """(positions in the tile's own y-up frame after node transforms, faces) of every primitive."""
+    doc, binary, _ = glb_chunks(payload)
+    mats = gs._mesh_world_matrices(doc)
+    for index, mesh in enumerate(doc.get("meshes", [])):
+        for prim in mesh.get("primitives", []):
+            pos, faces = _primitive(doc, binary, prim)
+            for mat in mats.get(index) or [gs._identity_mat4()]:
+                a = np.array(mat)
+                yield pos @ a[:3, :3].T + a[:3, 3], faces
+
+
 def glb_triangles(payload, rtc):
     """Every triangle of one tile in ECEF, (n, 3, 3)."""
     parts = [ecef[faces] for ecef, faces in glb_parts(payload, rtc)]
     return np.concatenate(parts) if parts else np.zeros((0, 3, 3))
 
 
+GEOID_M = 36.7   # ellipsoid minus orthometric height around Tokyo: filled-in tiles stand at orthometric heights
+
+
 def manifest_triangles(buildings_dir, lon, lat):
-    """Every triangle of every tile of a manifest, in the east-north-up frame at lon, lat: (n, 3, 3) float32."""
+    """Every triangle of every tile of a manifest, in the east-north-up frame at lon, lat: (n, 3, 3) float32.
+
+    PLATEAU tiles are y-up around their RTC centre in ECEF. Filled-in tiles (frame "enu", city_proxy.py) are y-up
+    local metres (east, up, -north) around the manifest centre at orthometric heights: they are put on the same
+    frame with GEOID_M added. Shadow tiles (city-shadow) are a ground veil, not geometry, and are left out."""
     folder = Path(buildings_dir)
     origin, frame = enu_frame(lon, lat)
+    manifest = json.loads((folder / "manifest.json").read_text())
     tris = []
-    for tile in json.loads((folder / "manifest.json").read_text())["tiles"]:
+    for tile in manifest["tiles"]:
+        if tile.get("kind") == "city-shadow":
+            continue
+        if tile.get("frame") == "enu":
+            c = np.asarray(gs._ecef(*manifest["center"], 0.0)) - origin
+            ce, cn, cu = frame @ c
+            for pos, faces in _local_parts((folder / tile["glb"]).read_bytes()):
+                enu = np.c_[ce + pos[:, 0], cn - pos[:, 2], cu + pos[:, 1] + GEOID_M]
+                tris.append(enu[faces])
+            continue
         for ecef, faces in glb_parts((folder / tile["glb"]).read_bytes(), tile["rtc"]):
             tris.append(((ecef - origin) @ frame.T)[faces])
     if not tris or not sum(len(t) for t in tris):

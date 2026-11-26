@@ -120,6 +120,18 @@ class ManifestTests(unittest.TestCase):
         self.assertEqual(tris.shape, (2, 3, 3))
         np.testing.assert_allclose(tris[:, 0, 2], [5, 15], atol=1e-3)
 
+    def test_filled_in_tiles_stand_upright_around_the_manifest_centre_and_shadows_are_left_out(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            tmp = Path(tmp)
+            (tmp / "p.glb").write_bytes(glb([[10, 20, -30], [11, 20, -30], [10, 21, -30]]))   # Y-up local metres
+            (tmp / "s.glb").write_bytes(glb(TRI))
+            (tmp / "manifest.json").write_text(json.dumps({"center": [139.0, 35.0], "tiles": [
+                {"glb": "p.glb", "rtc": RTC, "frame": "enu", "kind": "city-proxy"},
+                {"glb": "s.glb", "rtc": RTC, "frame": "enu", "kind": "city-shadow"}]}))
+            tris = pm.manifest_triangles(tmp, 139.0, 35.0)
+        self.assertEqual(tris.shape, (1, 3, 3))
+        np.testing.assert_allclose(tris[0, 0], [10, 30, 20 + pm.GEOID_M], atol=0.05)   # east, north, up from the ellipsoid
+
     def test_a_manifest_without_triangles_is_an_error(self):
         with tempfile.TemporaryDirectory() as tmp:
             tmp = Path(tmp)
