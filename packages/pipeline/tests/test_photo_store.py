@@ -159,5 +159,15 @@ class Store(unittest.TestCase):
         self.assertEqual(photo_store.ref_of_file(d / "tiny.jpg"), ref)
 
 
+    def test_a_camera_keeps_the_copy_it_was_calibrated_on_when_the_store_kept_a_larger_one(self):
+        small, big = jpeg((64, 48)), jpeg((128, 96))
+        ref = photo_store.put(COMMONS, big)                        # the store keeps the larger copy
+        d = Path(tempfile.mkdtemp())
+        (d / "a.jpg").write_bytes(small)
+        cam = {"ref": ref, "photo": str(d / "a.jpg"), "width": 64, "height": 48}
+        self.assertEqual(photo_store.camera_photo(cam), d / "a.jpg")
+        self.assertEqual(photo_store.camera_photo(dict(cam, width=128)), photo_store.path(ref))
+
+
 if __name__ == "__main__":
     unittest.main()

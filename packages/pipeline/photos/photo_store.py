@@ -103,10 +103,20 @@ def photo_file(row: dict, project_root) -> Path:
 
 
 def camera_photo(cam: dict) -> Path:
-    """The photo of a world-model camera (cams.json): the store when the camera names a ref, else its "photo" path."""
+    """The photo of a world-model camera (cams.json): the store when the camera names a ref, else its "photo" path.
+
+    A camera is calibrated on one copy (its width): when the store kept a copy of another size (a larger one seen
+    later), the camera's own "photo" path is used if it still exists, so the intrinsics fit the pixels."""
     if cam.get("ref"):
         found = path(cam["ref"])
         if found is not None:
+            if "width" not in cam:
+                return found
+            with Image.open(found) as im:
+                if im.width == int(cam["width"]):
+                    return found
+            if Path(cam["photo"]).exists():
+                return Path(cam["photo"])
             return found
     return Path(cam["photo"])
 
