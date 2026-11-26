@@ -13,6 +13,9 @@
     "鉱山・産金・災害史：静岡県史・伊豆半島ジオパーク・産総研・日本銀行等資料",
     "立ち絵：坂本アヒル"
   ],
+  "cameraPadding": {
+    "bottom": 260
+  },
   "voices": {
     "a": {
       "speaker": 3,
@@ -81,15 +84,16 @@
           ],
           "text": "土肥金山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            -45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
@@ -99,15 +103,16 @@
           ],
           "text": "清越鉱山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "chart",
@@ -179,7 +184,8 @@
       "lines": [
         {
           "voice": "a",
-          "text": "金山と聞くと江戸時代のイメージだけど、昭和にも盛り上がったのだ？"
+          "text": "金山と聞くと江戸時代のイメージだけど、昭和にも盛り上がったのだ？",
+          "speech": "きんざんと聞くと江戸時代のイメージだけど、昭和にも盛り上がったのだ？"
         },
         {
           "voice": "b",
@@ -223,15 +229,16 @@
           ],
           "text": "土肥金山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            -45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
@@ -241,15 +248,16 @@
           ],
           "text": "清越鉱山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "chart",
@@ -365,15 +373,16 @@
           ],
           "text": "土肥金山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            -45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
@@ -383,15 +392,16 @@
           ],
           "text": "清越鉱山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "chart",
@@ -471,7 +481,8 @@
         },
         {
           "voice": "b",
-          "text": "伊豆でも土肥や大仁、持越など、それぞれの鉱山で開発が進んだわ。"
+          "text": "伊豆でも土肥や大仁、持越など、それぞれの鉱山で開発が進んだわ。",
+          "speech": "伊豆でもといや大仁、持越など、それぞれの鉱山で開発が進んだわ。"
         },
         {
           "voice": "b",
@@ -507,15 +518,16 @@
           ],
           "text": "土肥金山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            -45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
@@ -525,15 +537,16 @@
           ],
           "text": "清越鉱山",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -60,
-            45
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "chart",

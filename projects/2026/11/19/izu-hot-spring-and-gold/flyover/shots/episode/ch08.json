@@ -13,6 +13,9 @@
     "鉱山・産金・災害史：静岡県史・伊豆半島ジオパーク・産総研・日本銀行等資料",
     "立ち絵：坂本アヒル"
   ],
+  "cameraPadding": {
+    "bottom": 260
+  },
   "voices": {
     "a": {
       "speaker": 3,
@@ -1294,15 +1297,16 @@
           ],
           "text": "持越鉱山（標高479m）",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -90,
-            20
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
@@ -2622,15 +2626,16 @@
           ],
           "text": "持越鉱山（標高479m）",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -90,
-            20
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
@@ -2711,7 +2716,8 @@
         },
         {
           "voice": "b",
-          "text": "これは川筋の長さの概算で、汚染がその全区間に到達したことを示す値ではないの。"
+          "text": "これは川筋の長さの概算で、汚染がその全区間に到達したことを示す値ではないの。",
+          "speech": "これは川筋の長さの概算で、汚染がその全区間に到達したことを示すあたいではないの。"
         }
       ]
     },
@@ -3956,15 +3962,16 @@
           ],
           "text": "持越鉱山（標高479m）",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -90,
-            20
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
@@ -5290,15 +5297,16 @@
           ],
           "text": "持越鉱山（標高479m）",
           "style": "tag",
-          "dot": true,
+          "dot": false,
           "offset": [
             -90,
-            20
+            -80
           ],
           "show": [
             0,
             1
-          ]
+          ],
+          "leader": true
         },
         {
           "type": "label",
