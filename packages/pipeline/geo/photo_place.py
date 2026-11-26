@@ -10,11 +10,15 @@ searched (skyline_match.py). Given a rough standing point and the horizontal fie
     python3 photo_place.py <photo> <tris.npz> <out_dir> <east> <north> <hfov_deg> [--radius=80] [--grid=2] [--eye=1.6]
         [--ground=<z>] [--pitch=0:30:2] [--roll=-2:2:2] [--fov-range=0.94:1.06:3] [--key=<name in cams.json>]
         [--mesh-radius=600] [--sky=blue|bright|dark] [--dark-below=45] [--heading=<from>:<to>] [--min-sky=0]
+        [--corners=0]
 
 <tris.npz> holds "tris" (n, 3, 3) in east, north, up metres (plateau_mesh.py); <east> <north> are in its frame.
 --min-sky refuses a photo with fewer roofline (sky) columns than that in every pose (exit 1, no files but mask.jpg):
 without sky (an interior, an alley at night, a statue) only one-sided bins are left, any model meets them, and the
 search "places" the photo anywhere at cost 0. 0, the default, keeps that behaviour.
+--corners adds that many times the corner cost (geo/corner_match.py: the vertical corners of the model, not hidden
+behind a nearer wall, against the vertical edges of the picture; 0..2) to the roofline's cost, and places a photo whose
+roofline is refused by --min-sky from its corners alone. 0, the default, is the roofline alone.
 --heading keeps the search to the headings from <from> clockwise to <to> (degrees from north), for a photo whose
 compass direction is roughly known and whose roofline is too short to choose the turn alone.
 Writes result.json (the pose and the next best places at least 10 m away: look at how far apart their costs are),
@@ -36,6 +40,7 @@ import numpy as np
 from PIL import Image, ImageDraw
 from scipy import ndimage
 
+from geo import corner_match as cm
 from geo import skyline_match as sm
 
 BINS, TAU, WORK_W = 720, 5.0, 1300
@@ -92,13 +97,31 @@ def said(sky, pitch, roll, fov, bins=BINS):
     return sm.photo_skyline(az, el, sky, bins=bins)
 
 
+def said_corners(gray, sky, pitch, roll, fov, bins=BINS):
+    """Where the picture shows the vertical corners of buildings, per azimuth bin, when it looks north with this
+    pitch, roll and horizontal field of view (corner_match.photo_corners)."""
+    h, w = sky.shape
+    f = w / 2 / np.tan(np.radians(fov) / 2)
+    az, el = sm.pixel_rays(w, h, f, w / 2, h / 2, 0.0, camera(0.0, pitch, roll), step=1)
+    return cm.photo_corners(az, el, gray, sky, bins=bins)
+
+
 def _one_place(p):
     return sm.model_skyline(*_STATE["edges"], p, bins=_STATE["bins"]).astype(np.float32)
+
+
+def _one_place_corners(p):
+    return cm.model_corners(_STATE["corners"]["prep"], p, bins=_STATE["bins"]).astype(np.float32)
 
 
 def _one_pose(q):
     bins, headings, model = _STATE["bins"], _STATE["headings"], _STATE["model"]
     cost = sm.match_cost(said(_STATE["sky"], *q, bins=bins), model, tau=_STATE["tau"], min_sky=_STATE["min_sky"])
+    corners = _STATE["corners"]
+    if corners:      # the corners add to the roofline, and place alone a picture whose roofline says too little
+        by_corners = cm.corner_cost(said_corners(corners["gray"], _STATE["sky"], *q, bins=bins), _STATE["model_c"])
+        if not np.isnan(by_corners).all():
+            cost = np.nan_to_num(cost, nan=0.0) + corners["weight"] * by_corners
     if np.isnan(cost).all():                    # this pose reads too little roofline to compare
         return np.full(len(model), np.nan), np.zeros(len(model), int)
     if headings:  # only the turns between the two headings, clockwise
@@ -115,15 +138,19 @@ def _map(func, items, workers, chunksize):
         return pool.map(func, items, chunksize=chunksize)
 
 
-def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers=(8, 6), min_sky=0):
+def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers=(8, 6), min_sky=0, corners=None):
     """Every place (n, 3) against every pose (pitch, roll, hfov) and every turn about the vertical.
     Returns the best as a dict, and two arrays (poses, places): the cost of the best turn, and that turn in bins.
-    workers is the number of processes for the model's rooflines and for the poses; None works in this process."""
+    workers is the number of processes for the model's rooflines and for the poses; None works in this process.
+    corners, a dict of prep (corner_match.prepare), gray (the picture's brightness, the shape of sky) and weight,
+    adds weight x the corner cost (0..2) to the roofline's, and stands in for it where the roofline says too little."""
     at_places, at_poses = workers or (1, 1)
     _STATE.update(edges=edges, sky=np.asarray(sky, bool), bins=bins, tau=tau, headings=headings, model=None,
-                  min_sky=min_sky)
+                  min_sky=min_sky, corners=corners, model_c=None)
     try:
         _STATE["model"] = np.stack(_map(_one_place, places, at_places, 32))
+        if corners:
+            _STATE["model_c"] = np.stack(_map(_one_place_corners, places, at_places, 32))
         res = _map(_one_pose, poses, at_poses, None)  # forked after the model is set
     finally:
         _STATE.clear()
@@ -264,7 +291,7 @@ def cam_entry(photo_path, size, best):
 def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1.6, ground=None, pitch="0:30:2",
           roll="-2:2:2", fov_range="0.94:1.06:3", key=None, mesh_radius=600.0, sky="blue", dark_below=45.0,
           heading=None, work_w=WORK_W, bins=BINS, workers=(8, 6), fine_half=4.0, fine_roll=2.0, fine_fov=5, log=print,
-          min_sky=0):
+          min_sky=0, corners=0.0):
     """Search the pose of one photo and write the files named at the top into `out`. Returns what result.json holds."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -284,10 +311,14 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     Image.fromarray(shown).save(out / "mask.jpg", quality=85)
     log(f"sky {mask.mean():.0%} of the picture")
 
+    by_corners = None
+    if corners > 0:      # corner_match: the vertical corners, seen 3 m above the eye
+        by_corners = dict(prep=cm.prepare(tris, ground + eye + 3.0), gray=rgb.astype(float).mean(-1), weight=corners)
     lo, hi, n = fov_range.split(":")
     places, xs, ys = grid_places(x0, y0, radius, grid, ground + eye)
     poses = list(product(span(pitch), span(roll), hfov * np.linspace(float(lo), float(hi), int(n))))
-    coarse, cost, turn = search(edges, mask, places, poses, heading, bins, workers=workers, min_sky=int(min_sky))
+    coarse, cost, turn = search(edges, mask, places, poses, heading, bins, workers=workers, min_sky=int(min_sky),
+                                corners=by_corners)
     log(describe("coarse", coarse, places, poses))
     others = rivals(places, poses, cost, turn, bins)
     for r in others:
@@ -297,7 +328,8 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
         out / "costmap.png")
 
     fine_places, fine_poses = fine_space(coarse, half=fine_half, roll=fine_roll, fov=fine_fov)
-    best, _, _ = search(edges, mask, fine_places, fine_poses, heading, bins, workers=workers, min_sky=int(min_sky))
+    best, _, _ = search(edges, mask, fine_places, fine_poses, heading, bins, workers=workers, min_sky=int(min_sky),
+                        corners=by_corners)
     log(describe("fine", best, fine_places, fine_poses))
 
     overlay(full, edges, best, bins).save(out / "overlay.jpg", quality=88)
@@ -315,7 +347,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     return result
 
 
-NUMBERS = ("radius", "grid", "eye", "ground", "mesh_radius", "dark_below", "min_sky")
+NUMBERS = ("radius", "grid", "eye", "ground", "mesh_radius", "dark_below", "min_sky", "corners")
 TEXTS = ("pitch", "roll", "fov_range", "key", "sky")
 
 
