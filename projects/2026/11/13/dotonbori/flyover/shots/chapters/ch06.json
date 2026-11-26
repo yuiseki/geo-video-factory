@@ -911,20 +911,20 @@
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.8,
-        "pitch": 25,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 0.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.8,
-        "pitch": 25,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 45.0
       },
       "lines": [
         {
@@ -948,26 +948,27 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 15.1,
-        "pitch": 32,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 45.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 15.549999999999999,
-        "pitch": 45,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 90.0
       },
       "lines": [
         {
@@ -991,26 +992,27 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": 5
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 90.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": 5
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 135.0
       },
       "lines": [
         {
@@ -1034,26 +1036,27 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.8,
-        "pitch": 45,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 135.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.200000000000001,
-        "pitch": 25,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 180.0
       },
       "lines": [
         {
@@ -1077,26 +1080,27 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 15.1,
-        "pitch": 25,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 180.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 15.1,
-        "pitch": 25,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 225.0
       },
       "lines": [
         {
@@ -1120,26 +1124,27 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 225.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 270.0
       },
       "lines": [
         {
@@ -1163,26 +1168,27 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.8,
-        "pitch": 45,
-        "bearing": 5
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 270.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 14.200000000000001,
-        "pitch": 25,
-        "bearing": 5
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 315.0
       },
       "lines": [
         {
@@ -1206,26 +1212,27 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 15.1,
-        "pitch": 25,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 315.0
       },
       "to": {
         "center": [
           135.4125,
-          34.6427
+          34.641
         ],
-        "zoom": 15.1,
-        "pitch": 25,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 60,
+        "bearing": 360.0
       },
       "lines": [
         {
@@ -1249,7 +1256,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {

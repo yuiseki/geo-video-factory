@@ -1534,18 +1534,18 @@
           135.4125,
           34.6427
         ],
-        "zoom": 15.1,
-        "pitch": 45,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": -90.0
       },
       "to": {
         "center": [
           135.4125,
           34.6427
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": -64.29
       },
       "lines": [
         {
@@ -1569,7 +1569,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
@@ -1577,18 +1578,18 @@
           135.4125,
           34.6427
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": -64.29
       },
       "to": {
         "center": [
           135.4125,
           34.6427
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": -38.57
       },
       "lines": [
         {
@@ -1612,7 +1613,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
@@ -1620,18 +1622,18 @@
           135.4125,
           34.6427
         ],
-        "zoom": 14.8,
-        "pitch": 25,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": -38.57
       },
       "to": {
         "center": [
           135.4125,
           34.6427
         ],
-        "zoom": 14.8,
-        "pitch": 25,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": -12.86
       },
       "lines": [
         {
@@ -1655,7 +1657,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
@@ -1663,18 +1666,18 @@
           135.4125,
           34.6427
         ],
-        "zoom": 15.1,
-        "pitch": 25,
-        "bearing": 5
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": -12.86
       },
       "to": {
         "center": [
           135.4125,
           34.6427
         ],
-        "zoom": 15.1,
-        "pitch": 25,
-        "bearing": 5
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": 12.86
       },
       "lines": [
         {
@@ -1698,7 +1701,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
@@ -1706,18 +1710,18 @@
           135.4125,
           34.6427
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": 12.86
       },
       "to": {
         "center": [
           135.4125,
           34.6427
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": 20
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": 38.57
       },
       "lines": [
         {
@@ -1741,7 +1745,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
@@ -1749,18 +1754,18 @@
           135.4125,
           34.6427
         ],
-        "zoom": 14.8,
-        "pitch": 45,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": 38.57
       },
       "to": {
         "center": [
           135.4125,
           34.6427
         ],
-        "zoom": 14.200000000000001,
-        "pitch": 25,
-        "bearing": 0
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": 64.29
       },
       "lines": [
         {
@@ -1784,7 +1789,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
@@ -1792,18 +1798,18 @@
           135.4125,
           34.6427
         ],
-        "zoom": 15.1,
-        "pitch": 45,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": 64.29
       },
       "to": {
         "center": [
           135.4125,
           34.6427
         ],
-        "zoom": 14.5,
-        "pitch": 25,
-        "bearing": -15
+        "zoom": 15.8,
+        "pitch": 58,
+        "bearing": 90.0
       },
       "lines": [
         {
@@ -1827,7 +1833,8 @@
             1
           ]
         }
-      ]
+      ],
+      "ease": "linear"
     },
     {
       "from": {
