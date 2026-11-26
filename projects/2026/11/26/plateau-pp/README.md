@@ -23,7 +23,7 @@ PLATEAU++ (`packages/pipeline/buildings/plateau_pp.py`) の最初の版を定め
 
 ## 試す範囲
 
-`areas.json` に範囲を置いています。
+`areas.json` に範囲を置いています。`OVERPASS_URL=<自前の Overpass> python projects/2026/11/26/plateau-pp/build_trial.py` で、各範囲の PLATEAU++ を `out/<名前>-v1/` に作ります (ホストの資源制限に従って実行する)。
 
 | 名前 | 場所 | 選んだ理由 |
 |---|---|---|
