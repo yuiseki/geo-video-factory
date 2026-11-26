@@ -51,6 +51,7 @@ for name, (eye, target, fov) in views.items():
     cam.location = eye
     cam.rotation_euler = (target - eye).to_track_quat("-Z", "Y").to_euler()
     cam.data.angle = math.radians(fov)
+    bpy.context.view_layer.update()          # without it a render can come out from the previous camera
     sc.render.image_settings.file_format = "PNG"
     sc.render.filepath = str(out / f"{tag}_{name}.png")
     bpy.ops.render.render(write_still=True)
