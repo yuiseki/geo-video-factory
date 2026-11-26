@@ -35,38 +35,11 @@
       },
       "overlays": [
         {
-          "type": "choropleth",
-          "src": "data/izu_grid_summary.geojson",
-          "property": "onsen_count",
-          "breaks": [
-            0,
-            1,
-            5,
-            15,
-            30
-          ],
-          "colors": [
-            "#1e293b",
-            "#0369a1",
-            "#0ea5e9",
-            "#38bdf8",
-            "#bae6fd"
-          ],
-          "scale": "step",
-          "noDataColor": "#334155",
-          "opacity": 0.85,
-          "extrude": true,
-          "heightScale": 180,
-          "rise": [
-            0.05,
-            0.45
-          ],
-          "legend": {
-            "title": "2km格子あたり温泉POI",
-            "unit": "件",
-            "position": "bottom-left",
-            "showNoData": false
-          },
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 28,
+          "intensity": 1.35,
+          "opacity": 0.9,
           "show": [
             0,
             1
@@ -168,26 +141,33 @@
       },
       "overlays": [
         {
-          "type": "choropleth",
-          "src": "data/izu_grid_summary.geojson",
-          "property": "onsen_count",
-          "breaks": [
-            0,
-            1,
-            5,
-            15,
-            30
-          ],
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 24,
+          "intensity": 1.1,
+          "opacity": 0.65,
           "colors": [
-            "#0f172a",
-            "#0c4a6e",
-            "#0369a1",
-            "#0284c7",
-            "#38bdf8"
+            [
+              0,
+              "rgba(0, 0, 0, 0)"
+            ],
+            [
+              0.2,
+              "rgba(14, 165, 233, 0.35)"
+            ],
+            [
+              0.5,
+              "rgba(56, 189, 248, 0.65)"
+            ],
+            [
+              0.8,
+              "rgba(186, 230, 253, 0.85)"
+            ],
+            [
+              1,
+              "rgba(255, 255, 255, 0.95)"
+            ]
           ],
-          "scale": "step",
-          "opacity": 0.48,
-          "extrude": false,
           "show": [
             0,
             1
@@ -2410,27 +2390,11 @@
       },
       "overlays": [
         {
-          "type": "choropleth",
-          "src": "data/izu_grid_summary.geojson",
-          "property": "onsen_count",
-          "breaks": [
-            0,
-            1,
-            5,
-            15,
-            30
-          ],
-          "colors": [
-            "#1e293b",
-            "#0369a1",
-            "#0ea5e9",
-            "#38bdf8",
-            "#bae6fd"
-          ],
-          "scale": "step",
-          "opacity": 0.65,
-          "extrude": true,
-          "heightScale": 140,
+          "type": "heatmap",
+          "src": "data/onsen_pois.geojson",
+          "radius": 26,
+          "intensity": 1.2,
+          "opacity": 0.75,
           "show": [
             0,
             1
