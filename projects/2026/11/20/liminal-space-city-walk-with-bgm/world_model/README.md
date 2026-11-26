@@ -6,7 +6,7 @@
 ```
 magic_shots.py              渋谷のカメラワーク (見上げて回る、ドリーズーム、ビルに飛び込んで出る、周回 ...)
 edit_globe_to_crossing_*.json   地球から交差点までの編集表 (edit_frames の形式。ディレクトリは $WORLD などの変数)
-photo_sources_v0.2.tsv      v0.2 の映像の壁と地面に入りうる写真の出典
+photo_sources.tsv      v0.2 の映像の壁と地面に入りうる写真の出典
 ```
 
 描き方 (packages/pipeline から):
@@ -28,7 +28,7 @@ WORLD=... FLYOUT=... MACOUT=... bash world_model/render_edit.sh <edit.json> <out
 
 ## 写真の来歴
 
-- photo_sources_v0.2.tsv は、v0.2 の映像の壁と地面に入りうる写真 126 枚の出典 (ライセンス、作者、題名、URL)。
+- photo_sources.tsv は、v0.2 の映像の壁と地面に入りうる写真 126 枚の出典 (ライセンス、作者、題名、URL)。
   出典の一覧 (research/*manifest.json) とファイルの SHA-1 で照合し、一覧にない写真は Wikimedia Commons を
   SHA-1 で引いた。Commons の題名でしか照合できなかった写真は found_by にそう書いてある。
 - 取得元は Wikimedia Commons と Openverse (その先の Flickr、rawpixel)。出典の一覧は research/ の

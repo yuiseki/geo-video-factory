@@ -30,7 +30,7 @@
   - `generate_vaporwave_bgm.py`: Mallsoft / Slushwave 風 BGM ローカル合成
   - `build_walk_shot.py` / `build_episode.py`: 等速歩行（1.15 m/s）ショット JSON 生成
   - `collect_shibuya_photos.py`: 改変可・商用可の渋谷写真収集（143 枚）
-- `flyover/shots/episode-v1.0.0/`: 本番 3 チャプターのショット JSON
+- `flyover/shots/episode/`: 本番 3 チャプターのショット JSON
 
 ## 出典・権利管理
 

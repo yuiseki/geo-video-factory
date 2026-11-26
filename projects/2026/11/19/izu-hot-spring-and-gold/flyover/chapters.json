@@ -7,47 +7,47 @@
     {
       "id": "ch01",
       "title": "温泉の半島",
-      "spec": "shots/episode-v0.2.0/ch01.json"
+      "spec": "shots/episode/ch01.json"
     },
     {
       "id": "ch02",
       "title": "鉱山と温泉の地図",
-      "spec": "shots/episode-v0.2.0/ch02.json"
+      "spec": "shots/episode/ch02.json"
     },
     {
       "id": "ch03",
       "title": "南から来た火山",
-      "spec": "shots/episode-v0.2.0/ch03.json"
+      "spec": "shots/episode/ch03.json"
     },
     {
       "id": "ch04",
       "title": "鉱山で出会った湯",
-      "spec": "shots/episode-v0.2.0/ch04.json"
+      "spec": "shots/episode/ch04.json"
     },
     {
       "id": "ch05",
       "title": "昭和の産金",
-      "spec": "shots/episode-v0.2.0/ch05.json"
+      "spec": "shots/episode/ch05.json"
     },
     {
       "id": "ch06",
       "title": "戦争と鉱山の転換",
-      "spec": "shots/episode-v0.2.0/ch06.json"
+      "spec": "shots/episode/ch06.json"
     },
     {
       "id": "ch07",
       "title": "持越鉱山の事故",
-      "spec": "shots/episode-v0.2.0/ch07.json"
+      "spec": "shots/episode/ch07.json"
     },
     {
       "id": "ch08",
       "title": "川の下流へ",
-      "spec": "shots/episode-v0.2.0/ch08.json"
+      "spec": "shots/episode/ch08.json"
     },
     {
       "id": "ch09",
       "title": "おわりに",
-      "spec": "shots/episode-v0.2.0/ch09.json"
+      "spec": "shots/episode/ch09.json"
     }
   ]
 }

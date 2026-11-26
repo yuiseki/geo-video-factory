@@ -1,8 +1,9 @@
 """Reduce geographic transition speed without changing the dialogue."""
+# Applied once, turning the previous version of its input into the next; those versions are in git history.
 import json
 from pathlib import Path
 root=Path(__file__).resolve().parent
-spec=json.loads((root/'shots/dotonbori.v0.1.6.json').read_text())
+spec=json.loads((root/'shots/dotonbori.json').read_text())
 durations={
  'ところで、隅田川でも娯楽が栄えていたと聞いたことがあるのだ。':8.5,
  'そうね。次は江戸・東京の水辺の文化を見ていきましょう。':11.0,
@@ -23,5 +24,5 @@ for shot in spec['shots']:
     if overlay.get('text') == '大阪南港': overlay['at'] = [135.426,34.630]
   found.add(text)
 assert found==durations.keys()
-(root/'shots/dotonbori.v0.1.7.json').write_text(json.dumps(spec,ensure_ascii=False,indent=2)+'\n')
+(root/'shots/dotonbori.json').write_text(json.dumps(spec,ensure_ascii=False,indent=2)+'\n')
 print('adjusted',len(found),'shots')

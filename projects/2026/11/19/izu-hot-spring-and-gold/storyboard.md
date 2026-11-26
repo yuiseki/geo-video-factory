@@ -1,7 +1,7 @@
 # 動画構成・コンテ図（v0.6）
 
 作成日: 2026-11-19  
-ショット仕様: [flyover/shots/storyboard_v0_6.json](flyover/shots/storyboard_v0_6.json)  
+ショット仕様: [flyover/shots/storyboard.json](flyover/shots/storyboard.json)  
 一覧コンタクトシート: [flyover/out/storyboard_v0_6/stills.jpg](flyover/out/storyboard_v0_6/stills.jpg)
 
 ---

@@ -90,7 +90,7 @@ def main() -> None:
         {"center": [139.70020, 35.65978], "zoom": 21.55, "pitch": 85, "bearing": -45},
     ]
     d1, dur1, k1 = build_constant_speed_keys(short_waypoints, speed_mps=speed_mps)
-    short_path = shots_dir / "shibuya-walk-crossing-v7.json"
+    short_path = shots_dir / "shibuya-walk-crossing.json"
     short_path.write_text(
         json.dumps(base_doc([{"duration": dur1, "ease": "linear", "keys": k1}]), ensure_ascii=False, indent=2),
         encoding="utf-8",
@@ -107,7 +107,7 @@ def main() -> None:
         {"center": [139.69775, 35.66072], "zoom": 21.5, "pitch": 85, "bearing": -66},
     ]
     d2, dur2, k2 = build_constant_speed_keys(full_waypoints, speed_mps=speed_mps)
-    full_path = shots_dir / "shibuya-walk-full-v7.json"
+    full_path = shots_dir / "shibuya-walk-full.json"
     full_path.write_text(
         json.dumps(base_doc([{"duration": dur2, "ease": "linear", "keys": k2}]), ensure_ascii=False, indent=2),
         encoding="utf-8",

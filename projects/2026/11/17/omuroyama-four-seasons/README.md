@@ -8,9 +8,9 @@
 
 ```bash
 systemd-run --user --scope -q -p MemoryMax=8G -p MemorySwapMax=0 -p CPUQuota=400% -- \
-  node packages/renderer/dist/src/render.js projects/2026/11/17/omuroyama-four-seasons/shots/omuroyama-four-seasons-v0.1.0.json \
+  node packages/renderer/dist/src/render.js projects/2026/11/17/omuroyama-four-seasons/shots/omuroyama-four-seasons.json \
   --project packages/renderer/test/fixtures \
-  --out projects/2026/11/17/omuroyama-four-seasons/out/omuroyama-four-seasons-v0.1.0 --no-voice
+  --out projects/2026/11/17/omuroyama-four-seasons/out/omuroyama-four-seasons --no-voice
 ```
 
 事前に renderer のビルドが必要です。素材は `packages/renderer/test/fixtures/omuro-seasons/` を参照します。

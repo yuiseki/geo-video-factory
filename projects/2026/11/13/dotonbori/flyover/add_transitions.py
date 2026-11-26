@@ -1,4 +1,5 @@
 """Add spoken bridges and reusable geographic camera moves to v0.1.5."""
+# Applied once, turning the previous version of its input into the next; those versions are in git history.
 import copy,json
 from pathlib import Path
 import sys
@@ -8,10 +9,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[4] / 'packages' / 'pipel
 from video.shot_effects import geographic_transition
 ROOT=Path(__file__).resolve().parent
 source=build_story.SOURCE
-backup=ROOT/'shots/dotonbori.v0.1.5-script.md'
+backup=ROOT/'shots/dotonbori-script.md'
 if not backup.exists(): backup.write_text(source.read_text())
 original=backup.read_text()
-base=json.loads((ROOT/'shots/dotonbori.v0.1.5.json').read_text())
+base=json.loads((ROOT/'shots/dotonbori.json').read_text())
 turns=build_story.parse_dialogue(original)
 sections=[]
 for turn in turns:
@@ -80,5 +81,5 @@ for section, lines in bridges.items():
  insertion=''.join('**'+('ずんだもん' if voice=='a' else '四国めたん')+'：** '+text+'\n\n' for voice,text in lines)
  original=original[:pos]+insertion+original[pos:]
 source.write_text(original)
-(ROOT/'shots/dotonbori.v0.1.6.json').write_text(json.dumps(base,ensure_ascii=False,indent=2)+'\n')
+(ROOT/'shots/dotonbori.json').write_text(json.dumps(base,ensure_ascii=False,indent=2)+'\n')
 print('wrote',len(base['shots']),'shots')

@@ -6,8 +6,8 @@
 - `storyboard.md`：地図と図解の初期コンテ
 - `research/`：調査とデータの取得・分析記録
 - `flyover/scripts/build_episode.py`：台本とコンテから各章のショットと章マニフェストを生成
-- `flyover/chapters-v0.2.0.json`：章の並び
-- `flyover/shots/episode-v0.2.0/`：本編の各章のショット定義
+- `flyover/chapters.json`：章の並び
+- `flyover/shots/episode/`：本編の各章のショット定義
 
 OSMの施設388件は、記録された候補から選んだ標本です。施設全体の公式な数ではありません。鉱山9地点と最寄り施設との距離は概略の地点を含む地図上の直線距離です。46.1 kmは河川網を接続して推定した距離で、汚染の到達範囲を示すものではありません。図の線は模式的な位置関係を表します。
 
@@ -19,12 +19,12 @@ Node.js、Playwright、ffmpeg、Python、Pillow、日本語フォント、VOICEV
 cd packages/renderer && npm run build && cd ../..
 python3 projects/2026/11/19/izu-hot-spring-and-gold/flyover/scripts/build_episode.py
 python3 packages/pipeline/video/chapter_pipeline.py \
-  projects/2026/11/19/izu-hot-spring-and-gold/flyover/chapters-v0.2.0.json \
-  --out projects/2026/11/19/izu-hot-spring-and-gold/flyover/out/episode-v0.2.0 \
+  projects/2026/11/19/izu-hot-spring-and-gold/flyover/chapters.json \
+  --out projects/2026/11/19/izu-hot-spring-and-gold/flyover/out/episode \
   --workers 2
 ```
 
-出力は `flyover/out/episode-v0.2.0/episode.mp4` です。各章には3秒の無音のタイトルカードを挟みます。音声の尺に合わせて映像の長さを決めます。鉱山の円は代表地点から半径500 mの範囲を示し、実際の鉱区や施設の境界を示すものではありません。地名と専門用語はVOICEVOXの読みを確認し、必要な箇所に読み仮名を指定しています。
+出力は `flyover/out/episode/episode.mp4` です。各章には3秒の無音のタイトルカードを挟みます。音声の尺に合わせて映像の長さを決めます。鉱山の円は代表地点から半径500 mの範囲を示し、実際の鉱区や施設の境界を示すものではありません。地名と専門用語はVOICEVOXの読みを確認し、必要な箇所に読み仮名を指定しています。
 
 ## 出典
 

@@ -8,7 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SCRIPT = ROOT.parent / 'script.md'
-SOURCE = ROOT / 'shots/storyboard_v0_6.json'
+SOURCE = ROOT / 'shots/storyboard.json'
 VERSION = 'v0.2.0'
 DEST = ROOT / f'shots/episode-{VERSION}'
 

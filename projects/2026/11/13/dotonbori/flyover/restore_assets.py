@@ -65,7 +65,7 @@ def restore_commons_v013() -> None:
 
 
 def restore_gyazo() -> None:
-    spec = json.loads((ROOT / "shots/dotonbori.v0.1.7.json").read_text(encoding="utf-8"))
+    spec = json.loads((ROOT / "shots/dotonbori.json").read_text(encoding="utf-8"))
     gyazo_srcs = sorted({
         ov["src"]
         for shot in spec["shots"]
@@ -84,7 +84,7 @@ def restore_gyazo() -> None:
 
 
 def restore_maps() -> None:
-    spec = json.loads((ROOT / "shots/dotonbori.v0.1.7.json").read_text(encoding="utf-8"))
+    spec = json.loads((ROOT / "shots/dotonbori.json").read_text(encoding="utf-8"))
     needed = sorted({
         ov["src"]
         for shot in spec["shots"]
