@@ -173,6 +173,45 @@ test('panel and photo marker image paths lose leading slashes and are re-rooted'
   assert.ok(dom.overlay.children[2]!.innerHTML.includes('src="/img/y.jpg"'));
 });
 
+test('a fullscreen panel fills the frame, blurs its own photo behind it and hides the map credit', () => {
+  const shot: Shot = { duration: 4, overlays: [{ type: 'panel', src: 'img/p.jpg', fullscreen: true, caption: 'cap', credit: 'cr' } as never] };
+  setup([shot]);
+  drawOverlays(0, shot, 1, 'dom');
+  const panel = dom.overlay.children[0]!;
+  assert.equal(panel.className, 'o panel-fullscreen');
+  assert.deepEqual([panel.style.left, panel.style.top, panel.style.width, panel.style.height], ['0px', '0px', '1920px', '1080px']);
+  assert.ok(panel.innerHTML.includes('blur(32px)'));
+  assert.ok(panel.innerHTML.includes('>cap<') && panel.innerHTML.includes('>cr<'));
+  assert.equal(dom.credit.style.display, 'none');
+});
+
+test('an expanding panel grows from its card to the frame and back, and fades the map credit meanwhile', () => {
+  const shot: Shot = { duration: 10, overlays: [{ type: 'panel', src: 'img/p.jpg', screen: [1000, 200], width: 400, expand: [0.1, 0.2], collapse: [0.6, 0.7] } as never] };   // windows and t are shares of the shot
+  setup([shot]);
+  drawOverlays(0, shot, 0.05, 'dom');
+  let panel = dom.overlay.children[0]!;
+  assert.equal(panel.className, 'o panel-fullscreen');
+  assert.deepEqual([panel.style.left, panel.style.width], ['1000px', '400px']);
+  assert.equal(dom.credit.style.opacity, '1');
+  drawOverlays(0, shot, 0.4, 'dom');
+  panel = dom.overlay.children[0]!;
+  assert.deepEqual([panel.style.left, panel.style.width, panel.style.borderRadius], ['0px', '1920px', '0px']);
+  assert.equal(dom.credit.style.display, 'none');
+  drawOverlays(0, shot, 0.15, 'dom');
+  assert.ok(Number(dom.credit.style.opacity) > 0 && Number(dom.credit.style.opacity) < 1);
+  drawOverlays(0, shot, 0.8, 'dom');
+  assert.equal(dom.overlay.children[0]!.style.width, '400px');
+});
+
+test('a rolling counter draws one odometer wheel per digit of its final value', () => {
+  const shot: Shot = { duration: 4, overlays: [{ type: 'counter', value: 12345, roll: true, screen: [100, 100] } as never] };
+  setup([shot]);
+  drawOverlays(0, shot, 0.9, 'dom');
+  const html = dom.overlay.children[0]!.innerHTML;
+  assert.equal((html.match(/class="wheel"/g) ?? []).length, 5);
+  assert.equal((html.match(/class="sep"/g) ?? []).length, 1);
+});
+
 test('chart overlay renders an svg path with one point per datum', () => {
   const shot: Shot = { duration: 6, overlays: [{ type: 'chart', points: [['2020-01', 1], ['2020-02', 4], ['2020-03', 9]], labels: [2], yticks: [0, 5], xlabels: [['a', 0]] } as never] };
   setup([shot]);
