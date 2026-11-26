@@ -434,37 +434,37 @@
       {
         "src": "assets/billboards/sign_loccitane_ne_full.png",
         "center": [
-          139.700032,
-          35.659362
+          139.700035,
+          35.65936
         ],
-        "altitudeM": 15.2,
-        "widthM": 13.0,
+        "altitudeM": 14.8,
+        "widthM": 13.4,
         "heightM": 29.5,
         "bearing": 50,
-        "glow": 1.02
+        "glow": 1.05
       },
       {
         "src": "assets/billboards/sign_loccitane_roof.png",
         "center": [
-          139.700027,
-          35.659357
+          139.700032,
+          35.659358
         ],
-        "altitudeM": 34.0,
-        "widthM": 12.6,
-        "heightM": 7.2,
+        "altitudeM": 33.2,
+        "widthM": 13.0,
+        "heightM": 7.4,
         "bearing": 50,
         "glow": 1.08
       },
       {
         "src": "assets/billboards/sign_loccitane_banner.png",
         "center": [
-          139.699982,
-          35.659405
+          139.699985,
+          35.65941
         ],
-        "altitudeM": 15.5,
-        "widthM": 3.4,
-        "heightM": 28.0,
-        "bearing": 25,
+        "altitudeM": 15.0,
+        "widthM": 3.2,
+        "heightM": 28.5,
+        "bearing": 35,
         "glow": 1.05
       },
       {
@@ -480,38 +480,26 @@
         "glow": 1.0
       },
       {
-        "src": "assets/billboards/sign_loccitane_ne_full.png",
-        "center": [
-          139.700062,
-          35.659245
-        ],
-        "altitudeM": 15.2,
-        "widthM": 13.5,
-        "heightM": 29.5,
-        "bearing": 101,
-        "glow": 0.98
-      },
-      {
         "src": "assets/billboards/sign_oosoto_sleeves.png",
         "center": [
-          139.70005,
-          35.65917
+          139.700076,
+          35.6593
         ],
-        "altitudeM": 15.5,
-        "widthM": 2.4,
-        "heightM": 28.0,
+        "altitudeM": 15.0,
+        "widthM": 2.2,
+        "heightM": 29.0,
         "bearing": 101,
         "glow": 1.05
       },
       {
         "src": "assets/billboards/sign_eyecity_blue.png",
         "center": [
-          139.700035,
-          35.65911
+          139.700066,
+          35.65925
         ],
-        "altitudeM": 18.0,
-        "widthM": 5.5,
-        "heightM": 19.0,
+        "altitudeM": 17.5,
+        "widthM": 6.0,
+        "heightM": 21.0,
         "bearing": 101,
         "glow": 1.05
       },
@@ -587,5 +575,5 @@
       ]
     }
   ],
-  "id": "shibuya-comfy-billboards-v28"
+  "id": "shibuya-comfy-billboards-v29"
 }
