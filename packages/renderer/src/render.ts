@@ -26,6 +26,7 @@ import {
   supersampledSize,
   transparentEncodeArgs,
 } from './ffmpeg-args.js';
+import { freshFrames } from './output-dir.js';
 
 const PACKAGE_ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
@@ -181,11 +182,8 @@ async function main(): Promise<void> {
   const fps = Number(opt('fps', String(spec.fps ?? 30)));
   const out = path.resolve(opt('out', path.join(projectRoot, 'out', path.basename(specPath, '.json')))!);
 
-  // Keep every previous render intact; a fresh destination prevents old frames leaking into output.
-  if (fs.existsSync(path.join(out, 'frames'))) {
-    throw new Error(`output already contains frames: ${out}; choose a new --out directory`);
-  }
-  fs.mkdirSync(path.join(out, 'frames'), { recursive: true });
+  // The same --out is rendered over: versions live in git, and empty frames keep old ones out of the video.
+  freshFrames(out);
 
   // Narration first: it decides how long each shot with "lines" lasts and adds the subtitles.
   const narration = await prepareNarration(spec, out, {
