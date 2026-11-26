@@ -5,7 +5,8 @@ background sometimes drew a view from the previous camera (and re-rendering in t
 
 aerial: 300 m out and 250 m up, looking at the centre; roof: 90 m out and 45 m up; street: eye 1.6 m above the
 ground, looking along street_bearing, from the point within 80 m of the centre (10 m grid) that sees farthest along
-that bearing and back (a street, not the wall the centre may fall against). The scene's own render settings
+that bearing and back (a street, not the wall the centre may fall against); street lamps within 6 m of that eye are
+left out of the street view. The scene's own render settings
 (pp_scene.py) are kept.
 """
 import json
@@ -55,6 +56,11 @@ cam.data.clip_start, cam.data.clip_end = 0.3, 6000
 for name, (eye, target, fov) in views.items():
     if only and name != only:
         continue
+    for obj in sc.objects:          # a street lamp (pp_scene --lamps) right at the eye would fill the street view
+        if obj.name.startswith("lamp") and obj.parent is None:
+            obj.hide_render = name == "street" and (obj.location.xy - eye.xy).length < 6.0
+            for child in obj.children:
+                child.hide_render = obj.hide_render
     cam.location = eye
     cam.rotation_euler = (target - eye).to_track_quat("-Z", "Y").to_euler()
     cam.data.angle = math.radians(fov)

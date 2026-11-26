@@ -54,6 +54,19 @@ class AlongRoads(unittest.TestCase):
         els = road(1, [(139.0, 35.0), (east(30), 35.0), (east(30), north(35))], highway="tertiary")
         self.assertEqual(len(sl.from_overpass(els, spacing=20)), 4)        # 0, 20, 40, 60 m along 65 m
 
+    def test_a_one_way_carriageway_is_lit_from_its_outer_kerb_only(self):
+        # dual carriageways are two one-way ways; Japan drives on the left, so the outer kerb is on the left
+        els = road(1, [(139.0, 35.0), (east(110), 35.0)], highway="primary", oneway="yes", width="7")
+        self.assertEqual({round(local(l)[1], 1) for l in sl.from_overpass(els, spacing=25)}, {4.0})
+
+    def test_lamps_of_different_ways_closer_than_half_the_spacing_become_one(self):
+        els = (road(1, [(139.0, 35.0), (east(110), 35.0)], highway="secondary", width="12")
+               + road(2, [(139.0, north(1)), (east(110), north(1))], highway="secondary", width="12"))
+        lamps = sl.from_overpass(els, spacing=25)
+        xy = [local(l) for l in lamps]
+        self.assertTrue(all(math.dist(a, b) >= 12.5 for i, a in enumerate(xy) for b in xy[i + 1:]))
+        self.assertEqual(len(lamps), 5)
+
     def test_tunnels_footways_and_service_roads_get_no_lamps(self):
         els = (road(1, [(139.0, 35.0), (east(50), 35.0)], highway="primary", tunnel="yes")
                + road(2, [(139.0, 35.0), (east(50), 35.0)], highway="footway")
