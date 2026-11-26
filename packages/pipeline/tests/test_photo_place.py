@@ -196,6 +196,14 @@ class SearchTests(unittest.TestCase):
                 self.assertGreaterEqual(np.hypot(a["east"] - b["east"], a["north"] - b["north"]), 10.0)
         self.assertEqual(set(rivals[0]), {"east", "north", "cost", "heading", "pitch", "hfov"})
 
+    def test_a_place_is_alone_when_no_place_10_m_away_fits_as_well(self):
+        r = lambda c: dict(east=0.0, north=0.0, cost=c, heading=0.0, pitch=0.0, hfov=60.0)
+        self.assertTrue(pp.alone([r(0.59), r(0.97)]))
+        self.assertTrue(pp.alone([r(1.08), r(1.112)]))         # 3 % apart: a choice was made
+        self.assertFalse(pp.alone([r(0.0), r(0.0)]))           # no sky: every place fits
+        self.assertFalse(pp.alone([r(1.914), r(1.922)]))       # within 1 %: a tie
+        self.assertFalse(pp.alone([r(0.5)]))                   # nothing to compare with
+
     def test_the_fine_search_is_half_a_metre_and_half_a_degree_around_the_coarse_answer(self):
         coarse = dict(east=4.0, north=-6.0, up=1.6, pitch=12.0, roll=0.0, hfov=70.0)
         places, poses = pp.fine_space(coarse)
@@ -245,6 +253,7 @@ class PlaceTests(unittest.TestCase):
         self.assertAlmostEqual(saved["ground"], 0.0)
         self.assertEqual(saved["eye_height"], 1.6)
         self.assertGreaterEqual(len(saved["rivals"]), 1)
+        self.assertEqual(saved["alone"], pp.alone(saved["rivals"]))
 
     def test_cams_json_is_what_the_projection_reads(self):
         cams = json.loads((self.out / "cams.json").read_text())

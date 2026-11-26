@@ -23,7 +23,8 @@ photos the corners did not tell the true place from others (see corner_match.py)
 roofline had placed within 1.4 m to 27 m away.
 --heading keeps the search to the headings from <from> clockwise to <to> (degrees from north), for a photo whose
 compass direction is roughly known and whose roofline is too short to choose the turn alone.
-Writes result.json (the pose and the next best places at least 10 m away: look at how far apart their costs are),
+Writes result.json (the pose and the next best places at least 10 m away, and "alone": false when one of them costs
+within 1 % of the best, so the photo does not decide the place; do not use such a pose),
 mask.jpg (the sky that was read), costmap.png (the cost of the best pose at every standing point, yellow = low),
 overlay.jpg (the model's edges and roofline drawn on the photo at the found pose: the check that matters), and
 cams.json + mesh.npz for a projection of the photo onto the model. Nothing is printed during the coarse search.
@@ -208,6 +209,17 @@ def rivals(places, poses, cost, turn, bins=BINS, count=6, apart=10.0):
     return out
 
 
+def alone(others, tie=0.01):
+    """Whether the best place stands alone: the next of rivals() (at least 10 m away) costs more than `tie` (relative)
+    above it. Not alone is a pose the photo does not decide: a photo without sky meets every model at cost 0 and every
+    place ties. On Shibuya's 31 SfM-aligned street photos (projects/2026/11/26/plateau-pp-ultra-after) all 7 placed
+    within 5 m stood alone (the nearest margin 3 %) and 16 of the 24 misplaced did not."""
+    if len(others) < 2:
+        return False
+    best = others[0]["cost"]
+    return others[1]["cost"] > best + tie * max(best, 1e-9)
+
+
 def fine_space(coarse, half=4.0, step=0.5, angle=2.0, roll=2.0, fov=5):
     """The places and poses of the second search: half a metre and half a degree around the coarse answer, and `fov`
     fields of view within 4 % of it."""
@@ -342,8 +354,10 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     np.savez_compressed(out / "mesh.npz", tris=tris[keep].astype(np.float32), ground=ground)
     moved = float(np.hypot(best["east"] - x0, best["north"] - y0))
     result = dict(photo=Path(photo_path).name, given=[x0, y0, hfov], ground=ground, eye_height=eye, best=best,
-                  coarse=coarse, rivals=others, moved_m=moved)
+                  coarse=coarse, rivals=others, alone=alone(others), moved_m=moved)
     (out / "result.json").write_text(json.dumps(result, indent=1))
+    if not result["alone"]:
+        log("NOT ALONE: a place 10 m or more away fits as well; the photo does not decide where it was taken")
     log(f"placed {moved:.1f} m from the given point; fov_v {cam['fov_v']:.1f}; saved result.json, mask.jpg, "
         f"costmap.png, overlay.jpg, cams.json, mesh.npz ({int(keep.sum())} triangles)")
     return result

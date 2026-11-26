@@ -30,7 +30,10 @@ from world_model.osm_street_lamps import lamps_file  # noqa: E402
 def after_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], list[str], list[str]]:
     _, atlases, grounds = before.before_layers(area, t, bbox)
     mine = HERE / "work" / area["name"] / f"atlas_{t}" / "model.obj"     # atlas_after.py: without roofline-less photos
-    if mine.exists():
+    cams = HERE / "work" / area["name"] / "world" / "layers" / f"cams_{t}.json"
+    if cams.exists() and not json.loads(cams.read_text()):      # every photo left out: no atlas, not the before one
+        atlases = [a for a in atlases if f"/work/{area['name']}/atlas_{t}/" not in a]
+    elif mine.exists():
         atlases = [str(mine) if f"/work/{area['name']}/atlas_{t}/" in a else a for a in atlases] or [str(mine)]
     if area.get("world_model"):
         rebuilt = [HERE / "work" / area["name"] / a.format(t=t) / "model.obj" for a in before.ATLASES]
