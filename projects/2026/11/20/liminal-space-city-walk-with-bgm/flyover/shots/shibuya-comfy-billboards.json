@@ -80,7 +80,7 @@
       {
         "src": "assets/billboards/sign_salonpas.png",
         "center": [139.70012, 35.65982],
-        "altitudeM": 26.8,
+        "altitudeM": 25.4,
         "widthM": 9.0,
         "heightM": 10.0,
         "bearing": 138,
@@ -89,7 +89,7 @@
       {
         "src": "assets/billboards/sign_rakuten.png",
         "center": [139.70013, 35.65980],
-        "altitudeM": 17.5,
+        "altitudeM": 16.2,
         "widthM": 9.0,
         "heightM": 8.0,
         "bearing": 138,
@@ -98,25 +98,34 @@
       {
         "src": "assets/billboards/sign_dmmtv.png",
         "center": [139.70014, 35.65978],
-        "altitudeM": 10.2,
+        "altitudeM": 8.6,
         "widthM": 9.0,
-        "heightM": 7.5,
+        "heightM": 7.4,
         "bearing": 138,
         "glow": 0.88
       },
       {
         "src": "assets/billboards/sign_taiseido.png",
         "center": [139.70015, 35.65976],
-        "altitudeM": 5.6,
+        "altitudeM": 3.8,
         "widthM": 9.0,
         "heightM": 2.3,
         "bearing": 138,
         "glow": 0.85
       },
       {
+        "src": "assets/materials/mat_facade_shutter.png",
+        "center": [139.70015, 35.65976],
+        "altitudeM": 1.35,
+        "widthM": 9.0,
+        "heightM": 2.7,
+        "bearing": 138,
+        "glow": 0.45
+      },
+      {
         "src": "assets/billboards/sign_sansenri.png",
         "center": [139.70003, 35.65971],
-        "altitudeM": 12.2,
+        "altitudeM": 11.8,
         "widthM": 2.6,
         "heightM": 9.0,
         "bearing": 145,
@@ -125,7 +134,7 @@
       {
         "src": "assets/billboards/sign_monja.png",
         "center": [139.69995, 35.65969],
-        "altitudeM": 12.5,
+        "altitudeM": 12.2,
         "widthM": 2.6,
         "heightM": 8.0,
         "bearing": 145,
@@ -134,7 +143,7 @@
       {
         "src": "assets/billboards/sign_nishimura_top.png",
         "center": [139.69989, 35.65965],
-        "altitudeM": 20.8,
+        "altitudeM": 20.6,
         "widthM": 8.2,
         "heightM": 4.8,
         "bearing": 145,
@@ -143,7 +152,7 @@
       {
         "src": "assets/billboards/sign_nishimura_green_018.png",
         "center": [139.69989, 35.65965],
-        "altitudeM": 15.8,
+        "altitudeM": 15.6,
         "widthM": 8.0,
         "heightM": 3.6,
         "bearing": 145,
@@ -151,17 +160,17 @@
       },
       {
         "src": "assets/billboards/sign_uc_018.png",
-        "center": [139.69974, 35.65958],
-        "altitudeM": 25.5,
-        "widthM": 6.5,
-        "heightM": 7.0,
+        "center": [139.69978, 35.65963],
+        "altitudeM": 24.5,
+        "widthM": 6.2,
+        "heightM": 6.8,
         "bearing": 145,
         "glow": 0.92
       },
       {
         "src": "assets/billboards/sign_matsumoto.png",
         "center": [139.69976, 35.65958],
-        "altitudeM": 11.5,
+        "altitudeM": 11.2,
         "widthM": 3.6,
         "heightM": 7.5,
         "bearing": 145,
