@@ -54,7 +54,7 @@
   "hillshade": false,
   "plateauBuildings": [
     {
-      "manifest": "assets/city/minami/manifest.json",
+      "manifest": "assets/city/minami_fixed/manifest.json",
       "heightOffset": -38,
       "workers": 3
     }
