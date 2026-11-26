@@ -56,17 +56,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -95,17 +95,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -125,11 +125,12 @@
             80,
             80
           ],
-          "width": 900,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "in"
         }
       ]
     },
@@ -140,17 +141,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -162,15 +163,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
-          "caption": "たこ焼き（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -185,17 +184,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -207,15 +206,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
-          "caption": "たこ焼き（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -230,17 +227,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 15.25,
+        "pitch": 45,
+        "bearing": -15
       },
       "lines": [
         {
@@ -252,15 +249,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
-          "caption": "たこ焼き（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -275,17 +270,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -318,17 +313,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -348,11 +343,12 @@
             80,
             80
           ],
-          "width": 900,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "out"
         }
       ]
     },
@@ -363,17 +359,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -406,17 +402,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -449,17 +445,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -471,15 +467,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -494,17 +488,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -524,11 +518,12 @@
             80,
             80
           ],
-          "width": 900,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "up"
         }
       ]
     },
@@ -539,17 +534,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -562,18 +557,19 @@
       "overlays": [
         {
           "type": "panel",
-          "src": "assets/gyazo/63fec71eed55499db29276a87216b48f.jpg",
-          "caption": "道頓堀川の風景（2026年11月13日撮影）",
+          "src": "assets/gyazo/9e289c21ab57679c2ac005f95818c4f1.jpg",
+          "caption": "道頓堀の看板（2026年11月13日）",
           "credit": "写真：ユイ / Gyazo（CC0）",
           "screen": [
             80,
             80
           ],
-          "width": 900,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "down"
         }
       ]
     },
@@ -584,17 +580,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -640,21 +636,21 @@
     {
       "from": {
         "center": [
-          135.50115,
+          135.49975,
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50254999999999,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -666,15 +662,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -685,21 +679,21 @@
     {
       "from": {
         "center": [
-          135.50115,
+          135.49975,
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50254999999999,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -732,17 +726,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -775,17 +769,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -805,11 +799,12 @@
             80,
             80
           ],
-          "width": 490,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "in"
         }
       ]
     },
@@ -820,17 +815,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -863,17 +858,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -906,203 +901,23 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
           "voice": "b",
           "text": "大阪市もグリコサインを都市景観資源に登録しているわ。",
           "speech": "大阪市もグリコサインを都市景観資源に登録しているわ。",
-          "face": "point"
-        }
-      ],
-      "overlays": [
-        {
-          "type": "panel",
-          "src": "assets/commons/glico.jpg",
-          "caption": "道頓堀のグリコサイン（2014年）",
-          "credit": "写真：Tokumeigakarinoaoshima / Wikimedia Commons（CC0）",
-          "screen": [
-            80,
-            80
-          ],
-          "width": 490,
-          "show": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "from": {
-        "center": [
-          135.50115,
-          34.66881
-        ],
-        "zoom": 14.8,
-        "pitch": 40,
-        "bearing": 20
-      },
-      "to": {
-        "center": [
-          135.50175,
-          34.66911
-        ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 28
-      },
-      "lines": [
-        {
-          "voice": "a",
-          "text": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
-          "speech": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
-          "face": "normal"
-        }
-      ],
-      "overlays": [
-        {
-          "type": "panel",
-          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
-          "caption": "道頓堀の街並み（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
-          ],
-          "width": 900,
-          "show": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "from": {
-        "center": [
-          135.50115,
-          34.66881
-        ],
-        "zoom": 15.1,
-        "pitch": 40,
-        "bearing": 0
-      },
-      "to": {
-        "center": [
-          135.50175,
-          34.66911
-        ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 8
-      },
-      "lines": [
-        {
-          "voice": "a",
-          "text": "その景色がまた商売を呼ぶのだ。",
-          "speech": "その景色がまた商売を呼ぶのだ。",
-          "face": "normal"
-        }
-      ],
-      "overlays": [
-        {
-          "type": "panel",
-          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
-          "caption": "道頓堀の街並み（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
-          ],
-          "width": 900,
-          "show": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "from": {
-        "center": [
-          135.50115,
-          34.66881
-        ],
-        "zoom": 14.5,
-        "pitch": 40,
-        "bearing": -15
-      },
-      "to": {
-        "center": [
-          135.50175,
-          34.66911
-        ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
-      },
-      "lines": [
-        {
-          "voice": "b",
-          "text": "川の上に立つと、両岸の看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
-          "speech": "川の上に立つと、りょうがんの看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
-          "face": "point"
-        }
-      ],
-      "overlays": [
-        {
-          "type": "panel",
-          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
-          "caption": "道頓堀の街並み（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
-          ],
-          "width": 900,
-          "show": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "from": {
-        "center": [
-          135.50115,
-          34.66881
-        ],
-        "zoom": 14.8,
-        "pitch": 40,
-        "bearing": 5
-      },
-      "to": {
-        "center": [
-          135.50175,
-          34.66911
-        ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
-      },
-      "lines": [
-        {
-          "voice": "b",
-          "text": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
-          "speech": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
           "face": "point"
         }
       ],
@@ -1128,18 +943,196 @@
           135.50115,
           34.66881
         ],
-        "zoom": 15.1,
-        "pitch": 40,
+        "zoom": 14.8,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
+          "speech": "看板が人を呼び、人が集まるから看板の価値も上がる。商売が景色をつくって、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
+          "caption": "道頓堀の街並み（2026年11月13日撮影）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 1000,
+          "show": [
+            0,
+            1
+          ],
+          "motion": "out"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "その景色がまた商売を呼ぶのだ。",
+          "speech": "その景色がまた商売を呼ぶのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.49975,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          135.50254999999999,
+          34.66881
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "川の上に立つと、両岸の看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
+          "speech": "川の上に立つと、りょうがんの看板を向かい合って眺められる。水面には光が映る。道頓堀川は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
+          ],
+          "text": "道頓堀",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
+          "speech": "運河として掘られたあと、芝居を見に来る人を集める場所になり、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/gyazo/f01c299b67d773988e5257a0fecd41cb.jpg",
+          "caption": "大阪松竹座（2026年11月13日）",
+          "credit": "写真：ユイ / Gyazo（CC0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 1000,
+          "show": [
+            0,
+            1
+          ],
+          "motion": "up"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.50115,
+          34.66881
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -1159,32 +1152,33 @@
             80,
             80
           ],
-          "width": 900,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "down"
         }
       ]
     },
     {
       "from": {
         "center": [
-          135.50115,
+          135.49975,
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50254999999999,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -1196,15 +1190,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
-          "caption": "道頓堀の街並み（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1219,17 +1211,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -1241,15 +1233,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
-          "caption": "道頓堀の街並み（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1264,17 +1254,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -1307,17 +1297,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.95,
+        "pitch": 45,
+        "bearing": 20
       },
       "lines": [
         {
@@ -1329,15 +1319,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/ccfeb7040f40c4dcc23f71033fc9ecb0.jpg",
-          "caption": "たこ焼き（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1352,17 +1340,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -1374,15 +1362,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/ccfeb7040f40c4dcc23f71033fc9ecb0.jpg",
-          "caption": "たこ焼き（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1397,17 +1383,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -1440,17 +1426,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.95,
+        "pitch": 45,
+        "bearing": 5
       },
       "lines": [
         {
@@ -1462,15 +1448,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/46d8534ae3060ddef51435a86c2c8aac.jpg",
-          "caption": "道頓堀の看板（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1485,17 +1469,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -1507,15 +1491,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/gyazo/46d8534ae3060ddef51435a86c2c8aac.jpg",
-          "caption": "道頓堀の看板（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1530,17 +1512,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -1560,11 +1542,12 @@
             80,
             80
           ],
-          "width": 820,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "in"
         }
       ]
     },
@@ -1575,17 +1558,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -1597,15 +1580,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1620,17 +1601,17 @@
           34.66881
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -1663,17 +1644,17 @@
           34.66881
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -1685,15 +1666,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/takoyaki.jpg",
-          "caption": "道頓堀のたこ焼き店（別店舗・イメージ）",
-          "credit": "写真：City Foodsters / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 820,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1708,17 +1687,17 @@
           34.66881
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.50175,
-          34.66911
+          135.50115,
+          34.66881
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -1730,15 +1709,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1753,17 +1730,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -1792,17 +1769,17 @@
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -1822,11 +1799,12 @@
             80,
             80
           ],
-          "width": 420,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "out"
         }
       ]
     },
@@ -1837,17 +1815,17 @@
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -1867,11 +1845,12 @@
             80,
             80
           ],
-          "width": 750,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "up"
         }
       ]
     },
@@ -1882,17 +1861,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -1921,21 +1900,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -1947,15 +1926,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/yanagibashi.jpg",
-          "caption": "歌川国芳「両国柳ばし」",
-          "credit": "British Museum / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 750,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -1966,21 +1943,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -1992,15 +1969,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/ryogoku.jpg",
-          "caption": "歌川広重「両国橋大川ばた」（1856年）",
-          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 420,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2015,17 +1990,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -2054,21 +2029,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -2080,15 +2055,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/ryogoku.jpg",
-          "caption": "歌川広重「両国橋大川ばた」（1856年）",
-          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 420,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2099,21 +2072,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -2125,15 +2098,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/yanagibashi.jpg",
-          "caption": "歌川国芳「両国柳ばし」",
-          "credit": "British Museum / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 750,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2148,17 +2119,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -2187,21 +2158,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -2213,15 +2184,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/yanagibashi.jpg",
-          "caption": "歌川国芳「両国柳ばし」",
-          "credit": "British Museum / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 750,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2232,21 +2201,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -2258,15 +2227,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/ryogoku.jpg",
-          "caption": "歌川広重「両国橋大川ばた」（1856年）",
-          "credit": "Museum of Fine Arts, Boston / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 420,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2281,17 +2248,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -2324,17 +2291,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -2363,17 +2330,17 @@
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -2419,21 +2386,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -2445,30 +2412,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2479,21 +2429,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -2522,21 +2472,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -2548,30 +2498,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2586,17 +2519,17 @@
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -2608,30 +2541,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2646,17 +2562,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -2689,17 +2605,17 @@
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -2711,30 +2627,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2749,17 +2648,17 @@
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -2771,30 +2670,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2809,17 +2691,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -2852,17 +2734,17 @@
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -2874,30 +2756,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2908,21 +2773,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -2934,30 +2799,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -2972,17 +2820,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -3011,21 +2859,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -3037,30 +2885,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -3071,21 +2902,21 @@
     {
       "from": {
         "center": [
-          139.78746,
+          139.78606000000002,
           35.69521
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78886,
+          35.69521
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -3097,30 +2928,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/ort_USA10.png",
-          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/yanagibashi/seamlessphoto.png",
-          "caption": "両国橋周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "両国橋",
+          "style": "tag",
           "show": [
             0,
             1
@@ -3135,17 +2949,17 @@
           35.69521
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.78806,
-          35.695510000000006
+          139.78746,
+          35.69521
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -3178,17 +2992,17 @@
           35.6666
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.7617,
+          35.6666
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -3217,17 +3031,17 @@
           35.6666
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.7617,
+          35.6666
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -3273,21 +3087,21 @@
     {
       "from": {
         "center": [
-          139.7617,
+          139.7603,
           35.6666
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.76309999999998,
+          35.6666
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -3299,30 +3113,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/ort_USA10.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7617,
+            35.6666
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/seamlessphoto.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "新橋・汐留川跡",
+          "style": "tag",
           "show": [
             0,
             1
@@ -3333,21 +3130,21 @@
     {
       "from": {
         "center": [
-          139.7617,
+          139.7603,
           35.6666
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.76309999999998,
+          35.6666
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 0
       },
       "lines": [
         {
@@ -3376,21 +3173,21 @@
     {
       "from": {
         "center": [
-          139.7617,
+          139.7603,
           35.6666
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.76309999999998,
+          35.6666
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -3402,30 +3199,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/ort_USA10.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7617,
+            35.6666
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/seamlessphoto.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "新橋・汐留川跡",
+          "style": "tag",
           "show": [
             0,
             1
@@ -3436,21 +3216,21 @@
     {
       "from": {
         "center": [
-          139.7617,
+          139.7603,
           35.6666
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.76309999999998,
+          35.6666
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -3462,30 +3242,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/ort_USA10.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7617,
+            35.6666
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/seamlessphoto.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "新橋・汐留川跡",
+          "style": "tag",
           "show": [
             0,
             1
@@ -3496,21 +3259,21 @@
     {
       "from": {
         "center": [
-          139.7617,
+          139.7603,
           35.6666
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.76309999999998,
+          35.6666
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -3543,17 +3306,17 @@
           35.6666
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          139.76229999999998,
-          35.666900000000005
+          139.7617,
+          35.6666
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -3565,30 +3328,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/ort_USA10.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：1945〜1950年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            139.7617,
+            35.6666
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/shimbashi/seamlessphoto.png",
-          "caption": "新橋・汐留川跡周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "新橋・汐留川跡",
+          "style": "tag",
           "show": [
             0,
             1
@@ -3603,17 +3349,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -3642,17 +3388,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -3672,11 +3418,12 @@
             80,
             80
           ],
-          "width": 760,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "down"
         }
       ]
     },
@@ -3687,17 +3434,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -3717,11 +3464,12 @@
             80,
             80
           ],
-          "width": 720,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "in"
         }
       ]
     },
@@ -3732,17 +3480,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -3775,17 +3523,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -3798,18 +3546,19 @@
       "overlays": [
         {
           "type": "panel",
-          "src": "assets/commons/newtram.jpg",
-          "caption": "ニュートラムの車内",
-          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
+          "src": "assets/commons-v013/01.jpg",
+          "caption": "コスモスクエア駅の入口",
+          "credit": "写真：LERK / Wikimedia Commons（CC BY-SA 4.0）",
           "screen": [
             80,
             80
           ],
-          "width": 720,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "out"
         }
       ]
     },
@@ -3820,17 +3569,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -3843,18 +3592,19 @@
       "overlays": [
         {
           "type": "panel",
-          "src": "assets/commons/station.jpg",
-          "caption": "コスモスクエア駅の案内（2024年）",
-          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
+          "src": "assets/commons-v013/00.jpg",
+          "caption": "コスモスクエア駅のニュートラム",
+          "credit": "写真：Kzaral / Wikimedia Commons（CC BY 2.0）",
           "screen": [
             80,
             80
           ],
-          "width": 760,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "up"
         }
       ]
     },
@@ -3865,17 +3615,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -3908,17 +3658,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -3930,15 +3680,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/station.jpg",
-          "caption": "コスモスクエア駅の案内（2024年）",
-          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 760,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -3949,21 +3697,21 @@
     {
       "from": {
         "center": [
-          135.4125,
-          34.6427
+          135.442,
+          34.626
         ],
-        "zoom": 15.1,
-        "pitch": 40,
-        "bearing": -15
+        "zoom": 12.0,
+        "pitch": 18,
+        "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.442,
+          34.626
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 12.2,
+        "pitch": 18,
+        "bearing": 0
       },
       "lines": [
         {
@@ -3975,15 +3723,871 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/newtram.jpg",
-          "caption": "ニュートラムの車内",
-          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "line",
+          "coords": [
+            [
+              135.4127556,
+              34.6427201
+            ],
+            [
+              135.4122584,
+              34.6425341
+            ],
+            [
+              135.4118425,
+              34.642382
+            ],
+            [
+              135.4111232,
+              34.6421299
+            ]
           ],
-          "width": 720,
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4111232,
+              34.6421299
+            ],
+            [
+              135.411051,
+              34.6421051
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.411051,
+              34.6421051
+            ],
+            [
+              135.4103561,
+              34.6418961
+            ],
+            [
+              135.4102134,
+              34.6418227
+            ],
+            [
+              135.4101249,
+              34.6417515
+            ],
+            [
+              135.4100353,
+              34.6416499
+            ],
+            [
+              135.4099702,
+              34.6415285
+            ],
+            [
+              135.4099397,
+              34.6413837
+            ],
+            [
+              135.409929,
+              34.6412426
+            ],
+            [
+              135.4099361,
+              34.6410783
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4099361,
+              34.6410783
+            ],
+            [
+              135.4099538,
+              34.6409678
+            ],
+            [
+              135.4099866,
+              34.640855
+            ],
+            [
+              135.4100484,
+              34.6407475
+            ],
+            [
+              135.4101039,
+              34.6406629
+            ],
+            [
+              135.4101773,
+              34.6405709
+            ],
+            [
+              135.4104022,
+              34.6403577
+            ],
+            [
+              135.4105778,
+              34.640194
+            ],
+            [
+              135.4106139,
+              34.6401603
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4106139,
+              34.6401603
+            ],
+            [
+              135.4108256,
+              34.6399629
+            ],
+            [
+              135.4110494,
+              34.6397581
+            ],
+            [
+              135.4112184,
+              34.6396035
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4112184,
+              34.6396035
+            ],
+            [
+              135.4118167,
+              34.6390654
+            ],
+            [
+              135.4121811,
+              34.6387218
+            ],
+            [
+              135.4124126,
+              34.6384983
+            ],
+            [
+              135.4126656,
+              34.6382598
+            ],
+            [
+              135.4129093,
+              34.6380345
+            ],
+            [
+              135.4132434,
+              34.6377133
+            ],
+            [
+              135.4151798,
+              34.6358917
+            ],
+            [
+              135.4153678,
+              34.6357358
+            ],
+            [
+              135.4155754,
+              34.6355768
+            ],
+            [
+              135.4158288,
+              34.6354002
+            ],
+            [
+              135.4162046,
+              34.6351521
+            ],
+            [
+              135.4164186,
+              34.6350056
+            ],
+            [
+              135.4165929,
+              34.6348779
+            ],
+            [
+              135.4168461,
+              34.6346572
+            ],
+            [
+              135.4169858,
+              34.6345258
+            ],
+            [
+              135.4174807,
+              34.6340615
+            ],
+            [
+              135.4178017,
+              34.6337633
+            ],
+            [
+              135.4181365,
+              34.6334483
+            ],
+            [
+              135.4183322,
+              34.6332605
+            ],
+            [
+              135.4194487,
+              34.6321488
+            ],
+            [
+              135.419579,
+              34.6319998
+            ],
+            [
+              135.4197919,
+              34.6317275
+            ],
+            [
+              135.4201263,
+              34.6312825
+            ],
+            [
+              135.4202432,
+              34.6311426
+            ],
+            [
+              135.4203278,
+              34.6310543
+            ],
+            [
+              135.4204054,
+              34.6309876
+            ],
+            [
+              135.4204963,
+              34.6309293
+            ],
+            [
+              135.4206007,
+              34.6308814
+            ],
+            [
+              135.4207086,
+              34.630847
+            ],
+            [
+              135.4208198,
+              34.6308246
+            ],
+            [
+              135.4209564,
+              34.6308159
+            ],
+            [
+              135.4212431,
+              34.6308303
+            ],
+            [
+              135.4218771,
+              34.6308964
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4218771,
+              34.6308964
+            ],
+            [
+              135.4222585,
+              34.6309341
+            ],
+            [
+              135.4224015,
+              34.6309423
+            ],
+            [
+              135.4228121,
+              34.6309412
+            ],
+            [
+              135.4231713,
+              34.6309433
+            ],
+            [
+              135.4233951,
+              34.6309376
+            ],
+            [
+              135.4237889,
+              34.6309207
+            ],
+            [
+              135.4261399,
+              34.630913
+            ],
+            [
+              135.4278901,
+              34.6309006
+            ],
+            [
+              135.4282099,
+              34.6309042
+            ],
+            [
+              135.4287853,
+              34.6309292
+            ],
+            [
+              135.4291486,
+              34.6309278
+            ],
+            [
+              135.4295677,
+              34.6309313
+            ],
+            [
+              135.4298049,
+              34.6309324
+            ],
+            [
+              135.4300045,
+              34.6309257
+            ],
+            [
+              135.4301624,
+              34.6309096
+            ],
+            [
+              135.4302695,
+              34.6308849
+            ],
+            [
+              135.4303594,
+              34.6308602
+            ],
+            [
+              135.4304686,
+              34.6308171
+            ],
+            [
+              135.4305582,
+              34.6307681
+            ],
+            [
+              135.4306331,
+              34.6307139
+            ],
+            [
+              135.4307177,
+              34.6306375
+            ],
+            [
+              135.4307858,
+              34.6305611
+            ],
+            [
+              135.4308771,
+              34.6304312
+            ],
+            [
+              135.4309665,
+              34.630227
+            ],
+            [
+              135.431128,
+              34.6298096
+            ],
+            [
+              135.431399,
+              34.6290958
+            ],
+            [
+              135.4314785,
+              34.6288686
+            ],
+            [
+              135.4315435,
+              34.6286286
+            ],
+            [
+              135.4316928,
+              34.6279483
+            ],
+            [
+              135.4317448,
+              34.6277351
+            ],
+            [
+              135.4318041,
+              34.6274997
+            ],
+            [
+              135.4318918,
+              34.6272432
+            ],
+            [
+              135.4320213,
+              34.6268869
+            ],
+            [
+              135.4323261,
+              34.626104
+            ],
+            [
+              135.4328637,
+              34.6246948
+            ],
+            [
+              135.4338279,
+              34.622239
+            ],
+            [
+              135.4343224,
+              34.6209389
+            ],
+            [
+              135.4347418,
+              34.619863
+            ],
+            [
+              135.4348658,
+              34.6196079
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4348658,
+              34.6196079
+            ],
+            [
+              135.4349956,
+              34.6192668
+            ],
+            [
+              135.4351237,
+              34.6189284
+            ],
+            [
+              135.4352021,
+              34.6186755
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4352021,
+              34.6186755
+            ],
+            [
+              135.4356941,
+              34.6174018
+            ],
+            [
+              135.4363464,
+              34.6157225
+            ],
+            [
+              135.4367536,
+              34.6146772
+            ],
+            [
+              135.4368242,
+              34.6144858
+            ],
+            [
+              135.4368651,
+              34.6144084
+            ],
+            [
+              135.436917,
+              34.6143339
+            ],
+            [
+              135.436994,
+              34.6142541
+            ],
+            [
+              135.4370803,
+              34.6141711
+            ],
+            [
+              135.4371719,
+              34.6141042
+            ],
+            [
+              135.4372678,
+              34.6140428
+            ],
+            [
+              135.4373959,
+              34.6139769
+            ],
+            [
+              135.4375304,
+              34.6139262
+            ],
+            [
+              135.4376318,
+              34.6139027
+            ],
+            [
+              135.4377807,
+              34.6138808
+            ],
+            [
+              135.4378798,
+              34.6138726
+            ],
+            [
+              135.4381542,
+              34.6138629
+            ],
+            [
+              135.4386311,
+              34.6138619
+            ],
+            [
+              135.4390057,
+              34.6138612
+            ],
+            [
+              135.4400919,
+              34.6138591
+            ],
+            [
+              135.4405872,
+              34.6138501
+            ],
+            [
+              135.4410868,
+              34.6138449
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4410868,
+              34.6138449
+            ],
+            [
+              135.4441676,
+              34.6138324
+            ],
+            [
+              135.4449321,
+              34.6138341
+            ],
+            [
+              135.4452699,
+              34.61384
+            ],
+            [
+              135.4456386,
+              34.613852
+            ],
+            [
+              135.4459391,
+              34.6138536
+            ],
+            [
+              135.4467292,
+              34.6138468
+            ],
+            [
+              135.4469575,
+              34.6138395
+            ],
+            [
+              135.4471648,
+              34.6138165
+            ],
+            [
+              135.4473279,
+              34.6137916
+            ],
+            [
+              135.4474834,
+              34.6137612
+            ],
+            [
+              135.4476964,
+              34.6137081
+            ],
+            [
+              135.4480288,
+              34.6136087
+            ],
+            [
+              135.4486351,
+              34.6134271
+            ],
+            [
+              135.4510249,
+              34.6127014
+            ],
+            [
+              135.4520828,
+              34.6123824
+            ],
+            [
+              135.4561685,
+              34.6111381
+            ],
+            [
+              135.4564911,
+              34.6110416
+            ],
+            [
+              135.456727,
+              34.6109687
+            ],
+            [
+              135.4568996,
+              34.6109234
+            ],
+            [
+              135.4570698,
+              34.6108801
+            ],
+            [
+              135.4572503,
+              34.6108465
+            ],
+            [
+              135.4574605,
+              34.610813
+            ],
+            [
+              135.4576771,
+              34.6107881
+            ],
+            [
+              135.4583284,
+              34.6107298
+            ],
+            [
+              135.4586323,
+              34.6107003
+            ],
+            [
+              135.4592818,
+              34.6106287
+            ],
+            [
+              135.4596575,
+              34.6105783
+            ],
+            [
+              135.4599585,
+              34.6105421
+            ],
+            [
+              135.4601729,
+              34.6105227
+            ],
+            [
+              135.4606552,
+              34.6104925
+            ],
+            [
+              135.4609369,
+              34.61047
+            ],
+            [
+              135.4612317,
+              34.6104391
+            ],
+            [
+              135.4618478,
+              34.610373
+            ],
+            [
+              135.4666146,
+              34.6098445
+            ],
+            [
+              135.4684416,
+              34.6096326
+            ],
+            [
+              135.4693721,
+              34.6095262
+            ],
+            [
+              135.4698014,
+              34.6094885
+            ],
+            [
+              135.4701944,
+              34.6094453
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4701944,
+              34.6094453
+            ],
+            [
+              135.4702101,
+              34.6094435
+            ],
+            [
+              135.4709611,
+              34.609362
+            ],
+            [
+              135.4712329,
+              34.6093492
+            ],
+            [
+              135.4714869,
+              34.6093216
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "line",
+          "coords": [
+            [
+              135.4714869,
+              34.6093216
+            ],
+            [
+              135.4719336,
+              34.6092699
+            ],
+            [
+              135.4727045,
+              34.6091796
+            ]
+          ],
+          "color": "#00a0de",
+          "width": 5,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "screen": [
+            370,
+            90
+          ],
+          "text": "ニュートラム（現在の路線）",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            135.4122584,
+            34.6425341
+          ],
+          "text": "コスモスクエア",
+          "dot": true,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "at": [
+            135.4719336,
+            34.6092699
+          ],
+          "text": "住之江公園",
+          "dot": true,
           "show": [
             0,
             1
@@ -3998,17 +4602,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -4041,17 +4645,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -4063,15 +4667,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/newtram.jpg",
-          "caption": "ニュートラムの車内",
-          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 720,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4086,17 +4688,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -4108,15 +4710,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/station.jpg",
-          "caption": "コスモスクエア駅の案内（2024年）",
-          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 760,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4131,17 +4731,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -4174,17 +4774,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -4196,15 +4796,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/station.jpg",
-          "caption": "コスモスクエア駅の案内（2024年）",
-          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 760,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4219,17 +4817,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -4241,15 +4839,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/newtram.jpg",
-          "caption": "ニュートラムの車内",
-          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 720,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4264,17 +4860,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -4307,17 +4903,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -4329,15 +4925,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/newtram.jpg",
-          "caption": "ニュートラムの車内",
-          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 720,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4352,17 +4946,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -4374,15 +4968,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/station.jpg",
-          "caption": "コスモスクエア駅の案内（2024年）",
-          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 760,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4397,17 +4989,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -4440,17 +5032,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -4462,15 +5054,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/station.jpg",
-          "caption": "コスモスクエア駅の案内（2024年）",
-          "credit": "写真：Niiryoku2910 / Wikimedia Commons（CC BY 4.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 760,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4485,17 +5075,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -4507,15 +5097,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/newtram.jpg",
-          "caption": "ニュートラムの車内",
-          "credit": "写真：Hahifuheho / Wikimedia Commons（CC0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 720,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4530,17 +5118,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -4569,17 +5157,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -4629,17 +5217,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -4651,30 +5239,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4689,17 +5260,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -4732,17 +5303,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -4762,11 +5333,12 @@
             80,
             80
           ],
-          "width": 820,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "down"
         }
       ]
     },
@@ -4777,17 +5349,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -4800,33 +5372,19 @@
       "overlays": [
         {
           "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "src": "assets/commons-v013/03.jpg",
+          "caption": "南港ポートタウン線の高架",
+          "credit": "写真：Smiley.toerist / Wikimedia Commons（CC BY-SA 4.0）",
           "screen": [
             80,
-            85
+            80
           ],
-          "width": 560,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
+          "motion": "in"
         }
       ]
     },
@@ -4837,17 +5395,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -4880,17 +5438,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -4902,30 +5460,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4940,17 +5481,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -4962,15 +5503,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 820,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -4985,17 +5524,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -5028,17 +5567,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -5050,30 +5589,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5088,17 +5610,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -5110,30 +5632,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5148,17 +5653,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -5171,18 +5676,19 @@
       "overlays": [
         {
           "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
+          "src": "assets/commons-v013/06.jpg",
+          "caption": "大阪南港の ATC",
+          "credit": "写真：663highland / Wikimedia Commons（CC BY 2.5）",
           "screen": [
             80,
             80
           ],
-          "width": 820,
+          "width": 1000,
           "show": [
             0,
             1
-          ]
+          ],
+          "motion": "out"
         }
       ]
     },
@@ -5193,17 +5699,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -5215,30 +5721,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5253,17 +5742,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -5275,30 +5764,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5313,17 +5785,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -5356,17 +5828,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -5378,15 +5850,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 820,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5401,83 +5871,23 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
           "voice": "b",
           "text": "ええ。大きな構想は景気や社会の変化に影響される。施設ができ、交通網が伸びても、",
           "speech": "ええ。大きな構想は景気や社会の変化に影響される。施設ができ、交通網が伸びても、",
-          "face": "point"
-        }
-      ],
-      "overlays": [
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
-          ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        }
-      ]
-    },
-    {
-      "from": {
-        "center": [
-          135.4125,
-          34.6427
-        ],
-        "zoom": 14.5,
-        "pitch": 40,
-        "bearing": 20
-      },
-      "to": {
-        "center": [
-          135.4131,
-          34.643
-        ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
-      },
-      "lines": [
-        {
-          "voice": "b",
-          "text": "当初想定した企業や人の集まり方になるとは限らない。コスモスクエアの現在の姿には、",
-          "speech": "当初想定した企業や人の集まり方になるとは限らない。コスモスクエアの現在の姿には、",
           "face": "point"
         }
       ],
@@ -5503,18 +5913,64 @@
           135.4125,
           34.6427
         ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "当初想定した企業や人の集まり方になるとは限らない。コスモスクエアの現在の姿には、",
+          "speech": "当初想定した企業や人の集まり方になるとは限らない。コスモスクエアの現在の姿には、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/commons-v013/05.jpg",
+          "caption": "大阪南港の ATC ホール",
+          "credit": "写真：DVMG / Wikimedia Commons（CC BY 3.0）",
+          "screen": [
+            80,
+            80
+          ],
+          "width": 1000,
+          "show": [
+            0,
+            1
+          ],
+          "motion": "up"
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          135.4125,
+          34.6427
+        ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -5526,30 +5982,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5564,17 +6003,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 15.549999999999999,
+        "pitch": 45,
+        "bearing": -15
       },
       "lines": [
         {
@@ -5586,15 +6025,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 820,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5609,17 +6046,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -5652,17 +6089,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -5674,30 +6111,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5712,17 +6132,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -5734,30 +6154,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5772,17 +6175,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -5794,15 +6197,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 820,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5817,17 +6218,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 14.200000000000001,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -5839,30 +6240,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5877,17 +6261,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -5899,30 +6283,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -5937,17 +6304,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -5980,17 +6347,17 @@
           34.6427
         ],
         "zoom": 14.8,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.08,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 15.25,
+        "pitch": 45,
+        "bearing": -15
       },
       "lines": [
         {
@@ -6002,15 +6369,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 820,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -6025,17 +6390,17 @@
           34.6427
         ],
         "zoom": 15.1,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 15.379999999999999,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -6047,30 +6412,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/gazo1.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：1974〜1978年",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            80,
-            85
+          "type": "label",
+          "at": [
+            135.4122147,
+            34.6425771
           ],
-          "width": 560,
-          "show": [
-            0,
-            1
-          ]
-        },
-        {
-          "type": "panel",
-          "src": "assets/maps/cosmosquare_station/seamlessphoto.png",
-          "caption": "コスモスクエア駅周辺（現在の地名）：全国最新写真",
-          "credit": "空中写真：国土地理院 地理院タイルを加工",
-          "screen": [
-            720,
-            85
-          ],
-          "width": 560,
+          "text": "コスモスクエア駅",
+          "style": "tag",
           "show": [
             0,
             1
@@ -6085,17 +6433,17 @@
           34.6427
         ],
         "zoom": 14.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.4131,
-          34.643
+          135.4125,
+          34.6427
         ],
-        "zoom": 14.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -6128,17 +6476,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -6167,17 +6515,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 10.9,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -6210,17 +6558,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -6253,17 +6601,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -6275,15 +6623,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -6298,17 +6644,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -6337,21 +6683,21 @@
     {
       "from": {
         "center": [
-          135.457,
+          135.4556,
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.45839999999998,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -6384,17 +6730,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -6406,15 +6752,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 820,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -6429,17 +6773,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -6472,17 +6816,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 10.9,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -6515,17 +6859,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -6537,15 +6881,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -6560,17 +6902,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -6603,17 +6945,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 10.9,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -6646,17 +6988,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 11.95,
+        "pitch": 45,
+        "bearing": -15
       },
       "lines": [
         {
@@ -6668,15 +7010,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 820,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -6691,17 +7031,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -6734,17 +7074,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -6777,17 +7117,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -6799,15 +7139,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -6822,17 +7160,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -6865,17 +7203,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": -15
       },
       "lines": [
         {
@@ -6904,17 +7242,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -6943,21 +7281,21 @@
     {
       "from": {
         "center": [
-          135.457,
+          135.4556,
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.45839999999998,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": 20
       },
       "lines": [
         {
@@ -6990,17 +7328,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 0
       },
       "lines": [
         {
@@ -7012,15 +7350,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -7035,17 +7371,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 11.95,
+        "pitch": 45,
+        "bearing": -15
       },
       "lines": [
         {
@@ -7074,21 +7410,21 @@
     {
       "from": {
         "center": [
-          135.457,
+          135.4556,
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 28,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.45839999999998,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 11.5,
+        "pitch": 28,
+        "bearing": 5
       },
       "lines": [
         {
@@ -7121,17 +7457,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": 20
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 28
+        "zoom": 10.9,
+        "pitch": 25,
+        "bearing": 20
       },
       "lines": [
         {
@@ -7143,15 +7479,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/atc.jpg",
-          "caption": "大阪南港のATCと周辺",
-          "credit": "写真：U-ichiro Murakami / Wikimedia Commons（Public domain）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 820,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
@@ -7166,17 +7500,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 32,
         "bearing": 0
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 8
+        "zoom": 11.95,
+        "pitch": 45,
+        "bearing": 0
       },
       "lines": [
         {
@@ -7209,17 +7543,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 45,
         "bearing": -15
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": -7
+        "zoom": 10.9,
+        "pitch": 25,
+        "bearing": -15
       },
       "lines": [
         {
@@ -7252,17 +7586,17 @@
           34.654
         ],
         "zoom": 11.5,
-        "pitch": 40,
+        "pitch": 25,
         "bearing": 5
       },
       "to": {
         "center": [
-          135.45759999999999,
-          34.654300000000006
+          135.457,
+          34.654
         ],
-        "zoom": 11.78,
-        "pitch": 43,
-        "bearing": 13
+        "zoom": 11.5,
+        "pitch": 25,
+        "bearing": 5
       },
       "lines": [
         {
@@ -7274,15 +7608,13 @@
       ],
       "overlays": [
         {
-          "type": "panel",
-          "src": "assets/commons/dotonbori.jpg",
-          "caption": "道頓堀の夜景（2015年）",
-          "credit": "写真：Kristoffer Trolle / Wikimedia Commons（CC BY 2.0）",
-          "screen": [
-            80,
-            80
+          "type": "label",
+          "at": [
+            135.5015715,
+            34.6690306
           ],
-          "width": 900,
+          "text": "道頓堀",
+          "style": "tag",
           "show": [
             0,
             1
