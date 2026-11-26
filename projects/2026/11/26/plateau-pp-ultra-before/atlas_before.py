@@ -134,7 +134,7 @@ def step_anchors(name, area, opts):
     w = work(name)
     try:
         registered = {img.name for img in pycolmap.Reconstruction(str(largest_model(w))).images.values()}
-    except SystemExit:
+    except (SystemExit, ValueError):            # no model, or a model made on another machine and not copied here
         registered = set()
     index = json.loads((w / "images.json").read_text())
     tris = np.load(w / "tris.npz")
