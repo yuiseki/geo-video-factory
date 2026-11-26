@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Generate v0.2.0 chapter specs and manifest with PLATEAU 3D buildings and textures."""
+"""Generate v0.2.1 chapter specs with Dotonbori river-skimming and Cosmosquare orbit shots."""
 from __future__ import annotations
 
 import copy
@@ -8,105 +8,105 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent
 
-BUILDINGS = {
-    "minami": {"manifest": "assets/city/minami/manifest.json", "heightOffset": -38, "workers": 3},
-    "cosmosquare": {"manifest": "assets/city/cosmosquare/manifest.json", "heightOffset": -38, "workers": 3},
-    "asakusa-ryogoku": {"manifest": "assets/city/asakusa-ryogoku/manifest.json", "heightOffset": -39, "workers": 3},
-    "shimbashi": {"manifest": "assets/city/shimbashi/manifest.json", "heightOffset": -39, "workers": 3},
-}
 
-CHAPTER_BUILDINGS = {
-    1: ["minami"],
-    2: ["asakusa-ryogoku"],
-    3: ["asakusa-ryogoku"],
-    4: ["shimbashi"],
-    5: ["cosmosquare"],
-    6: ["cosmosquare", "minami"],
-    7: ["minami", "cosmosquare"],
-    8: ["minami", "cosmosquare"],
-}
+def lerp(a: float, b: float, t: float) -> float:
+    return a + (b - a) * t
 
-EXTRA_CREDITS = [
-    "3D都市モデル：国土交通省 PLATEAU（大阪市 2025・東京都 2025）",
-    "建物外形補完・外観推定を含む",
-]
+
+def apply_ch01_river_skim(ch1: dict) -> None:
+    shots = ch1["shots"]
+    # 14..16: West -> East along Dotonbori River centerline
+    pts_w2e = [
+        ([135.4978, 34.66900], 17.7, 75, 89),
+        ([135.5004, 34.66904], 18.0, 77, 89),
+        ([135.5030, 34.66906], 18.2, 77, 89),
+        ([135.5055, 34.66904], 17.8, 75, 89),
+    ]
+    for offset, idx in enumerate((14, 15, 16)):
+        c0, z0, p0, b0 = pts_w2e[offset]
+        c1, z1, p1, b1 = pts_w2e[offset + 1]
+        shots[idx]["from"] = {"center": c0, "zoom": z0, "pitch": p0, "bearing": b0}
+        shots[idx]["to"] = {"center": c1, "zoom": z1, "pitch": p1, "bearing": b1}
+        shots[idx]["ease"] = "linear"
+
+    # 22..23: East -> West ultra-low skim over Dotonbori River
+    pts_e2w_a = [
+        ([135.5055, 34.66904], 17.9, 76, -90),
+        ([135.5034, 34.66906], 18.2, 78, -90),
+        ([135.5012, 34.66905], 18.2, 78, -90),
+    ]
+    for offset, idx in enumerate((22, 23)):
+        c0, z0, p0, b0 = pts_e2w_a[offset]
+        c1, z1, p1, b1 = pts_e2w_a[offset + 1]
+        shots[idx]["from"] = {"center": c0, "zoom": z0, "pitch": p0, "bearing": b0}
+        shots[idx]["to"] = {"center": c1, "zoom": z1, "pitch": p1, "bearing": b1}
+        shots[idx]["ease"] = "linear"
+
+    # 26..28: Continue East -> West from Ebisubashi toward Fukari-bashi
+    pts_e2w_b = [
+        ([135.5016, 34.66905], 18.0, 76, -90),
+        ([135.5003, 34.66903], 18.1, 77, -90),
+        ([135.4990, 34.66901], 17.8, 75, -90),
+        ([135.4978, 34.66900], 17.4, 72, -90),
+    ]
+    for offset, idx in enumerate((26, 27, 28)):
+        c0, z0, p0, b0 = pts_e2w_b[offset]
+        c1, z1, p1, b1 = pts_e2w_b[offset + 1]
+        shots[idx]["from"] = {"center": c0, "zoom": z0, "pitch": p0, "bearing": b0}
+        shots[idx]["to"] = {"center": c1, "zoom": z1, "pitch": p1, "bearing": b1}
+        shots[idx]["ease"] = "linear"
+
+
+def apply_cosmosquare_orbit(spec: dict, indices: list[int], center: list[float], zoom: float, pitch: float, b_start: float, b_end: float) -> None:
+    shots = spec["shots"]
+    n = len(indices)
+    for k, idx in enumerate(indices):
+        b0 = round(lerp(b_start, b_end, k / n), 2)
+        b1 = round(lerp(b_start, b_end, (k + 1) / n), 2)
+        shots[idx]["from"] = {"center": list(center), "zoom": zoom, "pitch": pitch, "bearing": b0}
+        shots[idx]["to"] = {"center": list(center), "zoom": zoom, "pitch": pitch, "bearing": b1}
+        shots[idx]["ease"] = "linear"
 
 
 def main() -> None:
-    base_spec = json.loads((ROOT / "shots/dotonbori.v0.1.7.json").read_text(encoding="utf-8"))
-    shots = base_spec["shots"]
+    v020_dir = ROOT / "shots/v0.2.0"
+    v021_dir = ROOT / "shots/v0.2.1"
+    v021_dir.mkdir(parents=True, exist_ok=True)
 
-    starts: list[tuple[int, str]] = []
-    for idx, shot in enumerate(shots):
-        for ov in shot.get("overlays", []):
-            if ov.get("type") == "chapter":
-                starts.append((idx, ov["text"]))
-    starts.append((len(shots), "END"))
+    manifest = json.loads((ROOT / "chapters.v0.2.0.json").read_text(encoding="utf-8"))
+    new_chapters = []
+    for ch in manifest["chapters"]:
+        ch_id = ch["id"]
+        spec = json.loads((ROOT / ch["spec"]).read_text(encoding="utf-8"))
+        if ch_id == "ch01":
+            apply_ch01_river_skim(spec)
+        elif ch_id == "ch05":
+            apply_cosmosquare_orbit(
+                spec,
+                list(range(14, 21)),
+                center=[135.4125, 34.6427],
+                zoom=15.8,
+                pitch=58,
+                b_start=-90,
+                b_end=90,
+            )
+        elif ch_id == "ch06":
+            apply_cosmosquare_orbit(
+                spec,
+                list(range(19, 27)),
+                center=[135.4125, 34.6410],
+                zoom=15.8,
+                pitch=60,
+                b_start=0,
+                b_end=360,
+            )
+        spec_rel = f"shots/v0.2.1/{ch_id}.json"
+        (ROOT / spec_rel).write_text(json.dumps(spec, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        new_chapters.append({"id": ch_id, "title": ch["title"], "spec": spec_rel})
 
-    out_dir = ROOT / "shots/v0.2.0"
-    out_dir.mkdir(parents=True, exist_ok=True)
-
-    base_credits = list(base_spec.get("credits", []))
-    for credit in EXTRA_CREDITS:
-        if credit not in base_credits:
-            base_credits.append(credit)
-
-    chapters_manifest = {
-        "series": "YuisekinTV",
-        "fps": base_spec.get("fps", 24),
-        "size": f"{base_spec.get('width', 1920)}x{base_spec.get('height', 1080)}",
-        "cardSeconds": 2.5,
-        "chapters": [],
-    }
-
-    preview_shots = []
-    preview_indices = {0, 42, 74, 105}
-
-    for ch_idx in range(len(starts) - 1):
-        ch_num = ch_idx + 1
-        a, title = starts[ch_idx]
-        b, _ = starts[ch_idx + 1]
-        ch_id = f"ch{ch_num:02d}"
-        ch_spec = {k: copy.deepcopy(v) for k, v in base_spec.items() if k != "shots"}
-        ch_spec["hillshade"] = False
-        ch_spec["credits"] = base_credits
-        ch_spec["plateauBuildings"] = [BUILDINGS[name] for name in CHAPTER_BUILDINGS[ch_num]]
-        ch_spec["shots"] = copy.deepcopy(shots[a:b])
-
-        spec_rel = f"shots/v0.2.0/{ch_id}.json"
-        (ROOT / spec_rel).write_text(json.dumps(ch_spec, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-        chapters_manifest["chapters"].append({
-            "id": ch_id,
-            "title": title,
-            "spec": spec_rel,
-        })
-        for idx in range(a, b):
-            if idx in preview_indices:
-                s = copy.deepcopy(shots[idx])
-                s["duration"] = 1
-                s.pop("lines", None)
-                preview_shots.append(s)
-
-    (ROOT / "chapters.v0.2.0.json").write_text(
-        json.dumps(chapters_manifest, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-
-    preview_spec = {k: copy.deepcopy(v) for k, v in base_spec.items() if k != "shots"}
-    preview_spec["hillshade"] = False
-    preview_spec["credits"] = base_credits
-    preview_spec["plateauBuildings"] = [
-        BUILDINGS["minami"],
-        BUILDINGS["asakusa-ryogoku"],
-        BUILDINGS["shimbashi"],
-        BUILDINGS["cosmosquare"],
-    ]
-    preview_spec["shots"] = preview_shots
-    (out_dir / "preview-buildings.json").write_text(
-        json.dumps(preview_spec, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
-    print(f"Generated {len(chapters_manifest['chapters'])} chapters in {out_dir}")
+    manifest["chapters"] = new_chapters
+    (ROOT / "chapters.v0.2.1.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    print(f"Generated {len(new_chapters)} chapters in {v021_dir}")
 
 
 if __name__ == "__main__":
