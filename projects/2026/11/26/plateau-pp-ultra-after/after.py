@@ -9,8 +9,9 @@ Same areas, scene and views as the before project (its render_area), with the im
     --atlas-fade   atlases as opaque as their texels were well seen (quality.png)
     --streets      aged asphalt and the zebra bars of OSM's marked crossings (world_model/osm_crosswalks.py)
 
-The atlases are the before project's (atlas_before.py writes quality.png too); Shibuya's are rebuilt with quality.png
-by shibuya_atlases.sh into work/shibuya/ and used from there when present.
+The atlases are atlas_after.py's (the before project's placements without the photos that had no roofline; with
+quality.png) when present, else the before project's; Shibuya's are rebuilt with quality.png by shibuya_atlases.sh
+into work/shibuya/ and used from there when present.
 """
 import importlib.util
 import json
@@ -27,6 +28,9 @@ from world_model.osm_crosswalks import crosswalks_file  # noqa: E402  (packages/
 
 def after_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], list[str], list[str]]:
     _, atlases, grounds = before.before_layers(area, t, bbox)
+    mine = HERE / "work" / area["name"] / f"atlas_{t}" / "model.obj"     # atlas_after.py: without roofline-less photos
+    if mine.exists():
+        atlases = [str(mine) if f"/work/{area['name']}/atlas_{t}/" in a else a for a in atlases] or [str(mine)]
     if area.get("world_model"):
         rebuilt = [HERE / "work" / area["name"] / a.format(t=t) / "model.obj" for a in before.ATLASES]
         if all(p.exists() for p in rebuilt):
