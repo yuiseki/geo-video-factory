@@ -1,7 +1,7 @@
 """PLATEAU++: PLATEAU's own buildings and textures, synthesized only where PLATEAU has none.
 
     OVERPASS_URL=<your Overpass> python -m buildings.plateau_pp <out dir> --bbox=w,s,e,n
-        [--tileset=<PLATEAU 3D Tiles tileset.json>] [--cache=<dir>] [--gsi-cache=<dir>] [--seed=plateau-pp]
+        [--tileset=<PLATEAU 3D Tiles tileset.json>] [--cache=<dir>] [--gsi-cache=<dir>] [--seed=plateau-pp] [--no-bake]
 
 PLATEAU tiles as served and GSI tiles are kept in the shared cache (shared_cache: $GEO_VIDEO_CACHE, or tmp/.cache
 of this repository), so another box or project reuses them; the OSM extract of this box goes to --cache
@@ -17,7 +17,8 @@ of this repository), so another box or project reuses them; the OSM extract of t
    on the GSI DEM, OSM building:levels before height, otherwise a height calibrated on PLATEAU (city_proxy).
    Where PLATEAU has no tiles at all, every building is filled in.
 5. The look is baked into every GLB (pp_bake): roof photo, wall colour, windows and tone, so any glTF renderer shows
-   the same city. manifest.plateau_pp names the version.
+   the same city. manifest.plateau_pp names the version. --no-bake stops before this step and leaves the look to
+   the renderer's draw-time shaders, as before v0.1.0 (to compare the two).
 
 OSM comes only from the Overpass named by OVERPASS_URL: the public servers are shared and are never called.
 """
@@ -115,7 +116,7 @@ def cache_dirs(out: Path, cache: Path | None = None, gsi_cache: Path | None = No
             Path(gsi_cache) if gsi_cache else gsi_dir())
 
 
-def bake(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None:
+def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None:
     """Write the look into every tile (pp_bake): PLATEAU tiles and filled-in tiles; the shadow tile stays as it is."""
     import hashlib
 
@@ -138,7 +139,7 @@ def bake(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None:
 
 
 def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path | None = None,
-          seed: str = "plateau-pp", gsi_cache: Path | None = None) -> dict:
+          seed: str = "plateau-pp", gsi_cache: Path | None = None, bake: bool = True) -> dict:
     from buildings.building_heights import calibrate_height_model, footprint_area_m2
     from buildings.city_proxy import build_city_proxy_tile, wall_hex
     from buildings.gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
@@ -197,7 +198,8 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     m["removed_buildings"] = removed
     m["plateau_building_count"] = len(plateau)
     m["roof_texture"] = roof_texture_entry("roof-photo.jpg", roof_bounds, m["center"])
-    bake(out, m, roof, roof_bounds)
+    if bake:
+        bake_tiles(out, m, roof, roof_bounds)
     (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"PLATEAU++: {m['tile_count']} tiles, {len(plateau)} PLATEAU buildings, "
           f"{m['city_proxy_building_count']} filled-in, {len(removed)} removed as implausible")
@@ -205,11 +207,11 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
 
 
 def main(argv: list[str]) -> None:
-    opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
+    opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))
     out = Path([a for a in argv if not a.startswith("--")][0]).resolve()
     build(out, [float(v) for v in opts["bbox"].split(",")], opts.get("tileset", TOKYO_2025),
           Path(opts["cache"]).resolve() if "cache" in opts else None, opts.get("seed", "plateau-pp"),
-          Path(opts["gsi-cache"]).resolve() if "gsi-cache" in opts else None)
+          Path(opts["gsi-cache"]).resolve() if "gsi-cache" in opts else None, bake="no-bake" not in opts)
 
 
 if __name__ == "__main__":

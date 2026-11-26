@@ -105,7 +105,7 @@ class CacheDirs(unittest.TestCase):
 class Build(unittest.TestCase):
     """build() end to end with every download and heavy step stubbed: what it calls, and what it writes."""
 
-    def run_build(self, plateau=True):
+    def run_build(self, plateau=True, bake=True):
         out = Path(tempfile.mkdtemp()) / "buildings-x"
         out.mkdir()
         (out / "models").mkdir()
@@ -156,7 +156,7 @@ class Build(unittest.TestCase):
                 mock.patch("buildings.pp_bake.bake_untextured", side_effect=bake_untextured), \
                 mock.patch("buildings.pp_bake.bake_proxy", side_effect=bake_proxy), \
                 mock.patch("buildings.plateau_3d.prepare_tiles", side_effect=no_tiles):
-            m = plateau_pp.build(out, [139.0, 35.0, 139.01, 35.01])
+            m = plateau_pp.build(out, [139.0, 35.0, 139.01, 35.01], bake=bake)
         return out, m
 
     def test_every_tile_but_the_shadow_is_baked_and_the_manifest_names_the_version(self):
@@ -170,6 +170,17 @@ class Build(unittest.TestCase):
         self.assertEqual((out / "models" / "city-shadow.glb").read_bytes(), b"city-shadow")
         self.assertEqual(m["plateau_pp"], {"version": BAKE_VERSION, "baked": True})
         self.assertEqual(m["tiles"][0]["bytes"], len(b"glb-baked"))
+
+    def test_no_bake_leaves_the_look_to_the_renderer_as_before(self):
+        out, m = self.run_build(bake=False)
+        self.assertEqual(self.baked, [])
+        self.assertEqual((out / "models" / "t.glb").read_bytes(), b"glb")
+        self.assertNotIn("plateau_pp", m)
+
+    def test_the_command_line_takes_no_bake(self):
+        with mock.patch.object(plateau_pp, "build") as build:
+            plateau_pp.main(["/tmp/x", "--bbox=1,2,3,4", "--no-bake"])
+        self.assertIs(build.call_args.kwargs["bake"], False)
 
     def test_an_area_without_plateau_tiles_is_built_from_footprints_alone(self):
         out, m = self.run_build(plateau=False)

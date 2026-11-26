@@ -43,6 +43,8 @@ OVERPASS_URL=<自前の Overpass> PYTHON=<packages/pipeline の依存が入っ�
 
 リポジトリのルートから流します。`build_trial.py` で PLATEAU++ を作り、`scene_trial.py` で `out/<名前>/scene.json` を書き、`compare_blender.py` と `compare_three.mjs` で描いて、`compare_sheet.py` が `out/compare/sheet.jpg` にまとめます。
 
+本番のレンダラー (flyover) での新旧の比較は、`build_trial.py --no-bake` で旧 PLATEAU++ を `out/before/<名前>/` に作ってから `compare_flyover.py` を流します。同じカメラの俯瞰と近景を描き、`out/compare/flyover_overview.jpg` と `flyover_close.jpg` に、左に旧、右に v0.1.0 を並べます。
+
 タイルの置き方 (PLATEAU の RTC から局所座標への行列)、地面の高さ、カメラは `scene_trial.py` が一度だけ計算して `scene.json` に書き、両方の描画系はそれを使うだけにしています。
 元のテクスチャを持つ面は PLATEAU が配る Draco 圧縮のまま残るので、three.js 側には DRACOLoader が要ります。
 
