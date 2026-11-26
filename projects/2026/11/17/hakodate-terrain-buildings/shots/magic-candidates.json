@@ -29,21 +29,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.709,
-          41.76
+          140.706,
+          41.766
         ],
-        "zoom": 14.0,
-        "pitch": 52,
-        "bearing": 45
+        "zoom": 14.2,
+        "pitch": 60,
+        "bearing": 130
       },
       "to": {
         "center": [
-          140.709,
-          41.76
+          140.706,
+          41.766
         ],
-        "zoom": 14.0,
-        "pitch": 52,
-        "bearing": 45
+        "zoom": 14.2,
+        "pitch": 60,
+        "bearing": 130
       },
       "overlays": []
     },
@@ -51,21 +51,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.709,
-          41.76
+          140.706,
+          41.766
         ],
-        "zoom": 14.1,
-        "pitch": 52,
-        "bearing": 45
+        "zoom": 14.3,
+        "pitch": 60,
+        "bearing": 150
       },
       "to": {
         "center": [
-          140.709,
-          41.76
+          140.706,
+          41.766
         ],
-        "zoom": 14.1,
-        "pitch": 52,
-        "bearing": 45
+        "zoom": 14.3,
+        "pitch": 60,
+        "bearing": 150
       },
       "overlays": []
     },
@@ -73,21 +73,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.711,
-          41.76
+          140.707,
+          41.766
         ],
-        "zoom": 14.1,
-        "pitch": 52,
-        "bearing": 45
+        "zoom": 14.2,
+        "pitch": 60,
+        "bearing": 170
       },
       "to": {
         "center": [
-          140.711,
-          41.76
+          140.707,
+          41.766
         ],
-        "zoom": 14.1,
-        "pitch": 52,
-        "bearing": 45
+        "zoom": 14.2,
+        "pitch": 60,
+        "bearing": 170
       },
       "overlays": []
     },
@@ -95,21 +95,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.711,
-          41.761
+          140.707,
+          41.766
         ],
-        "zoom": 14.0,
-        "pitch": 50,
-        "bearing": 45
+        "zoom": 14.3,
+        "pitch": 60,
+        "bearing": 190
       },
       "to": {
         "center": [
-          140.711,
-          41.761
+          140.707,
+          41.766
         ],
-        "zoom": 14.0,
-        "pitch": 50,
-        "bearing": 45
+        "zoom": 14.3,
+        "pitch": 60,
+        "bearing": 190
       },
       "overlays": []
     },
@@ -117,21 +117,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.71,
-          41.76
+          140.708,
+          41.766
         ],
-        "zoom": 14.0,
+        "zoom": 14.25,
         "pitch": 55,
-        "bearing": 30
+        "bearing": 135
       },
       "to": {
         "center": [
-          140.71,
-          41.76
+          140.708,
+          41.766
         ],
-        "zoom": 14.0,
+        "zoom": 14.25,
         "pitch": 55,
-        "bearing": 30
+        "bearing": 135
       },
       "overlays": []
     },
@@ -139,21 +139,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.711,
-          41.761
+          140.708,
+          41.765
         ],
-        "zoom": 14.1,
+        "zoom": 14.3,
         "pitch": 55,
-        "bearing": 25
+        "bearing": 155
       },
       "to": {
         "center": [
-          140.711,
-          41.761
+          140.708,
+          41.765
         ],
-        "zoom": 14.1,
+        "zoom": 14.3,
         "pitch": 55,
-        "bearing": 25
+        "bearing": 155
       },
       "overlays": []
     },
@@ -161,21 +161,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.709,
-          41.761
+          140.707,
+          41.765
         ],
-        "zoom": 14.0,
+        "zoom": 14.4,
         "pitch": 55,
-        "bearing": 10
+        "bearing": 175
       },
       "to": {
         "center": [
-          140.709,
-          41.761
+          140.707,
+          41.765
         ],
-        "zoom": 14.0,
+        "zoom": 14.4,
         "pitch": 55,
-        "bearing": 10
+        "bearing": 175
       },
       "overlays": []
     },
@@ -183,21 +183,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.711,
-          41.76
+          140.708,
+          41.765
         ],
-        "zoom": 14.1,
-        "pitch": 50,
-        "bearing": 60
+        "zoom": 14.25,
+        "pitch": 55,
+        "bearing": 200
       },
       "to": {
         "center": [
-          140.711,
-          41.76
+          140.708,
+          41.765
         ],
-        "zoom": 14.1,
-        "pitch": 50,
-        "bearing": 60
+        "zoom": 14.25,
+        "pitch": 55,
+        "bearing": 200
       },
       "overlays": []
     }
