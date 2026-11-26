@@ -91,20 +91,20 @@
     {
       "from": {
         "center": [
-          135.50115,
-          34.66881
+          135.4989158,
+          34.668114499999994
         ],
-        "zoom": 14.8,
-        "pitch": 28,
-        "bearing": 5
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
       },
       "to": {
         "center": [
-          135.50115,
-          34.66881
+          135.4990158,
+          34.668114499999994
         ],
-        "zoom": 14.8,
-        "pitch": 28,
+        "zoom": 16.3,
+        "pitch": 32,
         "bearing": 5
       },
       "lines": [
@@ -117,20 +117,25 @@
       ],
       "overlays": [
         {
-          "type": "panel",
+          "type": "photo_marker",
           "src": "assets/gyazo/012c98f4cda101b1d94423a8ebc62a0d.jpg",
           "caption": "たこ焼き（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
+          "credit": "写真：yuiseki（CC0）",
           "screen": [
-            80,
+            70,
             80
           ],
-          "width": 1000,
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5006158,
+            34.668164499999996
+          ],
+          "targetLabel": "",
           "show": [
             0,
             1
-          ],
-          "motion": "in"
+          ]
         }
       ]
     },
@@ -484,21 +489,21 @@
     {
       "from": {
         "center": [
-          135.50115,
-          34.66881
+          135.4997261,
+          34.66905619999999
         ],
-        "zoom": 14.5,
-        "pitch": 28,
-        "bearing": -15
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
       },
       "to": {
         "center": [
-          135.50115,
-          34.66881
+          135.4998261,
+          34.66905619999999
         ],
-        "zoom": 14.5,
-        "pitch": 28,
-        "bearing": -15
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
       },
       "lines": [
         {
@@ -510,40 +515,55 @@
       ],
       "overlays": [
         {
-          "type": "panel",
+          "type": "photo_marker",
           "src": "assets/gyazo/63fec71eed55499db29276a87216b48f.jpg",
           "caption": "道頓堀川の風景（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
+          "credit": "写真：yuiseki（CC0）",
           "screen": [
-            80,
+            70,
             80
           ],
-          "width": 1000,
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5014261,
+            34.669106199999995
+          ],
+          "targetLabel": "",
           "show": [
             0,
             1
           ],
-          "motion": "up"
+          "cameraAt": [
+            135.5027289,
+            34.6692927
+          ],
+          "cameraLabel": "ドン・キホーテ道頓堀店",
+          "cameraLabelAnchor": "start",
+          "cameraLabelOffset": [
+            20,
+            45
+          ]
         }
       ]
     },
     {
       "from": {
         "center": [
-          135.50115,
-          34.66881
+          135.499604,
+          34.6688371
         ],
-        "zoom": 14.8,
-        "pitch": 28,
-        "bearing": 5
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
       },
       "to": {
         "center": [
-          135.50115,
-          34.66881
+          135.499704,
+          34.6688371
         ],
-        "zoom": 14.8,
-        "pitch": 28,
+        "zoom": 16.3,
+        "pitch": 32,
         "bearing": 5
       },
       "lines": [
@@ -556,20 +576,25 @@
       ],
       "overlays": [
         {
-          "type": "panel",
+          "type": "photo_marker",
           "src": "assets/gyazo/9e289c21ab57679c2ac005f95818c4f1.jpg",
           "caption": "道頓堀の看板（2026年11月13日）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
+          "credit": "写真：yuiseki（CC0）",
           "screen": [
-            80,
+            70,
             80
           ],
-          "width": 1000,
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.501304,
+            34.6688871
+          ],
+          "targetLabel": "",
           "show": [
             0,
             1
-          ],
-          "motion": "down"
+          ]
         }
       ]
     },
@@ -940,21 +965,21 @@
     {
       "from": {
         "center": [
-          135.50115,
-          34.66881
+          135.4988517,
+          34.669149
         ],
-        "zoom": 14.8,
-        "pitch": 28,
-        "bearing": 20
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
       },
       "to": {
         "center": [
-          135.50115,
-          34.66881
+          135.4989517,
+          34.669149
         ],
-        "zoom": 14.8,
-        "pitch": 28,
-        "bearing": 20
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
       },
       "lines": [
         {
@@ -966,20 +991,40 @@
       ],
       "overlays": [
         {
-          "type": "panel",
+          "type": "photo_marker",
           "src": "assets/gyazo/595dc51520a6d3b3ba9c0831ae3f52c1.jpg",
           "caption": "道頓堀の街並み（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
+          "credit": "写真：yuiseki（CC0）",
           "screen": [
-            80,
+            70,
             80
           ],
-          "width": 1000,
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5005517,
+            34.669199
+          ],
+          "targetLabel": "",
           "show": [
             0,
             1
           ],
-          "motion": "out"
+          "cameraAt": [
+            135.5010546,
+            34.668926
+          ],
+          "cameraLabel": "グリコサイン",
+          "cameraLabelAnchor": "start",
+          "cameraLabelOffset": [
+            20,
+            45
+          ],
+          "bridgeAt": [
+            135.5012993,
+            34.6690658
+          ],
+          "bridgeLabel": "戎橋"
         }
       ]
     },
@@ -1072,20 +1117,20 @@
     {
       "from": {
         "center": [
-          135.50115,
-          34.66881
+          135.4995716,
+          34.6687094
         ],
-        "zoom": 14.8,
-        "pitch": 28,
-        "bearing": 5
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
       },
       "to": {
         "center": [
-          135.50115,
-          34.66881
+          135.4996716,
+          34.6687094
         ],
-        "zoom": 14.8,
-        "pitch": 28,
+        "zoom": 16.3,
+        "pitch": 32,
         "bearing": 5
       },
       "lines": [
@@ -1098,41 +1143,56 @@
       ],
       "overlays": [
         {
-          "type": "panel",
+          "type": "photo_marker",
           "src": "assets/gyazo/f01c299b67d773988e5257a0fecd41cb.jpg",
           "caption": "大阪松竹座（2026年11月13日）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
+          "credit": "写真：yuiseki（CC0）",
           "screen": [
-            80,
+            70,
             80
           ],
-          "width": 1000,
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5012716,
+            34.6687594
+          ],
+          "targetLabel": "",
           "show": [
             0,
             1
           ],
-          "motion": "up"
+          "cameraAt": [
+            135.5009117,
+            34.6684231
+          ],
+          "cameraLabel": "大阪松竹座",
+          "cameraLabelAnchor": "start",
+          "cameraLabelOffset": [
+            20,
+            45
+          ]
         }
       ]
     },
     {
       "from": {
         "center": [
-          135.50115,
-          34.66881
+          135.4987038,
+          34.6684091
         ],
-        "zoom": 15.1,
-        "pitch": 28,
-        "bearing": 20
+        "zoom": 16.0,
+        "pitch": 20,
+        "bearing": -5
       },
       "to": {
         "center": [
-          135.50115,
-          34.66881
+          135.4988038,
+          34.6684091
         ],
-        "zoom": 15.1,
-        "pitch": 28,
-        "bearing": 20
+        "zoom": 16.3,
+        "pitch": 32,
+        "bearing": 5
       },
       "lines": [
         {
@@ -1144,20 +1204,25 @@
       ],
       "overlays": [
         {
-          "type": "panel",
+          "type": "photo_marker",
           "src": "assets/gyazo/86ff64a1f435c9b808531fc32ba48c4b.jpg",
           "caption": "道頓堀の街並み（2026年11月13日撮影）",
-          "credit": "写真：ユイ / Gyazo（CC0）",
+          "credit": "写真：yuiseki（CC0）",
           "screen": [
-            80,
+            70,
             80
           ],
-          "width": 1000,
+          "width": 760,
+          "height": 650,
+          "at": [
+            135.5004038,
+            34.6684591
+          ],
+          "targetLabel": "",
           "show": [
             0,
             1
-          ],
-          "motion": "down"
+          ]
         }
       ]
     },
@@ -1535,19 +1600,19 @@
       "overlays": [
         {
           "type": "panel",
-          "src": "assets/commons/takoyaki.jpg",
-          "caption": "道頓堀のたこ焼き店（別店舗・イメージ）",
-          "credit": "写真：City Foodsters / Wikimedia Commons（CC BY 2.0）",
+          "src": "assets/commons-v013/kukuru-honten.webp",
+          "caption": "たこ家道頓堀くくる 道頓堀本店",
+          "credit": "出典：たこ家道頓堀くくる公式サイト（dotonbori-kukuru.com/dotonbori-honten/）",
           "screen": [
             80,
             80
           ],
           "width": 1000,
+          "motion": "still",
           "show": [
             0,
             1
-          ],
-          "motion": "in"
+          ]
         }
       ]
     },
