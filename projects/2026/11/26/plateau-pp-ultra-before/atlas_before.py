@@ -8,10 +8,12 @@ under the host's resource limits):
     photos   the area's photo set (areas.json "photos": a tokyo_cc0 manifest of the liminal project) staged from the
              shared photo store as work/<name>/images/<n>_<ref>.jpg symlinks; blocklisted photos left out
     tris     the PLATEAU++ v0.1.0 mesh in east/north/up metres around the area's centre (buildings/plateau_mesh.py)
-    sfm      pycolmap: SIFT on every image, exhaustive matching, incremental mapping -> work/<name>/sfm/sparse/<k>
-    anchors  geo/photo_place.py on up to --anchors geotagged photos within 300 m that the largest SfM model holds
+    sfm      pycolmap: SIFT on every image (--threads=6), exhaustive matching, incremental mapping
+             -> work/<name>/sfm/sparse/<k>
+    anchors  geo/photo_place.py on up to --anchors geotagged photos within 300 m, those of the largest SfM model first
              (the skyline search: today's only way to place a photo on the city without SfM)
-    world    world_model/sfm_to_world.py with every anchor -> work/<name>/world/cams.json
+    world    world_model/sfm_to_world.py with every anchor -> work/<name>/world/cams.json; when SfM joined fewer than 10
+             photos, the photos placed one by one are the cameras instead
     layers   world_model/time_layers.py -> work/<name>/world/layers/cams_<day|dusk|night>.json
     atlas    world_model/build_atlas.py for one building group, "around": every PLATEAU++ triangle within 250 m,
              with the options the Shibuya CC0 atlases used, for day and night -> work/<name>/atlas_<day|night>/
@@ -98,6 +100,7 @@ def step_sfm(name, area, opts):
         ex = pycolmap.FeatureExtractionOptions()
         ex.max_image_size = 1600
         ex.sift.max_num_features = 8192
+        ex.num_threads = int(opts.get("threads", 6))     # every core at once ran a 32-core machine out of memory
         pycolmap.extract_features(db, img, camera_mode=pycolmap.CameraMode.PER_IMAGE, extraction_options=ex)
         print("extract", round(time.time() - t), "s", flush=True)
         t = time.time()
@@ -122,20 +125,24 @@ def step_anchors(name, area, opts):
     import pycolmap
     from PIL import Image
     w = work(name)
-    model = pycolmap.Reconstruction(str(largest_model(w)))
-    registered = {img.name for img in model.images.values()}
+    try:
+        registered = {img.name for img in pycolmap.Reconstruction(str(largest_model(w))).images.values()}
+    except SystemExit:
+        registered = set()
     index = json.loads((w / "images.json").read_text())
     tris = np.load(w / "tris.npz")
     ox, oy = (float(v) for v in tris["origin"])
     kx, ky = 111320.0 * math.cos(math.radians(oy)), 110950.0
     cand = []
     for nm, rec in index.items():
-        if nm in registered and rec.get("coordinates"):
+        if rec.get("coordinates"):
             e, n = (rec["coordinates"][0] - ox) * kx, (rec["coordinates"][1] - oy) * ky
             if math.hypot(e, n) < 300:
-                cand.append((math.hypot(e, n), nm, e, n))
+                cand.append((nm not in registered, math.hypot(e, n), nm, e, n))   # photos of the SfM model first
     cand.sort()
-    print(f"{len(cand)} geotagged photos in the model within 300 m; trying {min(len(cand), int(opts.get('anchors', 6)))}")
+    cand = [c[1:] for c in cand]
+    print(f"{len(cand)} geotagged photos within 300 m ({sum(c[1] in registered for c in cand)} in the SfM model); "
+          f"trying {min(len(cand), int(opts.get('anchors', 6)))}")
     for _, nm, e, n in cand[: int(opts.get("anchors", 6))]:
         hfov = 60.0
         try:
@@ -161,6 +168,16 @@ def step_world(name, area, opts):
     anchors = sorted(str(p) for p in (w / "anchors").glob("*/cams.json"))
     if not anchors:
         raise SystemExit("no anchor was placed")
+    summary = json.loads((w / "sfm" / "models.json").read_text())
+    if max(summary.values(), default=0) < 10:
+        # SfM joined (almost) nothing: the photos placed one by one are the cameras, as photo_place.py left them
+        cams = {}
+        for f in anchors:
+            cams.update(json.loads(Path(f).read_text()))
+        (w / "world").mkdir(exist_ok=True)
+        (w / "world" / "cams.json").write_text(json.dumps(cams, indent=1) + "\n")
+        print(f"SfM models {summary}: {len(cams)} photos placed one by one are the cameras")
+        return
     subprocess.run([sys.executable, "-m", "world_model.sfm_to_world", str(largest_model(w)), str(w / "images"),
                     str(w / "tris.npz"), str(w / "world"), *anchors], check=True, cwd=PIPE)
 

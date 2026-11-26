@@ -10,7 +10,8 @@
    ],
    "street_bearing": 300,
    "world_model": "projects/2026/11/20/liminal-space-city-walk-with-bgm/work/shibuya_world_v1",
-   "note": "CC0 写真のアトラスと地面がある唯一の場所"
+   "note": "CC0 写真のアトラスと地面がある唯一の場所",
+   "ground_z": 52.8
   },
   {
    "name": "shinjuku",

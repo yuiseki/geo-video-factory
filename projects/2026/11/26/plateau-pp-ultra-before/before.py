@@ -3,8 +3,7 @@
     OVERPASS_URL=<your Overpass> python projects/2026/11/26/plateau-pp-ultra-before/before.py [name ...]
 
 Run from the repository root with packages/pipeline's Python, under the host's resource limits; blender on PATH.
-Per area: PLATEAU++ v0.1.0 from the versioned shared cache (plateau_pp.cached), the ground height from the GSI DEM
-(+ GEOID_M, as the PLATEAU tiles stand on the ellipsoid), a scene with world_model/pp_scene.py (Shibuya also gets
+Per area: PLATEAU++ v0.1.0 from the versioned shared cache (plateau_pp.cached), the ground height (ground_of), a scene with world_model/pp_scene.py (Shibuya also gets
 the CC0 world model's photo atlases and ground; other areas their atlas_before.py atlas when it exists), then three
 views (render_views.py). Nothing here is improved: this
 is the baseline the plateau-pp-ultra-after project compares against. out/ is rebuilt every run.
@@ -27,6 +26,21 @@ ATLASES = ("around_{t}_cc0_v1b", "ekimae_{t}_cc0_v1", "magnet_{t}_cc0_v1", "qfro
 NIGHT = ["--dim=0.16", "--sky=0.015,0.02,0.045", "--sun=0.25"]     # pp_scene's night, as the Shibuya night layer used
 
 
+def ground_of(area: dict, bbox: list[float]) -> float:
+    """The ground on the ellipsoid at the centre: from the PLATEAU++ mesh when atlas_before.py made one (2nd percentile
+    of the heights within 150 m), else areas.json's ground_z, else the GSI DEM (zoom 14, 10 m: off by 3 to 5 m where
+    the centre falls on a slope, as at Shibuya and Ueno) + GEOID_M."""
+    tris = HERE / "work" / area["name"] / "tris.npz"
+    if tris.exists():
+        import numpy as np
+        t = np.load(tris)["tris"]
+        near = np.linalg.norm(t.mean(axis=1)[:, :2], axis=1) < 150
+        return float(np.percentile(t[near][:, :, 2], 2))
+    if "ground_z" in area:
+        return float(area["ground_z"])
+    return dem_sampler(bbox, gsi_dir())(*area["center"]) + GEOID_M
+
+
 def main() -> None:
     conf = json.loads((HERE / "areas.json").read_text(encoding="utf-8"))
     names = sys.argv[1:]
@@ -38,7 +52,7 @@ def main() -> None:
         dlon, dlat = r / (111320 * 0.8147), r / 110950
         bbox = [round(lon - dlon, 6), round(lat - dlat, 6), round(lon + dlon, 6), round(lat + dlat, 6)]
         pp = cached(bbox)
-        ground = dem_sampler(bbox, gsi_dir())(lon, lat) + GEOID_M
+        ground = ground_of(area, bbox)
         out = HERE / "out" / area["name"]
         if out.exists():
             shutil.rmtree(out)
