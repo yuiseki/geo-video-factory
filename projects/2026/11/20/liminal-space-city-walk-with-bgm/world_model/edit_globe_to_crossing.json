@@ -10,10 +10,10 @@
    "pattern": "*.jpg"
   },
   {
-   "dir": "$FLYOUT/shibuya-plateau-pp-descent-v3g/frames",
+   "dir": "$FLYOUT/shibuya-plateau-pp-descent-v3h/frames",
    "pattern": "*.jpg",
    "first": 0,
-   "last": 254,
+   "last": 239,
    "cross": 6,
    "fade_out": 4
   },
@@ -21,7 +21,7 @@
    "black": 5
   },
   {
-   "dir": "$MACOUT/pp_stream_dive_qfront_day_v2",
+   "dir": "$MACOUT/pp_scramble_dive_crossing_day",
    "fade_in": 3
   },
   {
