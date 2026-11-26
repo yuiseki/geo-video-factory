@@ -1,4 +1,4 @@
-"""python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0] [--people-band=metres] [--ground-z=<the building's lowest point>]
+"""python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0] [--people-band=metres] [--ground-z=<the building's lowest point>] [--without=<buildings.npz>:<name>,...]
        [--only=<word in the camera key>,...] [--skip=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
@@ -25,6 +25,18 @@ UNSEEN = (128, 128, 128)
 ROOF = (92, 92, 96)
 
 
+def drop_shared(tris, others, tol=0.05):
+    """tris (n, 3, 3) without those whose centroid lies within tol metres of a triangle of any of `others`: a group
+    atlas ("around") leaves the walls of the buildings that have their own atlas to them, so the two never overlap."""
+    tris = np.asarray(tris, float)
+    others = [np.asarray(o, float) for o in others if len(o)]
+    if not others:
+        return tris
+    from scipy.spatial import cKDTree
+    d, _ = cKDTree(np.concatenate([o.mean(axis=1) for o in others])).query(tris.mean(axis=1))
+    return tris[d > tol]
+
+
 def pick_cams(cams, only=None, skip=None):
     """The cameras whose key holds a word of `only` (all when None) and no word of `skip` (comma separated)."""
     def holds(key, words):
@@ -40,6 +52,11 @@ def main(argv):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     tris = np.load(Path(work) / "buildings.npz")[name].astype(float)
+    if opts.get("without"):      # --without=<buildings.npz>:<name>,...: buildings with their own atlas
+        others = [np.load(f)[k] for f, k in (spec.rsplit(":", 1) for spec in opts["without"].split(","))]
+        before = len(tris)
+        tris = drop_shared(tris, others)
+        print(f"without {before - len(tris)} triangles that other atlases paint", flush=True)
     scene = np.load(scene_path)["tris"].astype(float)
     band = float(opts.get("people-band", 0))
     ground = float(opts["ground-z"]) if "ground-z" in opts else float(tris[..., 2].min())   # the building's foot

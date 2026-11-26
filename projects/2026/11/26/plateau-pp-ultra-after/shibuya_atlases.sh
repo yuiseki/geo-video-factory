@@ -20,6 +20,8 @@ for L in day night; do
   done
   $P -u -m world_model.build_atlas $S/magnet_v1 magnet $T $O/magnet_${L}_cc0_v1 --keep=10 --patch=3 --agree=25 --smooth=2 --fill=mean --eras=2 $BAND $C/cams_$L.json > $O/magnet_${L}.log 2>&1
   echo "magnet $L exit $?"
-  $P -u -m world_model.build_atlas $S/around_v2 around $T $O/around_${L}_cc0_v1b --texel=0.1 --width=8192 --keep=6 --patch=3 --agree=25 --smooth=2 --fill=mean --split=25 --changing=45 $BAND $C/cams_$L.json > $O/around_${L}.log 2>&1
+  # the buildings above have their own atlases: "around" leaves their walls to them, or the two overlap
+  OWN=$S/buildings.npz:qfront,$S/buildings.npz:s109,$S/buildings.npz:ekimae,$S/magnet_v1/buildings.npz:magnet
+  $P -u -m world_model.build_atlas $S/around_v2 around $T $O/around_${L}_cc0_v1b --without=$OWN --texel=0.1 --width=8192 --keep=6 --patch=3 --agree=25 --smooth=2 --fill=mean --split=25 --changing=45 $BAND $C/cams_$L.json > $O/around_${L}.log 2>&1
   echo "around $L exit $?"
 done
