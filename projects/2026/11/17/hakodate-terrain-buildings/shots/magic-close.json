@@ -29,42 +29,20 @@
       "duration": 1,
       "from": {
         "center": [
-          140.717,
-          41.766
-        ],
-        "zoom": 14.9,
-        "pitch": 70,
-        "bearing": 25
-      },
-      "to": {
-        "center": [
-          140.717,
-          41.766
-        ],
-        "zoom": 14.9,
-        "pitch": 70,
-        "bearing": 25
-      },
-      "overlays": []
-    },
-    {
-      "duration": 1,
-      "from": {
-        "center": [
-          140.717,
+          140.714,
           41.765
         ],
-        "zoom": 14.9,
-        "pitch": 72,
+        "zoom": 14.5,
+        "pitch": 55,
         "bearing": 30
       },
       "to": {
         "center": [
-          140.717,
+          140.714,
           41.765
         ],
-        "zoom": 14.9,
-        "pitch": 72,
+        "zoom": 14.5,
+        "pitch": 55,
         "bearing": 30
       },
       "overlays": []
@@ -73,21 +51,109 @@
       "duration": 1,
       "from": {
         "center": [
-          140.719,
-          41.767
+          140.714,
+          41.765
         ],
-        "zoom": 15.0,
-        "pitch": 72,
-        "bearing": 25
+        "zoom": 14.5,
+        "pitch": 58,
+        "bearing": 30
       },
       "to": {
         "center": [
-          140.719,
-          41.767
+          140.714,
+          41.765
         ],
-        "zoom": 15.0,
-        "pitch": 72,
-        "bearing": 25
+        "zoom": 14.5,
+        "pitch": 58,
+        "bearing": 30
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.714,
+          41.765
+        ],
+        "zoom": 14.6,
+        "pitch": 57,
+        "bearing": 30
+      },
+      "to": {
+        "center": [
+          140.714,
+          41.765
+        ],
+        "zoom": 14.6,
+        "pitch": 57,
+        "bearing": 30
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.714,
+          41.764
+        ],
+        "zoom": 14.5,
+        "pitch": 57,
+        "bearing": 30
+      },
+      "to": {
+        "center": [
+          140.714,
+          41.764
+        ],
+        "zoom": 14.5,
+        "pitch": 57,
+        "bearing": 30
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.715,
+          41.764
+        ],
+        "zoom": 14.55,
+        "pitch": 58,
+        "bearing": 30
+      },
+      "to": {
+        "center": [
+          140.715,
+          41.764
+        ],
+        "zoom": 14.55,
+        "pitch": 58,
+        "bearing": 30
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.714,
+          41.764
+        ],
+        "zoom": 14.6,
+        "pitch": 60,
+        "bearing": 30
+      },
+      "to": {
+        "center": [
+          140.714,
+          41.764
+        ],
+        "zoom": 14.6,
+        "pitch": 60,
+        "bearing": 30
       },
       "overlays": []
     },
@@ -98,18 +164,18 @@
           140.715,
           41.765
         ],
-        "zoom": 14.9,
-        "pitch": 72,
-        "bearing": 30
+        "zoom": 14.5,
+        "pitch": 57,
+        "bearing": 25
       },
       "to": {
         "center": [
           140.715,
           41.765
         ],
-        "zoom": 14.9,
-        "pitch": 72,
-        "bearing": 30
+        "zoom": 14.5,
+        "pitch": 57,
+        "bearing": 25
       },
       "overlays": []
     },
@@ -117,43 +183,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.717,
-          41.766
+          140.713,
+          41.765
         ],
-        "zoom": 15.1,
-        "pitch": 75,
-        "bearing": 30
+        "zoom": 14.5,
+        "pitch": 58,
+        "bearing": 35
       },
       "to": {
         "center": [
-          140.717,
-          41.766
-        ],
-        "zoom": 15.1,
-        "pitch": 75,
-        "bearing": 30
-      },
-      "overlays": []
-    },
-    {
-      "duration": 1,
-      "from": {
-        "center": [
-          140.716,
+          140.713,
           41.765
         ],
-        "zoom": 15.0,
-        "pitch": 75,
-        "bearing": 40
-      },
-      "to": {
-        "center": [
-          140.716,
-          41.765
-        ],
-        "zoom": 15.0,
-        "pitch": 75,
-        "bearing": 40
+        "zoom": 14.5,
+        "pitch": 58,
+        "bearing": 35
       },
       "overlays": []
     }
