@@ -1,4 +1,5 @@
 """python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0] [--people-band=metres] [--ground-z=<the building's lowest point>] [--without=<buildings.npz>:<name>,...]
+       [--people-masks=<dir>|cache]
        [--only=<word in the camera key>,...] [--skip=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
@@ -7,6 +8,8 @@ photo pixels across a texel, surface_atlas.texel_quality), model.obj, model.mtl 
 --fuse=face (default) takes each face from as few photos as possible; median blends them (surface_atlas.fuse).
 --people-band=2.2 keeps photos taken from the street (eye < ground + 4 m) off the lowest 2.2 m of wall, where
 people and cars stand in front of it (surface_atlas.people_band).
+--people-masks=<dir> keeps every photo that has <dir>/<key>.png off the pixels set there: its people and cars, as
+photos/people_removal.py found them (=cache reads shared_cache.people_masks_dir()).
 Texels that no photo saw are grey in atlas.png and are counted in report.json; they are not made up."""
 import json
 import sys
@@ -15,6 +18,7 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
+import shared_cache
 from photos import photo_guard
 from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
 from world_model import atlas_views
@@ -44,6 +48,22 @@ def pick_cams(cams, only=None, skip=None):
     return {k: c for k, c in cams.items() if (only is None or holds(k, only)) and not (skip and holds(k, skip))}
 
 
+def people_mask(folder, key, cam, cut=64):
+    """(height, width) bool of the photo `key`, set on its people and cars, from <folder>/<key>.png (the grown mask of
+    photos/people_removal.py, bright where it removed something; the soft edge below `cut` is left out); None when
+    the photo has no mask. A mask made at a smaller size is stretched to the photo's; another shape is an error."""
+    path = Path(folder) / f"{key}.png"
+    if not path.exists():
+        return None
+    m = Image.open(path).convert("L")
+    w, h = cam["width"], cam["height"]
+    if abs(m.size[0] * h - m.size[1] * w) > max(m.size):
+        raise SystemExit(f"{path}: mask is {m.size[0]}x{m.size[1]}, the photo {w}x{h}")
+    if m.size != (w, h):
+        m = m.resize((w, h), Image.NEAREST)
+    return np.asarray(m) >= cut
+
+
 def main(argv):
     opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
     work, name, scene_path, out = [a for a in argv if not a.startswith("--")][:4]
@@ -59,6 +79,10 @@ def main(argv):
         print(f"without {before - len(tris)} triangles that other atlases paint", flush=True)
     scene = np.load(scene_path)["tris"].astype(float)
     band = float(opts.get("people-band", 0))
+    # --people-masks=<dir> (or =cache, the shared cache): a photo with a mask there does not paint its people and cars
+    masks = opts.get("people-masks")
+    if masks == "cache":
+        masks = shared_cache.people_masks_dir()
     ground = float(opts["ground-z"]) if "ground-z" in opts else float(tris[..., 2].min())   # the building's foot
     groups = sa.planar_faces(tris)
     if "split" in opts:
@@ -106,7 +130,8 @@ def main(argv):
         if image.shape[1] != cam["width"]:
             raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
         depth = sa.depth_buffer(scene, cam)
-        colours, weights = sa.observe(image, points, normal_of, cam, depth)
+        blocked = people_mask(masks, key, cam) if masks else None
+        colours, weights = sa.observe(image, points, normal_of, cam, depth, blocked=blocked)
         if band > 0:      # --people-band: a street photo does not paint the strip where people and cars stand
             weights = np.where(sa.people_band(points, cam, ground, band), 0.0, weights)
         used[key] = int((weights > 0).sum())
