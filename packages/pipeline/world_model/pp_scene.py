@@ -4,13 +4,15 @@ usage: blender -b --factory-startup -P pp_scene.py -- <out.blend> <PLATEAU++ man
            [--radius=700] [--centre=10,-20] [--proxy-lift=33.5] [--dim=1.0] [--sky=r,g,b] [--sun=3.0]
            [--atlas=<model.obj>,...] [--ground=<model.obj>,...]
            [--water=<metres above the crossing>] [--water-colour=r,g,b] [--water-roughness=0.03] [--ripple=0.04]
-           [--origin=lon,lat] [--ground-z=52.8] [--baked-look] [--windows=0] [--atlas-fade] [--streets=<crosswalks.json>]
+           [--origin=lon,lat] [--ground-z=52.8] [--baked-look] [--windows=0] [--atlas-fade] [--atlas-min-views=1] [--streets=<crosswalks.json>]
+           [--lamps=<lamps.json>] [--lamp-radius=250] [--lamp-watts=1500]
 
 --baked-look draws PLATEAU++ v0.1.0 as it was baked (unlit_baked: base colour as wired, window pattern x wall colour,
 window lights at --windows); without it, the first image of each material is drawn, as before v0.1.0.
 
 --atlas-fade makes an atlas as opaque as its texels were well seen (quality.png from build_atlas: photo pixels across
 a texel, smoothstep 0.15..0.6) instead of showing every texel seen at all (seen.png > 0.05).
+--atlas-min-views=N (with --atlas-fade) also hides texels fewer than N photos saw (world_model/atlas_views.py).
 
 --origin moves the local frame away from the Shibuya crossing (the default) and --ground-z gives that place's
 ground on the ellipsoid, which the road plane under everything and --water start from.
@@ -40,6 +42,7 @@ from mathutils import Matrix
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipeline
 from buildings import blender_geo as bg  # noqa: E402
+from world_model import atlas_views  # noqa: E402
 
 argv = sys.argv[sys.argv.index("--") + 1:]
 opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))   # --flag or --key=value
@@ -58,6 +61,7 @@ sc = bpy.context.scene
 
 BAKED_LOOK = "baked-look" in opts
 ATLAS_FADE = "atlas-fade" in opts
+ATLAS_MIN_VIEWS = int(opts.get("atlas-min-views", 1))
 WINDOWS = float(opts.get("windows", 0.0))
 
 
@@ -192,6 +196,22 @@ for path in [p for p in opts.get("atlas", "").split(",") if p]:
                 gt.interpolation_type = "SMOOTHSTEP"
                 gt.inputs["From Min"].default_value, gt.inputs["From Max"].default_value = 0.15, 0.6
                 nt.links.new(seen.outputs["Color"], gt.inputs["Value"])
+                if ATLAS_MIN_VIEWS > 1:
+                    # --atlas-min-views: only texels that many photos saw (seen.png); one photo cannot be checked
+                    views = nt.nodes.new("ShaderNodeTexImage")
+                    views.image = bpy.data.images.load(str(seen_path))
+                    views.image.colorspace_settings.name = "Non-Color"
+                    views.interpolation = "Closest"
+                    nt.links.new(seen.inputs["Vector"].links[0].from_socket, views.inputs["Vector"])
+                    enough = nt.nodes.new("ShaderNodeMath")
+                    enough.operation = "GREATER_THAN"
+                    enough.inputs[1].default_value = atlas_views.views_threshold(ATLAS_MIN_VIEWS)
+                    nt.links.new(views.outputs["Color"], enough.inputs[0])
+                    both = nt.nodes.new("ShaderNodeMath")
+                    both.operation = "MULTIPLY"
+                    nt.links.new(gt.outputs[0], both.inputs[0])
+                    nt.links.new(enough.outputs[0], both.inputs[1])
+                    gt = both
             else:
                 gt = nt.nodes.new("ShaderNodeMath")
                 gt.operation = "GREATER_THAN"
@@ -242,6 +262,65 @@ else:
     road.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
     road.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
     bpy.context.object.data.materials.append(road)
+
+if "lamps" in opts:
+    # --lamps: a pole, an arm and a head for every lamp of a lamps.json (world_model/osm_street_lamps.py) within
+    # --lamp-radius of --centre and not under a roof (a ray up hits nothing); at night (--dim below 0.5) each head
+    # glows and a spot light under it lights the road (the asphalt of --streets is a Principled BSDF, so it pools)
+    from mathutils import Vector
+    night = dim < 0.5
+    lamp_radius = float(opts.get("lamp-radius", 250))
+    depsgraph = bpy.context.evaluated_depsgraph_get()
+    metal = bpy.data.materials.new("lamp-pole")
+    metal.use_nodes = True
+    metal.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.32, 0.33, 0.34, 1)
+    head = bpy.data.materials.new("lamp-head")
+    head.use_nodes = True
+    hb = head.node_tree.nodes["Principled BSDF"]
+    hb.inputs["Base Color"].default_value = (0.85, 0.85, 0.82, 1)
+    if night:
+        hb.inputs["Emission Color"].default_value = (1.0, 0.9, 0.75, 1)
+        hb.inputs["Emission Strength"].default_value = 30.0
+    lamp_mesh = bpy.data.meshes.new("lamp")
+    parts = [((0, 0, 3.5), (0.09, 0.09, 3.5), 0), ((0.75, 0, 7.0), (0.75, 0.05, 0.05), 0),
+             ((1.45, 0, 6.92), (0.35, 0.14, 0.07), 1)]          # pole 7 m, arm 1.5 m toward the road, head
+    verts, faces, mats = [], [], []
+    for (px, py, pz), (hx, hy, hz), m in parts:
+        i = len(verts)
+        verts += [(px + sx * hx, py + sy * hy, pz + sz * hz) for sx in (-1, 1) for sy in (-1, 1) for sz in (-1, 1)]
+        for f in ((0, 1, 3, 2), (4, 6, 7, 5), (0, 4, 5, 1), (2, 3, 7, 6), (0, 2, 6, 4), (1, 5, 7, 3)):
+            faces.append(tuple(i + k for k in f))
+            mats.append(m)
+    lamp_mesh.from_pydata(verts, [], faces)
+    lamp_mesh.materials.append(metal)
+    lamp_mesh.materials.append(head)
+    for poly, m in zip(lamp_mesh.polygons, mats):
+        poly.material_index = m
+    placed = 0
+    for lamp in json.loads(Path(opts["lamps"]).read_text())["lamps"]:
+        x, y = bg.local_meters(lamp["lnglat"], ORIGIN)
+        if math.hypot(x - cx, y - cy) > lamp_radius:
+            continue
+        foot = Vector((x, y, GROUND_Z + 1.0))
+        if sc.ray_cast(depsgraph, foot, Vector((0, 0, 1)), distance=300)[0]:
+            continue                                   # inside a building or under a deck
+        heading = lamp.get("heading")
+        obj = bpy.data.objects.new("lamp", lamp_mesh)
+        obj.location = (x, y, GROUND_Z - 0.25)
+        obj.rotation_euler = (0, 0, math.radians(90 - heading) if heading is not None else 0)
+        sc.collection.objects.link(obj)
+        if night:
+            light = bpy.data.objects.new("lamp-light", bpy.data.lights.new("lamp-light", "SPOT"))
+            light.data.energy = float(opts.get("lamp-watts", 1500))
+            light.data.color = (1.0, 0.88, 0.72)
+            light.data.spot_size = math.radians(130)
+            light.data.spot_blend = 0.8
+            light.data.use_shadow = False
+            light.parent = obj
+            light.location = (1.45 if heading is not None else 0, 0, 6.8)
+            sc.collection.objects.link(light)                # a spot points down its -Z: down, unrotated
+        placed += 1
+    print("street lamps", placed)
 
 if "water" in opts:
     # a still lake over the streets: hides the bottom metres of the walls, where removed people and cars

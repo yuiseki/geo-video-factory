@@ -24,18 +24,23 @@ spec = importlib.util.spec_from_file_location("before", BEFORE / "before.py")
 before = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(before)
 from world_model.osm_crosswalks import crosswalks_file  # noqa: E402  (packages/pipeline, put on the path by before.py)
+from world_model.osm_street_lamps import lamps_file  # noqa: E402
 
 
 def after_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], list[str], list[str]]:
     _, atlases, grounds = before.before_layers(area, t, bbox)
     mine = HERE / "work" / area["name"] / f"atlas_{t}" / "model.obj"     # atlas_after.py: without roofline-less photos
-    if mine.exists():
+    cams = HERE / "work" / area["name"] / "world" / "layers" / f"cams_{t}.json"
+    if cams.exists() and not json.loads(cams.read_text()):      # every photo left out: no atlas, not the before one
+        atlases = [a for a in atlases if f"/work/{area['name']}/atlas_{t}/" not in a]
+    elif mine.exists():
         atlases = [str(mine) if f"/work/{area['name']}/atlas_{t}/" in a else a for a in atlases] or [str(mine)]
     if area.get("world_model"):
         rebuilt = [HERE / "work" / area["name"] / a.format(t=t) / "model.obj" for a in before.ATLASES]
         if all(p.exists() for p in rebuilt):
             atlases = [str(p) for p in rebuilt] + [a for a in atlases if "/work/" + area["name"] + "/atlas_" in a]
-    extra = ["--baked-look", "--atlas-fade", f"--streets={crosswalks_file(bbox)}"] + (["--windows=1"] if t == "night" else [])
+    extra = ["--baked-look", "--atlas-fade", f"--streets={crosswalks_file(bbox)}",
+             f"--lamps={lamps_file(bbox)}"] + (["--windows=1"] if t == "night" else [])
     return extra, atlases, grounds
 
 

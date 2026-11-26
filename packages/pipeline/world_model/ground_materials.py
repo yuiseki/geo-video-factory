@@ -80,14 +80,16 @@ def _asphalt_value(g, wetness=1.0):
     """(albedo value, wet mask) shared by both materials. wetness 0 is a dry road (no mirror patches)."""
     grain = g.noise(55, 2)
     mottle = g.noise(0.12, 6)
-    vor = g.node("ShaderNodeTexVoronoi", Vector=g.pos, Scale=0.045)   # repaired patches, each its own shade
-    tone = g.math("MULTIPLY", g.node("ShaderNodeSeparateColor", Color=vor.outputs["Color"]).outputs[0], 0.018)
+    # repaired patches, each its own shade: about 11 m across and faint, or from above they read as the facets of a mesh
+    vor = g.node("ShaderNodeTexVoronoi", Vector=g.pos, Scale=0.09)
+    tone = g.math("MULTIPLY", g.node("ShaderNodeSeparateColor", Color=vor.outputs["Color"]).outputs[0], 0.006)
     tracks = g.band(g.noise(1.0, 3, stretch=(0.35, 7.0, 1.0)), 0.55, 0.7)
     v = g.math("ADD", 0.028, g.math("MULTIPLY", mottle, 0.022))
     v = g.math("ADD", v, g.math("MULTIPLY", grain, 0.016))
     v = g.math("ADD", v, tone)
     v = g.math("SUBTRACT", v, g.math("MULTIPLY", tracks, 0.012))
-    wet = g.math("MULTIPLY", g.band(g.noise(0.06, 3), 0.56, 0.62), wetness)
+    # puddles a few metres across: tens of metres of mirror show the dark sky and read as holes from above
+    wet = g.math("MULTIPLY", g.band(g.noise(0.2, 3), 0.60, 0.64), wetness)
     v = g.math("MULTIPLY", v, g.math("SUBTRACT", 1.0, g.math("MULTIPLY", wet, 0.45)))
     return v, wet
 

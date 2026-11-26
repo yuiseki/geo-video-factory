@@ -4,7 +4,7 @@
 
 For each area the before project placed photos for, work/<name>/ links its images, mesh, SfM summary and anchors,
 then the before project's atlas_before.py runs world (--min-cost=0.05: photos placed at cost 0, i.e. without a
-roofline, are left out), layers and atlas there (build_atlas writes quality.png for --atlas-fade). Run from the
+roofline, are left out; --alone: so are those whose place a site 10 m away fits as well), layers and atlas there (build_atlas writes quality.png for --atlas-fade; --people-band=2.2: street photos do not paint the lowest 2.2 m of wall). Run from the
 repository root with packages/pipeline's Python, under the host's resource limits (an atlas: up to 20 GB).
 """
 import json
@@ -34,7 +34,7 @@ def main() -> None:
             (w / "sfm" / "models.json").symlink_to(src / "sfm" / "models.json")
         for step in ("world", "layers", "atlas"):
             subprocess.run([sys.executable, "-u", str(BEFORE / "atlas_before.py"), step, name, f"--root={HERE / 'work'}",
-                            "--min-cost=0.05"], check=True)
+                            "--min-cost=0.05", "--alone", "--people-band=2.2"], check=True)
 
 
 if __name__ == "__main__":

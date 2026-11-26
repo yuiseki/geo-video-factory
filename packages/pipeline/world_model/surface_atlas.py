@@ -238,6 +238,20 @@ def observe(image, points, normal, cam, depth, scale=0.25, min_cos=0.12, slack=(
     return colours, weight
 
 
+def people_band(points, cam, ground, band=2.2, street=4.0, near=2.0):
+    """True where a photo taken from the street should not paint the wall: the lowest `band` metres above `ground`,
+    more than `near` metres away, when the eye is less than `street` metres above the ground.
+
+    People, cars and stalls stand in that strip in a street photo, and the city model has none of them, so their
+    colours would land on the wall behind (Shibuya's 109 at night took a whole face of crowd from one photo)."""
+    points = np.asarray(points, float)
+    eye = np.asarray(cam["eye"], float)
+    if band <= 0 or eye[2] >= ground + street:
+        return np.zeros(points.shape[:-1], bool)
+    far = np.hypot(points[..., 0] - eye[0], points[..., 1] - eye[1]) > near
+    return (points[..., 2] < ground + band) & far
+
+
 def texel_quality(weights, texel):
     """How well each texel was seen, 0..1: photo pixels across one texel side in its best photo, capped at 1.
 

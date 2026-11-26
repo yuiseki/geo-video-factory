@@ -10,6 +10,7 @@ from PIL import Image
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from geo import photo_place as pp  # noqa: E402
+from geo import corner_match as cm  # noqa: E402
 from geo import skyline_match as sm  # noqa: E402
 
 BINS = 360
@@ -40,6 +41,17 @@ def photograph(tris, eye, heading, pitch, roll, hfov, size=(360, 240)):
     sky = el > line[np.floor(az / 0.1).astype(int) % 3600]
     rgb = np.where(sky[..., None], np.array([70, 130, 230]), np.array([120, 115, 110])).astype(np.uint8)
     return rgb, sky
+
+
+def canyon_photograph(tris, eye, heading, pitch, hfov, size=(360, 240)):
+    """A photo without sky: the walls change brightness at every corner the camera can see (a vertical edge of the
+    world), nothing else."""
+    w, h = size
+    f = w / 2 / np.tan(np.radians(hfov) / 2)
+    az, _ = sm.pixel_rays(w, h, f, w / 2, h / 2, 0.0, pp.camera(heading, pitch, 0.0), step=1)
+    corners = np.flatnonzero(cm.model_corners(cm.prepare(tris, eye[2] + 3), eye, bins=3600)) * 0.1
+    passed = (az[..., None] >= corners).sum(-1)
+    return (100 + 60 * (passed % 2)).astype(float), np.zeros((h, w), bool)
 
 
 class SpanTests(unittest.TestCase):
@@ -144,6 +156,16 @@ class SearchTests(unittest.TestCase):
         self.assertAlmostEqual(best["cost"], float(np.nanmin(cost)))
         self.assertLess(best["cost"], 0.5)
 
+    def test_corners_place_a_photo_without_sky(self):
+        gray, nosky = canyon_photograph(self.tris, self.eye, 8.0, 12.0, 70.0)
+        corners = dict(prep=cm.prepare(self.tris, 4.6), gray=gray, weight=2.0)
+        with self.assertRaises(SystemExit):                     # no roofline: the skyline alone refuses
+            pp.search(self.edges, nosky, self.places, self.poses, bins=BINS, workers=None, min_sky=10)
+        best, _, _ = pp.search(self.edges, nosky, self.places, self.poses, bins=BINS, workers=None, min_sky=10,
+                               corners=corners)
+        self.assertLessEqual(np.hypot(best["east"] - 4, best["north"] + 6), 2.0)
+        self.assertLessEqual(abs((best["heading"] - 8.0 + 180) % 360 - 180), 1.0)
+
     def test_worker_processes_give_the_same_answer(self):
         alone = pp.search(self.edges, self.sky, self.places, self.poses, bins=BINS, workers=None)
         pooled = pp.search(self.edges, self.sky, self.places, self.poses, bins=BINS, workers=(2, 2))
@@ -173,6 +195,14 @@ class SearchTests(unittest.TestCase):
             for b in rivals[:i]:
                 self.assertGreaterEqual(np.hypot(a["east"] - b["east"], a["north"] - b["north"]), 10.0)
         self.assertEqual(set(rivals[0]), {"east", "north", "cost", "heading", "pitch", "hfov"})
+
+    def test_a_place_is_alone_when_no_place_10_m_away_fits_as_well(self):
+        r = lambda c: dict(east=0.0, north=0.0, cost=c, heading=0.0, pitch=0.0, hfov=60.0)
+        self.assertTrue(pp.alone([r(0.59), r(0.97)]))
+        self.assertTrue(pp.alone([r(1.08), r(1.112)]))         # 3 % apart: a choice was made
+        self.assertFalse(pp.alone([r(0.0), r(0.0)]))           # no sky: every place fits
+        self.assertFalse(pp.alone([r(1.914), r(1.922)]))       # within 1 %: a tie
+        self.assertFalse(pp.alone([r(0.5)]))                   # nothing to compare with
 
     def test_the_fine_search_is_half_a_metre_and_half_a_degree_around_the_coarse_answer(self):
         coarse = dict(east=4.0, north=-6.0, up=1.6, pitch=12.0, roll=0.0, hfov=70.0)
@@ -223,6 +253,7 @@ class PlaceTests(unittest.TestCase):
         self.assertAlmostEqual(saved["ground"], 0.0)
         self.assertEqual(saved["eye_height"], 1.6)
         self.assertGreaterEqual(len(saved["rivals"]), 1)
+        self.assertEqual(saved["alone"], pp.alone(saved["rivals"]))
 
     def test_cams_json_is_what_the_projection_reads(self):
         cams = json.loads((self.out / "cams.json").read_text())

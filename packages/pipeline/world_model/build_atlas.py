@@ -1,10 +1,12 @@
-"""python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0]
-       [--only=<word in the camera key>,...] <cams.json>...
+"""python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0] [--people-band=metres] [--ground-z=<the building's lowest point>] [--without=<buildings.npz>:<name>,...]
+       [--only=<word in the camera key>,...] [--skip=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
 Writes atlas.png, seen.png (how many photos saw each texel), quality.png (how well the best photo saw it, 0..255:
 photo pixels across a texel, surface_atlas.texel_quality), model.obj, model.mtl and report.json.
 --fuse=face (default) takes each face from as few photos as possible; median blends them (surface_atlas.fuse).
+--people-band=2.2 keeps photos taken from the street (eye < ground + 4 m) off the lowest 2.2 m of wall, where
+people and cars stand in front of it (surface_atlas.people_band).
 Texels that no photo saw are grey in atlas.png and are counted in report.json; they are not made up."""
 import json
 import sys
@@ -15,11 +17,31 @@ from PIL import Image
 
 from photos import photo_guard
 from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
+from world_model import atlas_views
 from world_model import surface_atlas as sa
 
 Image.MAX_IMAGE_PIXELS = None
 UNSEEN = (128, 128, 128)
 ROOF = (92, 92, 96)
+
+
+def drop_shared(tris, others, tol=0.05):
+    """tris (n, 3, 3) without those whose centroid lies within tol metres of a triangle of any of `others`: a group
+    atlas ("around") leaves the walls of the buildings that have their own atlas to them, so the two never overlap."""
+    tris = np.asarray(tris, float)
+    others = [np.asarray(o, float) for o in others if len(o)]
+    if not others:
+        return tris
+    from scipy.spatial import cKDTree
+    d, _ = cKDTree(np.concatenate([o.mean(axis=1) for o in others])).query(tris.mean(axis=1))
+    return tris[d > tol]
+
+
+def pick_cams(cams, only=None, skip=None):
+    """The cameras whose key holds a word of `only` (all when None) and no word of `skip` (comma separated)."""
+    def holds(key, words):
+        return any(w in key for w in words.split(",") if w)
+    return {k: c for k, c in cams.items() if (only is None or holds(k, only)) and not (skip and holds(k, skip))}
 
 
 def main(argv):
@@ -30,7 +52,14 @@ def main(argv):
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     tris = np.load(Path(work) / "buildings.npz")[name].astype(float)
+    if opts.get("without"):      # --without=<buildings.npz>:<name>,...: buildings with their own atlas
+        others = [np.load(f)[k] for f, k in (spec.rsplit(":", 1) for spec in opts["without"].split(","))]
+        before = len(tris)
+        tris = drop_shared(tris, others)
+        print(f"without {before - len(tris)} triangles that other atlases paint", flush=True)
     scene = np.load(scene_path)["tris"].astype(float)
+    band = float(opts.get("people-band", 0))
+    ground = float(opts["ground-z"]) if "ground-z" in opts else float(tris[..., 2].min())   # the building's foot
     groups = sa.planar_faces(tris)
     if "split" in opts:
         # one plane can run through many buildings of a street; cut it into cells so that a chart is not a
@@ -42,8 +71,7 @@ def main(argv):
     cams = {}
     for f in cam_files:
         cams.update(json.loads(Path(f).read_text()))
-    if "only" in opts:
-        cams = {k: c for k, c in cams.items() if any(word in k for word in opts["only"].split(","))}
+    cams = pick_cams(cams, opts.get("only"), opts.get("skip"))
     cams = photo_guard.drop_blocked(cams)              # photo_blocklist.tsv: never paint these
     # every texel that lies on a face, as one long list: the atlas is mostly empty, and one call per photo over
     # the list is far faster than one per face
@@ -79,6 +107,8 @@ def main(argv):
             raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
         depth = sa.depth_buffer(scene, cam)
         colours, weights = sa.observe(image, points, normal_of, cam, depth)
+        if band > 0:      # --people-band: a street photo does not paint the strip where people and cars stand
+            weights = np.where(sa.people_band(points, cam, ground, band), 0.0, weights)
         used[key] = int((weights > 0).sum())
         if used[key]:
             stack.add(colours, weights, view=len(used) - 1)
@@ -134,7 +164,7 @@ def main(argv):
         fused.reshape(-1, 3)[where] = guess
     atlas = np.where(np.isnan(fused), np.array(UNSEEN, np.float32), fused).clip(0, 255).astype(np.uint8)
     Image.fromarray(atlas).save(out / "atlas.png")
-    Image.fromarray((np.clip(count, 0, 5) * 51).astype(np.uint8)).save(out / "seen.png")
+    Image.fromarray(atlas_views.seen_png(count)).save(out / "seen.png")
     Image.fromarray((quality.reshape(rows, width) * 255).round().astype(np.uint8)).save(out / "quality.png")
 
     report = {"building": name, "texel_m": texel, "atlas": [width, rows], "photos": used, "faces": [],

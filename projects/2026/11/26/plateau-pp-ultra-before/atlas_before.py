@@ -14,7 +14,8 @@ under the host's resource limits):
              (the skyline search: today's only way to place a photo on the city without SfM)
     world    world_model/sfm_to_world.py with every anchor -> work/<name>/world/cams.json; when SfM joined fewer than 10
              photos, the photos placed one by one are the cameras instead, but those placed at a cost below
-             --min-cost (0: none; no roofline read, see photo_place --min-sky) are left out
+             --min-cost (0: none; no roofline read, see photo_place --min-sky) are left out, and with --alone those
+             whose place the photo does not decide (geo/photo_place.alone: a place 10 m away fits as well)
     layers   world_model/time_layers.py -> work/<name>/world/layers/cams_<day|dusk|night>.json
     atlas    world_model/build_atlas.py for one building group, "around": every PLATEAU++ triangle within --radius=120 m,
              with the options of Shibuya's CC0 "around" atlas (0.1 m texels, 6 photos per texel, --split=25
@@ -181,12 +182,15 @@ def step_world(name, area, opts):
         cams = {}
         index = json.loads((w / "images.json").read_text())
         floor = float(opts.get("min-cost", 0))
+        from geo.photo_place import alone
         for f in anchors:
-            if floor > 0:
-                cost = json.loads((Path(f).parent / "result.json").read_text())["best"]["cost"]
-                if cost < floor:            # no roofline was read: placed anywhere at cost 0 (photo_place --min-sky)
-                    print("left out, cost", round(cost, 3), Path(f).parent.name)
-                    continue
+            result = json.loads((Path(f).parent / "result.json").read_text())
+            if floor > 0 and result["best"]["cost"] < floor:  # no roofline was read: placed anywhere at cost 0
+                print("left out, cost", round(result["best"]["cost"], 3), Path(f).parent.name)
+                continue
+            if "alone" in opts and not alone(result["rivals"]):
+                print("left out, not alone", Path(f).parent.name)
+                continue
             for key, cam in json.loads(Path(f).read_text()).items():
                 name = Path(f).parent.name + ".jpg"             # the anchor's folder is the image's name: this copy
                 if name not in index:                           # (cam["photo"] may be the store file it linked to)
@@ -205,6 +209,13 @@ def step_world(name, area, opts):
 
 def step_layers(name, area, opts):
     w = work(name)
+    if not json.loads((w / "world" / "cams.json").read_text()):
+        layers = w / "world" / "layers"              # nothing placed: empty layers, not the last run's
+        layers.mkdir(parents=True, exist_ok=True)
+        for t in ("day", "dusk", "night"):
+            (layers / f"cams_{t}.json").write_text("{}\n")
+        print("no photo placed: empty layers")
+        return
     subprocess.run([sys.executable, "-m", "world_model.time_layers", str(w / "world" / "cams.json"),
                     str(w / "world" / "layers"), f"--scene={w / 'tris.npz'}"], check=True, cwd=PIPE)
 
@@ -217,6 +228,10 @@ def step_atlas(name, area, opts):
     group = w / "group"
     group.mkdir(exist_ok=True)
     np.savez(group / "buildings.npz", origin=tris["origin"], around=t[near])
+    band = []
+    if opts.get("people-band"):     # street photos do not paint the strip where people stand (build_atlas)
+        foot = np.quantile(t[np.linalg.norm(t.mean(axis=1)[:, :2], axis=1) < 150][:, :, 2], 0.02)   # as before.py
+        band = [f"--people-band={opts['people-band']}", f"--ground-z={foot:.2f}"]
     for layer in ("day", "night"):
         cams = w / "world" / "layers" / f"cams_{layer}.json"
         if not cams.exists() or not json.loads(cams.read_text()):
@@ -224,7 +239,7 @@ def step_atlas(name, area, opts):
             continue
         subprocess.run([sys.executable, "-u", "-m", "world_model.build_atlas", str(group), "around", str(w / "tris.npz"),
                         str(w / f"atlas_{layer}"), f"--texel={opts.get('texel', 0.1)}", "--width=8192", "--keep=6",
-                        "--patch=3", "--agree=25", "--smooth=2", "--fill=mean", "--split=25", "--changing=45", str(cams)],
+                        "--patch=3", "--agree=25", "--smooth=2", "--fill=mean", "--split=25", "--changing=45", *band, str(cams)],
                        check=True, cwd=PIPE)
 
 
