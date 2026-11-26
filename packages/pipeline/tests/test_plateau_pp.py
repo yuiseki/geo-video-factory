@@ -101,5 +101,55 @@ class CacheDirs(unittest.TestCase):
         self.assertEqual((box, gsi), (Path("/c"), Path("/g")))
 
 
+
+class Build(unittest.TestCase):
+    """build() end to end with every download and heavy step stubbed: what it calls, and what it writes."""
+
+    def run_build(self):
+        out = Path(tempfile.mkdtemp()) / "buildings-x"
+        out.mkdir()
+        (out / "models").mkdir()
+        (out / "models" / "t.glb").write_bytes(b"glb")
+        (out / "manifest.json").write_text(json.dumps({
+            "center": [139.0, 35.0], "tiles": [{"glb": "models/t.glb", "rtc": [0, 0, 0], "ids": ["a", "b"]}]}))
+        heights = {"a": {"lonlat": [139.0, 35.0], "height": 30.0}, "b": {"lonlat": [139.001, 35.0], "height": 6.0}}
+
+        class Photo:
+            def save(self, path, quality=None):
+                Path(path).write_bytes(b"jpg")
+
+        def proxy(footprints, bbox, out_dir, **kw):
+            m = json.loads((Path(out_dir) / "manifest.json").read_text())
+            m.update(tile_count=len(m["tiles"]), city_proxy_building_count=0)
+            return m
+
+        self.ortho = mock.MagicMock(side_effect=AssertionError("the z16 orthophoto is not used any more"))
+        self.palette = mock.MagicMock(side_effect=AssertionError("its colours were overwritten unused"))
+        with tempfile.TemporaryDirectory() as root, mock.patch.dict(os.environ, {"GEO_VIDEO_CACHE": root}), \
+                mock.patch.object(plateau_pp, "fetch_osm_buildings", return_value=[]), \
+                mock.patch("geo.seasonal_ortho.fetch_gsi_ortho_mosaic", self.ortho), \
+                mock.patch("buildings.building_appearance.apply_orthophoto_palette", self.palette), \
+                mock.patch("buildings.gsi_footprints.fetch_gsi_buildings", return_value=[]), \
+                mock.patch("buildings.gsi_footprints.dem_sampler", return_value=lambda lon, lat: 0.0), \
+                mock.patch("buildings.gsi_footprints.orthophoto_texture", return_value=(Photo(), [139.0, 35.0, 139.01, 35.01])), \
+                mock.patch.object(gs, "extract_glb_feature_heights", return_value=heights), \
+                mock.patch.object(gs, "extract_glb_feature_shapes", return_value={}), \
+                mock.patch("buildings.city_proxy.build_city_proxy_tile", side_effect=proxy):
+            m = plateau_pp.build(out, [139.0, 35.0, 139.01, 35.01])
+        return out, m
+
+    def test_no_orthophoto_mosaic_is_fetched_for_facade_colours(self):
+        self.run_build()
+        self.ortho.assert_not_called()
+        self.palette.assert_not_called()
+
+    def test_walls_get_a_colour_from_id_and_height_and_roofs_the_photo(self):
+        from buildings.city_proxy import wall_hex
+        out, m = self.run_build()
+        self.assertEqual(m["tiles"][0]["facade_colors"], [wall_hex("a", 30.0), wall_hex("b", 6.0)])
+        self.assertEqual(m["roof_texture"]["image"], "roof-photo.jpg")
+        self.assertTrue((out / "roof-photo.jpg").exists())
+
+
 if __name__ == "__main__":
     unittest.main()

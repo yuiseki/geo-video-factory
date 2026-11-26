@@ -4,13 +4,15 @@
         [--tileset=<PLATEAU 3D Tiles tileset.json>] [--cache=<dir>] [--gsi-cache=<dir>] [--seed=plateau-pp]
 
 PLATEAU tiles as served and GSI tiles are kept in the shared cache (shared_cache: $GEO_VIDEO_CACHE, or tmp/.cache
-of this repository), so another box or project reuses them; the OSM extract and orthophoto mosaic of this box
-go to --cache (default <out dir>-cache).
+of this repository), so another box or project reuses them; the OSM extract of this box goes to --cache
+(default <out dir>-cache).
 
 1. PLATEAU's building tiles with their own textures (plateau_3d.prepare_tiles).
 2. Buildings that cannot be real are taken out of PLATEAU (plausibility: needles, complexes extruded to
    their tower's height, giant slabs) and listed in the manifest as removed_buildings.
-3. Buildings PLATEAU left untextured get colours from the GSI orthophoto; textured ones are left alone.
+3. Buildings PLATEAU left untextured get a wall colour from their ID and height (city_proxy.wall_hex: tall
+   curtain walls or low houses, the same palette as the filled-in buildings) and the GSI photo (z18, roof-photo.jpg)
+   on their roofs; textured ones are left alone. The renderer applies both only to untextured materials.
 4. Every GSI footprint PLATEAU does not model, including the ones step 2 freed, becomes a filled-in building:
    on the GSI DEM, OSM building:levels before height, otherwise a height calibrated on PLATEAU (city_proxy).
 
@@ -103,8 +105,7 @@ def remove_implausible(plateau_dir: Path, manifest: dict, osm_features: list[dic
 
 
 def cache_dirs(out: Path, cache: Path | None = None, gsi_cache: Path | None = None) -> tuple[Path, Path]:
-    """(files that belong to this box, GSI tiles). The box's OSM extract and orthophoto mosaic sit beside the
-    output in <out>-cache; GSI tiles, the same for every box, go to the shared cache (shared_cache.gsi_dir)."""
+    """(files that belong to this box, GSI tiles). The box's OSM extract sits beside the output in <out>-cache; GSI tiles, the same for every box, go to the shared cache (shared_cache.gsi_dir)."""
     from shared_cache import gsi_dir
     out = Path(out)
     return (Path(cache) if cache else out.parent / (out.name + "-cache"),
@@ -113,13 +114,10 @@ def cache_dirs(out: Path, cache: Path | None = None, gsi_cache: Path | None = No
 
 def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path | None = None,
           seed: str = "plateau-pp", gsi_cache: Path | None = None) -> dict:
-    from buildings.building_appearance import apply_orthophoto_palette
     from buildings.building_heights import calibrate_height_model, footprint_area_m2
     from buildings.city_proxy import build_city_proxy_tile, wall_hex
     from buildings.gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
     from buildings.plateau_3d import prepare_tiles
-    from geo.seasonal_ortho import fetch_gsi_ortho_mosaic
-    from PIL import Image
     from shapely.geometry import Point, shape
     from shapely.strtree import STRtree
 
@@ -136,18 +134,6 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"removed {len(m['removed_buildings'])} implausible PLATEAU buildings", flush=True)
 
-    ortho_bbox = list(bbox)
-    for tile in m["tiles"]:
-        reg = tile.get("region")
-        if isinstance(reg, list) and len(reg) >= 4:
-            ortho_bbox = [min(ortho_bbox[0], math.degrees(reg[0])), min(ortho_bbox[1], math.degrees(reg[1])),
-                          max(ortho_bbox[2], math.degrees(reg[2])), max(ortho_bbox[3], math.degrees(reg[3]))]
-    ortho_png, bounds_json = cache / "ortho.png", cache / "ortho_bounds.json"
-    if not (ortho_png.exists() and bounds_json.exists()):
-        mosaic, ortho_bounds = fetch_gsi_ortho_mosaic(tuple(ortho_bbox), zoom=16)
-        Image.fromarray(mosaic).convert("RGB").save(ortho_png)
-        bounds_json.write_text(json.dumps(ortho_bounds), encoding="utf-8")
-    m = apply_orthophoto_palette(out, ortho_png, bbox_degrees=json.loads(bounds_json.read_text()), seed=seed)
 
     footprints = fetch_gsi_buildings(bbox, gsi)
     ground = dem_sampler(bbox, gsi)
