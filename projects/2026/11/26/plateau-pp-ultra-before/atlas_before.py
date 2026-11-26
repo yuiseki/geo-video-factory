@@ -228,6 +228,10 @@ def step_atlas(name, area, opts):
     group = w / "group"
     group.mkdir(exist_ok=True)
     np.savez(group / "buildings.npz", origin=tris["origin"], around=t[near])
+    band = []
+    if opts.get("people-band"):     # street photos do not paint the strip where people stand (build_atlas)
+        foot = np.quantile(t[np.linalg.norm(t.mean(axis=1)[:, :2], axis=1) < 150][:, :, 2], 0.02)   # as before.py
+        band = [f"--people-band={opts['people-band']}", f"--ground-z={foot:.2f}"]
     for layer in ("day", "night"):
         cams = w / "world" / "layers" / f"cams_{layer}.json"
         if not cams.exists() or not json.loads(cams.read_text()):
@@ -235,7 +239,7 @@ def step_atlas(name, area, opts):
             continue
         subprocess.run([sys.executable, "-u", "-m", "world_model.build_atlas", str(group), "around", str(w / "tris.npz"),
                         str(w / f"atlas_{layer}"), f"--texel={opts.get('texel', 0.1)}", "--width=8192", "--keep=6",
-                        "--patch=3", "--agree=25", "--smooth=2", "--fill=mean", "--split=25", "--changing=45", str(cams)],
+                        "--patch=3", "--agree=25", "--smooth=2", "--fill=mean", "--split=25", "--changing=45", *band, str(cams)],
                        check=True, cwd=PIPE)
 
 
