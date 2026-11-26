@@ -1,5 +1,6 @@
 """Tests for plateau_3d container parsing, metadata IDs, texture handling and the CLI wiring."""
 import contextlib
+import os
 import io
 import json
 import math
@@ -341,7 +342,8 @@ class DefaultFetchTests(unittest.TestCase):
             'https://tiles.example/root.json': json.dumps(tileset).encode(),
             'https://tiles.example/tile.glb': make_glb({'asset': {'version': '2.0'}}),
         }
-        with tempfile.TemporaryDirectory() as directory, \
+        with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as cache, \
+             patch.dict(os.environ, {'GEO_VIDEO_CACHE': cache}), \
              patch.object(plateau_3d, '_default_fetch', side_effect=lambda url: resources[url]) as fetch:
             manifest = plateau_3d.prepare_tiles('https://tiles.example/root.json', BBOX, Path(directory), workers=1)
         self.assertEqual(manifest['tile_count'], 1)

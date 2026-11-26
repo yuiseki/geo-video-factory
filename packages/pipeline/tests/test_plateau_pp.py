@@ -89,5 +89,17 @@ class RoofTexture(unittest.TestCase):
         self.assertAlmostEqual(e["bounds_m"][2] - e["bounds_m"][0], 0.01 * 111320.0 * 0.81915, delta=5)
 
 
+class CacheDirs(unittest.TestCase):
+    def test_gsi_tiles_go_to_the_shared_cache_and_the_box_specific_files_beside_the_output(self):
+        with tempfile.TemporaryDirectory() as root, mock.patch.dict(os.environ, {"GEO_VIDEO_CACHE": root}):
+            box, gsi = plateau_pp.cache_dirs(Path("/x/assets/buildings-a"))
+        self.assertEqual(box, Path("/x/assets/buildings-a-cache"))
+        self.assertEqual(gsi, Path(root) / "gsi")
+
+    def test_explicit_directories_win(self):
+        box, gsi = plateau_pp.cache_dirs(Path("/x/out"), cache=Path("/c"), gsi_cache=Path("/g"))
+        self.assertEqual((box, gsi), (Path("/c"), Path("/g")))
+
+
 if __name__ == "__main__":
     unittest.main()

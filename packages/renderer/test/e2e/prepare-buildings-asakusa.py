@@ -50,6 +50,7 @@ def main() -> None:
         max_texture_dimension=2048,
         far_texture_dimension=1024,
         workers=3,
+        raw_cache=project_dir / "plateau-raw",
     )
     if not manifest.get("tiles"):
         raise RuntimeError("PLATEAU preparation produced no building tiles")

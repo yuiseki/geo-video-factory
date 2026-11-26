@@ -1,7 +1,11 @@
 """PLATEAU++: PLATEAU's own buildings and textures, synthesized only where PLATEAU has none.
 
     OVERPASS_URL=<your Overpass> python -m buildings.plateau_pp <out dir> --bbox=w,s,e,n
-        [--tileset=<PLATEAU 3D Tiles tileset.json>] [--cache=<dir>] [--seed=plateau-pp]
+        [--tileset=<PLATEAU 3D Tiles tileset.json>] [--cache=<dir>] [--gsi-cache=<dir>] [--seed=plateau-pp]
+
+PLATEAU tiles as served and GSI tiles are kept in the shared cache (shared_cache: $GEO_VIDEO_CACHE, or tmp/.cache
+of this repository), so another box or project reuses them; the OSM extract and orthophoto mosaic of this box
+go to --cache (default <out dir>-cache).
 
 1. PLATEAU's building tiles with their own textures (plateau_3d.prepare_tiles).
 2. Buildings that cannot be real are taken out of PLATEAU (plausibility: needles, complexes extruded to
@@ -98,8 +102,17 @@ def remove_implausible(plateau_dir: Path, manifest: dict, osm_features: list[dic
     return manifest
 
 
+def cache_dirs(out: Path, cache: Path | None = None, gsi_cache: Path | None = None) -> tuple[Path, Path]:
+    """(files that belong to this box, GSI tiles). The box's OSM extract and orthophoto mosaic sit beside the
+    output in <out>-cache; GSI tiles, the same for every box, go to the shared cache (shared_cache.gsi_dir)."""
+    from shared_cache import gsi_dir
+    out = Path(out)
+    return (Path(cache) if cache else out.parent / (out.name + "-cache"),
+            Path(gsi_cache) if gsi_cache else gsi_dir())
+
+
 def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path | None = None,
-          seed: str = "plateau-pp") -> dict:
+          seed: str = "plateau-pp", gsi_cache: Path | None = None) -> dict:
     from buildings.building_appearance import apply_orthophoto_palette
     from buildings.building_heights import calibrate_height_model, footprint_area_m2
     from buildings.city_proxy import build_city_proxy_tile, wall_hex
@@ -111,7 +124,7 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     from shapely.strtree import STRtree
 
     out = Path(out)
-    cache = Path(cache) if cache else out.parent / (out.name + "-cache")
+    cache, gsi = cache_dirs(out, cache, gsi_cache)
     cache.mkdir(parents=True, exist_ok=True)
     if not (out / "manifest.json").exists():
         m = prepare_tiles(tileset, bbox, out, max_texture_dimension=2048, far_texture_dimension=1024, workers=3)
@@ -136,8 +149,8 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
         bounds_json.write_text(json.dumps(ortho_bounds), encoding="utf-8")
     m = apply_orthophoto_palette(out, ortho_png, bbox_degrees=json.loads(bounds_json.read_text()), seed=seed)
 
-    footprints = fetch_gsi_buildings(bbox, cache / "gsi")
-    ground = dem_sampler(bbox, cache / "gsi")
+    footprints = fetch_gsi_buildings(bbox, gsi)
+    ground = dem_sampler(bbox, gsi)
     plateau = {}
     for tile in m["tiles"]:
         plateau.update(glb_spatial.extract_glb_feature_heights((out / tile["glb"]).read_bytes(), tile["rtc"], tile["ids"]))
@@ -153,7 +166,7 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
         tile["facade_colors"] = [wall_hex(str(i), plateau.get(str(i), {}).get("height", 6.0)) for i in tile["ids"]]
     (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    roof, roof_bounds = orthophoto_texture(bbox, cache / "gsi", zoom=18)
+    roof, roof_bounds = orthophoto_texture(bbox, gsi, zoom=18)
     roof.save(out / "roof-photo.jpg", quality=90)
     removed = m.get("removed_buildings", [])
     m = build_city_proxy_tile(
@@ -175,7 +188,8 @@ def main(argv: list[str]) -> None:
     opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
     out = Path([a for a in argv if not a.startswith("--")][0]).resolve()
     build(out, [float(v) for v in opts["bbox"].split(",")], opts.get("tileset", TOKYO_2025),
-          Path(opts["cache"]).resolve() if "cache" in opts else None, opts.get("seed", "plateau-pp"))
+          Path(opts["cache"]).resolve() if "cache" in opts else None, opts.get("seed", "plateau-pp"),
+          Path(opts["gsi-cache"]).resolve() if "gsi-cache" in opts else None)
 
 
 if __name__ == "__main__":

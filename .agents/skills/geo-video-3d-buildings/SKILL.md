@@ -9,6 +9,7 @@ PLATEAU を主役に、欠損を OSM と地理院オルソで補い、動画レ�
 
 「PLATEAU を描いて」は、例外の注文が無い限り、この PLATEAU++ (元のモデルと元のテクスチャ、テクスチャが無い建物だけオルソで合成、モデルが無い建物だけ OSM などで合成) を指す。定義は `AGENTS.md`。
 作るのは `python -m buildings.plateau_pp` (packages/pipeline、`OVERPASS_URL` 必須)。実在しえない建物は `buildings/plausibility.py` が外す。新しい罠はプロジェクトで手当てせず、そこに規則とテストを足す。
+PLATEAU から取ったままのタイルと地理院タイルは、共有キャッシュ (`$GEO_VIDEO_CACHE`、既定はリポジトリの `tmp/.cache/` の `plateau-raw/` と `gsi/`) に一度だけ取り、別の範囲やプロジェクトでも読み直す。範囲ごとの OSM とオルソのモザイクは `<出力先>-cache` に置く。
 
 ## 責務
 

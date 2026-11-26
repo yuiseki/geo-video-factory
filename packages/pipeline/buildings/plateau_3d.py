@@ -275,14 +275,25 @@ def _default_fetch(url: str) -> bytes:
 def prepare_tiles(
     tileset_url: str, bbox_degrees: list[float], output_dir: Path, *,
     max_texture_dimension: int = 2048, far_texture_dimension: int | None = None,
-    workers: int = 3, fetcher: Callable[[str], bytes] | None = None,
+    workers: int = 3, fetcher: Callable[[str], bytes] | None = None, raw_cache: Path | None = None,
 ) -> dict[str, Any]:
-    """Download intersecting leaf models and write a fixed local manifest."""
+    """Download intersecting leaf models and write a fixed local manifest.
+
+    The served bytes (tileset JSON and tile content) are kept in raw_cache and read from there next time.
+    Without a fetcher, raw_cache defaults to the shared plateau-raw cache (shared_cache), so every
+    project and box reuses the same downloads. A fetcher given without raw_cache is called directly.
+    """
     if max_texture_dimension <= 0 or workers <= 0:
         raise ValueError('max texture dimension and workers must be positive')
     center = [(bbox_degrees[0] + bbox_degrees[2]) / 2, (bbox_degrees[1] + bbox_degrees[3]) / 2]
     far_dim = far_texture_dimension or (1024 if max_texture_dimension == 2048 else max_texture_dimension)
     fetch = fetcher or _default_fetch
+    if raw_cache is None and fetcher is None:
+        from shared_cache import plateau_raw_dir
+        raw_cache = plateau_raw_dir()
+    if raw_cache is not None:
+        from shared_cache import cached_fetch
+        fetch = cached_fetch(fetch, raw_cache)
     models_dir = output_dir / 'models'
     models_dir.mkdir(parents=True, exist_ok=True)
     root = json.loads(fetch(tileset_url))

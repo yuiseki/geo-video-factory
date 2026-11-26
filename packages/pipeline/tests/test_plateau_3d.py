@@ -1,9 +1,11 @@
+import os
 import json
 import math
 import struct
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 from PIL import Image
 import io
 
@@ -89,7 +91,7 @@ class Plateau3DTilesTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'length'):
             plateau_3d.parse_b3dm(struct.pack('<4sIIIIII', b'b3dm', 1, 100, 0, 0, 0, 0))
 
-    def test_prepare_tiles_writes_local_manifest_and_preserves_model_metadata(self):
+    def one_tile_resources(self):
         gltf_json = json.dumps({'asset': {'version': '2.0'}}).encode()
         gltf_json += b' ' * ((-len(gltf_json)) % 4)
         glb_length = 12 + 8 + len(gltf_json)
@@ -107,6 +109,10 @@ class Plateau3DTilesTests(unittest.TestCase):
             },
         }
         resources = {'https://tiles.example/root.json': json.dumps(tileset).encode(), 'https://tiles.example/tile.b3dm': b3dm}
+        return resources
+
+    def test_prepare_tiles_writes_local_manifest_and_preserves_model_metadata(self):
+        resources = self.one_tile_resources()
 
         with tempfile.TemporaryDirectory() as directory:
             manifest = plateau_3d.prepare_tiles(
@@ -119,6 +125,31 @@ class Plateau3DTilesTests(unittest.TestCase):
             self.assertEqual(manifest['tiles'][0]['ids'], ['gml-1'])
             self.assertTrue((Path(directory) / manifest['tiles'][0]['glb']).is_file())
             self.assertEqual(json.loads((Path(directory) / 'manifest.json').read_text())['format'], 'geo-video-factory.plateau-3d/1')
+
+    def test_prepare_tiles_reads_the_raw_tiles_from_the_shared_cache_after_the_first_download(self):
+        resources = self.one_tile_resources()
+        calls = []
+
+        def fetch(url):
+            calls.append(url)
+            return resources[url]
+
+        with tempfile.TemporaryDirectory() as raw, tempfile.TemporaryDirectory() as a, tempfile.TemporaryDirectory() as b:
+            first = plateau_3d.prepare_tiles('https://tiles.example/root.json', [139.75, 35.65, 139.85, 35.75], Path(a),
+                                             fetcher=fetch, raw_cache=Path(raw))
+            second = plateau_3d.prepare_tiles('https://tiles.example/root.json', [139.70, 35.60, 139.80, 35.70], Path(b),
+                                              fetcher=lambda url: self.fail(f'fetched {url} again'), raw_cache=Path(raw))
+        self.assertEqual(sorted(calls), ['https://tiles.example/root.json', 'https://tiles.example/tile.b3dm'])
+        self.assertEqual(first['tiles'][0]['source_sha256'], second['tiles'][0]['source_sha256'])
+
+    def test_prepare_tiles_without_a_fetcher_uses_the_shared_plateau_raw_cache(self):
+        resources = self.one_tile_resources()
+        with tempfile.TemporaryDirectory() as root, tempfile.TemporaryDirectory() as out, \
+                patch.dict(os.environ, {'GEO_VIDEO_CACHE': root}), \
+                patch.object(plateau_3d, '_default_fetch', lambda url: resources[url]):
+            plateau_3d.prepare_tiles('https://tiles.example/root.json', [139.75, 35.65, 139.85, 35.75], Path(out))
+            cached = sorted(p.suffix for p in (Path(root) / 'plateau-raw').rglob('*') if p.is_file())
+        self.assertEqual(cached, ['.b3dm', '.json'])
 
     def test_prepare_tiles_records_feature_centroids_from_batched_glb(self):
         from buildings.building_appearance import _ecef
