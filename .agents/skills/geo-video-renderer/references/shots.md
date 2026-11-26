@@ -54,7 +54,7 @@ bearing は近い向きに回る (350 度 → 10 度は 20 度だけ回る)。
 { "type": "polygon", "coords": [[lng, lat], ..., 最初の点], "fill": "#4aa3ff", "fillOpacity": 0.35, "outline": "#ffffff", "width": 4 }
 { "type": "label", "at": [lng, lat], "text": "大沢崩れ", "dot": true }
 { "type": "label", "at": [lng, lat], "text": "建物名", "style": "tag", "offset": [0, -70] }
-{ "type": "label", "at": [lng, lat], "text": "鉱山", "style": "tag", "offset": [0, -90], "leader": true }
+{ "type": "label", "at": [lng, lat], "text": "鉱山", "style": "tag", "color": "#ff6b35", "offset": [0, -90], "leader": true }
 { "type": "label", "screen": [190, 70], "text": "1974〜78年", "style": "tag" }
 { "type": "counter", "screen": [70, 120], "caption": "谷の長さ", "prefix": "約", "value": 2, "unit": "km" }
 { "type": "counter", "value": 1969, "from": 1950, "grouping": false, "unit": "年", "countUp": [0.2, 0.7] }
@@ -65,6 +65,8 @@ bearing は近い向きに回る (350 度 → 10 度は 20 度だけ回る)。
 { "type": "quote", "source": "帝国データバンク", "date": "2026-11-03", "text": "記事の一文", "screen": [70, 160], "width": 780 }
 { "type": "quote", "source": "…", "text": "要約した内容", "marks": false }
 { "type": "panel", "src": "assets/chart.png", "caption": "図の見出し", "credit": "出典", "screen": [1090, 150], "width": 780 }
+{ "type": "panel", "src": "assets/document.jpg", "caption": "史料の見出し", "credit": "出典", "fullscreen": true }
+{ "type": "panel", "src": "assets/document.jpg", "caption": "地図から全面へ展開・縮小", "credit": "出典", "screen": [1260, 180], "width": 520, "expand": [0.25, 0.40], "collapse": [0.75, 0.90] }
 { "type": "chart", "caption": "見出し", "credit": "出典", "points": [["2021-01", 158], ["2026-09", 180]], "ymin": 145, "ymax": 192, "yticks": [150, 170, 190], "unit": "円", "labels": [0, 1], "xlabels": [["2021", 0], ["2026", 1]], "drawSec": 3 }
 { "type": "sticker", "src": "assets/irasutoya/ramen_moyashi.png", "screen": [1500, 400], "width": 280, "credit": "イラスト：いらすとや" }
 { "type": "base", "layer": "gazo1", "show": [0.45, 1], "fade": 0.2 }

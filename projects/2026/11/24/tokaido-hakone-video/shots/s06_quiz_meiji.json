@@ -1,0 +1,52 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 10,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.8,
+  "hillshade": 0.38,
+  "saturation": -0.58,
+  "contrast": 0.14,
+  "credits": [
+    "地理院タイル（シームレス空中写真・標高タイル）",
+    "路線データ：OpenStreetMap (ODbL)／標高は現代のDEMによる計算値"
+  ],
+  "shots": [
+    {
+      "duration": 2.0,
+      "tint": 0.68,
+      "from": {
+        "center": [
+          139.04,
+          35.23
+        ],
+        "zoom": 10.5,
+        "pitch": 52,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.04,
+          35.23
+        ],
+        "zoom": 10.5,
+        "pitch": 52,
+        "bearing": -15
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/quiz_meiji_route.png",
+          "caption": "クイズ：明治の東海道線はどこを通った？",
+          "credit": "1889年（明治22年）開業時の幹線ルート",
+          "screen": [
+            280,
+            90
+          ],
+          "width": 1360
+        }
+      ]
+    }
+  ]
+}
