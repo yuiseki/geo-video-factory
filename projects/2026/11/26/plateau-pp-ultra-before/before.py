@@ -60,6 +60,9 @@ def before_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], lis
     return [], atlases, grounds
 
 
+VIEWS = ("aerial", "roof", "street")
+
+
 def render_area(area: dict, r: float, out: Path, layers=before_layers, views=HERE / "render_views.py") -> None:
     """One area's scene, day and night, and its views into out/ (rebuilt): what layers() says goes on PLATEAU++."""
     lon, lat = area["center"]
@@ -83,9 +86,11 @@ def render_area(area: dict, r: float, out: Path, layers=before_layers, views=HER
         subprocess.run(["blender", "-b", "--factory-startup", "-P",
                         str(REPO / "packages/pipeline/world_model/pp_scene.py"), "--", *args],
                        check=True, stdout=open(out / f"{t}_scene.log", "w"), stderr=subprocess.STDOUT)
-        subprocess.run(["blender", "-b", str(out / f"{t}.blend"), "-P", str(views), "--",
-                        str(out / "scene.json"), str(out), t],
-                       check=True, stdout=open(out / f"{t}_render.log", "w"), stderr=subprocess.STDOUT)
+        with open(out / f"{t}_render.log", "w") as log:
+            for view in VIEWS:       # one Blender per view: EEVEE in one session sometimes drew the previous camera
+                subprocess.run(["blender", "-b", str(out / f"{t}.blend"), "-P", str(views), "--",
+                                str(out / "scene.json"), str(out), t, view],
+                               check=True, stdout=log, stderr=subprocess.STDOUT)
         print(f"   {t}: rendered", flush=True)
 
 

@@ -1,4 +1,7 @@
-"""Three views of an area's scene (blender -b <scene.blend> -P render_views.py -- <scene.json> <out dir> <day|night>).
+"""Views of an area's scene (blender -b <scene.blend> -P render_views.py -- <scene.json> <out dir> <day|night> [view]).
+
+Without a view, all three are drawn in this one Blender; before.py runs one Blender per view, because EEVEE in the
+background sometimes drew a view from the previous camera (and re-rendering in the same session did not always help).
 
 aerial: 300 m out and 250 m up, looking at the centre; roof: 90 m out and 45 m up; street: eye 1.6 m above the
 ground, looking along street_bearing, from the point within 80 m of the centre (10 m grid) that sees farthest along
@@ -16,6 +19,7 @@ from mathutils import Vector
 argv = sys.argv[sys.argv.index("--") + 1:]
 info = json.loads(Path(argv[0]).read_text())
 out, tag = Path(argv[1]), argv[2]
+only = argv[3] if len(argv) > 3 else None
 g = info["ground_z"]
 b = math.radians(info["area"].get("street_bearing", 0))
 ahead = Vector((math.sin(b), math.cos(b), 0))
@@ -45,10 +49,12 @@ views = {
     "street": (street, street + ahead * 100 + Vector((0, 0, 6)), 70),
 }
 cam = sc.camera
-previous = b""
+previous = []
 cam.data.sensor_fit = "HORIZONTAL"
 cam.data.clip_start, cam.data.clip_end = 0.3, 6000
 for name, (eye, target, fov) in views.items():
+    if only and name != only:
+        continue
     cam.location = eye
     cam.rotation_euler = (target - eye).to_track_quat("-Z", "Y").to_euler()
     cam.data.angle = math.radians(fov)
@@ -58,11 +64,14 @@ for name, (eye, target, fov) in views.items():
     sc.render.filepath = str(out / f"{tag}_{name}.png")
     for attempt in range(2):
         bpy.ops.render.render(write_still=True)
-        pixels = Path(sc.render.filepath).read_bytes()
-        if pixels != previous:
+        small = Path(sc.render.filepath)
+        img = bpy.data.images.load(str(small), check_existing=False)
+        now = list(img.pixels[::4096])         # a sparse sample is enough to tell two views apart
+        bpy.data.images.remove(img)
+        if not previous or sum(abs(a - b) for a, b in zip(now, previous)) / len(now) > 0.002:
             break
         print("same image as the previous view, drawing again:", name)
     else:
         raise SystemExit(f"{name}: EEVEE drew the previous view twice")
-    previous = pixels
+    previous = now
     print("wrote", sc.render.filepath)
