@@ -41,42 +41,60 @@ def ground_of(area: dict, bbox: list[float]) -> float:
     return dem_sampler(bbox, gsi_dir())(*area["center"]) + GEOID_M
 
 
+def bbox_of(area: dict, r: float) -> list[float]:
+    lon, lat = area["center"]
+    dlon, dlat = r / (111320 * 0.8147), r / 110950
+    return [round(lon - dlon, 6), round(lat - dlat, 6), round(lon + dlon, 6), round(lat + dlat, 6)]
+
+
+def before_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], list[str], list[str]]:
+    """(extra pp_scene options, photo atlases, ground models) of the world model as it is today."""
+    atlases, grounds = [], []
+    own = HERE / "work" / area["name"] / f"atlas_{t}" / "model.obj"     # atlas_before.py's atlas of this area
+    if own.exists():
+        atlases.append(str(own))
+    if area.get("world_model"):
+        wm = REPO / area["world_model"]
+        atlases += [str(wm / a.format(t=t) / "model.obj") for a in ATLASES]
+        grounds.append(str(wm / f"ground_above_{t}_cc0_v1" / "model.obj"))
+    return [], atlases, grounds
+
+
+def render_area(area: dict, r: float, out: Path, layers=before_layers, views=HERE / "render_views.py") -> None:
+    """One area's scene, day and night, and its views into out/ (rebuilt): what layers() says goes on PLATEAU++."""
+    lon, lat = area["center"]
+    bbox = bbox_of(area, r)
+    pp = cached(bbox)
+    ground = ground_of(area, bbox)
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir(parents=True)
+    info = {"area": area, "bbox": bbox, "plateau_pp": str(pp.relative_to(REPO)), "ground_z": round(ground, 2)}
+    (out / "scene.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    print(f"== {area['name']}: ground {ground:.1f} m, PLATEAU++ {pp.name}", flush=True)
+    for t in ("day", "night"):
+        extra, atlases, grounds = layers(area, t, bbox)
+        args = [str(out / f"{t}.blend"), str(pp / "manifest.json"), f"--origin={lon},{lat}", "--centre=0,0",
+                f"--radius={r + 150}", f"--ground-z={ground:.2f}"] + (NIGHT if t == "night" else []) + extra
+        if atlases:
+            args.append("--atlas=" + ",".join(atlases))
+        if grounds:
+            args.append("--ground=" + ",".join(grounds))
+        subprocess.run(["blender", "-b", "--factory-startup", "-P",
+                        str(REPO / "packages/pipeline/world_model/pp_scene.py"), "--", *args],
+                       check=True, stdout=open(out / f"{t}_scene.log", "w"), stderr=subprocess.STDOUT)
+        subprocess.run(["blender", "-b", str(out / f"{t}.blend"), "-P", str(views), "--",
+                        str(out / "scene.json"), str(out), t],
+                       check=True, stdout=open(out / f"{t}_render.log", "w"), stderr=subprocess.STDOUT)
+        print(f"   {t}: rendered", flush=True)
+
+
 def main() -> None:
     conf = json.loads((HERE / "areas.json").read_text(encoding="utf-8"))
     names = sys.argv[1:]
-    r = conf["radius_m"]
     for area in conf["areas"]:
-        if names and area["name"] not in names:
-            continue
-        lon, lat = area["center"]
-        dlon, dlat = r / (111320 * 0.8147), r / 110950
-        bbox = [round(lon - dlon, 6), round(lat - dlat, 6), round(lon + dlon, 6), round(lat + dlat, 6)]
-        pp = cached(bbox)
-        ground = ground_of(area, bbox)
-        out = HERE / "out" / area["name"]
-        if out.exists():
-            shutil.rmtree(out)
-        out.mkdir(parents=True)
-        info = {"area": area, "bbox": bbox, "plateau_pp": str(pp.relative_to(REPO)), "ground_z": round(ground, 2)}
-        (out / "scene.json").write_text(json.dumps(info, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
-        print(f"== {area['name']}: ground {ground:.1f} m, PLATEAU++ {pp.name}", flush=True)
-        for t in ("day", "night"):
-            args = [str(out / f"{t}.blend"), str(pp / "manifest.json"), f"--origin={lon},{lat}", "--centre=0,0",
-                    f"--radius={r + 150}", f"--ground-z={ground:.2f}"] + (NIGHT if t == "night" else [])
-            own = HERE / "work" / area["name"] / f"atlas_{t}" / "model.obj"     # atlas_before.py's atlas of this area
-            if own.exists():
-                args.append(f"--atlas={own}")
-            if area.get("world_model"):
-                wm = REPO / area["world_model"]
-                args.append("--atlas=" + ",".join(str(wm / a.format(t=t) / "model.obj") for a in ATLASES))
-                args.append(f"--ground={wm / f'ground_above_{t}_cc0_v1' / 'model.obj'}")
-            subprocess.run(["blender", "-b", "--factory-startup", "-P",
-                            str(REPO / "packages/pipeline/world_model/pp_scene.py"), "--", *args],
-                           check=True, stdout=open(out / f"{t}_scene.log", "w"), stderr=subprocess.STDOUT)
-            subprocess.run(["blender", "-b", str(out / f"{t}.blend"), "-P", str(HERE / "render_views.py"), "--",
-                            str(out / "scene.json"), str(out), t],
-                           check=True, stdout=open(out / f"{t}_render.log", "w"), stderr=subprocess.STDOUT)
-            print(f"   {t}: rendered", flush=True)
+        if not names or area["name"] in names:
+            render_area(area, conf["radius_m"], HERE / "out" / area["name"])
 
 
 if __name__ == "__main__":

@@ -15,8 +15,10 @@ under the host's resource limits):
     world    world_model/sfm_to_world.py with every anchor -> work/<name>/world/cams.json; when SfM joined fewer than 10
              photos, the photos placed one by one are the cameras instead
     layers   world_model/time_layers.py -> work/<name>/world/layers/cams_<day|dusk|night>.json
-    atlas    world_model/build_atlas.py for one building group, "around": every PLATEAU++ triangle within --radius=150 m,
-             with the options the Shibuya CC0 atlases used, for day and night -> work/<name>/atlas_<day|night>/
+    atlas    world_model/build_atlas.py for one building group, "around": every PLATEAU++ triangle within --radius=120 m,
+             with the options of Shibuya's CC0 "around" atlas (0.1 m texels, 6 photos per texel, --split=25
+             --changing=45; the per-building options with --eras=2 ran out of 20 GB on 30,000 triangles), for day
+             and night -> work/<name>/atlas_<day|night>/
 
 The sfm step can run on any machine with the repository and a photo store holding the same refs (the image names
 are the refs, so a model made elsewhere reads the same here). before.py adds work/<name>/atlas_<t>/model.obj to the
@@ -200,7 +202,7 @@ def step_atlas(name, area, opts):
     w = work(name)
     tris = np.load(w / "tris.npz")
     t = tris["tris"]
-    near = np.linalg.norm(t.mean(axis=1)[:, :2], axis=1) < float(opts.get("radius", 150))
+    near = np.linalg.norm(t.mean(axis=1)[:, :2], axis=1) < float(opts.get("radius", 120))
     group = w / "group"
     group.mkdir(exist_ok=True)
     np.savez(group / "buildings.npz", origin=tris["origin"], around=t[near])
@@ -210,8 +212,9 @@ def step_atlas(name, area, opts):
             print(f"no {layer} photos: no {layer} atlas")
             continue
         subprocess.run([sys.executable, "-u", "-m", "world_model.build_atlas", str(group), "around", str(w / "tris.npz"),
-                        str(w / f"atlas_{layer}"), "--keep=10", "--patch=3", "--agree=25", "--smooth=2", "--fill=mean",
-                        "--eras=2", "--width=8192", str(cams)], check=True, cwd=PIPE)
+                        str(w / f"atlas_{layer}"), f"--texel={opts.get('texel', 0.1)}", "--width=8192", "--keep=6",
+                        "--patch=3", "--agree=25", "--smooth=2", "--fill=mean", "--split=25", "--changing=45", str(cams)],
+                       check=True, cwd=PIPE)
 
 
 STEPS = {"photos": step_photos, "tris": step_tris, "sfm": step_sfm, "anchors": step_anchors, "world": step_world,
