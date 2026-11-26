@@ -1874,7 +1874,9 @@
           ]
         }
       ],
-      "transition": true
+      "transition": true,
+      "duration": 8.5,
+      "ease": "smooth"
     },
     {
       "from": {
@@ -1973,7 +1975,9 @@
           "pitch": 25,
           "bearing": 0
         }
-      ]
+      ],
+      "duration": 11.0,
+      "ease": "smooth"
     },
     {
       "from": {
@@ -3391,7 +3395,9 @@
           "pitch": 25,
           "bearing": 0
         }
-      ]
+      ],
+      "duration": 8.0,
+      "ease": "smooth"
     },
     {
       "from": {
@@ -3792,7 +3798,9 @@
           ]
         }
       ],
-      "transition": true
+      "transition": true,
+      "duration": 8.5,
+      "ease": "smooth"
     },
     {
       "from": {
@@ -3891,7 +3899,9 @@
           "pitch": 25,
           "bearing": 0
         }
-      ]
+      ],
+      "duration": 11.0,
+      "ease": "smooth"
     },
     {
       "from": {
@@ -5694,8 +5704,8 @@
           "type": "label",
           "text": "コスモスクエア駅",
           "at": [
-            135.4125,
-            34.6427
+            135.4122147,
+            34.6425771
           ],
           "style": "tag",
           "show": [
@@ -5707,8 +5717,8 @@
           "type": "label",
           "text": "大阪南港",
           "at": [
-            135.4125,
-            34.6427
+            135.426,
+            34.63
           ],
           "style": "tag",
           "show": [
@@ -5717,7 +5727,9 @@
           ]
         }
       ],
-      "transition": true
+      "transition": true,
+      "duration": 7.0,
+      "ease": "smooth"
     },
     {
       "from": {
