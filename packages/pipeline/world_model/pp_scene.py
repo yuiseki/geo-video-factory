@@ -4,7 +4,7 @@ usage: blender -b --factory-startup -P pp_scene.py -- <out.blend> <PLATEAU++ man
            [--radius=700] [--centre=10,-20] [--proxy-lift=33.5] [--dim=1.0] [--sky=r,g,b] [--sun=3.0]
            [--atlas=<model.obj>,...] [--ground=<model.obj>,...]
            [--water=<metres above the crossing>] [--water-colour=r,g,b] [--water-roughness=0.03] [--ripple=0.04]
-           [--origin=lon,lat] [--ground-z=52.8] [--baked-look] [--windows=0] [--atlas-fade] [--streets=<crosswalks.json>]
+           [--origin=lon,lat] [--ground-z=52.8] [--baked-look] [--windows=0] [--atlas-fade] [--atlas-min-views=1] [--streets=<crosswalks.json>]
            [--lamps=<lamps.json>] [--lamp-radius=250] [--lamp-watts=1500]
 
 --baked-look draws PLATEAU++ v0.1.0 as it was baked (unlit_baked: base colour as wired, window pattern x wall colour,
@@ -12,6 +12,7 @@ window lights at --windows); without it, the first image of each material is dra
 
 --atlas-fade makes an atlas as opaque as its texels were well seen (quality.png from build_atlas: photo pixels across
 a texel, smoothstep 0.15..0.6) instead of showing every texel seen at all (seen.png > 0.05).
+--atlas-min-views=N (with --atlas-fade) also hides texels fewer than N photos saw (world_model/atlas_views.py).
 
 --origin moves the local frame away from the Shibuya crossing (the default) and --ground-z gives that place's
 ground on the ellipsoid, which the road plane under everything and --water start from.
@@ -41,6 +42,7 @@ from mathutils import Matrix
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipeline
 from buildings import blender_geo as bg  # noqa: E402
+from world_model import atlas_views  # noqa: E402
 
 argv = sys.argv[sys.argv.index("--") + 1:]
 opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))   # --flag or --key=value
@@ -59,6 +61,7 @@ sc = bpy.context.scene
 
 BAKED_LOOK = "baked-look" in opts
 ATLAS_FADE = "atlas-fade" in opts
+ATLAS_MIN_VIEWS = int(opts.get("atlas-min-views", 1))
 WINDOWS = float(opts.get("windows", 0.0))
 
 
@@ -193,6 +196,22 @@ for path in [p for p in opts.get("atlas", "").split(",") if p]:
                 gt.interpolation_type = "SMOOTHSTEP"
                 gt.inputs["From Min"].default_value, gt.inputs["From Max"].default_value = 0.15, 0.6
                 nt.links.new(seen.outputs["Color"], gt.inputs["Value"])
+                if ATLAS_MIN_VIEWS > 1:
+                    # --atlas-min-views: only texels that many photos saw (seen.png); one photo cannot be checked
+                    views = nt.nodes.new("ShaderNodeTexImage")
+                    views.image = bpy.data.images.load(str(seen_path))
+                    views.image.colorspace_settings.name = "Non-Color"
+                    views.interpolation = "Closest"
+                    nt.links.new(seen.inputs["Vector"].links[0].from_socket, views.inputs["Vector"])
+                    enough = nt.nodes.new("ShaderNodeMath")
+                    enough.operation = "GREATER_THAN"
+                    enough.inputs[1].default_value = atlas_views.views_threshold(ATLAS_MIN_VIEWS)
+                    nt.links.new(views.outputs["Color"], enough.inputs[0])
+                    both = nt.nodes.new("ShaderNodeMath")
+                    both.operation = "MULTIPLY"
+                    nt.links.new(gt.outputs[0], both.inputs[0])
+                    nt.links.new(enough.outputs[0], both.inputs[1])
+                    gt = both
             else:
                 gt = nt.nodes.new("ShaderNodeMath")
                 gt.operation = "GREATER_THAN"

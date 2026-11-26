@@ -15,6 +15,7 @@ from PIL import Image
 
 from photos import photo_guard
 from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
+from world_model import atlas_views
 from world_model import surface_atlas as sa
 
 Image.MAX_IMAGE_PIXELS = None
@@ -134,7 +135,7 @@ def main(argv):
         fused.reshape(-1, 3)[where] = guess
     atlas = np.where(np.isnan(fused), np.array(UNSEEN, np.float32), fused).clip(0, 255).astype(np.uint8)
     Image.fromarray(atlas).save(out / "atlas.png")
-    Image.fromarray((np.clip(count, 0, 5) * 51).astype(np.uint8)).save(out / "seen.png")
+    Image.fromarray(atlas_views.seen_png(count)).save(out / "seen.png")
     Image.fromarray((quality.reshape(rows, width) * 255).round().astype(np.uint8)).save(out / "quality.png")
 
     report = {"building": name, "texel_m": texel, "atlas": [width, rows], "photos": used, "faces": [],
