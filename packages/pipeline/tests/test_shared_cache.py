@@ -15,6 +15,7 @@ class CacheRoot(unittest.TestCase):
             self.assertEqual(shared_cache.cache_root(), Path(d))
             self.assertEqual(shared_cache.plateau_raw_dir(), Path(d) / "plateau-raw")
             self.assertEqual(shared_cache.gsi_dir(), Path(d) / "gsi")
+            self.assertEqual(shared_cache.plateau_pp_dir("0.1.0"), Path(d) / "plateau-pp" / "v0.1.0")
 
     def test_without_it_the_root_is_tmp_cache_of_the_repository(self):
         env = {k: v for k, v in os.environ.items() if k != "GEO_VIDEO_CACHE"}

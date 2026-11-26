@@ -4,6 +4,8 @@ The root is $GEO_VIDEO_CACHE, or tmp/.cache at the top of this repository (tmp/ 
 
     plateau-raw/   PLATEAU 3D Tiles content exactly as served (tileset JSON, b3dm, glb), keyed by URL.
                    Independent of the box and the seed: texture resizing and PLATEAU++ work on copies.
+    plateau-pp/    finished PLATEAU++ builds, v<version>/<key>/ (buildings.plateau_pp.cached): the recipe's version
+                   decides the content, so this is the one place where a directory carries a version.
     gsi/           GSI tiles by kind/z/x/y (building footprints, DEM, photo), as buildings.gsi_footprints
                    lays them out. An empty file records 'no tile here'.
 
@@ -31,6 +33,10 @@ def plateau_raw_dir() -> Path:
 
 def gsi_dir() -> Path:
     return cache_root() / "gsi"
+
+
+def plateau_pp_dir(version: str) -> Path:
+    return cache_root() / "plateau-pp" / f"v{version}"
 
 
 def cached_fetch(fetch: Callable[[str], bytes], cache_dir: Path) -> Callable[[str], bytes]:

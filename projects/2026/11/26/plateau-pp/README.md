@@ -19,9 +19,9 @@ PLATEAU++ (`packages/pipeline/buildings/plateau_pp.py`) の最初の版を定め
    - 元のテクスチャを持つ面には手を付けない。
    - 補完の建物 (city_proxy) も同じ形にそろえ、描画系のシェーダーが読む独自の頂点属性に頼らない。
 4. PLATEAU のタイルが無い範囲でも、地理院の建物外形からの補完だけで作る。
-5. 置き場 (未実装): 完成品は `tmp/.cache/plateau-pp/v0.1.0/<範囲・seed・テクスチャ寸法のハッシュ>/` に作る。見た目が変わる修正をしたら版を上げる。ディレクトリで版を分けるのは、このキャッシュだけ。
+5. 置き場: 完成品は `tmp/.cache/plateau-pp/v0.1.0/<tileset・範囲・seed・テクスチャ寸法のハッシュ>/` に作る (`plateau_pp` を出力先なしで流す)。見た目が変わる修正をしたら `PLATEAU_PP_VERSION` を上げる。ディレクトリで版を分けるのは、このキャッシュだけ。
 
-1〜4 は `plateau_pp` に入った。焼き込んだ GLB は `asset.extras.plateau_pp_bake` に版を持ち、ブラウザのレンダラーはそれを見て、描画時の補正を重ねずにそのまま描く。描画系に残る約束は、上向きの面がアルベドをそのまま返す照明と、夜に `pp-wall-*` の `emissiveFactor` を上げることの 2 つ。
+1〜5 は `plateau_pp` に入った。焼き込んだ GLB は `asset.extras.plateau_pp_bake` に版を持ち、ブラウザのレンダラーはそれを見て、描画時の補正を重ねずにそのまま描く。描画系に残る約束は、上向きの面がアルベドをそのまま返す照明と、夜に `pp-wall-*` の `emissiveFactor` を上げることの 2 つ。
 
 ## 試す範囲
 

@@ -202,5 +202,56 @@ class Build(unittest.TestCase):
         self.assertTrue((out / "roof-photo.jpg").exists())
 
 
+
+class Cached(unittest.TestCase):
+    """cached(): one finished PLATEAU++ per request under tmp/.cache/plateau-pp/v<version>/<key>/."""
+
+    def setUp(self):
+        self.root = tempfile.mkdtemp()
+        self.env = mock.patch.dict(os.environ, {"GEO_VIDEO_CACHE": self.root})
+        self.env.start()
+        self.addCleanup(self.env.stop)
+        self.calls = []
+
+        def build(out, bbox, tileset, cache=None, seed="plateau-pp", gsi_cache=None, bake=True):
+            self.calls.append(Path(out))
+            Path(out).mkdir(parents=True, exist_ok=True)
+            (Path(out) / "manifest.json").write_text(json.dumps({"tiles": [], "plateau_pp": {"version": plateau_pp.PLATEAU_PP_VERSION}}))
+            return {}
+        self.build = mock.patch.object(plateau_pp, "build", side_effect=build)
+        self.build.start()
+        self.addCleanup(self.build.stop)
+
+    def test_the_key_follows_the_request_and_ignores_float_noise(self):
+        k = plateau_pp.cache_key([139.68, 35.688, 139.69, 35.696], plateau_pp.TOKYO_2025, "plateau-pp")
+        self.assertEqual(k, plateau_pp.cache_key([139.6800000001, 35.688, 139.69, 35.696], plateau_pp.TOKYO_2025, "plateau-pp"))
+        self.assertNotEqual(k, plateau_pp.cache_key([139.68, 35.688, 139.69, 35.697], plateau_pp.TOKYO_2025, "plateau-pp"))
+        self.assertNotEqual(k, plateau_pp.cache_key([139.68, 35.688, 139.69, 35.696], plateau_pp.TOKYO_2025, "other"))
+
+    def test_the_first_request_builds_under_the_version_and_the_next_reads_it(self):
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        path = plateau_pp.cached(bbox)
+        self.assertEqual(path.parent, Path(self.root) / "plateau-pp" / f"v{plateau_pp.PLATEAU_PP_VERSION}")
+        self.assertTrue((path / "manifest.json").exists())
+        self.assertEqual(json.loads((path / "request.json").read_text())["bbox"], bbox)
+        self.assertEqual(plateau_pp.cached(bbox), path)
+        self.assertEqual(len(self.calls), 1)
+        self.assertTrue(self.calls[0].name.endswith(".part"))          # built aside, then moved into place
+
+    def test_a_build_left_half_done_is_started_again(self):
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        part = plateau_pp.cache_dir(bbox).with_name(plateau_pp.cache_dir(bbox).name + ".part")
+        part.mkdir(parents=True)
+        (part / "stale").write_text("x")
+        path = plateau_pp.cached(bbox)
+        self.assertFalse((path / "stale").exists())
+        self.assertFalse(part.exists())
+
+    def test_the_command_line_without_an_output_prints_the_cached_build(self):
+        with mock.patch("builtins.print") as printed:
+            plateau_pp.main(["--bbox=139.68,35.688,139.69,35.696"])
+        self.assertEqual(Path(printed.call_args.args[0]), plateau_pp.cache_dir([139.68, 35.688, 139.69, 35.696]))
+
+
 if __name__ == "__main__":
     unittest.main()

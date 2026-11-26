@@ -1,7 +1,10 @@
 """PLATEAU++: PLATEAU's own buildings and textures, synthesized only where PLATEAU has none.
 
-    OVERPASS_URL=<your Overpass> python -m buildings.plateau_pp <out dir> --bbox=w,s,e,n
+    OVERPASS_URL=<your Overpass> python -m buildings.plateau_pp [<out dir>] --bbox=w,s,e,n
         [--tileset=<PLATEAU 3D Tiles tileset.json>] [--cache=<dir>] [--gsi-cache=<dir>] [--seed=plateau-pp] [--no-bake]
+
+Without an output directory the build goes to the shared cache, tmp/.cache/plateau-pp/v<PLATEAU_PP_VERSION>/<key>/
+(cached()), once per version and request, and its path is printed.
 
 PLATEAU tiles as served and GSI tiles are kept in the shared cache (shared_cache: $GEO_VIDEO_CACHE, or tmp/.cache
 of this repository), so another box or project reuses them; the OSM extract of this box goes to --cache
@@ -37,6 +40,7 @@ from buildings.glb_strip import drop_features
 from buildings.plausibility import implausible
 
 TOKYO_2025 = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
+PLATEAU_PP_VERSION = "0.1.0"   # raise when a change alters what a build looks like: cached builds live under it
 
 
 def overpass_endpoint() -> str:
@@ -135,7 +139,7 @@ def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None
             continue
         path.write_bytes(new)
         tile["bytes"], tile["sha256"] = len(new), hashlib.sha256(new).hexdigest()
-    m["plateau_pp"] = {"version": pp_bake.BAKE_VERSION, "baked": True}
+    m["plateau_pp"] = {"version": PLATEAU_PP_VERSION, "baked": True}
 
 
 def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path | None = None,
@@ -206,10 +210,50 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     return m
 
 
+def cache_key(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp") -> str:
+    """What decides a build besides the version: tileset, box (to 1e-6 degrees, about 0.1 m) and seed."""
+    import hashlib
+    request = {"tileset": tileset, "bbox": [round(float(v), 6) for v in bbox], "seed": seed,
+               "texture": [2048, 1024]}
+    return hashlib.sha256(json.dumps(request, sort_keys=True).encode()).hexdigest()[:16]
+
+
+def cache_dir(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp") -> Path:
+    from shared_cache import plateau_pp_dir
+    return plateau_pp_dir(PLATEAU_PP_VERSION) / cache_key(bbox, tileset, seed)
+
+
+def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp") -> Path:
+    """The finished PLATEAU++ for this request, built once per version in the shared cache.
+
+    It is built into <dir>.part and moved into place when done, so a build stopped half way is never read; a
+    leftover .part is thrown away and the build started again. request.json says what the directory holds.
+    """
+    import shutil
+    final = cache_dir(bbox, tileset, seed)
+    if (final / "manifest.json").exists():
+        return final
+    part = final.with_name(final.name + ".part")
+    if part.exists():
+        shutil.rmtree(part)
+    part.mkdir(parents=True)
+    from shared_cache import cache_root
+    build(part, list(bbox), tileset, cache_root() / "osm" / final.name, seed, None, True)   # OSM does not change with the version
+    (part / "request.json").write_text(json.dumps({"version": PLATEAU_PP_VERSION, "tileset": tileset,
+                                                   "bbox": list(bbox), "seed": seed}, indent=1) + "\n", encoding="utf-8")
+    part.rename(final)
+    return final
+
+
 def main(argv: list[str]) -> None:
     opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))
-    out = Path([a for a in argv if not a.startswith("--")][0]).resolve()
-    build(out, [float(v) for v in opts["bbox"].split(",")], opts.get("tileset", TOKYO_2025),
+    bbox = [float(v) for v in opts["bbox"].split(",")]
+    paths = [a for a in argv if not a.startswith("--")]
+    if not paths:                                      # no output named: the versioned shared cache
+        print(cached(bbox, opts.get("tileset", TOKYO_2025), opts.get("seed", "plateau-pp")))
+        return
+    out = Path(paths[0]).resolve()
+    build(out, bbox, opts.get("tileset", TOKYO_2025),
           Path(opts["cache"]).resolve() if "cache" in opts else None, opts.get("seed", "plateau-pp"),
           Path(opts["gsi-cache"]).resolve() if "gsi-cache" in opts else None, bake="no-bake" not in opts)
 

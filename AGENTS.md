@@ -100,7 +100,8 @@ PLATEAU++ は次の優先順位で、カメラに収まる範囲の全建物を�
 3. PLATEAU に建物モデルが無い所だけ、OpenStreetMap などから建物を合成する。
 
 - 範囲はカメラの全行程で画面に入る地面から決める。用意した範囲の外が映るところまでカメラを引かない。
-- 作るのは `OVERPASS_URL=<自前> python -m buildings.plateau_pp <出力先> --bbox=w,s,e,n` (packages/pipeline)。プロジェクトで組み立て手順を書き直さず、範囲と seed だけ渡す。手順の解説は `geo-video-3d-buildings` スキル。
+- 作るのは `OVERPASS_URL=<自前> python -m buildings.plateau_pp [<出力先>] --bbox=w,s,e,n` (packages/pipeline)。プロジェクトで組み立て手順を書き直さず、範囲と seed だけ渡す。出力先を省くと、共有キャッシュ `tmp/.cache/plateau-pp/v<版>/<鍵>/` に版ごと・範囲ごとに一度だけ作り、そのパスを表示する。手順の解説は `geo-video-3d-buildings` スキル。
+- PLATEAU++ v0.1.0 からは、屋根の写真、壁の色、窓、色調の補正を GLB に焼き込む。どの glTF の描画系でも同じに見え、レンダラーは焼き込み済みの GLB (`asset.extras.plateau_pp_bake`) を補正せずに描く。見た目が変わる修正をしたら `plateau_pp.PLATEAU_PP_VERSION` を上げる。
 - 実在しえない建物 (床面積 1 m² で高さ 150 m の針、塔の高さで押し出された複合施設、巨大な板) は `buildings/plausibility.py` が PLATEAU から外し、空いた所は補完が埋める。外した建物は manifest の `removed_buildings` に残る。新しい罠に会ったら、プロジェクトで直さず plausibility にテストと規則を足す。
 - 補完の形状は今の実装では地理院の建物外形を使い、高さに OSM の `building:levels` を優先し、無ければ `height` を使う。
 
