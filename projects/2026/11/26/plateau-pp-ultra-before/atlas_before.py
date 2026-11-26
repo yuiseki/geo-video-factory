@@ -15,7 +15,7 @@ under the host's resource limits):
     world    world_model/sfm_to_world.py with every anchor -> work/<name>/world/cams.json; when SfM joined fewer than 10
              photos, the photos placed one by one are the cameras instead
     layers   world_model/time_layers.py -> work/<name>/world/layers/cams_<day|dusk|night>.json
-    atlas    world_model/build_atlas.py for one building group, "around": every PLATEAU++ triangle within 250 m,
+    atlas    world_model/build_atlas.py for one building group, "around": every PLATEAU++ triangle within --radius=150 m,
              with the options the Shibuya CC0 atlases used, for day and night -> work/<name>/atlas_<day|night>/
 
 The sfm step can run on any machine with the repository and a photo store holding the same refs (the image names
@@ -172,8 +172,16 @@ def step_world(name, area, opts):
     if max(summary.values(), default=0) < 10:
         # SfM joined (almost) nothing: the photos placed one by one are the cameras, as photo_place.py left them
         cams = {}
+        index = json.loads((w / "images.json").read_text())
         for f in anchors:
-            cams.update(json.loads(Path(f).read_text()))
+            for key, cam in json.loads(Path(f).read_text()).items():
+                name = Path(f).parent.name + ".jpg"             # the anchor's folder is the image's name: this copy
+                if name not in index:                           # (cam["photo"] may be the store file it linked to)
+                    name = Path(cam["photo"]).name
+                cam["photo"] = str(w / "images" / name)
+                if name in index:
+                    cam["ref"] = index[name]["ref"]
+                cams[key] = cam
         (w / "world").mkdir(exist_ok=True)
         (w / "world" / "cams.json").write_text(json.dumps(cams, indent=1) + "\n")
         print(f"SfM models {summary}: {len(cams)} photos placed one by one are the cameras")
@@ -192,7 +200,7 @@ def step_atlas(name, area, opts):
     w = work(name)
     tris = np.load(w / "tris.npz")
     t = tris["tris"]
-    near = np.linalg.norm(t.mean(axis=1)[:, :2], axis=1) < 250
+    near = np.linalg.norm(t.mean(axis=1)[:, :2], axis=1) < float(opts.get("radius", 150))
     group = w / "group"
     group.mkdir(exist_ok=True)
     np.savez(group / "buildings.npz", origin=tris["origin"], around=t[near])
