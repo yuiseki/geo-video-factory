@@ -1,4 +1,4 @@
-import { labelPosition } from '../overlay-position.js';
+import { hasFullscreenPanel, labelAccent, labelPosition, lerpRect, panelExpandProgress } from '../overlay-position.js';
 import { choroplethDimMultiplier, choroplethHeightExpression } from '../choropleth.js';
 import { choroplethRiseProgress, drawChoroplethLabels, drawChoroplethLegend } from './choropleth-dom.js';
 import {
@@ -126,7 +126,15 @@ export function drawOverlays(si: number, shot: Shot, t: number, pass: 'map' | 'd
   tintEl.style.opacity = String(tint);
   if (pass === 'dom') {
     const hasSub = (shot.overlays || []).some((o) => o.type === 'subtitle');
+    const maxExpand = (shot.overlays || []).reduce((m, o) => {
+      if (o.type === 'panel' && o.fullscreen) return 1;
+      if (o.type === 'panel' && o.expand) return Math.max(m, ease('inOut', panelExpandProgress(o.expand, t, o.collapse)));
+      return m;
+    }, 0);
+    const hideMapCredit = hasFullscreenPanel(shot.overlays || []) || maxExpand >= 0.99;
     const credit = document.getElementById('credit')!;
+    credit.style.display = hideMapCredit ? 'none' : '';
+    credit.style.opacity = hideMapCredit ? '0' : String(1 - maxExpand);
     credit.style.bottom = hasSub ? '196px' : '16px';
     const left = !!spec.reaction && (spec.reaction.side ?? 'right') === 'right';
     Object.assign(
@@ -157,6 +165,7 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
 
   if (o.type === 'label') {
     const labelPos = o.at ? labelPosition(map.project(o.at), scale(), o.offset) : pos(o);
+    const accent = labelAccent(o.color);
     if (o.leader && o.at) {
       const point = map.project(o.at);
       const x = point.x / scale();
@@ -164,11 +173,11 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
       const dx = o.offset?.[0] ?? 0;
       const dy = o.offset?.[1] ?? 0;
       const endY = y + dy + (dy < 0 ? 18 : -18);
-      el('leader', `<svg width="1920" height="1080" style="overflow:visible;pointer-events:none"><path d="M${x},${y} L${x + dx},${endY}" stroke="#182338" stroke-width="7" fill="none"/><path d="M${x},${y} L${x + dx},${endY}" stroke="#ffd36a" stroke-width="3" fill="none"/><circle cx="${x}" cy="${y}" r="7" fill="#ffd36a" stroke="#182338" stroke-width="3"/></svg>`, { left: '0px', top: '0px', opacity: inn(0.15) * out, pointerEvents: 'none' });
+      el('leader', `<svg width="1920" height="1080" style="overflow:visible;pointer-events:none"><path d="M${x},${y} L${x + dx},${endY}" stroke="#182338" stroke-width="7" fill="none"/><path d="M${x},${y} L${x + dx},${endY}" stroke="${esc(accent.leaderStroke)}" stroke-width="3" fill="none"/><circle cx="${x}" cy="${y}" r="7" fill="${esc(accent.leaderStroke)}" stroke="#182338" stroke-width="3"/></svg>`, { left: '0px', top: '0px', opacity: inn(0.15) * out, pointerEvents: 'none' });
     }
     if (o.style === 'tag') {
       const k = 0.5 + 0.5 * easeOutBack(inn(0.45));
-      el('label tag', esc(o.text), { ...labelPos, opacity: inn(0.15) * out, transform: `translate(-50%, -50%) scale(${k})` });
+      el('label tag', esc(o.text), { ...labelPos, ...accent.tagStyle, opacity: inn(0.15) * out, transform: `translate(-50%, -50%) scale(${k})` });
     } else {
       const ring = (ph.since % 1.6) / 1.6;
       const reveal = 100 * (1 - outCubic(inn(0.5, 0.15)));
@@ -274,13 +283,51 @@ function drawMotion(o: Overlay, ph: { since: number; until: number; on: boolean 
             ? 1.02 + 0.08 * p
             : 1.06 - 0.06 * outCubic(inn(1.2)) + 0.03 * clamp01(ph.since / 12);
     const shiftY = o.motion === 'up' ? 12 - 24 * p : o.motion === 'down' ? -12 + 24 * p : 0;
-    el(
-      'panel',
-      (o.caption ? `<span class="cap" style="opacity:${inn(0.3, 0.25)}">${esc(o.caption)}</span>` : '') +
-        `<span class="frame"><img src="/${esc(o.src.replace(/^\/+/, ''))}" style="transform:translateY(${shiftY}px) scale(${zoom})"></span>` +
-        (o.credit ? `<span class="cr" style="opacity:${inn(0.3, 0.4)}">${esc(o.credit)}</span>` : ''),
-      { left: x + 'px', top: y + 'px', width: (o.width ?? 720) + 'px', opacity: out, clipPath: `inset(0 ${wipe}% 0 0)` },
-    );
+    const imgSrc = `/${esc(o.src.replace(/^\/+/, ''))}`;
+    if (o.fullscreen || o.expand) {
+      const exp = o.fullscreen ? 1 : ease('inOut', panelExpandProgress(o.expand, t, o.collapse));
+      const startW = o.width ?? 480;
+      const startH = o.height ?? Math.round(startW * 0.72);
+      const rect = lerpRect({ x, y, w: startW, h: startH }, { x: 0, y: 0, w: 1920, h: 1080 }, exp);
+      const padX = Math.round(14 + 34 * exp);
+      const padTop = Math.round(56 + 36 * exp);
+      const padBot = Math.round(36 + 32 * exp);
+      const capSize = Math.round(22 + 12 * exp);
+      const crSize = Math.round(16 + 5 * exp);
+      const radius = Math.round(14 * (1 - exp));
+      el(
+        'panel-fullscreen',
+        `<img src="${imgSrc}" style="position:absolute;inset:-40px;width:calc(100% + 80px);height:calc(100% + 80px);object-fit:cover;filter:blur(32px) brightness(0.32);opacity:${exp};pointer-events:none">` +
+          `<div style="position:absolute;left:${padX}px;right:${padX}px;top:${padTop}px;bottom:${padBot}px;display:flex;align-items:center;justify-content:center;overflow:hidden">` +
+          `<img src="${imgSrc}" style="max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;box-shadow:0 20px 56px rgba(0,0,0,0.7);transform:translateY(${shiftY}px) scale(${zoom})"></div>` +
+          (o.caption
+            ? `<div style="position:absolute;left:0;right:0;top:0;padding:${Math.round(14 + 12 * exp)}px ${Math.round(18 + 36 * exp)}px;background:linear-gradient(180deg,rgba(8,14,24,0.88),rgba(8,14,24,0));color:#f5f8ff;font-size:${capSize}px;font-weight:700;letter-spacing:0.02em;text-shadow:0 2px 10px rgba(0,0,0,0.75);opacity:${inn(0.3, 0.15)}">${esc(o.caption)}</div>`
+            : '') +
+          (o.credit
+            ? `<div style="position:absolute;right:${Math.round(16 + 32 * exp)}px;bottom:${Math.round(10 + 8 * exp)}px;color:rgba(230,238,250,0.86);font-size:${crSize}px;text-shadow:0 1px 6px rgba(0,0,0,0.85);opacity:${inn(0.3, 0.25)}">${esc(o.credit)}</div>`
+            : ''),
+        {
+          left: rect.x + 'px',
+          top: rect.y + 'px',
+          width: rect.w + 'px',
+          height: rect.h + 'px',
+          background: `rgba(11,17,27,${0.92 + 0.08 * exp})`,
+          borderRadius: radius + 'px',
+          border: exp < 0.99 ? `2px solid rgba(255,255,255,${0.28 * (1 - exp)})` : 'none',
+          boxShadow: exp < 0.99 ? `0 18px 44px rgba(0,0,0,${0.65 * (1 - exp)})` : 'none',
+          overflow: 'hidden',
+          opacity: inn(0.2) * out,
+        },
+      );
+    } else {
+      el(
+        'panel',
+        (o.caption ? `<span class="cap" style="opacity:${inn(0.3, 0.25)}">${esc(o.caption)}</span>` : '') +
+          `<span class="frame"><img src="${imgSrc}" style="transform:translateY(${shiftY}px) scale(${zoom})"></span>` +
+          (o.credit ? `<span class="cr" style="opacity:${inn(0.3, 0.4)}">${esc(o.credit)}</span>` : ''),
+        { left: x + 'px', top: y + 'px', width: (o.width ?? 720) + 'px', opacity: out, clipPath: `inset(0 ${wipe}% 0 0)` },
+      );
+    }
   } else if (o.type === 'chart') {
     drawChart(o, ph, inn, out);
   } else if (o.type === 'sticker') {

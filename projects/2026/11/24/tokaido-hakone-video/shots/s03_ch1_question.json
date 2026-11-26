@@ -1,0 +1,45 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 10,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.8,
+  "hillshade": 0.38,
+  "saturation": -0.58,
+  "contrast": 0.14,
+  "credits": [
+    "地理院タイル（シームレス空中写真・標高タイル）",
+    "路線データ：OpenStreetMap (ODbL)／標高は現代のDEMによる計算値"
+  ],
+  "shots": [
+    {
+      "duration": 2.0,
+      "from": {
+        "center": [
+          139.03,
+          35.24
+        ],
+        "zoom": 10.8,
+        "pitch": 52,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.03,
+          35.24
+        ],
+        "zoom": 10.8,
+        "pitch": 52,
+        "bearing": -15
+      },
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "第1章",
+          "text": "そもそも、歩く人間にとって箱根は近道だったのか？"
+        }
+      ]
+    }
+  ]
+}

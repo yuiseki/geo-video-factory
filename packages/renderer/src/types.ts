@@ -136,6 +136,7 @@ export interface LabelOverlay {
   at?: LngLat;
   screen?: [number, number];
   style?: string;
+  color?: string;
   dot?: boolean;
   show?: TimeWindow;
   fade?: number;
@@ -215,6 +216,10 @@ export interface PanelOverlay {
   credit?: string;
   screen?: [number, number];
   width?: number;
+  height?: number;
+  fullscreen?: boolean;
+  expand?: TimeWindow;
+  collapse?: TimeWindow;
   motion?: 'still' | 'in' | 'out' | 'up' | 'down';
   show?: TimeWindow;
   fade?: number;

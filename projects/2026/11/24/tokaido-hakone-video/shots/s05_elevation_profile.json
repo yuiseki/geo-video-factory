@@ -1,0 +1,52 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 10,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.8,
+  "hillshade": 0.35,
+  "saturation": -0.15,
+  "contrast": 0.1,
+  "credits": [
+    "地理院タイル（シームレス空中写真・標高タイル）",
+    "路線データ：OpenStreetMap (ODbL)／標高は現代のDEMによる計算値"
+  ],
+  "shots": [
+    {
+      "duration": 2.0,
+      "tint": 0.65,
+      "from": {
+        "center": [
+          139.03,
+          35.23
+        ],
+        "zoom": 10.6,
+        "pitch": 55,
+        "bearing": -25
+      },
+      "to": {
+        "center": [
+          139.03,
+          35.23
+        ],
+        "zoom": 10.6,
+        "pitch": 55,
+        "bearing": -25
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/chart_elevation_compare.png",
+          "caption": "3時代の最高標高と延長の比較",
+          "credit": "国土地理院DEM・OSMより作成（模式図）",
+          "screen": [
+            210,
+            75
+          ],
+          "width": 1500
+        }
+      ]
+    }
+  ]
+}

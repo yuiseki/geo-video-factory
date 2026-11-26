@@ -1,0 +1,203 @@
+{
+  "width": 1280,
+  "height": 720,
+  "fps": 10,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.8,
+  "hillshade": 0.38,
+  "saturation": -0.58,
+  "contrast": 0.14,
+  "credits": [
+    "地理院タイル（シームレス空中写真・標高タイル）",
+    "路線データ：OpenStreetMap (ODbL)／標高は現代のDEMによる計算値"
+  ],
+  "shots": [
+    {
+      "duration": 2.0,
+      "tint": 0.65,
+      "from": {
+        "center": [
+          139.04,
+          35.23
+        ],
+        "zoom": 10.5,
+        "pitch": 55,
+        "bearing": -20
+      },
+      "to": {
+        "center": [
+          139.04,
+          35.23
+        ],
+        "zoom": 10.5,
+        "pitch": 55,
+        "bearing": -20
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/card_contradiction.png",
+          "caption": "2つの意外な事実（新幹線と箱根駅伝の裏側）",
+          "credit": "国土地理院DEM・OSM解析結果より",
+          "fullscreen": true
+        }
+      ]
+    },
+    {
+      "duration": 2.0,
+      "tint": 0.78,
+      "from": {
+        "center": [
+          139.032,
+          35.194
+        ],
+        "zoom": 13.6,
+        "pitch": 60,
+        "bearing": -40
+      },
+      "to": {
+        "center": [
+          139.032,
+          35.194
+        ],
+        "zoom": 13.6,
+        "pitch": 60,
+        "bearing": -40
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/hakone_sekisho_map.jpg",
+          "caption": "史料：箱根関所の構造図（芦ノ湖と屏風山のあいだを封鎖）",
+          "credit": "Wikimedia Commons (Public domain)",
+          "fullscreen": true
+        }
+      ]
+    },
+    {
+      "duration": 2.0,
+      "tint": 0.68,
+      "from": {
+        "center": [
+          139.04,
+          35.23
+        ],
+        "zoom": 10.5,
+        "pitch": 52,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.04,
+          35.23
+        ],
+        "zoom": 10.5,
+        "pitch": 52,
+        "bearing": -15
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/quiz_meiji_route.png",
+          "caption": "クイズ：明治の東海道線はどこを通った？",
+          "credit": "1889年（明治22年）開業時の幹線ルート",
+          "fullscreen": true
+        }
+      ]
+    },
+    {
+      "duration": 2.0,
+      "tint": 0.78,
+      "from": {
+        "center": [
+          139.01,
+          35.33
+        ],
+        "zoom": 11.4,
+        "pitch": 55,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.01,
+          35.33
+        ],
+        "zoom": 11.4,
+        "pitch": 55,
+        "bearing": -15
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/yamakita_d5270.jpg",
+          "caption": "写真：山北駅に保存されている D52 70（日本最大級の貨物用蒸気機関車）",
+          "credit": "Wikimedia Commons (Public domain)",
+          "fullscreen": true
+        }
+      ]
+    },
+    {
+      "duration": 2.0,
+      "tint": 0.68,
+      "from": {
+        "center": [
+          139.03,
+          35.23
+        ],
+        "zoom": 10.6,
+        "pitch": 55,
+        "bearing": -25
+      },
+      "to": {
+        "center": [
+          139.03,
+          35.23
+        ],
+        "zoom": 10.6,
+        "pitch": 55,
+        "bearing": -25
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/chart_elevation_compare.png",
+          "caption": "3時代の最高標高と延長の比較",
+          "credit": "国土地理院DEM・OSMより作成（模式図）",
+          "fullscreen": true
+        }
+      ]
+    },
+    {
+      "duration": 2.0,
+      "tint": 0.78,
+      "from": {
+        "center": [
+          139.015,
+          35.105
+        ],
+        "zoom": 12.2,
+        "pitch": 58,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.015,
+          35.105
+        ],
+        "zoom": 12.2,
+        "pitch": 58,
+        "bearing": -15
+      },
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/tanna_schedule.webp",
+          "caption": "一次資料：鉄道省熱海建設事務所『丹那隧道工事誌』工程図（水抜き坑 14 km 超）",
+          "credit": "鉄道省熱海建設事務所 / Wikimedia Commons (Public domain)",
+          "fullscreen": true
+        }
+      ]
+    }
+  ]
+}
