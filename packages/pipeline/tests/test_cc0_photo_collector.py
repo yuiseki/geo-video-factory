@@ -1,5 +1,6 @@
 import io
 import json
+import os
 import tempfile
 import unittest
 import urllib.error
@@ -31,6 +32,18 @@ class CC0PhotoCollectorTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.mod = import_pipeline("photos.cc0_photo_collector")
+        cls.store = import_pipeline("photos.photo_store")
+
+    def setUp(self):
+        # photos go to the shared store: a fresh one per test, and no real blocklist hit on synthetic images
+        self.cache = tempfile.TemporaryDirectory()
+        self.addCleanup(self.cache.cleanup)
+        env = patch.dict(os.environ, {"GEO_VIDEO_CACHE": self.cache.name})
+        env.start()
+        self.addCleanup(env.stop)
+        guard = patch.object(self.store, "blocked", return_value=None)
+        guard.start()
+        self.addCleanup(guard.stop)
 
     def test_is_strict_cc0_accepts_only_cc0(self):
         m = self.mod
@@ -445,7 +458,11 @@ class CC0PhotoCollectorTests(unittest.TestCase):
                 payload = m.collect_from_config(cfg, out_photos, out_manifest)
                 self.assertEqual(payload["summary"]["total_photos"], 1)
                 self.assertEqual(payload["photos"][0]["spot_slug"], "ginza_wako")
-                self.assertTrue((flyover_dir / payload["photos"][0]["local_path"]).exists())
+                first = payload["photos"][0]
+                self.assertEqual(first["photo"], "commons:Ginza_Wako_day.jpg")     # kept in the shared store
+                self.assertTrue(self.store.path(first["photo"]).is_file())
+                self.assertNotIn("local_path", first)
+                self.assertEqual([f for f in out_photos.rglob("*") if f.is_file()], [])   # nothing left in the project
 
             # Append with a second distinct image
             buf2 = io.BytesIO()
@@ -489,6 +506,8 @@ class CC0PhotoCollectorTests(unittest.TestCase):
                 self.assertEqual(payload2["summary"]["total_photos"], 2)
                 self.assertEqual(payload2["summary"]["by_kind"]["landmarks"], 1)
                 self.assertEqual(payload2["summary"]["by_kind"]["streets"], 1)
+                self.assertEqual(sorted(p["photo"] for p in payload2["photos"]),
+                                 ["commons:Ginza_Chuo_night.jpg", "commons:Ginza_Wako_day.jpg"])
 
     def test_append_after_prune_avoids_id_collision_and_spot_cap_and_geo_limit(self):
         m = self.mod
@@ -929,6 +948,20 @@ class CC0PhotoCollectorTests(unittest.TestCase):
             self.assertIn("license=cc0%2Cby", seen_urls[2])
             self.assertEqual(len(ov), 1)
             self.assertEqual(ov[0]["license"], "CC BY 2.0")
+
+
+    def test_pruning_a_row_never_deletes_a_photo_of_the_shared_store(self):
+        review = import_pipeline("photos.photo_catalog_review")
+        buf = io.BytesIO()
+        Image.new("RGB", (64, 48), (10, 20, 30)).save(buf, format="JPEG")
+        ref = self.store.put({"source": "wikimedia_commons", "title": "File:Kept.jpg"}, buf.getvalue())
+        with tempfile.TemporaryDirectory() as td:
+            manifest = Path(td) / "ginza_manifest.json"
+            manifest.write_text(json.dumps({"area": "ginza", "photos": [{"id": "ginza_x_001", "photo": ref, "kind": "landmarks",
+                                                                          "spot_slug": "x", "time_of_day": "day", "season": "spring",
+                                                                          "weather": "normal", "creator": "A"}]}))
+            review.prune_manifest(manifest, Path(td), {"ginza_x_001"})
+        self.assertTrue(self.store.path(ref).is_file())
 
 
 if __name__ == "__main__":

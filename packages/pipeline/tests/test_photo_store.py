@@ -115,5 +115,49 @@ class Store(unittest.TestCase):
         self.assertEqual(photo_store.photo_file({"local_path": "assets/x.jpg"}, "/project"), Path("/project/assets/x.jpg"))
 
 
+    def test_a_file_is_known_by_its_ref_inside_the_store_and_by_its_bytes_outside_it(self):
+        data = jpeg()
+        ref = photo_store.put(COMMONS, data)
+        self.assertEqual(photo_store.ref_of_file(photo_store.path(ref)), ref)
+        copy = Path(tempfile.mkdtemp()) / "001_copy.jpg"                  # a project's or an SfM run's copy
+        copy.write_bytes(data)
+        self.assertEqual(photo_store.ref_of_file(copy), ref)
+        other = copy.with_name("other.jpg")
+        other.write_bytes(jpeg(colour=(1, 2, 3)))
+        self.assertIsNone(photo_store.ref_of_file(other))
+
+    def test_a_camera_reads_its_photo_from_the_store_when_it_names_one(self):
+        ref = photo_store.put(COMMONS, jpeg())
+        self.assertEqual(photo_store.camera_photo({"ref": ref, "photo": "/gone/elsewhere.jpg"}), photo_store.path(ref))
+        self.assertEqual(photo_store.camera_photo({"photo": "/somewhere/a.jpg"}), Path("/somewhere/a.jpg"))
+
+    def test_refs_are_written_into_a_cams_file_for_the_photos_the_store_has(self):
+        data = jpeg()
+        ref = photo_store.put(COMMONS, data)
+        d = Path(tempfile.mkdtemp())
+        (d / "a.jpg").write_bytes(data)
+        (d / "b.jpg").write_bytes(jpeg(colour=(9, 9, 9)))
+        cams = d / "cams.json"
+        cams.write_text(json.dumps({"a": {"photo": str(d / "a.jpg")}, "b": {"photo": str(d / "b.jpg")}}))
+        self.assertEqual(photo_store.add_refs(cams), {"named": 1, "not in the store": 1})
+        out = json.loads(cams.read_text())
+        self.assertEqual(out["a"]["ref"], ref)
+        self.assertNotIn("ref", out["b"])
+        self.assertEqual(out["a"]["photo"], str(d / "a.jpg"))           # the old path stays, for older readers
+
+
+    def test_every_copy_the_store_has_seen_still_leads_to_the_photo_kept(self):
+        small, big = jpeg((64, 48)), jpeg((128, 96))
+        ref = photo_store.put(COMMONS, small)
+        photo_store.put(COMMONS, big)                       # the larger copy replaces the smaller one
+        d = Path(tempfile.mkdtemp())
+        (d / "small.jpg").write_bytes(small)
+        self.assertEqual(photo_store.ref_of_file(d / "small.jpg"), ref)
+        tiny = jpeg((32, 24))
+        photo_store.put(COMMONS, tiny)                      # a smaller one seen later is not kept, but known
+        (d / "tiny.jpg").write_bytes(tiny)
+        self.assertEqual(photo_store.ref_of_file(d / "tiny.jpg"), ref)
+
+
 if __name__ == "__main__":
     unittest.main()

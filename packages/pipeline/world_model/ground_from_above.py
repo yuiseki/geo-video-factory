@@ -23,6 +23,7 @@ from PIL import Image
 
 from world_model import ground_ortho as go
 from photos import photo_guard
+from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
 from world_model import surface_atlas as sa
 from world_model.geometry_map import to_enu
 
@@ -152,7 +153,7 @@ def main(argv):
         stack = sa.TopK(n * n, int(opts.get("keep", 8)))
         used = {}
         for key, cam in cams.items():
-            image = np.asarray(photo_guard.open_photo(cam["photo"]).convert("RGB"))
+            image = np.asarray(photo_guard.open_photo(camera_photo(cam)).convert("RGB"))
             if image.shape[1] != cam["width"]:
                 raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
             colours, weights = sa.observe(image, points, up, cam, sa.depth_buffer(scene, cam, near=near))

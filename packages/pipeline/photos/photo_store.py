@@ -10,14 +10,16 @@ A photo is named by a ref, "<source>:<id>", from the record of where it was foun
 
 and kept under the shared cache (shared_cache.cache_root()) as photos/<source>/<sha1 of the id, 16>/, holding the
 image (photo.<ext>) and meta.json: the ref, licence, creator, URLs, coordinates and date of the record, with the
-picture's size, SHA-1 and dHash. Where a project happened to keep its copy (local_path, status) is not part of it.
+picture's size, SHA-1 and dHash (also_sha1: the other copies of it seen, smaller ones not kept). Where a project happened to keep its copy (local_path, status) is not part of it.
 The same photo found again, by any project, goes to the same place; the larger copy is kept.
 
-A project names the photos it uses by ref (in its manifests); path(ref) finds the file. A photo on the blocklist
+A project names the photos it uses by ref (in its manifests, and the world model's cams.json as "ref"); path(ref)
+finds the file, camera_photo(cam) a camera's photo, ref_of_file(file) the ref of any copy (by SHA-1). A photo on the blocklist
 (photo_guard: share-alike licences and others never to be used again) is refused and never stored.
 
     python -m photos.photo_store import <manifest.json> <flyover dir>     take a project's downloaded photos in,
                                                                           and write each row's ref into the manifest
+    python -m photos.photo_store refs <cams.json> ...                     name each world-model camera's photo by its ref
 """
 from __future__ import annotations
 
@@ -100,6 +102,62 @@ def photo_file(row: dict, project_root) -> Path:
     return Path(project_root) / row["local_path"]
 
 
+def camera_photo(cam: dict) -> Path:
+    """The photo of a world-model camera (cams.json): the store when the camera names a ref, else its "photo" path."""
+    if cam.get("ref"):
+        found = path(cam["ref"])
+        if found is not None:
+            return found
+    return Path(cam["photo"])
+
+
+_by_sha1: dict[str, dict[str, str]] = {}
+
+
+def _sha1_index() -> dict[str, str]:
+    """{sha1: ref} of every stored photo (read once per store root)."""
+    from shared_cache import cache_root
+    key = str(cache_root())
+    if key not in _by_sha1:
+        index = {}
+        for meta in (cache_root() / "photos").glob("*/*/meta.json"):
+            m = json.loads(meta.read_text(encoding="utf-8"))
+            for sha1 in [m["sha1"], *m.get("also_sha1", [])]:
+                index[sha1] = m["ref"]
+        _by_sha1[key] = index
+    return _by_sha1[key]
+
+
+def ref_of_file(file) -> str | None:
+    """The ref of a photo file: from its meta.json when it lies in the store, else from its bytes (SHA-1)."""
+    file = Path(file).resolve()
+    meta = file.parent / "meta.json"
+    if file.name.startswith("photo.") and meta.exists():
+        return json.loads(meta.read_text(encoding="utf-8"))["ref"]
+    sha1 = hashlib.sha1(file.read_bytes()).hexdigest()
+    index = _sha1_index()
+    if sha1 not in index:                      # stored since the index was read
+        _by_sha1.clear()
+        index = _sha1_index()
+    return index.get(sha1)
+
+
+def add_refs(cams_path) -> dict[str, int]:
+    """Write each camera's ref into a cams.json, for the photos the store has; "photo" is left as it was."""
+    cams_path = Path(cams_path)
+    cams = json.loads(cams_path.read_text(encoding="utf-8"))
+    counts = {"named": 0, "not in the store": 0}
+    for cam in cams.values():
+        ref = ref_of_file(cam["photo"]) if Path(cam["photo"]).exists() else None
+        if ref:
+            cam["ref"] = ref
+            counts["named"] += 1
+        else:
+            counts["not in the store"] += 1
+    cams_path.write_text(json.dumps(cams, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    return counts
+
+
 def blocked(data: bytes) -> str | None:
     """Why the photo may not be used (photo_guard's list), or None."""
     by_sha, by_hash = photo_guard._listed(photo_guard.BLOCKLIST)
@@ -122,9 +180,16 @@ def put(row: dict, data: bytes) -> str:
         dhash = photo_guard.dhash_of(im)
     d = _dir(ref)
     old = path(ref)
+    sha1 = hashlib.sha1(data).hexdigest()
+    seen: list[str] = []                               # every copy seen, so ref_of_file finds any of them
     if old is not None:
         meta = json.loads((d / "meta.json").read_text(encoding="utf-8"))
+        seen = sorted(set(meta.get("also_sha1", [])) | {meta["sha1"]} - {sha1})
         if meta.get("width", 0) * meta.get("height", 0) >= width * height:
+            if sha1 != meta["sha1"] and sha1 not in meta.get("also_sha1", []):
+                meta["also_sha1"] = sorted(set(meta.get("also_sha1", [])) | {sha1})
+                (d / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+                _by_sha1.clear()
             return ref
         old.unlink()
     d.mkdir(parents=True, exist_ok=True)
@@ -133,9 +198,30 @@ def put(row: dict, data: bytes) -> str:
     part.write_bytes(data)
     part.replace(image)
     meta = {k: v for k, v in row.items() if k not in SKIP}
-    meta.update(ref=ref, width=width, height=height, sha1=hashlib.sha1(data).hexdigest(), dhash=dhash)
+    meta.update(ref=ref, width=width, height=height, sha1=sha1, dhash=dhash)
+    if seen:
+        meta["also_sha1"] = seen
     (d / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
     return ref
+
+
+def adopt(entries: list[dict], project_root, rejected) -> list[dict]:
+    """Move photos a collector just wrote into the project (local_path) into the store.
+
+    Each kept one gets its "photo" ref and loses its local_path; its project copy, written by that run, is
+    removed. A photo the blocklist refuses is dropped and counted in rejected["blocklist"].
+    """
+    kept = []
+    for entry in entries:
+        file = Path(project_root) / entry["local_path"]
+        try:
+            entry["photo"] = put(entry, file.read_bytes())
+            kept.append(entry)
+        except BlockedPhoto:
+            rejected["blocklist"] += 1
+        file.unlink(missing_ok=True)
+        entry.pop("local_path", None)
+    return kept
 
 
 def import_manifest(manifest_path: Path, flyover_dir: Path) -> dict[str, int]:
@@ -168,6 +254,10 @@ def import_manifest(manifest_path: Path, flyover_dir: Path) -> dict[str, int]:
 def main(argv: list[str]) -> None:
     if len(argv) == 3 and argv[0] == "import":
         print(json.dumps(import_manifest(Path(argv[1]), Path(argv[2]))))
+        return
+    if len(argv) >= 2 and argv[0] == "refs":
+        for f in argv[1:]:
+            print(f, json.dumps(add_refs(Path(f))))
         return
     raise SystemExit(__doc__)
 

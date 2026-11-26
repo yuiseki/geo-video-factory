@@ -13,6 +13,7 @@ import numpy as np
 from PIL import Image
 
 from photos import photo_guard
+from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
 from world_model import surface_atlas as sa
 
 
@@ -36,7 +37,7 @@ def main(argv):
         cam = cams[key]
         scale = 640 / cam["width"]
         e = edges(sa.depth_buffer(tris, cam, scale=scale))
-        with photo_guard.open_photo(cam["photo"]) as im:
+        with photo_guard.open_photo(camera_photo(cam)) as im:
             rgb = np.asarray(im.convert("RGB").resize((e.shape[1], e.shape[0]))).copy()
         rgb[e] = (255, 0, 0)
         tile = Image.new("RGB", (640, 480))

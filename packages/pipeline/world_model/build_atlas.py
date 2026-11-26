@@ -13,6 +13,7 @@ import numpy as np
 from PIL import Image
 
 from photos import photo_guard
+from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
 from world_model import surface_atlas as sa
 
 Image.MAX_IMAGE_PIXELS = None
@@ -72,7 +73,7 @@ def main(argv):
         px, py = pc[front, 0] / pc[front, 2] * fx + cx, pc[front, 1] / pc[front, 2] * fy + cy
         if not ((px > 0) & (px < cam["width"]) & (py > 0) & (py < cam["height"])).any():
             continue
-        image = np.asarray(photo_guard.open_photo(cam["photo"]).convert("RGB"))
+        image = np.asarray(photo_guard.open_photo(camera_photo(cam)).convert("RGB"))
         if image.shape[1] != cam["width"]:
             raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
         depth = sa.depth_buffer(scene, cam)

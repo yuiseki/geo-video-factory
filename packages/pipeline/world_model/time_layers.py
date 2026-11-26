@@ -16,6 +16,7 @@ import numpy as np
 from PIL import Image
 
 from photos import photo_guard
+from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
 def sky_brightness(image):
     """Median luminance (0..1) of the top quarter of an RGB uint8 image."""
     top = np.asarray(image, dtype=np.float32)[: max(1, image.shape[0] // 4)]
@@ -41,7 +42,7 @@ def main(argv):
     layers, measured = {}, {}
     tris = np.load(opts["scene"])["tris"].astype(np.float64) if "scene" in opts else None
     for key, cam in sorted(cams.items()):
-        with photo_guard.open_photo(cam["photo"]) as im:
+        with photo_guard.open_photo(camera_photo(cam)) as im:
             if tris is None:
                 im.draft("RGB", (640, 640))
                 b = sky_brightness(np.asarray(im.convert("RGB")))

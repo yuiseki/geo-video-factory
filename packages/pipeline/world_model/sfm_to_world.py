@@ -10,7 +10,8 @@ then laid onto the city model's surfaces (sim3.fit_to_surface). With a single
 anchor the scale is searched first.
 
 Writes cams.json (all registered photos, same layout as photo_place.py, keyed
-by the SfM image name without its extension), align.json (the similarity, the
+by the SfM image name without its extension; "ref" names the photo in the shared
+photo store, photos.photo_store, when the store has it; anchors match by path or ref), align.json (the similarity, the
 fit, how far each anchor ended from where it was given) and top.png (surfaces
 grey, SfM points red, cameras blue, anchors green).
 """
@@ -23,6 +24,7 @@ import numpy as np
 import pycolmap
 from scipy.spatial import cKDTree
 
+from photos.photo_store import ref_of_file
 from world_model import sim3
 def intrinsics(cam):
     p = list(cam.params)
@@ -49,11 +51,13 @@ def main(argv):
         images[img.name] = (pose.rotation.matrix(), np.array(img.projection_center()), rec.cameras[img.camera_id])
         seen[img.name] = int(sum(1 for p in img.points2D if p.has_point3D()))
     real = {name: (img_dir / name).resolve() for name in images}
+    refs = {name: ref_of_file(path) for name, path in real.items()}     # which stored photo each image is
 
     anchors = {}
     for f in pos[4:]:
         for key, c in json.loads(Path(f).read_text()).items():
-            hit = [n for n, p in real.items() if p == Path(c["photo"]).resolve()]
+            hit = [n for n, p in real.items() if p == Path(c["photo"]).resolve()
+                   or (c.get("ref") and c["ref"] == refs.get(n))]
             if hit:
                 anchors[hit[0]] = (np.array(c["Rw"]), np.array(c["eye"]))
             else:
@@ -114,7 +118,8 @@ def main(argv):
             continue
         Rw, eye = sim3.camera(sim, Rs, Cs)
         params, extra = intrinsics(cam)
-        cams[Path(name).stem] = {"name": name, "photo": str(real[name]), "eye": eye.tolist(), "Rw": Rw.tolist(),
+        cams[Path(name).stem] = {"name": name, "photo": str(real[name]), **({"ref": refs[name]} if refs[name] else {}),
+                                 "eye": eye.tolist(), "Rw": Rw.tolist(),
                                  "width": cam.width, "height": cam.height, "model": "PINHOLE", "params": params,
                                  "distortion": extra, "sfm_model": cam.model.name,
                                  "sfm_points": seen[name],   # few points: a pose not to trust

@@ -219,7 +219,9 @@ def build_contact_sheets(
 
 
 def prune_manifest(manifest_path: Path, photos_root: Path, drop_ids: set[str]) -> dict:
-    """Remove specified photo IDs from manifest and delete their image files."""
+    """Remove specified photo IDs from manifest, and delete the project's own copies of their images.
+
+    A photo kept in the shared store (a row with a "photo" ref) stays there: other projects may use it."""
     manifest_path = Path(manifest_path)
     photos_root = Path(photos_root)
     data = json.loads(manifest_path.read_text(encoding="utf-8"))
@@ -228,8 +230,8 @@ def prune_manifest(manifest_path: Path, photos_root: Path, drop_ids: set[str]) -
     removed = 0
     for item in data.get("photos", []):
         if item.get("id") in drop_ids:
-            fp = photos_root / item["local_path"]
-            fp.unlink(missing_ok=True)
+            if item.get("local_path") and not item.get("photo"):   # the shared store is never pruned from here
+                (photos_root / item["local_path"]).unlink(missing_ok=True)
             removed += 1
         else:
             kept.append(item)

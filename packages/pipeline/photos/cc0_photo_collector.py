@@ -15,6 +15,7 @@ import re
 import time
 
 from photos import photo_catalog_sources as _sources
+from photos import photo_store
 from photos.photo_catalog_review import (
     _count_dict,
     _extract_exif_gps,
@@ -327,6 +328,8 @@ def collect_from_config(
                     break
         new_entries = new_entries[:remaining_total]
 
+    flyover = next((a for a in out_photos.parents if a.name == "flyover"), out_photos.parents[2])
+    new_entries = photo_store.adopt(new_entries, flyover, rejected)   # into the shared store, out of the project
     all_photos = sorted(existing_photos + new_entries, key=lambda r: (r["kind"], r["spot_slug"], r["id"]))
     payload = build_manifest_payload(area, all_photos, dict(rejected))
     hex32 = find_gitleaks_hex32_matches(payload)
