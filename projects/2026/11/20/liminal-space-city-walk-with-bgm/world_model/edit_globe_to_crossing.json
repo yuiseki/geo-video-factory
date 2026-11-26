@@ -1,11 +1,12 @@
 {"size": [1280, 720], "fps": 30,
  "clips": [
-  {"dir": "$FLYOUT/globe-to-crossing-v1b/frames", "pattern": "*.jpg", "first": 0, "last": 360},
-  {"dir": "$WORLD/magic_f1_topdown_spin_day", "first": 0, "last": 180, "cross": 24},
+  {"dir": "$FLYOUT/globe-to-crossing-v2a/frames", "pattern": "*.jpg"},
+  {"dir": "$FLYOUT/shibuya-plateau-descent-v2c/frames", "pattern": "*.jpg", "cross": 6},
+  {"dir": "$WORLD/magic_f2_handover_dive_day", "first": 0, "last": 240, "cross": 20},
   {"dir": "$WORLD/magic_f1_dolly_zoom_day", "first": 0, "last": 150, "cross": 10},
   {"dir": "$WORLD/final_v5_pan_day", "first": 0, "last": 240, "cross": 15},
   {"dir": "$WORLD/final_v5_arc_ekimae_day", "first": 0, "last": 180, "cross": 15},
   {"dir": "$WORLD/final_v5_arc_qfront_day", "night": "$WORLD/final_v5_arc_qfront_night", "mode": "rise", "first": 0, "last": 150, "cross": 15},
   {"dir": "$WORLD/magic_f1_dolly_zoom_night", "first": 0, "last": 150, "cross": 10},
-  {"dir": "$WORLD/final_v5_pan_night", "first": 120, "last": 360, "cross": 15, "fade_out": 45}
+  {"dir": "$WORLD/final_v5_pan_night", "first": 80, "last": 225, "cross": 15, "fade_out": 40}
  ]}
