@@ -2,16 +2,16 @@
   "width": 1280,
   "height": 720,
   "fps": 24,
-  "fov": 72,
+  "fov": 74,
   "base": "seamlessphoto",
   "world": false,
   "dem": "gsi",
   "exaggeration": 0,
   "hillshade": false,
   "sky": {
-    "sky-color": "#070918",
-    "horizon-color": "#1e1635",
-    "fog-color": "#161128",
+    "sky-color": "#060711",
+    "horizon-color": "#181329",
+    "fog-color": "#120f20",
     "sky-horizon-blend": 0.65,
     "horizon-fog-blend": 0.78,
     "fog-ground-blend": 0.55
@@ -29,7 +29,7 @@
       "src": "assets/ground/shibuya_crossing_procedural_4x.png",
       "bbox": [139.69749748706818, 35.659000466530415, 139.7011023759842, 35.66100103417491],
       "altitudeM": 0.04,
-      "brightness": 0.72
+      "brightness": 0.74
     },
     "facadeTextures": {
       "atlas": "assets/materials/facades_atlas.png",
@@ -43,10 +43,28 @@
         "bldg_5e891186-4803-48a0-9664-284f212881ac": 2
       },
       "wallMix": 1.0,
-      "tileMeters": [18, 24],
+      "tileMeters": [16, 22],
       "groundZ": 0
     },
     "streetProps": [
+      {
+        "kind": "wash",
+        "center": [139.70029, 35.65978],
+        "altitudeM": 31.5,
+        "widthM": 9.0,
+        "heightM": 24.0,
+        "bearing": 235,
+        "color": "#ffe6be"
+      },
+      {
+        "kind": "wash",
+        "center": [139.70052, 35.65985],
+        "altitudeM": 31.5,
+        "widthM": 14.0,
+        "heightM": 26.0,
+        "bearing": 112,
+        "color": "#ffe6be"
+      },
       {
         "kind": "arch",
         "center": [139.70016, 35.65990],
@@ -75,6 +93,12 @@
       },
       {
         "kind": "lamp",
+        "center": [139.70056, 35.65978],
+        "heightM": 6.4,
+        "color": "#ffe2b8"
+      },
+      {
+        "kind": "lamp",
         "center": [139.70006, 35.66002],
         "heightM": 5.8,
         "color": "#e5b8ff"
@@ -85,7 +109,7 @@
         "heightM": 5.8,
         "widthM": 2.6,
         "bearing": 156,
-        "color": "#00ff99"
+        "color": "#ff2a40"
       },
       {
         "kind": "signal",
@@ -93,7 +117,7 @@
         "heightM": 5.8,
         "widthM": 2.4,
         "bearing": 138,
-        "color": "#ff2a40"
+        "color": "#00ff99"
       }
     ],
     "billboards": [
@@ -104,25 +128,16 @@
         "widthM": 10.5,
         "heightM": 4.0,
         "bearing": 156,
-        "glow": 1.0
-      },
-      {
-        "src": "assets/billboards/sign_qfront_top_018.png",
-        "center": [139.70039, 35.65973],
-        "altitudeM": 25.2,
-        "widthM": 13.5,
-        "heightM": 5.5,
-        "bearing": 156,
-        "glow": 0.92
+        "glow": 1.05
       },
       {
         "src": "assets/billboards/sign_qfront_mid_018.png",
         "center": [139.70039, 35.65973],
-        "altitudeM": 16.8,
+        "altitudeM": 19.5,
         "widthM": 13.5,
         "heightM": 8.4,
         "bearing": 156,
-        "glow": 0.88
+        "glow": 0.90
       },
       {
         "src": "assets/billboards/sign_qfront_lower_empty.png",
@@ -131,7 +146,7 @@
         "widthM": 15.5,
         "heightM": 9.8,
         "bearing": 156,
-        "glow": 0.85
+        "glow": 0.90
       },
       {
         "src": "assets/billboards/sign_salonpas.png",
@@ -261,21 +276,12 @@
       },
       {
         "src": "assets/billboards/sign_seibu_vert_018.png",
-        "center": [139.70058, 35.66010],
-        "altitudeM": 18.0,
-        "widthM": 2.6,
-        "heightM": 12.5,
-        "bearing": 185,
-        "glow": 0.92
-      },
-      {
-        "src": "assets/billboards/sign_109mens.png",
-        "center": [139.70096, 35.66018],
-        "altitudeM": 22.0,
-        "widthM": 10.0,
-        "heightM": 5.8,
-        "bearing": 235,
-        "glow": 0.85
+        "center": [139.70062, 35.66002],
+        "altitudeM": 19.5,
+        "widthM": 2.8,
+        "heightM": 13.5,
+        "bearing": 155,
+        "glow": 1.0
       }
     ],
     "night": [
@@ -287,8 +293,8 @@
       "duration": 4.0,
       "ease": "linear",
       "keys": [
-        { "t": 0.0, "center": [139.70048, 35.65944], "zoom": 20.15, "pitch": 84, "bearing": -40 },
-        { "t": 1.0, "center": [139.70032, 35.65958], "zoom": 20.35, "pitch": 84, "bearing": -43 }
+        { "t": 0.0, "center": [139.70055, 35.65936], "zoom": 19.95, "pitch": 84, "bearing": -28 },
+        { "t": 1.0, "center": [139.70040, 35.65950], "zoom": 20.15, "pitch": 84, "bearing": -32 }
       ]
     }
   ]
