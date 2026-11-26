@@ -103,20 +103,22 @@ def photo_skyline(az, el, sky, bins=720, el_step=0.25, min_count=4, margin=2):
                 ceil=np.where(any_seen & ~any_solid, bottom * el_step - 90.0, nan))
 
 
-def match_cost(photo, model, tau=5.0, use=("sky", "floor", "ceil"), min_bins=10, empty=0.0, shifts=None):
+def match_cost(photo, model, tau=5.0, use=("sky", "floor", "ceil"), min_bins=10, empty=0.0, shifts=None, min_sky=0):
     """The cost of every place and every turn: an array (places, shifts).
     photo is the dict of photo_skyline, model is (places, bins) of model_skyline. With the shift s the
     photo's bin b is laid on the model's bin b + s, so s * 360 / bins degrees is how far clockwise the
     photo's assumed heading must be turned. The cost is the mean over the photo's bins of the difference
     in elevation, clipped at tau: two-sided for the roofline, one-sided for floor and ceil. Directions
     where the model has nothing count as elevation empty (the horizon). nan when the photo has fewer
-    than min_bins bins to compare."""
+    than min_bins bins to compare, or fewer than min_sky roofline (sky) bins: one-sided floor and ceil bins alone are
+    met by any model below them, so a photo without sky (an interior, an alley at night, a statue) would be "placed"
+    anywhere at cost 0."""
     model = np.nan_to_num(np.atleast_2d(np.asarray(model, np.float32)), nan=empty)
     places, bins = model.shape
     shifts = np.arange(bins) if shifts is None else np.asarray(shifts)
     kinds = [(name, np.flatnonzero(~np.isnan(photo[name]))) for name in use]
     total = sum(len(idx) for _, idx in kinds)
-    if total < min_bins:
+    if total < min_bins or int(np.sum(~np.isnan(photo["sky"]))) < min_sky:
         return np.full((places, len(shifts)), np.nan)
     cost = np.zeros((places, len(shifts)))
     chunk = max(1, int(2e7 // (len(shifts) * max(len(idx) for _, idx in kinds))))

@@ -163,6 +163,21 @@ class Match(unittest.TestCase):
         only = sm.match_cost(dict(sky=nan.copy(), floor=floor, ceil=ceil), model, use=("floor",))
         self.assertAlmostEqual(only[0, 0], 10 * 2.0 / 20, places=5)
 
+    def test_a_photo_without_enough_roofline_cannot_be_placed_when_min_sky_asks_for_it(self):
+        # one-sided bins (floor, ceil) alone are met by a flat model anywhere: the search would answer cost 0
+        nan = np.full(BINS, np.nan)
+        floor = nan.copy()
+        floor[0:40] = 10.0
+        model = np.full((3, BINS), 30.0)
+        free = sm.match_cost(dict(sky=nan.copy(), floor=floor, ceil=nan.copy()), model)
+        self.assertEqual(float(np.nanmax(free)), 0.0)                          # today: placed anywhere, at cost 0
+        refused = sm.match_cost(dict(sky=nan.copy(), floor=floor, ceil=nan.copy()), model, min_sky=12)
+        self.assertTrue(np.isnan(refused).all())
+        sky = nan.copy()
+        sky[0:12] = 30.0
+        ok = sm.match_cost(dict(sky=sky, floor=floor, ceil=nan.copy()), model, min_sky=12)
+        self.assertFalse(np.isnan(ok).any())
+
     def test_open_sky_in_the_model_counts_as_the_horizon(self):
         nan = np.full(BINS, np.nan)
         sky = nan.copy()

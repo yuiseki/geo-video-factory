@@ -9,9 +9,12 @@ searched (skyline_match.py). Given a rough standing point and the horizontal fie
 
     python3 photo_place.py <photo> <tris.npz> <out_dir> <east> <north> <hfov_deg> [--radius=80] [--grid=2] [--eye=1.6]
         [--ground=<z>] [--pitch=0:30:2] [--roll=-2:2:2] [--fov-range=0.94:1.06:3] [--key=<name in cams.json>]
-        [--mesh-radius=600] [--sky=blue|bright|dark] [--dark-below=45] [--heading=<from>:<to>]
+        [--mesh-radius=600] [--sky=blue|bright|dark] [--dark-below=45] [--heading=<from>:<to>] [--min-sky=0]
 
 <tris.npz> holds "tris" (n, 3, 3) in east, north, up metres (plateau_mesh.py); <east> <north> are in its frame.
+--min-sky refuses a photo with fewer roofline (sky) columns than that in every pose (exit 1, no files but mask.jpg):
+without sky (an interior, an alley at night, a statue) only one-sided bins are left, any model meets them, and the
+search "places" the photo anywhere at cost 0. 0, the default, keeps that behaviour.
 --heading keeps the search to the headings from <from> clockwise to <to> (degrees from north), for a photo whose
 compass direction is roughly known and whose roofline is too short to choose the turn alone.
 Writes result.json (the pose and the next best places at least 10 m away: look at how far apart their costs are),
@@ -95,7 +98,9 @@ def _one_place(p):
 
 def _one_pose(q):
     bins, headings, model = _STATE["bins"], _STATE["headings"], _STATE["model"]
-    cost = sm.match_cost(said(_STATE["sky"], *q, bins=bins), model, tau=_STATE["tau"])
+    cost = sm.match_cost(said(_STATE["sky"], *q, bins=bins), model, tau=_STATE["tau"], min_sky=_STATE["min_sky"])
+    if np.isnan(cost).all():                    # this pose reads too little roofline to compare
+        return np.full(len(model), np.nan), np.zeros(len(model), int)
     if headings:  # only the turns between the two headings, clockwise
         hd = np.arange(cost.shape[1]) * 360 / bins
         cost = np.where((hd - headings[0]) % 360 <= (headings[1] - headings[0]) % 360, cost, np.inf)
@@ -110,12 +115,13 @@ def _map(func, items, workers, chunksize):
         return pool.map(func, items, chunksize=chunksize)
 
 
-def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers=(8, 6)):
+def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers=(8, 6), min_sky=0):
     """Every place (n, 3) against every pose (pitch, roll, hfov) and every turn about the vertical.
     Returns the best as a dict, and two arrays (poses, places): the cost of the best turn, and that turn in bins.
     workers is the number of processes for the model's rooflines and for the poses; None works in this process."""
     at_places, at_poses = workers or (1, 1)
-    _STATE.update(edges=edges, sky=np.asarray(sky, bool), bins=bins, tau=tau, headings=headings, model=None)
+    _STATE.update(edges=edges, sky=np.asarray(sky, bool), bins=bins, tau=tau, headings=headings, model=None,
+                  min_sky=min_sky)
     try:
         _STATE["model"] = np.stack(_map(_one_place, places, at_places, 32))
         res = _map(_one_pose, poses, at_poses, None)  # forked after the model is set
@@ -123,6 +129,8 @@ def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers
         _STATE.clear()
     cost = np.array([r[0] for r in res])
     turn = np.array([r[1] for r in res])
+    if np.isnan(cost).all():
+        raise SystemExit(f"no roofline to place the photo by: fewer than {min_sky} sky columns in every pose (--min-sky)")
     ip, il = np.unravel_index(np.nanargmin(cost), cost.shape)
     best = dict(east=float(places[il, 0]), north=float(places[il, 1]), up=float(places[il, 2]),
                 heading=float(turn[ip, il] * 360 / bins), pitch=float(poses[ip][0]), roll=float(poses[ip][1]),
@@ -255,7 +263,8 @@ def cam_entry(photo_path, size, best):
 
 def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1.6, ground=None, pitch="0:30:2",
           roll="-2:2:2", fov_range="0.94:1.06:3", key=None, mesh_radius=600.0, sky="blue", dark_below=45.0,
-          heading=None, work_w=WORK_W, bins=BINS, workers=(8, 6), fine_half=4.0, fine_roll=2.0, fine_fov=5, log=print):
+          heading=None, work_w=WORK_W, bins=BINS, workers=(8, 6), fine_half=4.0, fine_roll=2.0, fine_fov=5, log=print,
+          min_sky=0):
     """Search the pose of one photo and write the files named at the top into `out`. Returns what result.json holds."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -278,7 +287,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     lo, hi, n = fov_range.split(":")
     places, xs, ys = grid_places(x0, y0, radius, grid, ground + eye)
     poses = list(product(span(pitch), span(roll), hfov * np.linspace(float(lo), float(hi), int(n))))
-    coarse, cost, turn = search(edges, mask, places, poses, heading, bins, workers=workers)
+    coarse, cost, turn = search(edges, mask, places, poses, heading, bins, workers=workers, min_sky=int(min_sky))
     log(describe("coarse", coarse, places, poses))
     others = rivals(places, poses, cost, turn, bins)
     for r in others:
@@ -288,7 +297,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
         out / "costmap.png")
 
     fine_places, fine_poses = fine_space(coarse, half=fine_half, roll=fine_roll, fov=fine_fov)
-    best, _, _ = search(edges, mask, fine_places, fine_poses, heading, bins, workers=workers)
+    best, _, _ = search(edges, mask, fine_places, fine_poses, heading, bins, workers=workers, min_sky=int(min_sky))
     log(describe("fine", best, fine_places, fine_poses))
 
     overlay(full, edges, best, bins).save(out / "overlay.jpg", quality=88)
@@ -306,7 +315,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     return result
 
 
-NUMBERS = ("radius", "grid", "eye", "ground", "mesh_radius", "dark_below")
+NUMBERS = ("radius", "grid", "eye", "ground", "mesh_radius", "dark_below", "min_sky")
 TEXTS = ("pitch", "roll", "fov_range", "key", "sky")
 
 

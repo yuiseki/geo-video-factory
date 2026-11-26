@@ -219,7 +219,9 @@ if "streets" in opts:
     # zebra bars of every marked crossing of a crosswalks.json (world_model/osm_crosswalks.py) in worn paint
     from world_model import ground_materials
     night = dim < 0.5
-    look = (1.0, 1.0, 1.0) if night else (1.5, 0.35, 0.0)          # gain, glow, wetness, as blender_projection.py
+    # gain, glow, wetness: by day as blender_projection.py; at night darker than its sign-lit crossing, to sit with
+    # the PLATEAU++ photos dimmed by --dim
+    look = (0.45, 0.2, 1.0) if night else (1.5, 0.35, 0.0)
     bpy.context.object.data.materials.append(ground_materials.aged_asphalt(*look))
     verts, faces = [], []
     for cw in json.loads(Path(opts["streets"]).read_text())["crosswalks"]:
