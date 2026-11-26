@@ -114,7 +114,7 @@ def main(argv):
     count[where] = stack.count
     quality = np.zeros(rows * width, np.float32)
     if used:
-        quality[where] = sa.texel_quality(stack.arrays()[1], texel)
+        quality[where] = sa.texel_quality(stack.weights.T, texel)     # TopK keeps (k, n)
     fused, count = fused.reshape(rows, width, 3), count.reshape(rows, width)
     if opts.get("fill") == "mean" and np.isfinite(part).any():
         # a face no photo saw takes the mean colour of what was seen: of its own face where there is some, of the
