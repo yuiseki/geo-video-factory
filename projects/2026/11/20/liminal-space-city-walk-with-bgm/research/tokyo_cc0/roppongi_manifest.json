@@ -67,7 +67,8 @@
       "weather": "snow",
       "date": "2019-02-09",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Snow_in_Roppongi,_Tokyo_(50426170266).jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_003",
@@ -96,7 +97,8 @@
         139.7302526,
         35.6603559
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Tower_seen_from_Roppongi_Hills_B1F.jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_006",
@@ -125,7 +127,8 @@
         139.732186,
         35.66328
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Mirrors_(50322363896).jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_008",
@@ -154,7 +157,8 @@
         139.7376975,
         35.6611966
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:APA_Hotels_&_Resorts_Roppongi_Ekihigashi,_-24_nov_2023_10：39.jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_010",
@@ -183,7 +187,8 @@
         139.72903442,
         35.66097639
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Snow_on_66_Plaza.jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_013",
@@ -209,7 +214,8 @@
       "weather": "normal",
       "date": "2024-03-29",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Azabudai_Hills_Mori_JP_Tower_20240329-4.jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_014",
@@ -238,7 +244,8 @@
         139.72875,
         35.660708
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Azabudai_Hills_and_Tokyo_Tower_at_night.jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_015",
@@ -264,7 +271,8 @@
       "weather": "normal",
       "date": "2024-03-29",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Azabudai_Hills_Mori_JP_Tower_20240329-6.jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_019",
@@ -293,7 +301,8 @@
         139.7303,
         35.66021389
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Azabudai_Hills_JP_Tower_seen_from_Roppongi_Hills.jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_022",
@@ -322,7 +331,8 @@
         139.734828,
         35.664531
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Alone_in_Tokyo_VI_(50318810096).jpg"
     },
     {
       "id": "roppongi_roppongi_crossing_tower_023",
@@ -351,7 +361,8 @@
         139.730569,
         35.662758
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:September_2024,_buildings_around_Roppongi_20.jpg"
     },
     {
       "id": "roppongi_roppongi_hills_004",
@@ -377,7 +388,8 @@
       "weather": "normal",
       "date": "2015-02-19",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Mori_Tower_-_Roppongi,_Tokyo,_Japan_-_DSC06760.JPG"
     },
     {
       "id": "roppongi_roppongi_hills_006",
@@ -406,7 +418,8 @@
         139.7291237,
         35.6608913
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:170_days_to_Olympics,_Roppongi_Hills_Mori_Tower.jpg"
     },
     {
       "id": "roppongi_roppongi_hills_008",
@@ -435,7 +448,8 @@
         139.72977222,
         35.65968333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:2023_Roppongi_Hills_bon-odori_2.jpg"
     },
     {
       "id": "roppongi_roppongi_hills_009",
@@ -464,7 +478,8 @@
         139.72886656,
         35.66129683
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Escalator_in_snowy_Roppomgi_Hills.jpg"
     },
     {
       "id": "roppongi_roppongi_hills_011",
@@ -490,7 +505,8 @@
       "weather": "normal",
       "date": "2016-05-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Roppongi_Hills,_Minato.jpg"
     },
     {
       "id": "roppongi_roppongi_hills_013",
@@ -516,7 +532,8 @@
       "weather": "normal",
       "date": "2018-02-05",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tower_Sunset_(40237563681).jpg"
     },
     {
       "id": "roppongi_roppongi_hills_018",
@@ -545,7 +562,8 @@
         139.72987364,
         35.65954969
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Pink_lights_and_bubble_machine_in_Roppongi_Hills_Arena.jpg"
     },
     {
       "id": "roppongi_roppongi_hills_020",
@@ -574,7 +592,8 @@
         139.7305923,
         35.6591341
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:TV_Asahi_headquarters_and_Toranomon-Azabudai_Project_seen_from_Sakurazaka.jpg"
     },
     {
       "id": "roppongi_roppongi_hills_021",
@@ -603,7 +622,8 @@
         139.73031111,
         35.66061111
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:January_2024,_Azabudai_Hills_seen_from_Roppongi_Hills.jpg"
     },
     {
       "id": "roppongi_tokyo_midtown_002",
@@ -629,7 +649,8 @@
       "weather": "normal",
       "date": "2012-06-24",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Candles_at_the_2012_summer_solstice_candle_night_what_was_held_in_Tokyo_midtown.JPG"
     },
     {
       "id": "roppongi_tokyo_midtown_003",
@@ -655,7 +676,8 @@
       "weather": "normal",
       "date": "2015-02-17",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:21_21_DESIGN_SIGHT_-_Tokyo,_Japan_-_DSC06708.JPG"
     },
     {
       "id": "roppongi_tokyo_midtown_008",
@@ -684,7 +706,8 @@
         139.73144444,
         35.66626389
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:November_2023,_Buildings_in_Akasaka.jpg"
     },
     {
       "id": "roppongi_tokyo_midtown_009",
@@ -713,7 +736,8 @@
         139.7323981,
         35.6662582
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Around_Roppongi_Midtown_2.jpg"
     },
     {
       "id": "roppongi_tokyo_midtown_011",
@@ -742,7 +766,8 @@
         139.73153056,
         35.66693056
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Azabudai_Hills_and_Tokyo_Tower_seen_from_Tokyo_Midtown.jpg"
     },
     {
       "id": "roppongi_tokyo_midtown_019",
@@ -771,7 +796,8 @@
         139.732476,
         35.6653529
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Around_Roppongi_Midtown_4.jpg"
     },
     {
       "id": "roppongi_tokyo_midtown_020",
@@ -800,7 +826,8 @@
         139.7312973,
         35.6662656
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Roppongi_Midtown_Tower_2.jpg"
     },
     {
       "id": "roppongi_tokyo_midtown_023",
@@ -826,7 +853,8 @@
       "weather": "normal",
       "date": "2019-02-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:National_Art_Center,_from_Mori_Tower.jpg"
     },
     {
       "id": "roppongi_tokyo_midtown_024",
@@ -855,7 +883,8 @@
         139.7309159,
         35.6669962
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Park_Court_Akasaka_Hinokicho_The_Tower.jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_001",
@@ -881,7 +910,8 @@
       "weather": "normal",
       "date": "2009-04-13",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_blue_hour_(4305365587).jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_002",
@@ -907,7 +937,8 @@
       "weather": "normal",
       "date": "2010-04-19",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_Heights_(4613945649).jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_003",
@@ -933,7 +964,8 @@
       "weather": "normal",
       "date": "2009-04-13",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Highway_(3697251818).jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_004",
@@ -962,7 +994,8 @@
         139.72940061,
         35.65843581
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Cherry_blossom_in_Roppongi_Hills_Sakurazaka.jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_007",
@@ -991,7 +1024,8 @@
         139.732187,
         35.66328
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Mirrors_(26460723178).jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_009",
@@ -1020,7 +1054,8 @@
         139.7322466,
         35.6643674
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Around_Roppongi_Midtown_5.jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_010",
@@ -1049,7 +1084,8 @@
         139.7254137,
         35.666761
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Building_where_was_the_Kaikaku_Kesshu_no_Kai.jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_011",
@@ -1078,7 +1114,8 @@
         139.732899,
         35.661698
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Candeo_Hotels_Tokyo_Roppongi.jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_013",
@@ -1107,7 +1144,8 @@
         139.734311,
         35.661617
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Tower's_Infinity_Diamond_Veil,_Cherry_Pink_at_night.jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_016",
@@ -1136,7 +1174,8 @@
         139.7312517,
         35.664264
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Remm_Roppongi.jpg"
     },
     {
       "id": "roppongi_gaienhigashi_dori_018",
@@ -1165,7 +1204,8 @@
         139.73143056,
         35.66404167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:東外苑通りin_Roppongi,_Sunday_1AM.jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_002",
@@ -1191,7 +1231,8 @@
       "weather": "normal",
       "date": "2018-02-10",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Cineon_(40998155210).jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_004",
@@ -1220,7 +1261,8 @@
         139.727733,
         35.659197
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_around_Roppongi_21.jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_005",
@@ -1249,7 +1291,8 @@
         139.7308111,
         35.6605906
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Cherry_blossom_in_Roppongi_Hills_2021_2.jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_006",
@@ -1278,7 +1321,8 @@
         139.732346,
         35.659256
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Christmas_on_November_10_in_Roppongi_Hills.jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_009",
@@ -1307,7 +1351,8 @@
         139.727733,
         35.659197
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_around_Roppongi_22.jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_011",
@@ -1333,7 +1378,8 @@
       "weather": "normal",
       "date": "2018-02-10",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Waiting_(39723228264).jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_012",
@@ -1362,7 +1408,8 @@
         139.72763061,
         35.65895461
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Center_for_Global_Communications,_International_University_of_Japan.jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_014",
@@ -1391,7 +1438,8 @@
         139.7278,
         35.65943056
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Court_Annex_Roppongi.jpg"
     },
     {
       "id": "roppongi_keyakizaka_dori_015",
@@ -1420,7 +1468,8 @@
         139.72949217,
         35.65966033
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Crane_trucks_abfut_to_remove_Christmas_illuminations_from_trees,_in_Keyakizaka.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_002",
@@ -1449,7 +1498,8 @@
         139.72958372,
         35.65824889
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Cherry_blossom_in_Roppongi_Hills_Sakurazaka_-_trees.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_007",
@@ -1478,7 +1528,8 @@
         139.730794,
         35.661707
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Towering_(41982469074).jpg"
     },
     {
       "id": "roppongi_roppongi_dori_011",
@@ -1507,7 +1558,8 @@
         139.7295286,
         35.662421
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Act_Hotel_Roppongi.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_012",
@@ -1536,7 +1588,8 @@
         139.73090833,
         35.66294444
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Around_Roppongi_1cgome.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_015",
@@ -1565,7 +1618,8 @@
         139.726389,
         35.660833
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Thermae-yu_Nishiazabu.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_016",
@@ -1591,7 +1645,8 @@
       "weather": "normal",
       "date": "2019-02-09",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Street_life_in_Tokyo_(49600802223).jpg"
     },
     {
       "id": "roppongi_roppongi_dori_018",
@@ -1620,7 +1675,8 @@
         139.72657222,
         35.662675
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Aoyama_Park_5.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_019",
@@ -1649,7 +1705,8 @@
         139.7268827,
         35.6609159
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Roppongi-doori_seen_from_Roppongi_Hills_Mori_Tower.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_022",
@@ -1678,7 +1735,8 @@
         139.731202,
         35.659187
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Light_Rain_in_Tokyo_(53387212243).jpg"
     },
     {
       "id": "roppongi_roppongi_dori_023",
@@ -1707,7 +1765,8 @@
         139.737067,
         35.665008
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Around_Roppongi_1cgome_3.jpg"
     },
     {
       "id": "roppongi_roppongi_dori_024",
@@ -1736,7 +1795,8 @@
         139.72431389,
         35.65979444
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_along_Roppongi_Avenue_14.jpg"
     }
   ]
 }

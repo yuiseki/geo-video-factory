@@ -77,7 +77,8 @@
       "weather": "normal",
       "date": "2016-04-04",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ichibu-hazakura(10%-leafed-cherry-blossoms).JPG"
     },
     {
       "id": "shibuya_miyashita_parco_002",
@@ -103,7 +104,8 @@
       "weather": "normal",
       "date": "2016-08-07",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Pine_tree_of_military_parade_in_Yoyogi_Park_2016-08-07.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_003",
@@ -129,7 +131,8 @@
       "weather": "normal",
       "date": "2018-03-31",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Cherry_blossom_festival_2018_-_Yoyogi_Park_-_Tokyo,_Japan_-_DSC05533.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_004",
@@ -158,7 +161,8 @@
         139.69878611,
         35.66484722
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:NHK,_Shibuya.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_005",
@@ -187,7 +191,8 @@
         139.70226944,
         35.66274722
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Harajuku_4.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_006",
@@ -213,7 +218,8 @@
       "weather": "normal",
       "date": "2018-03-31",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Japanese_Aviation_Memorial_-_Yoyogi_Park_-_Tokyo,_Japan_-_DSC05555.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_007",
@@ -239,7 +245,8 @@
       "weather": "normal",
       "date": "2026-03-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:NHK_Broadcasting_Center_20260322.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_009",
@@ -268,7 +275,8 @@
         139.701135,
         35.6632998
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Shibuya_2.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_010",
@@ -297,7 +305,8 @@
         139.702675,
         35.66341111
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:January_2024_Harajuku_14.jpg"
     },
     {
       "id": "shibuya_miyashita_parco_011",
@@ -326,7 +335,8 @@
         139.7013339,
         35.6619672
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Miyashita_Park_on_a_sunny_day_10.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_001",
@@ -355,7 +365,8 @@
         139.700425,
         35.659661
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Crossing_2025-06-12.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_002",
@@ -384,7 +395,8 @@
         139.700347,
         35.658939
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Demolition_of_Tokyu_Toyoko_(Hachiko_square)_2025-03-23.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_003",
@@ -413,7 +425,8 @@
         139.702854,
         35.6572951
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building,_taken_from_Shibuya_Stream.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_004",
@@ -442,7 +455,8 @@
         139.70083,
         35.659813
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuyapoliceboxundertrainstation.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_005",
@@ -468,7 +482,8 @@
       "weather": "normal",
       "date": "2025-09-01",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Crossing_20250901_131836.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_006",
@@ -497,7 +512,8 @@
         139.70786389,
         35.65106944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:February_2024,_snow_in_Shibuya-ku_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_007",
@@ -526,7 +542,8 @@
         139.70024167,
         35.65959167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:No_events_for_Halloween_on_Shibuya_streets.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_008",
@@ -555,7 +572,8 @@
         139.70053889,
         35.66001667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Group_of_Italian_tourists_in_Shibuya.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_009",
@@ -581,7 +599,8 @@
       "weather": "normal",
       "date": "2022-07-07",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_crossing_north_east_2022-07-07.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_010",
@@ -610,7 +629,8 @@
         139.70698889,
         35.65221667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:February_2024,_snow_in_Shibuya-ku.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_012",
@@ -639,7 +659,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_9.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_013",
@@ -668,7 +689,8 @@
         139.700847,
         35.6592358
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Life_as_usual_in_Shibuya_during_Covid19_outbreak.jpeg"
     },
     {
       "id": "shibuya_scramble_hachiko_014",
@@ -697,7 +719,8 @@
         139.70358611,
         35.65603889
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Snow_in_Shibuya-ku_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_016",
@@ -726,7 +749,8 @@
         139.70553611,
         35.65389444
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Snow_in_Shibuya-ku_3.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_021",
@@ -752,7 +776,8 @@
       "weather": "normal",
       "date": "2025-09-01",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Hachiko_Bus_20250901_155856.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_022",
@@ -781,7 +806,8 @@
         139.700614,
         35.659286
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Protestors_against_2022_Russia_invasion_of_Ukraine,_in_Shibuya_Hachiko_square_4.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_025",
@@ -810,7 +836,8 @@
         139.70081746,
         35.65919391
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Protestors_against_Putin's_Ukraine_invasion,_March_8_in_Tokyo.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_026",
@@ -839,7 +866,8 @@
         139.70161944,
         35.65739167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(41051).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_030",
@@ -868,7 +896,8 @@
         139.701057,
         35.659243
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Halloween_2015_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_032",
@@ -894,7 +923,8 @@
       "weather": "normal",
       "date": "2025-09-01",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Crossing_20250901_131839.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_033",
@@ -923,7 +953,8 @@
         139.700561,
         35.659049
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Protestors_against_2022_Russia_invasion_of_Ukraine,_in_Shibuya_Hachiko_square_5.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_036",
@@ -952,7 +983,8 @@
         139.7021782,
         35.6594863
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_037",
@@ -981,7 +1013,8 @@
         139.70161944,
         35.65739167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(43291).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_041",
@@ -1010,7 +1043,8 @@
         139.701057,
         35.659243
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Halloween_2015.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_043",
@@ -1036,7 +1070,8 @@
       "weather": "normal",
       "date": "2025-09-01",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Crossing_20250901_131843.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_044",
@@ -1065,7 +1100,8 @@
         139.700755,
         35.659212
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Russians_against_the_war,_Tokyo.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_047",
@@ -1094,7 +1130,8 @@
         139.70265,
         35.65727222
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_scramble_in_March_2024.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_048",
@@ -1123,7 +1160,8 @@
         139.70161944,
         35.65739167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(71267).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_051",
@@ -1149,7 +1187,8 @@
       "weather": "normal",
       "date": "2025-09-01",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Crossing_20250901_131850.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_052",
@@ -1178,7 +1217,8 @@
         139.700592,
         35.659261
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Belarusians_are_against_war,_Tokyo.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_055",
@@ -1207,7 +1247,8 @@
         139.6988093,
         35.6582738
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_13.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_056",
@@ -1236,7 +1277,8 @@
         139.70113333,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(80944).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_057",
@@ -1265,7 +1307,8 @@
         139.700464,
         35.659449
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Alone_in_Tokyo_VII_(50802076131).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_061",
@@ -1294,7 +1337,8 @@
         139.7032539,
         35.6573521
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_19.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_062",
@@ -1323,7 +1367,8 @@
         139.70510278,
         35.65798056
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_Shibuya_Stream_15.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_063",
@@ -1352,7 +1397,8 @@
         139.7029971,
         35.6573198
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_in_Shibuya_6.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_066",
@@ -1381,7 +1427,8 @@
         139.70015556,
         35.65954167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_of_Shibuya_(33374).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_067",
@@ -1410,7 +1457,8 @@
         139.7023548,
         35.6594894
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Works_on_Shibuya_Station_building_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_068",
@@ -1439,7 +1487,8 @@
         139.7005449,
         35.6577875
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Constructrion_at_Shibuya_station_18.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_069",
@@ -1468,7 +1517,8 @@
         139.70045278,
         35.65967222
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:October_2024,_Walk_in_Shibuya_5.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_071",
@@ -1497,7 +1547,8 @@
         139.70053056,
         35.66006944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_of_Shibuya_station_and_crowd_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_072",
@@ -1526,7 +1577,8 @@
         139.7023548,
         35.6594894
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Works_on_Shibuya_Station_building.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_073",
@@ -1555,7 +1607,8 @@
         139.7005449,
         35.6577875
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Constructrion_at_Shibuya_station_19.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_077",
@@ -1581,7 +1634,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007,_billboard_advertisement_removal_outside_Shibuya_station.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_080",
@@ -1610,7 +1664,8 @@
         139.701264,
         35.658219
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Demolition_of_Tokyu_Toyoko_2026-05-17.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_081",
@@ -1639,7 +1694,8 @@
         139.702697,
         35.657242
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Last_visible_remains_of_previous_Shibuya_station.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_082",
@@ -1668,7 +1724,8 @@
         139.70258333,
         35.65729444
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:January_2024_Shibuya_views_9.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_086",
@@ -1697,7 +1754,8 @@
         139.7029992,
         35.6572956
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_088",
@@ -1726,7 +1784,8 @@
         139.700622,
         35.657536
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Shibuya_Station_Yamanote_Line_platform_2026-05-17.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_089",
@@ -1755,7 +1814,8 @@
         139.700619,
         35.657522
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building,_behind_highway.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_090",
@@ -1784,7 +1844,8 @@
         139.7029687,
         35.6573076
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_091",
@@ -1813,7 +1874,8 @@
         139.70218889,
         35.65835
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_10.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_092",
@@ -1842,7 +1904,8 @@
         139.702133,
         35.657794
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:JR_Shibuya_Station_west_side_2026-05-17.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_093",
@@ -1871,7 +1934,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(18927).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_094",
@@ -1900,7 +1964,8 @@
         139.7030128,
         35.6574437
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_demolition.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_095",
@@ -1929,7 +1994,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_3.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_096",
@@ -1958,7 +2024,8 @@
         139.702875,
         35.65905
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square,_seen_from_Hikarie_(23784).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_097",
@@ -1987,7 +2054,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(19030).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_098",
@@ -2016,7 +2084,8 @@
         139.7006439,
         35.658144
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_in_2021_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_099",
@@ -2045,7 +2114,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_4.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_100",
@@ -2074,7 +2144,8 @@
         139.702925,
         35.658972
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square,_seen_from_Hikarie.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_101",
@@ -2103,7 +2174,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(24592).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_102",
@@ -2132,7 +2204,8 @@
         139.7006439,
         35.658144
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_in_2021_3.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_103",
@@ -2161,7 +2234,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_5.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_105",
@@ -2190,7 +2264,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(48965).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_106",
@@ -2219,7 +2294,8 @@
         139.701825,
         35.65726944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Shibuya_Stream_5.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_107",
@@ -2248,7 +2324,8 @@
         139.70207222,
         35.65935278
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_6.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_109",
@@ -2277,7 +2354,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(68615).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_110",
@@ -2306,7 +2384,8 @@
         139.701825,
         35.65726944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Shibuya_Stream_6.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_111",
@@ -2335,7 +2414,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_7.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_112",
@@ -2364,7 +2444,8 @@
         139.700917,
         35.657319
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_renewal,_April_2025_(14949).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_113",
@@ -2393,7 +2474,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(74528).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_114",
@@ -2422,7 +2504,8 @@
         139.701825,
         35.65726944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Shibuya_Stream_7.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_115",
@@ -2451,7 +2534,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_8.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_116",
@@ -2480,7 +2564,8 @@
         139.700917,
         35.657319
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_renewal,_April_2025_(32565).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_117",
@@ -2509,7 +2594,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(82198).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_118",
@@ -2538,7 +2624,8 @@
         139.701825,
         35.65726944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Shibuya_Stream_8.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_119",
@@ -2567,7 +2654,8 @@
         139.70218889,
         35.65835
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_9.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_120",
@@ -2596,7 +2684,8 @@
         139.700917,
         35.657319
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_renewal,_April_2025_(52058).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_121",
@@ -2625,7 +2714,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026_(88783).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_122",
@@ -2654,7 +2744,8 @@
         139.701825,
         35.65726944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_Shibuya_Stream_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_123",
@@ -2683,7 +2774,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_124",
@@ -2709,7 +2801,8 @@
       "weather": "normal",
       "date": "2021-05-20",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyu_Department_Store_Toyoko_branch_2021.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_125",
@@ -2738,7 +2831,8 @@
         139.701619,
         35.657392
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment,_July_2026.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_126",
@@ -2767,7 +2861,8 @@
         139.70187778,
         35.65727778
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_Shibuya_Stream_3.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_127",
@@ -2793,7 +2888,8 @@
       "weather": "rain",
       "date": "2016-09-06",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shibuya_Station_and_intersection_from_overhead.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_128",
@@ -2822,7 +2918,8 @@
         139.702786,
         35.657206
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_of_Shibuya.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_129",
@@ -2851,7 +2948,8 @@
         139.700394,
         35.657917
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(29405).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_130",
@@ -2880,7 +2978,8 @@
         139.70272778,
         35.65671944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_Shibuya_Stream_9.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_131",
@@ -2909,7 +3008,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_3.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_133",
@@ -2938,7 +3038,8 @@
         139.700394,
         35.657917
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(31590).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_135",
@@ -2967,7 +3068,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_4.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_137",
@@ -2996,7 +3098,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(38832).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_138",
@@ -3025,7 +3128,8 @@
         139.700697,
         35.65895
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ancient_pillar_of_Shibuya_station.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_139",
@@ -3054,7 +3158,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_5.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_140",
@@ -3083,7 +3188,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(38915).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_141",
@@ -3112,7 +3218,8 @@
         139.701958,
         35.656986
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_around_Shibuya_station_10.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_142",
@@ -3141,7 +3248,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_6.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_143",
@@ -3170,7 +3278,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(42428).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_144",
@@ -3199,7 +3308,8 @@
         139.701958,
         35.656986
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_around_Shibuya_station_8.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_145",
@@ -3228,7 +3338,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_7.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_146",
@@ -3257,7 +3368,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(59006).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_147",
@@ -3286,7 +3398,8 @@
         139.701958,
         35.656986
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_around_Shibuya_station_9.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_148",
@@ -3315,7 +3428,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_8.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_149",
@@ -3344,7 +3458,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(59146).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_151",
@@ -3373,7 +3488,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_152",
@@ -3402,7 +3518,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(59646).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_154",
@@ -3431,7 +3548,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_seen_from_Shibuya_Scramble_Square_building_14F.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_155",
@@ -3460,7 +3578,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(61451).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_158",
@@ -3489,7 +3608,8 @@
         139.700394,
         35.657917
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(73811).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_161",
@@ -3518,7 +3638,8 @@
         139.700394,
         35.657917
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(85544).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_163",
@@ -3547,7 +3668,8 @@
         139.702508,
         35.656547
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Free_Palestine,_demonstration_in_Tokyo.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_164",
@@ -3576,7 +3698,8 @@
         139.700394,
         35.657917
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(86910).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_165",
@@ -3605,7 +3728,8 @@
         139.70325,
         35.657344
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Remains_of_original_Shibuya_station.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_166",
@@ -3631,7 +3755,8 @@
       "weather": "normal",
       "date": "2018-10-04",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Hachikobusinshibuya.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_168",
@@ -3660,7 +3785,8 @@
         139.702911,
         35.657417
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_JR_station_redevelopment.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_171",
@@ -3689,7 +3815,8 @@
         139.700597,
         35.657789
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_and_JR_station_redevelopment.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_172",
@@ -3718,7 +3845,8 @@
         139.701497,
         35.657731
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:November_2024,_Shibuya_station_redevelopment_-51223.jpeg"
     },
     {
       "id": "shibuya_scramble_hachiko_173",
@@ -3744,7 +3872,8 @@
       "weather": "normal",
       "date": "2019-01-05",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_crossing_north_east_2019-01-05.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_174",
@@ -3773,7 +3902,8 @@
         139.709914,
         35.647094
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:October_2024_Shibuya_station_redevelopment.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_175",
@@ -3802,7 +3932,8 @@
         139.700986,
         35.657656
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025_(16792).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_177",
@@ -3831,7 +3962,8 @@
         139.701189,
         35.657792
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025_(16928).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_179",
@@ -3860,7 +3992,8 @@
         139.700597,
         35.657497
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025_(36018).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_181",
@@ -3889,7 +4022,8 @@
         139.700597,
         35.657497
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025_(43330).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_183",
@@ -3918,7 +4052,8 @@
         139.700986,
         35.657656
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025_(45941).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_184",
@@ -3947,7 +4082,8 @@
         139.701678,
         35.659483
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_11.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_185",
@@ -3976,7 +4112,8 @@
         139.701189,
         35.657792
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025_(64238).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_186",
@@ -4005,7 +4142,8 @@
         139.701678,
         35.659483
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_12.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_187",
@@ -4034,7 +4172,8 @@
         139.700986,
         35.657656
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025_(72543).jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_188",
@@ -4063,7 +4202,8 @@
         139.701678,
         35.659483
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Scramble_Square_building_14F_2.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_189",
@@ -4092,7 +4232,8 @@
         139.7006,
         35.657481
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_redevelopment_December_2025.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_192",
@@ -4121,7 +4262,8 @@
         139.702072,
         35.659353
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_10.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_193",
@@ -4147,7 +4289,8 @@
       "weather": "normal",
       "date": "2020-02-24",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyu_Department_Store_Toyoko_branch_2019.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_194",
@@ -4176,7 +4319,8 @@
         139.702072,
         35.659353
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_11.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_196",
@@ -4205,7 +4349,8 @@
         139.702072,
         35.659353
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_12.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_198",
@@ -4234,7 +4379,8 @@
         139.702822,
         35.657247
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_reconstruction.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_200",
@@ -4263,7 +4409,8 @@
         139.701678,
         35.659483
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_Shibuya_Stream_18.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_201",
@@ -4289,7 +4436,8 @@
       "weather": "normal",
       "date": "2024-09-07",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_Shibuya_Stream_20.jpg"
     },
     {
       "id": "shibuya_scramble_hachiko_202",
@@ -4318,7 +4466,8 @@
         139.700144,
         35.659694
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:大盛堂書店.jpg"
     },
     {
       "id": "shibuya_shibuya109_qfront_001",
@@ -4344,7 +4493,8 @@
       "weather": "normal",
       "date": "2020-04-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Dogenzaka-shita_Crossing_2020-04-19.jpg"
     },
     {
       "id": "shibuya_shibuya109_qfront_002",
@@ -4373,7 +4523,8 @@
         139.70113333,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(76159).jpg"
     },
     {
       "id": "shibuya_shibuya109_qfront_003",
@@ -4402,7 +4553,8 @@
         139.70244722,
         35.65765
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_of_central_Shibuya.jpg"
     },
     {
       "id": "shibuya_shibuya109_qfront_004",
@@ -4431,7 +4583,8 @@
         139.7000676,
         35.6595433
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_crossing_in_October_2021.jpg"
     },
     {
       "id": "shibuya_shibuya109_qfront_005",
@@ -4460,7 +4613,8 @@
         139.698456,
         35.659969
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Historical_site_marker_for_Koibumi_Yokocho_2025-06-12.jpg"
     },
     {
       "id": "shibuya_shibuya109_qfront_007",
@@ -4489,7 +4643,8 @@
         139.70291667,
         35.65741944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:January_2024_Shibuya_views.jpg"
     },
     {
       "id": "shibuya_shibuya109_qfront_010",
@@ -4518,7 +4673,8 @@
         139.70167778,
         35.65948333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_2.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_001",
@@ -4547,7 +4703,8 @@
         139.707664,
         35.653758
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Around_Shibuya_River,_rainy_evening_(15025).jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_002",
@@ -4576,7 +4733,8 @@
         139.702889,
         35.657106
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Tower_seen_from_Shibuya_Stream,_clear_summer_morning_at_8AM.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_003",
@@ -4602,7 +4760,8 @@
       "weather": "normal",
       "date": null,
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Compact_construction_site_in_the_morning_in_Shibuya-ku,_waiting_for_truck_to_arrive.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_004",
@@ -4631,7 +4790,8 @@
         139.70308611,
         35.65691944
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Roppongi_before_the_rain_2.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_005",
@@ -4660,7 +4820,8 @@
         139.70691389,
         35.65203056
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:New_SHIBUYA_sign_over_Saikyo_train_leaving_to_Ebisu,_Shibuya_Stream_and_Sakura_Stage_in_the_background.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_006",
@@ -4689,7 +4850,8 @@
         139.703565,
         35.6567373
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_behind_Shibuya_Stream.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_007",
@@ -4718,7 +4880,8 @@
         139.70195833,
         35.65698611
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_around_Shibuya_station_12.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_008",
@@ -4747,7 +4910,8 @@
         139.70146111,
         35.65698889
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_10.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_009",
@@ -4776,7 +4940,8 @@
         139.7021845,
         35.6578916
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_station_renewal_9.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_010",
@@ -4805,7 +4970,8 @@
         139.7027149,
         35.6571689
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Cponstruction_around_Shibuya_Stream_3.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_011",
@@ -4834,7 +5000,8 @@
         139.70146111,
         35.65698889
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_11.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_012",
@@ -4863,7 +5030,8 @@
         139.7031002,
         35.6589051
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya's_Ginza_line_seen_from_Hikarie_2.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_013",
@@ -4892,7 +5060,8 @@
         139.70293611,
         35.657425
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:January_2024_Shibuya_views_2.jpg"
     },
     {
       "id": "shibuya_station_stream_hikarie_016",
@@ -4918,7 +5087,8 @@
       "weather": "normal",
       "date": "2025-09-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:渋谷駅全景2025.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_001",
@@ -4947,7 +5117,8 @@
         139.697036,
         35.66055
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Demolition_of_Tokyu_Department_Store_2025-09-11.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_002",
@@ -4976,7 +5147,8 @@
         139.700744,
         35.658267
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Demolition_of_Tokyu_Toyoko_2025-06-12.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_003",
@@ -5005,7 +5177,8 @@
         139.704042,
         35.657797
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Sunset_over_Shibuya_Station_redevolopment.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_004",
@@ -5034,7 +5207,8 @@
         139.70149722,
         35.65773056
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:November_2024,_Shibuya_station_redevelopment_-37309.jpeg"
     },
     {
       "id": "shibuya_bunkamura_dori_005",
@@ -5063,7 +5237,8 @@
         139.69192778,
         35.65931389
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Streetview_in_Shinsen_(77522).jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_006",
@@ -5092,7 +5267,8 @@
         139.69720556,
         35.66041389
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Bunkamura_covered_in_scaffolding.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_007",
@@ -5121,7 +5297,8 @@
         139.7029971,
         35.6573198
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_in_Shibuya_2.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_008",
@@ -5147,7 +5324,8 @@
       "weather": "normal",
       "date": "2018-02-04",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Blue_Steel_(45019529534).jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_009",
@@ -5173,7 +5351,8 @@
       "weather": "normal",
       "date": "2023-01-21",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Nabeshima_shoutou_park.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_010",
@@ -5202,7 +5381,8 @@
         139.69084722,
         35.65972222
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Nabeshima_Shoto_park_(60387).jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_011",
@@ -5231,7 +5411,8 @@
         139.69543889,
         35.66263889
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Abema_Towers.jpg"
     },
     {
       "id": "shibuya_bunkamura_dori_012",
@@ -5260,7 +5441,8 @@
         139.69095,
         35.66015833
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Nabeshima_Shoto_park_(73046).jpg"
     },
     {
       "id": "shibuya_center_gai_001",
@@ -5286,7 +5468,8 @@
       "weather": "normal",
       "date": "2012-10-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:PARCO_SR6_2012-10-22.jpg"
     },
     {
       "id": "shibuya_center_gai_002",
@@ -5312,7 +5495,8 @@
       "weather": "normal",
       "date": "2022-07-07",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:ZERO_GATE_in_Shibuya_2022-07-07.jpg"
     },
     {
       "id": "shibuya_center_gai_003",
@@ -5341,7 +5525,8 @@
         139.698801,
         35.660504
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Night_street_in_Udagawachō,_Tokyo_(53335292514).jpg"
     },
     {
       "id": "shibuya_center_gai_004",
@@ -5367,7 +5552,8 @@
       "weather": "fog",
       "date": "2025-06-11",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Foggy_Night_-_Tokyo,_Japan_(54823969261).jpg"
     },
     {
       "id": "shibuya_center_gai_005",
@@ -5396,7 +5582,8 @@
         139.69811111,
         35.66224167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_between_Center-gai_and_Abema_10.jpg"
     },
     {
       "id": "shibuya_center_gai_006",
@@ -5425,7 +5612,8 @@
         139.69799694,
         35.66041733
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuyamegadonkihonten.jpg"
     },
     {
       "id": "shibuya_center_gai_007",
@@ -5451,7 +5639,8 @@
       "weather": "normal",
       "date": "2020-04-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Center-Gai_2020-04-19.jpg"
     },
     {
       "id": "shibuya_center_gai_008",
@@ -5480,7 +5669,8 @@
         139.69662222,
         35.66225278
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_between_Center-gai_and_Abema_2.jpg"
     },
     {
       "id": "shibuya_center_gai_009",
@@ -5506,7 +5696,8 @@
       "weather": "normal",
       "date": "2017-05-12",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shibuya_night_unsplash.jpg"
     },
     {
       "id": "shibuya_center_gai_011",
@@ -5532,7 +5723,8 @@
       "weather": "normal",
       "date": "2020-04-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Center-Gai_entrance_2020-04-19.jpg"
     },
     {
       "id": "shibuya_center_gai_013",
@@ -5561,7 +5753,8 @@
         139.69936389,
         35.66008333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_between_Center-gai_and_Abema_18.jpg"
     },
     {
       "id": "shibuya_center_gai_014",
@@ -5590,7 +5783,8 @@
         139.69763056,
         35.66225556
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_between_Center-gai_and_Abema_8.jpg"
     },
     {
       "id": "shibuya_dogenzaka_001",
@@ -5619,7 +5813,8 @@
         139.69730278,
         35.65875833
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Demolition_near_Shibuya_Mark_City_2.jpg"
     },
     {
       "id": "shibuya_dogenzaka_002",
@@ -5645,7 +5840,8 @@
       "weather": "normal",
       "date": "2021-04-11",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:E_Space_Tower_2021-04-11.jpg"
     },
     {
       "id": "shibuya_dogenzaka_003",
@@ -5674,7 +5870,8 @@
         139.696578,
         35.658389
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Mark_City_West_2025-06-12.jpg"
     },
     {
       "id": "shibuya_dogenzaka_004",
@@ -5703,7 +5900,8 @@
         139.70283889,
         35.65716667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:FUKURAS_and_evening_sky.jpg"
     },
     {
       "id": "shibuya_dogenzaka_005",
@@ -5732,7 +5930,8 @@
         139.70172222,
         35.65736667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_line_train_entering_Shibuya_Mark_City_2.jpg"
     },
     {
       "id": "shibuya_dogenzaka_006",
@@ -5761,7 +5960,8 @@
         139.7028095,
         35.6573419
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_at_Shibuya_station_2.jpg"
     },
     {
       "id": "shibuya_dogenzaka_007",
@@ -5790,7 +5990,8 @@
         139.69748056,
         35.66038333
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Dogenzaka_2-26_new_buildings,_dogenzaka-dori_道玄坂通.jpg"
     },
     {
       "id": "shibuya_dogenzaka_008",
@@ -5819,7 +6020,8 @@
         139.702839,
         35.657167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Keio_plaza,_evening_sky.jpg"
     },
     {
       "id": "shibuya_dogenzaka_009",
@@ -5848,7 +6050,8 @@
         139.6960783,
         35.65762765
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Gusto_Shibuya-Dōgenzaka.jpg"
     },
     {
       "id": "shibuya_dogenzaka_010",
@@ -5877,7 +6080,8 @@
         139.70172222,
         35.65736667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_line_train_entering_Shibuya_Mark_City.jpg"
     },
     {
       "id": "shibuya_dogenzaka_011",
@@ -5906,7 +6110,8 @@
         139.701133,
         35.65825
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(46670).jpg"
     },
     {
       "id": "shibuya_dogenzaka_012",
@@ -5935,7 +6140,8 @@
         139.69628333,
         35.65803611
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Demolition_near_Shibuya_Mark_City.jpg"
     },
     {
       "id": "shibuya_dogenzaka_013",
@@ -5964,7 +6170,8 @@
         139.70235833,
         35.65729722
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Police_cordon_at_entrance_of_Shibuya_Mark_City.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_001",
@@ -5990,7 +6197,8 @@
       "weather": "normal",
       "date": "2021-09-07",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Koen-dori_entrance_2021-09-07_(1).jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_002",
@@ -6019,7 +6227,8 @@
         139.69901667,
         35.66436389
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Amazon_Music,_Shibuya.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_003",
@@ -6048,7 +6257,8 @@
         139.702925,
         35.65711389
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Fire_at_auto_repair_shop_in_Koto-ku,_seen_from_Shibuya,_with_Roppongi_in_the_middle.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_004",
@@ -6074,7 +6284,8 @@
       "weather": "normal",
       "date": "2015-03-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Keio_Inokashira_Line_Shibuya_station_(west_entrance)_2015-03-12.JPG"
     },
     {
       "id": "shibuya_koen_inokashira_spain_005",
@@ -6100,7 +6311,8 @@
       "weather": "normal",
       "date": "2025-03-14",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Night_life_in_Tokyo,_Japan_(54412959018).jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_006",
@@ -6129,7 +6341,8 @@
         139.698394,
         35.663147
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_Ward_Office_2023-03-30.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_007",
@@ -6158,7 +6371,8 @@
         139.697472,
         35.662058
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyu_Hands.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_008",
@@ -6187,7 +6401,8 @@
         139.69582778,
         35.66251111
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Abema_Towers_2.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_009",
@@ -6213,7 +6428,8 @@
       "weather": "normal",
       "date": "2024-01-16",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kitaya_park_shibuya_240116.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_010",
@@ -6242,7 +6458,8 @@
         139.69629722,
         35.662075
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Abema_Towers_11.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_011",
@@ -6271,7 +6488,8 @@
         139.69935556,
         35.662025
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:渋谷_公園通り_Media_Department_Tokyo.jpg"
     },
     {
       "id": "shibuya_koen_inokashira_spain_012",
@@ -6297,7 +6515,8 @@
       "weather": "normal",
       "date": "2024-02-26",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Rakuten_mobile_shibuya.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_001",
@@ -6326,7 +6545,8 @@
         139.703644,
         35.660131
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Miyamasu_Mitake-jinja_2025-06-12.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_002",
@@ -6355,7 +6575,8 @@
         139.708328,
         35.661617
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:青山通り,_Aoyama_dori,_Shibuya,_Tokyo,_Japan.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_003",
@@ -6384,7 +6605,8 @@
         139.707664,
         35.653758
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Around_Shibuya_River,_rainy_evening_(37833).jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_004",
@@ -6413,7 +6635,8 @@
         139.70287222,
         35.65711667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Aoyama_avenue_in_summer_morning,_seen_from_Shibuya_Stream.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_005",
@@ -6442,7 +6665,8 @@
         139.704839,
         35.656247
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Night_sakura_along_Shibuya_River_2.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_006",
@@ -6471,7 +6695,8 @@
         139.70903056,
         35.65124167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Portable_shrines_going_from_Ebisu_to_Shibuya's_Hijawa_shrine.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_007",
@@ -6500,7 +6725,8 @@
         139.70246886,
         35.65933608
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_in_Shibuya_2017.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_008",
@@ -6526,7 +6752,8 @@
       "weather": "normal",
       "date": "2010-12-04",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuyakyowa-bld01.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_009",
@@ -6552,7 +6779,8 @@
       "weather": "normal",
       "date": "2022-09-29",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Miyamasuzaka_Building_2022-09-29.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_010",
@@ -6581,7 +6809,8 @@
         139.705261,
         35.659011
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:SHIBUYA_AXSH,_2024-05.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_011",
@@ -6607,7 +6836,8 @@
       "weather": "normal",
       "date": "2023-06-29",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Miyamasuzaka_protest.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_012",
@@ -6636,7 +6866,8 @@
         139.704839,
         35.656247
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Night_sakura_along_Shibuya_River.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_013",
@@ -6665,7 +6896,8 @@
         139.7175273,
         35.6481307
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shibuya_River_when_raining.jpg"
     },
     {
       "id": "shibuya_miyamasuzaka_meiji_014",
@@ -6694,7 +6926,8 @@
         139.7065665,
         35.6609375
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Layup.jpg"
     }
   ]
 }

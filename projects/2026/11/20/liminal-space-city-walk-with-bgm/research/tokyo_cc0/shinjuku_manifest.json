@@ -70,7 +70,8 @@
       "weather": "normal",
       "date": "2025-11-24",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Hanazono_shrine_tori_no_ichi_fair20251124.jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_003",
@@ -96,7 +97,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_Gyo-en_Greenhouse_-_Tokyo,_Japan_-_DSC05725.jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_006",
@@ -125,7 +127,8 @@
         139.70676111,
         35.68321667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_along_Shinjuku_Gyoen_South-side_fence_10.jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_007",
@@ -151,7 +154,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007,_Shinjuku_Gyoen_2.jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_008",
@@ -180,7 +184,8 @@
         139.71285,
         35.68570833
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Gyoen_Museum,_in_the_snow_(19037).jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_009",
@@ -209,7 +214,8 @@
         139.7100517,
         35.6851763
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Gyoen_National_Garden_(Unsplash).jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_015",
@@ -238,7 +244,8 @@
         139.70872778,
         35.68828333
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_Gyoen_(24154).jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_016",
@@ -267,7 +274,8 @@
         139.70770833,
         35.68147778
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:View_of_Shinjuku_Gyoen_from_train_stopped_at_Sendagaya_station_(23024).jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_017",
@@ -293,7 +301,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007,_Shinjuku_Gyoen_3.jpg"
     },
     {
       "id": "shinjuku_gyoen_hanazono_019",
@@ -319,7 +328,8 @@
       "weather": "normal",
       "date": "2017-09-05",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Gyo-en_-_nature.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_002",
@@ -345,7 +355,8 @@
       "weather": "normal",
       "date": "2024-11-11",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyu_Kabukicho_Tower_Bus_stop_(Bus_exit)_2024.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_003",
@@ -374,7 +385,8 @@
         139.70103611,
         35.69390556
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kabukicho_on_Saturday_night.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_006",
@@ -403,7 +415,8 @@
         139.700517,
         35.697358
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:東急歌舞伎町タワー.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_007",
@@ -432,7 +445,8 @@
         139.701828,
         35.695969
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kabukicho_Koban_2024-07-04.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_008",
@@ -461,7 +475,8 @@
         139.697358,
         35.693561
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kabukicho_2024-01-25.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_009",
@@ -490,7 +505,8 @@
         139.6917064,
         35.6894875
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo,_Japan_(Unsplash_FPyGfMHXWZU).jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_011",
@@ -516,7 +532,8 @@
       "weather": "normal",
       "date": "2012-02-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Toho_Gakuen_Upper_Secondary_Vocational_School_and_Shinjuku_Laboratory_2012-02-26.JPG"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_012",
@@ -542,7 +559,8 @@
       "weather": "normal",
       "date": null,
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kabukicho_gauez.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_014",
@@ -568,7 +586,8 @@
       "weather": "normal",
       "date": "2021-08-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kabukicho_2021-08-26.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_016",
@@ -597,7 +616,8 @@
         139.700883,
         35.695778
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_Toho_Building_and_Kabukicho_Cinecity_Square_2024-01-28.jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_017",
@@ -623,7 +643,8 @@
       "weather": "normal",
       "date": "2026-10-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kabukicho_on_Saturday_night_(10715).jpg"
     },
     {
       "id": "shinjuku_kabukicho_landmarks_018",
@@ -649,7 +670,8 @@
       "weather": "normal",
       "date": "2021-05-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kabukicho_Ichibangai_entrance_2021-05-19.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_002",
@@ -675,7 +697,8 @@
       "weather": "normal",
       "date": "2021-07-25",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Big_calico_cat_at_Cross_Shinjuku_Vision_2021-07-25.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_003",
@@ -704,7 +727,8 @@
         139.6995788,
         35.690553
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Station,_Shinjuku-ku,_Japan_(Unsplash).jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_004",
@@ -733,7 +757,8 @@
         139.68911,
         35.68356
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Ntt_east_head_office_bldg_east.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_005",
@@ -762,7 +787,8 @@
         139.698106,
         35.689475
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Yodobashi_Camera_Shinjuku_West_Main_Store_2024-03-31.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_006",
@@ -791,7 +817,8 @@
         139.698197,
         35.691028
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_site_of_west_side_of_Shinjuku_Station_(1)_2025-02-09.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_008",
@@ -817,7 +844,8 @@
       "weather": "normal",
       "date": "2022-12-17",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Yamanote_Line_Shinjuku_Sta._20221217.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_009",
@@ -846,7 +874,8 @@
         139.698958,
         35.692244
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Construction_site_of_west_side_of_Shinjuku_Station_(2)_2025-11-23.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_013",
@@ -875,7 +904,8 @@
         139.695314,
         35.693628
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_Police_Station_2024-09-05.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_014",
@@ -901,7 +931,8 @@
       "weather": "normal",
       "date": "2020-04-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Alta_2020-04-19.jpg"
     },
     {
       "id": "shinjuku_shinjuku_station_018",
@@ -927,7 +958,8 @@
       "weather": "normal",
       "date": "2020-04-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Expressway_Bus_Terminal_2020-04-19.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_001",
@@ -956,7 +988,8 @@
         139.693131,
         35.687181
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_Metropolitan_Government_Building_No2_2024-03-31.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_002",
@@ -985,7 +1018,8 @@
         139.690933,
         35.69025
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Metropolitan_Government_Building_and_election_bulletin_board_for_Tokyo_gubernatorial_election_2024-07-04.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_003",
@@ -1014,7 +1048,8 @@
         139.689758,
         35.690042
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Niagara_Falls_in_Shinjuku_Chuo_Park_-_Dec_12,_2024.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_004",
@@ -1040,7 +1075,8 @@
       "weather": "rain",
       "date": "2022-03-02",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Metropolitan_Government_Building_2022-03-02.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_005",
@@ -1066,7 +1102,8 @@
       "weather": "normal",
       "date": "2024-01-14",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_chuo_park_240114_a.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_011",
@@ -1095,7 +1132,8 @@
         139.69165257,
         35.68959547
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007,_view_from_Tokyo_Metropolitan_Government_building_in_Shinjuku_10.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_012",
@@ -1124,7 +1162,8 @@
         139.6921,
         35.68538889
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kimpton_Shinjuku_Tokyo,_an_Ihg_Hotel.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_014",
@@ -1150,7 +1189,8 @@
       "weather": "normal",
       "date": "2016-09-05",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_Metropolitan_Government_Building_No.1_(2016-09-05_by_Prota_@Pixabay_1670937).jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_015",
@@ -1176,7 +1216,8 @@
       "weather": "normal",
       "date": "2023-10-30",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_-_Shinjuku258.jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_018",
@@ -1202,7 +1243,8 @@
       "weather": "normal",
       "date": "2016-05-18",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Skyscrapers_in_Nishi-Shinjuku_at_night_-_Shinjuku_Mitsui_Building,_Shinjuku_Sumitomo_Building_-_view_from_Hyatt_Regency_Tokyo_Building_(2016-05-18_by_panayota_@Pixabay_2190035).jpg"
     },
     {
       "id": "shinjuku_tocho_nishishinjuku_020",
@@ -1228,7 +1270,8 @@
       "weather": "normal",
       "date": "2009-12-05",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Mode_Gakuen_Cocoon_Tower,_Tokyo_JP.jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_001",
@@ -1257,7 +1300,8 @@
         139.705,
         35.694167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Thermae-yu_Shinjuku.jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_003",
@@ -1283,7 +1327,8 @@
       "weather": "normal",
       "date": "2023-11-11",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Autumn_in_Tokyo_(53343600743).jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_005",
@@ -1309,7 +1354,8 @@
       "weather": "normal",
       "date": "2025-03-20",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Nishishinjuku,_Shinjuku_City,_Tokyo_2025.jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_006",
@@ -1338,7 +1384,8 @@
         139.6995541,
         35.6928643
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Yakitori_alley,_Shinjuku-ku,_Japan_(Unsplash).jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_017",
@@ -1367,7 +1414,8 @@
         139.701508,
         35.695522
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyu_Kabukicho_Tower_and_Kabukicho_Cinecity_Square_2024-01-25.jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_018",
@@ -1396,7 +1444,8 @@
         139.699509,
         35.692837
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Night_life_in_Tokyo,_Japan_(54322565033).jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_019",
@@ -1425,7 +1474,8 @@
         139.7035494,
         35.6938401
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku,_Japan_(Unsplash_LrBQ3SBGkhA).jpg"
     },
     {
       "id": "shinjuku_kabukicho_omoide_golden_020",
@@ -1454,7 +1504,8 @@
         139.70247852,
         35.69234138
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku,_Japan_(Unsplash_2jb-mXXFwc0).jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_004",
@@ -1480,7 +1531,8 @@
       "weather": "normal",
       "date": "2021-08-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:After_the_demolition_of_the_Meiji_Yasuda_Life_Insurance_Company_Shinjuku_Building_(1)_2021-08-26.jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_011",
@@ -1509,7 +1561,8 @@
         139.701869,
         35.689822
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Parting_Ways_(38484363170).jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_012",
@@ -1535,7 +1588,8 @@
       "weather": "normal",
       "date": "2018-05-23",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_Park_Tower_2018_from_MetGovBld.jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_013",
@@ -1561,7 +1615,8 @@
       "weather": "normal",
       "date": "2018-02-07",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:The_In-Between_(26364010648).jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_017",
@@ -1587,7 +1642,8 @@
       "weather": "normal",
       "date": "2017-11-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:BIC_DRUG_Shidax_Shinjuku_Central_Road_branch_2017-11-26.jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_021",
@@ -1613,7 +1669,8 @@
       "weather": "normal",
       "date": "2023-10-26",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Ladder_truck_nishishinjuku.jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_022",
@@ -1642,7 +1699,8 @@
         139.7035494,
         35.6938401
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku,_Japan_(Unsplash_fKySMHHYe0o).jpg"
     },
     {
       "id": "shinjuku_meiji_koshu_dori_023",
@@ -1671,7 +1729,8 @@
         139.69547778,
         35.68919167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Passage_in_Nishishinjuku_-30744.jpeg"
     },
     {
       "id": "shinjuku_shinjuku_dori_002",
@@ -1697,7 +1756,8 @@
       "weather": "normal",
       "date": "2021-05-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Alta_2021-05-19.jpg"
     },
     {
       "id": "shinjuku_shinjuku_dori_006",
@@ -1726,7 +1786,8 @@
         139.703631,
         35.693763
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_-_Shinjuku271.jpg"
     },
     {
       "id": "shinjuku_shinjuku_dori_008",
@@ -1755,7 +1816,8 @@
         139.703924,
         35.6916476
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Pedestrian_street_on_a_Sunday_in_Shinjuku.jpg"
     },
     {
       "id": "shinjuku_shinjuku_dori_010",
@@ -1784,7 +1846,8 @@
         139.7035494,
         35.6938401
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Alone_in_Tokyo_(Unsplash).jpg"
     },
     {
       "id": "shinjuku_shinjuku_dori_013",
@@ -1810,7 +1873,8 @@
       "weather": "normal",
       "date": "2019-06-06",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Books_Kinokuniya_Shinjuku_main_branch_east_side_2019-06-06.jpg"
     },
     {
       "id": "shinjuku_shinjuku_dori_014",
@@ -1839,7 +1903,8 @@
         139.706817,
         35.690128
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sekaido_Shinjuku_Main_Store_2024-01-28.jpg"
     },
     {
       "id": "shinjuku_shinjuku_dori_020",
@@ -1865,7 +1930,8 @@
       "weather": "normal",
       "date": "2013-02-21",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Minami-Shinjuku_Building_2013-02-21.JPG"
     },
     {
       "id": "shinjuku_yasukuni_dori_001",
@@ -1894,7 +1960,8 @@
         139.69996,
         35.692942
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Yakitori_shop_lanterns_in_Omoide-Yokochō,_Shinjuku,_Tokyo,_Japan_2011_2_(7024865381).jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_002",
@@ -1920,7 +1987,8 @@
       "weather": "normal",
       "date": "2021-07-25",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Yunika_building_2021-07-25.jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_003",
@@ -1949,7 +2017,8 @@
         139.703506,
         35.6934
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_Ward_Office_2023-02-16.jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_005",
@@ -1978,7 +2047,8 @@
         139.692031,
         35.692336
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:ハイアット_リージェンシー_東京.jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_007",
@@ -2007,7 +2077,8 @@
         139.7035494,
         35.6938401
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Busy_Nights_in_Shinjuku_(Unsplash).jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_008",
@@ -2033,7 +2104,8 @@
       "weather": "normal",
       "date": "2013-07-26",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:\"The_Earth_Is_A_Star\",_by_Marendo_Müller.jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_011",
@@ -2062,7 +2134,8 @@
         139.773559,
         35.707492
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shinjuku_(31767117827).jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_014",
@@ -2091,7 +2164,8 @@
         139.703506,
         35.693481
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:新宿区役所.jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_015",
@@ -2117,7 +2191,8 @@
       "weather": "rain",
       "date": "2020-09-25",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:雨の新宿大ガード.jpg"
     },
     {
       "id": "shinjuku_yasukuni_dori_017",
@@ -2146,7 +2221,8 @@
         139.703631,
         35.693763
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Shinjuku_-_Shinjuku255.jpg"
     }
   ]
 }

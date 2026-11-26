@@ -49,7 +49,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/080_20180405-DSCF1013-xt_48971257321_.jpg",
    "nightScore": 0.538,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:20180405-DSCF1013-xt_(48971257321).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -67,7 +68,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/082_Bench_in_Shibuya_10_meters_away_from_Yamanote_line.jpg",
    "nightScore": 0.757,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Bench_in_Shibuya,_10_meters_away_from_Yamanote_line.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -85,7 +87,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/081_Alone_in_Tokyo_VII_50802076131_.jpg",
    "nightScore": 0.547,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Alone_in_Tokyo_VII_(50802076131).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -103,7 +106,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/086_Buildings_at_night_around_Shibuya.jpg",
    "nightScore": 0.664,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Buildings_at_night_around_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -121,7 +125,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/083_Buildings_at_night_around_Shibuya_2.jpg",
    "nightScore": 0.804,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Buildings_at_night_around_Shibuya_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -139,7 +144,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/084_Buildings_at_night_around_Shibuya_3.jpg",
    "nightScore": 0.581,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Buildings_at_night_around_Shibuya_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -157,7 +163,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/085_Buildings_at_night_around_Shibuya_4.jpg",
    "nightScore": 0.682,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Buildings_at_night_around_Shibuya_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -175,7 +182,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/087_Bus_depot_in_Shibuya.jpg",
    "nightScore": 0.667,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Bus_depot_in_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -193,7 +201,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/088_Busy_Japanese_sidewalk_Unsplash_.jpg",
    "nightScore": 0.495,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Busy_Japanese_sidewalk_(Unsplash).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -211,7 +220,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/095_Construction_in_Shibuya_November_2018.jpg",
    "nightScore": 0.755,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Construction_in_Shibuya,_November_2018.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -229,7 +239,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/093_Construction_in_Shibuya_November_2018_2.jpg",
    "nightScore": 0.635,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Construction_in_Shibuya,_November_2018_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -247,7 +258,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/094_Construction_in_Shibuya_November_2018_3.jpg",
    "nightScore": 0.592,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Construction_in_Shibuya,_November_2018_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -265,7 +277,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/100_Cponstruction_around_Shibuya_Stream.jpg",
    "nightScore": 0.758,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cponstruction_around_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -283,7 +296,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/096_Cponstruction_around_Shibuya_Stream_2.jpg",
    "nightScore": 0.787,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cponstruction_around_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -301,7 +315,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/097_Cponstruction_around_Shibuya_Stream_3.jpg",
    "nightScore": 0.739,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cponstruction_around_Shibuya_Stream_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -319,7 +334,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/098_Cponstruction_around_Shibuya_Stream_4.jpg",
    "nightScore": 0.827,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cponstruction_around_Shibuya_Stream_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -337,7 +353,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/099_Cponstruction_around_Shibuya_Stream_5.jpg",
    "nightScore": 0.817,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cponstruction_around_Shibuya_Stream_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -355,7 +372,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/090_Cerulean_Tower_Tokyu_Hotel.jpg",
    "nightScore": 0.838,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cerulean_Tower_Tokyu_Hotel.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -373,7 +391,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/091_Cerulean_Tower.jpg",
    "nightScore": 0.839,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cerulean_Tower.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -391,7 +410,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/089_Cerulean_Tower_2.jpg",
    "nightScore": 0.759,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Cerulean_Tower_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -409,7 +429,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/092_Construction_around_Shibuya_station_8.jpg",
    "nightScore": 0.562,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Construction_around_Shibuya_station_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -427,7 +448,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/101_Crowd_holding_umbrellas_Unsplash_.jpg",
    "nightScore": 0.617,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Crowd_holding_umbrellas_(Unsplash).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -445,7 +467,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/109_Demolition_near_Shibuya_Mark_City.jpg",
    "nightScore": 0.721,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Demolition_near_Shibuya_Mark_City.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -463,7 +486,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/108_Demolition_near_Shibuya_Mark_City_2.jpg",
    "nightScore": 0.321,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Demolition_near_Shibuya_Mark_City_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -481,7 +505,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/114_February_2024_snow_in_Shibuya-ku_2.jpg",
    "nightScore": 0.573,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:February_2024,_snow_in_Shibuya-ku_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -499,7 +524,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/111_Early_occupants_of_Shibuya_Sakura_Stage.jpg",
    "nightScore": 0.845,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Early_occupants_of_Shibuya_Sakura_Stage.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -517,7 +543,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/107_Decorated_truck_with_blue_neons_waiting_along_the_railway_in.jpg",
    "nightScore": 0.75,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Decorated_truck_with_blue_neons,_waiting_along_the_railway_in_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -535,7 +562,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/106_December_2024_Sakura_Stage_-74026.jpeg",
    "nightScore": 0.82,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:December_2024_Sakura_Stage_-74026.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -553,7 +581,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/102_December_2024_Sakura_Stage_-23359.jpeg",
    "nightScore": 0.821,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:December_2024_Sakura_Stage_-23359.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -571,7 +600,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/103_December_2024_Sakura_Stage_-46325.jpeg",
    "nightScore": 0.825,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:December_2024_Sakura_Stage_-46325.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -589,7 +619,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/105_December_2024_Sakura_Stage_-63727.jpeg",
    "nightScore": 0.733,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:December_2024_Sakura_Stage_-63727.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -607,7 +638,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/104_December_2024_Sakura_Stage_-55166.jpeg",
    "nightScore": 0.808,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:December_2024_Sakura_Stage_-55166.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -625,7 +657,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/113_Empty_Shibuya_Stream_shortly_after_midnight.jpg",
    "nightScore": 0.581,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Empty_Shibuya_Stream_shortly_after_midnight.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -643,7 +676,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/112_Empty_Shibuya_Stream_shortly_after_midnight_-83821.jpeg",
    "nightScore": 0.647,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Empty_Shibuya_Stream_shortly_after_midnight_-83821.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -661,7 +695,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/110_Doutonbori_Gekijyo_2026-01-17.jpg",
    "nightScore": 0.764,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Doutonbori_Gekijyo_2026-01-17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -679,7 +714,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/118_H_M_in_Shibuya_night.jpg",
    "nightScore": 0.908,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:H&M_in_Shibuya_night.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -697,7 +733,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/120_Hachikobusinshibuya.jpg",
    "nightScore": 0.456,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Hachikobusinshibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -715,7 +752,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/119_Hachiko_square_2020-04-19.jpg",
    "nightScore": 0.569,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Hachiko_square_2020-04-19.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -733,7 +771,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/116_Group_of_Italian_tourists_in_Shibuya.jpg",
    "nightScore": 0.481,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Group_of_Italian_tourists_in_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -751,7 +790,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/117_Gusto_Shibuya-D_genzaka.jpg",
    "nightScore": 0.863,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Gusto_Shibuya-Dōgenzaka.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -769,7 +809,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/121_Hochhaus_Shibuya_Scramble_Square.jpg",
    "nightScore": 0.47,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Hochhaus_Shibuya_Scramble_Square.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -787,7 +828,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/115_Free_Palestine_demonstration_in_Tokyo.jpg",
    "nightScore": 0.418,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Free_Palestine,_demonstration_in_Tokyo.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -805,7 +847,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/126_Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Eb.jpg",
    "nightScore": 0.632,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Ebisu,_before_heading_to_Shibuya_Scramble_crossing_to_show_off.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -823,7 +866,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/123_Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Eb.jpg",
    "nightScore": 0.629,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Ebisu,_before_heading_to_Shibuya_Scramble_crossing_to_show_off_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -841,7 +885,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/124_Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Eb.jpg",
    "nightScore": 0.571,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Ebisu,_before_heading_to_Shibuya_Scramble_crossing_to_show_off_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -859,7 +904,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/125_Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Eb.jpg",
    "nightScore": 0.675,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Illegally_parked_Lamborghinis_in_front_of_a_restaurant_in_Ebisu,_before_heading_to_Shibuya_Scramble_crossing_to_show_off_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -877,7 +923,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/127_JAF_tow_truck_in_Ebisu.jpg",
    "nightScore": 0.811,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:JAF_tow_truck_in_Ebisu.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -896,7 +943,8 @@
    "nightScore": 0.593,
    "night": false,
    "selection": "crossing_dusk",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:January_2024_Shibuya_views_9.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -914,7 +962,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/122_Huge_QR_code_billboard_in_central_Shibuya_readable_even_behi.jpg",
    "nightScore": 0.893,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Huge_QR_code_billboard_in_central_Shibuya,_readable_even_behind_trees.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -932,7 +981,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/132_Life_as_usual_in_Shibuya_during_Covid19_outbreak.jpeg",
    "nightScore": 0.511,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Life_as_usual_in_Shibuya_during_Covid19_outbreak.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -950,7 +1000,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/130_Japanese_elderly_citizen_protesting_every_day_Russia_s_aggre.jpg",
    "nightScore": 0.423,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Japanese_elderly_citizen_protesting_every_day_Russia's_aggression_of_Ukraine.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -968,7 +1019,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/133_Loud_cars_near_Shibuya_Scramble_crossing_2.jpg",
    "nightScore": 0.603,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -986,7 +1038,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/134_Loud_cars_near_Shibuya_Scramble_crossing_3.jpg",
    "nightScore": 0.542,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1004,7 +1057,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/129_Japan_National_Stadium.jpg",
    "nightScore": 0.768,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Japan_National_Stadium.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1022,7 +1076,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/131_July_2009_Tokyo_26.jpg",
    "nightScore": 0.659,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:July_2009_Tokyo_26.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1040,7 +1095,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/143_Loud_cars_near_Shibuya_Scramble_crossing.jpg",
    "nightScore": 0.553,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1058,7 +1114,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/142_Loud_cars_near_Shibuya_Scramble_crossing_argument_with_polic.jpg",
    "nightScore": 0.605,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing,_argument_with_police.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1076,7 +1133,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/135_Loud_cars_near_Shibuya_Scramble_crossing_4.jpg",
    "nightScore": 0.749,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1094,7 +1152,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/140_Loud_cars_near_Shibuya_Scramble_crossing_argument_with_polic.jpg",
    "nightScore": 0.612,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing,_argument_with_police_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1112,7 +1171,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/141_Loud_cars_near_Shibuya_Scramble_crossing_argument_with_polic.jpg",
    "nightScore": 0.565,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing,_argument_with_police_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1130,7 +1190,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/136_Loud_cars_near_Shibuya_Scramble_crossing_5.jpg",
    "nightScore": 0.608,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1148,7 +1209,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/137_Loud_cars_near_Shibuya_Scramble_crossing_6.jpg",
    "nightScore": 0.656,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1167,7 +1229,8 @@
    "nightScore": 0.739,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1186,7 +1249,8 @@
    "nightScore": 0.723,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1204,7 +1268,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/148_No_events_for_Halloween_on_Shibuya_streets.jpg",
    "nightScore": 0.582,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:No_events_for_Halloween_on_Shibuya_streets.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1222,7 +1287,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/162_November_2023_Shibuya_Sakura_Stage_at_night_2.jpg",
    "nightScore": 0.76,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1240,7 +1306,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/171_November_2023_Shibuya_Sakura_Stage_at_night_3.jpg",
    "nightScore": 0.725,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1258,7 +1325,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/172_November_2023_Shibuya_Sakura_Stage_at_night_4.jpg",
    "nightScore": 0.646,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1276,7 +1344,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/173_November_2023_Shibuya_Sakura_Stage_at_night_5.jpg",
    "nightScore": 0.806,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1294,7 +1363,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/152_November_2023_Shibuya_Sakura_Stage_at_night_10.jpg",
    "nightScore": 0.751,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1312,7 +1382,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/153_November_2023_Shibuya_Sakura_Stage_at_night_11.jpg",
    "nightScore": 0.612,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1330,7 +1401,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/154_November_2023_Shibuya_Sakura_Stage_at_night_12.jpg",
    "nightScore": 0.671,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1348,7 +1420,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/155_November_2023_Shibuya_Sakura_Stage_at_night_13.jpg",
    "nightScore": 0.812,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_13.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1366,7 +1439,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/156_November_2023_Shibuya_Sakura_Stage_at_night_14.jpg",
    "nightScore": 0.822,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_14.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1384,7 +1458,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/157_November_2023_Shibuya_Sakura_Stage_at_night_15.jpg",
    "nightScore": 0.763,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_15.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1402,7 +1477,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/158_November_2023_Shibuya_Sakura_Stage_at_night_16.jpg",
    "nightScore": 0.558,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_16.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1420,7 +1496,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/159_November_2023_Shibuya_Sakura_Stage_at_night_17.jpg",
    "nightScore": 0.47,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1438,7 +1515,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/160_November_2023_Shibuya_Sakura_Stage_at_night_18.jpg",
    "nightScore": 0.745,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_18.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1456,7 +1534,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/161_November_2023_Shibuya_Sakura_Stage_at_night_19.jpg",
    "nightScore": 0.742,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_19.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1474,7 +1553,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/163_November_2023_Shibuya_Sakura_Stage_at_night_20.jpg",
    "nightScore": 0.61,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_20.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1492,7 +1572,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/164_November_2023_Shibuya_Sakura_Stage_at_night_21.jpg",
    "nightScore": 0.664,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_21.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1510,7 +1591,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/165_November_2023_Shibuya_Sakura_Stage_at_night_22.jpg",
    "nightScore": 0.76,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_22.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1528,7 +1610,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/166_November_2023_Shibuya_Sakura_Stage_at_night_23.jpg",
    "nightScore": 0.746,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_23.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1546,7 +1629,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/167_November_2023_Shibuya_Sakura_Stage_at_night_24.jpg",
    "nightScore": 0.692,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_24.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1564,7 +1648,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/168_November_2023_Shibuya_Sakura_Stage_at_night_25.jpg",
    "nightScore": 0.712,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_25.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1582,7 +1667,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/169_November_2023_Shibuya_Sakura_Stage_at_night_26.jpg",
    "nightScore": 0.757,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_26.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1600,7 +1686,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/170_November_2023_Shibuya_Sakura_Stage_at_night_27.jpg",
    "nightScore": 0.815,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_27.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1618,7 +1705,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/150_November_2023_Shibuya_Sakura_Stage_8.jpg",
    "nightScore": 0.834,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1636,7 +1724,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/151_November_2023_Shibuya_Sakura_Stage_9.jpg",
    "nightScore": 0.808,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_9.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1654,7 +1743,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/149_November_2023_Shibuya_Sakura_Stage_10.jpg",
    "nightScore": 0.836,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1672,7 +1762,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/145_Night_sakura_along_Shibuya_River.jpg",
    "nightScore": 0.67,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Night_sakura_along_Shibuya_River.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1690,7 +1781,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/144_Night_sakura_along_Shibuya_River_2.jpg",
    "nightScore": 0.738,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Night_sakura_along_Shibuya_River_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1708,7 +1800,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/147_Nishisando_keibi_240101.jpg",
    "nightScore": 0.836,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Nishisando_keibi_240101.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1727,7 +1820,8 @@
    "nightScore": 0.678,
    "night": false,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Night_view_of_Shibuya,_Tokyo,_November_2026.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1745,7 +1839,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/182_Pedestrian_bridge_construction_in_Shibuya_December_2018_11.jpg",
    "nightScore": 0.863,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Pedestrian_bridge_construction_in_Shibuya,_December_2018_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1763,7 +1858,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/181_Outdoor_film_set_of_Shibuya_Crossing_2020-02-24.jpg",
    "nightScore": 0.39,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Outdoor_film_set_of_Shibuya_Crossing_2020-02-24.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1781,7 +1877,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/187_Protestor_against_2022_Russia_invasion_of_Ukraine_wearing_Ge.jpg",
    "nightScore": 0.446,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Protestor_against_2022_Russia_invasion_of_Ukraine,_wearing_Georgia_flag,_in_Shibuya_Hachiko_square.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1799,7 +1896,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/189_Protestors_against_2022_Russia_invasion_of_Ukraine_in_Shibuy.jpg",
    "nightScore": 0.49,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Protestors_against_2022_Russia_invasion_of_Ukraine,_in_Shibuya_Hachiko_square.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1817,7 +1915,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/188_Protestors_against_2022_Russia_invasion_of_Ukraine_in_Shibuy.jpg",
    "nightScore": 0.506,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Protestors_against_2022_Russia_invasion_of_Ukraine,_in_Shibuya_Hachiko_square_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1835,7 +1934,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/183_Pedestrian_bridge_near_Ebisu.jpg",
    "nightScore": 0.789,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Pedestrian_bridge_near_Ebisu.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1853,7 +1953,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/178_November_2023_Shibuya_Sakura_Stage_at_night.jpg",
    "nightScore": 0.773,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1871,7 +1972,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/174_November_2023_Shibuya_Sakura_Stage_at_night_6.jpg",
    "nightScore": 0.587,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1889,7 +1991,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/175_November_2023_Shibuya_Sakura_Stage_at_night_7.jpg",
    "nightScore": 0.606,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1907,7 +2010,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/176_November_2023_Shibuya_Sakura_Stage_at_night_8.jpg",
    "nightScore": 0.759,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1925,7 +2029,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/177_November_2023_Shibuya_Sakura_Stage_at_night_9.jpg",
    "nightScore": 0.711,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:November_2023,_Shibuya_Sakura_Stage_at_night_9.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1943,7 +2048,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/184_People_17156873275_.jpg",
    "nightScore": 0.368,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:People!_(17156873275).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1961,7 +2067,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/185_Pink_Tokyo_tower.jpg",
    "nightScore": 0.825,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Pink_Tokyo_tower.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1979,7 +2086,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/186_Police_and_stage_blocking_road_near_Shibuya_scramble.jpg",
    "nightScore": 0.514,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Police_and_stage_blocking_road_near_Shibuya_scramble.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1997,7 +2105,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/179_October_2024_Walk_in_Shibuya_4.jpg",
    "nightScore": 0.615,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:October_2024,_Walk_in_Shibuya_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2015,7 +2124,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/180_October_2024_Walk_in_Shibuya_5.jpg",
    "nightScore": 0.663,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:October_2024,_Walk_in_Shibuya_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2033,7 +2143,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/191_Roppongi_at_night_seen_from_Shibuya_Stream.jpg",
    "nightScore": 0.668,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Roppongi_at_night_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2051,7 +2162,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/192_Running_track_near_Japan_National_Stadium_2.jpg",
    "nightScore": 0.665,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Running_track_near_Japan_National_Stadium_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2069,7 +2181,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/190_Reikyo_2026-01-17.jpg",
    "nightScore": 0.758,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Reikyo_2026-01-17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2087,7 +2200,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/197_Sarugakucho_next_to_the_railway.jpg",
    "nightScore": 0.796,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Sarugakucho_next_to_the_railway.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2105,7 +2219,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/195_Sarugakucho_next_to_the_railway_2.jpg",
    "nightScore": 0.645,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Sarugakucho_next_to_the_railway_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2123,7 +2238,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/196_Sarugakucho_next_to_the_railway_3.jpg",
    "nightScore": 0.707,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Sarugakucho_next_to_the_railway_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2141,7 +2257,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/193_SHIBUYA_.jpg",
    "nightScore": 0.63,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:SHIBUYAタワー.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2159,7 +2276,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/198_September_2024_Roppongi_at_night_from_Shibuya_Stream.jpg",
    "nightScore": 0.706,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:September_2024_Roppongi_at_night_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2177,7 +2295,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/194_Sangubashi_koen_231204.jpg",
    "nightScore": 0.812,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Sangubashi_koen_231204.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2195,7 +2314,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/199_Shibuya_Unsplash_.jpg",
    "nightScore": 0.85,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_(Unsplash).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2214,7 +2334,8 @@
    "nightScore": 0.599,
    "night": false,
    "selection": "crossing_dusk",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_Center-Gai_during_a_building_fire_incident.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2232,7 +2353,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/200_Shibuya_Center-Gai_during_a_building_fire_incident_3.jpg",
    "nightScore": 0.523,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Center-Gai_during_a_building_fire_incident_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2250,7 +2372,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/204_Shibuya_Crossing_2020-04-19_1_.jpg",
    "nightScore": 0.55,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_2020-04-19_(1).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2268,7 +2391,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/205_Shibuya_Crossing_2020-04-19_2_.jpg",
    "nightScore": 0.612,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_2020-04-19_(2).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2286,7 +2410,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/206_Shibuya_Crossing_2020-05-10.jpg",
    "nightScore": 0.369,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_2020-05-10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2304,7 +2429,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/203_Shibuya_Crossing_2018-04-05_02.jpg",
    "nightScore": 0.409,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_2018-04-05_02.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2322,7 +2448,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/202_Shibuya_Crossing_2018-04-05_01.jpg",
    "nightScore": 0.521,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_2018-04-05_01.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2340,7 +2467,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/210_Shibuya_Crossing_20250901_131843.jpg",
    "nightScore": 0.482,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_20250901_131843.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2358,7 +2486,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/208_Shibuya_Crossing_20250901_131836.jpg",
    "nightScore": 0.461,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_20250901_131836.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2376,7 +2505,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/209_Shibuya_Crossing_20250901_131839.jpg",
    "nightScore": 0.482,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_20250901_131839.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2394,7 +2524,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/211_Shibuya_Crossing_20250901_131850.jpg",
    "nightScore": 0.595,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_20250901_131850.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2412,7 +2543,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/207_Shibuya_Crossing_2025-06-12.jpg",
    "nightScore": 0.376,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Crossing_2025-06-12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2431,7 +2563,8 @@
    "nightScore": 0.639,
    "night": false,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_Crossing_Kis-My-Ft2_album_billboard_2024.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2450,7 +2583,8 @@
    "nightScore": 0.802,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_Crossing_2026-01-17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2468,7 +2602,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/215_Shibuya_Crossing_Shibuya_Japan_Unsplash_.jpg",
    "nightScore": 0.861,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Crossing,_Shibuya,_Japan_(Unsplash).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2487,7 +2622,8 @@
    "nightScore": 0.814,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_Crossing_in_Tokyo_at_night_20140404131650_(27418131742).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2505,7 +2641,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/216_Shibuya_Nights_Japan_--_2017-05_unsplash.com_.jpg",
    "nightScore": 0.812,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Nights,_Japan_--_2017-05_(unsplash.com).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2523,7 +2660,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/221_Shibuya_Sakura_Stage_before_opening_6.jpg",
    "nightScore": 0.745,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_before_opening_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2541,7 +2679,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/222_Shibuya_Sakura_Stage_before_opening_8.jpg",
    "nightScore": 0.657,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Sakura_Stage,_before_opening_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2559,7 +2698,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/224_Shibuya_Sakura_Stage_day_after_official_open_17.jpg",
    "nightScore": 0.798,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2577,7 +2717,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/225_Shibuya_Sakura_Stage_day_after_official_open_21.jpg",
    "nightScore": 0.683,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_21.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2595,7 +2736,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/226_Shibuya_Sakura_Stage_day_after_official_open_22.jpg",
    "nightScore": 0.77,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_22.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2613,7 +2755,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/227_Shibuya_Sakura_Stage_day_after_official_open_25.jpg",
    "nightScore": 0.777,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_25.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2631,7 +2774,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/228_Shibuya_Sakura_Stage_day_after_official_open_26.jpg",
    "nightScore": 0.817,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_26.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2649,7 +2793,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/229_Shibuya_Sakura_Stage_day_after_official_open_27.jpg",
    "nightScore": 0.83,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_27.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2667,7 +2812,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/230_Shibuya_Sakura_Stage_day_after_official_open_28.jpg",
    "nightScore": 0.727,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_28.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2685,7 +2831,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/231_Shibuya_Sakura_Stage_day_after_official_open_29.jpg",
    "nightScore": 0.764,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_29.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2703,7 +2850,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/232_Shibuya_Sakura_Stage_day_after_official_open_31.jpg",
    "nightScore": 0.795,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_31.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2721,7 +2869,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/233_Shibuya_Sakura_Stage_day_after_official_open_34.jpg",
    "nightScore": 0.821,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_34.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2739,7 +2888,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/223_Shibuya_Sakura_Stage_central_building.jpg",
    "nightScore": 0.715,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_central_building.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2757,7 +2907,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/218_Shibuya_River_near_Shibuya_Stream.jpg",
    "nightScore": 0.653,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_River,_near_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2775,7 +2926,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/217_Shibuya_River_near_Shibuya_Stream_2.jpg",
    "nightScore": 0.774,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_River,_near_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2793,7 +2945,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/220_Shibuya_Sakura_Stage_street.jpg",
    "nightScore": 0.754,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage_street.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2811,7 +2964,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/219_Shibuya_Sakura_Stage_30875_.jpg",
    "nightScore": 0.755,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage_(30875).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2829,7 +2983,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/241_Shibuya_Sakura_Stage_day_after_official_open.jpg",
    "nightScore": 0.798,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2847,7 +3002,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/237_Shibuya_Sakura_Stage_day_after_official_open_4.jpg",
    "nightScore": 0.756,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2865,7 +3021,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/239_Shibuya_Sakura_Stage_day_after_official_open_7.jpg",
    "nightScore": 0.73,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2883,7 +3040,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/240_Shibuya_Sakura_Stage_day_after_official_open_8.jpg",
    "nightScore": 0.718,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2901,7 +3059,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/234_Shibuya_Sakura_Stage_day_after_official_open_36.jpg",
    "nightScore": 0.728,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_36.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2919,7 +3078,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/235_Shibuya_Sakura_Stage_day_after_official_open_37.jpg",
    "nightScore": 0.831,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_37.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2937,7 +3097,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/236_Shibuya_Sakura_Stage_day_after_official_open_39.jpg",
    "nightScore": 0.714,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_39.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2955,7 +3116,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/238_Shibuya_Sakura_Stage_day_after_official_open_40.jpg",
    "nightScore": 0.758,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_day_after_official_open_40.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2973,7 +3135,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/242_Shibuya_Sakura_Stage_walkway_along_railway.jpg",
    "nightScore": 0.765,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Sakura_Stage,_walkway_along_railway.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2991,7 +3154,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/244_Shibuya_Scramble_crossing.jpg",
    "nightScore": 0.817,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Scramble_crossing.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3009,7 +3173,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/243_Shibuya_Scramble_Square_building_14047_.jpg",
    "nightScore": 0.795,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Scramble_Square_building_(14047).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3027,7 +3192,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/245_Shibuya_Station_and_intersection_from_overhead.jpg",
    "nightScore": 0.514,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Station_and_intersection_from_overhead.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3045,7 +3211,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/246_Shibuya_Stream_at_2am_on_a_weekday_-16625.jpeg",
    "nightScore": 0.659,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_Stream_at_2am_on_a_weekday_-16625.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3063,7 +3230,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/247_Shibuya_Stream_at_2am_on_a_weekday.jpg",
    "nightScore": 0.676,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_Stream_at_2am_on_a_weekday.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3081,7 +3249,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/248_Shibuya_crossing_12214_.jpg",
    "nightScore": 0.516,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_crossing_(12214).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3099,7 +3268,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/251_Shibuya_crossing_north_east_2019-01-05.jpg",
    "nightScore": 0.458,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_crossing_north_east_2019-01-05.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3117,7 +3287,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/257_Shibuya_night_unsplash.jpg",
    "nightScore": 0.812,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya_night_unsplash.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3135,7 +3306,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/250_Shibuya_crossing_in_October_2021.jpg",
    "nightScore": 0.471,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_crossing_in_October_2021.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3153,7 +3325,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/249_Shibuya_crossing_at_night.jpg",
    "nightScore": 0.409,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_crossing_at_night.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3171,7 +3344,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/252_Shibuya_crossing_north_east_2022-07-07.jpg",
    "nightScore": 0.415,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_crossing_north_east_2022-07-07.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3189,7 +3363,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/254_Shibuya_crossing_seen_from_Shibuya_Stream.jpg",
    "nightScore": 0.517,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_crossing_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3207,7 +3382,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/255_Shibuya_crossing_seen_from_Shibuya_Stream.jpg",
    "nightScore": 0.465,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_crossing,_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3225,7 +3401,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/256_Shibuya_evening_sky.jpg",
    "nightScore": 0.461,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_evening_sky.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3244,7 +3421,8 @@
    "nightScore": 0.689,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_crossing_seen_from_Shibuya_Stream,_2024.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3262,7 +3440,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/267_Shibuya_Japan_Unsplash_wH5oonip-eg_.jpg",
    "nightScore": 0.76,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shibuya,_Japan_(Unsplash_wH5oonip-eg).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3280,7 +3459,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/266_Shibuya_station_Hachiko_entrance_2020-05-10.jpg",
    "nightScore": 0.377,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_station_Hachiko_entrance_2020-05-10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3299,7 +3479,8 @@
    "nightScore": 0.605,
    "night": false,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3317,7 +3498,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/259_Shibuya_scramble_crossing_during_Halloween_2023_actually_les.jpg",
    "nightScore": 0.501,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3336,7 +3518,8 @@
    "nightScore": 0.656,
    "night": false,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3354,7 +3537,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/263_Shibuya_scramble_in_March_2024.jpg",
    "nightScore": 0.522,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_scramble_in_March_2024.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3373,7 +3557,8 @@
    "nightScore": 0.601,
    "night": false,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_scramble_av_night_from_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3391,7 +3576,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/265_Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_9.jpg",
    "nightScore": 0.626,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_9.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3409,7 +3595,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/264_Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_12.jpg",
    "nightScore": 0.53,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3428,7 +3615,8 @@
    "nightScore": 0.765,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3447,7 +3635,8 @@
    "nightScore": 0.793,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Shibuya-ekimae_Intersection_at_night_20140416.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3465,7 +3654,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/269_Shibuya_views_from_Tokyu_Plaza_Celavi_85544_.jpg",
    "nightScore": 0.561,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(85544).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3483,7 +3673,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/268_Shibuya_views_from_Tokyu_Plaza_Celavi_29405_.jpg",
    "nightScore": 0.565,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(29405).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3501,7 +3692,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/270_Shibuya_views_from_Tokyu_Plaza_Celavi_86910_.jpg",
    "nightScore": 0.415,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(86910).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3519,7 +3711,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/272_Shibuyapoliceboxundertrainstation.jpg",
    "nightScore": 0.533,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Shibuyapoliceboxundertrainstation.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3537,7 +3730,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/273_Shutoko_3_near_Cerulean_Tower.jpg",
    "nightScore": 0.778,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Shutoko_3_near_Cerulean_Tower.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3556,7 +3750,8 @@
    "nightScore": 0.948,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:The_front_of_Shibuya_Station_Crossing_20211126_01.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3575,7 +3770,8 @@
    "nightScore": 0.869,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:The_front_of_Shibuya_Station_Crossing_20211126_02.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3593,7 +3789,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/280_The_front_of_Shibuya_Station_Crossing_20211126_03.jpg",
    "nightScore": 0.783,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:The_front_of_Shibuya_Station_Crossing_20211126_03.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3611,7 +3808,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/281_The_views_of_Shibuya_Sky_20211126_01.jpg",
    "nightScore": 0.864,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:The_views_of_Shibuya_Sky_20211126_01.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3629,7 +3827,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/283_The_views_of_Shibuya_Sky_20211126_03.jpg",
    "nightScore": 0.839,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:The_views_of_Shibuya_Sky_20211126_03.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3647,7 +3846,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/282_The_views_of_Shibuya_Sky_20211126_02.jpg",
    "nightScore": 0.842,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:The_views_of_Shibuya_Sky_20211126_02.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3665,7 +3865,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/284_The_views_of_Shibuya_Sky_20211126_04.jpg",
    "nightScore": 0.868,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:The_views_of_Shibuya_Sky_20211126_04.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3683,7 +3884,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/277_Testing_the_lights_of_the_office_floors_in_Azabudai_Hills_JP.jpg",
    "nightScore": 0.524,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Testing_the_lights_of_the_office_floors_in_Azabudai_Hills_JP_Mori_Tower_before_official_opening.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3701,7 +3903,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/275_Sunday_afternoon_in_Shibuya_Scramble_Square_Building.jpg",
    "nightScore": 0.759,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Sunday_afternoon_in_Shibuya_Scramble_Square_Building.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3719,7 +3922,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/274_Sunday_afternoon_in_Shibuya_Scramble_Square_Building_2.jpg",
    "nightScore": 0.77,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Sunday_afternoon_in_Shibuya_Scramble_Square_Building_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3737,7 +3941,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/276_Tanta_building_night_shibuya.jpg",
    "nightScore": 0.853,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Tanta_building_night_shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3755,7 +3960,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/285_Tokyo_1970-04-7.jpg",
    "nightScore": 0.247,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Tokyo_1970-04-7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3774,7 +3980,8 @@
    "nightScore": 0.785,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Tokyo,_Japan_(Unsplash_O8-DB1epegE).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3792,7 +3999,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/287_Tokyo_crosswalk_Unsplash_Hhcn6yy3Uo8_.jpg",
    "nightScore": 0.532,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Tokyo_crosswalk_(Unsplash_Hhcn6yy3Uo8).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3810,7 +4018,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/291_Tokyo---2022-05-29_077.jpg",
    "nightScore": 0.729,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Tokyo---2022-05-29_077.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3828,7 +4037,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/290_Tokyo---2022-05-29_076.jpg",
    "nightScore": 0.593,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Tokyo---2022-05-29_076.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3846,7 +4056,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/289_Tokyo---2022-05-29_075.jpg",
    "nightScore": 0.655,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Tokyo---2022-05-29_075.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3864,7 +4075,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/286_Tokyo_Tower_at_night_from_Shibuya_Stream.jpg",
    "nightScore": 0.588,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Tokyo_Tower_at_night_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3882,7 +4094,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/293_View_from_Shibuya_Stream_5.jpg",
    "nightScore": 0.517,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:View_from_Shibuya_Stream_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3900,7 +4113,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/292_Top_of_Shibuya_Stream_and_Google_logo_seen_from_.jpg",
    "nightScore": 0.783,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Top_of_Shibuya_Stream_and_Google_logo_seen_from_金王坂.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3919,7 +4133,8 @@
    "nightScore": 0.6,
    "night": false,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Waiting_people_in_Shibuya_Crossing_20140416.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3937,7 +4152,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/294_View_from_Shibuya_Stream_7.jpg",
    "nightScore": 0.513,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:View_from_Shibuya_Stream_7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3955,7 +4171,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/300_Views_from_Shibuya_Stream.jpg",
    "nightScore": 0.471,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Views_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3973,7 +4190,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/296_Views_from_Shibuya_Stream_11.jpg",
    "nightScore": 0.664,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Views_from_Shibuya_Stream_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3991,7 +4209,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/297_Views_from_Shibuya_Stream_12.jpg",
    "nightScore": 0.796,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Views_from_Shibuya_Stream_12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4009,7 +4228,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/298_Views_from_Shibuya_Stream_15.jpg",
    "nightScore": 0.585,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Views_from_Shibuya_Stream_15.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4027,7 +4247,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/304_Views_of_central_Shibuya_4.jpg",
    "nightScore": 0.803,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Views_of_central_Shibuya_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4046,7 +4267,8 @@
    "nightScore": 0.64,
    "night": false,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Views_of_central_Shibuya_10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4065,7 +4287,8 @@
    "nightScore": 0.563,
    "night": false,
    "selection": "crossing_dusk",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Views_from_Shibuya_Stream_20.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4083,7 +4306,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/295_Views_from_Shibuya_Stream_-61955.jpeg",
    "nightScore": 0.755,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:Views_from_Shibuya_Stream_-61955.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -4102,7 +4326,8 @@
    "nightScore": 0.542,
    "night": false,
    "selection": "crossing_dusk",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:Views_of_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4120,7 +4345,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/301_Views_of_Shibuya_33374_.jpg",
    "nightScore": 0.532,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Views_of_Shibuya_(33374).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4138,7 +4364,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/307_Young_people_in_Tokyo_protesting_war_in_Ukraine.jpg",
    "nightScore": 0.338,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Young_people_in_Tokyo_protesting_war_in_Ukraine.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4157,7 +4384,8 @@
    "nightScore": 0.793,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "commons:「X」社に。_(52847949120).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4175,7 +4403,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/306_Yosimoto_Mugendai_Dome_in_Shibuya.jpg",
    "nightScore": 0.651,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:Yosimoto_Mugendai_Dome,_in_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4193,7 +4422,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/309__.jpg",
    "nightScore": 0.715,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:株式会社三共.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4211,7 +4441,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/310__.jpg",
    "nightScore": 0.567,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:渋谷のラジオ.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4229,7 +4460,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/311__2.jpg",
    "nightScore": 0.609,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:渋谷横丁_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4247,7 +4479,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/312__4.jpg",
    "nightScore": 0.767,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:渋谷横丁_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4265,7 +4498,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/313__5.jpg",
    "nightScore": 0.681,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:渋谷横丁_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4283,7 +4517,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/314__.jpg",
    "nightScore": 0.746,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "commons:渋谷横丁.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4301,7 +4536,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/315__2025.jpg",
    "nightScore": 0.488,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "commons:渋谷駅全景2025.jpg"
   },
   {
    "source": "openverse/rawpixel",
@@ -4331,7 +4567,8 @@
    "nightScore": 0.913,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "rawpixel:5917595"
   },
   {
    "source": "openverse/flickr",
@@ -4355,7 +4592,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/064_Magnetic_Man_in_Tokyo_Shibuya_crossing.jpg",
    "nightScore": 0.435,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:55102473952"
   },
   {
    "source": "openverse/rawpixel",
@@ -4383,7 +4621,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/075_Shibuya_Crossing_Shibuya_Japan.jpg",
    "nightScore": 0.888,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "rawpixel:3294690"
   },
   {
    "source": "openverse/rawpixel",
@@ -4412,7 +4651,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/076_Shibuya_Crossing_Tokyo.jpg",
    "nightScore": 0.536,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "rawpixel:4026029"
   },
   {
    "source": "openverse/rawpixel",
@@ -4441,7 +4681,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/077_Shibuya_Crossing_pedestrians_Tokyo_Japan.jpg",
    "nightScore": 0.532,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "rawpixel:6113341"
   },
   {
    "source": "openverse/rawpixel",
@@ -4469,7 +4710,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/079_Shibuya_crossing_Japan_tourist_destination.jpg",
    "nightScore": 0.43,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "rawpixel:8809217"
   },
   {
    "source": "openverse/rawpixel",
@@ -4499,7 +4741,8 @@
    "nightScore": 0.769,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "rawpixel:6111493"
   },
   {
    "source": "openverse/rawpixel",
@@ -4528,7 +4771,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/078_Shibuya_crossing.jpg",
    "nightScore": 0.648,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "rawpixel:6042554"
   },
   {
    "source": "openverse/rawpixel",
@@ -4558,7 +4802,8 @@
    "nightScore": 0.673,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "rawpixel:5927361"
   },
   {
    "source": "openverse/flickr",
@@ -4593,7 +4838,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/065_People_.jpg",
    "nightScore": 0.366,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:17156873275"
   },
   {
    "source": "openverse/flickr",
@@ -4622,7 +4868,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/025_AAA_1192.jpg",
    "nightScore": 0.617,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550278"
   },
   {
    "source": "openverse/flickr",
@@ -4651,7 +4898,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/023_AAA_1190.jpg",
    "nightScore": 0.635,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412260961"
   },
   {
    "source": "openverse/flickr",
@@ -4680,7 +4928,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/011_AAA_1177.jpg",
    "nightScore": 0.545,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550728"
   },
   {
    "source": "openverse/flickr",
@@ -4709,7 +4958,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/005_AAA_1171.jpg",
    "nightScore": 0.385,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412261541"
   },
   {
    "source": "openverse/flickr",
@@ -4738,7 +4988,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/022_AAA_1189.jpg",
    "nightScore": 0.575,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550358"
   },
   {
    "source": "openverse/flickr",
@@ -4767,7 +5018,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/015_AAA_1181.jpg",
    "nightScore": 0.607,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412261241"
   },
   {
    "source": "openverse/flickr",
@@ -4796,7 +5048,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/019_AAA_1186.jpg",
    "nightScore": 0.544,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550428"
   },
   {
    "source": "openverse/flickr",
@@ -4825,7 +5078,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/004_AAA_1169.jpg",
    "nightScore": 0.767,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536551028"
   },
   {
    "source": "openverse/flickr",
@@ -4854,7 +5108,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/021_AAA_1188.jpg",
    "nightScore": 0.552,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412261051"
   },
   {
    "source": "openverse/flickr",
@@ -4883,7 +5138,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/017_AAA_1184.jpg",
    "nightScore": 0.683,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550538"
   },
   {
    "source": "openverse/flickr",
@@ -4912,7 +5168,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/009_AAA_1175.jpg",
    "nightScore": 0.533,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550808"
   },
   {
    "source": "openverse/flickr",
@@ -4941,7 +5198,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/006_AAA_1172.jpg",
    "nightScore": 0.526,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550908"
   },
   {
    "source": "openverse/flickr",
@@ -4970,7 +5228,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/020_AAA_1187.jpg",
    "nightScore": 0.576,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46497073095"
   },
   {
    "source": "openverse/flickr",
@@ -4999,7 +5258,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/024_AAA_1191.jpg",
    "nightScore": 0.403,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46689024924"
   },
   {
    "source": "openverse/flickr",
@@ -5028,7 +5288,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/013_AAA_1179.jpg",
    "nightScore": 0.57,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412261291"
   },
   {
    "source": "openverse/flickr",
@@ -5057,7 +5318,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/012_AAA_1178.jpg",
    "nightScore": 0.55,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46497073145"
   },
   {
    "source": "openverse/flickr",
@@ -5086,7 +5348,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/007_AAA_1173.jpg",
    "nightScore": 0.527,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412261441"
   },
   {
    "source": "openverse/flickr",
@@ -5115,7 +5378,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/014_AAA_1180.jpg",
    "nightScore": 0.559,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:33536550628"
   },
   {
    "source": "openverse/flickr",
@@ -5144,7 +5408,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/010_AAA_1176.jpg",
    "nightScore": 0.564,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412261371"
   },
   {
    "source": "openverse/flickr",
@@ -5173,7 +5438,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/003_AAA_1168.jpg",
    "nightScore": 0.555,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46689025294"
   },
   {
    "source": "openverse/flickr",
@@ -5202,7 +5468,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/008_AAA_1174.jpg",
    "nightScore": 0.536,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46689025144"
   },
   {
    "source": "openverse/flickr",
@@ -5231,7 +5498,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/018_AAA_1185.jpg",
    "nightScore": 0.532,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:47412261111"
   },
   {
    "source": "openverse/flickr",
@@ -5260,7 +5528,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/016_AAA_1182.jpg",
    "nightScore": 0.651,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46689025034"
   },
   {
    "source": "openverse/flickr",
@@ -5286,7 +5555,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/002_20180405-DSCF1013-xt.jpg",
    "nightScore": 0.539,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:48971257321"
   },
   {
    "source": "openverse/flickr",
@@ -5312,7 +5582,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/001_20180405-DSCF0988-xt.jpg",
    "nightScore": 0.487,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:48971363237"
   },
   {
    "source": "openverse/flickr",
@@ -5337,7 +5608,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/063_DSC01445.jpg",
    "nightScore": 0.643,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:16164285198"
   },
   {
    "source": "openverse/flickr",
@@ -5362,7 +5634,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/052_B36A1330.jpg",
    "nightScore": 0.89,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46894217121"
   },
   {
    "source": "openverse/flickr",
@@ -5388,7 +5661,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/066_Tokyo_night_in_Autumn.jpg",
    "nightScore": 0.69,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:49246247268"
   },
   {
    "source": "openverse/flickr",
@@ -5414,7 +5688,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/067_Tokyo_night_in_Autumn.jpg",
    "nightScore": 0.703,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:49246242683"
   },
   {
    "source": "openverse/flickr",
@@ -5441,7 +5716,8 @@
    "nightScore": 0.942,
    "night": true,
    "selection": "crossing_night",
-   "checkedByEye": true
+   "checkedByEye": true,
+   "photo": "flickr:49246245403"
   },
   {
    "source": "openverse/flickr",
@@ -5467,7 +5743,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/069_Tokyo_night_in_Autumn.jpg",
    "nightScore": 0.701,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:49246239468"
   },
   {
    "source": "openverse/flickr",
@@ -5493,7 +5770,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/070_Tokyo_night_in_Autumn.jpg",
    "nightScore": 0.698,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:49246921767"
   },
   {
    "source": "openverse/flickr",
@@ -5518,7 +5796,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/041_B36A0982.jpg",
    "nightScore": 0.777,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:44869766235"
   },
   {
    "source": "openverse/flickr",
@@ -5542,7 +5821,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/037_B36A0974.jpg",
    "nightScore": 0.738,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:45732581762"
   },
   {
    "source": "openverse/flickr",
@@ -5566,7 +5846,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/036_B36A0971.jpg",
    "nightScore": 0.873,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:44869766815"
   },
   {
    "source": "openverse/flickr",
@@ -5590,7 +5871,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/039_B36A0977.jpg",
    "nightScore": 0.763,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:45732581242"
   },
   {
    "source": "openverse/flickr",
@@ -5614,7 +5896,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/031_B36A0947.jpg",
    "nightScore": 0.627,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:45732583352"
   },
   {
    "source": "openverse/flickr",
@@ -5639,7 +5922,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/044_B36A1070.jpg",
    "nightScore": 0.844,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46169115684"
   },
   {
    "source": "openverse/flickr",
@@ -5664,7 +5948,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/043_B36A0988.jpg",
    "nightScore": 0.744,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:30842856277"
   },
   {
    "source": "openverse/flickr",
@@ -5688,7 +5973,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/042_B36A0983.jpg",
    "nightScore": 0.612,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:45732580332"
   },
   {
    "source": "openverse/flickr",
@@ -5712,7 +5998,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/026_B36A0930.jpg",
    "nightScore": 0.696,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:45732584382"
   },
   {
    "source": "openverse/flickr",
@@ -5737,7 +6024,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/053_B36A1333.jpg",
    "nightScore": 0.781,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46842261242"
   },
   {
    "source": "openverse/flickr",
@@ -5761,7 +6049,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/034_B36A0959.jpg",
    "nightScore": 0.586,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:44869767225"
   },
   {
    "source": "openverse/flickr",
@@ -5785,7 +6074,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/033_B36A0956.jpg",
    "nightScore": 0.788,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:45732582792"
   },
   {
    "source": "openverse/flickr",
@@ -5810,7 +6100,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/047_B36A1076.jpg",
    "nightScore": 0.614,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:31952671607"
   },
   {
    "source": "openverse/flickr",
@@ -5834,7 +6125,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/038_B36A0976.jpg",
    "nightScore": 0.652,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:44869766635"
   },
   {
    "source": "openverse/flickr",
@@ -5859,7 +6151,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/035_B36A0969.jpg",
    "nightScore": 0.784,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:45732582312"
   },
   {
    "source": "openverse/flickr",
@@ -5884,7 +6177,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/049_B36A1083.jpg",
    "nightScore": 0.881,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:31952675767"
   },
   {
    "source": "openverse/flickr",
@@ -5909,7 +6203,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/029_B36A0941.jpg",
    "nightScore": 0.709,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:45732583852"
   },
   {
    "source": "openverse/flickr",
@@ -5934,7 +6229,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/055_B36A1357.jpg",
    "nightScore": 0.848,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46842272392"
   },
   {
    "source": "openverse/flickr",
@@ -5958,7 +6254,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/040_B36A0981.jpg",
    "nightScore": 0.683,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:45058031564"
   },
   {
    "source": "openverse/flickr",
@@ -5983,7 +6280,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/051_B36A1086.jpg",
    "nightScore": 0.742,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46842076572"
   },
   {
    "source": "openverse/flickr",
@@ -6008,7 +6306,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/059_B36A1406.jpg",
    "nightScore": 0.559,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46169340554"
   },
   {
    "source": "openverse/flickr",
@@ -6033,7 +6332,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/048_B36A1079.jpg",
    "nightScore": 0.873,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:31952675067"
   },
   {
    "source": "openverse/flickr",
@@ -6058,7 +6358,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/056_B36A1365.jpg",
    "nightScore": 0.836,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:33018910928"
   },
   {
    "source": "openverse/flickr",
@@ -6082,7 +6383,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/028_B36A0935.jpg",
    "nightScore": 0.857,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:44869768215"
   },
   {
    "source": "openverse/flickr",
@@ -6107,7 +6409,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/057_B36A1386.jpg",
    "nightScore": 0.75,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:33018924738"
   },
   {
    "source": "openverse/flickr",
@@ -6132,7 +6435,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/027_B36A0932.jpg",
    "nightScore": 0.871,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:45058031414"
   },
   {
    "source": "openverse/flickr",
@@ -6157,7 +6461,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/060_B36A1407.jpg",
    "nightScore": 0.81,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46169343144"
   },
   {
    "source": "openverse/flickr",
@@ -6182,7 +6487,8 @@
    "local_path": "assets/photos/crossing_night_cc0/other/061_B36A1411.jpg",
    "nightScore": 0.621,
    "night": false,
-   "selection": "other"
+   "selection": "other",
+   "photo": "flickr:46169344594"
   },
   {
    "source": "openverse/flickr",
@@ -6206,7 +6512,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/030_B36A0944.jpg",
    "nightScore": 0.822,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:44869767855"
   },
   {
    "source": "openverse/flickr",
@@ -6230,7 +6537,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/058_B36A1399.jpg",
    "nightScore": 0.836,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:33018935288"
   },
   {
    "source": "openverse/flickr",
@@ -6255,7 +6563,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/032_B36A0954.jpg",
    "nightScore": 0.871,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:44869767435"
   },
   {
    "source": "openverse/flickr",
@@ -6280,7 +6589,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/062_B36A1414.jpg",
    "nightScore": 0.862,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46169346484"
   },
   {
    "source": "openverse/flickr",
@@ -6305,7 +6615,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/054_B36A1346.jpg",
    "nightScore": 0.862,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46842269222"
   },
   {
    "source": "openverse/flickr",
@@ -6330,7 +6641,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/045_B36A1072.jpg",
    "nightScore": 0.755,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46169118964"
   },
   {
    "source": "openverse/flickr",
@@ -6355,7 +6667,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/046_B36A1075.jpg",
    "nightScore": 0.749,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46169121654"
   },
   {
    "source": "openverse/flickr",
@@ -6380,7 +6693,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/050_B36A1085.jpg",
    "nightScore": 0.848,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "flickr:46842075362"
   },
   {
    "source": "openverse/rawpixel",
@@ -6409,7 +6723,8 @@
    "local_path": "assets/photos/crossing_night_cc0/night/071_Busy_street_Shibuya_district_nighttime.jpg",
    "nightScore": 0.809,
    "night": true,
-   "selection": "night_not_crossing"
+   "selection": "night_not_crossing",
+   "photo": "rawpixel:3293644"
   }
  ],
  "publicDomainMarks": [

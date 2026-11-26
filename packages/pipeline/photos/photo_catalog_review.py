@@ -13,6 +13,7 @@ from pathlib import Path
 from PIL import Image, ImageDraw, ImageOps
 
 from photos.photo_catalog_rules import find_gitleaks_hex32_matches, is_strict_cc0
+from photos.photo_store import photo_file
 
 
 def file_sha256(path: Path) -> str:
@@ -190,7 +191,7 @@ def build_contact_sheets(
             r = i // cols
             c = i % cols
             x0, y0 = c * cell_w, r * cell_h
-            img_path = Path(photos_root) / item["local_path"]
+            img_path = photo_file(item, photos_root)
             if img_path.exists():
                 try:
                     with Image.open(img_path) as im:

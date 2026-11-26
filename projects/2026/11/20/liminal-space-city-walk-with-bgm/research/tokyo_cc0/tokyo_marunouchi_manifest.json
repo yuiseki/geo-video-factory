@@ -70,7 +70,8 @@
       "weather": "normal",
       "date": "2013-09-07",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Ninomaru_Grove,_East_Gardens_of_the_Imperial_Palace_-_Tokyo,_Japan_-_DSC09017.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_004",
@@ -99,7 +100,8 @@
         139.759891,
         35.683416
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tatsumi-yagura_Keep_(16180406997).jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_005",
@@ -125,7 +127,8 @@
       "weather": "snow",
       "date": "2014-02-09",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tatsumi-nijyū-yagura_-_Edo_Castle,_Tokyo_-_DSC09328.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_007",
@@ -154,7 +157,8 @@
         139.760967,
         35.685681
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace-2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_008",
@@ -183,7 +187,8 @@
         139.754511,
         35.688338
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:20181124_Tōkagakudō.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_009",
@@ -212,7 +217,8 @@
         139.7583168,
         35.6779626
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_10.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_010",
@@ -241,7 +247,8 @@
         139.7602478,
         35.6903046
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:震災イチョウ_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_011",
@@ -270,7 +277,8 @@
         139.758975,
         35.6738
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_seen_from_Midtown_Hibiya_TOHO_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_013",
@@ -299,7 +307,8 @@
         139.7603634,
         35.6895191
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_大手濠緑地.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_015",
@@ -325,7 +334,8 @@
       "weather": "normal",
       "date": "2013-09-07",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Street_light,_East_Gardens_of_the_Imperial_Palace_-_Tokyo,_Japan_-_DSC09018.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_016",
@@ -354,7 +364,8 @@
         139.763894,
         35.67686
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo,_Assorted_-_Tokyo622.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_018",
@@ -380,7 +391,8 @@
       "weather": "snow",
       "date": "2024-02-06",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Cherry_Blossom_Tree_Near_Imperial_Palace.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_020",
@@ -409,7 +421,8 @@
         139.7555155,
         35.6798577
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_11.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_021",
@@ -435,7 +448,8 @@
       "weather": "normal",
       "date": "2024-09-25",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Palazzo_imperiale_Tokyo.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_022",
@@ -464,7 +478,8 @@
         139.75892778,
         35.67379444
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_seen_from_Midtown_Hibiya_TOHO.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_023",
@@ -493,7 +508,8 @@
         139.7536209,
         35.6783876
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Sakurada-mon.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_029",
@@ -522,7 +538,8 @@
         139.7555155,
         35.6798577
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_12.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_030",
@@ -551,7 +568,8 @@
         139.758928,
         35.673794
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_seen_from_Midtown_Hibiya_TOHO_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_031",
@@ -577,7 +595,8 @@
       "weather": "normal",
       "date": "2024-12-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sakurada_Tatsumi_Yagura,_Imperial_Palace,_Tokyo.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_032",
@@ -606,7 +625,8 @@
         139.756366,
         35.677269
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:2021,_typical_\"cycling_lane\"_in_Tokyo,_ie_just_some_white_paint_on_a_regular_car_lane.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_034",
@@ -632,7 +652,8 @@
       "weather": "normal",
       "date": "2022-09-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_of_Sakuradamon_from_former_Ii_family_residence_2022-09-22.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_036",
@@ -661,7 +682,8 @@
         139.7589568,
         35.6773642
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_13.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_037",
@@ -687,7 +709,8 @@
       "weather": "normal",
       "date": "2024-12-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Palace_Hotel_Tokyo_and_Nippon_Life_Marunouchi_Garden_Tower.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_038",
@@ -713,7 +736,8 @@
       "weather": "normal",
       "date": "2015-05-17",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Skyscrapers_in_Chiyoda-ku,_Tokyo,_view_from_Imperial_Palace_Plaza_(2015-05-17_by_Samuele_Schirò_@Pixabay_1189079).jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_039",
@@ -739,7 +763,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Imperial_Palace_in_Tokyo_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_042",
@@ -768,7 +793,8 @@
         139.7546192,
         35.6784294
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_14.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_043",
@@ -794,7 +820,8 @@
       "weather": "normal",
       "date": "2020-01-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo-Imperial-Palace-1.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_044",
@@ -820,7 +847,8 @@
       "weather": "normal",
       "date": "2019-03-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tatsumi-yagura,_Tokyo_Imperial_Palace_(50575985607).jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_045",
@@ -846,7 +874,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Imperial_Palace_in_Tokyo_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_048",
@@ -875,7 +904,8 @@
         139.7546192,
         35.6784294
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_15.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_049",
@@ -901,7 +931,8 @@
       "weather": "normal",
       "date": "2024-12-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:皇居_道灌濠.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_050",
@@ -927,7 +958,8 @@
       "weather": "normal",
       "date": "2019-03-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tatsumi-yagura,_Tokyo_Imperial_Palace_(52158185625).jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_051",
@@ -953,7 +985,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Imperial_Palace_in_Tokyo_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_054",
@@ -982,7 +1015,8 @@
         139.753315,
         35.6782888
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_16.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_055",
@@ -1008,7 +1042,8 @@
       "weather": "normal",
       "date": "2019-03-21",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_-_Imperial_Palace_(48852460572).jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_056",
@@ -1034,7 +1069,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Imperial_Palace_in_Tokyo_5.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_059",
@@ -1063,7 +1099,8 @@
         139.753315,
         35.6782888
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_17.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_061",
@@ -1089,7 +1126,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Imperial_Palace_in_Tokyo_6.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_064",
@@ -1118,7 +1156,8 @@
         139.753315,
         35.6782888
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_18.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_066",
@@ -1144,7 +1183,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Imperial_Palace_in_Tokyo.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_068",
@@ -1170,7 +1210,8 @@
       "weather": "normal",
       "date": "2022-09-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Statue_of_Kusunoki_Masashige_(distant_view)_2022-09-22.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_069",
@@ -1199,7 +1240,8 @@
         139.753315,
         35.6782888
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_19.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_070",
@@ -1225,7 +1267,8 @@
       "weather": "normal",
       "date": "2021-04-07",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:和田倉門跡と和田倉橋.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_071",
@@ -1251,7 +1294,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Tokyo_Imperial_Palace_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_073",
@@ -1277,7 +1321,8 @@
       "weather": "normal",
       "date": "2022-09-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Statue_of_Kusunoki_Masashige_2022-09-22.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_074",
@@ -1306,7 +1351,8 @@
         139.7573815,
         35.6777605
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_5.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_075",
@@ -1332,7 +1378,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Tokyo_Imperial_Palace_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_078",
@@ -1358,7 +1405,8 @@
       "weather": "normal",
       "date": "2007-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:August_2007_Tokyo_Imperial_Palace.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_081",
@@ -1387,7 +1435,8 @@
         139.760674,
         35.685798
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_17.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_083",
@@ -1416,7 +1465,8 @@
         139.7564974,
         35.6773008
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_9.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_084",
@@ -1445,7 +1495,8 @@
         139.761638,
         35.682012
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_19.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_086",
@@ -1474,7 +1525,8 @@
         139.7595,
         35.675336
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_087",
@@ -1503,7 +1555,8 @@
         139.756222,
         35.676761
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ministry_of_Justice,_Japan.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_089",
@@ -1532,7 +1585,8 @@
         139.757382,
         35.67776
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_090",
@@ -1561,7 +1615,8 @@
         139.75989103,
         35.68311294
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Imperial_Palace_(219542381).jpeg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_092",
@@ -1590,7 +1645,8 @@
         139.756162,
         35.676842
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_093",
@@ -1616,7 +1672,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_18.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_095",
@@ -1645,7 +1702,8 @@
         139.756162,
         35.676842
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening_6.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_096",
@@ -1671,7 +1729,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_20.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_098",
@@ -1700,7 +1759,8 @@
         139.7595,
         35.675336
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Palace_on_a_rainy_summer_evening.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_099",
@@ -1726,7 +1786,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_8.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_109",
@@ -1752,7 +1813,8 @@
       "weather": "normal",
       "date": "2019-09-15",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Seimon-ishibashi.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_114",
@@ -1778,7 +1840,8 @@
       "weather": "normal",
       "date": null,
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "wordpress:631640d951"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_118",
@@ -1804,7 +1867,8 @@
       "weather": "normal",
       "date": "2014-02-09",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Wall_of_Edo_Castle,_Tokyo_-_DSC09331.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_121",
@@ -1833,7 +1897,8 @@
         139.756119,
         35.690864
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Takebashi_bridge02.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_122",
@@ -1862,7 +1927,8 @@
         139.7548,
         35.68999
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:20181124_Edo_Castle_Ruins-1.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_123",
@@ -1888,7 +1954,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Chidorigafuchi_Green_Way_-_Tokyo,_Japan_-_DSC06038.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_126",
@@ -1917,7 +1984,8 @@
         139.750636,
         35.689514
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Former_headquarters_of_the_Imperial_Guards_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_127",
@@ -1946,7 +2014,8 @@
         139.7565724,
         35.6909332
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:毎日新聞社_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_129",
@@ -1972,7 +2041,8 @@
       "weather": "normal",
       "date": "2018-04-02",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_-_20180402_093317.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_131",
@@ -2001,7 +2071,8 @@
         139.756242,
         35.690494
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Takebashi_bridge03.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_132",
@@ -2030,7 +2101,8 @@
         139.7548,
         35.68999
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:20181124_Edo_Castle_Ruins-2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_136",
@@ -2059,7 +2131,8 @@
         139.750886,
         35.689792
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Former_headquarters_of_the_Imperial_Guards_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_137",
@@ -2088,7 +2161,8 @@
         139.7565724,
         35.6909332
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:毎日新聞社.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_140",
@@ -2117,7 +2191,8 @@
         139.756164,
         35.69045
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Takebashi_bridge05.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_141",
@@ -2146,7 +2221,8 @@
         139.7547,
         35.6885
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:20181124_Edo_Castle_Ruins-3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_142",
@@ -2172,7 +2248,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_-_DSC06047.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_143",
@@ -2201,7 +2278,8 @@
         139.750886,
         35.689792
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Former_headquarters_of_the_Imperial_Guards_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_147",
@@ -2230,7 +2308,8 @@
         139.756303,
         35.690511
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Takebashi_bridge06.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_148",
@@ -2259,7 +2338,8 @@
         139.757105,
         35.687482
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:20181124_Edo_Castle_Ruins-4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_149",
@@ -2285,7 +2365,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_DSC06051.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_150",
@@ -2314,7 +2395,8 @@
         139.750547,
         35.690022
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Former_headquarters_of_the_Imperial_Guards_5.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_154",
@@ -2340,7 +2422,8 @@
       "weather": "normal",
       "date": "2022-09-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Edge_of_stone_wall_of_Edo_Castle_2022-09-22.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_155",
@@ -2366,7 +2449,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_DSC06054.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_156",
@@ -2395,7 +2479,8 @@
         139.750547,
         35.690022
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Former_headquarters_of_the_Imperial_Guards_6.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_157",
@@ -2424,7 +2509,8 @@
         139.752861,
         35.693011
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Egret_in_front_of_Chiyoda_Kaikan.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_159",
@@ -2450,7 +2536,8 @@
       "weather": "normal",
       "date": "2022-09-22",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Stone_wall_of_Edo_Castle_2022-09-22.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_160",
@@ -2476,7 +2563,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_DSC06060.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_161",
@@ -2505,7 +2593,8 @@
         139.750636,
         35.689514
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Former_headquarters_of_the_Imperial_Guards.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_165",
@@ -2531,7 +2620,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_DSC06078.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_166",
@@ -2560,7 +2650,8 @@
         139.749583,
         35.690972
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_169",
@@ -2586,7 +2677,8 @@
       "weather": "normal",
       "date": "2018-04-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sakura_and_boats_in_the_Chidorigafuchi_Moat_-_Tokyo,_Japan_DSC06083.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_170",
@@ -2615,7 +2707,8 @@
         139.750158,
         35.691522
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park,_Budokan_seeing_towards_Northern_exit.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_171",
@@ -2644,7 +2737,8 @@
         139.750682,
         35.690796
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Kōen.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_173",
@@ -2673,7 +2767,8 @@
         139.749433,
         35.692769
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park,_Northern_exit_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_176",
@@ -2702,7 +2797,8 @@
         139.749433,
         35.692769
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park,_Northern_exit_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_179",
@@ -2731,7 +2827,8 @@
         139.749583,
         35.690972
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_182",
@@ -2760,7 +2857,8 @@
         139.753939,
         35.689822
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:National_Archives_of_Japan_7.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_188",
@@ -2789,7 +2887,8 @@
         139.755894,
         35.690636
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Street_views_near_Takebashi_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_191",
@@ -2818,7 +2917,8 @@
         139.755894,
         35.690636
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Street_views_near_Takebashi_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_192",
@@ -2847,7 +2947,8 @@
         139.754546,
         35.690289
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:National_Archives_of_Japan_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_194",
@@ -2876,7 +2977,8 @@
         139.756147,
         35.690847
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Street_views_near_Takebashi_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_195",
@@ -2905,7 +3007,8 @@
         139.754103,
         35.690245
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:National_Archives_of_Japan_5.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_197",
@@ -2934,7 +3037,8 @@
         139.756147,
         35.690847
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Street_views_near_Takebashi.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_200",
@@ -2963,7 +3067,8 @@
         139.751244,
         35.689617
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:北白川.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_201",
@@ -2992,7 +3097,8 @@
         139.754867,
         35.690467
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:The_National_Museum_of_Modern_Art,_Tokyo_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_204",
@@ -3021,7 +3127,8 @@
         139.755122,
         35.690529
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:The_National_Museum_of_Modern_Art,_Tokyo.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_206",
@@ -3050,7 +3157,8 @@
         139.754932,
         35.690503
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_The_National_Museum_of_Modern_Art,_Tokyo_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_208",
@@ -3079,7 +3187,8 @@
         139.754932,
         35.690503
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_The_National_Museum_of_Modern_Art,_Tokyo_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_210",
@@ -3108,7 +3217,8 @@
         139.754931,
         35.69052
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_The_National_Museum_of_Modern_Art,_Tokyo.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_212",
@@ -3137,7 +3247,8 @@
         139.759807,
         35.690037
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Walk_around_Takebashi_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_214",
@@ -3166,7 +3277,8 @@
         139.760245,
         35.690312
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Walk_around_Takebashi_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_216",
@@ -3195,7 +3307,8 @@
         139.756576,
         35.690974
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Walk_around_Takebashi.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_226",
@@ -3224,7 +3337,8 @@
         139.749573,
         35.690985
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:北の丸公園_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_228",
@@ -3250,7 +3364,8 @@
       "weather": "normal",
       "date": "2022-07-03",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:北の丸公園_5.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_234",
@@ -3276,7 +3391,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_10.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_236",
@@ -3302,7 +3418,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_13.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_243",
@@ -3328,7 +3445,8 @@
       "weather": "normal",
       "date": "2013-09-03",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC06498.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_244",
@@ -3354,7 +3472,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Crafts_Gallery,_The_National_Museum_of_Modern_Art,_Tokyo_-_DSC04851.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_245",
@@ -3383,7 +3502,8 @@
         139.7571946,
         35.6908577
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:National_Archives_of_Japan_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_246",
@@ -3409,7 +3529,8 @@
       "weather": "normal",
       "date": "2024-12-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kitanomaru_Park_on_an_autumn_day.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_247",
@@ -3438,7 +3559,8 @@
         139.74934722,
         35.69448889
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park,_Northern_exit_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_250",
@@ -3464,7 +3586,8 @@
       "weather": "normal",
       "date": "2019-04-18",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Koukyo_Seimon.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_252",
@@ -3490,7 +3613,8 @@
       "weather": "normal",
       "date": "2013-09-03",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC06499.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_253",
@@ -3516,7 +3640,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Crafts_Gallery,_The_National_Museum_of_Modern_Art,_Tokyo_-_DSC04853.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_254",
@@ -3545,7 +3670,8 @@
         139.7581436,
         35.6907203
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:平川橋、2022年.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_255",
@@ -3571,7 +3697,8 @@
       "weather": "normal",
       "date": "2023-11-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sannomaru_Shozokan_20231103a1.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_256",
@@ -3600,7 +3727,8 @@
         139.74927778,
         35.69289722
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park,_Northern_exit.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_260",
@@ -3626,7 +3754,8 @@
       "weather": "normal",
       "date": "2013-09-03",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC06500.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_261",
@@ -3652,7 +3781,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Crafts_Gallery,_The_National_Museum_of_Modern_Art,_Tokyo_-_DSC04855.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_263",
@@ -3678,7 +3808,8 @@
       "weather": "normal",
       "date": "2023-11-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Sannomaru_Shozokan_20231103a2.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_264",
@@ -3704,7 +3835,8 @@
       "weather": "normal",
       "date": "2024-04-07",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:春の武道館(明治大学入学式開催).jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_267",
@@ -3730,7 +3862,8 @@
       "weather": "normal",
       "date": "2013-09-04",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:National_Archives_of_Japan_-_Tokyo,_Japan_-_DSC06527.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_269",
@@ -3756,7 +3889,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_12.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_274",
@@ -3782,7 +3916,8 @@
       "weather": "normal",
       "date": "2013-09-04",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:National_Archives_of_Japan_-_Tokyo,_Japan_-_DSC06528.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_280",
@@ -3808,7 +3943,8 @@
       "weather": "normal",
       "date": "2013-09-03",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Science_Museum_-_Tokyo,_Japan_-_DSC06502.JPG"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_281",
@@ -3834,7 +3970,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC04813.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_284",
@@ -3860,7 +3997,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC04829.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_287",
@@ -3886,7 +4024,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC04837.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_290",
@@ -3912,7 +4051,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC04843.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_293",
@@ -3938,7 +4078,8 @@
       "weather": "normal",
       "date": "2016-08-31",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitanomaru_Park_-_Tokyo,_Japan_-_DSC04849.jpg"
     },
     {
       "id": "tokyo_marunouchi_imperial_palace_outer_294",
@@ -3964,7 +4105,8 @@
       "weather": "normal",
       "date": "2020-01-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:The-National-Museum-of-Modern-Art-Tokyo-1.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_006",
@@ -3990,7 +4132,8 @@
       "weather": "normal",
       "date": "2021-11-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211126_02.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_008",
@@ -4019,7 +4162,8 @@
         139.765877,
         35.681476
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Railway_Station._(50829442828).jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_024",
@@ -4045,7 +4189,8 @@
       "weather": "normal",
       "date": "2014-07-25",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_Station_Marunouchi_Building_illuminated_at_night_(2014-07-25_by_Awoi_Sinomiya_@Pixabay_1373465).jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_025",
@@ -4071,7 +4216,8 @@
       "weather": "normal",
       "date": "2021-11-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211126_03.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_041",
@@ -4097,7 +4243,8 @@
       "weather": "normal",
       "date": "2014-07-25",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_Station_Marunouchi_Building_illuminated_at_night,_angled_(2014-07-25_by_Awoi_Sinomiya_@Pixabay_1373466).jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_042",
@@ -4123,7 +4270,8 @@
       "weather": "normal",
       "date": "2021-11-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211126_04.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_047",
@@ -4152,7 +4300,8 @@
         139.764567,
         35.681758
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_Station_Outside_view_201804.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_106",
@@ -4178,7 +4327,8 @@
       "weather": "normal",
       "date": "2022-12-18",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20221218_01.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_118",
@@ -4204,7 +4354,8 @@
       "weather": "normal",
       "date": "2022-12-18",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20221218_02.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_129",
@@ -4230,7 +4381,8 @@
       "weather": "normal",
       "date": "2022-12-18",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20221218_03.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_132",
@@ -4256,7 +4408,8 @@
       "weather": "normal",
       "date": "2024-05-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Japan_Credentials-ceremony_Carriage-4.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_141",
@@ -4282,7 +4435,8 @@
       "weather": "normal",
       "date": "2013-09-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Evening_-_Tokyo_Station_Marunouchi_Building_-_DSC00008.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_152",
@@ -4308,7 +4462,8 @@
       "weather": "normal",
       "date": "2013-09-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Evening_-_Tokyo_Station_Marunouchi_Building_-_DSC09963.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_154",
@@ -4334,7 +4489,8 @@
       "weather": "normal",
       "date": "2025-04-09",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Marunouchi_Square_side_of_Tokyo_Station,_across_the_street_from_Daimyo-Koji_Ave.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_164",
@@ -4360,7 +4516,8 @@
       "weather": "normal",
       "date": "2009-08-01",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:2009.8.1の工事の様子.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_173",
@@ -4386,7 +4543,8 @@
       "weather": "normal",
       "date": "2013-09-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Exterior_-_Tokyo_Station_Marunouchi_Building_-_DSC09850.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_182",
@@ -4412,7 +4570,8 @@
       "weather": "normal",
       "date": "2013-09-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Exterior_-_Tokyo_Station_Marunouchi_Building_-_DSC09855.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_191",
@@ -4438,7 +4597,8 @@
       "weather": "normal",
       "date": "2013-09-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Exterior_-_Tokyo_Station_Marunouchi_Building_-_DSC09868.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_200",
@@ -4464,7 +4624,8 @@
       "weather": "normal",
       "date": "2013-09-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Exterior_-_Tokyo_Station_Marunouchi_Building_-_DSC09893.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_209",
@@ -4490,7 +4651,8 @@
       "weather": "normal",
       "date": "2013-09-12",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Exterior_-_Tokyo_Station_Marunouchi_Building_-_DSC09896.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_222",
@@ -4519,7 +4681,8 @@
         139.765339,
         35.681569
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_station-2.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_248",
@@ -4545,7 +4708,8 @@
       "weather": "normal",
       "date": "2021-11-27",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211127_04.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_255",
@@ -4571,7 +4735,8 @@
       "weather": "normal",
       "date": "2021-11-27",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211127_05.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_261",
@@ -4597,7 +4762,8 @@
       "weather": "normal",
       "date": "2021-11-27",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211127_06.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_267",
@@ -4623,7 +4789,8 @@
       "weather": "normal",
       "date": "2021-11-27",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211127_07.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_277",
@@ -4649,7 +4816,8 @@
       "weather": "normal",
       "date": "2024-11-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo_station_night.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_287",
@@ -4675,7 +4843,8 @@
       "weather": "normal",
       "date": "2021-11-27",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_JP_Tower_20211127_01.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_312",
@@ -4704,7 +4873,8 @@
         139.765717,
         35.681028
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Kadomatsu_-_PD_-_2026_Jan_3_various_02.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_316",
@@ -4733,7 +4903,8 @@
         139.7656087,
         35.6811447
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Station_10.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_320",
@@ -4762,7 +4933,8 @@
         139.7656848,
         35.6813837
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Station_12.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_323",
@@ -4791,7 +4963,8 @@
         139.765876,
         35.6804695
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_station_entrance.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_328",
@@ -4817,7 +4990,8 @@
       "weather": "normal",
       "date": "2023-04-11",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Ceiling_dome_at_the_north_exit_of_Tokyo_Station_(52901473059).jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_340",
@@ -4843,7 +5017,8 @@
       "weather": "normal",
       "date": "2023-04-12",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Flags_flying_over_Tokyo_Station_(52901473444).jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_446",
@@ -4872,7 +5047,8 @@
         139.765392,
         35.681065
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Station_11.jpg"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_448",
@@ -4898,7 +5074,8 @@
       "weather": "normal",
       "date": "2020-01-03",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Tokyo-Station-and-Hato-Bus-1.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_002",
@@ -4927,7 +5104,8 @@
         139.747133,
         35.667708
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Toranomon_Hills_Station_Tower_on_a_rainy_evening.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_003",
@@ -4956,7 +5134,8 @@
         139.759444,
         35.674722
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_Police_Station_Building.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_004",
@@ -4982,7 +5161,8 @@
       "weather": "normal",
       "date": "2014-02-15",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_Building_-_Tokyo,_Japan_-_DSC09675.JPG"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_006",
@@ -5008,7 +5188,8 @@
       "weather": "normal",
       "date": "2010-06-23",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Modern_façade_theatre_(4727228638).jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_015",
@@ -5037,7 +5218,8 @@
         139.766586,
         35.677467
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_off_ramp.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_016",
@@ -5066,7 +5248,8 @@
         139.76733889,
         35.68415833
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_near_Tokyo_station.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_018",
@@ -5092,7 +5275,8 @@
       "weather": "normal",
       "date": "2010-06-24",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Silent_water_(4730120906).jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_023",
@@ -5118,7 +5302,8 @@
       "weather": "normal",
       "date": "2012-11-29",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ground_floor_of_Marunouchi_Park_Building_2012-11-29.JPG"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_026",
@@ -5147,7 +5332,8 @@
         139.7651224,
         35.6802288
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Kitte.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_027",
@@ -5176,7 +5362,8 @@
         139.764131,
         35.682944
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Mizuho_Marunouchi_Tower.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_028",
@@ -5205,7 +5392,8 @@
         139.7606283,
         35.6762821
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Theater_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_033",
@@ -5231,7 +5419,8 @@
       "weather": "normal",
       "date": "2012-10-08",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_2chome_Building_2012-10-08.JPG"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_038",
@@ -5260,7 +5449,8 @@
         139.761177,
         35.6760994
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Theater_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_042",
@@ -5286,7 +5476,8 @@
       "weather": "normal",
       "date": "2012-10-08",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_Center_Building_2012-10-08.JPG"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_047",
@@ -5315,7 +5506,8 @@
         139.7606283,
         35.6762821
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Imperial_Theater.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_053",
@@ -5344,7 +5536,8 @@
         139.766861,
         35.682828
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Kadomatsu_-_PD_-_2026_Jan_3_various_03.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_056",
@@ -5370,7 +5563,8 @@
       "weather": "normal",
       "date": "2017-11-05",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Nissay_Marunouchi_Garden_Tower.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_065",
@@ -5399,7 +5593,8 @@
         139.7657938,
         35.6845609
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:丸の内永楽ビルディング.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_066",
@@ -5425,7 +5620,8 @@
       "weather": "normal",
       "date": "2015-03-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_Central_Building_201503.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_068",
@@ -5451,7 +5647,8 @@
       "weather": "normal",
       "date": "2011-09-10",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_park_building_1.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_069",
@@ -5480,7 +5677,8 @@
         139.7662539,
         35.6846006
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:水谷糖質科学振興財団.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_072",
@@ -5506,7 +5704,8 @@
       "weather": "normal",
       "date": "2011-09-10",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Marunouchi_park_building_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_083",
@@ -5535,7 +5734,8 @@
         139.766806,
         35.682822
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_near_Tokyo_station_(92991).jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_087",
@@ -5564,7 +5764,8 @@
         139.7606153,
         35.6762636
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Hibiya,_rainy_summer_evening_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_091",
@@ -5593,7 +5794,8 @@
         139.7634974,
         35.6757878
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Flea_market_at_Yurakucho's_Tokyo_International_Forum_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_094",
@@ -5619,7 +5821,8 @@
       "weather": "rain",
       "date": "2021-08-14",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Hibiya,_rainy_summer_evening_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_096",
@@ -5648,7 +5851,8 @@
         139.7640898,
         35.6764325
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_International_Forum,_Chiyoda-ku,_Japan_(Unsplash).jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_098",
@@ -5677,7 +5881,8 @@
         139.7634974,
         35.6757878
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Flea_market_at_Yurakucho's_Tokyo_International_Forum_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_099",
@@ -5706,7 +5911,8 @@
         139.763184,
         35.686523
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Building_in_Otemachi_8.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_103",
@@ -5735,7 +5941,8 @@
         139.7640169,
         35.6768107
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Flea_market_at_Yurakucho's_Tokyo_International_Forum.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_104",
@@ -5764,7 +5971,8 @@
         139.766131,
         35.684666
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Otemachi_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_108",
@@ -5793,7 +6001,8 @@
         139.766191,
         35.684498
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Otemachi_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_111",
@@ -5822,7 +6031,8 @@
         139.765923,
         35.684643
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Otemachi_4.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_114",
@@ -5851,7 +6061,8 @@
         139.766254,
         35.686115
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Otemachi_9.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_118",
@@ -5877,7 +6088,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_21.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_120",
@@ -5903,7 +6115,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_22.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_121",
@@ -5929,7 +6142,8 @@
       "weather": "normal",
       "date": "2009-02-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_International_Forum_10.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_122",
@@ -5955,7 +6169,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_23.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_123",
@@ -5981,7 +6196,8 @@
       "weather": "normal",
       "date": "2009-02-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_International_Forum_11.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_124",
@@ -6007,7 +6223,8 @@
       "weather": "normal",
       "date": "2009-02-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_International_Forum_2.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_125",
@@ -6033,7 +6250,8 @@
       "weather": "normal",
       "date": "2009-02-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_International_Forum_3.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_128",
@@ -6059,7 +6277,8 @@
       "weather": "normal",
       "date": "2009-02-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_International_Forum_6.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_131",
@@ -6085,7 +6304,8 @@
       "weather": "normal",
       "date": "2009-02-20",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_International_Forum_9.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_132",
@@ -6114,7 +6334,8 @@
         139.765601,
         35.68596
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:大手町アーバンネットビル.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_133",
@@ -6143,7 +6364,8 @@
         139.765373,
         35.683141
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:日本動脈硬化予防研究基金.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_135",
@@ -6169,7 +6391,8 @@
       "weather": "normal",
       "date": "2026-11-11",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:日比谷通り.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_136",
@@ -6195,7 +6418,8 @@
       "weather": "normal",
       "date": "2021-11-27",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Views_from_JP_Tower_20211127_02.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_137",
@@ -6221,7 +6445,8 @@
       "weather": "normal",
       "date": "2014-02-16",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Mitsubishi_Ichigokan_Museum_-_Tokyo,_Japan_-_DSC09690.JPG"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_140",
@@ -6247,7 +6472,8 @@
       "weather": "normal",
       "date": "2009-07-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:July_2009_Tokyo_25.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_149",
@@ -6276,7 +6502,8 @@
         139.770539,
         35.682922
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyo_Kadomatsu_-_PD_-_2026_Jan_3_various_04.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_153",
@@ -6305,7 +6532,8 @@
         139.7659912,
         35.6788314
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Kitte_6.jpg"
     },
     {
       "id": "tokyo_marunouchi_gyoko_dori_marunouchi_157",
@@ -6334,7 +6562,8 @@
         139.7659793,
         35.6788353
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:View_from_Kitte_7.jpg"
     }
   ]
 }

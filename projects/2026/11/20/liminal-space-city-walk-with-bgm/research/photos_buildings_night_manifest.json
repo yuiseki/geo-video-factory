@@ -55,7 +55,8 @@
       "score": 250,
       "local_path": "assets/photos/shibuya_buildings_night/001_Shibuya_373291758.jpg",
       "bytes": 3501353,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(373291758).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -101,7 +102,8 @@
       "score": 240,
       "local_path": "assets/photos/shibuya_buildings_night/003_The_views_of_Shibuya_Sky_20211126_01.jpg",
       "bytes": 1722244,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:The_views_of_Shibuya_Sky_20211126_01.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -124,7 +126,8 @@
       "score": 240,
       "local_path": "assets/photos/shibuya_buildings_night/004_The_views_of_Shibuya_Sky_20211126_02.jpg",
       "bytes": 1368567,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:The_views_of_Shibuya_Sky_20211126_02.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -147,7 +150,8 @@
       "score": 240,
       "local_path": "assets/photos/shibuya_buildings_night/005_The_views_of_Shibuya_Sky_20211126_03.jpg",
       "bytes": 1918555,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:The_views_of_Shibuya_Sky_20211126_03.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -170,7 +174,8 @@
       "score": 240,
       "local_path": "assets/photos/shibuya_buildings_night/006_The_views_of_Shibuya_Sky_20211126_04.jpg",
       "bytes": 1064794,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:The_views_of_Shibuya_Sky_20211126_04.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -216,7 +221,8 @@
       "score": 230,
       "local_path": "assets/photos/shibuya_buildings_night/008_1_1_2016_32552875642.jpg",
       "bytes": 4685802,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:1対1_2016_渋谷西武_(32552875642).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -262,7 +268,8 @@
       "score": 230,
       "local_path": "assets/photos/shibuya_buildings_night/010_Tokyo_Japan_Unsplash_O8-DB1epegE.jpg",
       "bytes": 2769500,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Tokyo,_Japan_(Unsplash_O8-DB1epegE).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -285,7 +292,8 @@
       "score": 225,
       "local_path": "assets/photos/shibuya_buildings_night/011_Christmas_Illumination_at_Shibuya_Station_52650883718.jpg",
       "bytes": 3392780,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Christmas_Illumination_at_Shibuya_Station_(52650883718).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -308,7 +316,8 @@
       "score": 215,
       "local_path": "assets/photos/shibuya_buildings_night/012_MAGNET_by_SHIBUYA109_49996929368.jpg",
       "bytes": 3675004,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_(49996929368).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -331,7 +340,8 @@
       "score": 215,
       "local_path": "assets/photos/shibuya_buildings_night/013_MAGNET_by_SHIBUYA109_49997445596.jpg",
       "bytes": 4387350,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_(49997445596).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -354,7 +364,8 @@
       "score": 215,
       "local_path": "assets/photos/shibuya_buildings_night/014_MAGNET_by_SHIBUYA109_49997450386.jpg",
       "bytes": 3044308,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_(49997450386).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -377,7 +388,8 @@
       "score": 215,
       "local_path": "assets/photos/shibuya_buildings_night/015_MAGNET_by_SHIBUYA109_Shibuya_Crossing_49997701212.jpg",
       "bytes": 4562532,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_Shibuya_Crossing_(49997701212).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -400,7 +412,8 @@
       "score": 215,
       "local_path": "assets/photos/shibuya_buildings_night/016_Shibuya_20191214134746_49845004842.jpg",
       "bytes": 3505040,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_20191214134746_(49845004842).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -423,7 +436,8 @@
       "score": 215,
       "local_path": "assets/photos/shibuya_buildings_night/017_2725870596.jpg",
       "bytes": 1285023,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:カメラ_(2725870596).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -492,7 +506,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/020_Shibuya_373291264.jpg",
       "bytes": 3667889,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(373291264).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -515,7 +530,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/021_Shibuya_Crossing_2015_20641063821.jpg",
       "bytes": 495686,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Crossing_2015_(20641063821).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -538,7 +554,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/022_Shibuya_Crossing_from_QFRONT_Shibuya_9044411297.jpg",
       "bytes": 1181037,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Crossing_from_QFRONT_@_Shibuya_(9044411297).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -584,7 +601,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/024_Shibuya_Tokio_Jap_n_2016-12_32046064901.jpg",
       "bytes": 1812887,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya,_Tokio,_Japón_2016-12_(32046064901).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -607,7 +625,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/025_Starbucks_Coffee_Shibuya_Tsutaya_53332645907.jpg",
       "bytes": 4776336,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53332645907).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -630,7 +649,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/026_Starbucks_Coffee_Shibuya_Tsutaya_53333522926.jpg",
       "bytes": 2871679,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333522926).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -653,7 +673,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/027_Starbucks_Coffee_Shibuya_Tsutaya_53333523066.jpg",
       "bytes": 2970318,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333523066).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -676,7 +697,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/028_Starbucks_Coffee_Shibuya_Tsutaya_53333752413.jpg",
       "bytes": 3024892,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333752413).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -699,7 +721,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/029_Starbucks_Coffee_Shibuya_Tsutaya_53333752593.jpg",
       "bytes": 5123419,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333752593).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -722,7 +745,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/030_Starbucks_Coffee_Shibuya_Tsutaya_53333867489.jpg",
       "bytes": 2950141,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333867489).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -745,7 +769,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/031_Starbucks_Coffee_Shibuya_Tsutaya_53333867754.jpg",
       "bytes": 3003023,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333867754).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -768,7 +793,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/032_Starbucks_Coffee_Shibuya_Tsutaya_53333980800.jpg",
       "bytes": 2638397,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333980800).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -791,7 +817,8 @@
       "score": 210,
       "local_path": "assets/photos/shibuya_buildings_night/033_Starbucks_Coffee_Shibuya_Tsutaya_53333980970.jpg",
       "bytes": 4908564,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333980970).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -837,7 +864,8 @@
       "score": 205,
       "local_path": "assets/photos/shibuya_buildings_night/035_Christmas_Illumination_at_Shibuya_Station_52650673494.jpg",
       "bytes": 4077939,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Christmas_Illumination_at_Shibuya_Station_(52650673494).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -860,7 +888,8 @@
       "score": 205,
       "local_path": "assets/photos/shibuya_buildings_night/036_Christmas_Illumination_at_Shibuya_Station_52650882503.jpg",
       "bytes": 2611329,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Christmas_Illumination_at_Shibuya_Station_(52650882503).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -883,7 +912,8 @@
       "score": 205,
       "local_path": "assets/photos/shibuya_buildings_night/037_Christmas_Illumination_at_Shibuya_Station_52650882798.jpg",
       "bytes": 2864731,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Christmas_Illumination_at_Shibuya_Station_(52650882798).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -906,7 +936,8 @@
       "score": 205,
       "local_path": "assets/photos/shibuya_buildings_night/038_Christmas_Illumination_at_Shibuya_Station_52650883318.jpg",
       "bytes": 3808962,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Christmas_Illumination_at_Shibuya_Station_(52650883318).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1021,7 +1052,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/043_SEIBU_Dep_Shibuya_21_3.jpg",
       "bytes": 2470870,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:SEIBU_Dep_Shibuya_21,3.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1044,7 +1076,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/044_SEIBU_Dep_Shibuya_Plate_2021_3.jpg",
       "bytes": 1916804,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:SEIBU_Dep_Shibuya_Plate_2021,3.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1113,7 +1146,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/047_Seibu_Shibuya_Closed_Its_Doors_in_Late_September_2026_Bringi.jpg",
       "bytes": 1421528,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shibuya_Closed_Its_Doors_in_Late_September_2026,_Bringing_58_Years_of_History_to_an_End..._(55579096167).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1136,7 +1170,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/048_Seibu_Shinkin_Bank_Chigase_Branch.jpg",
       "bytes": 3227680,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Chigase_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1182,7 +1217,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/050_Seibu_Shinkin_Bank_Fuchu_Branch.jpg",
       "bytes": 1481945,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Fuchu_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1274,7 +1310,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/054_Seibu_Shinkin_Bank_Harajuku_Branch.jpg",
       "bytes": 1782686,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Harajuku_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1412,7 +1449,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/060_Seibu_Shinkin_Bank_Hongo_Branch.jpg",
       "bytes": 4086076,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Hongo_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1435,7 +1473,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/061_Seibu_Shinkin_Bank_Iidabashi_Branch.jpg",
       "bytes": 1874521,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Iidabashi_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1665,7 +1704,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/071_Seibu_Shinkin_Bank_Narahara_Branch.jpg",
       "bytes": 2587339,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Narahara_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1688,7 +1728,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/072_Seibu_Shinkin_Bank_Nihonbashi_Branch.jpg",
       "bytes": 3362638,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Nihonbashi_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1872,7 +1913,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/080_Seibu_Shinkin_Bank_Sendagaya_Branch.jpg",
       "bytes": 3393828,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Sendagaya_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1918,7 +1960,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/082_Seibu_Shinkin_Bank_Shibuya_Higashi_Branch.jpg",
       "bytes": 1898230,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Shibuya_Higashi_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1964,7 +2007,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/084_Seibu_Shinkin_Bank_Shin-egota_Branch.jpg",
       "bytes": 1879658,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Shin-egota_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -1987,7 +2031,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/085_Seibu_Shinkin_Bank_Suginami_Sales_Department.jpg",
       "bytes": 2274322,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Suginami_Sales_Department.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2033,7 +2078,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/087_Seibu_Shinkin_Bank_Toranomon_Branch_Nittere-dori_Branch.jpg",
       "bytes": 3384187,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Toranomon_Branch_&_Nittere-dori_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2079,7 +2125,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/089_Seibu_Shinkin_Bank_Yabe_Branch.jpg",
       "bytes": 1190879,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Yabe_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2125,7 +2172,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/091_Seibu_Shinkin_Bank_headquarters_2024-04-11.jpg",
       "bytes": 2108645,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_headquarters_2024-04-11.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2263,7 +2311,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/097_Seibu_Shinkin_bank_Hoya_Branch.jpg",
       "bytes": 1787605,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_bank_Hoya_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2286,7 +2335,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/098_Seibu_Shinkin_bank_Ikebukuro_Branch.jpg",
       "bytes": 2078246,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_bank_Ikebukuro_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2355,7 +2405,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/101_Seibu_Shinkin_bank_Machida_Branch.jpg",
       "bytes": 1606870,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_bank_Machida_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2401,7 +2452,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/103_Seibu_Shinkin_bank_Naka-Meguro_Branch.jpg",
       "bytes": 3702711,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_bank_Naka-Meguro_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2447,7 +2499,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/105_Shibuya_373291083.jpg",
       "bytes": 3704654,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(373291083).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2470,7 +2523,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/106_Shibuya_Scramble_Square_SHIBUYA_SKY_52652388656.jpg",
       "bytes": 3715485,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_Square_SHIBUYA_SKY_(52652388656).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2516,7 +2570,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/108_Shibuya_Station_and_famous_scramble_crossing_Oct_28_2019_12-.jpg",
       "bytes": 3305730,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Station_and_famous_scramble_crossing_Oct_28_2019_12-39PM.jpeg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2539,7 +2594,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/109_03.jpg",
       "bytes": 2481609,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:べらぼうフェスコラボ_蔦屋書店グッズ販売_03.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2562,7 +2618,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/110_04.jpg",
       "bytes": 2347841,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:べらぼうフェスコラボ_蔦屋書店グッズ販売_04.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2585,7 +2642,8 @@
       "score": 195,
       "local_path": "assets/photos/shibuya_buildings_night/111_05.jpg",
       "bytes": 2186243,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:べらぼうフェスコラボ_蔦屋書店グッズ販売_05.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2631,7 +2689,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/113_Loud_cars_near_Shibuya_Scramble_crossing_2.jpg",
       "bytes": 2370709,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_2.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2654,7 +2713,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/114_Loud_cars_near_Shibuya_Scramble_crossing_3.jpg",
       "bytes": 1486213,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_3.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2677,7 +2737,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/115_Loud_cars_near_Shibuya_Scramble_crossing_4.jpg",
       "bytes": 1075208,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_4.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2700,7 +2761,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/116_Loud_cars_near_Shibuya_Scramble_crossing_5.jpg",
       "bytes": 1934221,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_5.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2723,7 +2785,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/117_Loud_cars_near_Shibuya_Scramble_crossing_6.jpg",
       "bytes": 2353421,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_6.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2746,7 +2809,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/118_Loud_cars_near_Shibuya_Scramble_crossing_7.jpg",
       "bytes": 2480412,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_7.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2769,7 +2833,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/119_Loud_cars_near_Shibuya_Scramble_crossing_8.jpg",
       "bytes": 1968371,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing_8.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2792,7 +2857,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/120_Loud_cars_near_Shibuya_Scramble_crossing_argument_with_polic.jpg",
       "bytes": 1635139,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing,_argument_with_police_2.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2815,7 +2881,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/121_Loud_cars_near_Shibuya_Scramble_crossing_argument_with_polic.jpg",
       "bytes": 1828820,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing,_argument_with_police_3.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2838,7 +2905,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/122_Loud_cars_near_Shibuya_Scramble_crossing_argument_with_polic.jpg",
       "bytes": 1500679,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing,_argument_with_police.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2861,7 +2929,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/123_Loud_cars_near_Shibuya_Scramble_crossing.jpg",
       "bytes": 1280485,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Loud_cars_near_Shibuya_Scramble_crossing.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2884,7 +2953,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/124_Night_view_of_Shibuya_Tokyo_November_2026.jpg",
       "bytes": 3737240,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Night_view_of_Shibuya,_Tokyo,_November_2026.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2907,7 +2977,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/125_October_2024_Walk_in_Shibuya_4.jpg",
       "bytes": 2457555,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:October_2024,_Walk_in_Shibuya_4.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2976,7 +3047,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/128_Shibuya_Tokyo_By_night_hdsr_S5_25.jpg",
       "bytes": 2976871,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_25.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -2999,7 +3071,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/129_Shibuya_Crossing_53330031932.jpg",
       "bytes": 2865154,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Crossing_(53330031932).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3022,7 +3095,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/130_Shibuya_Crossing_Aerial.jpg",
       "bytes": 17767731,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Crossing,_Aerial.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3045,7 +3119,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/131_Shibuya_Scramble_Square_49997623472.jpg",
       "bytes": 5930649,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_Square_(49997623472).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3068,7 +3143,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/132_Shibuya_Scramble_Square_Shibuya_Crossing_49996865153.jpg",
       "bytes": 2904626,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_Square_Shibuya_Crossing_(49996865153).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3091,7 +3167,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/133_Shibuya_Scramble_Square_Shibuya_Crossing_49997638632.jpg",
       "bytes": 6487938,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_Square_Shibuya_Crossing_(49997638632).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3114,7 +3191,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/134_Shibuya_Scramble_Square_Shibuya_Crossing_49997638992.jpg",
       "bytes": 3613286,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_Square_Shibuya_Crossing_(49997638992).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3137,7 +3215,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/135_Shibuya_Scramble_Square_Shibuya_Crossing_49997639572.jpg",
       "bytes": 5969694,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_Square_Shibuya_Crossing_(49997639572).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3160,7 +3239,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/136_Shibuya_Scramble_crossing.jpg",
       "bytes": 2093086,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_crossing.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3183,7 +3263,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/137_Shibuya_scramble_av_night_from_Stream.jpg",
       "bytes": 1929736,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_scramble_av_night_from_Stream.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3206,7 +3287,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/138_Shibuya_scramble_crossing_during_Halloween_2023_actually_les.jpg",
       "bytes": 1893666,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence_2.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3229,7 +3311,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/139_Shibuya_scramble_crossing_during_Halloween_2023_actually_les.jpg",
       "bytes": 1852338,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence_3.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3252,7 +3335,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/140_Shibuya_scramble_crossing_during_Halloween_2023_actually_les.jpg",
       "bytes": 1678518,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_scramble_crossing_during_Halloween_2023,_actually_less_crowded_than_usual,_high_police_presence.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3275,7 +3359,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/141_Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg",
       "bytes": 1790054,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3298,7 +3383,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/142_Starbucks_Coffee_Shibuya_Tsutaya_53333752373.jpg",
       "bytes": 3028631,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333752373).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3321,7 +3407,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/143_The_front_of_Shibuya_Station_Crossing_20211126_02.jpg",
       "bytes": 1608657,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:The_front_of_Shibuya_Station_Crossing_20211126_02.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3344,7 +3431,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/144_The_front_of_Shibuya_Station_Crossing_20211126_03.jpg",
       "bytes": 2310140,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:The_front_of_Shibuya_Station_Crossing_20211126_03.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3413,7 +3501,8 @@
       "score": 190,
       "local_path": "assets/photos/shibuya_buildings_night/147_Tokyu_Department_Store_Shibuya_Toyoko_2018.jpg",
       "bytes": 3634360,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Tokyu_Department_Store_Shibuya_Toyoko_2018.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3436,7 +3525,8 @@
       "score": 185,
       "local_path": "assets/photos/shibuya_buildings_night/148_Decorated_truck_with_blue_neons_waiting_along_the_railway_in.jpg",
       "bytes": 1240875,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Decorated_truck_with_blue_neons,_waiting_along_the_railway_in_Shibuya.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3459,7 +3549,8 @@
       "score": 185,
       "local_path": "assets/photos/shibuya_buildings_night/149_Running_track_near_Japan_National_Stadium_2.jpg",
       "bytes": 2364389,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Running_track_near_Japan_National_Stadium_2.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3482,7 +3573,8 @@
       "score": 185,
       "local_path": "assets/photos/shibuya_buildings_night/150_Shibuya_at_Night_2007_393786400.jpg",
       "bytes": 1962369,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_at_Night_2007_(393786400).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3505,7 +3597,8 @@
       "score": 185,
       "local_path": "assets/photos/shibuya_buildings_night/151_Shibuya_evening_sky.jpg",
       "bytes": 3887818,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_evening_sky.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3528,7 +3621,8 @@
       "score": 180,
       "local_path": "assets/photos/shibuya_buildings_night/152_Seibu_Shinkin_Bank_Hinode_Branch.jpg",
       "bytes": 1068469,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Seibu_Shinkin_Bank_Hinode_Branch.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3666,7 +3760,8 @@
       "score": 180,
       "local_path": "assets/photos/shibuya_buildings_night/158_46979356922.jpg",
       "bytes": 305753,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:初恋の香り_(46979356922).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3758,7 +3853,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/162_GATSBY_META_RUBBER_Advertisement_in_Shibuya_53131768614.jpg",
       "bytes": 6890200,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:GATSBY_META_RUBBER_Advertisement_in_Shibuya_(53131768614).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3827,7 +3923,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/165_In_Front_of_Shibuya_Station.jpg",
       "bytes": 1839732,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:In_Front_of_Shibuya_Station.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3850,7 +3947,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/166_Japan_6791854551.jpg",
       "bytes": 7800832,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Japan_(6791854551).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3896,7 +3994,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/168_MAGNET_by_SHIBUYA109_49996924528.jpg",
       "bytes": 6796081,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_(49996924528).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3919,7 +4018,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/169_MAGNET_by_SHIBUYA109_49997445316.jpg",
       "bytes": 4322290,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_(49997445316).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3942,7 +4042,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/170_MAGNET_by_SHIBUYA109_Shibuya_Crossing_49996927363.jpg",
       "bytes": 8917182,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_Shibuya_Crossing_(49996927363).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3965,7 +4066,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/171_MAGNET_by_SHIBUYA109_Shibuya_Crossing_49997446076.jpg",
       "bytes": 8402848,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_Shibuya_Crossing_(49997446076).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -3988,7 +4090,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/172_MAGNET_by_SHIBUYA109_Shibuya_Crossing_49997446546.jpg",
       "bytes": 4554133,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_Shibuya_Crossing_(49997446546).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4011,7 +4114,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/173_MAGNET_by_SHIBUYA109_Shibuya_Crossing_49997446966.jpg",
       "bytes": 8107851,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_Shibuya_Crossing_(49997446966).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4034,7 +4138,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/174_MAGNET_by_SHIBUYA109_Shibuya_Crossing_49997700282.jpg",
       "bytes": 8070673,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_Shibuya_Crossing_(49997700282).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4057,7 +4162,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/175_MAGNET_by_SHIBUYA109_Shibuya_Crossing_49997700797.jpg",
       "bytes": 4761177,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:MAGNET_by_SHIBUYA109_Shibuya_Crossing_(49997700797).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4218,7 +4324,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/182_Shibuya_54222657891.jpg",
       "bytes": 2220460,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(54222657891).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4264,7 +4371,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/184_Shibuya_Crossing_53132043208.jpg",
       "bytes": 6095753,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Crossing_(53132043208).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4287,7 +4395,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/185_Shibuya_Crossing_53333919285.jpg",
       "bytes": 2660021,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Crossing_(53333919285).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4333,7 +4442,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/187_Shibuya_Scramble_Square_SHIBUYA_SKY_53086010229.jpg",
       "bytes": 2966314,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Scramble_Square_SHIBUYA_SKY_(53086010229).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4356,7 +4466,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/188_Shibuya_Tokyo_Japan_Feb_21_2025_54345489916.jpg",
       "bytes": 1857770,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya,_Tokyo,_Japan_Feb_21_2025_(54345489916).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4379,7 +4490,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/189_Starbucks_Coffee_Shibuya_Tsutaya_53332557007.jpg",
       "bytes": 3034422,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53332557007).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4402,7 +4514,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/190_Starbucks_Coffee_Shibuya_Tsutaya_53333435056.jpg",
       "bytes": 2894988,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333435056).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4425,7 +4538,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/191_Starbucks_Coffee_Shibuya_Tsutaya_53333663028.jpg",
       "bytes": 2653792,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333663028).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4448,7 +4562,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/192_Starbucks_Coffee_Shibuya_Tsutaya_53333663423.jpg",
       "bytes": 2485578,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333663423).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4471,7 +4586,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/193_Starbucks_Coffee_Shibuya_Tsutaya_53333663763.jpg",
       "bytes": 2022349,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333663763).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4494,7 +4610,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/194_Starbucks_Coffee_Shibuya_Tsutaya_53333663818.jpg",
       "bytes": 3780580,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333663818).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4517,7 +4634,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/195_Starbucks_Coffee_Shibuya_Tsutaya_53333778849.jpg",
       "bytes": 2132733,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333778849).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4540,7 +4658,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/196_Starbucks_Coffee_Shibuya_Tsutaya_53333892770.jpg",
       "bytes": 4629256,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333892770).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4563,7 +4682,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/197_Starbucks_Coffee_Shibuya_Tsutaya_53333892835.jpg",
       "bytes": 3041405,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333892835).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4586,7 +4706,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/198_Starbucks_Coffee_Shibuya_Tsutaya_53333893090.jpg",
       "bytes": 3557882,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333893090).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4609,7 +4730,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/199_Starbucks_Coffee_Shibuya_Tsutaya_53333893100.jpg",
       "bytes": 3543745,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Starbucks_Coffee_Shibuya_Tsutaya_(53333893100).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4632,7 +4754,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/200_The_famous_Shibuya_crossing_6155647093.jpg",
       "bytes": 1925852,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:The_famous_Shibuya_crossing_(6155647093).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4678,7 +4801,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/202_Tokyo---Ebisu-and-Shibuya---2026-03-11_020.jpg",
       "bytes": 4170583,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Tokyo---Ebisu-and-Shibuya---2026-03-11_020.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4701,7 +4825,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/203_Tokyo---Ebisu-and-Shibuya---2026-03-11_021.jpg",
       "bytes": 3836247,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Tokyo---Ebisu-and-Shibuya---2026-03-11_021.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4724,7 +4849,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/204_Views_from_Shibuya_Stream.jpg",
       "bytes": 2852793,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Views_from_Shibuya_Stream.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4770,7 +4896,8 @@
       "score": 175,
       "local_path": "assets/photos/shibuya_buildings_night/206_Shibuya_Crossing_2015_20641063821.jpg",
       "bytes": 495686,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_Crossing_2015_(20641063821).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4885,7 +5012,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/211_Nishisando_keibi_240101.jpg",
       "bytes": 215358,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Nishisando_keibi_240101.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4908,7 +5036,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/212_Shibuya_3800891707.jpg",
       "bytes": 1598098,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(3800891707).jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4931,7 +5060,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/213_Shibuya_Tokyo_By_night_hdsr_S5_11.jpg",
       "bytes": 2763045,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_11.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4954,7 +5084,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/214_Shibuya_Tokyo_By_night_hdsr_S5_12.jpg",
       "bytes": 2027950,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_12.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -4977,7 +5108,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/215_Shibuya_Tokyo_By_night_hdsr_S5_13.jpg",
       "bytes": 2038850,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_13.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -5000,7 +5132,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/216_Shibuya_Tokyo_By_night_hdsr_S5_14.jpg",
       "bytes": 2181224,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_14.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -5023,7 +5156,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/217_Shibuya_Tokyo_By_night_hdsr_S5_15.jpg",
       "bytes": 2057331,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_15.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -5046,7 +5180,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/218_Shibuya_Tokyo_By_night_hdsr_S5_16.jpg",
       "bytes": 2389241,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_16.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -5069,7 +5204,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/219_Shibuya_Tokyo_By_night_hdsr_S5_17.jpg",
       "bytes": 2349751,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_17.jpg"
     },
     {
       "spot": "shibuya_buildings_night",
@@ -5092,7 +5228,8 @@
       "score": 170,
       "local_path": "assets/photos/shibuya_buildings_night/220_Shibuya_Tokyo_By_night_hdsr_S5_18.jpg",
       "bytes": 2372344,
-      "status": "downloaded"
+      "status": "downloaded",
+      "photo": "commons:Shibuya_(Tokyo)_By_night_hdsr_S5_18.jpg"
     }
   ]
 }

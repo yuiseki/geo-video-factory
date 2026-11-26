@@ -1,12 +1,12 @@
 """Download the photos of a commons_area_catalog within a radius, with a manifest of their sources.
 
-    python -m photos.catalog_download <catalog.jsonl> <photos dir> <manifest.json> <flyover dir>
-        --centre=lon,lat [--radius=600] [--known=<dir>,...]
+    python -m photos.catalog_download <catalog.jsonl> <manifest.json> --centre=lon,lat [--radius=600] [--known=<dir>,...]
 
-Each photo is saved as NNN_<title>.jpg under <photos dir>; the manifest lists every row tried, in the layout
-of the project's other photo manifests (local_path relative to <flyover dir>, licence, creator, landing URL),
-with a status: downloaded, failed (and why), or "same picture already on disk" when its dHash equals a photo
-under --known (so a copy of a photo we already have is not taken in twice). One download a second.
+Each photo goes to the shared photo store (photos.photo_store), once per machine for every project; the manifest
+lists every row tried with its sources (licence, creator, landing URL), its ref ("photo": "commons:...") and a
+status: downloaded, "in the store" (some project took it already: not fetched again), refused (on the
+blocklist: never stored), failed (and why), or "same picture already on disk" when its dHash equals a photo
+under --known. One download a second.
 """
 from __future__ import annotations
 
@@ -42,23 +42,22 @@ def standard_thumb(url, width=1920):
     return re.sub(r"/thumb/(.+)/\d+px-([^/]+)$", rf"/thumb/\1/{width}px-\2", url)
 
 
-def _name(i, title):
-    stem = re.sub(r"\.[A-Za-z0-9]+$", "", title.split(":", 1)[-1])
-    return f"{i:03d}_" + re.sub(r"[^0-9A-Za-z_-]+", "_", stem).strip("_")[:80] + ".jpg"
-
-
-def download(rows, photos_dir, manifest_path, flyover_dir, fetch=None, sleep=time.sleep, known=()):
+def download(rows, manifest_path, fetch=None, sleep=time.sleep, known=()):
+    from photos import photo_store
     fetch = fetch or (lambda url: download_bytes_with_retry(url)[0])     # (bytes, content type)
-    photos_dir, flyover_dir = Path(photos_dir), Path(flyover_dir)
-    photos_dir.mkdir(parents=True, exist_ok=True)
     seen = set(known)
     out = []
-    for i, row in enumerate(rows, 1):
+    for row in rows:
         rec = dict(row)
-        path = photos_dir / _name(i, row["title"])
-        if path.exists():                                     # a run that stopped part way: carry on
-            seen.add(picture_hash(path.read_bytes()))
-            rec.update(status="downloaded", local_path=str(path.relative_to(flyover_dir)), bytes=path.stat().st_size)
+        try:
+            ref = photo_store.photo_ref(row)
+        except ValueError as exc:
+            rec["status"] = f"failed: {exc}"
+            out.append(rec)
+            continue
+        if photo_store.path(ref) is not None:                 # any project took it already
+            seen.add(picture_hash(photo_store.path(ref).read_bytes()))
+            rec.update(status="in the store", photo=ref)
             out.append(rec)
             continue
         try:
@@ -68,13 +67,15 @@ def download(rows, photos_dir, manifest_path, flyover_dir, fetch=None, sleep=tim
                 rec["status"] = "same picture already on disk"
             else:
                 seen.add(h)
-                path.write_bytes(data)
-                rec.update(status="downloaded", local_path=str(path.relative_to(flyover_dir)), bytes=len(data))
+                rec.update(status="downloaded", photo=photo_store.put(row, data), bytes=len(data))
+        except photo_store.BlockedPhoto as exc:
+            rec["status"] = f"refused: {exc}"
         except Exception as exc:   # recorded per photo: one broken file does not stop the set
             rec["status"] = f"failed: {exc}"
         out.append(rec)
         sleep(1.0)
-    manifest = {"summary": {"rows": len(rows), "downloaded": sum(r["status"] == "downloaded" for r in out)},
+    manifest = {"summary": {"rows": len(rows), "downloaded": sum(r["status"] == "downloaded" for r in out),
+                            "in the store": sum(r["status"] == "in the store" for r in out)},
                 "photos": out}
     Path(manifest_path).write_text(json.dumps(manifest, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     return manifest
@@ -82,7 +83,7 @@ def download(rows, photos_dir, manifest_path, flyover_dir, fetch=None, sleep=tim
 
 def main(argv):
     opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
-    catalog, photos_dir, manifest, flyover = [a for a in argv if not a.startswith("--")][:4]
+    catalog, manifest = [a for a in argv if not a.startswith("--")][:2]
     rows = [json.loads(line) for line in Path(catalog).read_text(encoding="utf-8").splitlines() if line.strip()]
     rows = within(rows, tuple(float(v) for v in opts["centre"].split(",")), float(opts.get("radius", 600)))
     known = set()
@@ -95,7 +96,7 @@ def main(argv):
                 except OSError:
                     pass
     print(f"{len(rows)} rows in the radius, {len(known)} pictures already on disk", flush=True)
-    m = download(rows, photos_dir, manifest, flyover, known=known)
+    m = download(rows, manifest, known=known)
     print(m["summary"])
 
 

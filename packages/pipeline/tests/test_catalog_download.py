@@ -1,12 +1,15 @@
 import io
 import json
+import os
 import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 from PIL import Image
 
 from photos import catalog_download as cd
+from photos import photo_store
 
 
 def _jpeg(colour):
@@ -41,51 +44,58 @@ class Thumbnails(unittest.TestCase):
 
 
 class Download(unittest.TestCase):
-    def test_files_and_a_manifest_with_their_sources(self):
-        out = Path(tempfile.mkdtemp())
-        flyover = out
-        photos = out / "assets/photos/test_set"
+    """Photos go to the shared store (photos.photo_store); the manifest names each by its ref."""
+
+    def setUp(self):
+        self.root = tempfile.mkdtemp()
+        env = mock.patch.dict(os.environ, {"GEO_VIDEO_CACHE": self.root})
+        env.start()
+        self.addCleanup(env.stop)
+        guard = mock.patch("photos.photo_store.blocked", return_value=None)
+        self.guard = guard.start()
+        self.addCleanup(guard.stop)
+        self.out = Path(tempfile.mkdtemp())
+
+    def test_photos_go_to_the_store_and_the_manifest_keeps_their_sources_and_refs(self):
         bodies = {"https://x/near.jpg": _jpeg((200, 0, 0)), "https://x/near2.jpg": _jpeg((0, 0, 200))}
-        manifest = cd.download(ROWS[::2], photos, out / "m.json", flyover, fetch=lambda url: bodies[url],
-                               sleep=lambda s: None)
-        self.assertEqual(len(manifest["photos"]), 2)
+        manifest = cd.download(ROWS[::2], self.out / "m.json", fetch=lambda url: bodies[url], sleep=lambda s: None)
         first = manifest["photos"][0]
-        self.assertTrue((flyover / first["local_path"]).is_file())
+        self.assertEqual((first["status"], first["photo"]), ("downloaded", "commons:Near_crossing.jpg"))
+        self.assertNotIn("local_path", first)
+        self.assertTrue(photo_store.path(first["photo"]).is_file())
         self.assertEqual(first["license"], "CC0")
-        self.assertTrue(first["local_path"].startswith("assets/photos/test_set/001_"))
-        self.assertEqual(json.loads((out / "m.json").read_text())["photos"][1]["creator"], "C")
+        self.assertEqual(json.loads((self.out / "m.json").read_text())["photos"][1]["creator"], "C")
 
     def test_a_picture_already_on_disk_is_not_kept_twice(self):
-        out = Path(tempfile.mkdtemp())
-        photos = out / "assets/photos/test_set"
         same = _jpeg((200, 0, 0))
-        known = {cd.picture_hash(same)}
-        manifest = cd.download(ROWS[:1], photos, out / "m.json", out, fetch=lambda url: same,
-                               sleep=lambda s: None, known=known)
+        manifest = cd.download(ROWS[:1], self.out / "m.json", fetch=lambda url: same, sleep=lambda s: None,
+                               known={cd.picture_hash(same)})
         self.assertEqual(manifest["photos"][0]["status"], "same picture already on disk")
-        self.assertNotIn("local_path", manifest["photos"][0])
+        self.assertNotIn("photo", manifest["photos"][0])
 
-    def test_a_file_already_downloaded_is_not_fetched_again(self):
-        out = Path(tempfile.mkdtemp())
-        photos = out / "assets/photos/test_set"
+    def test_a_photo_already_in_the_store_is_not_fetched_again_by_any_project(self):
         calls = []
 
         def fetch(url):
             calls.append(url)
             return _jpeg((200, 0, 0))
 
-        cd.download(ROWS[:1], photos, out / "m.json", out, fetch=fetch, sleep=lambda s: None)
-        m = cd.download(ROWS[:1], photos, out / "m.json", out, fetch=fetch, sleep=lambda s: None)
+        cd.download(ROWS[:1], self.out / "m.json", fetch=fetch, sleep=lambda s: None)
+        m = cd.download(ROWS[:1], Path(tempfile.mkdtemp()) / "other.json", fetch=fetch, sleep=lambda s: None)
         self.assertEqual(len(calls), 1)
-        self.assertEqual(m["photos"][0]["status"], "downloaded")
+        self.assertEqual((m["photos"][0]["status"], m["photos"][0]["photo"]), ("in the store", "commons:Near_crossing.jpg"))
+
+    def test_a_photo_on_the_blocklist_is_recorded_as_refused_and_not_stored(self):
+        self.guard.return_value = "CC BY-SA, x: share-alike"
+        m = cd.download(ROWS[:1], self.out / "m.json", fetch=lambda url: _jpeg((1, 2, 3)), sleep=lambda s: None)
+        self.assertTrue(m["photos"][0]["status"].startswith("refused"))
+        self.assertIsNone(photo_store.path("commons:Near_crossing.jpg"))
 
     def test_a_failed_download_is_recorded_not_hidden(self):
-        out = Path(tempfile.mkdtemp())
-
         def fetch(url):
             raise OSError("boom")
 
-        manifest = cd.download(ROWS[:1], out / "p", out / "m.json", out, fetch=fetch, sleep=lambda s: None)
+        manifest = cd.download(ROWS[:1], self.out / "m.json", fetch=fetch, sleep=lambda s: None)
         self.assertTrue(manifest["photos"][0]["status"].startswith("failed"))
 
 

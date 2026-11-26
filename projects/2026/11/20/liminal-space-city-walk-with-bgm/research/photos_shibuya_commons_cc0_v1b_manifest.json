@@ -23,7 +23,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/001_Tokyo_Tower_Red_Light_up_sponsored_by_Adecco.jpg",
-   "bytes": 1222189
+   "bytes": 1222189,
+   "photo": "commons:\"Tokyo_Tower_Red_Light_up\"_sponsored_by_Adecco.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -44,7 +45,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/002_Adidas_Futsal_Park.jpg",
-   "bytes": 2122621
+   "bytes": 2122621,
+   "photo": "commons:Adidas_Futsal_Park.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -84,7 +86,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/004_Azabudai_Hills_residence_under_construction.jpg",
-   "bytes": 2015492
+   "bytes": 2015492,
+   "photo": "commons:Azabudai_Hills_residence_under_construction.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -105,7 +108,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/005_Azabudai_Hills_residence_under_construction_cropped.jpg",
-   "bytes": 436179
+   "bytes": 436179,
+   "photo": "commons:Azabudai_Hills_residence_under_construction_(cropped).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -129,7 +133,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/006_Back_alley_between_Shibuya_Stream_and_Shibuya_Sakura_Stage_2.jpg",
-   "bytes": 5018831
+   "bytes": 5018831,
+   "photo": "commons:Back_alley_between_Shibuya_Stream_and_Shibuya_Sakura_Stage_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -153,7 +158,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/007_Big_truck_on.jpg",
-   "bytes": 4141468
+   "bytes": 4141468,
+   "photo": "commons:Big_truck_on_金王坂.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -177,7 +183,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/008_Buildings_in_Shibuya-ku_22.jpg",
-   "bytes": 2349510
+   "bytes": 2349510,
+   "photo": "commons:Buildings_in_Shibuya-ku_22.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -220,7 +227,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/010_Central_Building_Sakura_Tower.jpg",
-   "bytes": 4192534
+   "bytes": 4192534,
+   "photo": "commons:Central_Building,_Sakura_Tower.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -241,7 +249,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/011_Chicken_nanban_at_in_Shibuya_Stream.jpg",
-   "bytes": 1828657
+   "bytes": 1828657,
+   "photo": "commons:Chicken_nanban_at_なかよし_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -262,7 +271,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/012_Construction_around_Shibuya_station_10.jpg",
-   "bytes": 875293
+   "bytes": 875293,
+   "photo": "commons:Construction_around_Shibuya_station_10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -283,7 +293,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/013_Construction_around_Shibuya_station_11.jpg",
-   "bytes": 1695584
+   "bytes": 1695584,
+   "photo": "commons:Construction_around_Shibuya_station_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -323,7 +334,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/015_Construction_around_Shibuya_station_13.jpg",
-   "bytes": 2858810
+   "bytes": 2858810,
+   "photo": "commons:Construction_around_Shibuya_station_13.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -347,7 +359,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/016_Construction_around_Shibuya_station_3.jpg",
-   "bytes": 2384212
+   "bytes": 2384212,
+   "photo": "commons:Construction_around_Shibuya_station_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -371,7 +384,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/017_Construction_around_Shibuya_station_6.jpg",
-   "bytes": 1350220
+   "bytes": 1350220,
+   "photo": "commons:Construction_around_Shibuya_station_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -392,7 +406,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/018_Construction_around_Shibuya_station_7.jpg",
-   "bytes": 4440214
+   "bytes": 4440214,
+   "photo": "commons:Construction_around_Shibuya_station_7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -432,7 +447,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/020_Construction_around_Shibuya_station_9.jpg",
-   "bytes": 965698
+   "bytes": 965698,
+   "photo": "commons:Construction_around_Shibuya_station_9.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -456,7 +472,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/021_Construction_in_Shibuya_13.jpg",
-   "bytes": 2672642
+   "bytes": 2672642,
+   "photo": "commons:Construction_in_Shibuya_13.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -480,7 +497,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/022_Construction_in_Shibuya_14.jpg",
-   "bytes": 1282423
+   "bytes": 1282423,
+   "photo": "commons:Construction_in_Shibuya_14.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -504,7 +522,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/023_Construction_in_Shibuya_15.jpg",
-   "bytes": 1408366
+   "bytes": 1408366,
+   "photo": "commons:Construction_in_Shibuya_15.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -528,7 +547,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/024_Construction_in_Shibuya_16.jpg",
-   "bytes": 2475427
+   "bytes": 2475427,
+   "photo": "commons:Construction_in_Shibuya_16.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -549,7 +569,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/025_Construction_in_Shibuya.jpg",
-   "bytes": 869106
+   "bytes": 869106,
+   "photo": "commons:Construction_in_Shibuya.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -573,7 +594,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/026_Construction_in_Shibuya_18.jpg",
-   "bytes": 1032571
+   "bytes": 1032571,
+   "photo": "commons:Construction_in_Shibuya_18.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -597,7 +619,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/027_Construction_in_Shibuya_station_5.jpg",
-   "bytes": 2825847
+   "bytes": 2825847,
+   "photo": "commons:Construction_in_Shibuya_station_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -621,7 +644,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/028_Construction_in_Shibuya_station_6.jpg",
-   "bytes": 2900189
+   "bytes": 2900189,
+   "photo": "commons:Construction_in_Shibuya_station_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -642,7 +666,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/029_Construction_seen_from_Shibuya_Stream_2.jpg",
-   "bytes": 9318483
+   "bytes": 9318483,
+   "photo": "commons:Construction_seen_from_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -663,7 +688,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/030_Construction_site_of_the_Shibuya_regeneration_project_Tokyo_November_2026.jpg",
-   "bytes": 3761678
+   "bytes": 3761678,
+   "photo": "commons:Construction_site_of_the_Shibuya_regeneration_project,_Tokyo,_November_2026.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -687,7 +713,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/031_Constructrion_at_Shibuya_station_18.jpg",
-   "bytes": 690688
+   "bytes": 690688,
+   "photo": "commons:Constructrion_at_Shibuya_station_18.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -818,7 +845,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/037_DJs_affiliated_with_Ageha_at_Shibuya_Stream_Tokyu_Hotel_s_renewal_1st_anniversar.jpg",
-   "bytes": 1455693
+   "bytes": 1455693,
+   "photo": "commons:DJs_affiliated_with_Ageha,_at_Shibuya_Stream_Tokyu_Hotel's_renewal_1st_anniversary_party.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -839,7 +867,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/038_DJs_affiliated_with_Ageha_at_Shibuya_Stream_Tokyu_Hotel_s_renewal_1st_anniversar.jpg",
-   "bytes": 1288570
+   "bytes": 1288570,
+   "photo": "commons:DJs_affiliated_with_Ageha,_at_Shibuya_Stream_Tokyu_Hotel's_renewal_1st_anniversary_party_(28287).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -860,7 +889,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/039_DJs_affiliated_with_Ageha_at_Shibuya_Stream_Tokyu_Hotel_s_renewal_1st_anniversar.jpg",
-   "bytes": 2814669
+   "bytes": 2814669,
+   "photo": "commons:DJs_affiliated_with_Ageha,_at_Shibuya_Stream_Tokyu_Hotel's_renewal_1st_anniversary_party_(45489).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -881,7 +911,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/040_DJs_affiliated_with_Ageha_at_Shibuya_Stream_Tokyu_Hotel_s_renewal_1st_anniversar.jpg",
-   "bytes": 1217060
+   "bytes": 1217060,
+   "photo": "commons:DJs_affiliated_with_Ageha,_at_Shibuya_Stream_Tokyu_Hotel's_renewal_1st_anniversary_party_(48134).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -902,7 +933,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/041_DJs_affiliated_with_Ageha_at_Shibuya_Stream_Tokyu_Hotel_s_renewal_1st_anniversar.jpg",
-   "bytes": 1340986
+   "bytes": 1340986,
+   "photo": "commons:DJs_affiliated_with_Ageha,_at_Shibuya_Stream_Tokyu_Hotel's_renewal_1st_anniversary_party_(67970).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -923,7 +955,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/042_DJs_affiliated_with_Ageha_at_Shibuya_Stream_Tokyu_Hotel_s_renewal_1st_anniversar.jpg",
-   "bytes": 1191774
+   "bytes": 1191774,
+   "photo": "commons:DJs_affiliated_with_Ageha,_at_Shibuya_Stream_Tokyu_Hotel's_renewal_1st_anniversary_party_(89555).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -944,7 +977,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/043_DJs_affiliated_with_Ageha_at_Shibuya_Stream_Tokyu_Hotel_s_renewal_1st_anniversar.jpg",
-   "bytes": 1314958
+   "bytes": 1314958,
+   "photo": "commons:DJs_affiliated_with_Ageha,_at_Shibuya_Stream_Tokyu_Hotel's_renewal_1st_anniversary_party_(90618).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -965,7 +999,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/044_Daikanyama_and_Musashikosugi_seen_from_Shibuya_Stream.jpg",
-   "bytes": 2067094
+   "bytes": 2067094,
+   "photo": "commons:Daikanyama_and_Musashikosugi_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -986,7 +1021,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/045_Daikanyama_seen_from_Shibuya_Stream.jpg",
-   "bytes": 4581563
+   "bytes": 4581563,
+   "photo": "commons:Daikanyama_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1007,7 +1043,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/046_Daikanyama_seen_from_Shibuya_Stream_80584.jpg",
-   "bytes": 2149364
+   "bytes": 2149364,
+   "photo": "commons:Daikanyama_seen_from_Shibuya_Stream_(80584).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1069,7 +1106,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/049_Demolition_of_Tokyu_Toyoko_2024-06-27.jpg",
-   "bytes": 2064229
+   "bytes": 2064229,
+   "photo": "commons:Demolition_of_Tokyu_Toyoko_2024-06-27.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1093,7 +1131,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/050_Demolition_of_Tokyu_Toyoko_2024-09-26.jpg",
-   "bytes": 2345475
+   "bytes": 2345475,
+   "photo": "commons:Demolition_of_Tokyu_Toyoko_2024-09-26.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1117,7 +1156,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/051_Demolition_of_Tokyu_Toyoko_2024-12-26.jpg",
-   "bytes": 2008053
+   "bytes": 2008053,
+   "photo": "commons:Demolition_of_Tokyu_Toyoko_2024-12-26.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1138,7 +1178,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/052_Demolition_of_Tokyu_Toyoko_2025-03-23.jpg",
-   "bytes": 2276105
+   "bytes": 2276105,
+   "photo": "commons:Demolition_of_Tokyu_Toyoko_2025-03-23.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1159,7 +1200,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/053_Demolition_of_Tokyu_Toyoko_2025-06-12.jpg",
-   "bytes": 1033809
+   "bytes": 1033809,
+   "photo": "commons:Demolition_of_Tokyu_Toyoko_2025-06-12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1180,7 +1222,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/054_Demolition_of_Tokyu_Toyoko_2026-05-17.jpg",
-   "bytes": 2479457
+   "bytes": 2479457,
+   "photo": "commons:Demolition_of_Tokyu_Toyoko_2026-05-17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1204,7 +1247,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/055_Detail_of_Shibuya_Sakura_Stage.jpg",
-   "bytes": 1615212
+   "bytes": 1615212,
+   "photo": "commons:Detail_of_Shibuya_Sakura_Stage.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1225,7 +1269,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/056_Details_of_Shibuya_Hikarie.jpg",
-   "bytes": 1360865
+   "bytes": 1360865,
+   "photo": "commons:Details_of_Shibuya_Hikarie.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1246,7 +1291,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/057_Details_of_Shibuya_Hikarie_11914.jpg",
-   "bytes": 1807776
+   "bytes": 1807776,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(11914).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1267,7 +1313,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/058_Details_of_Shibuya_Hikarie_42234.jpg",
-   "bytes": 4672166
+   "bytes": 4672166,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(42234).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1288,7 +1335,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/059_Details_of_Shibuya_Hikarie_43344.jpg",
-   "bytes": 1906791
+   "bytes": 1906791,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(43344).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1309,7 +1357,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/060_Details_of_Shibuya_Hikarie_58219.jpg",
-   "bytes": 1438874
+   "bytes": 1438874,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(58219).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1330,7 +1379,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/061_Details_of_Shibuya_Hikarie_73066.jpg",
-   "bytes": 1983728
+   "bytes": 1983728,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(73066).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1351,7 +1401,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/062_Details_of_Shibuya_Hikarie_73153.jpg",
-   "bytes": 1580608
+   "bytes": 1580608,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(73153).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1372,7 +1423,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/063_Details_of_Shibuya_Hikarie_79601.jpg",
-   "bytes": 4632846
+   "bytes": 4632846,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(79601).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1393,7 +1445,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/064_Details_of_Shibuya_Hikarie_82418.jpg",
-   "bytes": 4327076
+   "bytes": 4327076,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(82418).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1414,7 +1467,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/065_Details_of_Shibuya_Hikarie_85582.jpg",
-   "bytes": 2068628
+   "bytes": 2068628,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(85582).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1435,7 +1489,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/066_Details_of_Shibuya_Hikarie_91841.jpg",
-   "bytes": 1583545
+   "bytes": 1583545,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(91841).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1456,7 +1511,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/067_Details_of_Shibuya_Hikarie_93489.jpg",
-   "bytes": 1434900
+   "bytes": 1434900,
+   "photo": "commons:Details_of_Shibuya_Hikarie_(93489).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1480,7 +1536,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/068_Dish_in_Shibuya_Stream.jpg",
-   "bytes": 1849476
+   "bytes": 1849476,
+   "photo": "commons:Dish_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1504,7 +1561,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/069_Dishes_at_Japanese_restaurant_in_Shibuya_Stream.jpg",
-   "bytes": 1630040
+   "bytes": 1630040,
+   "photo": "commons:Dishes_at_Japanese_restaurant_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1528,7 +1586,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/070_Dishes_at_Japanese_restaurant_in_Shibuya_Stream_2.jpg",
-   "bytes": 1479078
+   "bytes": 1479078,
+   "photo": "commons:Dishes_at_Japanese_restaurant_in_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1552,7 +1611,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/071_Dishes_at_Japanese_restaurant_in_Shibuya_Stream_3.jpg",
-   "bytes": 805248
+   "bytes": 805248,
+   "photo": "commons:Dishes_at_Japanese_restaurant_in_Shibuya_Stream_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1576,7 +1636,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/072_Dishes_at_Japanese_restaurant_in_Shibuya_Stream_4.jpg",
-   "bytes": 955870
+   "bytes": 955870,
+   "photo": "commons:Dishes_at_Japanese_restaurant_in_Shibuya_Stream_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1600,7 +1661,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/073_Dishes_at_Japanese_restaurant_in_Shibuya_Stream_5.jpg",
-   "bytes": 1331073
+   "bytes": 1331073,
+   "photo": "commons:Dishes_at_Japanese_restaurant_in_Shibuya_Stream_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1624,7 +1686,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/074_Dishes_at_Japanese_restaurant_in_Shibuya_Stream_6.jpg",
-   "bytes": 1829170
+   "bytes": 1829170,
+   "photo": "commons:Dishes_at_Japanese_restaurant_in_Shibuya_Stream_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1664,7 +1727,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/076_Early_occupants_of_Shibuya_Sakura_Stage.jpg",
-   "bytes": 647756
+   "bytes": 647756,
+   "photo": "commons:Early_occupants_of_Shibuya_Sakura_Stage.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1685,7 +1749,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/077_Exhibition_of_the_Olympic_Phryge_the_Paralympic_Phryge_and_Team_Japan_jerseys_fo.jpg",
-   "bytes": 1224899
+   "bytes": 1224899,
+   "photo": "commons:Exhibition_of_the_Olympic_Phryge,_the_Paralympic_Phryge,_and_Team_Japan_jerseys_for_the_Paris_2024_Olympics,_at_NHK_hall_in_Shibuya_Hikarie.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1725,7 +1790,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/079_Ginza_line_train_entering_Shibuya_Mark_City_2.jpg",
-   "bytes": 662397
+   "bytes": 662397,
+   "photo": "commons:Ginza_line_train_entering_Shibuya_Mark_City_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1746,7 +1812,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/080_Google_Pixel_7a_shown_in_Shibuya_Stream.jpg",
-   "bytes": 1792391
+   "bytes": 1792391,
+   "photo": "commons:Google_Pixel_7a,_shown_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1767,7 +1834,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/081_Google_Pixel_8_shown_in_Shibuya_Stream.jpg",
-   "bytes": 1922644
+   "bytes": 1922644,
+   "photo": "commons:Google_Pixel_8,_shown_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1788,7 +1856,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/082_Google_Pixel_8_shown_in_Shibuya_Stream_2.jpg",
-   "bytes": 1611045
+   "bytes": 1611045,
+   "photo": "commons:Google_Pixel_8,_shown_in_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1809,7 +1878,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/083_Google_Pixel_8_Pro_shown_in_Shibuya_Stream.jpg",
-   "bytes": 1354603
+   "bytes": 1354603,
+   "photo": "commons:Google_Pixel_8_Pro,_shown_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1830,7 +1900,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/084_Google_Pixel_8_Pro_shown_in_Shibuya_Stream_2.jpg",
-   "bytes": 2234397
+   "bytes": 2234397,
+   "photo": "commons:Google_Pixel_8_Pro,_shown_in_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1854,7 +1925,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/085_Google_Pixel_Fold_shown_in_Shibuya_Stream_17.jpg",
-   "bytes": 324688
+   "bytes": 324688,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1878,7 +1950,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/086_Google_Pixel_Fold_shown_in_Shibuya_Stream_18.jpg",
-   "bytes": 2110442
+   "bytes": 2110442,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_18.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1902,7 +1975,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/087_Google_Pixel_Fold_shown_in_Shibuya_Stream_19.jpg",
-   "bytes": 4725697
+   "bytes": 4725697,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_19.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1926,7 +2000,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/088_Google_Pixel_Fold_shown_in_Shibuya_Stream_20.jpg",
-   "bytes": 2282725
+   "bytes": 2282725,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_20.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1950,7 +2025,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/089_Google_Pixel_Fold_shown_in_Shibuya_Stream_21.jpg",
-   "bytes": 7050757
+   "bytes": 7050757,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_21.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1974,7 +2050,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/090_Google_Pixel_Fold_shown_in_Shibuya_Stream_22.jpg",
-   "bytes": 5386220
+   "bytes": 5386220,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_22.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -1998,7 +2075,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/091_Google_Pixel_Fold_shown_in_Shibuya_Stream_23.jpg",
-   "bytes": 2775004
+   "bytes": 2775004,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_23.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2022,7 +2100,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/092_Google_Pixel_Fold_shown_in_Shibuya_Stream_24.jpg",
-   "bytes": 2675471
+   "bytes": 2675471,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_24.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2046,7 +2125,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/093_Google_Pixel_Fold_shown_in_Shibuya_Stream_8.jpg",
-   "bytes": 2627204
+   "bytes": 2627204,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2070,7 +2150,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/094_Google_Pixel_Fold_shown_in_Shibuya_Stream_9.jpg",
-   "bytes": 2695194
+   "bytes": 2695194,
+   "photo": "commons:Google_Pixel_Fold,_shown_in_Shibuya_Stream_9.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2091,7 +2172,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/095_Google_Pixel_Tablet_shown_in_Shibuya_Stream.jpg",
-   "bytes": 330600
+   "bytes": 330600,
+   "photo": "commons:Google_Pixel_Tablet,_shown_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2112,7 +2194,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/096_Google_Pixel_Tablet_shown_in_Shibuya_Stream_2.jpg",
-   "bytes": 359704
+   "bytes": 359704,
+   "photo": "commons:Google_Pixel_Tablet,_shown_in_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2133,7 +2216,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/097_Google_Pixel_Watch_2_shown_in_Shibuya_Stream.jpg",
-   "bytes": 4165099
+   "bytes": 4165099,
+   "photo": "commons:Google_Pixel_Watch_2,_shown_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2154,7 +2238,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/098_Group_of_Italian_tourists_in_Shibuya.jpg",
-   "bytes": 924514
+   "bytes": 924514,
+   "photo": "commons:Group_of_Italian_tourists_in_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2213,7 +2298,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/101_Hachik_and_sculptor_And_Teru_with_the_Hachik_statue.jpg",
-   "bytes": 163784
+   "bytes": 163784,
+   "photo": "commons:Hachikō_and_sculptor_Andō_Teru_with_the_Hachikō_statue.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2275,7 +2361,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/104_Ice_rink_on_Fukuras.jpg",
-   "bytes": 898174
+   "bytes": 898174,
+   "photo": "commons:Ice_rink_on_Fukuras.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2353,7 +2440,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/108_Kewpie_seen_from_Shibuya_Stream.jpg",
-   "bytes": 5629202
+   "bytes": 5629202,
+   "photo": "commons:Kewpie_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2481,7 +2569,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/114_Maintenance_3_in_Shibuya.jpg",
-   "bytes": 943427
+   "bytes": 943427,
+   "photo": "commons:Maintenance_首都高速3号渋谷線_in_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2502,7 +2591,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/115_Mikoto_Misaka_birthday_event_in_Shibuya_Stream.jpg",
-   "bytes": 748127
+   "bytes": 748127,
+   "photo": "commons:Mikoto_Misaka_\"birthday\"_event_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2523,7 +2613,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/116_Mikoto_Misaka_birthday_event_in_Shibuya_Stream_2.jpg",
-   "bytes": 818170
+   "bytes": 818170,
+   "photo": "commons:Mikoto_Misaka_\"birthday\"_event_in_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2544,7 +2635,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/117_Mikoto_Misaka_birthday_event_in_Shibuya_Stream_3.jpg",
-   "bytes": 968771
+   "bytes": 968771,
+   "photo": "commons:Mikoto_Misaka_\"birthday\"_event_in_Shibuya_Stream_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2565,7 +2657,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/118_Mikoto_Misaka_birthday_event_in_Shibuya_Stream_4.jpg",
-   "bytes": 956868
+   "bytes": 956868,
+   "photo": "commons:Mikoto_Misaka_\"birthday\"_event_in_Shibuya_Stream_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2589,7 +2682,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/119_Minato-ku_seen_from_Shibuya_Stream_3.jpg",
-   "bytes": 742306
+   "bytes": 742306,
+   "photo": "commons:Minato-ku_seen_from_Shibuya_Stream_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2613,7 +2707,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/120_Minato-ku_seen_from_Shibuya_Stream_4.jpg",
-   "bytes": 1009515
+   "bytes": 1009515,
+   "photo": "commons:Minato-ku_seen_from_Shibuya_Stream_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2637,7 +2732,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/121_Minato-ku_seen_from_Shibuya_Stream_5.jpg",
-   "bytes": 735106
+   "bytes": 735106,
+   "photo": "commons:Minato-ku_seen_from_Shibuya_Stream_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2661,7 +2757,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/122_Minato-ku_seen_from_Shibuya_Stream_6.jpg",
-   "bytes": 1067687
+   "bytes": 1067687,
+   "photo": "commons:Minato-ku_seen_from_Shibuya_Stream_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2685,7 +2782,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/123_Myth_of_Tomorrow_2.jpg",
-   "bytes": 608831
+   "bytes": 608831,
+   "photo": "commons:Myth_of_Tomorrow_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2706,7 +2804,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/124_Myth_of_Tomorrow.jpg",
-   "bytes": 339100
+   "bytes": 339100,
+   "photo": "commons:Myth_of_Tomorrow.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2727,7 +2826,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/125_NHK_space_in_Shibuya_Hikarie.jpg",
-   "bytes": 643306
+   "bytes": 643306,
+   "photo": "commons:NHK_space_in_Shibuya_Hikarie.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2748,7 +2848,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/126_NHK_space_in_Shibuya_Hikarie_2.jpg",
-   "bytes": 453914
+   "bytes": 453914,
+   "photo": "commons:NHK_space_in_Shibuya_Hikarie_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2769,7 +2870,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/127_NHK_space_in_Shibuya_Hikarie_3.jpg",
-   "bytes": 567162
+   "bytes": 567162,
+   "photo": "commons:NHK_space_in_Shibuya_Hikarie_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2790,7 +2892,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/128_New_SHIBUYA_sign_over_Saikyo_train_leaving_to_Ebisu_Shibuya_Stream_and_Sakura_St.jpg",
-   "bytes": 844238
+   "bytes": 844238,
+   "photo": "commons:New_SHIBUYA_sign_over_Saikyo_train_leaving_to_Ebisu,_Shibuya_Stream_and_Sakura_Stage_in_the_background.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2814,7 +2917,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/129_Night_sakura_along_Shibuya_River.jpg",
-   "bytes": 948372
+   "bytes": 948372,
+   "photo": "commons:Night_sakura_along_Shibuya_River.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2838,7 +2942,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/130_Night_sakura_along_Shibuya_River_2.jpg",
-   "bytes": 800881
+   "bytes": 800881,
+   "photo": "commons:Night_sakura_along_Shibuya_River_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -2919,7 +3024,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/134_October_2024_Walk_in_Shibuya_5.jpg",
-   "bytes": 904683
+   "bytes": 904683,
+   "photo": "commons:October_2024,_Walk_in_Shibuya_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3000,7 +3106,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/138_Pink_Tokyo_tower.jpg",
-   "bytes": 420079
+   "bytes": 420079,
+   "photo": "commons:Pink_Tokyo_tower.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3106,7 +3213,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/143_Protestors_against_2022_Russia_invasion_of_Ukraine_in_Shibuya_Hachiko_square_1.jpg",
-   "bytes": 986381
+   "bytes": 986381,
+   "photo": "commons:Protestors_against_2022_Russia_invasion_of_Ukraine,_in_Shibuya_Hachiko_square_1.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3174,7 +3282,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/146_Recycled_thread_made_from_old_jeans_on_display_in_Hikarie.jpg",
-   "bytes": 706649
+   "bytes": 706649,
+   "photo": "commons:Recycled_thread_made_from_old_jeans,_on_display_in_Hikarie.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3195,7 +3304,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/147_Remains_of_original_Shibuya_station.jpg",
-   "bytes": 1168686
+   "bytes": 1168686,
+   "photo": "commons:Remains_of_original_Shibuya_station.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3216,7 +3326,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/148_Rooftop_of_Shibuya_Stream_-10983.jpg",
-   "bytes": 748765
+   "bytes": 748765,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-10983.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3240,7 +3351,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/149_Rooftop_of_Shibuya_Stream.jpg",
-   "bytes": 532781
+   "bytes": 532781,
+   "photo": "commons:Rooftop_of_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3264,7 +3376,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/150_Rooftop_of_Shibuya_Stream_-21393.jpg",
-   "bytes": 618999
+   "bytes": 618999,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-21393.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3285,7 +3398,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/151_Rooftop_of_Shibuya_Stream_-43902.jpg",
-   "bytes": 819933
+   "bytes": 819933,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-43902.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3306,7 +3420,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/152_Rooftop_of_Shibuya_Stream_-46133.jpg",
-   "bytes": 963831
+   "bytes": 963831,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-46133.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3330,7 +3445,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/153_Rooftop_of_Shibuya_Stream_-50800.jpg",
-   "bytes": 439891
+   "bytes": 439891,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-50800.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3351,7 +3467,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/154_Rooftop_of_Shibuya_Stream_-52877.jpg",
-   "bytes": 966282
+   "bytes": 966282,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-52877.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3372,7 +3489,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/155_Rooftop_of_Shibuya_Stream_-69621.jpg",
-   "bytes": 525086
+   "bytes": 525086,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-69621.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3396,7 +3514,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/156_Rooftop_of_Shibuya_Stream_-79700.jpg",
-   "bytes": 584476
+   "bytes": 584476,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-79700.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3420,7 +3539,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/157_Rooftop_of_Shibuya_Stream_-98927.jpg",
-   "bytes": 723544
+   "bytes": 723544,
+   "photo": "commons:Rooftop_of_Shibuya_Stream_-98927.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3463,7 +3583,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/159_Roppongi_before_the_rain_cropped.jpg",
-   "bytes": 494344
+   "bytes": 494344,
+   "photo": "commons:Roppongi_before_the_rain_(cropped).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3487,7 +3608,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/160_Roppongi_seen_from_Shibuya_Stream_including_almost_complete_Azabudai_Hills.jpg",
-   "bytes": 758641
+   "bytes": 758641,
+   "photo": "commons:Roppongi_seen_from_Shibuya_Stream,_including_almost_complete_Azabudai_Hills.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3511,7 +3633,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/161_Rotating_arms_with_LED_forming_a_round_transparent-looking_screen.jpg",
-   "bytes": 7455341
+   "bytes": 7455341,
+   "photo": "commons:Rotating_arms_with_LED,_forming_a_round_transparent-looking_screen.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3554,7 +3677,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/163_Sakura_Tower_part_of_Shibuya_Sakura_Stage.jpg",
-   "bytes": 1545940
+   "bytes": 1545940,
+   "photo": "commons:Sakura_Tower,_part_of_Shibuya_Sakura_Stage.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3597,7 +3721,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/165_Sequence_seen_from_Shibuya_Stream.jpg",
-   "bytes": 2934132
+   "bytes": 2934132,
+   "photo": "commons:Sequence,_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -3618,7 +3743,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/166_Series_of_tubes_on_top_of_Shibuya_Stream_-18183.jpg",
-   "bytes": 708059
+   "bytes": 708059,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-18183.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3639,7 +3765,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/167_Series_of_tubes_on_top_of_Shibuya_Stream_-21404.jpg",
-   "bytes": 695102
+   "bytes": 695102,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-21404.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3660,7 +3787,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/168_Series_of_tubes_on_top_of_Shibuya_Stream_-34460.jpg",
-   "bytes": 710367
+   "bytes": 710367,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-34460.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3681,7 +3809,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/169_Series_of_tubes_on_top_of_Shibuya_Stream_-38711.jpg",
-   "bytes": 717505
+   "bytes": 717505,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-38711.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3702,7 +3831,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/170_Series_of_tubes_on_top_of_Shibuya_Stream_-70789.jpg",
-   "bytes": 663604
+   "bytes": 663604,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-70789.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3723,7 +3853,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/171_Series_of_tubes_on_top_of_Shibuya_Stream_-81792.jpg",
-   "bytes": 651785
+   "bytes": 651785,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-81792.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3744,7 +3875,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/172_Series_of_tubes_on_top_of_Shibuya_Stream_-89062.jpg",
-   "bytes": 642085
+   "bytes": 642085,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-89062.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3765,7 +3897,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/173_Series_of_tubes_on_top_of_Shibuya_Stream_-99545.jpg",
-   "bytes": 563791
+   "bytes": 563791,
+   "photo": "commons:Series_of_tubes_on_top_of_Shibuya_Stream_-99545.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -3865,7 +3998,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/178_Shibuya_Crossing_2025-06-12.jpg",
-   "bytes": 954172
+   "bytes": 954172,
+   "photo": "commons:Shibuya_Crossing_2025-06-12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4003,7 +4137,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/185_Shibuya_JR_station_redevelopment.jpg",
-   "bytes": 1169387
+   "bytes": 1169387,
+   "photo": "commons:Shibuya_JR_station_redevelopment.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4046,7 +4181,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/187_Shibuya_Planetarium.jpg",
-   "bytes": 743440
+   "bytes": 743440,
+   "photo": "commons:Shibuya_Planetarium.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4070,7 +4206,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/188_Shibuya_QWS.jpg",
-   "bytes": 307034
+   "bytes": 307034,
+   "photo": "commons:Shibuya_QWS.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4094,7 +4231,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/189_Shibuya_QWS_2.jpg",
-   "bytes": 279369
+   "bytes": 279369,
+   "photo": "commons:Shibuya_QWS_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4118,7 +4256,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/190_Shibuya_QWS_3.jpg",
-   "bytes": 378314
+   "bytes": 378314,
+   "photo": "commons:Shibuya_QWS_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4139,7 +4278,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/191_Shibuya_QWS_4.jpg",
-   "bytes": 343365
+   "bytes": 343365,
+   "photo": "commons:Shibuya_QWS_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4160,7 +4300,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/192_Shibuya_QWS_5.jpg",
-   "bytes": 297044
+   "bytes": 297044,
+   "photo": "commons:Shibuya_QWS_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4181,7 +4322,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/193_Shibuya_QWS_6.jpg",
-   "bytes": 303241
+   "bytes": 303241,
+   "photo": "commons:Shibuya_QWS_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4249,7 +4391,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/196_Shibuya_River_and_Shibuya_Stream.jpg",
-   "bytes": 3903210
+   "bytes": 3903210,
+   "photo": "commons:Shibuya_River_and_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4270,7 +4413,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/197_Shibuya_Sakura_Stage_furbishing_seen_from_Shibuya_Stream.jpg",
-   "bytes": 760558
+   "bytes": 760558,
+   "photo": "commons:Shibuya_Sakura_Stage_furbishing,_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4294,7 +4438,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/198_Shibuya_Sakura_Stage_residence_mid-height_roof_and_jacuzzi.jpg",
-   "bytes": 752019
+   "bytes": 752019,
+   "photo": "commons:Shibuya_Sakura_Stage_residence,_mid-height_roof_and_jacuzzi.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4318,7 +4463,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/199_Shibuya_Sakura_Stage_before_opening_10.jpg",
-   "bytes": 568602
+   "bytes": 568602,
+   "photo": "commons:Shibuya_Sakura_Stage,_before_opening_10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4342,7 +4488,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/200_Shibuya_Sakura_Stage_before_opening_11.jpg",
-   "bytes": 3955916
+   "bytes": 3955916,
+   "photo": "commons:Shibuya_Sakura_Stage,_before_opening_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4366,7 +4513,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/201_Shibuya_Sakura_Stage_before_opening_13.jpg",
-   "bytes": 3863350
+   "bytes": 3863350,
+   "photo": "commons:Shibuya_Sakura_Stage,_before_opening_13.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4592,7 +4740,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/212_Shibuya_Scramble_Square_building_14F_6.jpg",
-   "bytes": 931307
+   "bytes": 931307,
+   "photo": "commons:Shibuya_Scramble_Square_building_14F_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4676,7 +4825,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/216_Shibuya_Sky_20211126_01.jpg",
-   "bytes": 377385
+   "bytes": 377385,
+   "photo": "commons:Shibuya_Sky_20211126_01.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4697,7 +4847,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/217_Shibuya_Sky_20211126_02.jpg",
-   "bytes": 386476
+   "bytes": 386476,
+   "photo": "commons:Shibuya_Sky_20211126_02.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4718,7 +4869,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/218_Shibuya_Sky_20211126_03.jpg",
-   "bytes": 451053
+   "bytes": 451053,
+   "photo": "commons:Shibuya_Sky_20211126_03.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4758,7 +4910,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/220_Shibuya_Stream_31334.jpg",
-   "bytes": 432988
+   "bytes": 432988,
+   "photo": "commons:Shibuya_Stream_(31334).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4779,7 +4932,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/221_Shibuya_Stream_39571.jpg",
-   "bytes": 611289
+   "bytes": 611289,
+   "photo": "commons:Shibuya_Stream_(39571).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4800,7 +4954,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/222_Shibuya_Stream_66623.jpg",
-   "bytes": 593775
+   "bytes": 593775,
+   "photo": "commons:Shibuya_Stream_(66623).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4840,7 +4995,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/224_Shibuya_Stream.jpg",
-   "bytes": 537579
+   "bytes": 537579,
+   "photo": "commons:Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4880,7 +5036,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/226_Shibuya_Stream_on_Christmas_Eve.jpg",
-   "bytes": 657586
+   "bytes": 657586,
+   "photo": "commons:Shibuya_Stream_on_Christmas_Eve.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4904,7 +5061,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/227_Shibuya_Stream_rooftop.jpg",
-   "bytes": 977532
+   "bytes": 977532,
+   "photo": "commons:Shibuya_Stream_rooftop.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -4925,7 +5083,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/228_Shibuya_Stream_rooftop_-22139.jpg",
-   "bytes": 6351336
+   "bytes": 6351336,
+   "photo": "commons:Shibuya_Stream_rooftop_-22139.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -4946,7 +5105,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/229_Shibuya_Stream_rooftop_-25204.jpg",
-   "bytes": 7119480
+   "bytes": 7119480,
+   "photo": "commons:Shibuya_Stream_rooftop_-25204.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -4967,7 +5127,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/230_Shibuya_Stream_rooftop_-26398.jpg",
-   "bytes": 5906888
+   "bytes": 5906888,
+   "photo": "commons:Shibuya_Stream_rooftop_-26398.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -4991,7 +5152,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/231_Shibuya_Stream_rooftop_-27460.jpg",
-   "bytes": 546908
+   "bytes": 546908,
+   "photo": "commons:Shibuya_Stream_rooftop_-27460.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5015,7 +5177,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/232_Shibuya_Stream_rooftop_-28518.jpg",
-   "bytes": 856561
+   "bytes": 856561,
+   "photo": "commons:Shibuya_Stream_rooftop_-28518.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5039,7 +5202,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/233_Shibuya_Stream_rooftop_-32555.jpg",
-   "bytes": 779950
+   "bytes": 779950,
+   "photo": "commons:Shibuya_Stream_rooftop_-32555.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5063,7 +5227,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/234_Shibuya_Stream_rooftop_-35511.jpg",
-   "bytes": 759095
+   "bytes": 759095,
+   "photo": "commons:Shibuya_Stream_rooftop_-35511.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5084,7 +5249,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/235_Shibuya_Stream_rooftop_-43961.jpg",
-   "bytes": 804152
+   "bytes": 804152,
+   "photo": "commons:Shibuya_Stream_rooftop_-43961.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5105,7 +5271,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/236_Shibuya_Stream_rooftop_-46142.jpg",
-   "bytes": 779275
+   "bytes": 779275,
+   "photo": "commons:Shibuya_Stream_rooftop_-46142.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5126,7 +5293,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/237_Shibuya_Stream_rooftop_-59287.jpg",
-   "bytes": 741414
+   "bytes": 741414,
+   "photo": "commons:Shibuya_Stream_rooftop_-59287.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5150,7 +5318,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/238_Shibuya_Stream_rooftop_-61715.jpg",
-   "bytes": 923369
+   "bytes": 923369,
+   "photo": "commons:Shibuya_Stream_rooftop_-61715.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5174,7 +5343,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/239_Shibuya_Stream_rooftop_-66757.jpg",
-   "bytes": 825065
+   "bytes": 825065,
+   "photo": "commons:Shibuya_Stream_rooftop_-66757.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5195,7 +5365,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/240_Shibuya_Stream_rooftop_-74272.jpg",
-   "bytes": 6514688
+   "bytes": 6514688,
+   "photo": "commons:Shibuya_Stream_rooftop_-74272.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5219,7 +5390,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/241_Shibuya_Stream_rooftop_-84949.jpg",
-   "bytes": 915286
+   "bytes": 915286,
+   "photo": "commons:Shibuya_Stream_rooftop_-84949.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5243,7 +5415,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/242_Shibuya_Stream_rooftop_-95795.jpg",
-   "bytes": 359568
+   "bytes": 359568,
+   "photo": "commons:Shibuya_Stream_rooftop_-95795.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5264,7 +5437,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/243_Shibuya_Stream_rooftop_-97084.jpg",
-   "bytes": 709733
+   "bytes": 709733,
+   "photo": "commons:Shibuya_Stream_rooftop_-97084.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -5288,7 +5462,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/244_Shibuya_and_mpount_Fuji_seen_from_Shibuya_Stream.jpg",
-   "bytes": 670117
+   "bytes": 670117,
+   "photo": "commons:Shibuya_and_mpount_Fuji_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -5445,7 +5620,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/252_Shibuya_scramble_av_night_from_Stream.jpg",
-   "bytes": 774616
+   "bytes": 774616,
+   "photo": "commons:Shibuya_scramble_av_night_from_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -5532,7 +5708,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/256_Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg",
-   "bytes": 777060
+   "bytes": 777060,
+   "photo": "commons:Shibuya_scramble_crossing_empty_at_2am_on_a_weekday.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -5701,7 +5878,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/264_Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_4.jpg",
-   "bytes": 662804
+   "bytes": 662804,
+   "photo": "commons:Shibuya_seen_from_Shibuya_Scramble_Square_building_14F_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -5839,7 +6017,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/271_Shibuya_station_exit_2C.jpg",
-   "bytes": 6739105
+   "bytes": 6739105,
+   "photo": "commons:Shibuya_station_exit_2C.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -5860,7 +6039,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/272_Shibuya_station_exit_2C_40419.jpg",
-   "bytes": 793692
+   "bytes": 793692,
+   "photo": "commons:Shibuya_station_exit_2C_(40419).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -5919,7 +6099,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/275_Shibuya_views_from_Tokyu_Plaza_Celavi_31590.jpg",
-   "bytes": 963885
+   "bytes": 963885,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(31590).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -5943,7 +6124,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/276_Shibuya_views_from_Tokyu_Plaza_Celavi_38832.jpg",
-   "bytes": 982188
+   "bytes": 982188,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(38832).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6097,7 +6279,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/284_Shibuya_station_redevelopment_July_2026_48965.jpg",
-   "bytes": 921375
+   "bytes": 921375,
+   "photo": "commons:Shibuya_station_redevelopment,_July_2026_(48965).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6137,7 +6320,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/286_Shibuya_station_redevelopment_July_2026_71267.jpg",
-   "bytes": 918926
+   "bytes": 918926,
+   "photo": "commons:Shibuya_station_redevelopment,_July_2026_(71267).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6158,7 +6342,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/287_Shibuya_station_redevelopment_July_2026_74528.jpg",
-   "bytes": 702112
+   "bytes": 702112,
+   "photo": "commons:Shibuya_station_redevelopment,_July_2026_(74528).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6220,7 +6405,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/290_Shibuya_station_redevelopment_shot_from_Shibuya_Stream.jpg",
-   "bytes": 2109051
+   "bytes": 2109051,
+   "photo": "commons:Shibuya_station_redevelopment,_shot_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6244,7 +6430,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/291_Shibuya_station_redevelopment_shot_from_Shibuya_Stream_2.jpg",
-   "bytes": 889167
+   "bytes": 889167,
+   "photo": "commons:Shibuya_station_redevelopment,_shot_from_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6268,7 +6455,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/292_Shibuya_station_redevelopment_shot_from_Shibuya_Stream_3.jpg",
-   "bytes": 1293677
+   "bytes": 1293677,
+   "photo": "commons:Shibuya_station_redevelopment,_shot_from_Shibuya_Stream_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6292,7 +6480,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/293_Shibuya_station_redevelopment_shot_from_Shibuya_Stream_4.jpg",
-   "bytes": 1121490
+   "bytes": 1121490,
+   "photo": "commons:Shibuya_station_redevelopment,_shot_from_Shibuya_Stream_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6316,7 +6505,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/294_Shibuya_station_redevelopment.jpg",
-   "bytes": 817115
+   "bytes": 817115,
+   "photo": "commons:Shibuya_station_redevelopment.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6362,7 +6552,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/296_Shibuya_station_renewal_April_2025_31280.jpg",
-   "bytes": 368350
+   "bytes": 368350,
+   "photo": "commons:Shibuya_station_renewal,_April_2025_(31280).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6386,7 +6577,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/297_Shibuya_station_renewal_April_2025_32565.jpg",
-   "bytes": 731832
+   "bytes": 731832,
+   "photo": "commons:Shibuya_station_renewal,_April_2025_(32565).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6448,7 +6640,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/300_Shibuya_views_from_Tokyu_Plaza_Celavi_50425.jpg",
-   "bytes": 656605
+   "bytes": 656605,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(50425).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6469,7 +6662,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/301_Shibuya_views_from_Tokyu_Plaza_Celavi_59006.jpg",
-   "bytes": 1090600
+   "bytes": 1090600,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(59006).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6528,7 +6722,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/304_Shibuya_views_from_Tokyu_Plaza_Celavi_61451.jpg",
-   "bytes": 997895
+   "bytes": 997895,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(61451).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6568,7 +6763,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/306_Shibuya_views_from_Tokyu_Plaza_Celavi_76159.jpg",
-   "bytes": 978482
+   "bytes": 978482,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(76159).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6592,7 +6788,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/307_Shibuya_views_from_Tokyu_Plaza_Celavi_80114.jpg",
-   "bytes": 816608
+   "bytes": 816608,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(80114).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6632,7 +6829,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/309_Shibuya_views_from_Tokyu_Plaza_Celavi_85544.jpg",
-   "bytes": 995684
+   "bytes": 995684,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(85544).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6672,7 +6870,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/311_Shibuya_views_from_Tokyu_Plaza_Celavi_91572.jpg",
-   "bytes": 3798421
+   "bytes": 3798421,
+   "photo": "commons:Shibuya,_views_from_Tokyu_Plaza_Celavi_(91572).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6696,7 +6895,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/312_Shinjuku_and_Yoyogi_Park_seen_from_Shibuya_Stream.jpg",
-   "bytes": 893911
+   "bytes": 893911,
+   "photo": "commons:Shinjuku_and_Yoyogi_Park_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6720,7 +6920,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/313_Sikorsky_SH-60_Seahawk_passing_near_Shibuya_Hikarie.jpg",
-   "bytes": 724128
+   "bytes": 724128,
+   "photo": "commons:Sikorsky_SH-60_Seahawk_passing_near_Shibuya_Hikarie.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6744,7 +6945,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/314_Snow_on_Shibuya_roofs_seen_from_Shibuya_Stream_2.jpg",
-   "bytes": 4012208
+   "bytes": 4012208,
+   "photo": "commons:Snow_on_Shibuya_roofs,_seen_from_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6768,7 +6970,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/315_Soy_milk_brand_event_in_Shibuya_Stream.jpg",
-   "bytes": 814029
+   "bytes": 814029,
+   "photo": "commons:Soy_milk_brand_event_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6792,7 +6995,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/316_Soy_milk_brand_event_in_Shibuya_Stream_2.jpg",
-   "bytes": 1100214
+   "bytes": 1100214,
+   "photo": "commons:Soy_milk_brand_event_in_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6816,7 +7020,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/317_Stairs_from_rooftop_of_Shibuya_Stream.jpg",
-   "bytes": 362245
+   "bytes": 362245,
+   "photo": "commons:Stairs_from_rooftop_of_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6837,7 +7042,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/318_Statue_of_Hachik_by_And_Teru_1934_1.jpg",
-   "bytes": 130730
+   "bytes": 130730,
+   "photo": "commons:Statue_of_Hachikō_by_Andō_Teru_(1934).1.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6858,7 +7064,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/319_Stitched_vertical_panorama_of_Shibuya_Stream_made_with_four_smartphone_telephoto.jpg",
-   "bytes": 18306584
+   "bytes": 18306584,
+   "photo": "commons:Stitched_vertical_panorama_of_Shibuya_Stream,_made_with_four_smartphone_telephoto_pictures_taken_from_Shibuya_station_South_exit.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6879,7 +7086,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/320_Sushi_at_Midori_Shibuya.jpg",
-   "bytes": 886524
+   "bytes": 886524,
+   "photo": "commons:Sushi_at_Midori,_Shibuya.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6903,7 +7111,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/321_Sushi_in_Shibuya_Stream_12623.jpg",
-   "bytes": 445065
+   "bytes": 445065,
+   "photo": "commons:Sushi_in_Shibuya_Stream_(12623).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6927,7 +7136,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/322_Sushi_in_Shibuya_Stream_20504.jpg",
-   "bytes": 582589
+   "bytes": 582589,
+   "photo": "commons:Sushi_in_Shibuya_Stream_(20504).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6951,7 +7161,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/323_Sushi_in_Shibuya_Stream_38395.jpg",
-   "bytes": 383656
+   "bytes": 383656,
+   "photo": "commons:Sushi_in_Shibuya_Stream_(38395).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6972,7 +7183,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/324_Sushi_in_Shibuya_Stream.jpg",
-   "bytes": 620563
+   "bytes": 620563,
+   "photo": "commons:Sushi_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -6993,7 +7205,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/325_Sushi_in_Shibuya_Stream_72113.jpg",
-   "bytes": 481300
+   "bytes": 481300,
+   "photo": "commons:Sushi_in_Shibuya_Stream_(72113).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7017,7 +7230,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/326_Testing_the_lights_of_the_office_floors_in_Azabudai_Hills_JP_Mori_Tower_before_o.jpg",
-   "bytes": 662583
+   "bytes": 662583,
+   "photo": "commons:Testing_the_lights_of_the_office_floors_in_Azabudai_Hills_JP_Mori_Tower_before_official_opening.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7114,7 +7328,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/331_The_views_of_Shibuya_Sky_20211126_02.jpg",
-   "bytes": 528419
+   "bytes": 528419,
+   "photo": "commons:The_views_of_Shibuya_Sky_20211126_02.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7135,7 +7350,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/332_The_views_of_Shibuya_Sky_20211126_03.jpg",
-   "bytes": 652581
+   "bytes": 652581,
+   "photo": "commons:The_views_of_Shibuya_Sky_20211126_03.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7156,7 +7372,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/333_The_views_of_Shibuya_Sky_20211126_04.jpg",
-   "bytes": 374278
+   "bytes": 374278,
+   "photo": "commons:The_views_of_Shibuya_Sky_20211126_04.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7180,7 +7397,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/334_Theatre_event_in_Shibuya_Stream.jpg",
-   "bytes": 1146650
+   "bytes": 1146650,
+   "photo": "commons:Theatre_event_in_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7201,7 +7419,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/335_Tokyo_Tower_-_Special_Light-Up_for_the_Republic_of_Uzbekistan.jpg",
-   "bytes": 665045
+   "bytes": 665045,
+   "photo": "commons:Tokyo_Tower_-_Special_Light-Up_for_the_Republic_of_Uzbekistan.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7222,7 +7441,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/336_Tokyo_Tower_Christmas_illumination.jpg",
-   "bytes": 869816
+   "bytes": 869816,
+   "photo": "commons:Tokyo_Tower_Christmas_illumination.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7246,7 +7466,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/337_Tokyo_Tower_and_moon_seen_from_Shibuya_Stream.jpg",
-   "bytes": 586037
+   "bytes": 586037,
+   "photo": "commons:Tokyo_Tower_and_moon_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7267,7 +7488,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/338_Tokyo_Tower_at_night_from_Shibuya_Stream.jpg",
-   "bytes": 849139
+   "bytes": 849139,
+   "photo": "commons:Tokyo_Tower_at_night_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7291,7 +7513,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/339_Tokyo_Tower_light-up_celebrating_Cherry_Blossom_Flowering.jpg",
-   "bytes": 499678
+   "bytes": 499678,
+   "photo": "commons:Tokyo_Tower_light-up_celebrating_Cherry_Blossom_Flowering.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7315,7 +7538,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/340_Tokyo_Tower_lightup_for_Rare_Disease_Day_2024.jpg",
-   "bytes": 819341
+   "bytes": 819341,
+   "photo": "commons:Tokyo_Tower_lightup_for_Rare_Disease_Day_2024.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7339,7 +7563,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/341_Tokyo_Tower_lightup_for_White_Day.jpg",
-   "bytes": 2631406
+   "bytes": 2631406,
+   "photo": "commons:Tokyo_Tower_lightup_for_White_Day.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7360,7 +7585,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/342_Tokyo_Tower_on_Valentine_day_seen_from_Shibuya_Stream.jpg",
-   "bytes": 884642
+   "bytes": 884642,
+   "photo": "commons:Tokyo_Tower_on_Valentine_day_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7384,7 +7610,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/343_Tokyo_landscape_seen_from_Shibuya_Stream_10.jpg",
-   "bytes": 842368
+   "bytes": 842368,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_10.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7408,7 +7635,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/344_Tokyo_landscape_seen_from_Shibuya_Stream_11.jpg",
-   "bytes": 908207
+   "bytes": 908207,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7432,7 +7660,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/345_Tokyo_landscape_seen_from_Shibuya_Stream_12.jpg",
-   "bytes": 797100
+   "bytes": 797100,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7456,7 +7685,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/346_Tokyo_landscape_seen_from_Shibuya_Stream_13.jpg",
-   "bytes": 716113
+   "bytes": 716113,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_13.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7537,7 +7767,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/350_Tokyo_landscape_seen_from_Shibuya_Stream.jpg",
-   "bytes": 2569955
+   "bytes": 2569955,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7561,7 +7792,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/351_Tokyo_landscape_seen_from_Shibuya_Stream_2.jpg",
-   "bytes": 992377
+   "bytes": 992377,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7585,7 +7817,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/352_Tokyo_landscape_seen_from_Shibuya_Stream_3.jpg",
-   "bytes": 1066654
+   "bytes": 1066654,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7609,7 +7842,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/353_Tokyo_landscape_seen_from_Shibuya_Stream_4.jpg",
-   "bytes": 1083436
+   "bytes": 1083436,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7630,7 +7864,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/354_Tokyo_landscape_seen_from_Shibuya_Stream_5.jpg",
-   "bytes": 940271
+   "bytes": 940271,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_5.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7651,7 +7886,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/355_Tokyo_landscape_seen_from_Shibuya_Stream_6.jpg",
-   "bytes": 923359
+   "bytes": 923359,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_6.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7672,7 +7908,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/356_Tokyo_landscape_seen_from_Shibuya_Stream_7.jpg",
-   "bytes": 929852
+   "bytes": 929852,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7693,7 +7930,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/357_Tokyo_landscape_seen_from_Shibuya_Stream_8.jpg",
-   "bytes": 1003119
+   "bytes": 1003119,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_8.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7714,7 +7952,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/358_Tokyo_landscape_seen_from_Shibuya_Stream_9.jpg",
-   "bytes": 937582
+   "bytes": 937582,
+   "photo": "commons:Tokyo_landscape_seen_from_Shibuya_Stream_9.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7735,7 +7974,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/359_Tokyu_Corporation_5050-4000_Series_4110F_set_Shibuya_Hikarie.jpg",
-   "bytes": 303864
+   "bytes": 303864,
+   "photo": "commons:Tokyu_Corporation_5050-4000_Series_4110F_set_\"Shibuya_Hikarie\".jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7756,7 +7996,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/360_Tokyu_Corporation_5050-4000_Series_4110F_set_Shibuya_Hikarie_20151107_1530.jpg",
-   "bytes": 607709
+   "bytes": 607709,
+   "photo": "commons:Tokyu_Corporation_5050-4000_Series_4110F_set_Shibuya_Hikarie_20151107_1530.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7815,7 +8056,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/363_Top_of_Shibuya_Sakura_Stage_Central_Building.jpg",
-   "bytes": 4367252
+   "bytes": 4367252,
+   "photo": "commons:Top_of_Shibuya_Sakura_Stage_Central_Building.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7836,7 +8078,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/364_Top_of_Shibuya_Stream_and_Google_logo_seen_from.jpg",
-   "bytes": 618492
+   "bytes": 618492,
+   "photo": "commons:Top_of_Shibuya_Stream_and_Google_logo_seen_from_金王坂.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7860,7 +8103,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/365_Tour_de_France_-_themed_drink_at_Torque_Shibuya_Stream.jpg",
-   "bytes": 4707594
+   "bytes": 4707594,
+   "photo": "commons:Tour_de_France_-_themed_drink_at_Torque,_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7884,7 +8128,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/366_Tour_de_France_-_themed_food_at_Torque_Shibuya_Stream.jpg",
-   "bytes": 387392
+   "bytes": 387392,
+   "photo": "commons:Tour_de_France_-_themed_food_at_Torque,_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7905,7 +8150,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/367_Toyoko_Norengai_Shibuya_Hikarie.jpg",
-   "bytes": 496787
+   "bytes": 496787,
+   "photo": "commons:Toyoko_Norengai(Shibuya_Hikarie).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7929,7 +8175,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/368_Tricolore_Tokyo_Tower_to_celebrate_the_release_of_the_Eiffel_movie_2.jpg",
-   "bytes": 1821053
+   "bytes": 1821053,
+   "photo": "commons:Tricolore_Tokyo_Tower_to_celebrate_the_release_of_the_Eiffel_movie_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7953,7 +8200,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/369_Video_recording_behind_Shibuya_Stream.jpg",
-   "bytes": 867868
+   "bytes": 867868,
+   "photo": "commons:Video_recording_behind_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -7977,7 +8225,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/370_View_from_Shibuya_Stream_2.jpg",
-   "bytes": 4190583
+   "bytes": 4190583,
+   "photo": "commons:View_from_Shibuya_Stream_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8001,7 +8250,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/371_View_from_Shibuya_Stream_3.jpg",
-   "bytes": 3308679
+   "bytes": 3308679,
+   "photo": "commons:View_from_Shibuya_Stream_3.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8025,7 +8275,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/372_View_from_Shibuya_Stream_4.jpg",
-   "bytes": 3593207
+   "bytes": 3593207,
+   "photo": "commons:View_from_Shibuya_Stream_4.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8084,7 +8335,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/375_View_from_Shibuya_Stream_7.jpg",
-   "bytes": 1180798
+   "bytes": 1180798,
+   "photo": "commons:View_from_Shibuya_Stream_7.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8127,7 +8379,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/377_View_from_Shibuya_Stream_during_covid_April_2021_11.jpg",
-   "bytes": 1369924
+   "bytes": 1369924,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8151,7 +8404,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/378_View_from_Shibuya_Stream_during_covid_April_2021_12.jpg",
-   "bytes": 1332489
+   "bytes": 1332489,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_12.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8175,7 +8429,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/379_View_from_Shibuya_Stream_during_covid_April_2021_13.jpg",
-   "bytes": 2034879
+   "bytes": 2034879,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_13.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8199,7 +8454,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/380_View_from_Shibuya_Stream_during_covid_April_2021_14.jpg",
-   "bytes": 1868616
+   "bytes": 1868616,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_14.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8223,7 +8479,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/381_View_from_Shibuya_Stream_during_covid_April_2021_15.jpg",
-   "bytes": 1128959
+   "bytes": 1128959,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_15.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8247,7 +8504,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/382_View_from_Shibuya_Stream_during_covid_April_2021_16.jpg",
-   "bytes": 1878005
+   "bytes": 1878005,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_16.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8271,7 +8529,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/383_View_from_Shibuya_Stream_during_covid_April_2021_17.jpg",
-   "bytes": 1586068
+   "bytes": 1586068,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8295,7 +8554,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/384_View_from_Shibuya_Stream_during_covid_April_2021_18.jpg",
-   "bytes": 1257185
+   "bytes": 1257185,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_18.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8319,7 +8579,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/385_View_from_Shibuya_Stream_during_covid_April_2021_19.jpg",
-   "bytes": 2175170
+   "bytes": 2175170,
+   "photo": "commons:View_from_Shibuya_Stream_during_covid,_April_2021_19.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8340,7 +8601,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/386_View_from_Shibuya_Stream_rooftop_-12891.jpg",
-   "bytes": 536545
+   "bytes": 536545,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-12891.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8361,7 +8623,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/387_View_from_Shibuya_Stream_rooftop_-14817.jpg",
-   "bytes": 619789
+   "bytes": 619789,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-14817.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8382,7 +8645,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/388_View_from_Shibuya_Stream_rooftop_-20894.jpg",
-   "bytes": 896863
+   "bytes": 896863,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-20894.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8403,7 +8667,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/389_View_from_Shibuya_Stream_rooftop_-25630.jpg",
-   "bytes": 528389
+   "bytes": 528389,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-25630.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8424,7 +8689,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/390_View_from_Shibuya_Stream_rooftop_-33643.jpg",
-   "bytes": 971368
+   "bytes": 971368,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-33643.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8445,7 +8711,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/391_View_from_Shibuya_Stream_rooftop_-34497.jpg",
-   "bytes": 951349
+   "bytes": 951349,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-34497.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8466,7 +8733,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/392_View_from_Shibuya_Stream_rooftop_-40383.jpg",
-   "bytes": 968191
+   "bytes": 968191,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-40383.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8487,7 +8755,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/393_View_from_Shibuya_Stream_rooftop_-58885.jpg",
-   "bytes": 955030
+   "bytes": 955030,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-58885.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8508,7 +8777,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/394_View_from_Shibuya_Stream_rooftop_-68982.jpg",
-   "bytes": 939176
+   "bytes": 939176,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-68982.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8529,7 +8799,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/395_View_from_Shibuya_Stream_rooftop_-70733.jpg",
-   "bytes": 718936
+   "bytes": 718936,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-70733.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8550,7 +8821,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/396_View_from_Shibuya_Stream_rooftop_-71955.jpg",
-   "bytes": 891027
+   "bytes": 891027,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-71955.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8574,7 +8846,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/397_View_from_Shibuya_Stream_rooftop_-72049.jpg",
-   "bytes": 457887
+   "bytes": 457887,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-72049.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8598,7 +8871,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/398_View_from_Shibuya_Stream_rooftop_-76698.jpg",
-   "bytes": 953765
+   "bytes": 953765,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-76698.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8622,7 +8896,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/399_View_from_Shibuya_Stream_rooftop_-85018.jpg",
-   "bytes": 556775
+   "bytes": 556775,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-85018.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8646,7 +8921,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/400_View_from_Shibuya_Stream_rooftop_-97940.jpg",
-   "bytes": 901672
+   "bytes": 901672,
+   "photo": "commons:View_from_Shibuya_Stream_rooftop_-97940.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -8667,7 +8943,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/401_Views_from_Shibuya_Stream_20651.jpg",
-   "bytes": 978331
+   "bytes": 978331,
+   "photo": "commons:Views_from_Shibuya_Stream_(20651).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8688,7 +8965,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/402_Views_from_Shibuya_Stream_25190.jpg",
-   "bytes": 903597
+   "bytes": 903597,
+   "photo": "commons:Views_from_Shibuya_Stream_(25190).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8709,7 +8987,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/403_Views_from_Shibuya_Stream_41980.jpg",
-   "bytes": 632794
+   "bytes": 632794,
+   "photo": "commons:Views_from_Shibuya_Stream_(41980).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8730,7 +9009,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/404_Views_from_Shibuya_Stream_44068.jpg",
-   "bytes": 811283
+   "bytes": 811283,
+   "photo": "commons:Views_from_Shibuya_Stream_(44068).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8751,7 +9031,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/405_Views_from_Shibuya_Stream_45035.jpg",
-   "bytes": 4408483
+   "bytes": 4408483,
+   "photo": "commons:Views_from_Shibuya_Stream_(45035).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8772,7 +9053,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/406_Views_from_Shibuya_Stream_47689.jpg",
-   "bytes": 878742
+   "bytes": 878742,
+   "photo": "commons:Views_from_Shibuya_Stream_(47689).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8793,7 +9075,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/407_Views_from_Shibuya_Stream_53663.jpg",
-   "bytes": 1004995
+   "bytes": 1004995,
+   "photo": "commons:Views_from_Shibuya_Stream_(53663).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8814,7 +9097,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/408_Views_from_Shibuya_Stream_60787.jpg",
-   "bytes": 840187
+   "bytes": 840187,
+   "photo": "commons:Views_from_Shibuya_Stream_(60787).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8835,7 +9119,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/409_Views_from_Shibuya_Stream_60860.jpg",
-   "bytes": 856864
+   "bytes": 856864,
+   "photo": "commons:Views_from_Shibuya_Stream_(60860).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8856,7 +9141,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/410_Views_from_Shibuya_Stream_66967.jpg",
-   "bytes": 738949
+   "bytes": 738949,
+   "photo": "commons:Views_from_Shibuya_Stream_(66967).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8880,7 +9166,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/411_Views_from_Shibuya_Stream_67204.jpg",
-   "bytes": 1552514
+   "bytes": 1552514,
+   "photo": "commons:Views_from_Shibuya_Stream_(67204).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8901,7 +9188,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/412_Views_from_Shibuya_Stream_67288.jpg",
-   "bytes": 886469
+   "bytes": 886469,
+   "photo": "commons:Views_from_Shibuya_Stream_(67288).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8922,7 +9210,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/413_Views_from_Shibuya_Stream_69354.jpg",
-   "bytes": 585536
+   "bytes": 585536,
+   "photo": "commons:Views_from_Shibuya_Stream_(69354).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8943,7 +9232,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/414_Views_from_Shibuya_Stream_74775.jpg",
-   "bytes": 897023
+   "bytes": 897023,
+   "photo": "commons:Views_from_Shibuya_Stream_(74775).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8964,7 +9254,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/415_Views_from_Shibuya_Stream_79620.jpg",
-   "bytes": 791308
+   "bytes": 791308,
+   "photo": "commons:Views_from_Shibuya_Stream_(79620).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -8985,7 +9276,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/416_Views_from_Shibuya_Stream_94399.jpg",
-   "bytes": 891665
+   "bytes": 891665,
+   "photo": "commons:Views_from_Shibuya_Stream_(94399).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9009,7 +9301,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/417_Views_from_Shibuya_Stream_-59677.jpg",
-   "bytes": 831541
+   "bytes": 831541,
+   "photo": "commons:Views_from_Shibuya_Stream_-59677.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -9033,7 +9326,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/418_Views_from_Shibuya_Stream_-61955.jpg",
-   "bytes": 720921
+   "bytes": 720921,
+   "photo": "commons:Views_from_Shibuya_Stream_-61955.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -9057,7 +9351,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/419_Views_from_Shibuya_Stream_-88372.jpg",
-   "bytes": 6763570
+   "bytes": 6763570,
+   "photo": "commons:Views_from_Shibuya_Stream_-88372.jpeg"
   },
   {
    "source": "wikimedia_commons",
@@ -9081,7 +9376,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/420_Views_from_Shibuya_Stream_13.jpg",
-   "bytes": 3169608
+   "bytes": 3169608,
+   "photo": "commons:Views_from_Shibuya_Stream_13.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9105,7 +9401,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/421_Views_from_Shibuya_Stream_14.jpg",
-   "bytes": 4200943
+   "bytes": 4200943,
+   "photo": "commons:Views_from_Shibuya_Stream_14.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9126,7 +9423,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/422_Views_from_Shibuya_Stream_January_2026.jpg",
-   "bytes": 933613
+   "bytes": 933613,
+   "photo": "commons:Views_from_Shibuya_Stream,_January_2026.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9147,7 +9445,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/423_Views_from_Shibuya_Stream_January_2026_14159.jpg",
-   "bytes": 951811
+   "bytes": 951811,
+   "photo": "commons:Views_from_Shibuya_Stream,_January_2026_(14159).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9168,7 +9467,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/424_Views_from_Shibuya_Stream_January_2026_28576.jpg",
-   "bytes": 902246
+   "bytes": 902246,
+   "photo": "commons:Views_from_Shibuya_Stream,_January_2026_(28576).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9189,7 +9489,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/425_Views_from_Shibuya_Stream_January_2026_48008.jpg",
-   "bytes": 747809
+   "bytes": 747809,
+   "photo": "commons:Views_from_Shibuya_Stream,_January_2026_(48008).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9210,7 +9511,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/426_Views_from_Shibuya_Stream_January_2026_48933.jpg",
-   "bytes": 906509
+   "bytes": 906509,
+   "photo": "commons:Views_from_Shibuya_Stream,_January_2026_(48933).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9256,7 +9558,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/428_Views_from_Shibuya_Stream_15.jpg",
-   "bytes": 1080431
+   "bytes": 1080431,
+   "photo": "commons:Views_from_Shibuya_Stream_15.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9280,7 +9583,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/429_Views_from_Shibuya_Stream_16.jpg",
-   "bytes": 2972408
+   "bytes": 2972408,
+   "photo": "commons:Views_from_Shibuya_Stream_16.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9304,7 +9608,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/430_Views_from_Shibuya_Stream_17.jpg",
-   "bytes": 4127482
+   "bytes": 4127482,
+   "photo": "commons:Views_from_Shibuya_Stream_17.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9328,7 +9633,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/431_Views_from_Shibuya_Stream_18.jpg",
-   "bytes": 916145
+   "bytes": 916145,
+   "photo": "commons:Views_from_Shibuya_Stream_18.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9352,7 +9658,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/432_Views_from_Shibuya_Stream_19.jpg",
-   "bytes": 778878
+   "bytes": 778878,
+   "photo": "commons:Views_from_Shibuya_Stream_19.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9395,7 +9702,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/434_Views_from_Shibuya_Stream_21.jpg",
-   "bytes": 787736
+   "bytes": 787736,
+   "photo": "commons:Views_from_Shibuya_Stream_21.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9416,7 +9724,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/435_Views_from_Shibuya_Stream_22.jpg",
-   "bytes": 884690
+   "bytes": 884690,
+   "photo": "commons:Views_from_Shibuya_Stream_22.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9475,7 +9784,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/438_Views_of_Tokyo_Tower_from_Shibuya_Stream.jpg",
-   "bytes": 683239
+   "bytes": 683239,
+   "photo": "commons:Views_of_Tokyo_Tower_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9496,7 +9806,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/439_Views_of_Tokyo_Tower_from_Shibuya_Stream_22291.jpg",
-   "bytes": 686249
+   "bytes": 686249,
+   "photo": "commons:Views_of_Tokyo_Tower_from_Shibuya_Stream_(22291).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9517,7 +9828,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/440_Views_of_Tokyo_Tower_from_Shibuya_Stream_23037.jpg",
-   "bytes": 821442
+   "bytes": 821442,
+   "photo": "commons:Views_of_Tokyo_Tower_from_Shibuya_Stream_(23037).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9538,7 +9850,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/441_Views_of_Tokyo_Tower_from_Shibuya_Stream_86593.jpg",
-   "bytes": 570298
+   "bytes": 570298,
+   "photo": "commons:Views_of_Tokyo_Tower_from_Shibuya_Stream_(86593).jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9584,7 +9897,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/443_Views_of_central_Shibuya_11.jpg",
-   "bytes": 689501
+   "bytes": 689501,
+   "photo": "commons:Views_of_central_Shibuya_11.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9605,7 +9919,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/444_Yoyogi_Park_and_Shinjuku_seen_from_Shibuya_Stream.jpg",
-   "bytes": 936562
+   "bytes": 936562,
+   "photo": "commons:Yoyogi_Park_and_Shinjuku,_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9629,7 +9944,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/445_Yoyogi_Park_and_Shinjuku_seen_from_Shibuya_Stream.jpg",
-   "bytes": 1073727
+   "bytes": 1073727,
+   "photo": "commons:Yoyogi_Park_and_Shinjuku_seen_from_Shibuya_Stream.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9650,7 +9966,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/446_chr_shop_in_Shibuya_Scramble_Square_Building.jpg",
-   "bytes": 751796
+   "bytes": 751796,
+   "photo": "commons:Échré_shop_in_Shibuya_Scramble_Square_Building.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9671,7 +9988,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/447_01.jpg",
-   "bytes": 639389
+   "bytes": 639389,
+   "photo": "commons:べらぼうフェスコラボ_蔦屋書店グッズ販売_01.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9692,7 +10010,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/448_02.jpg",
-   "bytes": 970137
+   "bytes": 970137,
+   "photo": "commons:べらぼうフェスコラボ_蔦屋書店グッズ販売_02.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9713,7 +10032,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/449_03.jpg",
-   "bytes": 702098
+   "bytes": 702098,
+   "photo": "commons:べらぼうフェスコラボ_蔦屋書店グッズ販売_03.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9734,7 +10054,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/450_04.jpg",
-   "bytes": 646386
+   "bytes": 646386,
+   "photo": "commons:べらぼうフェスコラボ_蔦屋書店グッズ販売_04.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9774,7 +10095,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/452_01.jpg",
-   "bytes": 519242
+   "bytes": 519242,
+   "photo": "commons:べらぼうフェスティバル_01.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9795,7 +10117,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/453_02.jpg",
-   "bytes": 750061
+   "bytes": 750061,
+   "photo": "commons:べらぼうフェスティバル_02.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9816,7 +10139,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/454_03.jpg",
-   "bytes": 615434
+   "bytes": 615434,
+   "photo": "commons:べらぼうフェスティバル_03.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9837,7 +10161,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/455_04.jpg",
-   "bytes": 586969
+   "bytes": 586969,
+   "photo": "commons:べらぼうフェスティバル_04.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9858,7 +10183,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/456_05.jpg",
-   "bytes": 968736
+   "bytes": 968736,
+   "photo": "commons:べらぼうフェスティバル_05.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9882,7 +10208,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/457_preservation.jpg",
-   "bytes": 545326
+   "bytes": 545326,
+   "photo": "commons:明日の神話_preservation.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9906,7 +10233,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/458_2.jpg",
-   "bytes": 703394
+   "bytes": 703394,
+   "photo": "commons:杉並区阿佐谷北で、2階建て住宅が燃える火事.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9930,7 +10258,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/459_-_90.jpg",
-   "bytes": 953677
+   "bytes": 953677,
+   "photo": "commons:東京タワーライトアップ_-_ジャイアンツ90周年.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9954,7 +10283,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/460_.jpg",
-   "bytes": 614922
+   "bytes": 614922,
+   "photo": "commons:渋谷〇〇書店.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9978,7 +10308,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/461_2.jpg",
-   "bytes": 763368
+   "bytes": 763368,
+   "photo": "commons:渋谷〇〇書店_2.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -9999,7 +10330,8 @@
    "coordinates": null,
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/462_2025.jpg",
-   "bytes": 906436
+   "bytes": 906436,
+   "photo": "commons:渋谷駅全景2025.jpg"
   },
   {
    "source": "wikimedia_commons",
@@ -10023,7 +10355,8 @@
    ],
    "status": "downloaded",
    "local_path": "assets/photos/shibuya_commons_cc0_v1b/463_.jpg",
-   "bytes": 4242889
+   "bytes": 4242889,
+   "photo": "commons:金王坂、渋谷ストリームから.jpg"
   }
  ]
 }

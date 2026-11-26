@@ -65,7 +65,8 @@
       "weather": "normal",
       "date": "2020-04-19",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_4-Chome_Crossing_2020-04-19.jpg"
     },
     {
       "id": "ginza_ginza_4chome_wako_004",
@@ -94,7 +95,8 @@
         139.773559,
         35.707492
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:KIRARITO_GINZA_キラリトギンザ_Nov_11,_2017.jpg"
     },
     {
       "id": "ginza_ginza_4chome_wako_005",
@@ -120,7 +122,8 @@
       "weather": "normal",
       "date": "2018-02-05",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Weave_(39684822154).jpg"
     },
     {
       "id": "ginza_ginza_4chome_wako_006",
@@ -149,7 +152,8 @@
         139.765106,
         35.671421
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Lion_statue_at_Ginza_Mitsukoshi.jpg"
     },
     {
       "id": "ginza_ginza_4chome_wako_008",
@@ -178,7 +182,8 @@
         139.76031667,
         35.66951667
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Hotel_The_Celestine_Ginza.jpg"
     },
     {
       "id": "ginza_ginza_4chome_wako_009",
@@ -204,7 +209,8 @@
       "weather": "normal",
       "date": "2015-03-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Nissan_Ginza_Gallery_under_construction_for_2016_summer_restart.JPG"
     },
     {
       "id": "ginza_ginza_4chome_wako_010",
@@ -233,7 +239,8 @@
         139.768056,
         35.669167
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_YAMAU.jpg"
     },
     {
       "id": "ginza_kabukiza_ginzasix_sukiyabashi_001",
@@ -262,7 +269,8 @@
         139.7631,
         35.6727
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_Sony_Park_Grid_Frame.jpg"
     },
     {
       "id": "ginza_kabukiza_ginzasix_sukiyabashi_004",
@@ -288,7 +296,8 @@
       "weather": "normal",
       "date": "2015-03-26",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:A_blue_signal_in_Tokyo.JPG"
     },
     {
       "id": "ginza_kabukiza_ginzasix_sukiyabashi_006",
@@ -317,7 +326,8 @@
         139.773559,
         35.707492
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Tokyu_Plaza_Ginza_KIRIKO_TERRACE_Greenside_-_Nov_11,_2017.jpg"
     },
     {
       "id": "ginza_kabukiza_ginzasix_sukiyabashi_007",
@@ -343,7 +353,8 @@
       "weather": "normal",
       "date": "2023-04-08",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:KABUKI-ZA_(52901427509).jpg"
     },
     {
       "id": "ginza_kabukiza_ginzasix_sukiyabashi_008",
@@ -372,7 +383,8 @@
         139.7708253,
         35.6721142
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:On_our_way_to_tsukiji_fish_market_in_Tokyo_(Unsplash).jpg"
     },
     {
       "id": "ginza_kabukiza_ginzasix_sukiyabashi_010",
@@ -401,7 +413,8 @@
         139.76329167,
         35.67241111
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_around_Ginza_(32461).jpg"
     },
     {
       "id": "ginza_yurakucho_forum_002",
@@ -430,7 +443,8 @@
         139.7595179,
         35.674706
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_in_Hibiya,_rainy_summer_evening_2.jpg"
     },
     {
       "id": "ginza_yurakucho_forum_003",
@@ -456,7 +470,8 @@
       "weather": "normal",
       "date": "2017-11-30",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Shoya_Yurakucho_branch_2017-11-30.jpg"
     },
     {
       "id": "ginza_yurakucho_forum_007",
@@ -482,7 +497,8 @@
       "weather": "rain",
       "date": "2013-12-14",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:JR_East_E231_Series_Train_at_Yurakucho_Station.JPG"
     },
     {
       "id": "ginza_ginza_chuo_dori_001",
@@ -511,7 +527,8 @@
         139.762603,
         35.665586
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_Mitsui_Building.jpg"
     },
     {
       "id": "ginza_ginza_chuo_dori_004",
@@ -537,7 +554,8 @@
       "weather": "normal",
       "date": "2022-11-16",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_Kimuraya_Sohonten_2022-11-16.jpg"
     },
     {
       "id": "ginza_ginza_chuo_dori_006",
@@ -566,7 +584,8 @@
         139.766772,
         35.674528
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Japan_Tokyo_Contrast_(14009468105).jpg"
     },
     {
       "id": "ginza_ginza_chuo_dori_008",
@@ -595,7 +614,8 @@
         139.7708253,
         35.6721142
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Japan_Pt._2_(Unsplash_2IAyiEitv-A).jpg"
     },
     {
       "id": "ginza_ginza_chuo_dori_009",
@@ -624,7 +644,8 @@
         139.762579,
         35.672759
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:20250105_Crystal_Building_Ginza_at_night_204248548.jpg"
     },
     {
       "id": "ginza_ginza_chuo_dori_013",
@@ -653,7 +674,8 @@
         139.7605,
         35.671408
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Daiwa_Ginza_Building_01.jpg"
     },
     {
       "id": "ginza_ginza_chuo_dori_014",
@@ -682,7 +704,8 @@
         139.76210278,
         35.67142778
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Buildings_around_Ginza_(39976).jpg"
     },
     {
       "id": "ginza_harumi_dori_006",
@@ -708,7 +731,8 @@
       "weather": "normal",
       "date": "2021-04-28",
       "coordinates": null,
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Ginza_4-Chome_Crossing_2021-04-28.jpg"
     },
     {
       "id": "ginza_harumi_dori_007",
@@ -734,7 +758,8 @@
       "weather": "normal",
       "date": "2025-12-30",
       "coordinates": null,
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:Ginza_Sony_Park_night.jpg"
     },
     {
       "id": "ginza_namiki_miyuki_sotobori_005",
@@ -763,7 +788,8 @@
         139.7708253,
         35.6721142
       ],
-      "exif_preserved": false
+      "exif_preserved": false,
+      "photo": "commons:GINZA_(Unsplash).jpg"
     },
     {
       "id": "ginza_namiki_miyuki_sotobori_006",
@@ -792,7 +818,8 @@
         139.761886,
         35.669255
       ],
-      "exif_preserved": true
+      "exif_preserved": true,
+      "photo": "commons:Two_Worlds_(50056417901).jpg"
     }
   ]
 }
