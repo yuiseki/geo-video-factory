@@ -45,14 +45,24 @@ views = {
     "street": (street, street + ahead * 100 + Vector((0, 0, 6)), 70),
 }
 cam = sc.camera
+previous = b""
 cam.data.sensor_fit = "HORIZONTAL"
 cam.data.clip_start, cam.data.clip_end = 0.3, 6000
 for name, (eye, target, fov) in views.items():
     cam.location = eye
     cam.rotation_euler = (target - eye).to_track_quat("-Z", "Y").to_euler()
     cam.data.angle = math.radians(fov)
-    bpy.context.view_layer.update()          # without it a render can come out from the previous camera
+    sc.frame_set(sc.frame_current)           # EEVEE in the background can otherwise draw from the previous camera
+    bpy.context.view_layer.update()
     sc.render.image_settings.file_format = "PNG"
     sc.render.filepath = str(out / f"{tag}_{name}.png")
-    bpy.ops.render.render(write_still=True)
+    for attempt in range(2):
+        bpy.ops.render.render(write_still=True)
+        pixels = Path(sc.render.filepath).read_bytes()
+        if pixels != previous:
+            break
+        print("same image as the previous view, drawing again:", name)
+    else:
+        raise SystemExit(f"{name}: EEVEE drew the previous view twice")
+    previous = pixels
     print("wrote", sc.render.filepath)
