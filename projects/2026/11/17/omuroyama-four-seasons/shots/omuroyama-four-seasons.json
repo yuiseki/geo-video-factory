@@ -40,7 +40,7 @@
       "overlays": [
         {
           "type": "image",
-          "src": "omuro-seasons/spring.jpg",
+          "src": "omuro-seasons/summer.jpg",
           "bbox": [
             139.06494140625,
             34.885930940753155,
@@ -50,13 +50,13 @@
           "maxzoom": 16,
           "show": [
             0,
-            1
+            1.05
           ],
           "fade": 0
         },
         {
           "type": "image",
-          "src": "omuro-seasons/summer.jpg",
+          "src": "omuro-seasons/autumn.jpg",
           "bbox": [
             139.06494140625,
             34.885930940753155,
@@ -72,7 +72,7 @@
         },
         {
           "type": "image",
-          "src": "omuro-seasons/autumn.jpg",
+          "src": "omuro-seasons/winter_burn.jpg",
           "bbox": [
             139.06494140625,
             34.885930940753155,
@@ -88,7 +88,7 @@
         },
         {
           "type": "image",
-          "src": "omuro-seasons/winter_burn.jpg",
+          "src": "omuro-seasons/spring.jpg",
           "bbox": [
             139.06494140625,
             34.885930940753155,
@@ -108,7 +108,7 @@
             190,
             78
           ],
-          "text": "大室山（春・新緑）",
+          "text": "大室山（夏）",
           "style": "tag",
           "show": [
             -0.05,
@@ -122,7 +122,7 @@
             190,
             78
           ],
-          "text": "大室山（夏）",
+          "text": "大室山（秋）",
           "style": "tag",
           "show": [
             0.25,
@@ -136,7 +136,7 @@
             190,
             78
           ],
-          "text": "大室山（秋）",
+          "text": "大室山（冬・山焼き）",
           "style": "tag",
           "show": [
             0.5,
@@ -150,7 +150,7 @@
             190,
             78
           ],
-          "text": "大室山（冬・山焼き）",
+          "text": "大室山（春・新緑）",
           "style": "tag",
           "show": [
             0.75,
