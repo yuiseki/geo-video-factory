@@ -1,0 +1,866 @@
+{
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "base": "seamlessphoto",
+  "dem": "gsi",
+  "exaggeration": 1.0,
+  "world": false,
+  "voices": {
+    "a": {
+      "speaker": 3,
+      "name": "ずんだもん",
+      "speed": 1.2,
+      "color": "#ffe94a"
+    },
+    "b": {
+      "speaker": 2,
+      "name": "四国めたん",
+      "speed": 1.2,
+      "color": "#ff9ca7"
+    }
+  },
+  "tts": {
+    "padStart": 0.18,
+    "pause": 0.25,
+    "padEnd": 0.25,
+    "wrap": 23
+  },
+  "reaction": {
+    "characters": {
+      "a": {
+        "sprites": "assets/chara/zundamon",
+        "seed": "zundamon"
+      },
+      "b": {
+        "sprites": "assets/chara/metan",
+        "seed": "metan"
+      }
+    },
+    "order": [
+      "b",
+      "a"
+    ],
+    "height": 240,
+    "side": "right",
+    "bottom": 180
+  },
+  "credits": [
+    "地図の位置は概略",
+    "3D都市モデル：国土交通省 PLATEAU（大阪市 2025・東京都 2025）",
+    "建物外形補完・外観推定を含む"
+  ],
+  "osmLabels": true,
+  "hillshade": false,
+  "plateauBuildings": [
+    {
+      "manifest": "assets/city/asakusa-ryogoku/manifest.json",
+      "heightOffset": -39,
+      "workers": 3
+    }
+  ],
+  "shots": [
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "でも、神田川が隅田川に注ぐ柳橋のあたりは、昔の花街がなくなったのだ。",
+          "speech": "でも、神田川が隅田川に注ぐやなぎばしのあたりは、昔の花街がなくなったのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "chapter",
+          "kicker": "YuisekinTV",
+          "text": "柳橋と川を守る堤防",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "柳橋は船宿や料亭、芸妓の文化で知られた場所。東京都は、",
+          "speech": "やなぎばしは船宿や料亭、芸妓の文化で知られた場所。東京都は、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/ort_USA10.png",
+          "caption": "両国橋周辺（現在の地名）：1945〜1950年",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            80,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "panel",
+          "src": "assets/maps/yanagibashi/seamlessphoto.png",
+          "caption": "両国橋周辺（現在の地名）：全国最新写真",
+          "credit": "空中写真：国土地理院 地理院タイルを加工",
+          "screen": [
+            720,
+            85
+          ],
+          "width": 560,
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78606000000002,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78886,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "伊勢湾台風を契機に1959年から75年にかけて隅田川に「カミソリ堤防」を整備し、",
+          "speech": "伊勢湾台風を契機に1959年から75年にかけて隅田川に「カミソリ堤防」を整備し、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78606000000002,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78886,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "高い防潮堤が人と水辺を隔てた経緯を説明しているわ。",
+          "speech": "高いぼうちょうていが人と水辺を隔てた経緯を説明しているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78606000000002,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78886,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "水害から街を守る堤防が、水辺を楽しむ商売には影響したのだ。",
+          "speech": "水害から街を守る堤防が、水辺を楽しむ商売には影響したのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "台東区の観光案内も、堤防造成による景観の変化などで客足が遠のき、",
+          "speech": "台東区の観光案内も、堤防造成による景観の変化などで客足が遠のき、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "最後の料亭と芸妓組合が1999年に閉じたと紹介している。ただし、",
+          "speech": "最後の料亭と芸妓組合が1999年に閉じたと紹介している。ただし、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "堤防だけを原因にするのは正確ではないわ。交通や暮らし、",
+          "speech": "堤防だけを原因にするのは正確ではないわ。交通や暮らし、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "商売の変化も重なったと考えるべきね。",
+          "speech": "商売の変化も重なったと考えるべきね。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 45,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 13.9,
+        "pitch": 25,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "必然だったと決めつけるより、守るための都市の仕組みが、別の価値を見えにくくした、",
+          "speech": "必然だったと決めつけるより、守るための都市の仕組みが、別の価値を見えにくくした、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 25,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "と見るのがよさそうなのだ。",
+          "speech": "と見るのがよさそうなのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78606000000002,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78886,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "都市の安全を守ることと、水辺の風景や仕事を保つこと。どちらも大切なのに、",
+          "speech": "都市の安全を守ることと、水辺の風景や仕事を保つこと。どちらも大切なのに、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": -15
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "同じ工事が両方に同じ効果をもたらすとは限らない。東京都はその後、",
+          "speech": "同じ工事が両方に同じ効果をもたらすとは限らない。東京都はその後、",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78606000000002,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "to": {
+        "center": [
+          139.78886,
+          35.69521
+        ],
+        "zoom": 14.8,
+        "pitch": 28,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "人が川に近づける緩やかな護岸やテラスの整備も進めているわ。",
+          "speech": "人が川に近づける緩やかな護岸やテラスの整備も進めているわ。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78606000000002,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "to": {
+        "center": [
+          139.78886,
+          35.69521
+        ],
+        "zoom": 15.1,
+        "pitch": 28,
+        "bearing": 20
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "川を遠ざけた堤防を、今度は川に近づける形に直しているのだ。都市の考え方も、",
+          "speech": "川を遠ざけた堤防を、今度は川に近づける形に直しているのだ。都市の考え方も、",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78746,
+          35.69521
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "lines": [
+        {
+          "voice": "a",
+          "text": "時間をかけて変わっていくのだ。",
+          "speech": "時間をかけて変わっていくのだ。",
+          "face": "normal"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "at": [
+            139.7888628,
+            35.6943052
+          ],
+          "text": "両国橋",
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "from": {
+        "center": [
+          139.78465,
+          35.69718
+        ],
+        "zoom": 14.5,
+        "pitch": 25,
+        "bearing": 0
+      },
+      "to": {
+        "center": [
+          139.78465,
+          35.69718
+        ],
+        "zoom": 14.2,
+        "pitch": 30,
+        "bearing": 5
+      },
+      "lines": [
+        {
+          "voice": "b",
+          "text": "今度は、川そのものが見えなくなった新橋へ向かいましょう。",
+          "speech": "今度は、川そのものが見えなくなった新橋へ向かいましょう。",
+          "face": "point"
+        }
+      ],
+      "overlays": [
+        {
+          "type": "label",
+          "text": "柳橋",
+          "at": [
+            139.7874728,
+            35.6952154
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        },
+        {
+          "type": "label",
+          "text": "新橋・汐留川跡",
+          "at": [
+            139.7617,
+            35.6666
+          ],
+          "style": "tag",
+          "show": [
+            0,
+            1
+          ]
+        }
+      ],
+      "transition": true,
+      "keys": [
+        {
+          "t": 0,
+          "center": [
+            139.7874728,
+            35.6952154
+          ],
+          "zoom": 14.4,
+          "pitch": 25,
+          "bearing": 0
+        },
+        {
+          "t": 0.4,
+          "center": [
+            139.776,
+            35.682
+          ],
+          "zoom": 11.7,
+          "pitch": 12,
+          "bearing": 0
+        },
+        {
+          "t": 0.7,
+          "center": [
+            139.776,
+            35.682
+          ],
+          "zoom": 11.7,
+          "pitch": 12,
+          "bearing": 0
+        },
+        {
+          "t": 1,
+          "center": [
+            139.7617,
+            35.6666
+          ],
+          "zoom": 14,
+          "pitch": 25,
+          "bearing": 0
+        }
+      ],
+      "duration": 8.0,
+      "ease": "smooth"
+    }
+  ]
+}
