@@ -29,21 +29,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.71,
-          41.765
+          140.715,
+          41.77
         ],
-        "zoom": 14.4,
-        "pitch": 55,
-        "bearing": 260
+        "zoom": 14.1,
+        "pitch": 60,
+        "bearing": 0
       },
       "to": {
         "center": [
-          140.71,
-          41.765
+          140.715,
+          41.77
         ],
-        "zoom": 14.4,
-        "pitch": 55,
-        "bearing": 260
+        "zoom": 14.1,
+        "pitch": 60,
+        "bearing": 0
       },
       "overlays": []
     },
@@ -51,109 +51,65 @@
       "duration": 1,
       "from": {
         "center": [
-          140.711,
-          41.764
-        ],
-        "zoom": 14.5,
-        "pitch": 55,
-        "bearing": 260
-      },
-      "to": {
-        "center": [
-          140.711,
-          41.764
-        ],
-        "zoom": 14.5,
-        "pitch": 55,
-        "bearing": 260
-      },
-      "overlays": []
-    },
-    {
-      "duration": 1,
-      "from": {
-        "center": [
-          140.71,
-          41.764
-        ],
-        "zoom": 14.4,
-        "pitch": 50,
-        "bearing": 245
-      },
-      "to": {
-        "center": [
-          140.71,
-          41.764
-        ],
-        "zoom": 14.4,
-        "pitch": 50,
-        "bearing": 245
-      },
-      "overlays": []
-    },
-    {
-      "duration": 1,
-      "from": {
-        "center": [
-          140.713,
-          41.765
-        ],
-        "zoom": 14.5,
-        "pitch": 50,
-        "bearing": 245
-      },
-      "to": {
-        "center": [
-          140.713,
-          41.765
-        ],
-        "zoom": 14.5,
-        "pitch": 50,
-        "bearing": 245
-      },
-      "overlays": []
-    },
-    {
-      "duration": 1,
-      "from": {
-        "center": [
-          140.71,
-          41.765
+          140.715,
+          41.77
         ],
         "zoom": 14.3,
-        "pitch": 50,
-        "bearing": 235
+        "pitch": 55,
+        "bearing": 0
       },
       "to": {
         "center": [
-          140.71,
-          41.765
+          140.715,
+          41.77
         ],
         "zoom": 14.3,
-        "pitch": 50,
-        "bearing": 235
-      },
-      "overlays": []
-    },
-    {
-      "duration": 1,
-      "from": {
-        "center": [
-          140.708,
-          41.766
-        ],
-        "zoom": 14.5,
         "pitch": 55,
-        "bearing": 275
+        "bearing": 0
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.714,
+          41.768
+        ],
+        "zoom": 14.2,
+        "pitch": 60,
+        "bearing": 20
       },
       "to": {
         "center": [
-          140.708,
-          41.766
+          140.714,
+          41.768
         ],
-        "zoom": 14.5,
+        "zoom": 14.2,
+        "pitch": 60,
+        "bearing": 20
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.716,
+          41.77
+        ],
+        "zoom": 14.3,
         "pitch": 55,
-        "bearing": 275
+        "bearing": 340
+      },
+      "to": {
+        "center": [
+          140.716,
+          41.77
+        ],
+        "zoom": 14.3,
+        "pitch": 55,
+        "bearing": 340
       },
       "overlays": []
     },
@@ -161,21 +117,21 @@
       "duration": 1,
       "from": {
         "center": [
-          140.712,
-          41.766
+          140.715,
+          41.768
         ],
-        "zoom": 14.6,
+        "zoom": 14.2,
         "pitch": 50,
-        "bearing": 285
+        "bearing": 35
       },
       "to": {
         "center": [
-          140.712,
-          41.766
+          140.715,
+          41.768
         ],
-        "zoom": 14.6,
+        "zoom": 14.2,
         "pitch": 50,
-        "bearing": 285
+        "bearing": 35
       },
       "overlays": []
     },
@@ -183,21 +139,65 @@
       "duration": 1,
       "from": {
         "center": [
-          140.711,
-          41.766
+          140.716,
+          41.769
         ],
-        "zoom": 14.35,
+        "zoom": 14.25,
         "pitch": 50,
-        "bearing": 225
+        "bearing": 330
       },
       "to": {
         "center": [
-          140.711,
-          41.766
+          140.716,
+          41.769
         ],
-        "zoom": 14.35,
+        "zoom": 14.25,
         "pitch": 50,
-        "bearing": 225
+        "bearing": 330
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.716,
+          41.769
+        ],
+        "zoom": 14.4,
+        "pitch": 55,
+        "bearing": 45
+      },
+      "to": {
+        "center": [
+          140.716,
+          41.769
+        ],
+        "zoom": 14.4,
+        "pitch": 55,
+        "bearing": 45
+      },
+      "overlays": []
+    },
+    {
+      "duration": 1,
+      "from": {
+        "center": [
+          140.715,
+          41.768
+        ],
+        "zoom": 14.4,
+        "pitch": 50,
+        "bearing": 315
+      },
+      "to": {
+        "center": [
+          140.715,
+          41.768
+        ],
+        "zoom": 14.4,
+        "pitch": 50,
+        "bearing": 315
       },
       "overlays": []
     }
