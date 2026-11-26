@@ -432,78 +432,6 @@
         "glow": 1.0
       },
       {
-        "src": "assets/billboards/sign_loccitane_ne_full.png",
-        "center": [
-          139.700035,
-          35.65936
-        ],
-        "altitudeM": 14.8,
-        "widthM": 13.4,
-        "heightM": 29.5,
-        "bearing": 50,
-        "glow": 1.05
-      },
-      {
-        "src": "assets/billboards/sign_loccitane_roof.png",
-        "center": [
-          139.700032,
-          35.659358
-        ],
-        "altitudeM": 33.2,
-        "widthM": 13.0,
-        "heightM": 7.4,
-        "bearing": 50,
-        "glow": 1.08
-      },
-      {
-        "src": "assets/billboards/sign_loccitane_banner.png",
-        "center": [
-          139.699985,
-          35.65941
-        ],
-        "altitudeM": 15.0,
-        "widthM": 3.2,
-        "heightM": 28.5,
-        "bearing": 35,
-        "glow": 1.05
-      },
-      {
-        "src": "assets/billboards/sign_loccitane_dogenzaka.png",
-        "center": [
-          139.699896,
-          35.659412
-        ],
-        "altitudeM": 15.0,
-        "widthM": 15.2,
-        "heightM": 28.5,
-        "bearing": 2,
-        "glow": 1.0
-      },
-      {
-        "src": "assets/billboards/sign_oosoto_sleeves.png",
-        "center": [
-          139.700076,
-          35.6593
-        ],
-        "altitudeM": 15.0,
-        "widthM": 2.2,
-        "heightM": 29.0,
-        "bearing": 101,
-        "glow": 1.05
-      },
-      {
-        "src": "assets/billboards/sign_eyecity_blue.png",
-        "center": [
-          139.700066,
-          35.65925
-        ],
-        "altitudeM": 17.5,
-        "widthM": 6.0,
-        "heightM": 21.0,
-        "bearing": 101,
-        "glow": 1.05
-      },
-      {
         "src": "assets/billboards/sign_magnet_corner_4k.png",
         "center": [
           139.700834,
@@ -513,7 +441,7 @@
         "widthM": 9.4,
         "heightM": 28.5,
         "bearing": 224,
-        "glow": 1.02
+        "glow": 0.94
       },
       {
         "src": "assets/billboards/sign_magnet_west_4k.png",
@@ -525,7 +453,7 @@
         "widthM": 24.0,
         "heightM": 26.0,
         "bearing": 282,
-        "glow": 0.95
+        "glow": 0.94
       },
       {
         "src": "assets/billboards/sign_acom_lake_aiful.png",
@@ -537,7 +465,103 @@
         "widthM": 7.5,
         "heightM": 34.0,
         "bearing": 185,
-        "glow": 1.08
+        "glow": 0.94
+      },
+      {
+        "src": "assets/billboards/sign_loccitane_east_wing.png",
+        "center": [
+          139.700072,
+          35.65928
+        ],
+        "altitudeM": 14.8,
+        "widthM": 8.6,
+        "heightM": 29.5,
+        "bearing": 98,
+        "glow": 0.96
+      },
+      {
+        "src": "assets/billboards/sign_loccitane_ne_wing.png",
+        "center": [
+          139.700034,
+          35.65936
+        ],
+        "altitudeM": 14.8,
+        "widthM": 13.2,
+        "heightM": 29.5,
+        "bearing": 50,
+        "glow": 0.98
+      },
+      {
+        "src": "assets/billboards/sign_loccitane_roof.png",
+        "center": [
+          139.70004,
+          35.659345
+        ],
+        "altitudeM": 33.4,
+        "widthM": 14.0,
+        "heightM": 7.6,
+        "bearing": 62,
+        "glow": 1.02
+      },
+      {
+        "src": "assets/billboards/sign_loccitane_banner.png",
+        "center": [
+          139.699982,
+          35.659408
+        ],
+        "altitudeM": 14.8,
+        "widthM": 3.4,
+        "heightM": 29.0,
+        "bearing": 35,
+        "glow": 0.96
+      },
+      {
+        "src": "assets/billboards/sign_loccitane_dogenzaka.png",
+        "center": [
+          139.699896,
+          35.659412
+        ],
+        "altitudeM": 14.8,
+        "widthM": 15.2,
+        "heightM": 29.0,
+        "bearing": 2,
+        "glow": 0.94
+      },
+      {
+        "src": "assets/billboards/sign_oosoto_sleeves.png",
+        "center": [
+          139.700062,
+          35.659238
+        ],
+        "altitudeM": 15.0,
+        "widthM": 2.2,
+        "heightM": 29.0,
+        "bearing": 101,
+        "glow": 0.98
+      },
+      {
+        "src": "assets/billboards/sign_eyecity_blue.png",
+        "center": [
+          139.70005,
+          35.659202
+        ],
+        "altitudeM": 17.5,
+        "widthM": 5.5,
+        "heightM": 21.0,
+        "bearing": 101,
+        "glow": 0.95
+      },
+      {
+        "src": "assets/billboards/sign_oosoto_full_4k.png",
+        "center": [
+          139.700024,
+          35.659102
+        ],
+        "altitudeM": 14.8,
+        "widthM": 18.0,
+        "heightM": 29.0,
+        "bearing": 101,
+        "glow": 0.88
       }
     ],
     "night": [
@@ -575,5 +599,5 @@
       ]
     }
   ],
-  "id": "shibuya-comfy-billboards-v29"
+  "id": "shibuya-comfy-billboards-v30"
 }
