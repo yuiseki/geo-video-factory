@@ -12,7 +12,10 @@ O=$HERE/work/shibuya; mkdir -p $O
 cd $REPO/packages/pipeline
 for L in day night; do
   for B in qfront ekimae s109; do
-    $P -u -m world_model.build_atlas $S $B $T $O/${B}_${L}_cc0_v1 --keep=10 --patch=3 --agree=25 --smooth=2 --fill=mean --eras=2 $C/cams_$L.json > $O/${B}_${L}.log 2>&1
+    # 278 (the crossing at night, toward Center-gai) does not show 109, but the model lets it see 109's wall low in
+    # the frame, where the photo has the crowd: it alone painted the crowd as a smear over that wall
+    SKIP=; [ "$B$L" = s109night ] && SKIP=--skip=278_The_front_of_Shibuya_Station_Crossing_20211126_01
+    $P -u -m world_model.build_atlas $S $B $T $O/${B}_${L}_cc0_v1 --keep=10 --patch=3 --agree=25 --smooth=2 --fill=mean --eras=2 $SKIP $C/cams_$L.json > $O/${B}_${L}.log 2>&1
     echo "$B $L exit $?"
   done
   $P -u -m world_model.build_atlas $S/magnet_v1 magnet $T $O/magnet_${L}_cc0_v1 --keep=10 --patch=3 --agree=25 --smooth=2 --fill=mean --eras=2 $C/cams_$L.json > $O/magnet_${L}.log 2>&1

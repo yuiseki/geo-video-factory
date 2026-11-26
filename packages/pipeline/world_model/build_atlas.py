@@ -1,5 +1,5 @@
 """python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0]
-       [--only=<word in the camera key>,...] <cams.json>...
+       [--only=<word in the camera key>,...] [--skip=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
 Writes atlas.png, seen.png (how many photos saw each texel), quality.png (how well the best photo saw it, 0..255:
@@ -23,6 +23,13 @@ UNSEEN = (128, 128, 128)
 ROOF = (92, 92, 96)
 
 
+def pick_cams(cams, only=None, skip=None):
+    """The cameras whose key holds a word of `only` (all when None) and no word of `skip` (comma separated)."""
+    def holds(key, words):
+        return any(w in key for w in words.split(",") if w)
+    return {k: c for k, c in cams.items() if (only is None or holds(k, only)) and not (skip and holds(k, skip))}
+
+
 def main(argv):
     opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
     work, name, scene_path, out = [a for a in argv if not a.startswith("--")][:4]
@@ -43,8 +50,7 @@ def main(argv):
     cams = {}
     for f in cam_files:
         cams.update(json.loads(Path(f).read_text()))
-    if "only" in opts:
-        cams = {k: c for k, c in cams.items() if any(word in k for word in opts["only"].split(","))}
+    cams = pick_cams(cams, opts.get("only"), opts.get("skip"))
     cams = photo_guard.drop_blocked(cams)              # photo_blocklist.tsv: never paint these
     # every texel that lies on a face, as one long list: the atlas is mostly empty, and one call per photo over
     # the list is far faster than one per face
