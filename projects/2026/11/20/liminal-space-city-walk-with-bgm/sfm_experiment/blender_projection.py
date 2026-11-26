@@ -61,7 +61,7 @@ sys.path.insert(0, str(repo / "packages/pipeline"))
 sys.path.insert(0, str(repo / "packages/blender"))
 import photo_projection  # noqa: E402
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-import ground_materials  # noqa: E402
+from world_model import ground_materials  # noqa: E402  (packages/pipeline, on the path above)
 
 out.mkdir(parents=True, exist_ok=True)
 for o in list(bpy.data.objects):

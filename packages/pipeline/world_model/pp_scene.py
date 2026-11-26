@@ -4,7 +4,13 @@ usage: blender -b --factory-startup -P pp_scene.py -- <out.blend> <PLATEAU++ man
            [--radius=700] [--centre=10,-20] [--proxy-lift=33.5] [--dim=1.0] [--sky=r,g,b] [--sun=3.0]
            [--atlas=<model.obj>,...] [--ground=<model.obj>,...]
            [--water=<metres above the crossing>] [--water-colour=r,g,b] [--water-roughness=0.03] [--ripple=0.04]
-           [--origin=lon,lat] [--ground-z=52.8]
+           [--origin=lon,lat] [--ground-z=52.8] [--baked-look] [--windows=0] [--atlas-fade] [--streets=<crosswalks.json>]
+
+--baked-look draws PLATEAU++ v0.1.0 as it was baked (unlit_baked: base colour as wired, window pattern x wall colour,
+window lights at --windows); without it, the first image of each material is drawn, as before v0.1.0.
+
+--atlas-fade makes an atlas as opaque as its texels were well seen (quality.png from build_atlas: photo pixels across
+a texel, smoothstep 0.15..0.6) instead of showing every texel seen at all (seen.png > 0.05).
 
 --origin moves the local frame away from the Shibuya crossing (the default) and --ground-z gives that place's
 ground on the ellipsoid, which the road plane under everything and --water start from.
@@ -36,7 +42,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipe
 from buildings import blender_geo as bg  # noqa: E402
 
 argv = sys.argv[sys.argv.index("--") + 1:]
-opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
+opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))   # --flag or --key=value
 ORIGIN = tuple(float(v) for v in opts.get("origin", "139.7005,35.6595").split(","))
 GROUND_Z = float(opts.get("ground-z", 52.8))   # the ground on the ellipsoid, as the PLATEAU tiles give it (Shibuya crossing: 52.8)
 out_blend, manifest_path = [Path(a) for a in argv if not a.startswith("--")][:2]
@@ -50,8 +56,15 @@ bpy.ops.wm.read_factory_settings(use_empty=True)
 sc = bpy.context.scene
 
 
+BAKED_LOOK = "baked-look" in opts
+ATLAS_FADE = "atlas-fade" in opts
+WINDOWS = float(opts.get("windows", 0.0))
+
+
 def unlit(mat, strength):
     """Photo-textured material -> emission of its texture (no second lighting of a photo)."""
+    if BAKED_LOOK:
+        return unlit_baked(mat, strength, WINDOWS)
     nt = mat.node_tree
     tex = next((n for n in nt.nodes if n.type == "TEX_IMAGE"), None)
     if tex is None:
@@ -61,6 +74,42 @@ def unlit(mat, strength):
     em.inputs["Strength"].default_value = strength
     nt.links.new(tex.outputs["Color"], em.inputs["Color"])
     nt.links.new(em.outputs[0], out.inputs["Surface"])
+    return True
+
+
+def unlit_baked(mat, strength, windows):
+    """--baked-look: the look PLATEAU++ v0.1.0 baked into the GLB, unlit.
+
+    The colour is whatever Blender's glTF import wired into the Principled BSDF's Base Color (photo, window pattern x
+    the wall's COLOR_0, roof photo), not just the first image of the material; the emissive texture (window lights,
+    stored with emissiveFactor 0) is added with strength `windows` (--windows, 0 by day, 1 at night). A material with
+    neither texture nor wired colour stays as it is (a plain colour, lit)."""
+    nt = mat.node_tree
+    bsdf = next((n for n in nt.nodes if n.type == "BSDF_PRINCIPLED"), None)
+    out = next((n for n in nt.nodes if n.type == "OUTPUT_MATERIAL"), None)
+    if out is None:
+        return False
+    if bsdf is not None and bsdf.inputs["Base Color"].is_linked:
+        colour = bsdf.inputs["Base Color"].links[0].from_socket
+    else:
+        tex = next((n for n in nt.nodes if n.type == "TEX_IMAGE"), None)
+        if tex is None or bsdf is not None:
+            return False
+        colour = tex.outputs["Color"]
+    em = nt.nodes.new("ShaderNodeEmission")
+    em.inputs["Strength"].default_value = strength
+    nt.links.new(colour, em.inputs["Color"])
+    shader = em.outputs[0]
+    glow = bsdf.inputs.get("Emission Color") if bsdf is not None else None
+    if windows > 0 and glow is not None and glow.is_linked:
+        lit = nt.nodes.new("ShaderNodeEmission")
+        lit.inputs["Strength"].default_value = windows
+        nt.links.new(glow.links[0].from_socket, lit.inputs["Color"])
+        add = nt.nodes.new("ShaderNodeAddShader")
+        nt.links.new(shader, add.inputs[0])
+        nt.links.new(lit.outputs[0], add.inputs[1])
+        shader = add.outputs[0]
+    nt.links.new(shader, out.inputs["Surface"])
     return True
 
 
@@ -132,10 +181,22 @@ for path in [p for p in opts.get("atlas", "").split(",") if p]:
             seen.interpolation = "Closest"
             nt.links.new(tex.inputs["Vector"].links[0].from_socket if tex.inputs["Vector"].links else
                          nt.nodes.new("ShaderNodeTexCoord").outputs["UV"], seen.inputs["Vector"])
-            gt = nt.nodes.new("ShaderNodeMath")
-            gt.operation = "GREATER_THAN"
-            gt.inputs[1].default_value = 0.05
-            nt.links.new(seen.outputs["Color"], gt.inputs[0])
+            quality_path = Path(path).parent / "quality.png"
+            if ATLAS_FADE and quality_path.exists():
+                # --atlas-fade: as opaque as the texel was well seen (photo pixels across it), so a grazing or distant
+                # view fades into PLATEAU++ instead of covering it with a smear
+                seen.image = bpy.data.images.load(str(quality_path))
+                seen.image.colorspace_settings.name = "Non-Color"
+                seen.interpolation = "Linear"
+                gt = nt.nodes.new("ShaderNodeMapRange")
+                gt.interpolation_type = "SMOOTHSTEP"
+                gt.inputs["From Min"].default_value, gt.inputs["From Max"].default_value = 0.15, 0.6
+                nt.links.new(seen.outputs["Color"], gt.inputs["Value"])
+            else:
+                gt = nt.nodes.new("ShaderNodeMath")
+                gt.operation = "GREATER_THAN"
+                gt.inputs[1].default_value = 0.05
+                nt.links.new(seen.outputs["Color"], gt.inputs[0])
             mix = nt.nodes.new("ShaderNodeMixShader")
             nt.links.new(gt.outputs[0], mix.inputs["Fac"])
             nt.links.new(nt.nodes.new("ShaderNodeBsdfTransparent").outputs[0], mix.inputs[1])
@@ -153,11 +214,32 @@ for path in [p for p in opts.get("ground", "").split(",") if p]:
 
 # a road-coloured plane under everything, so no sky shows below the ground models
 bpy.ops.mesh.primitive_plane_add(size=6000, location=(cx, cy, GROUND_Z - 0.25))
-road = bpy.data.materials.new("road")
-road.use_nodes = True
-road.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
-road.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
-bpy.context.object.data.materials.append(road)
+if "streets" in opts:
+    # --streets: aged asphalt (grain, mottling, repairs, tyre tracks; wet at night) instead of one flat colour, and the
+    # zebra bars of every marked crossing of a crosswalks.json (world_model/osm_crosswalks.py) in worn paint
+    from world_model import ground_materials
+    night = dim < 0.5
+    look = (1.0, 1.0, 1.0) if night else (1.5, 0.35, 0.0)          # gain, glow, wetness, as blender_projection.py
+    bpy.context.object.data.materials.append(ground_materials.aged_asphalt(*look))
+    verts, faces = [], []
+    for cw in json.loads(Path(opts["streets"]).read_text())["crosswalks"]:
+        a, b = (bg.local_meters(p, ORIGIN) for p in cw["line"][:2])
+        for quad in bg.crosswalk_stripes(a, b, cw["width"]):
+            i = len(verts)
+            verts += [(x, y, GROUND_Z - 0.2) for x, y in quad]
+            faces.append((i, i + 1, i + 2, i + 3))
+    zebra = bpy.data.meshes.new("zebra")
+    zebra.from_pydata(verts, [], faces)
+    zebra_obj = bpy.data.objects.new("zebra", zebra)
+    zebra_obj.data.materials.append(ground_materials.worn_paint(*look))
+    sc.collection.objects.link(zebra_obj)
+    print("crosswalk bars", len(faces))
+else:
+    road = bpy.data.materials.new("road")
+    road.use_nodes = True
+    road.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
+    road.node_tree.nodes["Principled BSDF"].inputs["Roughness"].default_value = 1.0
+    bpy.context.object.data.materials.append(road)
 
 if "water" in opts:
     # a still lake over the streets: hides the bottom metres of the walls, where removed people and cars

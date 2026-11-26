@@ -216,3 +216,21 @@ class Eras(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class TexelQuality(unittest.TestCase):
+    """quality.png: how well the best photo saw each texel, as photo pixels across one texel (0..1)."""
+
+    def test_a_texel_seen_at_a_pixel_or_more_per_texel_is_fully_trusted(self):
+        from world_model import surface_atlas as sa
+        texel = 0.05
+        w = np.array([[(1 / texel) ** 2 * 4, 0.0], [(1 / texel) ** 2, 0.0]])     # 2 px and 1 px per texel side
+        np.testing.assert_allclose(sa.texel_quality(w, texel), [1.0, 1.0])
+
+    def test_a_grazing_or_distant_view_fades_and_an_unseen_texel_is_zero(self):
+        from world_model import surface_atlas as sa
+        texel = 0.05
+        w = np.array([[(0.25 / texel) ** 2, (0.1 / texel) ** 2], [0.0, 0.0]])    # the best is a quarter pixel
+        q = sa.texel_quality(w, texel)
+        self.assertAlmostEqual(float(q[0]), 0.25, places=6)
+        self.assertEqual(float(q[1]), 0.0)

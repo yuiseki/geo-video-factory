@@ -238,6 +238,16 @@ def observe(image, points, normal, cam, depth, scale=0.25, min_cos=0.12, slack=(
     return colours, weight
 
 
+def texel_quality(weights, texel):
+    """How well each texel was seen, 0..1: photo pixels across one texel side in its best photo, capped at 1.
+
+    weights (n, k) are observe()'s pixels per square metre (resolution times foreshortening), k photos per texel;
+    sqrt(w) * texel is how many photo pixels one texel spans. A grazing or distant view spans a fraction of a pixel:
+    its colour is a smear stretched over the wall, and a renderer should fade it out rather than show it."""
+    best = np.max(np.asarray(weights, np.float64), axis=-1)
+    return np.clip(np.sqrt(np.maximum(best, 0.0)) * texel, 0.0, 1.0)
+
+
 # the fusion half lives in view_fusion.py; the old names still work from here
 from world_model.view_fusion import (  # noqa: E402,F401
     TopK, exposure_gains, fuse, fuse_by_face, smooth_labels, view_agreement, view_clusters)

@@ -2,7 +2,8 @@
        [--only=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
-Writes atlas.png, seen.png (how many photos saw each texel), model.obj, model.mtl and report.json.
+Writes atlas.png, seen.png (how many photos saw each texel), quality.png (how well the best photo saw it, 0..255:
+photo pixels across a texel, surface_atlas.texel_quality), model.obj, model.mtl and report.json.
 --fuse=face (default) takes each face from as few photos as possible; median blends them (surface_atlas.fuse).
 Texels that no photo saw are grey in atlas.png and are counted in report.json; they are not made up."""
 import json
@@ -111,6 +112,9 @@ def main(argv):
     fused[where] = part
     count = np.zeros(rows * width, np.int32)
     count[where] = stack.count
+    quality = np.zeros(rows * width, np.float32)
+    if used:
+        quality[where] = sa.texel_quality(stack.arrays()[1], texel)
     fused, count = fused.reshape(rows, width, 3), count.reshape(rows, width)
     if opts.get("fill") == "mean" and np.isfinite(part).any():
         # a face no photo saw takes the mean colour of what was seen: of its own face where there is some, of the
@@ -131,6 +135,7 @@ def main(argv):
     atlas = np.where(np.isnan(fused), np.array(UNSEEN, np.float32), fused).clip(0, 255).astype(np.uint8)
     Image.fromarray(atlas).save(out / "atlas.png")
     Image.fromarray((np.clip(count, 0, 5) * 51).astype(np.uint8)).save(out / "seen.png")
+    Image.fromarray((quality.reshape(rows, width) * 255).round().astype(np.uint8)).save(out / "quality.png")
 
     report = {"building": name, "texel_m": texel, "atlas": [width, rows], "photos": used, "faces": [],
               "gains": None if gains is None else dict(zip(used, np.round(gains, 3).tolist())),
