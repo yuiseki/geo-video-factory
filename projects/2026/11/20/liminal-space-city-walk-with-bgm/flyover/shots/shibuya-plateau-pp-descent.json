@@ -19,7 +19,7 @@
   "建物: 国土交通省 PLATEAU (2025 東京都 LOD2 テクスチャ付き) / 国土地理院 基盤地図・空中写真 / © OpenStreetMap contributors"
  ],
  "plateauBuildings": {
-  "manifest": "assets/buildings-shibuya-pp-v2/manifest.json",
+  "manifest": "assets/buildings-shibuya-pp-v3/manifest.json",
   "heightOffset": -39,
   "workers": 3,
   "reveal": {
