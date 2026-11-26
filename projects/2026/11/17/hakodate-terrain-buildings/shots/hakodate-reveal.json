@@ -70,7 +70,7 @@
         ],
         "zoom": 13.8,
         "pitch": 0,
-        "bearing": 30
+        "bearing": 225
       },
       "to": {
         "center": [
@@ -79,7 +79,7 @@
         ],
         "zoom": 14.6,
         "pitch": 0,
-        "bearing": 30
+        "bearing": 225
       },
       "overlays": []
     },
@@ -93,7 +93,7 @@
         ],
         "zoom": 14.6,
         "pitch": 0,
-        "bearing": 30
+        "bearing": 225
       },
       "to": {
         "center": [
@@ -102,7 +102,7 @@
         ],
         "zoom": 14.6,
         "pitch": 57,
-        "bearing": 30
+        "bearing": 225
       },
       "overlays": []
     },
@@ -116,7 +116,7 @@
         ],
         "zoom": 14.6,
         "pitch": 57,
-        "bearing": 30
+        "bearing": 225
       },
       "to": {
         "center": [
@@ -125,7 +125,7 @@
         ],
         "zoom": 14.6,
         "pitch": 57,
-        "bearing": 30
+        "bearing": 225
       },
       "overlays": []
     },
@@ -139,7 +139,7 @@
         ],
         "zoom": 14.6,
         "pitch": 57,
-        "bearing": 30
+        "bearing": 225
       },
       "to": {
         "center": [
@@ -148,7 +148,7 @@
         ],
         "zoom": 14.6,
         "pitch": 57,
-        "bearing": 30
+        "bearing": 225
       },
       "overlays": []
     },
@@ -162,7 +162,7 @@
         ],
         "zoom": 14.6,
         "pitch": 57,
-        "bearing": 30
+        "bearing": 225
       },
       "to": {
         "center": [
@@ -171,7 +171,7 @@
         ],
         "zoom": 14.6,
         "pitch": 57,
-        "bearing": 30
+        "bearing": 225
       },
       "overlays": []
     }
