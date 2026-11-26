@@ -35,6 +35,15 @@ PLATEAU++ (`packages/pipeline/buildings/plateau_pp.py`) の最初の版を定め
 
 焼き込んだ同じ GLB を、ブラウザ (three.js の素の `GLTFLoader`、独自シェーダーなし) と Blender (glTF の読み込みだけ) で同じカメラから描き、並べて比べます。
 
+```sh
+python projects/2026/11/26/plateau-pp/bake_trial.py shinjuku-v1          # out/shinjuku-v1-baked/ と scene.json
+blender -b --factory-startup -P projects/2026/11/26/plateau-pp/compare_blender.py -- <baked dir> <out.png>
+node projects/2026/11/26/plateau-pp/compare_three.mjs <baked dir> <out.png>   # リポジトリのルートから
+```
+
+タイルの置き方 (PLATEAU の RTC から局所座標への行列)、地面の高さ、カメラは `bake_trial.py` が一度だけ計算して `scene.json` に書き、両方の描画系はそれを使うだけにしています。
+元のテクスチャを持つ面は PLATEAU が配る Draco 圧縮のまま残るので、three.js 側には DRACOLoader が要ります。
+
 ## 未決
 
 - 窓の模様も焼き込むか (繰り返しテクスチャ 2 種類)、描画系が任意で足す飾りとして残すか。
