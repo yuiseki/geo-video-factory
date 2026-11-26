@@ -540,28 +540,16 @@
         "glow": 0.98
       },
       {
-        "src": "assets/billboards/sign_eyecity_blue.png",
-        "center": [
-          139.70005,
-          35.659202
-        ],
-        "altitudeM": 17.5,
-        "widthM": 5.5,
-        "heightM": 21.0,
-        "bearing": 101,
-        "glow": 0.95
-      },
-      {
         "src": "assets/billboards/sign_oosoto_full_4k.png",
         "center": [
-          139.700024,
-          35.659102
+          139.700038,
+          35.659138
         ],
         "altitudeM": 14.8,
-        "widthM": 18.0,
-        "heightM": 29.0,
+        "widthM": 21.5,
+        "heightM": 29.5,
         "bearing": 101,
-        "glow": 0.88
+        "glow": 0.9
       }
     ],
     "night": [
@@ -599,5 +587,5 @@
       ]
     }
   ],
-  "id": "shibuya-comfy-billboards-v30"
+  "id": "shibuya-comfy-billboards-v31"
 }
