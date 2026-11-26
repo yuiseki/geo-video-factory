@@ -15,7 +15,9 @@
   {"name": "shibuya_109_b", "ja": "渋谷 道玄坂下", "en": "Shibuya, toward Dogenzaka",
    "credit": "Photo: Syced / Wikimedia Commons (CC0)  ·  3D: Project PLATEAU"},
   {"name": "shibuya_night_212_a", "ja": "渋谷 午後七時", "en": "Shibuya, 7 p.m.", "night": true,
-   "credit": "Photo: Asanagi / Wikimedia Commons (CC0)  ·  3D: Project PLATEAU"}
+   "credit": "Photo: Asanagi / Wikimedia Commons (CC0)  ·  3D: Project PLATEAU"},
+  {"name": "shibuya_night_262_c", "ja": "渋谷 午前二時", "en": "Shibuya, 2 a.m.", "night": true,
+   "credit": "Photo: Syced / Wikimedia Commons (CC0)  ·  3D: Project PLATEAU"}
  ],
  "credits": {
   "seconds": 12,
@@ -25,7 +27,7 @@
    "銀座四丁目\tAsanagi, 2020-04-19, Wikimedia Commons, CC0",
    "秋葉原\tyuiseki, 2026",
    "渋谷 (昼)\tAsanagi, 2025-06-12 / Syced, 2024-03-04, Wikimedia Commons, CC0",
-   "渋谷 (夜)\tAsanagi, 2026-01-17, Wikimedia Commons, CC0",
+   "渋谷 (夜)\tAsanagi, 2026-01-17 / Syced, 2024-12-13, Wikimedia Commons, CC0",
    "",
    "3D 都市モデル\tProject PLATEAU (国土交通省)",
    "人物の除去\tSAM 3.1 で検出し、LaMa で埋めています",
