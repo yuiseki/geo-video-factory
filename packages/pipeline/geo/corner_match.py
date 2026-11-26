@@ -10,6 +10,12 @@ whatever the camera's pitch and roll, so a corner is a direction of the compass,
             changes across the azimuth (along the gradient of the azimuth): a vertical edge of the world
     cost    1 - the correlation of the two over the bins the photo sees, for every place and every turn (FFT)
 
+Measured (projects/2026/11/26/plateau-pp-ultra-after, placement_eval.py and its README): on Shibuya's street photos
+placed by SfM, the corner cost at the true pose is about 1 (no correlation) and the truth ranks in the middle of all
+places and turns, also when only long vertical runs of edges are counted. The photos' vertical edges (signs, pillars,
+people) do not stand where PLATEAU LOD2's wall corners stand. So photo_place --corners stays off by default; this is
+kept so the next attempt starts from the measurement.
+
 Angles are degrees; azimuth is clockwise from north in bins of 360 / bins degrees, bin i covering
 [i, i + 1) * 360 / bins, as in skyline_match.py. The turn s lays the photo's bin b on the model's bin b + s.
 """

@@ -18,7 +18,9 @@ without sky (an interior, an alley at night, a statue) only one-sided bins are l
 search "places" the photo anywhere at cost 0. 0, the default, keeps that behaviour.
 --corners adds that many times the corner cost (geo/corner_match.py: the vertical corners of the model, not hidden
 behind a nearer wall, against the vertical edges of the picture; 0..2) to the roofline's cost, and places a photo whose
-roofline is refused by --min-sky from its corners alone. 0, the default, is the roofline alone.
+roofline is refused by --min-sky from its corners alone. 0, the default, is the roofline alone: on Shibuya's street
+photos the corners did not tell the true place from others (see corner_match.py), and weight 2 moved a photo the
+roofline had placed within 1.4 m to 27 m away.
 --heading keeps the search to the headings from <from> clockwise to <to> (degrees from north), for a photo whose
 compass direction is roughly known and whose roofline is too short to choose the turn alone.
 Writes result.json (the pose and the next best places at least 10 m away: look at how far apart their costs are),
