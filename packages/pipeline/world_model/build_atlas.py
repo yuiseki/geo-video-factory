@@ -1,10 +1,12 @@
-"""python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0]
+"""python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0] [--people-band=metres] [--ground-z=<the building's lowest point>]
        [--only=<word in the camera key>,...] [--skip=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
 Writes atlas.png, seen.png (how many photos saw each texel), quality.png (how well the best photo saw it, 0..255:
 photo pixels across a texel, surface_atlas.texel_quality), model.obj, model.mtl and report.json.
 --fuse=face (default) takes each face from as few photos as possible; median blends them (surface_atlas.fuse).
+--people-band=2.2 keeps photos taken from the street (eye < ground + 4 m) off the lowest 2.2 m of wall, where
+people and cars stand in front of it (surface_atlas.people_band).
 Texels that no photo saw are grey in atlas.png and are counted in report.json; they are not made up."""
 import json
 import sys
@@ -39,6 +41,8 @@ def main(argv):
     out.mkdir(parents=True, exist_ok=True)
     tris = np.load(Path(work) / "buildings.npz")[name].astype(float)
     scene = np.load(scene_path)["tris"].astype(float)
+    band = float(opts.get("people-band", 0))
+    ground = float(opts["ground-z"]) if "ground-z" in opts else float(tris[..., 2].min())   # the building's foot
     groups = sa.planar_faces(tris)
     if "split" in opts:
         # one plane can run through many buildings of a street; cut it into cells so that a chart is not a
@@ -86,6 +90,8 @@ def main(argv):
             raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
         depth = sa.depth_buffer(scene, cam)
         colours, weights = sa.observe(image, points, normal_of, cam, depth)
+        if band > 0:      # --people-band: a street photo does not paint the strip where people and cars stand
+            weights = np.where(sa.people_band(points, cam, ground, band), 0.0, weights)
         used[key] = int((weights > 0).sum())
         if used[key]:
             stack.add(colours, weights, view=len(used) - 1)
