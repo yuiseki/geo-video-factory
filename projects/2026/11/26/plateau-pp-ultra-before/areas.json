@@ -1,0 +1,85 @@
+{
+ "radius_m": 350,
+ "areas": [
+  {
+   "name": "shibuya",
+   "label": "渋谷スクランブル交差点",
+   "center": [
+    139.7005,
+    35.6595
+   ],
+   "street_bearing": 300,
+   "world_model": "projects/2026/11/20/liminal-space-city-walk-with-bgm/work/shibuya_world_v1",
+   "note": "CC0 写真のアトラスと地面がある唯一の場所"
+  },
+  {
+   "name": "shinjuku",
+   "label": "新宿駅東口",
+   "center": [
+    139.7016,
+    35.6918
+   ],
+   "street_bearing": 0,
+   "photos": "shinjuku"
+  },
+  {
+   "name": "ginza",
+   "label": "銀座四丁目交差点",
+   "center": [
+    139.765,
+    35.6716
+   ],
+   "street_bearing": 210,
+   "photos": "ginza"
+  },
+  {
+   "name": "marunouchi",
+   "label": "東京駅丸の内口",
+   "center": [
+    139.7649,
+    35.6812
+   ],
+   "street_bearing": 270,
+   "photos": "tokyo_marunouchi"
+  },
+  {
+   "name": "akihabara",
+   "label": "秋葉原 中央通り",
+   "center": [
+    139.7714,
+    35.6984
+   ],
+   "street_bearing": 0,
+   "photos": "akihabara"
+  },
+  {
+   "name": "asakusa",
+   "label": "浅草 雷門",
+   "center": [
+    139.7967,
+    35.7111
+   ],
+   "street_bearing": 0,
+   "photos": "asakusa"
+  },
+  {
+   "name": "ueno",
+   "label": "上野駅前",
+   "center": [
+    139.7745,
+    35.7103
+   ],
+   "street_bearing": 0,
+   "photos": "ueno"
+  },
+  {
+   "name": "hamura",
+   "label": "羽村駅 (PLATEAU なし)",
+   "center": [
+    139.316,
+    35.766
+   ],
+   "street_bearing": 90
+  }
+ ]
+}

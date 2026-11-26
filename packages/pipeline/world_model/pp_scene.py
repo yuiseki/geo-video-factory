@@ -4,12 +4,16 @@ usage: blender -b --factory-startup -P pp_scene.py -- <out.blend> <PLATEAU++ man
            [--radius=700] [--centre=10,-20] [--proxy-lift=33.5] [--dim=1.0] [--sky=r,g,b] [--sun=3.0]
            [--atlas=<model.obj>,...] [--ground=<model.obj>,...]
            [--water=<metres above the crossing>] [--water-colour=r,g,b] [--water-roughness=0.03] [--ripple=0.04]
+           [--origin=lon,lat] [--ground-z=52.8]
+
+--origin moves the local frame away from the Shibuya crossing (the default) and --ground-z gives that place's
+ground on the ellipsoid, which the road plane under everything and --water start from.
 
 --water floods the streets with a still, mirroring lake that many metres above the crossing's ground
 (1.5 hides the smeared bottom of the walls left where people and cars were removed).
 
 The buildings are PLATEAU++ (packages/pipeline: PLATEAU models with their own photo textures, filled-in
-buildings where PLATEAU has none), every tile whose centre lies within --radius metres of --centre.
+buildings where PLATEAU has none), every tile whose extent (its region) comes within --radius metres of --centre.
 The photo atlases of this directory (build_atlas.py) lie on top of them, 0.15 m out along each face,
 showing only the texels a photo saw (seen.png > 0): where no photo looked, PLATEAU++ shows through
 instead of the atlas's grey fill. Photo textures (PLATEAU's and the atlases') are drawn unlit, as
@@ -31,10 +35,10 @@ from mathutils import Matrix
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipeline
 from buildings import blender_geo as bg  # noqa: E402
 
-ORIGIN = (139.7005, 35.6595)
-GROUND_Z = 52.8                 # the crossing's ground on the ellipsoid, as the PLATEAU tiles give it
 argv = sys.argv[sys.argv.index("--") + 1:]
 opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
+ORIGIN = tuple(float(v) for v in opts.get("origin", "139.7005,35.6595").split(","))
+GROUND_Z = float(opts.get("ground-z", 52.8))   # the ground on the ellipsoid, as the PLATEAU tiles give it (Shibuya crossing: 52.8)
 out_blend, manifest_path = [Path(a) for a in argv if not a.startswith("--")][:2]
 radius = float(opts.get("radius", 700))
 cx, cy = (float(v) for v in opts.get("centre", "10,-20").split(","))
@@ -77,7 +81,16 @@ for tile in manifest["tiles"]:
         matrix = Matrix.Translation((mcx, mcy, lift))
     else:
         m = bg.plateau_tile_matrix(tile["rtc"], ORIGIN, 0.0)
-        if math.hypot(m[0][3] - cx, m[1][3] - cy) > radius:
+        reg = tile.get("region")
+        if isinstance(reg, list) and len(reg) >= 4:
+            # by the tile's own extent: some tiles carry RTC [0, 0, 0] and keep their place in node transforms
+            # (Taito ward), so their RTC says nothing about where they are
+            tx, ty = bg.local_meters((math.degrees((reg[0] + reg[2]) / 2), math.degrees((reg[1] + reg[3]) / 2)), ORIGIN)
+            half = math.hypot(*(a - b for a, b in zip(bg.local_meters((math.degrees(reg[2]), math.degrees(reg[3])), ORIGIN),
+                                                    bg.local_meters((math.degrees(reg[0]), math.degrees(reg[1])), ORIGIN)))) / 2
+            if math.hypot(tx - cx, ty - cy) - half > radius:
+                continue
+        elif math.hypot(m[0][3] - cx, m[1][3] - cy) > radius:
             continue
         matrix = Matrix(m)
     source = manifest_path.parent / tile["glb"]
@@ -139,7 +152,7 @@ for path in [p for p in opts.get("ground", "").split(",") if p]:
             unlit(mat, 1.0)
 
 # a road-coloured plane under everything, so no sky shows below the ground models
-bpy.ops.mesh.primitive_plane_add(size=6000, location=(cx, cy, 52.55))
+bpy.ops.mesh.primitive_plane_add(size=6000, location=(cx, cy, GROUND_Z - 0.25))
 road = bpy.data.materials.new("road")
 road.use_nodes = True
 road.node_tree.nodes["Principled BSDF"].inputs["Base Color"].default_value = (0.16, 0.16, 0.17, 1)
