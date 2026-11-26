@@ -2,7 +2,7 @@
   "width": 1280,
   "height": 720,
   "fps": 24,
-  "fov": 58,
+  "fov": 72,
   "base": "seamlessphoto",
   "world": false,
   "dem": "gsi",
@@ -222,8 +222,8 @@
       "duration": 4.0,
       "ease": "linear",
       "keys": [
-        { "t": 0.0, "center": [139.70050, 35.65942], "zoom": 20.4, "pitch": 82, "bearing": -42 },
-        { "t": 1.0, "center": [139.70032, 35.65958], "zoom": 20.6, "pitch": 83, "bearing": -45 }
+        { "t": 0.0, "center": [139.70048, 35.65944], "zoom": 20.15, "pitch": 84, "bearing": -40 },
+        { "t": 1.0, "center": [139.70032, 35.65958], "zoom": 20.35, "pitch": 84, "bearing": -43 }
       ],
       "overlays": [
         {
