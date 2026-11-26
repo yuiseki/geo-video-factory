@@ -18,12 +18,14 @@ PLATEAU++ (`packages/pipeline/buildings/plateau_pp.py`) の最初の版を定め
    - 残りの面は壁のプリミティブにし、ID と高さで決まる色 (`city_proxy.wall_hex`) を頂点色 (COLOR_0) で持たせる。
    - 元のテクスチャを持つ面には手を付けない。
    - 補完の建物 (city_proxy) も同じ形にそろえ、描画系のシェーダーが読む独自の頂点属性に頼らない。
-4. PLATEAU のタイルが無い範囲でも、地理院の建物外形からの補完だけで作る。今は `no leaf content intersects the requested bbox` で止まる。
-5. 置き場: 完成品は `tmp/.cache/plateau-pp/v0.1.0/<範囲・seed・テクスチャ寸法のハッシュ>/` に作る。見た目が変わる修正をしたら版を上げ、古い版のディレクトリは残す。
+4. PLATEAU のタイルが無い範囲でも、地理院の建物外形からの補完だけで作る。
+5. 置き場 (未実装): 完成品は `tmp/.cache/plateau-pp/v0.1.0/<範囲・seed・テクスチャ寸法のハッシュ>/` に作る。見た目が変わる修正をしたら版を上げる。ディレクトリで版を分けるのは、このキャッシュだけ。
+
+1〜4 は `plateau_pp` に入った。焼き込んだ GLB は `asset.extras.plateau_pp_bake` に版を持ち、ブラウザのレンダラーはそれを見て、描画時の補正を重ねずにそのまま描く。描画系に残る約束は、上向きの面がアルベドをそのまま返す照明と、夜に `pp-wall-*` の `emissiveFactor` を上げることの 2 つ。
 
 ## 試す範囲
 
-`areas.json` に範囲を置いています。`OVERPASS_URL=<自前の Overpass> python projects/2026/11/26/plateau-pp/build_trial.py` で、各範囲の PLATEAU++ を `out/<名前>-v1/` に作ります (ホストの資源制限に従って実行する)。
+`areas.json` に範囲を置いています。`OVERPASS_URL=<自前の Overpass> python projects/2026/11/26/plateau-pp/build_trial.py` で、各範囲の PLATEAU++ を `out/<名前>/` に作り直します (ホストの資源制限に従って実行する)。`out/` は使い捨てで、版はコミットが持ちます。
 
 | 名前 | 場所 | 選んだ理由 |
 |---|---|---|
@@ -36,19 +38,19 @@ PLATEAU++ (`packages/pipeline/buildings/plateau_pp.py`) の最初の版を定め
 焼き込んだ同じ GLB を、ブラウザ (three.js の素の `GLTFLoader`、独自シェーダーなし) と Blender (glTF の読み込みだけ) で同じカメラから描き、並べて比べます。
 
 ```sh
-python projects/2026/11/26/plateau-pp/bake_trial.py shinjuku-v1          # out/shinjuku-v1-baked/ と scene.json
-blender -b --factory-startup -P projects/2026/11/26/plateau-pp/compare_blender.py -- <baked dir> <out.png>
-node projects/2026/11/26/plateau-pp/compare_three.mjs <baked dir> <out.png>   # リポジトリのルートから
+OVERPASS_URL=<自前の Overpass> PYTHON=<packages/pipeline の依存が入った python> projects/2026/11/26/plateau-pp/compare_trial.sh
 ```
 
-タイルの置き方 (PLATEAU の RTC から局所座標への行列)、地面の高さ、カメラは `bake_trial.py` が一度だけ計算して `scene.json` に書き、両方の描画系はそれを使うだけにしています。
+リポジトリのルートから流します。`build_trial.py` で PLATEAU++ を作り、`scene_trial.py` で `out/<名前>/scene.json` を書き、`compare_blender.py` と `compare_three.mjs` で描いて、`compare_sheet.py` が `out/compare/sheet.jpg` にまとめます。
+
+タイルの置き方 (PLATEAU の RTC から局所座標への行列)、地面の高さ、カメラは `scene_trial.py` が一度だけ計算して `scene.json` に書き、両方の描画系はそれを使うだけにしています。
 元のテクスチャを持つ面は PLATEAU が配る Draco 圧縮のまま残るので、three.js 側には DRACOLoader が要ります。
 
 ## 未決
 
-- 窓の模様も焼き込むか (繰り返しテクスチャ 2 種類)、描画系が任意で足す飾りとして残すか。
 - プロジェクトから完成品をどう指すか (symlink、コピー、範囲と版だけを書いた参照)。
-- ブラウザのレンダラーのシェーダーを、焼き込んだ GLB に合わせてどこまで外すか。古い manifest を読む経路を残すか。
+- 焼き込んでいない古い PLATEAU++ を読むための、レンダラーの描画時の補正をいつ外すか。
+- Draco の圧縮をほどいたぶん GLB が約 3 倍になる。圧縮し直すか。
 
 ## 出典
 

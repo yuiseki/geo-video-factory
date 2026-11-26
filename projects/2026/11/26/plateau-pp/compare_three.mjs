@@ -1,9 +1,9 @@
-// Render a baked trial with three.js's plain GLTFLoader in headless Chromium: no custom shader, no material touched.
+// Render a trial area (out/<name>, PLATEAU++ as plateau_pp bakes it) with three.js's plain GLTFLoader in headless Chromium: no custom shader, no material touched.
 //
-//   node projects/2026/11/26/plateau-pp/compare_three.mjs <baked dir> <out.png>
+//   node projects/2026/11/26/plateau-pp/compare_three.mjs out/<name> <out.png>
 //
 // Run from the repository root (three and playwright come from packages/renderer/node_modules). Placement,
-// ground and camera come from <baked dir>/scene.json (bake_trial.py), as in compare_blender.py; the light uses
+// ground and camera come from out/<name>/scene.json (scene_trial.py), as in compare_blender.py; the light uses
 // the same sky radiance and sun irradiance.
 import { readFile, writeFile } from 'node:fs/promises';
 import { createRequire } from 'node:module';

@@ -1,8 +1,8 @@
-"""Render a baked trial with Blender's own glTF import: no material is touched (blender -b -P).
+"""Render a trial area (out/<name>, PLATEAU++ as plateau_pp bakes it) with Blender's own glTF import: no material is touched (blender -b -P).
 
-    blender -b --factory-startup -P projects/2026/11/26/plateau-pp/compare_blender.py -- <baked dir> <out.png>
+    blender -b --factory-startup -P projects/2026/11/26/plateau-pp/compare_blender.py -- out/<name> <out.png>
 
-Placement, ground and camera come from <baked dir>/scene.json (bake_trial.py), as in compare_three.mjs.
+Placement, ground and camera come from out/<name>/scene.json (scene_trial.py), as in compare_three.mjs.
 Light: a sky of SKY radiance and a sun of SUN W/m2 from SUN_DIR, the same numbers the three.js side uses.
 """
 import json

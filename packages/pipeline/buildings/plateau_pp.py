@@ -15,6 +15,9 @@ of this repository), so another box or project reuses them; the OSM extract of t
    on their roofs; textured ones are left alone. The renderer applies both only to untextured materials.
 4. Every GSI footprint PLATEAU does not model, including the ones step 2 freed, becomes a filled-in building:
    on the GSI DEM, OSM building:levels before height, otherwise a height calibrated on PLATEAU (city_proxy).
+   Where PLATEAU has no tiles at all, every building is filled in.
+5. The look is baked into every GLB (pp_bake): roof photo, wall colour, windows and tone, so any glTF renderer shows
+   the same city. manifest.plateau_pp names the version.
 
 OSM comes only from the Overpass named by OVERPASS_URL: the public servers are shared and are never called.
 """
@@ -112,6 +115,28 @@ def cache_dirs(out: Path, cache: Path | None = None, gsi_cache: Path | None = No
             Path(gsi_cache) if gsi_cache else gsi_dir())
 
 
+def bake(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None:
+    """Write the look into every tile (pp_bake): PLATEAU tiles and filled-in tiles; the shadow tile stays as it is."""
+    import hashlib
+
+    from buildings import pp_bake
+    for tile in m["tiles"]:
+        if tile.get("kind") == "city-shadow":
+            continue
+        path = out / tile["glb"]
+        raw = path.read_bytes()
+        ids = [str(i) for i in tile.get("ids", [])]
+        if tile.get("kind") == "city-proxy":
+            new = pp_bake.bake_proxy(raw, ids, roof_photo, (tile.get("roof_texture") or m["roof_texture"])["bounds_m"])
+        elif tile.get("frame") != "enu":
+            new = pp_bake.bake_untextured(raw, tile["rtc"], ids, tile.get("facade_colors") or [], roof_photo, roof_bounds)
+        else:
+            continue
+        path.write_bytes(new)
+        tile["bytes"], tile["sha256"] = len(new), hashlib.sha256(new).hexdigest()
+    m["plateau_pp"] = {"version": pp_bake.BAKE_VERSION, "baked": True}
+
+
 def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path | None = None,
           seed: str = "plateau-pp", gsi_cache: Path | None = None) -> dict:
     from buildings.building_heights import calibrate_height_model, footprint_area_m2
@@ -125,9 +150,17 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     cache, gsi = cache_dirs(out, cache, gsi_cache)
     cache.mkdir(parents=True, exist_ok=True)
     if not (out / "manifest.json").exists():
-        m = prepare_tiles(tileset, bbox, out, max_texture_dimension=2048, far_texture_dimension=1024, workers=3)
-        if not m.get("tiles"):
-            raise SystemExit("no PLATEAU tiles in the box")
+        try:
+            prepare_tiles(tileset, bbox, out, max_texture_dimension=2048, far_texture_dimension=1024, workers=3)
+        except ValueError as error:                     # PLATEAU has no model here: build from footprints alone
+            if "no leaf content" not in str(error):
+                raise
+            (out / "models").mkdir(parents=True, exist_ok=True)
+            (out / "manifest.json").write_text(json.dumps({
+                "format": "geo-video-factory.plateau-3d/1", "tileset_url": tileset, "bbox_degrees": bbox,
+                "center": [(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2], "tile_count": 0, "tile_ids": 0,
+                "tiles": []}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            print("no PLATEAU tiles in the box: filled-in buildings only", flush=True)
     m = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
     osm = fetch_osm_buildings(bbox, cache / "osm-buildings.geojson")
     m = remove_implausible(out, m, osm)
@@ -164,6 +197,7 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     m["removed_buildings"] = removed
     m["plateau_building_count"] = len(plateau)
     m["roof_texture"] = roof_texture_entry("roof-photo.jpg", roof_bounds, m["center"])
+    bake(out, m, roof, roof_bounds)
     (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"PLATEAU++: {m['tile_count']} tiles, {len(plateau)} PLATEAU buildings, "
           f"{m['city_proxy_building_count']} filled-in, {len(removed)} removed as implausible")

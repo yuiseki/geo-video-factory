@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
+import { isBakedGltf, prepareBakedScene } from './baked-tiles.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { mergeGeometries } from 'three/examples/jsm/utils/BufferGeometryUtils.js';
 import { MercatorCoordinate, type Map as MapLibre, type CustomLayerInterface, type CustomRenderMethodInput } from 'maplibre-gl';
@@ -215,7 +216,8 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
       const tile = manifest.tiles[cursor++]!;
       const modelUrl = new URL(tile.glb, url).href;
       const gltf = await loader.loadAsync(modelUrl);
-      batchUntexturedMeshes(gltf.scene);
+      const baked = isBakedGltf(gltf);                 // PLATEAU++ v0.1.0+: the look is in the GLB
+      if (!baked) batchUntexturedMeshes(gltf.scene);
       const delta = tile.rtc.map((value, index) => value - origin[index]!) as [number, number, number];
       const localPosition: [number, number, number] = [dot(east, delta), dot(north, delta), dot(up, delta) + tileHeightOffset(tile.kind, heightOffset)];
       const translate = new THREE.Matrix4().makeTranslation(...localPosition);
@@ -225,8 +227,10 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
       } else {
         gltf.scene.matrix.copy(translate).multiply(basis).multiply(yToZ);
       }
-      tuneMaterials(gltf.scene);
-      if (tile.kind === 'city-proxy' || tile.kind === 'city-shadow') {
+      if (baked) {
+        prepareBakedScene(gltf.scene, city);
+      } else if (tile.kind === 'city-proxy' || tile.kind === 'city-shadow') {
+        tuneMaterials(gltf.scene);
         let roof: CityRoofPhoto | undefined;
         if (tile.kind === 'city-proxy' && tile.roof_texture) {
           roof = { texture: await loadPhoto(tile.roof_texture.image), bounds: tile.roof_texture.bounds_m };
@@ -237,10 +241,13 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
           if (mesh.isMesh) mesh.material = material;
         });
       } else if (config.appearance !== false) {
+        tuneMaterials(gltf.scene);
         // No building is left flat: photo textures stay, untextured buildings get a facade and the
         // aerial photo on their roofs as the paint wave passes. appearance: false is untouched PLATEAU.
         const variants = resolveIdVariants(tile.ids, config.facadeTextures?.idVariants);
         applyBuildingAppearance(gltf.scene, tile.facade_colors ?? (tile.ids ?? []).map(() => null), modelUrl, true, { city, roof: roofUniforms, facade: facadeUniforms }, variants, config.roofPhoto === "all");
+      } else {
+        tuneMaterials(gltf.scene);
       }
       scene.add(gltf.scene);
       loadedTiles++;
