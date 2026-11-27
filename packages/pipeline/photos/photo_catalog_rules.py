@@ -115,6 +115,17 @@ def _license_allowed(license_short: str, license_url: str, license_mode: str) ->
     return is_strict_cc0(license_short, license_url)
 
 
+def date_rejection(year, license_short: str, license_url: str = "", min_year=None):
+    """Why a photo is too old for a city as it stands now, or None. With min_year, a photo taken before it is refused,
+    and so is a public-domain one without a date: public domain is mostly old prints, plans and postcards, where a
+    CC0 file is the uploader's own photograph."""
+    if not min_year:
+        return None
+    if year:
+        return "before_min_year" if int(year) < int(min_year) else None
+    return None if is_strict_cc0(license_short, license_url) else "pd_undated"
+
+
 def is_urban_scene_candidate(rec: dict) -> tuple[bool, str]:
     """Filter out obvious non-urban photos (food, maps, tickets, cosplay, low-res, extreme aspect)."""
     w = int(rec.get("orig_width") or rec.get("width") or 0)

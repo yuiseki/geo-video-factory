@@ -147,18 +147,25 @@ def query_commons_category(
     limit: int = 120,
     sleep_fn=time.sleep,
     fetch_fn=None,
+    depth: int = 0,
+    _seen: set | None = None,
 ) -> list[str]:
+    """The files of a Commons category, then (depth > 0) those of its subcategories down to `depth` levels, each
+    subcategory right after the files of its parent; a category already walked is not walked again."""
     fetcher = fetch_fn or fetch_json_with_retry
     titles: list[str] = []
+    subcats: list[str] = []
     cmcontinue = None
     cat_name = category if category.startswith("Category:") else f"Category:{category}"
+    seen = _seen if _seen is not None else set()
+    seen.add(cat_name)
     while len(titles) < limit:
         params = {
             "action": "query",
             "list": "categorymembers",
             "cmtitle": cat_name,
-            "cmtype": "file",
-            "cmlimit": str(min(50, limit - len(titles))),
+            "cmtype": "file|subcat",
+            "cmlimit": "500",
             "format": "json",
         }
         if cmcontinue:
@@ -170,11 +177,23 @@ def query_commons_category(
             print(f"[commons category warn] {cat_name}: {exc}", file=sys.stderr)
             break
         for item in data.get("query", {}).get("categorymembers", []):
-            titles.append(item["title"])
+            if item["title"].startswith("Category:"):
+                subcats.append(item["title"])
+            else:
+                titles.append(item["title"])
         cmcontinue = data.get("continue", {}).get("cmcontinue")
         if not cmcontinue:
             break
         sleep_fn(0.35)
+    titles = titles[:limit]
+    for sub in subcats if depth > 0 else []:
+        if len(titles) >= limit:
+            break
+        if sub in seen:
+            continue
+        for t in query_commons_category(sub, limit - len(titles), sleep_fn, fetch_fn, depth - 1, seen):
+            if t not in titles:
+                titles.append(t)
     return titles
 
 

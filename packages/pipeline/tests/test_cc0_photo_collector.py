@@ -988,6 +988,38 @@ class CC0PhotoCollectorTests(unittest.TestCase):
         self.assertEqual(review.license_policy_of([cc0, pd]), "CC0 or public domain (no attribution required)")
         self.assertEqual(review.license_policy_of([cc0, pd, by]), "CC0 + CC BY (non-SA, attribution required)")
 
+    def test_a_category_is_walked_into_its_subcategories_to_the_depth_asked(self):
+        m = self.mod
+        tree = {
+            "Category:Kaminarimon": ["File:Gate.jpg", "Category:Kaminarimon at night", "Category:Kaminarimon lantern"],
+            "Category:Kaminarimon at night": ["File:Night.jpg", "Category:Kaminarimon at night in winter"],
+            "Category:Kaminarimon lantern": ["File:Lantern.jpg", "Category:Kaminarimon"],     # a loop back
+            "Category:Kaminarimon at night in winter": ["File:Snow.jpg"],
+        }
+
+        def fake_fetch(url, sleep_fn=None):
+            import urllib.parse as up
+            q = dict(up.parse_qsl(up.urlsplit(url).query))
+            self.assertIn("subcat", q["cmtype"])
+            return {"query": {"categorymembers": [{"title": t} for t in tree[q["cmtitle"]]]}}
+
+        with patch.object(m, "fetch_json_with_retry", side_effect=fake_fetch):
+            self.assertEqual(m.query_commons_category("Kaminarimon", limit=50, sleep_fn=lambda _: None),
+                             ["File:Gate.jpg"])
+            self.assertEqual(m.query_commons_category("Kaminarimon", limit=50, sleep_fn=lambda _: None, depth=1),
+                             ["File:Gate.jpg", "File:Night.jpg", "File:Lantern.jpg"])
+            self.assertEqual(m.query_commons_category("Kaminarimon", limit=50, sleep_fn=lambda _: None, depth=2),
+                             ["File:Gate.jpg", "File:Night.jpg", "File:Snow.jpg", "File:Lantern.jpg"])
+            self.assertEqual(len(m.query_commons_category("Kaminarimon", limit=2, sleep_fn=lambda _: None, depth=2)), 2)
+
+    def test_photos_older_than_min_year_and_undated_public_domain_are_refused(self):
+        m = self.mod
+        self.assertIsNone(m.date_rejection(2015, "Public domain", "", min_year=2005))
+        self.assertEqual(m.date_rejection(1914, "Public domain", "", min_year=2005), "before_min_year")
+        self.assertEqual(m.date_rejection(None, "Public domain", "", min_year=2005), "pd_undated")
+        self.assertIsNone(m.date_rejection(None, "CC0", "", min_year=2005))     # CC0 is the author's own photo
+        self.assertIsNone(m.date_rejection(1914, "Public domain", "", min_year=None))
+
     def test_pruning_a_row_never_deletes_a_photo_of_the_shared_store(self):
         review = import_pipeline("photos.photo_catalog_review")
         buf = io.BytesIO()
