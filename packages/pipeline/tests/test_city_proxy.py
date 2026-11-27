@@ -86,6 +86,18 @@ class CityProxyTest(unittest.TestCase):
         self.assertEqual(record['source'], 'model:3102')
         self.assertFalse([n for n in values['NORMAL'] if 0.3 < abs(n[1]) < 0.97])
 
+    def test_a_height_model_per_place_gives_each_building_the_model_of_where_it_stands(self):
+        """plateau_pp passes cell_heights.model_for: a building's height comes from its own mesh cell."""
+        tall = {'heights': {'3102': [40.0] * len(bh.AREA_BINS)}}
+        low = {'heights': {'3102': [8.0] * len(bh.AREA_BINS)}}
+        features = [feature('gsi/w', rect(139.31, 35.75, 40, 25), vt_code=3102),
+                    feature('gsi/e', rect(139.33, 35.75, 40, 25), vt_code=3102)]
+        directory, manifest = self.build(features, height_model=lambda lon, lat: tall if lon < 139.32 else low)
+        tile, _, _ = read(directory, manifest)
+        records = {r['id']: r for r in json.loads((Path(directory) / tile['buildings']).read_text())['buildings']}
+        self.assertGreater(records['gsi/w']['height'], 30.0)
+        self.assertLess(records['gsi/e']['height'], 12.0)
+
     def test_buildings_stand_on_the_ground_and_are_at_least_one_story(self):
         features = [feature('gsi/a', rect(139.32, 35.75, 4, 4), vt_code=3111)]
         directory, manifest = self.build(features, ground=lambda lon, lat: 150.0)

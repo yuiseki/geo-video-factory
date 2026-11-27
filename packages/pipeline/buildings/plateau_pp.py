@@ -142,9 +142,26 @@ def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None
     m["plateau_pp"] = {"version": PLATEAU_PP_VERSION, "baked": True}
 
 
+def cell_models(footprints: list[dict], tileset: str, gsi: Path):
+    """(lon, lat) -> height model of the JIS mesh cell there, calibrated on the PLATEAU buildings and GSI footprints
+    of the whole cells the footprints lie in (cell_heights), so a building's height does not depend on the box."""
+    from buildings import cell_heights
+    from buildings.gsi_footprints import fetch_gsi_buildings
+    cells = cell_heights.cells_of(footprints)
+    if not cells:
+        return cell_heights.model_for({})
+    box = cell_heights.cells_box(cells)
+    try:
+        heights = cell_heights.feature_heights(tileset, box)
+    except ValueError as error:                      # no PLATEAU here: the prior heights
+        if "no leaf content" not in str(error):
+            raise
+        heights = {}
+    return cell_heights.model_for(cell_heights.cell_height_models(cells, heights, fetch_gsi_buildings(box, gsi)))
+
+
 def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path | None = None,
           seed: str = "plateau-pp", gsi_cache: Path | None = None, bake: bool = True) -> dict:
-    from buildings.building_heights import calibrate_height_model, footprint_area_m2
     from buildings.city_proxy import build_city_proxy_tile, wall_hex
     from buildings.gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
     from buildings.plateau_3d import prepare_tiles
@@ -179,12 +196,10 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     for tile in m["tiles"]:
         plateau.update(glb_spatial.extract_glb_feature_heights((out / tile["glb"]).read_bytes(), tile["rtc"], tile["ids"]))
     tree = STRtree([shape(f["geometry"]) for f in footprints])
-    samples, casters = [], {}
+    casters = {}
     for item in plateau.values():
         hits = tree.query(Point(*item["lonlat"]), predicate="within")
         if len(hits):
-            f = footprints[int(hits[0])]
-            samples.append((f["properties"]["vt_code"], footprint_area_m2(f["geometry"]["coordinates"][0]), item["height"]))
             casters[int(hits[0])] = max(casters.get(int(hits[0]), 0.0), item["height"])
     for tile in m["tiles"]:
         tile["facade_colors"] = [wall_hex(str(i), plateau.get(str(i), {}).get("height", 6.0)) for i in tile["ids"]]
@@ -196,7 +211,7 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     m = build_city_proxy_tile(
         footprints, bbox, out, ground=ground, orthophoto=roof, orthophoto_bounds=roof_bounds,
         plateau_centroids=[item["lonlat"] for item in plateau.values()], osm_features=osm,
-        height_model=calibrate_height_model(samples), seed=seed,
+        height_model=cell_models(footprints, tileset, gsi), seed=seed,
         shadow_casters=[(footprints[i], h) for i, h in sorted(casters.items())],
         roof_texture=("roof-photo.jpg", roof_bounds))
     m["removed_buildings"] = removed

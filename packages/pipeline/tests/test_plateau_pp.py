@@ -105,7 +105,7 @@ class CacheDirs(unittest.TestCase):
 class Build(unittest.TestCase):
     """build() end to end with every download and heavy step stubbed: what it calls, and what it writes."""
 
-    def run_build(self, plateau=True, bake=True):
+    def run_build(self, plateau=True, bake=True, footprints=()):
         out = Path(tempfile.mkdtemp()) / "buildings-x"
         out.mkdir()
         (out / "models").mkdir()
@@ -120,6 +120,7 @@ class Build(unittest.TestCase):
                 Path(path).write_bytes(b"jpg")
 
         def proxy(footprints, bbox, out_dir, **kw):
+            self.proxy_kw = kw
             m = json.loads((Path(out_dir) / "manifest.json").read_text())
             for kind in ("city-proxy", "city-shadow"):
                 (Path(out_dir) / "models" / f"{kind}.glb").write_bytes(kind.encode())
@@ -147,7 +148,8 @@ class Build(unittest.TestCase):
                 mock.patch.object(plateau_pp, "fetch_osm_buildings", return_value=[]), \
                 mock.patch("geo.seasonal_ortho.fetch_gsi_ortho_mosaic", self.ortho), \
                 mock.patch("buildings.building_appearance.apply_orthophoto_palette", self.palette), \
-                mock.patch("buildings.gsi_footprints.fetch_gsi_buildings", return_value=[]), \
+                mock.patch("buildings.gsi_footprints.fetch_gsi_buildings", return_value=list(footprints)) as self.gsi, \
+                mock.patch("buildings.cell_heights.feature_heights", return_value=heights) as self.cal, \
                 mock.patch("buildings.gsi_footprints.dem_sampler", return_value=lambda lon, lat: 0.0), \
                 mock.patch("buildings.gsi_footprints.orthophoto_texture", return_value=(Photo(), [139.0, 35.0, 139.01, 35.01])), \
                 mock.patch.object(gs, "extract_glb_feature_heights", return_value=heights), \
@@ -170,6 +172,18 @@ class Build(unittest.TestCase):
         self.assertEqual((out / "models" / "city-shadow.glb").read_bytes(), b"city-shadow")
         self.assertEqual(m["plateau_pp"], {"version": BAKE_VERSION, "baked": True})
         self.assertEqual(m["tiles"][0]["bytes"], len(b"glb-baked"))
+
+    def test_filled_in_heights_are_calibrated_on_the_whole_mesh_cells_of_the_footprints(self):
+        from buildings import cell_heights, jis_mesh
+        ring = [[139.0021, 35.0021], [139.0022, 35.0021], [139.0022, 35.0022], [139.0021, 35.0022], [139.0021, 35.0021]]
+        foot = {"type": "Feature", "id": "gsi/1", "properties": {"vt_code": "3101"},
+                "geometry": {"type": "Polygon", "coordinates": [ring]}}
+        self.run_build(footprints=[foot])
+        cell = jis_mesh.mesh3(139.0021, 35.0021)
+        box = cell_heights.cells_box([cell])
+        self.assertEqual(self.cal.call_args.args[1], box)        # PLATEAU read for the whole cell, not the box
+        self.assertIn(box, [c.args[0] for c in self.gsi.call_args_list])
+        self.assertEqual(list(self.proxy_kw["height_model"].models), [cell])
 
     def test_no_bake_leaves_the_look_to_the_renderer_as_before(self):
         out, m = self.run_build(bake=False)

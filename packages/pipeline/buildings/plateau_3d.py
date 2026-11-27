@@ -260,6 +260,46 @@ def _default_fetch(url: str) -> bytes:
         return response.read()
 
 
+def _parse_tile(raw: bytes, uri: str):
+    """(glb, gml ids, RTC centre, glTF document) of a served tile (b3dm or bare glb)."""
+    if raw[:4] == b'b3dm':
+        parsed = parse_b3dm(raw)
+        glb, ids, rtc = parsed['glb'], extract_gml_ids(parsed['glb'], parsed['batch_table']), parsed['feature_table'].get('RTC_CENTER')
+    elif raw[:4] == b'glTF':
+        glb, ids, rtc = raw, extract_gml_ids(raw), None
+    else:
+        raise ValueError(f'unsupported 3D Tiles content at {uri}: {raw[:4]!r}')
+    document, _, _ = glb_chunks(glb)
+    rtc = rtc if rtc is not None else document.get('extensions', {}).get('CESIUM_RTC', {}).get('center', [0, 0, 0])
+    if not isinstance(rtc, (list, tuple)) or len(rtc) != 3 or any(not isinstance(v, (int, float)) for v in rtc):
+        raise ValueError(f'invalid RTC center in {uri}')
+    return glb, ids, rtc, document
+
+
+def _leaf_items(tileset_url: str, bbox_degrees: list[float], fetch) -> list[dict[str, Any]]:
+    root = json.loads(fetch(tileset_url))
+    def collect(tileset: dict[str, Any], base_url: str, inherited_depth: int = 0):
+        for item in iter_leaf_contents(tileset, bbox_degrees):
+            absolute = urljoin(base_url, item['uri'])
+            if absolute.lower().endswith('.json'):
+                yield from collect(json.loads(fetch(absolute)), absolute, item['depth'] + inherited_depth)
+            else:
+                yield {**item, 'uri': absolute, 'depth': item['depth'] + inherited_depth}
+
+    return sorted({item['uri']: item for item in collect(root, tileset_url)}.values(), key=lambda item: item['uri'])
+
+
+def _cached_fetcher(fetcher, raw_cache):
+    fetch = fetcher or _default_fetch
+    if raw_cache is None and fetcher is None:
+        from shared_cache import plateau_raw_dir
+        raw_cache = plateau_raw_dir()
+    if raw_cache is not None:
+        from shared_cache import cached_fetch
+        fetch = cached_fetch(fetch, raw_cache)
+    return fetch
+
+
 def prepare_tiles(
     tileset_url: str, bbox_degrees: list[float], output_dir: Path, *,
     max_texture_dimension: int = 2048,
@@ -270,47 +310,20 @@ def prepare_tiles(
     The served bytes (tileset JSON and tile content) are kept in raw_cache and read from there next time.
     Without a fetcher, raw_cache defaults to the shared plateau-raw cache (shared_cache), so every
     project and box reuses the same downloads. A fetcher given without raw_cache is called directly.
-    Every tile's textures are limited to max_texture_dimension, wherever it lies: a building comes out the same in
-    every box that holds it (an earlier rule halved the textures of tiles away from the box's centre).
+    Every tile's textures are limited to max_texture_dimension wherever it lies: a building is the same in any box.
     """
     if max_texture_dimension <= 0 or workers <= 0:
         raise ValueError('max texture dimension and workers must be positive')
-    fetch = fetcher or _default_fetch
-    if raw_cache is None and fetcher is None:
-        from shared_cache import plateau_raw_dir
-        raw_cache = plateau_raw_dir()
-    if raw_cache is not None:
-        from shared_cache import cached_fetch
-        fetch = cached_fetch(fetch, raw_cache)
+    fetch = _cached_fetcher(fetcher, raw_cache)
     models_dir = output_dir / 'models'
     models_dir.mkdir(parents=True, exist_ok=True)
-    root = json.loads(fetch(tileset_url))
-
-    def collect(tileset: dict[str, Any], base_url: str, inherited_depth: int = 0):
-        for item in iter_leaf_contents(tileset, bbox_degrees):
-            absolute = urljoin(base_url, item['uri'])
-            if absolute.lower().endswith('.json'):
-                yield from collect(json.loads(fetch(absolute)), absolute, item['depth'] + inherited_depth)
-            else:
-                yield {**item, 'uri': absolute, 'depth': item['depth'] + inherited_depth}
-
-    selected = sorted({item['uri']: item for item in collect(root, tileset_url)}.values(), key=lambda item: item['uri'])
+    selected = _leaf_items(tileset_url, bbox_degrees, fetch)
     if not selected:
         raise ValueError('no leaf content intersects the requested bbox')
 
     def download(item: dict[str, Any]) -> dict[str, Any]:
         raw = fetch(item['uri'])
-        if raw[:4] == b'b3dm':
-            parsed = parse_b3dm(raw)
-            glb, ids, rtc = parsed['glb'], extract_gml_ids(parsed['glb'], parsed['batch_table']), parsed['feature_table'].get('RTC_CENTER')
-        elif raw[:4] == b'glTF':
-            glb, ids, rtc = raw, extract_gml_ids(raw), None
-        else:
-            raise ValueError(f'unsupported 3D Tiles content at {item["uri"]}: {raw[:4]!r}')
-        document, _, _ = glb_chunks(glb)
-        rtc = rtc if rtc is not None else document.get('extensions', {}).get('CESIUM_RTC', {}).get('center', [0, 0, 0])
-        if not isinstance(rtc, (list, tuple)) or len(rtc) != 3 or any(not isinstance(v, (int, float)) for v in rtc):
-            raise ValueError(f'invalid RTC center in {item["uri"]}')
+        glb, ids, rtc, document = _parse_tile(raw, item['uri'])
         model_path = models_dir / f'{hashlib.sha256(item["uri"].encode()).hexdigest()[:20]}.glb'
         limit = max_texture_dimension
         optimized = _resize_glb_textures(glb, limit)

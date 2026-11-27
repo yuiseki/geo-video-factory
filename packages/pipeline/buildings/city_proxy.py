@@ -96,7 +96,7 @@ def build_city_proxy_tile(
     orthophoto: Image.Image | None = None,
     plateau_centroids: list[list[float]] | None = None,
     osm_features: list[dict[str, Any]] | None = None,
-    height_model: dict[str, Any] | None = None,
+    height_model: dict[str, Any] | Callable[[float, float], dict[str, Any]] | None = None,
     seed: str = 'geo-video-factory',
     shadow_casters: list[tuple[dict[str, Any], float]] | None = None,
     roof_texture: tuple[str, list[float]] | None = None,
@@ -120,7 +120,8 @@ def build_city_proxy_tile(
     lon0, lat0 = center
     kx = 111_320.0 * math.cos(math.radians(lat0))
     ky = 110_950.0
-    model = height_model or calibrate_height_model([])
+    # one model, or (lon, lat) -> the model there (cell_heights.model_for: the building's own mesh cell)
+    model_at = height_model if callable(height_model) else (lambda lon, lat, m=height_model or calibrate_height_model([]): m)
     sample_roof = _ortho_sampler(orthophoto, orthophoto_bounds or bbox_degrees)
 
     polygons = [shape(f['geometry']) for f in features]
@@ -161,7 +162,7 @@ def build_city_proxy_tile(
                         props[key] = tags[key]
         outer = feat['geometry']['coordinates'][0]
         area = footprint_area_m2(outer)
-        height, source = estimate_height(props, area, model, identifier)
+        height, source = estimate_height(props, area, model_at(*polygon.centroid.coords[0]), identifier)
         if cap_height(height, area) < height:                  # buildings.plausibility: no needles
             height, source = cap_height(height, area), source + '+capped'
         code = str(props.get('vt_code') or '3101')
@@ -213,7 +214,7 @@ def build_city_proxy_tile(
         model_path = output_dir / 'models' / f'city-proxy-{digest[:20]}.glb'
         model_path.write_bytes(glb)
         sidecar = output_dir / f'city-proxy-{digest[:20]}.buildings.json'
-        sidecar.write_text(json.dumps({'height_model': model, 'buildings': records}, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
+        sidecar.write_text(json.dumps({'height_model': getattr(height_model, 'models', None) or model_at(*center), 'buildings': records}, ensure_ascii=False, separators=(',', ':')) + '\n', encoding='utf-8')
         sources: dict[str, int] = {}
         for record in records:
             key = record['source'].split(':')[0]

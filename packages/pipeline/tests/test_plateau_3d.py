@@ -184,6 +184,11 @@ class Plateau3DTilesTests(unittest.TestCase):
             },
         }
         resources = {'https://tiles.example/root.json': json.dumps(tileset).encode(), 'https://tiles.example/tile.b3dm': b3dm}
+        from buildings.cell_heights import feature_heights
+        heights = feature_heights('https://tiles.example/root.json', [139.75, 35.65, 139.85, 35.75],
+                                             fetcher=lambda url: resources[url])
+        self.assertEqual(list(heights), ['gml-1'])                  # read for calibration, nothing written
+        self.assertAlmostEqual(heights['gml-1']['lonlat'][0], 139.8, places=6)
         with tempfile.TemporaryDirectory() as directory:
             manifest = plateau_3d.prepare_tiles(
                 'https://tiles.example/root.json', [139.75, 35.65, 139.85, 35.75], Path(directory),
