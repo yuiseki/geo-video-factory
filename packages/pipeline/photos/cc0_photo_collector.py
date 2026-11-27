@@ -17,42 +17,17 @@ import time
 from photos import photo_catalog_sources as _sources
 from photos import photo_store
 from photos.photo_catalog_review import (
-    _count_dict,
-    _extract_exif_gps,
-    build_contact_sheets,
-    build_manifest_payload,
-    file_sha256,
-    inspect_image_file,
-    load_existing_dedup_keys,
-    merge_area_manifests,
-    prune_manifest,
+    _count_dict, _extract_exif_gps, build_contact_sheets, build_manifest_payload, file_sha256,
+    inspect_image_file, load_existing_dedup_keys, merge_area_manifests, prune_manifest,
 )
 from photos.photo_catalog_rules import (
-    DISALLOWED_LICENSE_RE,
-    GITLEAKS_HEX32_RE,
-    MONTH_NAMES,
-    NOISE_KEYWORDS,
-    _license_allowed,
-    date_rejection,
-    _score_candidate,
-    classify_season,
-    classify_time_of_day,
-    classify_weather,
-    find_gitleaks_hex32_matches,
-    is_ccby_nosa_or_cc0,
-    is_strict_cc0,
-    is_urban_scene_candidate,
-    parse_datetime,
-    safe_filename,
-    sanitize_hex32_for_gitleaks,
-    select_diverse_candidates,
-    strip_html,
+    DISALLOWED_LICENSE_RE, GITLEAKS_HEX32_RE, MONTH_NAMES, NOISE_KEYWORDS, _license_allowed, date_rejection,
+    _score_candidate, classify_season, classify_time_of_day, classify_weather, find_gitleaks_hex32_matches,
+    is_ccby_nosa_or_cc0, is_strict_cc0, is_urban_scene_candidate, parse_datetime, safe_filename,
+    sanitize_hex32_for_gitleaks, select_diverse_candidates, strip_html,
 )
 from photos.photo_catalog_sources import (
-    USER_AGENT,
-    _retry_wait_seconds,
-    download_bytes_with_retry,
-    fetch_json_with_retry,
+    USER_AGENT, _retry_wait_seconds, download_bytes_with_retry, fetch_json_with_retry,
 )
 
 
@@ -111,12 +86,15 @@ def collect_from_config(
     existing_manifests: list[Path] | None = None,
     append: bool = False,
     license_mode: str | None = None,
+    registration_only: bool = False,
 ) -> dict:
     area = config["area"]
     target_total = int(config.get("target_total") or 60)
     spots = config.get("spots") or []
     max_per_creator_day = int(config.get("max_per_creator_day") or 2)
     eff_license_mode = license_mode or config.get("license_mode") or "cc0"
+    if (eff_license_mode == "registration") != registration_only:     # CC BY / BY-SA only when asked for twice
+        raise ValueError("--license-mode=registration and --registration-only go together (photos/photo_use.py)")
 
     out_photos = Path(out_photos)
     out_manifest = Path(out_manifest)
@@ -297,6 +275,7 @@ def collect_from_config(
             "season": classify_season(blob, month=final_month), "weather": rec["weather"],
             "date": final_date, "coordinates": rec.get("coordinates") or info.get("gps"),
             "exif_preserved": bool(use_original and info.get("exif_datetime")),
+            **({"use": "registration"} if eff_license_mode == "registration" else {}),
         }, "ok"
 
     new_entries: list[dict] = []
@@ -354,7 +333,8 @@ def main(argv: list[str] | None = None) -> int:
     p_col.add_argument("--existing-dir", type=Path, action="append", default=[])
     p_col.add_argument("--existing-manifest", type=Path, action="append", default=[])
     p_col.add_argument("--append", action="store_true")
-    p_col.add_argument("--license-mode", choices=["cc0", "cc0_pd", "ccby_nosa"], default=None)
+    p_col.add_argument("--license-mode", choices=["cc0", "cc0_pd", "ccby_nosa", "registration"], default=None)
+    p_col.add_argument("--registration-only", action="store_true", help="CC BY / BY-SA to place the others, never painted")
 
     p_cs = sub.add_parser("contact-sheet", help="Build contact sheets for visual QA")
     p_cs.add_argument("manifest", type=Path)
@@ -372,11 +352,13 @@ def main(argv: list[str] | None = None) -> int:
 
     args = parser.parse_args(argv)
     if args.cmd == "collect":
+        if (args.license_mode == "registration") != args.registration_only:
+            parser.error("--license-mode=registration and --registration-only go together")
         cfg = json.loads(args.config.read_text(encoding="utf-8"))
         res = collect_from_config(
             cfg, args.out_photos, args.out_manifest,
             existing_dirs=args.existing_dir, existing_manifests=args.existing_manifest,
-            append=args.append, license_mode=args.license_mode,
+            append=args.append, license_mode=args.license_mode, registration_only=args.registration_only,
         )
         print(json.dumps(res["summary"], ensure_ascii=False, indent=2))
         return 0

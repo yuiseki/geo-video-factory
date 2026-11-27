@@ -33,7 +33,8 @@ from pathlib import Path
 
 from PIL import Image
 
-from photos import photo_guard
+from photos import photo_guard, photo_use
+from photos.photo_licences import is_registration_only
 
 SKIP = {"local_path", "status", "bytes"}
 EXT = {"JPEG": ".jpg", "PNG": ".png", "WEBP": ".webp", "GIF": ".gif"}
@@ -182,8 +183,11 @@ def blocked(data: bytes) -> str | None:
 def put(row: dict, data: bytes) -> str:
     """Keep the photo of a manifest row (its bytes as downloaded); returns its ref."""
     ref = photo_ref(row)
-    reason = blocked(data)
-    if reason:
+    if row.get("use") == "registration":        # CC BY / BY-SA that only helps to place the others (photo_use)
+        if not is_registration_only(row.get("license", ""), row.get("license_url", "")):
+            raise BlockedPhoto(f"{ref}: {row.get('license')!r} is not taken for registration")
+        ref = photo_use.registration_ref(ref)
+    elif reason := blocked(data):
         raise BlockedPhoto(f"{ref}: {reason}")
     with Image.open(io.BytesIO(data)) as im:
         width, height, fmt = im.width, im.height, im.format

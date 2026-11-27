@@ -7,7 +7,9 @@ under the host's resource limits):
 
     photos   the area's photo set (areas.json "photos": a tokyo_cc0 manifest of the liminal project) staged from the
              shared photo store as work/<name>/images/<n>_<ref>.jpg symlinks; blocklisted photos left out;
-             --spot=<slug>,... and --time=<day|dusk|night|morning> stage only those (one spot's photos for SfM)
+             --spot=<slug>,... and --time=<day|dusk|night|morning> stage only those (one spot's photos for SfM);
+             --registration also stages <photos>_registration_manifest.json (CC BY / BY-SA that only help SfM place
+             the others; world leaves their cameras out, see photos/photo_use.py)
     tris     the PLATEAU++ v0.1.0 mesh in east/north/up metres around the area's centre (buildings/plateau_mesh.py)
     sfm      pycolmap: SIFT on every image (--threads=6), exhaustive matching, incremental mapping
              -> work/<name>/sfm/sparse/<k>
@@ -59,10 +61,15 @@ def work(name: str) -> Path:
     return d
 
 
-def rows(area: dict, spot: str = "", time_of_day: str = "") -> list[dict]:
-    """The area's photos; with spot (comma separated slugs) or time_of_day, only those."""
-    manifest = LIMINAL / "research" / "tokyo_cc0" / f"{area['photos']}_manifest.json"
-    return [r for r in json.loads(manifest.read_text(encoding="utf-8"))["photos"] if r.get("photo")
+def rows(area: dict, spot: str = "", time_of_day: str = "", registration: bool = False) -> list[dict]:
+    """The area's photos; with spot (comma separated slugs) or time_of_day, only those. registration: also the
+    CC BY / BY-SA photos of <photos>_registration_manifest.json, which only help SfM place the others."""
+    research = LIMINAL / "research" / "tokyo_cc0"
+    found = json.loads((research / f"{area['photos']}_manifest.json").read_text(encoding="utf-8"))["photos"]
+    extra = research / f"{area['photos']}_registration_manifest.json"
+    if registration and extra.exists():
+        found = found + [dict(r, use="registration") for r in json.loads(extra.read_text(encoding="utf-8"))["photos"]]
+    return [r for r in found if r.get("photo")
             and (not spot or r.get("spot_slug") in spot.split(",")) and (not time_of_day or r.get("time_of_day") == time_of_day)]
 
 
@@ -75,7 +82,7 @@ def step_photos(name, area, opts):
     d = work(name) / "images"
     d.mkdir(exist_ok=True)
     index, n = {}, 0
-    for i, row in enumerate(rows(area, opts.get("spot", ""), opts.get("time", ""))):
+    for i, row in enumerate(rows(area, opts.get("spot", ""), opts.get("time", ""), "registration" in opts)):
         src = photo_store.path(row["photo"])
         if src is None:
             print("not in this store:", row["photo"])
@@ -88,7 +95,8 @@ def step_photos(name, area, opts):
         link = d / image_name(i, row["photo"])
         if not link.exists():
             link.symlink_to(src)
-        index[link.name] = {"ref": row["photo"], "coordinates": row.get("coordinates")}
+        index[link.name] = {"ref": row["photo"], "coordinates": row.get("coordinates"),
+                            **({"use": "registration"} if row.get("use") == "registration" else {})}
         n += 1
     (work(name) / "images.json").write_text(json.dumps(index, ensure_ascii=False, indent=1) + "\n")
     print(f"{n} photos staged")
@@ -205,9 +213,22 @@ def step_world(name, area, opts):
         (w / "world").mkdir(exist_ok=True)
         (w / "world" / "cams.json").write_text(json.dumps(cams, indent=1) + "\n")
         print(f"SfM models {summary}: {len(cams)} photos placed one by one are the cameras")
+        drop_registration(w)
         return
     subprocess.run([sys.executable, "-m", "world_model.sfm_to_world", str(largest_model(w)), str(w / "images"),
                     str(w / "tris.npz"), str(w / "world"), *anchors], check=True, cwd=PIPE)
+    drop_registration(w)
+
+
+def drop_registration(w: Path) -> None:
+    """Leave the cameras of the photos that only helped SfM (CC BY / BY-SA, --registration) out of world/cams.json:
+    only CC0/PD photos go on to be painted (build_atlas refuses the others anyway)."""
+    index = json.loads((w / "images.json").read_text())
+    path = w / "world" / "cams.json"
+    cams = json.loads(path.read_text())
+    kept = {k: c for k, c in cams.items() if index.get(Path(c["photo"]).name, {}).get("use") != "registration"}
+    path.write_text(json.dumps(kept, indent=1) + "\n")
+    print(f"{len(cams) - len(kept)} cameras of registration-only photos left out, {len(kept)} go on")
 
 
 def step_layers(name, area, opts):

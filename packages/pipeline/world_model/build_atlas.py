@@ -19,7 +19,7 @@ import numpy as np
 from PIL import Image
 
 import shared_cache
-from photos import photo_guard
+from photos import photo_guard, photo_use
 from photos.photo_store import camera_photo  # a camera names its photo by ref, or by path
 from world_model import atlas_views
 from world_model import surface_atlas as sa
@@ -46,6 +46,17 @@ def pick_cams(cams, only=None, skip=None):
     def holds(key, words):
         return any(w in key for w in words.split(",") if w)
     return {k: c for k, c in cams.items() if (only is None or holds(k, only)) and not (skip and holds(k, skip))}
+
+
+def paint_photo(cam):
+    """The camera's photo, which must be CC0 or public domain: a photo that only helped SfM place the others (CC BY,
+    CC BY-SA; photos/photo_use.py) stops the atlas here rather than being painted."""
+    photo = camera_photo(cam)
+    try:
+        photo_use.check_paint(photo)
+    except photo_use.NotPaintable as e:
+        raise SystemExit(f"not painted: {e}")
+    return photo
 
 
 def people_mask(folder, key, cam, cut=64):
@@ -126,7 +137,7 @@ def main(argv):
         px, py = pc[front, 0] / pc[front, 2] * fx + cx, pc[front, 1] / pc[front, 2] * fy + cy
         if not ((px > 0) & (px < cam["width"]) & (py > 0) & (py < cam["height"])).any():
             continue
-        image = np.asarray(photo_guard.open_photo(camera_photo(cam)).convert("RGB"))
+        image = np.asarray(photo_guard.open_photo(paint_photo(cam)).convert("RGB"))
         if image.shape[1] != cam["width"]:
             raise SystemExit(f"{key}: photo is {image.shape[1]} wide, camera says {cam['width']}")
         depth = sa.depth_buffer(scene, cam)

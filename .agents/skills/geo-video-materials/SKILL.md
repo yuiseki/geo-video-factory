@@ -13,6 +13,7 @@ description: 地理動画に使うイラスト（いらすとや等）、写真�
 - **権利確認・重複監査・EXIF・Gyazo ID 管理**: 見た目の重複判定、CC0 の適用範囲、元画像の EXIF と `photo_geo.py`、`.gitleaks.toml` の許可リスト運用。→ [references/rights-and-audit.md](references/rights-and-audit.md)
 
 - **写真の置き場**: 取った写真はプロジェクトに置かず、共有キャッシュの `tmp/.cache/photos/<取得元>/<ID のハッシュ>/` に一度だけ置く (`packages/pipeline/photos/photo_store.py`、原本と出典の `meta.json`)。プロジェクトのマニフェストは各行の `photo` (`commons:<ファイル名>`、`flickr:<番号>` など) で写真を指す。使用禁止の写真 (`photo_blocklist.tsv`) は置き場に入らない。`python -m photos.catalog_download` は置き場に取り、すでにある写真は取り直さない。
+- **映像に貼る写真は CC0 と PD だけ**: CC BY と CC BY-SA は `--registration-only` を付けたときだけ集め、別の置き場から SfM の位置合わせにだけ使う。判断の理由、中間生成物の扱い、仕組み。→ [references/registration-only-photos.md](references/registration-only-photos.md)
 - **実写真から人と車を消す**: SAM 3.1 で人・看板・車を分けて検出し、看板の中の人を残し、LaMa で塗る。やめた方法とその理由、検品の観点。→ [references/people-removal.md](references/people-removal.md)
 
 ## 関連スキルとの境界

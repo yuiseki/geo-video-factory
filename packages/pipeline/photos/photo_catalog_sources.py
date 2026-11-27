@@ -108,7 +108,7 @@ def query_commons_search(
     fetcher = fetch_fn or fetch_json_with_retry
     titles: list[str] = []
     sroffset = 0
-    if license_mode == "ccby_nosa":
+    if license_mode in ("ccby_nosa", "registration"):
         srsearch = f"{query.strip()} filetype:bitmap"
     elif license_mode == "pd":
         srsearch = f"{query.strip()} haswbstatement:P6216=Q19652 filetype:bitmap"
@@ -315,7 +315,7 @@ def query_openverse(
 ) -> list[dict]:
     fetcher = fetch_fn or fetch_json_with_retry
     records: list[dict] = []
-    lic_param = {"ccby_nosa": "cc0,by", "cc0_pd": "cc0,pdm"}.get(license_mode, "cc0")
+    lic_param = {"ccby_nosa": "cc0,by", "cc0_pd": "cc0,pdm", "registration": "by,by-sa"}.get(license_mode, "cc0")
     allowed_codes = set(lic_param.split(","))
     for page in range(1, pages + 1):
         params = {
@@ -339,7 +339,8 @@ def query_openverse(
             if lic not in allowed_codes:
                 continue
             lic_ver = (r.get("license_version") or "4.0").strip()
-            lic_str = {"cc0": "CC0 1.0", "pdm": "Public Domain Mark 1.0"}.get(lic) or f"CC BY {lic_ver}".strip()
+            lic_str = {"cc0": "CC0 1.0", "pdm": "Public Domain Mark 1.0", "by-sa": f"CC BY-SA {lic_ver}"}.get(lic) \
+                or f"CC BY {lic_ver}".strip()
             src = (r.get("source") or "unknown").strip().lower()
             if skip_rawpixel and src == "rawpixel":
                 continue
@@ -359,7 +360,7 @@ def query_openverse(
                     "license_url": r.get("license_url")
                     or {"cc0": "https://creativecommons.org/publicdomain/zero/1.0/",
                         "pdm": "https://creativecommons.org/publicdomain/mark/1.0/"}.get(lic)
-                    or f"https://creativecommons.org/licenses/by/{lic_ver}/",
+                    or f"https://creativecommons.org/licenses/{lic}/{lic_ver}/",
                     "description": "",
                     "categories": "",
                     "datetime": "",
