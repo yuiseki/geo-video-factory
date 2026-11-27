@@ -96,7 +96,7 @@ def pixel_rays(width, height, f, cx, cy, k, R, step=4):
     return az, el
 
 
-def photo_skyline(az, el, sky, bins=720, el_step=0.25, min_count=4, margin=2):
+def photo_skyline(az, el, sky, bins=720, el_step=0.25, min_count=4, margin=2, veil=None):
     """What a photograph says about the roofline, per azimuth bin, from the rays of its pixels (pixel_rays)
     and a mask of the sky. Three arrays in a dict, nan where a bin says nothing of that kind:
     sky    the roofline: the top of the highest cell that is not sky, with sky above it in the frame
@@ -105,7 +105,10 @@ def photo_skyline(az, el, sky, bins=720, el_step=0.25, min_count=4, margin=2):
     A cell is one azimuth bin wide and el_step high; it counts when it holds min_count pixels, and it is
     sky when at least half of them are. margin is how many sky cells must lie above a roofline.
     Give it tens of pixels per cell: with one or two, the cells that count are scattered and the roofline
-    falls into the holes between them."""
+    falls into the holes between them.
+    veil is a mask of what the model does not hold and roofs hide behind (trees). A bin whose highest cell that is
+    not sky is mostly veil says only that the roofline is at most that high (ceil), and nothing when it leaves the
+    frame at the top."""
     az, el, sky = np.ravel(az), np.ravel(el), np.ravel(sky).astype(bool)
     ne = int(round(180 / el_step))
     ai = np.floor(az / (360 / bins)).astype(np.int64) % bins
@@ -121,9 +124,16 @@ def photo_skyline(az, el, sky, bins=720, el_step=0.25, min_count=4, margin=2):
     edge = (roof + 1) * el_step - 90.0
     cut = top - roof < margin
     nan = np.full(bins, np.nan)
-    return dict(sky=np.where(any_solid & ~cut, edge, nan),
-                floor=np.where(any_solid & cut, edge, nan),
-                ceil=np.where(any_seen & ~any_solid, bottom * el_step - 90.0, nan))
+    out = dict(sky=np.where(any_solid & ~cut, edge, nan),
+               floor=np.where(any_solid & cut, edge, nan),
+               ceil=np.where(any_seen & ~any_solid, bottom * el_step - 90.0, nan))
+    if veil is not None:
+        hid = np.bincount(ai * ne + ei, weights=np.ravel(veil).astype(bool), minlength=bins * ne).reshape(bins, ne)
+        veiled = any_solid & (hid[np.arange(bins), roof] >= 0.5 * count[np.arange(bins), roof])
+        out["ceil"] = np.where(veiled & ~cut, edge, out["ceil"])
+        out["sky"] = np.where(veiled, nan, out["sky"])
+        out["floor"] = np.where(veiled, nan, out["floor"])
+    return out
 
 
 def match_cost(photo, model, tau=5.0, use=("sky", "floor", "ceil"), min_bins=10, empty=0.0, shifts=None, min_sky=0):

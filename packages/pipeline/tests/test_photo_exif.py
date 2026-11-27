@@ -53,7 +53,7 @@ class Camera(unittest.TestCase):
         self.assertAlmostEqual(c["lat"], 35.707262, places=5)
         self.assertEqual(c["gps_method"], "network")
         self.assertEqual(c["search_radius_m"], pe.SEARCH_RADIUS["network"])
-        self.assertGreater(pe.SEARCH_RADIUS["CELLID"], pe.SEARCH_RADIUS["network"])
+        self.assertGreaterEqual(pe.SEARCH_RADIUS["network"], 500.0)     # network fixes measured 190 to 360 m off
 
     def test_a_photo_without_a_position_says_so(self):
         with self.assertRaises(ValueError):

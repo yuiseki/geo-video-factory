@@ -115,6 +115,28 @@ class PhotoSkyline(unittest.TestCase):
         self.assertTrue(np.isnan(at(got["floor"], 90.25)))
         self.assertTrue(np.isnan(at(got["ceil"], 90.25)))
 
+    def test_a_tree_against_the_sky_says_only_that_no_roof_shows_above_it(self):
+        """A tree is not in the model. Where the highest thing under the sky is a tree, the roofline is hidden behind
+        it: at most as high as the tree's top, and nothing more. A tree that leaves the frame says nothing."""
+        az, el = self.grid()
+        rel = (az + 180) % 360 - 180
+        top = np.where(rel < -10, 20.0, np.where(rel < 10, 100.0, 25.0))
+        sky = el > top
+        tree = ((rel < -20) & (el > 12) & (el <= 20)) | ((rel >= 0) & (rel < 10) & (el > 30)) | ((rel >= 15) & (el <= 25))
+        plain = sm.photo_skyline(az, el, sky, bins=BINS)
+        got = sm.photo_skyline(az, el, sky, bins=BINS, veil=tree)
+        self.assertTrue(np.isnan(at(got["sky"], 335.25)))                  # a tree tops the roof here
+        self.assertAlmostEqual(at(got["ceil"], 335.25), 20.0, delta=0.26)
+        self.assertAlmostEqual(at(got["sky"], 345.25), 20.0, delta=0.26)   # a bare roof beside it, as before
+        self.assertTrue(np.isnan(at(got["floor"], 5.25)))                  # the tree leaves the frame: nothing said
+        self.assertTrue(np.isnan(at(got["ceil"], 5.25)))
+        self.assertAlmostEqual(at(got["floor"], 355.25), 40.0, delta=0.26)  # the wall leaves the frame, as before
+        self.assertAlmostEqual(at(got["ceil"], 20.25), 25.0, delta=0.26)
+        self.assertAlmostEqual(at(got["sky"], 12.25), 25.0, delta=0.26)
+        none = sm.photo_skyline(az, el, sky, bins=BINS, veil=np.zeros_like(sky))
+        for kind in plain:
+            np.testing.assert_array_equal(none[kind], plain[kind])
+
     def test_a_speck_in_the_sky_does_not_lift_the_skyline(self):
         az, el = self.grid()
         sky = el > 20.0

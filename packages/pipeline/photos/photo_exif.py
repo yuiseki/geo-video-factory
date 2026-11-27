@@ -12,7 +12,8 @@ import sys
 
 from PIL import Image
 
-SEARCH_RADIUS = {"GPS": 30.0, "FUSED": 50.0, "network": 80.0, "CELLID": 300.0, None: 80.0}
+# network: three photos taken in a garden were 190, 310 and 360 m from where their network fix put them
+SEARCH_RADIUS = {"GPS": 30.0, "FUSED": 50.0, "network": 500.0, "CELLID": 300.0, None: 80.0}
 FULL_FRAME_DIAGONAL = math.hypot(36.0, 24.0)
 
 

@@ -7,11 +7,15 @@ looking, and refused rather than guessed when a gate does not pass.
                   for the whole box (OVERPASS_URL; tiles made before are not made again).
    sky.json       which sky photo_place reads: clear blue or overcast white, whichever finds more (night only when
                   neither does); refused here when none finds 2 % of the picture.
+   trees/         world_model/tree_mask.py, run with --vision-python: where trees stand. PLATEAU holds none, so a
+                  crown against the sky says only that the roofline is no higher than it.
 3. place/         geo/photo_place.py: the skyline searched over every heading, pitch, roll and field of view, on an
                   8 m grid and then a 2 m grid around the best eight places, within 40 m of the GPS fix first and
-                  wider (100 m, then as far as the EXIF says the fix may be off) only while the best place is not
-                  alone or lies on the rim. Gate: no place 10 m or more away fits within 1 % (alone).
-4. target.json    the PLATEAU building the coarse camera sees most of (by its visible pixels).
+                  wider (100 m, 250 m, then as far as the EXIF says the fix may be off; 16 m grid beyond 250 m) only
+                  while the best place is not alone, lies on the rim or fits worse than 1.0. Gate: no place 10 m or
+                  more away fits within 1 % (alone).
+4. target.json    the PLATEAU building the coarse camera sees most of (by its visible pixels), after the box around
+                  the place found is built (a fix that was far off leaves the camera at the first box's edge).
 5. masks/         world_model/sam_mask.py, run with --vision-python: SAM's three masks of that building, prompted by
                   its middle and box as the coarse camera draws it.
 6. solve.json     world_model/silhouette_pose.py from the coarse camera. Gates: the best start's median miss of the
@@ -99,15 +103,30 @@ def step_sky(photo, work):
     return _json(f, {"kind": kind, "share": share})
 
 
-SEARCH_RADII = (40.0, 100.0)    # metres searched first; widened only when the answer is not decided inside
+SEARCH_RADII = (40.0, 100.0, 250.0)    # metres searched first; widened only when the answer is not decided inside
+# A place that fits worse than this is not taken for decided. Right places cost 0.48 to 0.91 in six photos; the best
+# place of a search that did not reach the camera cost 1.09 to 2.03.
+PLACE_COST = 1.0
+WIDE_GRID = 16.0                # the coarse grid beyond 250 m: far towers place a photo, and they move slowly
 # The fine search stays photo_place's +-4 m: at +-2 m the Ueno photo's best (0.640) lay 3 m outside and a worse one
 # (0.649, 1.1 m away) was taken, to save 20 s.
 COARSE_GRID = 8.0
 
 
-def step_place(photo, tris_path, ex, sky, work):
+def step_trees(photo, work, vision_python):
+    """The mask of the photo's trees (world_model/tree_mask.py), made once."""
+    f = work / "trees" / "tree.png"
+    if not f.exists():
+        if not vision_python:
+            raise SystemExit("the tree mask needs --vision-python=<a python with torch and transformers>")
+        subprocess.run([vision_python, "-m", "world_model.tree_mask", f"--photo={photo}", f"--out={f.parent}"],
+                       check=True, cwd=Path(__file__).resolve().parents[1])
+    return f
+
+
+def step_place(photo, tris_path, ex, sky, work, veil=None):
     """The skyline search, from a small radius outwards: it stops at the first radius whose answer is alone and does
-    not lie on the radius's rim (within one coarse step), else widens, up to how far the EXIF says the fix may be off.
+    not lie on the radius's rim (within one coarse step) and fits (PLACE_COST), else widens, up to how far the EXIF says the fix may be off.
     A photo whose GPS is good is searched over 40 m, not the 300 m a cell-tower label asks for."""
     import shutil
     from geo.photo_place import place
@@ -118,22 +137,24 @@ def step_place(photo, tris_path, ex, sky, work):
     tried = []
     for radius in [r for r in SEARCH_RADII if r < limit] + [limit]:
         out = work / f"place_{radius:g}m"
-        res = _place_once(place, photo, tris_path, ex, sky, out, radius)
-        tried.append({"radius": radius, "alone": res["alone"], "moved_m": round(res["moved_m"], 1)})
-        if res["alone"] and res["moved_m"] <= radius - COARSE_GRID:
+        step = COARSE_GRID if radius <= SEARCH_RADII[-1] else WIDE_GRID
+        res = _place_once(place, photo, tris_path, ex, sky, out, radius, veil=veil, coarse_grid=step)
+        tried.append({"radius": radius, "alone": res["alone"], "moved_m": round(res["moved_m"], 1),
+                      "cost": round(res["best"]["cost"], 3)})
+        if res["alone"] and res["moved_m"] <= radius - step and res["best"]["cost"] <= PLACE_COST:
             break
     shutil.copytree(out, work / "place")
     res.update(radius=radius, tried=tried)
     return _json(f, res)
 
 
-def _place_once(place, photo, tris_path, ex, sky, out, radius):
+def _place_once(place, photo, tris_path, ex, sky, out, radius, veil=None, coarse_grid=COARSE_GRID):
     if ex["fx"] is not None:
         hfov, fov_range = ex["hfov_deg"], "0.94:1.06:3"
     else:                                     # no 35 mm equivalent: phones' main cameras, 50 to 80 degrees across
         hfov, fov_range = 65.0, "0.77:1.23:7"
     return place(photo, tris_path, out, 0.0, 0.0, hfov, radius=radius,
-                 grid=2.0, coarse_grid=COARSE_GRID, fov_range=fov_range, min_sky=40, sky=sky,
+                 grid=2.0, coarse_grid=coarse_grid, fov_range=fov_range, min_sky=40, sky=sky, veil=veil,
                  log=lambda s: print(s, flush=True))
 
 
@@ -141,6 +162,21 @@ def _coarse_camera(work):
     cams = _json(work / "place" / "cams.json")
     c = next(iter(cams.values()))
     return {k: c[k] for k in ("eye", "Rw", "params", "width", "height")}
+
+
+SCENE_RADIUS = 450.0       # target and solve read the buildings within 400 m of the camera
+
+
+def step_scene(ex, cam, work):
+    """PLATEAU around the camera found, built before anything reads it: the first box is around the fix."""
+    from buildings import plateau_pp
+    f = work / "scene.json"
+    if not f.exists():
+        kx, ky = 111320 * math.cos(math.radians(ex["lat"])), 110950
+        lon, lat, r = ex["lon"] + cam["eye"][0] / kx, ex["lat"] + cam["eye"][1] / ky, SCENE_RADIUS
+        box = [lon - r / kx, lat - r / ky, lon + r / kx, lat + r / ky]
+        plateau_pp.cached(box)
+        _json(f, {"box": box})
 
 
 def step_target(cam, ex, work, radius=250.0, scale=0.125):
@@ -239,11 +275,13 @@ def main(argv):
         print("refused: no sky to read a roofline from", sky["share"]); raise SystemExit(1)
     took("exif and sky")
     tris = step_tris(ex, work); took("tris")
-    place = step_place(photo, tris, ex, sky["kind"], work); took("place")
+    trees = step_trees(photo, work, opts.get("vision-python")); took("trees")
+    place = step_place(photo, tris, ex, sky["kind"], work, veil=trees); took("place")
     if not place["alone"]:
         _json(work / "solve.json", {"verdict": "refused: alone", "place": place["best"]})
         print("refused: the skyline does not decide the place"); raise SystemExit(1)
     cam = _coarse_camera(work)
+    step_scene(ex, cam, work); took("scene")
     target = step_target(cam, ex, work); took("target")
     masks = step_masks(photo, target, work, opts.get("vision-python")); took("masks")
     out, tgt = step_solve(cam, ex, target, masks, place, work); took("solve")

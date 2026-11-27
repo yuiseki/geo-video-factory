@@ -182,6 +182,17 @@ class SearchTests(unittest.TestCase):
         np.testing.assert_array_equal(fresh[1], given[1])
         np.testing.assert_array_equal(fresh[2], given[2])
 
+    def test_a_tree_before_the_roofs_costs_nothing_once_it_is_known_to_be_a_tree(self):
+        h, w = self.sky.shape
+        tree = np.zeros((h, w), bool)
+        tree[: h * 2 // 3, w // 5: w // 2] = True          # a crown that hides a third of the roofline
+        sky = self.sky & ~tree
+        blind, _, _ = pp.search(self.edges, sky, self.places, self.poses, bins=BINS, workers=None)
+        told, _, _ = pp.search(self.edges, sky, self.places, self.poses, bins=BINS, workers=None, veil=tree)
+        self.assertLess(told["cost"], 0.5 * blind["cost"])
+        self.assertLessEqual(np.hypot(told["east"] - 4, told["north"] + 6), 2.0)
+        self.assertLessEqual(abs(told["heading"] - 8.0), 1.0)
+
     def test_headings_outside_the_window_are_not_considered(self):
         best, cost, turn = pp.search(self.edges, self.sky, self.places, self.poses, headings=(90.0, 180.0),
                                      bins=BINS, workers=None)

@@ -78,6 +78,83 @@ class Tris(unittest.TestCase):
         self.assertAlmostEqual((w + e) / 2, 139.7); self.assertAlmostEqual((s + n) / 2, 35.6)
 
 
+class Place(unittest.TestCase):
+    """The search widens while its answer is not decided: not alone, on the rim, or fitting badly."""
+
+    def place(self, by_radius, limit):
+        import tempfile
+        from unittest import mock
+        calls = []
+
+        def once(place, photo, tris, ex, sky, out, radius, veil=None, coarse_grid=None):
+            calls.append((radius, veil, coarse_grid)); Path(out).mkdir()
+            cost, alone, moved = by_radius[radius]
+            return {"best": {"cost": cost}, "alone": alone, "moved_m": moved}
+        with tempfile.TemporaryDirectory() as d, mock.patch.object(ps, "_place_once", once):
+            res = ps.step_place("p.jpg", "tris.npz", {"search_radius_m": limit}, "blue", Path(d), veil="tree.png")
+        return res, calls
+
+    def test_a_good_fix_is_searched_once(self):
+        res, calls = self.place({40.0: (0.6, True, 18.0)}, 300.0)
+        self.assertEqual([c[0] for c in calls], [40.0])
+        self.assertEqual(res["radius"], 40.0)
+        self.assertEqual(calls[0][1], "tree.png")
+
+    def test_an_answer_that_fits_badly_is_not_taken_for_decided(self):
+        res, calls = self.place({40.0: (2.0, True, 10.0), 100.0: (1.2, True, 50.0), 250.0: (0.7, True, 190.0)}, 500.0)
+        self.assertEqual([c[0] for c in calls], [40.0, 100.0, 250.0])
+        self.assertEqual(res["best"]["cost"], 0.7)
+        self.assertEqual([t["cost"] for t in res["tried"]], [2.0, 1.2, 0.7])
+
+    def test_an_answer_on_the_rim_or_not_alone_widens_up_to_the_limit(self):
+        res, calls = self.place({40.0: (0.5, True, 38.0), 80.0: (0.5, False, 20.0)}, 80.0)
+        self.assertEqual([c[0] for c in calls], [40.0, 80.0])
+
+    def test_a_wide_search_steps_coarser(self):
+        _, calls = self.place({r: (2.0, True, 1.0) for r in (40.0, 100.0, 250.0, 500.0)}, 500.0)
+        self.assertEqual([c[2] for c in calls], [8.0, 8.0, 8.0, 16.0])
+
+
+class Trees(unittest.TestCase):
+    def test_the_tree_mask_is_made_once_by_the_vision_python(self):
+        import tempfile
+        from unittest import mock
+        ran = []
+
+        def run(cmd, **kw):
+            ran.append(cmd)
+            out = Path(next(a for a in cmd if a.startswith("--out=")).split("=", 1)[1]); out.mkdir()
+            (out / "tree.png").write_bytes(b"png")
+        with tempfile.TemporaryDirectory() as d, mock.patch("subprocess.run", run):
+            f = ps.step_trees("p.jpg", Path(d), "vpython")
+            self.assertEqual(f, Path(d) / "trees" / "tree.png")
+            self.assertEqual(ps.step_trees("p.jpg", Path(d), "vpython"), f)
+        self.assertEqual(len(ran), 1)
+        self.assertEqual(ran[0][:3], ["vpython", "-m", "world_model.tree_mask"])
+        self.assertIn("--photo=p.jpg", ran[0])
+
+    def test_without_a_vision_python_it_stops(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d, self.assertRaises(SystemExit):
+            ps.step_trees("p.jpg", Path(d), None)
+
+
+class Scene(unittest.TestCase):
+    def test_the_box_around_the_place_found_is_built_before_the_building_is_read(self):
+        """A fix that was 360 m off puts the camera where the first box has no buildings behind it."""
+        import tempfile
+        from unittest import mock
+        asked = []
+        ex = {"lon": 139.7, "lat": 35.6}
+        with tempfile.TemporaryDirectory() as d, mock.patch("buildings.plateau_pp.cached", lambda box: asked.append(box)):
+            ps.step_scene(ex, {"eye": [360.0, -70.0, 3.0]}, Path(d))
+            ps.step_scene(ex, {"eye": [360.0, -70.0, 3.0]}, Path(d))
+        self.assertEqual(len(asked), 1)
+        w, s, e, n = asked[0]
+        self.assertAlmostEqual(((s + n) / 2 - 35.6) * 110950, -70.0, places=3)
+        self.assertAlmostEqual((n - s) * 110950, 2 * ps.SCENE_RADIUS, places=3)
+
+
 class Fetch(unittest.TestCase):
     def test_a_photo_given_by_its_address_is_fetched_once_into_the_work_directory(self):
         import tempfile

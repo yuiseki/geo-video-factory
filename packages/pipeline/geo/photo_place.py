@@ -93,13 +93,13 @@ def camera(heading, pitch, roll):
     return np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]]) @ level
 
 
-def said(sky, pitch, roll, fov, bins=BINS):
+def said(sky, pitch, roll, fov, bins=BINS, veil=None):
     """What the picture whose sky mask this is says about the roofline when it looks north with this pitch, roll and
-    horizontal field of view."""
+    horizontal field of view. veil: the mask of what stands before the roofs and is not in the model (trees)."""
     h, w = sky.shape
     f = w / 2 / np.tan(np.radians(fov) / 2)
     az, el = sm.pixel_rays(w, h, f, w / 2, h / 2, 0.0, camera(0.0, pitch, roll), step=1)
-    return sm.photo_skyline(az, el, sky, bins=bins)
+    return sm.photo_skyline(az, el, sky, bins=bins, veil=veil)
 
 
 def said_corners(gray, sky, pitch, roll, fov, bins=BINS):
@@ -120,13 +120,13 @@ def _one_place_corners(p):
 
 
 def _says(q):
-    return said(_STATE["sky"], *q, bins=_STATE["bins"])
+    return said(_STATE["sky"], *q, bins=_STATE["bins"], veil=_STATE["veil"])
 
 
-def picture_says(sky, poses, bins=BINS, workers=None):
+def picture_says(sky, poses, bins=BINS, workers=None, veil=None):
     """said() for every pose: what search() reads from the picture, to give it as `told` when several searches go
     through the same poses."""
-    _STATE.update(sky=np.asarray(sky, bool), bins=bins)
+    _STATE.update(sky=np.asarray(sky, bool), bins=bins, veil=veil)
     try:
         return _map(_says, poses, workers, None)
     finally:
@@ -136,7 +136,7 @@ def picture_says(sky, poses, bins=BINS, workers=None):
 def _one_pose(iq):
     i, q = iq
     bins, headings, model = _STATE["bins"], _STATE["headings"], _STATE["model"]
-    told = _STATE["told"][i] if _STATE["told"] else said(_STATE["sky"], *q, bins=bins)
+    told = _STATE["told"][i] if _STATE["told"] else said(_STATE["sky"], *q, bins=bins, veil=_STATE["veil"])
     cost = sm.match_cost(told, model, tau=_STATE["tau"], min_sky=_STATE["min_sky"])
     corners = _STATE["corners"]
     if corners:      # the corners add to the roofline, and place alone a picture whose roofline says too little
@@ -160,7 +160,7 @@ def _map(func, items, workers, chunksize):
 
 
 def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers=(8, 6), min_sky=0, corners=None,
-           told=None):
+           told=None, veil=None):
     """Every place (n, 3) against every pose (pitch, roll, hfov) and every turn about the vertical.
     Returns the best as a dict, and two arrays (poses, places): the cost of the best turn, and that turn in bins.
     workers is the number of processes for the model's rooflines and for the poses; None works in this process.
@@ -168,7 +168,7 @@ def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers
     adds weight x the corner cost (0..2) to the roofline's, and stands in for it where the roofline says too little."""
     at_places, at_poses = workers or (1, 1)
     _STATE.update(edges=edges, sky=np.asarray(sky, bool), bins=bins, tau=tau, headings=headings, model=None,
-                  min_sky=min_sky, corners=corners, model_c=None, told=told)
+                  min_sky=min_sky, corners=corners, model_c=None, told=told, veil=veil)
     try:
         _STATE["model"] = np.stack(_map(_one_place, places, at_places, 32))
         if corners:
@@ -272,8 +272,9 @@ def cam_entry(photo_path, size, best):
 def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1.6, ground=None, pitch="0:30:2",
           roll="-2:2:2", fov_range="0.94:1.06:3", key=None, mesh_radius=600.0, sky="blue", dark_below=45.0,
           heading=None, work_w=WORK_W, bins=BINS, workers=(8, 6), fine_half=4.0, fine_roll=2.0, fine_fov=5, log=print,
-          min_sky=0, corners=0.0, coarse_grid=None, seeds=8, coarse_bins=BINS):
-    """Search the pose of one photo and write the files named at the top into `out`. Returns what result.json holds."""
+          min_sky=0, corners=0.0, coarse_grid=None, seeds=8, coarse_bins=BINS, veil=None):
+    """Search the pose of one photo and write the files named at the top into `out`. Returns what result.json holds.
+    veil: a mask picture of the photo, white where trees stand (photo_skyline's veil); mask.jpg shows it in green."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     with np.load(tris_path) as data:
@@ -290,8 +291,12 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     mask = sky_mask(rgb, sky, dark_below)
     shown = rgb.copy()
     shown[mask] = (shown[mask] * 0.4 + np.array([255, 0, 255]) * 0.6).astype(np.uint8)
+    if veil is not None:
+        with Image.open(veil) as opened:
+            veil = (np.asarray(opened.convert("L").resize(mask.shape[::-1])) > 127) & ~mask
+        shown[veil] = (shown[veil] * 0.4 + np.array([0, 255, 0]) * 0.6).astype(np.uint8)
     Image.fromarray(shown).save(out / "mask.jpg", quality=85)
-    log(f"sky {mask.mean():.0%} of the picture")
+    log(f"sky {mask.mean():.0%} of the picture" + ("" if veil is None else f", trees {veil.mean():.0%}"))
 
     by_corners = None
     if corners > 0:      # corner_match: the vertical corners, seen 3 m above the eye
@@ -303,10 +308,10 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     if coarse_grid:      # every pose on a coarse grid first, then the grid only around the best few places
         t0 = time.time()
         if coarse_bins == bins and not by_corners:      # both searches read the picture at the same poses: once
-            told = picture_says(mask, poses, bins, at_poses)
+            told = picture_says(mask, poses, bins, at_poses, veil)
         places, xs, ys = grid_places(x0, y0, radius, coarse_grid, ground + eye)
         _, cost1, _ = search(seen, mask, places, poses, heading, coarse_bins, workers=workers, min_sky=int(min_sky),
-                             corners=by_corners, told=told)
+                             corners=by_corners, told=told, veil=veil)
         log(f"coarse grid: {len(places)} places x {len(poses)} poses at {360 / coarse_bins:g} degrees, "
             f"{time.time() - t0:.0f} s")
         places = seeded_places(places, np.nanmin(cost1, axis=0), seeds, coarse_grid, grid, x0, y0, radius)
@@ -315,7 +320,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
         places, xs, ys = grid_places(x0, y0, radius, grid, ground + eye)
     t0 = time.time()
     coarse, cost, turn = search(seen, mask, places, poses, heading, bins, workers=workers, min_sky=int(min_sky),
-                                corners=by_corners, told=told)
+                                corners=by_corners, told=told, veil=veil)
     log(describe("coarse", coarse, places, poses) + f"  ({time.time() - t0:.0f} s)")
     others = rivals(places, poses, cost, turn, bins)
     for r in others:
@@ -328,7 +333,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     fine_places, fine_poses = fine_space(coarse, half=fine_half, roll=fine_roll, fov=fine_fov)
     t0 = time.time()
     best, _, _ = search(seen, mask, fine_places, fine_poses, heading, bins, workers=workers, min_sky=int(min_sky),
-                        corners=by_corners)
+                        corners=by_corners, veil=veil)
     log(describe("fine", best, fine_places, fine_poses) + f"  ({time.time() - t0:.0f} s)")
 
     overlay(full, edges, best, bins).save(out / "overlay.jpg", quality=88)
