@@ -73,5 +73,28 @@ class Choosing(unittest.TestCase):
         self.assertFalse(sim3.plausible((60.0, np.eye(3), np.zeros(3)), 30.0))
 
 
+class FromPositions(unittest.TestCase):
+    """from_positions: GPS gives where the photos were taken, not which way they looked. Photos are held upright, so
+    the cameras' mean up is the world's up; the rest (scale, heading, shift) comes from the centres."""
+
+    def test_upright_cameras_and_their_positions_give_the_similarity(self):
+        from scipy.spatial.transform import Rotation
+        rng = np.random.default_rng(3)
+        world_c = np.c_[rng.uniform(-20, 20, (12, 2)), np.full(12, 1.5)]
+        world_r = []                                      # world -> camera, camera y down, looking level
+        for yaw in rng.uniform(0, 360, 12):
+            look = Rotation.from_euler("z", -yaw, degrees=True).as_matrix()
+            base = np.array([[1, 0, 0], [0, 0, -1], [0, 1, 0]], float)   # x east, y down, z north
+            world_r.append(base @ look.T)
+        s_true, a_true = 0.25, Rotation.from_euler("xyz", [30, -50, 120], degrees=True).as_matrix()
+        t_true = np.array([5.0, -3.0, 2.0])
+        sfm_c = [(a_true.T @ (c - t_true)) / s_true for c in world_c]     # world = s A sfm + t
+        sfm_r = [r @ a_true for r in world_r]
+        s, a, t = sim3.from_positions(sfm_r, sfm_c, world_c[:, :2], 1.5)
+        got = np.array([s * a @ c + t for c in sfm_c])
+        self.assertLess(np.abs(got - world_c).max(), 1e-6)
+        self.assertAlmostEqual(s, s_true, places=6)
+
+
 if __name__ == "__main__":
     unittest.main()

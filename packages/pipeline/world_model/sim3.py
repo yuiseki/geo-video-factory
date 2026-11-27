@@ -48,6 +48,33 @@ def from_anchors(sfm, world):
     return s, A, t
 
 
+def from_positions(sfm_r, sfm_c, world_xy, world_z):
+    """world = s A sfm + t from where the photos stood (GPS: world_xy, metres; world_z, the eye height) and their
+    SfM rotations (world -> camera, camera y down), without knowing which way they looked: photos are held upright,
+    so the cameras' mean up is the world's up, and the scale, heading and shift come from the centres (2D least
+    squares, Umeyama)."""
+    rs = [np.asarray(r, float) for r in sfm_r]
+    cs = np.asarray(sfm_c, float)
+    up = np.mean([-r[1] for r in rs], axis=0)
+    up /= np.linalg.norm(up)
+    q = Rotation.align_vectors([[0.0, 0.0, 1.0]], [up])[0].as_matrix()     # the SfM's up onto the world's z
+    p = cs @ q.T
+    a2, b2 = p[:, :2], np.asarray(world_xy, float)
+    ma, mb = a2.mean(axis=0), b2.mean(axis=0)
+    xa, xb = a2 - ma, b2 - mb
+    u, sv, vt = np.linalg.svd(xb.T @ xa)
+    d = np.sign(np.linalg.det(u @ vt))
+    r2 = u @ np.diag([1.0, d]) @ vt
+    s = float((sv * [1.0, d]).sum() / (xa ** 2).sum())
+    rz = np.eye(3)
+    rz[:2, :2] = r2
+    a = rz @ q
+    t = np.zeros(3)
+    t[:2] = mb - s * r2 @ ma
+    t[2] = float(world_z) - s * float(np.mean(p[:, 2]))
+    return s, a, t
+
+
 def sample_surface(tris, spacing=0.5, seed=0):
     """Points spread over the triangles (about one per spacing^2) and their normals."""
     tris = np.asarray(tris, float)
