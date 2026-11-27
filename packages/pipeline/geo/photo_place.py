@@ -36,6 +36,7 @@ if str(_Path(__file__).resolve().parents[1]) not in _sys.path:
 import json
 import multiprocessing
 import sys
+import time
 from itertools import product
 from pathlib import Path
 
@@ -45,6 +46,7 @@ from scipy import ndimage
 
 from geo import corner_match as cm
 from geo import skyline_match as sm
+from geo.place_grid import fine_space, grid_places, seeded_places  # noqa: F401  (kept here for callers)
 
 BINS, TAU, WORK_W = 720, 5.0, 1300
 SKIES = ("blue", "bright", "dark")
@@ -174,15 +176,6 @@ def describe(tag, best, places, poses):
             f"roll {best['roll']:.1f}, hfov {best['hfov']:.1f}")
 
 
-def grid_places(x0, y0, radius, step, z):
-    """Standing points on a square grid around (x0, y0), all at the height z: (n, 3), east running fastest, and the
-    grid's east and north values."""
-    xs = np.arange(x0 - radius, x0 + radius + step / 2, step)
-    ys = np.arange(y0 - radius, y0 + radius + step / 2, step)
-    gy, gx = np.meshgrid(ys, xs, indexing="ij")
-    return np.stack([gx.ravel(), gy.ravel(), np.full(gx.size, float(z))], 1), xs, ys
-
-
 def ground_level(tris, x0, y0, radius=250.0):
     """The height of the ground near a point: the low end (2nd percentile) of the model within the radius."""
     ctr = tris.mean(1)
@@ -218,17 +211,6 @@ def alone(others, tie=0.01):
         return False
     best = others[0]["cost"]
     return others[1]["cost"] > best + tie * max(best, 1e-9)
-
-
-def fine_space(coarse, half=4.0, step=0.5, angle=2.0, roll=2.0, fov=5):
-    """The places and poses of the second search: half a metre and half a degree around the coarse answer, and `fov`
-    fields of view within 4 % of it."""
-    places, _, _ = grid_places(coarse["east"], coarse["north"], half, step, coarse["up"])
-    scales = np.linspace(0.96, 1.04, fov) if fov > 1 else np.array([1.0])
-    poses = list(product(np.arange(coarse["pitch"] - angle, coarse["pitch"] + angle + 0.01, 0.5),
-                         np.arange(coarse["roll"] - roll, coarse["roll"] + roll + 0.01, 0.5),
-                         coarse["hfov"] * scales))
-    return places, poses
 
 
 RAMP = np.array([[253, 231, 37], [33, 145, 140], [68, 1, 84]], float)  # low cost to high
@@ -305,7 +287,7 @@ def cam_entry(photo_path, size, best):
 def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1.6, ground=None, pitch="0:30:2",
           roll="-2:2:2", fov_range="0.94:1.06:3", key=None, mesh_radius=600.0, sky="blue", dark_below=45.0,
           heading=None, work_w=WORK_W, bins=BINS, workers=(8, 6), fine_half=4.0, fine_roll=2.0, fine_fov=5, log=print,
-          min_sky=0, corners=0.0):
+          min_sky=0, corners=0.0, coarse_grid=None, seeds=8, coarse_bins=BINS):
     """Search the pose of one photo and write the files named at the top into `out`. Returns what result.json holds."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
@@ -329,22 +311,35 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     if corners > 0:      # corner_match: the vertical corners, seen 3 m above the eye
         by_corners = dict(prep=cm.prepare(tris, ground + eye + 3.0), gray=rgb.astype(float).mean(-1), weight=corners)
     lo, hi, n = fov_range.split(":")
-    places, xs, ys = grid_places(x0, y0, radius, grid, ground + eye)
     poses = list(product(span(pitch), span(roll), hfov * np.linspace(float(lo), float(hi), int(n))))
+    if coarse_grid:      # every pose on a coarse grid first, then the grid only around the best few places
+        t0 = time.time()
+        places, xs, ys = grid_places(x0, y0, radius, coarse_grid, ground + eye)
+        _, cost1, _ = search(edges, mask, places, poses, heading, coarse_bins, workers=workers, min_sky=int(min_sky),
+                             corners=by_corners)
+        log(f"coarse grid: {len(places)} places x {len(poses)} poses at {360 / coarse_bins:g} degrees, "
+            f"{time.time() - t0:.0f} s")
+        places = seeded_places(places, np.nanmin(cost1, axis=0), seeds, coarse_grid, grid, x0, y0, radius)
+        log(f"seeds: {seeds} places of {len(cost1[0])} on the {coarse_grid:g} m grid -> {len(places)} places")
+    else:
+        places, xs, ys = grid_places(x0, y0, radius, grid, ground + eye)
+    t0 = time.time()
     coarse, cost, turn = search(edges, mask, places, poses, heading, bins, workers=workers, min_sky=int(min_sky),
                                 corners=by_corners)
-    log(describe("coarse", coarse, places, poses))
+    log(describe("coarse", coarse, places, poses) + f"  ({time.time() - t0:.0f} s)")
     others = rivals(places, poses, cost, turn, bins)
     for r in others:
         log(f"  place {r['east']:7.1f} {r['north']:7.1f}  cost {r['cost']:.3f}  heading {r['heading']:.1f}  "
             f"pitch {r['pitch']:.0f}  hfov {r['hfov']:.1f}")
-    costmap(np.nanmin(cost, axis=0), xs, ys, tris, ground, (x0, y0), (coarse["east"], coarse["north"])).save(
-        out / "costmap.png")
+    if not coarse_grid:
+        costmap(np.nanmin(cost, axis=0), xs, ys, tris, ground, (x0, y0), (coarse["east"], coarse["north"])).save(
+            out / "costmap.png")
 
     fine_places, fine_poses = fine_space(coarse, half=fine_half, roll=fine_roll, fov=fine_fov)
+    t0 = time.time()
     best, _, _ = search(edges, mask, fine_places, fine_poses, heading, bins, workers=workers, min_sky=int(min_sky),
                         corners=by_corners)
-    log(describe("fine", best, fine_places, fine_poses))
+    log(describe("fine", best, fine_places, fine_poses) + f"  ({time.time() - t0:.0f} s)")
 
     overlay(full, edges, best, bins).save(out / "overlay.jpg", quality=88)
     cam = cam_entry(photo_path, (W, H), best)

@@ -1,4 +1,5 @@
 """python -m world_model.sam_mask <camera_truth.json> [--model=facebook/sam-vit-base]
+   python -m world_model.sam_mask --photo=<photo> --point=u,v --box=x0,y0,x1,y1 --out=<dir> [--model=...]
 SAM's masks of each kept photo's target building, from the prompt silhouette_pose wrote (photo["silhouette"]
 ["prompt"]: a point in the building and its box, in full-resolution pixels), written as PNGs beside the photo
 (masks/<photo stem>_<k>.png, all three SAM gives) and listed in the file. SAM runs with no sampling, on the CPU,
@@ -35,9 +36,19 @@ def masks_for(photo_path, point, box, model="facebook/sam-vit-base"):
 def main(argv):
     opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))
     args = [a for a in argv if not a.startswith("--")]
+    model = opts.get("model", "facebook/sam-vit-base")
+    if "photo" in opts:                        # one photo, one prompt: <out>/mask_<k>.png and scores.json
+        point = [float(v) for v in opts["point"].split(",")]
+        box = [float(v) for v in opts["box"].split(",")]
+        masks, scores = masks_for(opts["photo"], point, box, model)
+        out = Path(opts["out"]); out.mkdir(parents=True, exist_ok=True)
+        for k, m in enumerate(masks):
+            Image.fromarray((m * 255).astype(np.uint8)).convert("1").save(out / f"mask_{k}.png", optimize=True)
+        (out / "scores.json").write_text(json.dumps({"model": model, "point": point, "box": box,
+                                                     "scores": [round(float(s), 3) for s in scores]}))
+        return
     if not args:
         raise SystemExit(__doc__)
-    model = opts.get("model", "facebook/sam-vit-base")
     path = Path(args[0]); doc = json.loads(path.read_text())
     (path.parent / "masks").mkdir(exist_ok=True)
     for photo in doc["photos"]:

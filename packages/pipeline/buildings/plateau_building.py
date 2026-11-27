@@ -52,6 +52,14 @@ def feature_triangles(payload, rtc, tile_ids, wanted):
     return {g: np.concatenate(t) for g, t in out.items()}
 
 
+def _store_entries(store=None):
+    """Every PLATEAU tile entry of the store (its json), sorted by name."""
+    if store is None:
+        from buildings.pp_tiles import store as pp_store
+        store = pp_store()
+    return [json.loads(p.read_text()) for p in sorted(Path(store).glob("plateau/*/*.json"))]
+
+
 def building_triangles(gml_ids, origin, store=None):
     """{gml_id: triangles (n, 3, 3) in metres east, north and up (ellipsoid) from origin (lon, lat)}."""
     if store is None:

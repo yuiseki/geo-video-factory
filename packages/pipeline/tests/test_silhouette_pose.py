@@ -56,6 +56,12 @@ class Refine(unittest.TestCase):
         self.assertLess(turn, 0.3)
         self.assertLess(miss, 1.5)
 
+    def test_a_given_eye_height_holds_the_camera_off_a_wrong_one(self):
+        mask = sam_like(TRUE)
+        start = spz.moved(TRUE, [0.5, 1.0, 0.0, 2.0, -2.0, -4.0])          # starts 4 m too low, under the street
+        got, _ = spz.refine(start, SCENE, TARGET, mask, eye_z=TRUE["eye"][2])
+        self.assertLess(abs(got["eye"][2] - TRUE["eye"][2]), 0.3)
+
     def test_from_every_start_the_best_is_kept_and_a_failed_start_looks_failed(self):
         mask = sam_like(TRUE)
         best, runs = spz.solve(TRUE, SCENE, TARGET, [mask])

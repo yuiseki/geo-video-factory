@@ -33,7 +33,7 @@ UPPER = 0.5                                        # outline above this share of
 STEP = np.array([3, 3, 3, 5, 5, 5], float)         # degrees (camera x, y, z) and metres per step at most
 RADII = (80, 60, 50, 40, 30, 25, 20, 15, 12, 10, 8, 8, 8, 8)     # search radius per step, full-resolution pixels
 STARTS = ([0, 0, 0, 0, 0, 0], [0, 2, 0, 3, 0, 0], [1.5, -1, 0.5, 0, 3, 1], [-1, 1.5, 0, -3, -2, 0], [0, -2, 0, 0, 0, -3])
-EYE_Z_WEIGHT = 10.0                                # pixels per metre the eye strays from a given height
+EYE_Z_WEIGHT = 10.0      # an eye 1 m off the given height weighs as every outline point 10 px off (times sqrt(n))
 
 
 def moved(cam, x):
@@ -112,7 +112,10 @@ def refine(cam, scene, target, mask, eye_z=None, radii=RADII):
         def res(x, cam=cam):
             c = moved(cam, x)
             out = ((_project(c, P) - qq) * nn).sum(1)
-            return np.r_[out, EYE_Z_WEIGHT * (c["eye"][2] - eye_z)] if eye_z is not None else out
+            if eye_z is None:
+                return out
+            # one term against thousands of points: scaled by their number, or the eye sinks under the street
+            return np.r_[out, EYE_Z_WEIGHT * math.sqrt(len(out)) * (c["eye"][2] - eye_z)]
         fit = least_squares(res, np.zeros(6), loss="soft_l1", f_scale=3.0, bounds=(-STEP, STEP))
         cam = moved(cam, fit.x)
     P = outline_points(cam, scene, target)

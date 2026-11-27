@@ -64,7 +64,7 @@ def pixel_rays(width, height, f, cx, cy, k, R, step=4):
     v = (np.arange(height // step) + 0.5) * step
     xd, yd = np.meshgrid((u - cx) / f, (v - cy) / f)
     x, y = xd.copy(), yd.copy()
-    for _ in range(12):  # undo x_d = x (1 + k r^2) by fixed-point steps
+    for _ in range(12 if k else 0):  # undo x_d = x (1 + k r^2) by fixed-point steps; nothing to undo when k is 0
         s = 1 + k * (x * x + y * y)
         x, y = xd / s, yd / s
     ray = np.stack([x, y, np.ones_like(x)], -1) @ np.asarray(R, float)
@@ -121,7 +121,8 @@ def match_cost(photo, model, tau=5.0, use=("sky", "floor", "ceil"), min_bins=10,
     if total < min_bins or int(np.sum(~np.isnan(photo["sky"]))) < min_sky:
         return np.full((places, len(shifts)), np.nan)
     cost = np.zeros((places, len(shifts)))
-    chunk = max(1, int(2e7 // (len(shifts) * max(len(idx) for _, idx in kinds))))
+    # about 5e6 values (20 MB) per block: 2e7 was 3.5 times slower, the blocks falling out of the cache
+    chunk = max(1, int(5e6 // (len(shifts) * max(len(idx) for _, idx in kinds))))
     for name, idx in kinds:
         if len(idx) == 0:
             continue

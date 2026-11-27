@@ -52,11 +52,11 @@ fixed starts around the hand camera, keeping the one that misses least.
 store is there). The focal length stays the photo's: freed, one building's outline gives a different lens and place
 from each start with the same miss.
 
-Known: for `AKIBA_Sofmap_1gouten_1.jpg` the starts stop at slightly different cameras (misses 1.4 to 2.2 px) and
-the eye comes out 6 m above the building's foot, too high for a street photo; the cause (the PLATEAU shape against
-the real one, or the focal length read from EXIF) is not found yet. For the main-store photo four starts of five
-reach the same camera, 4.3 m and 3.7 degrees from the hand camera, with the eye 4.8 m above the foot instead of 7.6;
-both draw the building equally well.
+For `AKIBA_Sofmap_1gouten_1.jpg` (eye height given, 1.6 m above the street) the camera found is 2.0 m and 0.6
+degrees from the hand camera, the eye 3.5 m above the building's foot; the eye height first held only as one term
+against thousands of outline points and sank or rose by metres until it was weighed by their number. For the
+main-store photo (no eye height given) four starts of five reach the same camera, 4.3 m and 3.7 degrees from the
+hand camera, with the eye 4.8 m above the foot instead of 7.6; both draw the building equally well.
 
 ## Photos
 
