@@ -231,9 +231,15 @@ def alone(others, tie=0.01):
     return others[1]["cost"] > best + tie * max(best, 1e-9)
 
 
-def overlay(full, edges, best, bins=BINS, width=1600):
-    """The model drawn on the photo at the pose (geo.place_overlay): far edges fainter, the roofline as red dots."""
-    return draw_overlay(full, edges, best, camera(best["heading"], best["pitch"], best["roll"]), bins, width=width)
+def overlay(full, edges, best, bins=BINS, width=1600, tris=None):
+    """The model drawn on the photo at the pose (geo.place_overlay), the roofline as red dots. With the triangles
+    an edge is solid where it is seen and faint where a nearer wall hides it; without, far edges are fainter."""
+    depth = None
+    if tris is not None:
+        from world_model.surface_atlas import depth_buffer
+        depth = depth_buffer(tris, cam_entry("", full.size, best), scale=width / full.size[0])
+    return draw_overlay(full, edges, best, camera(best["heading"], best["pitch"], best["roll"]), bins, width=width,
+                        depth=depth)
 
 
 def cam_entry(photo_path, size, best):
@@ -317,7 +323,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
                         corners=by_corners, veil=veil)
     log(describe("fine", best, fine_places, fine_poses) + f"  ({time.time() - t0:.0f} s)")
 
-    overlay(full, edges, best, bins).save(out / "overlay.jpg", quality=88)
+    overlay(full, edges, best, bins, tris=tris).save(out / "overlay.jpg", quality=88)
     cam = cam_entry(photo_path, (W, H), best)
     (out / "cams.json").write_text(json.dumps({key or Path(photo_path).stem[:3]: cam}, indent=1))
     ctr = tris.mean(1)

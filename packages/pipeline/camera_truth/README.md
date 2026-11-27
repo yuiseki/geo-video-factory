@@ -82,8 +82,9 @@ The steps, each kept in the work directory and skipped when its file is there:
    trees do not hide. Counting hidden pixels chose a tower behind a pine, which SAM cannot outline.
 6. SAM's masks, the outline fit from five starts, and the gates.
 
-`place/overlay.jpg` is the picture to look at (`geo.place_overlay`): the model's edges in yellow, solid within 60 m
-and fading with distance, so the streets behind do not read as part of the building in front.
+`place/overlay.jpg` is the picture to look at (`geo.place_overlay`): the model's edges in yellow, solid where they
+can be seen from the place found and near, fading with distance, and barely there where a nearer wall hides them, so
+the far side of a building and the streets behind it do not read as part of its front.
 
 End to end on 4 cores the two kept photos take about 2 and 3.5 minutes (the skyline search 75 and 160 s, the
 segmentation 9 s, SAM 20 to 24 s, the outline fit under 20 s); each step prints how long it took. A photo whose fix is
