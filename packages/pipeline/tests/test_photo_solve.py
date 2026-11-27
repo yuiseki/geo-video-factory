@@ -227,3 +227,18 @@ class Kept(unittest.TestCase):
                 self.assertLess(place, 0.05)
                 self.assertLess(turn, 0.05)
                 self.assertEqual(ps.judge(p["place"]["alone"], best, runs, p["exif"]["search_radius_m"])[0], "solved")
+
+
+class Refusals(unittest.TestCase):
+    """What cannot be solved is refused by name, not left to fail somewhere further down."""
+
+    def test_a_photo_whose_exif_holds_no_position_has_no_fix(self):
+        self.assertTrue(ps.has_fix({"lon": 139.7, "lat": 35.6}))
+        self.assertFalse(ps.has_fix({"lon": float("nan"), "lat": float("nan")}))
+        self.assertFalse(ps.has_fix({"lon": None, "lat": 35.6}))
+        self.assertFalse(ps.has_fix({}))
+
+    def test_a_building_of_which_nothing_shows_gives_no_prompt(self):
+        seen = np.zeros((6, 8), bool); seen[2:4, 1:5] = True
+        self.assertEqual(ps.prompt_of(seen), {"point": [5.0, 5.0], "box": [2, 4, 9, 7]})
+        self.assertIsNone(ps.prompt_of(np.zeros((6, 8), bool)))

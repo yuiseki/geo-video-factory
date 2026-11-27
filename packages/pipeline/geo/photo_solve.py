@@ -54,6 +54,11 @@ def step_exif(photo, work):
     return _json(f) if f.exists() else _json(f, camera_from_exif(photo))
 
 
+def has_fix(ex):
+    """Whether the EXIF gave a position: the search starts from it, and a photo without one is refused."""
+    return all(isinstance(ex.get(k), (int, float)) and math.isfinite(ex[k]) for k in ("lon", "lat"))
+
+
 def photo_file(photo, work):
     """The photo's file: where it is, or fetched once into the work directory when an address was given."""
     if "://" not in str(photo):
@@ -227,13 +232,24 @@ def step_target(cam, ex, work, radius=250.0, scale=0.125, veil=None):
     scene = area_triangles(origin, eye[:2], 400.0)
     behind = scene_depth(cam, scene, scale)      # drawn once for every building asked
     vis = {gid: visible(cam, scene, t, scale, behind)[0] for gid, t in tris.items()}
-    order = seen_most(vis, None if veil is None else _hidden(veil, next(iter(vis.values())).shape))
+    order = seen_most(vis, None if veil is None else _hidden(veil, next(iter(vis.values())).shape)) if vis else []
+    if not order or not order[0][1]:
+        return _json(f, {"gml_id": None, "pixels_at_1_8": 0, "next": [], "prompt": None})
     best = order[0][0]
     vis, _ = visible(cam, scene, tris[best], 0.5)
-    ys, xs = np.nonzero(vis if veil is None else vis & ~_hidden(veil, vis.shape))
-    return _json(f, {"gml_id": best, "pixels_at_1_8": order[0][1], "next": [list(t) for t in order[1:6]],
-                     "prompt": {"point": [round(float(xs.mean()) * 2, 1), round(float(ys.mean()) * 2, 1)],
-                                "box": [int(xs.min()) * 2, int(ys.min()) * 2, int(xs.max()) * 2 + 1, int(ys.max()) * 2 + 1]}})
+    prompt = prompt_of(vis if veil is None else vis & ~_hidden(veil, vis.shape))
+    return _json(f, {"gml_id": best if prompt else None, "pixels_at_1_8": order[0][1],
+                     "next": [list(t) for t in order[1:6]], "prompt": prompt})
+
+
+def prompt_of(seen):
+    """Where SAM is pointed, in pixels of a picture twice the mask's size: the middle of what shows of the building
+    and the box around it. None when nothing of it shows."""
+    ys, xs = np.nonzero(seen)
+    if not len(xs):
+        return None
+    return {"point": [round(float(xs.mean()) * 2, 1), round(float(ys.mean()) * 2, 1)],
+            "box": [int(xs.min()) * 2, int(ys.min()) * 2, int(xs.max()) * 2 + 1, int(ys.max()) * 2 + 1]}
 
 
 def step_masks(photo, target, work, vision_python):
@@ -296,6 +312,9 @@ def main(argv):
     def took(step):                       # how long each step took, to the log
         clock.append(time.time()); print(f"[{step} {clock[-1] - clock[-2]:.1f} s]", flush=True)
     ex = step_exif(photo, work)
+    if not has_fix(ex):
+        _json(work / "solve.json", {"verdict": "refused: no position"})
+        print("refused: the photo's EXIF holds no position to search around"); raise SystemExit(1)
     sky = step_sky(photo, work); took("exif and sky")
     trees = step_trees(photo, work, opts.get("vision-python")); took("trees")
     reading = sky_reading(sky, trees)
@@ -310,6 +329,9 @@ def main(argv):
     cam = _coarse_camera(work)
     step_scene(ex, cam, work); took("scene")
     target = step_target(cam, ex, work, veil=trees); took("target")
+    if not target["gml_id"]:
+        _json(work / "solve.json", {"verdict": "refused: no building in view", "place": place["best"]})
+        print("refused: the place found shows no building clear of the trees"); raise SystemExit(1)
     masks = step_masks(photo, target, work, opts.get("vision-python")); took("masks")
     out, tgt = step_solve(cam, ex, target, masks, place, work); took("solve")
     from world_model.truth_view import draw
