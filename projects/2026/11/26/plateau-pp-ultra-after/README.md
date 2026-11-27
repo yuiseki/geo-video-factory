@@ -85,7 +85,7 @@ OSM の横断歩道 (`crosswalk_eval.py`) は、空の写らない写真にも�
 - 2 枚以上の写真に写ったテクセルだけを見せる `pp_scene.py --atlas-min-views=2` (`world_model/atlas_views.py`)。渦は小さくなるが残り、夜の上空と屋上の絵で正しく塗られていた壁も消えた。夜のアトラスの見える部分のうち 1 枚だけの写真から来る割合は magnet 96%、around 69%、s109 39%、ほかの 6 か所はほぼ全部。
 - OSM の街路樹 (`natural=tree`、範囲内に 28 本) を箱にして隠れの判定に入れる。どの写真の見たテクセルの数も変わらなかった。
 
-帯より高い所にいる人 (歩道橋、階段) や、木、車の屋根は、この規則では防げない。写真の中の人を見分けて塗らない画素にする手 (`photos/people_removal.py` の覆いを `surface_atlas.observe` の `blocked` に渡す) は、ComfyUI と GPU が要るのでまだ試していない。ほかの 6 か所のアトラスも `atlas_after.py` から `--people-band=2.2` で作る (地面は before.py と同じく中心から 150 m 以内の面の下から 2%)。写真で塗れた壁がもともと少ないので、絵はほとんど変わらない。
+帯より高い所にいる人 (歩道橋、階段) や、木、車の屋根は、この規則では防げない。写真の中の人と車を見分けて塗らない画素にする手は `build_atlas.py --people-masks` として入れた。覆いは `photos/people_removal.py` が liminal の作業で作ったもの (夜の 12 枚のうち 5 枚分) で、共有キャッシュの `photos-processed/people-masks/<写真>.png` に置き、`shibuya_atlases.sh` が使う。帯の規則のあとでは、効くのは夜の絵だけで、変わった画素は 1% 未満だった (屋上の視点 0.85%)。昼の写真の覆いは無い。ほかの 6 か所のアトラスも `atlas_after.py` から `--people-band=2.2` で作る (地面は before.py と同じく中心から 150 m 以内の面の下から 2%)。写真で塗れた壁がもともと少ないので、絵はほとんど変わらない。
 
 ## 渋谷の MAGNET の上の黒い三角 (直した)
 
