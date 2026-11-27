@@ -1,5 +1,5 @@
 """python -m world_model.sfm_to_world <sparse model dir> <images dir> <scene tris.npz> <out_dir> <anchor cams.json>... [--radius=450]
-       [--min-track=3] [--trim=3.0] [--min-points=40] [--gps=<json {image: [lon, lat]}> --origin=lon,lat [--eye=1.5]]
+       [--min-track=3] [--trim=3.0] [--min-points=40] [--gps=<json {image: [lon, lat]}> --origin=lon,lat [--eye=1.5] [--gps-sigma=15]]
 
 Every photo of an SfM model as a camera in the city model's metric frame.
 
@@ -101,6 +101,7 @@ def main(argv):
     names = list(anchors)
     sfm_side = [(images[n][0], images[n][1]) for n in names]
     world_side = [anchors[n] for n in names]
+    sigma = 3.0                            # anchors placed on the city model: hold them within a few metres
     if names:
         sim0 = sim3.from_anchors(sfm_side, world_side)
         soft = [(images[n][1], anchors[n][1]) for n in names]
@@ -109,6 +110,7 @@ def main(argv):
         sim0 = sim3.from_positions([images[n][0] for n in g], [images[n][1] for n in g],
                                    [gps_eye[n][:2] for n in g], float(np.median([gps_eye[n][2] for n in g])))
         soft = [(images[n][1], np.array(gps_eye[n])) for n in g]
+        sigma = float(opts.get("gps-sigma", 15.0))     # a phone's GPS is metres to tens of metres off: hold it loosely
         sfm_side = [(images[n][0], images[n][1]) for n in g]
         world_side = [(None, np.array(gps_eye[n])) for n in g]
     trim = float(opts.get("trim", 3.0))
@@ -126,7 +128,7 @@ def main(argv):
     sub = pts[:: max(1, len(pts) // 4000)]
     for s in scales:
         start = (s, A, Cw_mean - s * A @ Cs_mean)
-        sim, med, frac = sim3.fit_to_surface(sub, surf, normals, start, anchors=soft, trim=trim, rounds=6, tree=tree)
+        sim, med, frac = sim3.fit_to_surface(sub, surf, normals, start, anchors=soft, anchor_sigma=sigma, trim=trim, rounds=6, tree=tree)
         ok = sim3.plausible(sim, s)
         near1 = sim3.support(sub, tree, sim, within=1.0) if ok else 0.0
         tried.append((-near1, sim, med, frac, s))
@@ -135,7 +137,7 @@ def main(argv):
     tried.sort(key=lambda r: r[0])
     if tried[0][0] == 0.0:
         raise SystemExit("every start ran away: no alignment")
-    sim, med, frac = sim3.fit_to_surface(pts, surf, normals, tried[0][1], anchors=soft, trim=trim, rounds=10, tree=tree)
+    sim, med, frac = sim3.fit_to_surface(pts, surf, normals, tried[0][1], anchors=soft, anchor_sigma=sigma, trim=trim, rounds=10, tree=tree)
     print(f"fit: scale {sim[0]:.4f}, median distance {med:.2f} m over {frac:.0%} of the points")
 
     cams, report = {}, {"scale": sim[0], "turn": sim[1].tolist(), "shift": sim[2].tolist(), "median_m": med,
