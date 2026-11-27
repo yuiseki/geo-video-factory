@@ -11,7 +11,9 @@ Same areas, scene and views as the before project (its render_area), with the im
 
 The atlases are atlas_after.py's (the before project's placements without the photos that had no roofline; with
 quality.png) when present, else the before project's; Shibuya's are rebuilt with quality.png by shibuya_atlases.sh
-into work/shibuya/ and used from there when present.
+into work/shibuya/ and used from there when present. When work/spots/<spot>/<name>/ holds a world (atlas_before.py
+with --root, --spot and --registration: one spot's CC0/PD photos placed by SfM with the help of CC BY / BY-SA
+photos), its atlases replace the area's (both are the group within the same radius, and would overlap).
 """
 import importlib.util
 import json
@@ -29,8 +31,12 @@ from world_model.osm_street_lamps import lamps_file  # noqa: E402
 
 def after_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], list[str], list[str]]:
     _, atlases, grounds = before.before_layers(area, t, bbox)
-    mine = HERE / "work" / area["name"] / f"atlas_{t}" / "model.obj"     # atlas_after.py: without roofline-less photos
-    cams = HERE / "work" / area["name"] / "world" / "layers" / f"cams_{t}.json"
+    work = HERE / "work" / area["name"]                                  # atlas_after.py: without roofline-less photos
+    spots = sorted((HERE / "work" / "spots").glob(f"*/{area['name']}/world"))
+    if spots:        # one spot's photos joined by SfM with registration-only photos: it replaces the area's atlas
+        work = spots[0].parent
+    mine = work / f"atlas_{t}" / "model.obj"
+    cams = work / "world" / "layers" / f"cams_{t}.json"
     if cams.exists() and not json.loads(cams.read_text()):      # every photo left out: no atlas, not the before one
         atlases = [a for a in atlases if f"/work/{area['name']}/atlas_{t}/" not in a]
     elif mine.exists():
