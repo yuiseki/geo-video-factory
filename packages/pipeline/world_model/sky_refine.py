@@ -1,14 +1,14 @@
 """An SfM model near its place on the city model, moved as a whole until its photos' skylines lie on the roofline.
 
-    python -m world_model.sky_refine <cams.json> <scene tris.npz> <out cams.json> [--photos=16] [--radius=300]
+    python -m world_model.sky_refine <cams.json> <scene tris.npz> <out cams.json> [--photos=16] [--radius=300] [--wide]
 
 sfm_to_world lays the SfM points on the city model's surfaces, which leaves the model's scale and place loose when
 the points are few or on one street (the station front of Minowa: scale 1.7 or 2.2, the outlines of the towers off).
 The line between the buildings and the sky is what a photo shows most clearly. Here every photo's sky (sky_mask:
 the blue reaching down from the top of the frame) gives its skyline along its own rays (skyline_match.photo_skyline,
 with the camera's turn), the city model gives the roofline seen from the camera's eye (model_skyline), and the
-whole model is turned, shifted and scaled about its centre (apply_delta) to bring the two together (match_cost,
-Nelder-Mead from a coarse search over heading and place). The ground is added to the scene as a wide plane, so that
+whole model is turned about the vertical, shifted and scaled about its centre (apply_delta; the tilt stays as the
+cameras' up set it) to bring the two together (match_cost, Nelder-Mead from a coarse search). The ground is added to the scene as a wide plane, so that
 below the buildings is not taken for sky.
 """
 from __future__ import annotations
@@ -92,26 +92,34 @@ def cost(cams: dict, masks: dict, tris: np.ndarray, edges=None, tau=5.0) -> floa
     return float(np.mean(out)) if out else float("nan")
 
 
-def refine(cams: dict, masks: dict, tris: np.ndarray, radius: float = 300.0) -> tuple[dict, dict]:
-    """(the cameras moved as a whole to fit the skylines, a report with the cost before and after and the delta)."""
+def refine(cams: dict, masks: dict, tris: np.ndarray, radius: float = 300.0, wide: bool = False) -> tuple[dict, dict]:
+    """(the cameras moved as a whole to fit the skylines, a report with the cost before and after and the delta).
+
+    The tilt (pitch and roll) stays as the cameras' mean up set it: photos are held level, and freeing the tilt let
+    the station front settle 3 to 7 degrees askew. wide searches heading +-20 degrees, place +-18 m and scale
+    0.8 to 1.25 before refining, for a model whose surface fit left it far off."""
     eyes = np.array([c["eye"] for c in cams.values()], float)
     centre = eyes.mean(axis=0)
     near = np.hypot(*(tris.mean(axis=1)[:, :2] - centre[:2]).T) < radius
     edges = sm.unique_edges(_with_ground(tris[near], centre))
-    f = lambda d: cost(apply_delta(cams, d), masks, tris, edges)        # noqa: E731
-    before = f(np.zeros(7))
-    best, best_cost = np.zeros(7), before
-    for yaw in (-8, -4, 0, 4, 8):                  # coarse: heading and place, where the surface fit is loosest
-        for dx in (-6, 0, 6):
-            for dy in (-6, 0, 6):
-                d = np.array([yaw, 0, 0, dx, dy, 0, 0], float)
-                c = f(d)
-                if c < best_cost:
-                    best, best_cost = d, c
-    simplex = np.array([best] + [best + e for e in np.diag([2.0, 1.0, 1.0, 3.0, 3.0, 1.0, 0.08])])
+    full = lambda q: np.array([q[0], 0.0, 0.0, q[1], q[2], q[3], q[4]])     # noqa: E731  (tilt held)
+    f = lambda q: cost(apply_delta(cams, full(q)), masks, tris, edges)     # noqa: E731
+    before = f(np.zeros(5))
+    best, best_cost = np.zeros(5), before
+    yaws, steps, scales = ((range(-20, 21, 4), (-18, -12, -6, 0, 6, 12, 18), (-0.22, 0.0, 0.22)) if wide
+                           else ((-8, -4, 0, 4, 8), (-6, 0, 6), (0.0,)))
+    for yaw in yaws:                               # coarse: heading, place and scale, where the surface fit is loosest
+        for dx in steps:
+            for dy in steps:
+                for ls in scales:
+                    q = np.array([yaw, dx, dy, 0, ls], float)
+                    c = f(q)
+                    if c < best_cost:
+                        best, best_cost = q, c
+    simplex = np.array([best] + [best + e for e in np.diag([2.0, 3.0, 3.0, 1.0, 0.08])])
     res = minimize(f, best, method="Nelder-Mead", options={"initial_simplex": simplex, "maxiter": 400,
                                                            "xatol": 0.05, "fatol": 1e-3})
-    d = res.x if res.fun < best_cost else best
+    d = full(res.x if res.fun < best_cost else best)
     return apply_delta(cams, d), {"before": before, "after": float(min(res.fun, best_cost)), "delta": d.tolist(),
                                   "photos": len(masks)}
 
@@ -130,7 +138,7 @@ def main(argv: list[str]) -> None:
         m = sky_mask(np.asarray(small))
         if m.mean() > 0.02:                        # a photo without sky says nothing here
             masks[k] = m
-    fixed, report = refine(cams, masks, tris, float(opts.get("radius", 300)))
+    fixed, report = refine(cams, masks, tris, float(opts.get("radius", 300)), wide="wide" in opts)
     Path(out).write_text(json.dumps(fixed))
     Path(out).with_suffix(".refine.json").write_text(json.dumps(report, indent=1))
     print(json.dumps(report))

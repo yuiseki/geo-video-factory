@@ -73,9 +73,10 @@ class Refine(unittest.TestCase):
     def test_a_model_turned_and_shifted_off_its_place_is_brought_back(self):
         masks = {k: mask(c) for k, c in CAMS.items()}
         off = sr.apply_delta(CAMS, np.array([4.0, 0.0, 0.0, 3.0, -2.0, 0.0, 0.0]))
-        before = sr.cost(off, masks, TRIS)
         fixed, report = sr.refine(off, masks, TRIS)
-        self.assertLess(report["after"], before / 3)
+        truth = sr.cost(CAMS, masks, TRIS)              # what the binning leaves even at the true place
+        self.assertLess(report["after"], truth + 0.1)
+        self.assertLess(report["after"], report["before"] / 2)
         for k in CAMS:
             self.assertLess(np.linalg.norm(np.array(fixed[k]["eye"]) - CAMS[k]["eye"]), 1.5)
 
