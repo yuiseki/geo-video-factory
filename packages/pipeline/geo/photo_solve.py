@@ -114,14 +114,28 @@ COARSE_GRID = 8.0
 
 
 def step_trees(photo, work, vision_python):
-    """The mask of the photo's trees (world_model/tree_mask.py), made once."""
+    """The masks of the photo's trees and sky (world_model/tree_mask.py), made once."""
     f = work / "trees" / "tree.png"
-    if not f.exists():
+    if not f.with_name("sky.png").exists():
         if not vision_python:
             raise SystemExit("the tree mask needs --vision-python=<a python with torch and transformers>")
         subprocess.run([vision_python, "-m", "world_model.tree_mask", f"--photo={photo}", f"--out={f.parent}"],
                        check=True, cwd=Path(__file__).resolve().parents[1])
     return f
+
+
+SEEN_SKY = 1.5             # the segmentation's sky is read only when it finds this many times the colour reading's
+
+
+def sky_reading(sky, trees):
+    """The sky photo_place reads: the colour reading step_sky chose, sharp at the roofline, unless the segmentation
+    beside the tree mask found much more (pale sky behind branches is no colour's sky); then its mask picture.
+    None when neither finds enough."""
+    seen = _json(trees.with_name("tree.json")).get("sky", 0.0)
+    colour = sky["share"][sky["kind"]] if sky["kind"] else 0.0
+    if seen >= SKY_SHARE and seen >= SEEN_SKY * colour:
+        return trees.with_name("sky.png")
+    return sky["kind"]
 
 
 def step_place(photo, tris_path, ex, sky, work, veil=None):
@@ -179,8 +193,21 @@ def step_scene(ex, cam, work):
         _json(f, {"box": box})
 
 
-def step_target(cam, ex, work, radius=250.0, scale=0.125):
-    """The building the coarse camera sees most of, by its visible pixels at 1/8 resolution."""
+def seen_most(visibles, hidden):
+    """[(id, pixels)] most first, of each building's visible pixels that no tree hides."""
+    count = {g: int((v if hidden is None else v & ~hidden).sum()) for g, v in visibles.items()}
+    return sorted(count.items(), key=lambda t: (-t[1], t[0]))
+
+
+def _hidden(veil, shape):
+    from PIL import Image
+    with Image.open(veil) as im:
+        return np.asarray(im.convert("L").resize(shape[::-1])) > 127
+
+
+def step_target(cam, ex, work, radius=250.0, scale=0.125, veil=None):
+    """The building the coarse camera sees most of, by its visible pixels at 1/8 resolution that no tree of the
+    photo hides: the largest building of the model may stand behind a wood, and its outline is not in the photo."""
     f = work / "target.json"
     if f.exists():
         return _json(f)
@@ -199,12 +226,12 @@ def step_target(cam, ex, work, radius=250.0, scale=0.125):
     tris = building_triangles(sorted(set(ids)), origin)
     scene = area_triangles(origin, eye[:2], 400.0)
     behind = scene_depth(cam, scene, scale)      # drawn once for every building asked
-    seen = {gid: int(visible(cam, scene, t, scale, behind)[0].sum()) for gid, t in tris.items()}
-    best = max(seen, key=seen.get)
+    vis = {gid: visible(cam, scene, t, scale, behind)[0] for gid, t in tris.items()}
+    order = seen_most(vis, None if veil is None else _hidden(veil, next(iter(vis.values())).shape))
+    best = order[0][0]
     vis, _ = visible(cam, scene, tris[best], 0.5)
-    ys, xs = np.nonzero(vis)
-    order = sorted(seen, key=seen.get, reverse=True)
-    return _json(f, {"gml_id": best, "pixels_at_1_8": seen[best], "next": [[g, seen[g]] for g in order[1:6]],
+    ys, xs = np.nonzero(vis if veil is None else vis & ~_hidden(veil, vis.shape))
+    return _json(f, {"gml_id": best, "pixels_at_1_8": order[0][1], "next": [list(t) for t in order[1:6]],
                      "prompt": {"point": [round(float(xs.mean()) * 2, 1), round(float(ys.mean()) * 2, 1)],
                                 "box": [int(xs.min()) * 2, int(ys.min()) * 2, int(xs.max()) * 2 + 1, int(ys.max()) * 2 + 1]}})
 
@@ -269,20 +296,20 @@ def main(argv):
     def took(step):                       # how long each step took, to the log
         clock.append(time.time()); print(f"[{step} {clock[-1] - clock[-2]:.1f} s]", flush=True)
     ex = step_exif(photo, work)
-    sky = step_sky(photo, work)
-    if sky["kind"] is None:
+    sky = step_sky(photo, work); took("exif and sky")
+    trees = step_trees(photo, work, opts.get("vision-python")); took("trees")
+    reading = sky_reading(sky, trees)
+    if reading is None:
         _json(work / "solve.json", {"verdict": "refused: no sky", "sky": sky})
         print("refused: no sky to read a roofline from", sky["share"]); raise SystemExit(1)
-    took("exif and sky")
     tris = step_tris(ex, work); took("tris")
-    trees = step_trees(photo, work, opts.get("vision-python")); took("trees")
-    place = step_place(photo, tris, ex, sky["kind"], work, veil=trees); took("place")
+    place = step_place(photo, tris, ex, reading, work, veil=trees); took("place")
     if not place["alone"]:
         _json(work / "solve.json", {"verdict": "refused: alone", "place": place["best"]})
         print("refused: the skyline does not decide the place"); raise SystemExit(1)
     cam = _coarse_camera(work)
     step_scene(ex, cam, work); took("scene")
-    target = step_target(cam, ex, work); took("target")
+    target = step_target(cam, ex, work, veil=trees); took("target")
     masks = step_masks(photo, target, work, opts.get("vision-python")); took("masks")
     out, tgt = step_solve(cam, ex, target, masks, place, work); took("solve")
     from world_model.truth_view import draw

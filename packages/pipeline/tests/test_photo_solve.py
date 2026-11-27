@@ -124,7 +124,7 @@ class Trees(unittest.TestCase):
         def run(cmd, **kw):
             ran.append(cmd)
             out = Path(next(a for a in cmd if a.startswith("--out=")).split("=", 1)[1]); out.mkdir()
-            (out / "tree.png").write_bytes(b"png")
+            (out / "tree.png").write_bytes(b"png"); (out / "sky.png").write_bytes(b"png")
         with tempfile.TemporaryDirectory() as d, mock.patch("subprocess.run", run):
             f = ps.step_trees("p.jpg", Path(d), "vpython")
             self.assertEqual(f, Path(d) / "trees" / "tree.png")
@@ -137,6 +137,37 @@ class Trees(unittest.TestCase):
         import tempfile
         with tempfile.TemporaryDirectory() as d, self.assertRaises(SystemExit):
             ps.step_trees("p.jpg", Path(d), None)
+
+
+class SkyReading(unittest.TestCase):
+    """The colour reading is sharp and stays; the segmentation's sky replaces it only where colour missed much."""
+
+    def reading(self, colour, seen):
+        import json, tempfile
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "tree.json").write_text(json.dumps({"sky": seen}))
+            got = ps.sky_reading({"kind": colour and "blue", "share": {"blue": colour or 0.0}}, Path(d) / "tree.png")
+            return "seen" if got == Path(d) / "sky.png" else got
+
+    def test_colour_is_kept_when_the_two_agree(self):
+        self.assertEqual(self.reading(0.36, 0.34), "blue")
+        self.assertEqual(self.reading(0.31, 0.33), "blue")
+
+    def test_sky_behind_branches_that_colour_missed_is_taken_from_the_segmentation(self):
+        self.assertEqual(self.reading(0.029, 0.049), "seen")
+
+    def test_no_colour_sky_falls_back_to_the_segmentation_and_none_at_all_is_none(self):
+        self.assertEqual(self.reading(None, 0.2), "seen")
+        self.assertIsNone(self.reading(None, 0.01))
+
+
+class Target(unittest.TestCase):
+    def test_a_building_behind_the_trees_is_not_the_one_seen_most(self):
+        big = np.zeros((6, 8), bool); big[:, :5] = True            # 30 px, 24 of them behind the tree
+        small = np.zeros((6, 8), bool); small[:3, 5:] = True       # 9 px in the open
+        trees = np.zeros((6, 8), bool); trees[:, :4] = True
+        self.assertEqual(ps.seen_most({"big": big, "small": small}, None)[0], ("big", 30))
+        self.assertEqual(ps.seen_most({"big": big, "small": small}, trees), [("small", 9), ("big", 6)])
 
 
 class Scene(unittest.TestCase):

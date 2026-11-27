@@ -67,9 +67,34 @@ passed. These are the photographer's own photos, added with leave; they are not 
 checks each camera is what its coarse camera and masks give, and `tests/test_photo_place_frozen.py` that the
 skyline search still finds each place (in under 5 minutes).
 
-End to end on 4 cores the two photos take about 2 and 3 minutes (the skyline search 70 and 125 s, SAM 20 s, the
-outline fit under 20 s with its five starts side by side); each step prints how long it took. What made it
-quicker changed no answer: the place, the building chosen and the camera are the kept ones.
+The steps, each kept in the work directory and skipped when its file is there:
+
+1. EXIF (place, lens) and the sky by colour. A fix from the network rather than GPS is searched out to 500 m.
+2. Trees and sky by segmentation (`world_model.tree_mask`, the model `openmmlab/upernet-convnext-small`, MIT, trained
+   on ADE20K): `tree.png`, `sky.png` and their shares. Trees are a veil: roofline bins they cover say nothing.
+3. Which sky to read. The colour reading is sharp at the roofline and stays, unless the segmentation saw at least
+   1.5 times as much sky (sky behind bare branches, which colour takes for one patch at the top); then `sky.png` is
+   read instead. Taking the segmentation's sky for every photo moved a kept answer by 2 m, so it is not the default.
+4. The PLATEAU++ box 700 m around the fix, then the skyline search (`geo.photo_place`). It widens (40, 100, 250 m, the
+   EXIF limit; a 16 m coarse grid beyond 250 m) while its answer is not decided: not alone, on the rim, or its cost
+   above 1.0.
+5. The box 450 m around the place found, and the building to fit: the one with the most visible pixels that the
+   trees do not hide. Counting hidden pixels chose a tower behind a pine, which SAM cannot outline.
+6. SAM's masks, the outline fit from five starts, and the gates.
+
+`place/overlay.jpg` is the picture to look at (`geo.place_overlay`): the model's edges in yellow, solid within 60 m
+and fading with distance, so the streets behind do not read as part of the building in front.
+
+End to end on 4 cores the two kept photos take about 2 and 3.5 minutes (the skyline search 75 and 160 s, the
+segmentation 9 s, SAM 20 to 24 s, the outline fit under 20 s); each step prints how long it took. A photo whose fix is
+hundreds of metres off takes up to 12.5 minutes, nearly all of it the widened search. Four further photos (not kept
+here) were solved the same way with no hand in it: three in a garden with fixes 195, 308 and 408 m off, one 16 mm
+ultrawide under bare trees.
+
+Looked at and set aside: Depth Pro 2 (`apple-aiml-research/ml-depth-pro-2`, read 2026-11-28: `LICENSE`,
+`LICENSE_MODEL`, `README.md`). Metric depth from one photo would give the distance fading and a prior for the
+place, but the weights are under the Apple Machine Learning Research Model License: research only, not commercial,
+revocable. The code licence is permissive; the weights were not fetched.
 
 ## Photos
 

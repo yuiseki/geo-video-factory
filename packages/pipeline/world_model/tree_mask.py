@@ -1,7 +1,8 @@
 """python -m world_model.tree_mask --photo=<photo> --out=<dir> [--model=openmmlab/upernet-convnext-small]
 The trees of a photo as a mask: <out>/tree.png (white where a tree, a plant or a palm stands, at the width the
-model worked at) and <out>/tree.json. PLATEAU holds no trees, so where a crown stands against the sky the photo's
-skyline is not a roofline; geo/photo_place reads this mask as its veil.
+model worked at), the sky the same way (<out>/sky.png) and <out>/tree.json with the share of each. PLATEAU holds no trees, so where a crown stands against the sky the photo's
+skyline is not a roofline; geo/photo_place reads this mask as its veil. The sky mask is for the photos whose sky a
+colour reading misses (pale sky behind branches); it is coarser at the roofline than colour.
 
 The model is a semantic segmentation trained on ADE20K (UperNet on ConvNeXt, MIT), not a detector: a detector with
 boxes (Grounding DINO, then SAM) finds the trees that stand alone and misses the wood behind them, which is the part
@@ -34,6 +35,10 @@ def veil(seg, id2label):
     return np.isin(seg, veil_ids(id2label))
 
 
+def sky(seg, id2label):
+    return np.isin(seg, [int(i) for i, name in id2label.items() if name.split(",")[0].strip() == "sky"])
+
+
 def segment(photo_path, model=MODEL, work_w=WORK_W):
     """(class map at work_w across, id2label)."""
     import torch
@@ -57,10 +62,12 @@ def main(argv):
         raise SystemExit(__doc__)
     model = opts.get("model", MODEL)
     seg, labels = segment(opts["photo"], model)
-    mask = veil(seg, labels)
+    mask, above = veil(seg, labels), sky(seg, labels)
     out = Path(opts["out"]); out.mkdir(parents=True, exist_ok=True)
     Image.fromarray((mask * 255).astype(np.uint8)).convert("1").save(out / "tree.png", optimize=True)
-    (out / "tree.json").write_text(json.dumps({"model": model, "share": round(float(mask.mean()), 4)}))
+    Image.fromarray((above * 255).astype(np.uint8)).convert("1").save(out / "sky.png", optimize=True)
+    (out / "tree.json").write_text(json.dumps({"model": model, "share": round(float(mask.mean()), 4),
+                                               "sky": round(float(above.mean()), 4)}))
 
 
 if __name__ == "__main__":

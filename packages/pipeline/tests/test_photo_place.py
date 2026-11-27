@@ -325,6 +325,17 @@ class PlaceTests(unittest.TestCase):
         for word in ("worked at 360 x 240", "sky ", "coarse:", "fine:", "placed "):
             self.assertIn(word, text)
 
+    def test_the_sky_can_be_given_as_a_mask_picture(self):
+        """A photo whose sky no colour reading finds (grey here) is placed by a mask someone else made of it."""
+        root = Path(self.tmp.name)
+        rgb, sky = photograph(self.tris, np.array([4.0, -6.0, 1.6]), 8.0, 12.0, 0.0, 70.0)
+        Image.fromarray(np.full_like(rgb, 120)).save(root / "grey.png")
+        Image.fromarray((sky * 255).astype(np.uint8)).resize((180, 120)).save(root / "sky.png")
+        result = pp.place(root / "grey.png", root / "tris.npz", root / "out3", 0.0, 0.0, 70.0, sky=root / "sky.png",
+                          radius=8, grid=2, pitch="8:16:4", roll="0:0:1", fov_range="1:1:1", mesh_radius=75,
+                          work_w=360, bins=BINS, workers=None, fine_half=2.0, fine_roll=0.0, fine_fov=1, log=lambda s: None)
+        self.assertLessEqual(np.hypot(result["best"]["east"] - 4, result["best"]["north"] + 6), 1.0)
+
     def test_the_key_and_the_ground_can_be_given(self):
         root = Path(self.tmp.name)
         result = pp.place(root / "p01_town.png", root / "tris.npz", root / "out2", 4.0, -6.0, 70.0, radius=2, grid=2,

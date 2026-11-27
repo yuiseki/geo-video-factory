@@ -24,6 +24,10 @@ class Veil(unittest.TestCase):
         seg = np.array([[2, 2, 4], [1, 17, 4], [9, 9, 72]])
         np.testing.assert_array_equal(tm.veil(seg, LABELS), [[0, 0, 1], [0, 1, 1], [0, 0, 1]])
 
+    def test_the_sky_is_its_own_mask(self):
+        seg = np.array([[2, 2, 4], [1, 17, 4]])
+        np.testing.assert_array_equal(tm.sky(seg, LABELS), [[1, 1, 0], [0, 0, 0]])
+
 
 if __name__ == "__main__":
     unittest.main()

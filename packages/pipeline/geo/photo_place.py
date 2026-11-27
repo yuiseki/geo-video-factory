@@ -41,11 +41,12 @@ from itertools import product
 from pathlib import Path
 
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image
 from scipy import ndimage
 
 from geo import corner_match as cm
 from geo import skyline_match as sm
+from geo.place_overlay import overlay as draw_overlay
 from geo.place_grid import costmap, fine_space, grid_places, seeded_places  # noqa: F401  (kept here for callers)
 
 BINS, TAU, WORK_W = 720, 5.0, 1300
@@ -231,31 +232,8 @@ def alone(others, tie=0.01):
 
 
 def overlay(full, edges, best, bins=BINS, width=1600):
-    """The model drawn on the photo at the pose: its edges within 900 m in yellow, its roofline as red dots."""
-    W, H = full.size
-    R = camera(best["heading"], best["pitch"], best["roll"])
-    eye = np.array([best["east"], best["north"], best["up"]])
-    f = W / 2 / np.tan(np.radians(best["hfov"]) / 2)
-    a, b = edges
-    keep = np.hypot(*(0.5 * (a + b) - eye)[:, :2].T) < 900
-    pa, pb = (a[keep] - eye) @ R.T, (b[keep] - eye) @ R.T
-    front = (pa[:, 2] > 1) & (pb[:, 2] > 1)
-    ua = pa[front, :2] / pa[front, 2:3] * f + [W / 2, H / 2]
-    ub = pb[front, :2] / pb[front, 2:3] * f + [W / 2, H / 2]
-    seen = ((np.minimum(ua[:, 0], ub[:, 0]) < W) & (np.maximum(ua[:, 0], ub[:, 0]) > 0)
-            & (np.minimum(ua[:, 1], ub[:, 1]) < H) & (np.maximum(ua[:, 1], ub[:, 1]) > 0))
-    sc = width / W
-    canvas = full.resize((width, round(H * sc)), Image.LANCZOS)
-    draw = ImageDraw.Draw(canvas)
-    for p, q in zip(ua[seen] * sc, ub[seen] * sc):
-        draw.line([tuple(p), tuple(q)], fill=(255, 230, 0), width=1)
-    azc = np.radians((np.arange(bins) + 0.5) * 360 / bins)
-    el = np.radians(np.nan_to_num(sm.model_skyline(a, b, eye, bins=bins), nan=0.0))
-    d = np.stack([np.sin(azc) * np.cos(el), np.cos(azc) * np.cos(el), np.sin(el)], 1) @ R.T
-    ok = d[:, 2] > 0.1
-    for u in d[ok, :2] / d[ok, 2:3] * f * sc + [width / 2, H * sc / 2]:
-        draw.ellipse([u[0] - 4, u[1] - 4, u[0] + 4, u[1] + 4], fill=(255, 0, 0))
-    return canvas
+    """The model drawn on the photo at the pose (geo.place_overlay): far edges fainter, the roofline as red dots."""
+    return draw_overlay(full, edges, best, camera(best["heading"], best["pitch"], best["roll"]), bins, width=width)
 
 
 def cam_entry(photo_path, size, best):
@@ -274,7 +252,8 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
           heading=None, work_w=WORK_W, bins=BINS, workers=(8, 6), fine_half=4.0, fine_roll=2.0, fine_fov=5, log=print,
           min_sky=0, corners=0.0, coarse_grid=None, seeds=8, coarse_bins=BINS, veil=None):
     """Search the pose of one photo and write the files named at the top into `out`. Returns what result.json holds.
-    veil: a mask picture of the photo, white where trees stand (photo_skyline's veil); mask.jpg shows it in green."""
+    veil: a mask picture of the photo, white where trees stand (photo_skyline's veil); mask.jpg shows it in green.
+    sky: one of SKIES, or a mask picture of the sky made elsewhere."""
     out = Path(out)
     out.mkdir(parents=True, exist_ok=True)
     with np.load(tris_path) as data:
@@ -288,12 +267,14 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     W, H = full.size
     rgb = np.asarray(full.resize((work_w, round(work_w * H / W)), Image.LANCZOS))
     log(f"photo {W} x {H}, worked at {rgb.shape[1]} x {rgb.shape[0]}; {len(edges[0])} edges; ground {ground:.2f}")
-    mask = sky_mask(rgb, sky, dark_below)
+    def picture(path):
+        with Image.open(path) as opened:
+            return np.asarray(opened.convert("L").resize(rgb.shape[1::-1])) > 127
+    mask = sky_mask(rgb, sky, dark_below) if sky in SKIES else picture(sky)
     shown = rgb.copy()
     shown[mask] = (shown[mask] * 0.4 + np.array([255, 0, 255]) * 0.6).astype(np.uint8)
     if veil is not None:
-        with Image.open(veil) as opened:
-            veil = (np.asarray(opened.convert("L").resize(mask.shape[::-1])) > 127) & ~mask
+        veil = picture(veil) & ~mask
         shown[veil] = (shown[veil] * 0.4 + np.array([0, 255, 0]) * 0.6).astype(np.uint8)
     Image.fromarray(shown).save(out / "mask.jpg", quality=85)
     log(f"sky {mask.mean():.0%} of the picture" + ("" if veil is None else f", trees {veil.mean():.0%}"))
