@@ -46,6 +46,32 @@ def off(a, b):
     return float(np.linalg.norm(np.array(a["eye"]) - b["eye"])), turn
 
 
+class Visible(unittest.TestCase):
+    """visible() draws the scene only where and as far as the target is; it must equal the plain definition."""
+    CITY = np.concatenate([SCENE, box(-60, 60, 90, 80, 0, 70), box(60, -40, 75, -20, 0, 30), box(-8, -45, 4, -40, 0, 12)])
+
+    def test_it_is_the_target_where_nothing_of_the_whole_scene_is_nearer(self):
+        for eye, head, tilt in (([-25, -70, 1.6], 25, 18), ([10, -90, 1.6], 0, 12), ([70, -60, 20], -40, 5)):
+            cam = camera(eye, head, tilt)
+            d, t = sa.depth_buffer(self.CITY, cam, scale=1.0), sa.depth_buffer(TARGET, cam, scale=1.0)
+            want = np.isfinite(t) & (t <= d + 0.5)
+            self.assertGreater(want.sum(), 500)
+            vis, depth = spz.visible(cam, self.CITY, TARGET)
+            np.testing.assert_array_equal(vis, want)
+            np.testing.assert_array_equal(depth, t)
+
+    def test_a_target_out_of_the_picture_is_seen_nowhere(self):
+        vis, _ = spz.visible(camera([-25, -70, 1.6], 205, 18), self.CITY, TARGET)
+        self.assertFalse(vis.any())
+
+    def test_the_scene_drawn_once_serves_every_target(self):
+        cam = camera([-25, -70, 1.6], 25, 18)
+        behind = spz.scene_depth(cam, self.CITY, 0.5)
+        for target in (TARGET, box(60, -40, 75, -20, 0, 30)):
+            np.testing.assert_array_equal(spz.visible(cam, self.CITY, target, 0.5, behind)[0],
+                                          spz.visible(cam, self.CITY, target, 0.5)[0])
+
+
 class Refine(unittest.TestCase):
     def test_a_camera_turned_and_moved_off_comes_back_onto_the_outline(self):
         mask = sam_like(TRUE)
@@ -70,6 +96,12 @@ class Refine(unittest.TestCase):
         place, turn = off(best["camera"], TRUE)
         self.assertLess(place, 0.5)
         self.assertLess(turn, 0.3)
+
+    def test_the_starts_run_side_by_side_give_the_very_same_runs(self):
+        mask = sam_like(TRUE)
+        alone = spz.solve(TRUE, SCENE, TARGET, [mask])
+        pooled = spz.solve(TRUE, SCENE, TARGET, [mask], workers=2)
+        self.assertEqual(alone, pooled)
 
     def test_the_mask_kept_is_the_one_that_overlaps_the_model(self):
         mask = sam_like(TRUE)

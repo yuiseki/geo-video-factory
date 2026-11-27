@@ -25,6 +25,7 @@ import json
 import math
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -33,6 +34,7 @@ MISS_PX = 4.0              # the best start's median miss of the upper outline, 
 AGREE_M, AGREE_DEG = 1.0, 0.5
 AGREE_RUNS = 3
 TRIS_RADIUS = 700.0
+SOLVE_WORKERS = 5          # the five starts of the silhouette camera run side by side
 
 
 def _json(path, value=None):
@@ -135,7 +137,7 @@ def step_target(cam, ex, work, radius=250.0, scale=0.125):
     if f.exists():
         return _json(f)
     from buildings.plateau_building import area_triangles, building_triangles, _store_entries
-    from world_model.silhouette_pose import visible
+    from world_model.silhouette_pose import scene_depth, visible
     origin = (ex["lon"], ex["lat"])
     kx, ky = 111320 * math.cos(math.radians(ex["lat"])), 110950
     R = np.asarray(cam["Rw"]); eye = np.asarray(cam["eye"])
@@ -148,10 +150,8 @@ def step_target(cam, ex, work, radius=250.0, scale=0.125):
                 ids.append(gid)
     tris = building_triangles(sorted(set(ids)), origin)
     scene = area_triangles(origin, eye[:2], 400.0)
-    seen = {}
-    for gid, t in tris.items():
-        vis, _ = visible(cam, scene, t, scale)
-        seen[gid] = int(vis.sum())
+    behind = scene_depth(cam, scene, scale)      # drawn once for every building asked
+    seen = {gid: int(visible(cam, scene, t, scale, behind)[0].sum()) for gid, t in tris.items()}
     best = max(seen, key=seen.get)
     vis, _ = visible(cam, scene, tris[best], 0.5)
     ys, xs = np.nonzero(vis)
@@ -201,7 +201,7 @@ def step_solve(cam, ex, target, mask_paths, place, work):
     tgt = building_triangles([target["gml_id"]], origin)[target["gml_id"]]
     scene = area_triangles(origin, cam["eye"][:2], 400.0)
     masks = [np.asarray(Image.open(m).convert("L")) > 127 for m in mask_paths]
-    best, runs = solve(cam, scene, tgt, masks, eye_z=place["ground"] + place["eye_height"])
+    best, runs = solve(cam, scene, tgt, masks, eye_z=place["ground"] + place["eye_height"], workers=SOLVE_WORKERS)
     verdict, gates = judge(place["alone"], best, runs, ex["search_radius_m"])
     out = {"verdict": verdict, "origin": list(origin),
            "camera": best["camera"], "gates": gates, "target": target["gml_id"],
@@ -215,20 +215,25 @@ def main(argv):
     if len(args) != 2:
         raise SystemExit(__doc__)
     photo, work = Path(args[0]).resolve(), Path(args[1]); work.mkdir(parents=True, exist_ok=True)
+    clock = [time.time()]
+
+    def took(step):                       # how long each step took, to the log
+        clock.append(time.time()); print(f"[{step} {clock[-1] - clock[-2]:.1f} s]", flush=True)
     ex = step_exif(photo, work)
     sky = step_sky(photo, work)
     if sky["kind"] is None:
         _json(work / "solve.json", {"verdict": "refused: no sky", "sky": sky})
         print("refused: no sky to read a roofline from", sky["share"]); raise SystemExit(1)
-    tris = step_tris(ex, work)
-    place = step_place(photo, tris, ex, sky["kind"], work)
+    took("exif and sky")
+    tris = step_tris(ex, work); took("tris")
+    place = step_place(photo, tris, ex, sky["kind"], work); took("place")
     if not place["alone"]:
         _json(work / "solve.json", {"verdict": "refused: alone", "place": place["best"]})
         print("refused: the skyline does not decide the place"); raise SystemExit(1)
     cam = _coarse_camera(work)
-    target = step_target(cam, ex, work)
-    masks = step_masks(photo, target, work, opts.get("vision-python"))
-    out, tgt = step_solve(cam, ex, target, masks, place, work)
+    target = step_target(cam, ex, work); took("target")
+    masks = step_masks(photo, target, work, opts.get("vision-python")); took("masks")
+    out, tgt = step_solve(cam, ex, target, masks, place, work); took("solve")
     from world_model.truth_view import draw
     photo_entry = {"file": photo.name, "camera": out["camera"], "width": ex["width"], "height": ex["height"]}
     draw(photo_entry, {"target": tgt}, photo.parent, work / "overlay.jpg")

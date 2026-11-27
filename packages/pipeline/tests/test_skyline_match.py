@@ -193,6 +193,71 @@ class Match(unittest.TestCase):
         self.assertTrue(np.isnan(cost).all())
 
 
+class PlainDefinitions(unittest.TestCase):
+    """The fast code against the plain definitions it must equal: what it may never drift from while it gets faster."""
+
+    def test_the_rays_are_each_pixel_through_the_rotation(self):
+        R = level_camera(123.0, 17.0)
+        w, h, f, cx, cy, step = 64, 40, 55.0, 31.0, 21.5, 2
+        az, el = sm.pixel_rays(w, h, f, cx, cy, 0.0, R, step=step)
+        for i, j in ((0, 0), (7, 13), (19, 31)):
+            ray = np.array([((j + 0.5) * step - cx) / f, ((i + 0.5) * step - cy) / f, 1.0]) @ R
+            self.assertAlmostEqual(az[i, j], np.degrees(np.arctan2(ray[0], ray[1])) % 360, places=9)
+            self.assertAlmostEqual(el[i, j], np.degrees(np.arctan2(ray[2], np.hypot(ray[0], ray[1]))), places=9)
+
+    def test_the_cost_is_the_mean_clipped_difference_at_every_place_and_turn(self):
+        rng = np.random.default_rng(3)
+        bins, tau = 90, 5.0
+        model = rng.random((7, bins)) * 40
+        model[rng.random((7, bins)) < 0.1] = np.nan
+        nan = np.full(bins, np.nan)
+        photo = dict(sky=nan.copy(), floor=nan.copy(), ceil=nan.copy())
+        photo["sky"][10:35] = np.round(rng.random(25) * 160) / 4
+        photo["floor"][5:10] = 30.0
+        photo["ceil"][35:44] = 3.0
+        filled = np.nan_to_num(model, nan=0.0)
+        want = np.zeros((7, bins))
+        for p in range(7):
+            for s in range(bins):
+                for b in range(bins):
+                    g = filled[p, (b + s) % bins]
+                    if not np.isnan(photo["sky"][b]):
+                        want[p, s] += min(abs(g - photo["sky"][b]), tau)
+                    if not np.isnan(photo["floor"][b]):
+                        want[p, s] += min(max(photo["floor"][b] - g, 0), tau)
+                    if not np.isnan(photo["ceil"][b]):
+                        want[p, s] += min(max(g - photo["ceil"][b], 0), tau)
+        want /= 39
+        np.testing.assert_allclose(sm.match_cost(photo, model, tau=tau), want, atol=1e-5)
+        some = [0, 3, 88]
+        np.testing.assert_allclose(sm.match_cost(photo, model, tau=tau, shifts=some), want[:, some], atol=1e-5)
+
+    def test_the_edges_kept_for_the_skyline_give_the_skyline_of_all_the_edges(self):
+        rng = np.random.default_rng(5)
+        tris = np.concatenate([box(x, x + rng.integers(4, 15), y, y + rng.integers(4, 15), 0, rng.integers(5, 60))
+                               for x, y in rng.integers(-80, 80, (40, 2))]).astype(float)
+        tris = np.concatenate([tris, tris[:24] + [0, 0, 70.0]])          # some stand on others, wall above wall
+        a, b = sm.unique_edges(tris)
+        ka, kb = sm.skyline_edges(a, b)
+        self.assertLess(len(ka), 0.6 * len(a))                           # walls' feet and diagonals are gone
+        for eye in rng.uniform(-90, 90, (25, 3)) * [1, 1, 0.3]:
+            np.testing.assert_array_equal(sm.model_skyline(ka, kb, eye, bins=BINS), sm.model_skyline(a, b, eye, bins=BINS))
+
+
+    def test_edges_a_few_millimetres_off_the_same_ground_line_are_still_under_it(self):
+        rng = np.random.default_rng(6)
+        tris = np.concatenate([box(x, x + 9, y, y + 7, 0, h) for (x, y), h in zip(rng.integers(-60, 60, (30, 2)),
+                                                                               rng.integers(5, 60, 30))]).astype(float)
+        tris[..., :2] += rng.uniform(-0.002, 0.002, tris[..., :2].shape)  # as tiles cut apart give them
+        a, b = sm.unique_edges(tris)
+        ka, kb = sm.skyline_edges(a, b)
+        self.assertLess(len(ka), 0.7 * len(a))
+        eyes = rng.uniform(-70, 70, (25, 3)) * [1, 1, 0.3]
+        off = np.array([np.nan_to_num(sm.model_skyline(ka, kb, eye, bins=BINS))
+                        - np.nan_to_num(sm.model_skyline(a, b, eye, bins=BINS)) for eye in eyes])
+        self.assertLessEqual(off.max(), 1e-9)                            # never higher than all the edges give
+        self.assertLess((np.abs(off) > 0.05).mean(), 0.002)              # lower only where a bin grazes a wall's end
+
 class RoundTrip(unittest.TestCase):
     def test_a_rendered_box_is_matched_where_it_was_seen(self):
         tris = np.concatenate([box(-5, 5, 20, 30, 0, 20), box(8, 14, 25, 40, 0, 35)])

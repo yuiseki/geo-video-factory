@@ -67,6 +67,10 @@ passed. These are the photographer's own photos, added with leave; they are not 
 checks each camera is what its coarse camera and masks give, and `tests/test_photo_place_frozen.py` that the
 skyline search still finds each place (in under 5 minutes).
 
+End to end on 4 cores the two photos take about 2 and 3 minutes (the skyline search 70 and 125 s, SAM 20 s, the
+outline fit under 20 s with its five starts side by side); each step prints how long it took. What made it
+quicker changed no answer: the place, the building chosen and the camera are the kept ones.
+
 ## Photos
 
 | file | creator | licence |

@@ -56,11 +56,30 @@ def _scaled(cam, scale):
                 params=[v * scale for v in cam["params"]])
 
 
-def visible(cam, scene, target, scale=1.0):
-    """(mask of the target where nothing nearer hides it, its depth) at `scale` of the photo."""
+def scene_depth(cam, scene, scale=1.0):
+    """The scene's depth at `scale` of the photo, to give visible() when many targets are asked of one camera."""
+    return sa.depth_buffer(scene, _scaled(cam, scale), scale=1.0)
+
+
+def visible(cam, scene, target, scale=1.0, behind=None):
+    """(mask of the target where nothing nearer hides it, its depth) at `scale` of the photo. The scene is drawn
+    only in the target's box and no farther than the target (the same mask, in a fraction of the time), unless its
+    depth is given as `behind` (scene_depth)."""
     c = _scaled(cam, scale)
-    d = sa.depth_buffer(scene, c, scale=1.0); t = sa.depth_buffer(target, c, scale=1.0)
-    return np.isfinite(t) & (t <= d + 0.5), t
+    t = sa.depth_buffer(target, c, scale=1.0)
+    there = np.isfinite(t)
+    if behind is not None:
+        return there & (t <= behind + 0.5), t
+    vis = np.zeros(t.shape, bool)
+    if not there.any():
+        return vis, t
+    rows, cols = np.flatnonzero(there.any(axis=1)), np.flatnonzero(there.any(axis=0))
+    y0, y1, x0, x1 = int(rows[0]), int(rows[-1]) + 1, int(cols[0]), int(cols[-1]) + 1
+    fx, fy, cx, cy = c["params"]
+    box = dict(c, width=x1 - x0, height=y1 - y0, params=[fx, fy, cx - x0, cy - y0])
+    d = sa.depth_buffer(scene, box, scale=1.0, far=float(t[there].max()))
+    vis[y0:y1, x0:x1] = there[y0:y1, x0:x1] & (t[y0:y1, x0:x1] <= d + 0.5)
+    return vis, t
 
 
 def outline_points(cam, scene, target, scale=0.5, upper=UPPER):
@@ -128,13 +147,23 @@ def refine(cam, scene, target, mask, eye_z=None, radii=None):
     return cam, float(np.median(dist))
 
 
-def solve(cam, scene, target, masks, eye_z=None):
-    """(best run, all runs): refine from each of STARTS around `cam`; a run is {start, camera, miss_px}."""
+def _run(job):
+    cam, scene, target, mask, eye_z, start = job
+    c, miss = refine(moved(cam, start), scene, target, mask, eye_z)
+    return {"start": list(start), "camera": {k: c[k] for k in ("eye", "Rw", "params")}, "miss_px": miss}
+
+
+def solve(cam, scene, target, masks, eye_z=None, workers=None):
+    """(best run, all runs): refine from each of STARTS around `cam`; a run is {start, camera, miss_px}.
+    `workers` processes run the starts side by side (each start alone is as before, so the runs are the same)."""
     mask = masks[choose_mask(masks, cam, scene, target)]
-    runs = []
-    for start in STARTS:
-        c, miss = refine(moved(cam, start), scene, target, mask, eye_z)
-        runs.append({"start": list(start), "camera": {k: c[k] for k in ("eye", "Rw", "params")}, "miss_px": miss})
+    jobs = [(cam, scene, target, mask, eye_z, start) for start in STARTS]
+    if workers and workers > 1:      # spawned, not forked: OpenCV's threads do not survive a fork
+        import multiprocessing
+        with multiprocessing.get_context("spawn").Pool(min(workers, len(jobs))) as pool:
+            runs = pool.map(_run, jobs, chunksize=1)
+    else:
+        runs = [_run(j) for j in jobs]
     best = min(runs, key=lambda r: r["miss_px"])
     return best, runs
 

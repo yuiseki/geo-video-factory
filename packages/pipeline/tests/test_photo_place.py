@@ -173,6 +173,15 @@ class SearchTests(unittest.TestCase):
         np.testing.assert_array_equal(alone[1], pooled[1])
         np.testing.assert_array_equal(alone[2], pooled[2])
 
+    def test_what_the_picture_says_can_be_read_once_and_given_to_every_search(self):
+        told = pp.picture_says(self.sky, self.poses, bins=BINS, workers=2)
+        self.assertEqual(len(told), len(self.poses))
+        fresh = pp.search(self.edges, self.sky, self.places, self.poses, bins=BINS, workers=None)
+        given = pp.search(self.edges, self.sky, self.places, self.poses, bins=BINS, workers=(2, 2), told=told)
+        self.assertEqual(fresh[0], given[0])
+        np.testing.assert_array_equal(fresh[1], given[1])
+        np.testing.assert_array_equal(fresh[2], given[2])
+
     def test_headings_outside_the_window_are_not_considered(self):
         best, cost, turn = pp.search(self.edges, self.sky, self.places, self.poses, headings=(90.0, 180.0),
                                      bins=BINS, workers=None)

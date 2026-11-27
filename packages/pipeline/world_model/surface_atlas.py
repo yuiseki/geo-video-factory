@@ -145,8 +145,10 @@ def to_camera(points, cam):
 
 def clip_near(tc, near):
     """Triangles in camera space cut at z = near; a triangle crossing the plane becomes one or two."""
-    out = [tc[(tc[..., 2] >= near).all(axis=1)]]
-    for tri in tc[((tc[..., 2] >= near).any(axis=1)) & ~((tc[..., 2] >= near).all(axis=1))]:
+    front = tc[..., 2] >= near
+    whole, some = front.all(axis=1), front.any(axis=1)
+    out = [tc[whole]]
+    for tri in tc[some & ~whole]:
         poly = []
         for p, q in zip(tri, np.roll(tri, -1, axis=0)):
             if p[2] >= near:
@@ -157,14 +159,18 @@ def clip_near(tc, near):
     return np.concatenate(out)
 
 
-def depth_buffer(tris, cam, scale=0.25, near=0.3, slow=False):
+def depth_buffer(tris, cam, scale=0.25, near=0.3, slow=False, far=None):
     """Depth (z in camera space, inf where nothing is) of the scene at a fraction of the photo's size.
+    `far` leaves out the triangles wholly beyond it (what is asked is only what stands nearer than that).
 
     The loop over triangles runs in C (raster.c, built on first use next to this file's cache) when a C compiler
     is there; `slow` forces the numpy loop, which is the reference the C one is tested against."""
     fx, fy, cx, cy = cam["params"]
     w, h = int(round(cam["width"] * scale)), int(round(cam["height"] * scale))
-    tc = clip_near(to_camera(tris.reshape(-1, 3), cam).reshape(-1, 3, 3), near)
+    tc = to_camera(tris.reshape(-1, 3), cam).reshape(-1, 3, 3)
+    if far is not None:
+        tc = tc[tc[..., 2].min(axis=1) <= far]
+    tc = clip_near(tc, near)
     x = (tc[..., 0] / tc[..., 2] * fx + cx) * scale
     y = (tc[..., 1] / tc[..., 2] * fy + cy) * scale
     keep = (x.max(axis=1) > 0) & (x.min(axis=1) < w) & (y.max(axis=1) > 0) & (y.min(axis=1) < h)

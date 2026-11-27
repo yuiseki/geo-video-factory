@@ -109,6 +109,19 @@ class SurfaceAtlasTest(unittest.TestCase):
         np.testing.assert_array_equal(np.isfinite(slow), np.isfinite(fast))
         np.testing.assert_allclose(fast[np.isfinite(fast)], slow[np.isfinite(slow)], rtol=1e-5)
 
+    def test_triangles_wholly_beyond_far_are_left_out_and_the_nearer_depth_is_untouched(self):
+        rng = np.random.default_rng(4)
+        base = rng.uniform([-30, 5, -10], [30, 80, 30], (400, 1, 3))
+        tris = base + rng.uniform(-6, 6, (400, 3, 3))
+        cam = {"eye": [0.0, 0.0, 0.0], "Rw": [[1, 0, 0], [0, 0, -1], [0, 1, 0]], "params": [300.0, 300.0, 320.0, 240.0],
+               "width": 640, "height": 480}
+        every, near = sa.depth_buffer(tris, cam), sa.depth_buffer(tris, cam, far=40.0)
+        self.assertLess(np.isfinite(near).sum(), np.isfinite(every).sum())
+        within = every <= 40.0 - 12.0                         # no triangle is longer than 12 m in depth
+        self.assertGreater(within.sum(), 1000)
+        np.testing.assert_array_equal(near[within], every[within])
+        self.assertTrue((near[np.isfinite(near)] >= every[np.isfinite(near)]).all())
+
     def test_fuse_by_face_takes_one_photo_per_face_and_fills_its_gaps(self):
         # texels 0-3 are face 0, texels 4-5 face 1. View 0 covers all of face 0 moderately, view 1 a part sharply.
         face_of = np.array([0, 0, 0, 0, 1, 1])

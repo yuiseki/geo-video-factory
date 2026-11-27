@@ -24,6 +24,25 @@ def unique_edges(tris):
     return a[key], b[key]
 
 
+def skyline_edges(a, b, cell=0.01):
+    """The edges a-b without the ones that can never be the roofline: an edge that runs under another over the same
+    line on the ground (a wall's foot and its diagonal under its top) is lower than it from every eye, in every
+    direction. Ground lines are the same when both ends fall in the same `cell` (1 cm: tiles cut apart give one wall
+    ends some millimetres apart); vertical edges (a point on the ground) are all kept. On PLATEAU++ this drops 14 %
+    of the edges around Ueno-Okachimachi and 40 % around Shibuya, and model_skyline gave the same at every bin of 60
+    eyes with them as with all; a bin whose centre grazes a wall's end within the cell may read the wall behind."""
+    qa, qb = np.round(a[:, :2] / cell).astype(np.int64), np.round(b[:, :2] / cell).astype(np.int64)
+    order = np.lexsort((-b[:, 2], -a[:, 2], qb[:, 1], qb[:, 0], qa[:, 1], qa[:, 0]))   # by ground line, highest first
+    a, b, qa, qb = a[order], b[order], qa[order], qb[order]
+    first = np.r_[True, (qa[1:] != qa[:-1]).any(1) | (qb[1:] != qb[:-1]).any(1)]
+    group = np.cumsum(first) - 1
+    low, big = b[:, 2].min(), float(np.ptp(b[:, 2]) + 1.0)
+    top = np.maximum.accumulate(b[:, 2] - low + group * big) - group * big + low
+    under = np.r_[False, top[:-1] >= b[1:, 2]] & ~first        # an earlier edge of the line is as high at both ends
+    keep = ~under | (qa == qb).all(1)
+    return a[keep], b[keep]
+
+
 def model_skyline(a, b, eye, bins=720):
     """The highest elevation of the edges a-b seen from the eye, at the centre of every azimuth bin.
     nan where nothing stands. Edges are enough: on a triangle cut by a vertical plane through the eye the
@@ -62,14 +81,18 @@ def pixel_rays(width, height, f, cx, cy, k, R, step=4):
     the SIMPLE_RADIAL camera of COLMAP. Returns two arrays (height // step, width // step)."""
     u = (np.arange(width // step) + 0.5) * step
     v = (np.arange(height // step) + 0.5) * step
-    xd, yd = np.meshgrid((u - cx) / f, (v - cy) / f)
-    x, y = xd.copy(), yd.copy()
-    for _ in range(12 if k else 0):  # undo x_d = x (1 + k r^2) by fixed-point steps; nothing to undo when k is 0
-        s = 1 + k * (x * x + y * y)
-        x, y = xd / s, yd / s
-    ray = np.stack([x, y, np.ones_like(x)], -1) @ np.asarray(R, float)
-    az = np.degrees(np.arctan2(ray[..., 0], ray[..., 1])) % 360
-    el = np.degrees(np.arctan2(ray[..., 2], np.hypot(ray[..., 0], ray[..., 1])))
+    x, y = ((u - cx) / f)[None, :], ((v - cy) / f)[:, None]
+    if k:  # undo x_d = x (1 + k r^2) by fixed-point steps
+        xd, yd = np.broadcast_arrays(x, y)
+        x, y = xd, yd
+        for _ in range(12):
+            s = 1 + k * (x * x + y * y)
+            x, y = xd / s, yd / s
+    R = np.asarray(R, float)
+    # each axis of the ray on its own, a row and a column added: four times faster than stacking (x, y, 1) @ R
+    ray = [x * R[0, i] + (y * R[1, i] + R[2, i]) for i in range(3)]
+    az = np.degrees(np.arctan2(ray[0], ray[1])) % 360
+    el = np.degrees(np.arctan2(ray[2], np.hypot(ray[0], ray[1])))
     return az, el
 
 
@@ -115,13 +138,31 @@ def match_cost(photo, model, tau=5.0, use=("sky", "floor", "ceil"), min_bins=10,
     anywhere at cost 0."""
     model = np.nan_to_num(np.atleast_2d(np.asarray(model, np.float32)), nan=empty)
     places, bins = model.shape
-    shifts = np.arange(bins) if shifts is None else np.asarray(shifts)
+    every = shifts is None
+    shifts = np.arange(bins) if every else np.asarray(shifts)
     kinds = [(name, np.flatnonzero(~np.isnan(photo[name]))) for name in use]
     total = sum(len(idx) for _, idx in kinds)
     if total < min_bins or int(np.sum(~np.isnan(photo["sky"]))) < min_sky:
         return np.full((places, len(shifts)), np.nan)
+    if every:      # every turn: the model laid twice end to end, so each photo bin reads a plain slice of it
+        twice = np.concatenate([model, model], axis=1)
+        cost = np.zeros((places, bins))
+        part = np.empty((places, bins), np.float32)
+        for name, idx in kinds:
+            v = np.asarray(photo[name], np.float32)
+            for b in idx:
+                g = twice[:, b:b + bins]
+                if name == "floor":
+                    np.subtract(v[b], g, out=part)
+                else:
+                    np.subtract(g, v[b], out=part)
+                if name == "sky":
+                    np.abs(part, out=part)
+                else:
+                    np.maximum(part, 0, out=part)
+                cost += np.minimum(part, tau, out=part)
+        return cost / total
     cost = np.zeros((places, len(shifts)))
-    # about 5e6 values (20 MB) per block: 2e7 was 3.5 times slower, the blocks falling out of the cache
     chunk = max(1, int(5e6 // (len(shifts) * max(len(idx) for _, idx in kinds))))
     for name, idx in kinds:
         if len(idx) == 0:

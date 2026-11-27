@@ -46,7 +46,7 @@ from scipy import ndimage
 
 from geo import corner_match as cm
 from geo import skyline_match as sm
-from geo.place_grid import fine_space, grid_places, seeded_places  # noqa: F401  (kept here for callers)
+from geo.place_grid import costmap, fine_space, grid_places, seeded_places  # noqa: F401  (kept here for callers)
 
 BINS, TAU, WORK_W = 720, 5.0, 1300
 SKIES = ("blue", "bright", "dark")
@@ -119,9 +119,25 @@ def _one_place_corners(p):
     return cm.model_corners(_STATE["corners"]["prep"], p, bins=_STATE["bins"]).astype(np.float32)
 
 
-def _one_pose(q):
+def _says(q):
+    return said(_STATE["sky"], *q, bins=_STATE["bins"])
+
+
+def picture_says(sky, poses, bins=BINS, workers=None):
+    """said() for every pose: what search() reads from the picture, to give it as `told` when several searches go
+    through the same poses."""
+    _STATE.update(sky=np.asarray(sky, bool), bins=bins)
+    try:
+        return _map(_says, poses, workers, None)
+    finally:
+        _STATE.clear()
+
+
+def _one_pose(iq):
+    i, q = iq
     bins, headings, model = _STATE["bins"], _STATE["headings"], _STATE["model"]
-    cost = sm.match_cost(said(_STATE["sky"], *q, bins=bins), model, tau=_STATE["tau"], min_sky=_STATE["min_sky"])
+    told = _STATE["told"][i] if _STATE["told"] else said(_STATE["sky"], *q, bins=bins)
+    cost = sm.match_cost(told, model, tau=_STATE["tau"], min_sky=_STATE["min_sky"])
     corners = _STATE["corners"]
     if corners:      # the corners add to the roofline, and place alone a picture whose roofline says too little
         by_corners = cm.corner_cost(said_corners(corners["gray"], _STATE["sky"], *q, bins=bins), _STATE["model_c"])
@@ -143,7 +159,8 @@ def _map(func, items, workers, chunksize):
         return pool.map(func, items, chunksize=chunksize)
 
 
-def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers=(8, 6), min_sky=0, corners=None):
+def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers=(8, 6), min_sky=0, corners=None,
+           told=None):
     """Every place (n, 3) against every pose (pitch, roll, hfov) and every turn about the vertical.
     Returns the best as a dict, and two arrays (poses, places): the cost of the best turn, and that turn in bins.
     workers is the number of processes for the model's rooflines and for the poses; None works in this process.
@@ -151,12 +168,12 @@ def search(edges, sky, places, poses, headings=None, bins=BINS, tau=TAU, workers
     adds weight x the corner cost (0..2) to the roofline's, and stands in for it where the roofline says too little."""
     at_places, at_poses = workers or (1, 1)
     _STATE.update(edges=edges, sky=np.asarray(sky, bool), bins=bins, tau=tau, headings=headings, model=None,
-                  min_sky=min_sky, corners=corners, model_c=None)
+                  min_sky=min_sky, corners=corners, model_c=None, told=told)
     try:
         _STATE["model"] = np.stack(_map(_one_place, places, at_places, 32))
         if corners:
             _STATE["model_c"] = np.stack(_map(_one_place_corners, places, at_places, 32))
-        res = _map(_one_pose, poses, at_poses, None)  # forked after the model is set
+        res = _map(_one_pose, list(enumerate(poses)), at_poses, None)  # forked after the model is set
     finally:
         _STATE.clear()
     cost = np.array([r[0] for r in res])
@@ -213,38 +230,6 @@ def alone(others, tie=0.01):
     return others[1]["cost"] > best + tie * max(best, 1e-9)
 
 
-RAMP = np.array([[253, 231, 37], [33, 145, 140], [68, 1, 84]], float)  # low cost to high
-
-
-def costmap(per_place, xs, ys, tris, ground, given, found, size=800):
-    """The cost of the best pose at every standing point as a picture, north up: yellow is low, purple is the median
-    or worse. White lines are the model near the ground, the red ring the given point, the white cross the found."""
-    m = np.asarray(per_place, float).reshape(len(ys), len(xs))
-    lo, hi = np.nanmin(m), np.nanpercentile(m, 50)
-    t = np.clip((np.nan_to_num(m, nan=hi) - lo) / max(hi - lo, 1e-9), 0, 1) * 2
-    i = np.minimum(t.astype(int), 1)
-    rgb = RAMP[i] + (RAMP[i + 1] - RAMP[i]) * (t - i)[..., None]
-    k = max(1, size // max(m.shape))
-    im = Image.fromarray(rgb[::-1].astype(np.uint8)).resize((len(xs) * k, len(ys) * k), Image.NEAREST)
-    step = xs[1] - xs[0] if len(xs) > 1 else 1.0
-
-    def px(e, n):
-        return (e - xs[0] + step / 2) / step * k, (ys[-1] + step / 2 - n) / step * k
-
-    draw = ImageDraw.Draw(im)
-    ctr = tris.mean(1)
-    inside = ((np.abs(ctr[:, 0] - xs.mean()) < np.ptp(xs) / 2 + 30) & (np.abs(ctr[:, 1] - ys.mean()) < np.ptp(ys) / 2 + 30)
-              & (np.abs(tris[:, :, 2].min(1) - ground) < 3))
-    for tri in tris[inside][::7]:
-        draw.line([px(*p[:2]) for p in tri[[0, 1, 2, 0]]], fill=(255, 255, 255), width=1)
-    gx, gy = px(*given)
-    draw.ellipse([gx - 7, gy - 7, gx + 7, gy + 7], outline=(255, 0, 0), width=2)
-    fx, fy = px(*found)
-    draw.line([fx - 7, fy - 7, fx + 7, fy + 7], fill=(255, 255, 255), width=3)
-    draw.line([fx - 7, fy + 7, fx + 7, fy - 7], fill=(255, 255, 255), width=3)
-    return im
-
-
 def overlay(full, edges, best, bins=BINS, width=1600):
     """The model drawn on the photo at the pose: its edges within 900 m in yellow, its roofline as red dots."""
     W, H = full.size
@@ -295,6 +280,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
         tris = data["tris"].astype(float)
     ground = ground_level(tris, x0, y0) if ground is None else float(ground)
     edges = sm.unique_edges(tris)
+    seen = sm.skyline_edges(*edges)      # the searches read only the roofline; the overlay draws every edge
     Image.MAX_IMAGE_PIXELS = None
     with Image.open(photo_path) as opened:
         full = opened.convert("RGB")
@@ -312,11 +298,15 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
         by_corners = dict(prep=cm.prepare(tris, ground + eye + 3.0), gray=rgb.astype(float).mean(-1), weight=corners)
     lo, hi, n = fov_range.split(":")
     poses = list(product(span(pitch), span(roll), hfov * np.linspace(float(lo), float(hi), int(n))))
+    at_poses = workers[1] if workers else None
+    told = None
     if coarse_grid:      # every pose on a coarse grid first, then the grid only around the best few places
         t0 = time.time()
+        if coarse_bins == bins and not by_corners:      # both searches read the picture at the same poses: once
+            told = picture_says(mask, poses, bins, at_poses)
         places, xs, ys = grid_places(x0, y0, radius, coarse_grid, ground + eye)
-        _, cost1, _ = search(edges, mask, places, poses, heading, coarse_bins, workers=workers, min_sky=int(min_sky),
-                             corners=by_corners)
+        _, cost1, _ = search(seen, mask, places, poses, heading, coarse_bins, workers=workers, min_sky=int(min_sky),
+                             corners=by_corners, told=told)
         log(f"coarse grid: {len(places)} places x {len(poses)} poses at {360 / coarse_bins:g} degrees, "
             f"{time.time() - t0:.0f} s")
         places = seeded_places(places, np.nanmin(cost1, axis=0), seeds, coarse_grid, grid, x0, y0, radius)
@@ -324,8 +314,8 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
     else:
         places, xs, ys = grid_places(x0, y0, radius, grid, ground + eye)
     t0 = time.time()
-    coarse, cost, turn = search(edges, mask, places, poses, heading, bins, workers=workers, min_sky=int(min_sky),
-                                corners=by_corners)
+    coarse, cost, turn = search(seen, mask, places, poses, heading, bins, workers=workers, min_sky=int(min_sky),
+                                corners=by_corners, told=told)
     log(describe("coarse", coarse, places, poses) + f"  ({time.time() - t0:.0f} s)")
     others = rivals(places, poses, cost, turn, bins)
     for r in others:
@@ -337,7 +327,7 @@ def place(photo_path, tris_path, out, x0, y0, hfov, radius=80.0, grid=2.0, eye=1
 
     fine_places, fine_poses = fine_space(coarse, half=fine_half, roll=fine_roll, fov=fine_fov)
     t0 = time.time()
-    best, _, _ = search(edges, mask, fine_places, fine_poses, heading, bins, workers=workers, min_sky=int(min_sky),
+    best, _, _ = search(seen, mask, fine_places, fine_poses, heading, bins, workers=workers, min_sky=int(min_sky),
                         corners=by_corners)
     log(describe("fine", best, fine_places, fine_poses) + f"  ({time.time() - t0:.0f} s)")
 
