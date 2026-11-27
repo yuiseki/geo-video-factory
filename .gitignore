@@ -10,6 +10,9 @@ tmp/
 # Rendered frames and videos
 out/
 
+logs/
+*.log
+
 # Character PSDs and other third-party source material are not redistributed here
 *.psd
 *.glb
