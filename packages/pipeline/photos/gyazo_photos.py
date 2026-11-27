@@ -104,12 +104,17 @@ def collect(path, creator: str, query: str = TAG) -> dict[str, int]:
             if item["image_id"] in known:
                 counts["known"] += 1
                 continue
-            row = record(merge(item, _gyazo("get", item["image_id"])), creator)
-            if row is None:
-                counts["refused"] += 1
+            try:
+                row = record(merge(item, _gyazo("get", item["image_id"])), creator)
+                if row is None:
+                    counts["refused"] += 1
+                    continue
+                with urllib.request.urlopen(row["original_url"], timeout=60) as r:
+                    row["photo"] = photo_store.put(row, r.read())
+            except (OSError, subprocess.SubprocessError, ValueError) as e:     # one capture failing (503) is not all
+                print("failed:", type(e).__name__, e, file=sys.stderr)
+                counts["failed"] = counts.get("failed", 0) + 1
                 continue
-            with urllib.request.urlopen(row["original_url"], timeout=60) as r:
-                row["photo"] = photo_store.put(row, r.read())
             rows.append(row)
             known.add(row["gyazo_id"])
             counts["new"] += 1
