@@ -42,6 +42,7 @@ from mathutils import Matrix
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))     # packages/pipeline
 from buildings import blender_geo as bg  # noqa: E402
+from buildings import glb_local  # noqa: E402
 from world_model import atlas_views  # noqa: E402
 
 argv = sys.argv[sys.argv.index("--") + 1:]
@@ -145,10 +146,15 @@ for tile in manifest["tiles"]:
                 continue
         elif math.hypot(m[0][3] - cx, m[1][3] - cy) > radius:
             continue
-        matrix = Matrix(m)
+        matrix = Matrix.Identity(4)
     source = manifest_path.parent / tile["glb"]
     strict = cache / source.name
-    strict.write_bytes(bg.strict_glb(source.read_bytes()))
+    payload = bg.strict_glb(source.read_bytes())
+    if not enu:
+        # placed here in float64 (buildings/glb_local.py), not by an object matrix: Blender's float32 matrices
+        # round an ECEF translation by up to 0.5 m, and the tiles stood off the photo atlases built from them
+        payload = glb_local.localised_glb(payload, m)
+    strict.write_bytes(payload)
     before = set(bpy.data.objects)
     bpy.ops.import_scene.gltf(filepath=str(strict))
     for obj in set(bpy.data.objects) - before:

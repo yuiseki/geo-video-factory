@@ -6,6 +6,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 from buildings import blender_geo as bg  # noqa: E402
+from buildings import glb_local  # noqa: E402
 
 
 def _apply(matrix, point):
@@ -132,6 +133,59 @@ class StrictGlbTests(unittest.TestCase):
         self.assertIs(bg.strict_glb(payload), payload)
         with self.assertRaises(ValueError):
             bg.strict_glb(b"not a glb at all, really")
+
+
+class LocalisedGlbTests(unittest.TestCase):
+    """A tile whose place is in a node transform (RTC [0, 0, 0], Taito ward) is moved into the local frame before
+    Blender reads it: Blender keeps object matrices in float32, where an ECEF translation (~6.4e6 m) rounds by up to
+    0.5 m and the tile stands off the photo atlas built from the same mesh in float64."""
+
+    def _payload(self, node):
+        return StrictGlbTests._glb(None, {"asset": {"version": "2.0"}, "scene": 0, "scenes": [{"nodes": [0]}],
+                                          "nodes": [node]})
+
+    def _document(self, payload):
+        import json
+        import struct
+        length = struct.unpack_from("<I", payload, 12)[0]
+        return json.loads(payload[20:20 + length])
+
+    @staticmethod
+    def _gltf_to_blender(p):
+        x, y, z = p
+        return (x, -z, y)
+
+    def _place(self, node, origin):
+        """Where Blender puts the node's local point (1, 2, 3) after pp_scene's world matrix, in float64."""
+        import numpy as np
+        m = np.array(node["matrix"], float).reshape(4, 4).T if "matrix" in node else np.eye(4)
+        if "translation" in node:
+            m[:3, 3] = node["translation"]
+        gltf = m @ np.array([1.0, 2.0, 3.0, 1.0])
+        return np.array(_apply(bg.plateau_tile_matrix([0, 0, 0], origin), self._gltf_to_blender(gltf[:3])))
+
+    def test_a_tile_placed_by_its_node_lands_where_it_did_with_a_small_translation(self):
+        import numpy as np
+        origin = (139.790728, 35.725796)
+        ecef = bg.wgs84_ecef([139.7912, 35.7261, 40.0])
+        node = {"matrix": [1, 0, 0, 0, 0, 0, -1, 0, 0, 1, 0, 0, ecef[0], ecef[2], -ecef[1], 1]}   # y-up ECEF placement
+        want = self._place(node, origin)
+        moved = self._document(glb_local.localised_glb(self._payload(node), bg.plateau_tile_matrix([0, 0, 0], origin)))["nodes"][0]
+        m = np.array(moved["matrix"], float).reshape(4, 4).T
+        self.assertLess(np.abs(m[:3, 3]).max(), 1000.0)                       # local metres, not ECEF
+        point = (m @ np.array([1.0, 2.0, 3.0, 1.0]))[:3]
+        np.testing.assert_allclose(self._gltf_to_blender(point), want, atol=1e-6)
+
+    def test_float32_keeps_the_localised_tile_within_a_millimetre(self):
+        import numpy as np
+        origin = (139.790728, 35.725796)
+        ecef = bg.wgs84_ecef([139.7912, 35.7261, 40.0])
+        node = {"translation": [ecef[0], ecef[2], -ecef[1]]}
+        want = self._place(node, origin)
+        moved = self._document(glb_local.localised_glb(self._payload(node), bg.plateau_tile_matrix([0, 0, 0], origin)))["nodes"][0]
+        m = np.array(moved["matrix"], np.float32).reshape(4, 4).T
+        point = (m @ np.array([1, 2, 3, 1], np.float32))[:3].astype(float)
+        self.assertLess(np.abs(np.array(self._gltf_to_blender(point)) - want).max(), 1e-3)
 
 
 if __name__ == "__main__":
