@@ -9,7 +9,7 @@
 python projects/2026/11/26/plateau-pp-ultra-after/atlas_after.py              # 6 か所のアトラス (写真の置き直しなし)
 projects/2026/11/26/plateau-pp-ultra-after/shibuya_atlases.sh                 # 渋谷の CC0 アトラスを quality.png 付きで作り直す
 OVERPASS_URL=<自前の Overpass> python projects/2026/11/26/plateau-pp-ultra-after/after.py [名前 ...]
-python projects/2026/11/26/plateau-pp-ultra-after/compare.py                  # out/compare_<day|night>.jpg
+python projects/2026/11/26/plateau-pp-ultra-after/compare.py [場所 ...]       # out/compare_<場所>.jpg (昼の 3 視点、左が before、右が after)
 ```
 
 リポジトリのルートから、`packages/pipeline` の Python で流します (ホストの資源制限に従う。アトラスは 1 つ最大 20 GB)。`blender` が要ります。`out/` と `work/` は使い捨てで、git の対象外です。
@@ -28,7 +28,7 @@ python projects/2026/11/26/plateau-pp-ultra-after/compare.py                  # 
 
 3 (写らなかった面を同じ建物の繰り返しで埋める) は、入れないと決めました。`--atlas-fade` は、アトラスの画素を `quality.png` (写真の何画素がかかったか) の分だけ不透明にし、写らなかった画素は quality が 0 なので完全に透明になります (`pp_scene.py` の atlas-fade、`surface_atlas.texel_quality`)。そこには焼き込んだ PLATEAU++ (壁の色と窓の模様) が見えます。写らなかった画素を何で埋めても、この描き方では画に出ません。画に出すには埋めた画素を不透明にする必要があり、それは焼き込みの窓の模様を、写真で埋まった 0〜6% の面から取った縞で覆うことになります。写真が建物の面の多くを覆う場所ができたら、考え直します。
 
-## 結果 (`out/compare_<day|night>.jpg`)
+## 結果 (`out/compare_<場所>.jpg`)
 
 - 1 の効果がいちばん大きい。before で黒い壁に窓だけが光っていた補完の建物 (羽村の全域、各地の PLATEAU に無い建物) が、昼は壁の色と窓の模様、夜は灯る窓として出る。テクスチャの無い PLATEAU の面の灰色も、焼き込んだ壁の色になった。
 - 5 で、目の高さの画に路面の質感と横断歩道が入った (渋谷で 1,371 本の縞)。夜は、道路沿いの街灯の光だまりが、濡れた路面に並ぶ。窓の明かりしかなかった before の夜より、街の形が道路から読める。

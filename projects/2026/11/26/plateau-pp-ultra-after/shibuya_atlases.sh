@@ -11,7 +11,8 @@ P=${PYTHON:-$REPO/packages/pipeline/.venv/bin/python}
 O=$HERE/work/shibuya; mkdir -p $O
 # street photos do not paint the lowest 2.2 m of wall, where the crowd stands (one night photo of the crossing
 # painted a whole face of 109 with its crowd); the ground is the crossing's
-BAND="--people-band=2.2 --ground-z=52.8"
+# photos that photos/people_removal.py has masked (shared_cache.people_masks_dir()) also skip their people and cars
+BAND="--people-band=2.2 --ground-z=52.8 --people-masks=cache"
 cd $REPO/packages/pipeline
 for L in day night; do
   for B in qfront ekimae s109; do
