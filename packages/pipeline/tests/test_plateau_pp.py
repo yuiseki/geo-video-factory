@@ -1,4 +1,5 @@
 import json
+import math
 import os
 import tempfile
 import unittest
@@ -102,6 +103,9 @@ class CacheDirs(unittest.TestCase):
 
 
 
+TILE_DEG = [138.995, 34.995, 139.02, 35.02]   # a PLATEAU tile reaching beyond the box
+
+
 class Build(unittest.TestCase):
     """build() end to end with every download and heavy step stubbed: what it calls, and what it writes."""
 
@@ -112,7 +116,8 @@ class Build(unittest.TestCase):
         if plateau:
             (out / "models" / "t.glb").write_bytes(b"glb")
             (out / "manifest.json").write_text(json.dumps({
-                "center": [139.0, 35.0], "tiles": [{"glb": "models/t.glb", "rtc": [0, 0, 0], "ids": ["a", "b"]}]}))
+                "center": [139.0, 35.0], "tiles": [{"glb": "models/t.glb", "rtc": [0, 0, 0], "ids": ["a", "b"],
+                                                     "region": [math.radians(v) for v in TILE_DEG] + [0, 50]}]}))
         heights = {"a": {"lonlat": [139.0, 35.0], "height": 30.0}, "b": {"lonlat": [139.001, 35.0], "height": 6.0}}
 
         class Photo:
@@ -151,7 +156,7 @@ class Build(unittest.TestCase):
                 mock.patch("buildings.gsi_footprints.fetch_gsi_buildings", return_value=list(footprints)) as self.gsi, \
                 mock.patch("buildings.cell_heights.feature_heights", return_value=heights) as self.cal, \
                 mock.patch("buildings.gsi_footprints.dem_sampler", return_value=lambda lon, lat: 0.0) as self.dem, \
-                mock.patch("buildings.gsi_footprints.orthophoto_texture", return_value=(Photo(), [139.0, 35.0, 139.01, 35.01])), \
+                mock.patch("buildings.gsi_footprints.orthophoto_texture", return_value=(Photo(), [139.0, 35.0, 139.01, 35.01])) as self.photo, \
                 mock.patch.object(gs, "extract_glb_feature_heights", return_value=heights), \
                 mock.patch.object(gs, "extract_glb_feature_shapes", return_value={}), \
                 mock.patch("buildings.city_proxy.build_city_proxy_tile", side_effect=proxy), \
@@ -201,6 +206,13 @@ class Build(unittest.TestCase):
         self.assertEqual(self.dem.call_args.args[0], context)
         self.assertEqual(self.proxy_footprints, [inside])
         self.assertLess(context[0], box[0] - 0.003)
+
+    def test_a_plateau_tiles_roofs_come_from_a_photo_of_the_whole_tile_not_of_the_box(self):
+        """A PLATEAU tile reaches beyond the box: cropping its roofs from the box's photo cut them at the box's edge,
+        differently in every box."""
+        self.run_build()
+        asked = [[round(v, 9) for v in c.args[0]] for c in self.photo.call_args_list]
+        self.assertIn([round(v, 9) for v in TILE_DEG], asked)
 
     def test_no_bake_leaves_the_look_to_the_renderer_as_before(self):
         out, m = self.run_build(bake=False)

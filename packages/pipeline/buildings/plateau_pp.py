@@ -40,7 +40,7 @@ from buildings.glb_strip import drop_features
 from buildings.plausibility import implausible
 
 TOKYO_2025 = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
-PLATEAU_PP_VERSION = "0.2.0"   # raise when a change alters what a build looks like: cached builds live under it
+PLATEAU_PP_VERSION = "0.2.1"   # raise when a change alters what a build looks like: cached builds live under it
 
 
 def overpass_endpoint() -> str:
@@ -120,8 +120,10 @@ def cache_dirs(out: Path, cache: Path | None = None, gsi_cache: Path | None = No
             Path(gsi_cache) if gsi_cache else gsi_dir())
 
 
-def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None:
-    """Write the look into every tile (pp_bake): PLATEAU tiles and filled-in tiles; the shadow tile stays as it is."""
+def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float], tile_roof=None) -> None:
+    """Write the look into every tile (pp_bake): PLATEAU tiles and filled-in tiles; the shadow tile stays as it is.
+    tile_roof(tile) -> (photo, bounds) gives a PLATEAU tile the roof photo of its own region (a tile reaches beyond the
+    box, and the box's photo would cut its roofs at the box's edge, differently in every box)."""
     import hashlib
 
     from buildings import pp_bake
@@ -134,7 +136,8 @@ def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None
         if tile.get("kind") == "city-proxy":
             new = pp_bake.bake_proxy(raw, ids, roof_photo, (tile.get("roof_texture") or m["roof_texture"])["bounds_m"])
         elif tile.get("frame") != "enu":
-            new = pp_bake.bake_untextured(raw, tile["rtc"], ids, tile.get("facade_colors") or [], roof_photo, roof_bounds)
+            photo, bounds = tile_roof(tile) if tile_roof and tile.get("region") else (roof_photo, roof_bounds)
+            new = pp_bake.bake_untextured(raw, tile["rtc"], ids, tile.get("facade_colors") or [], photo, bounds)
         else:
             continue
         path.write_bytes(new)
@@ -234,7 +237,8 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     m["plateau_building_count"] = len(plateau)
     m["roof_texture"] = roof_texture_entry("roof-photo.jpg", roof_bounds, m["center"])
     if bake:
-        bake_tiles(out, m, roof, roof_bounds)
+        import math
+        bake_tiles(out, m, roof, roof_bounds, lambda t: orthophoto_texture([math.degrees(v) for v in t["region"][:4]], gsi, zoom=18))
     (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"PLATEAU++: {m['tile_count']} tiles, {len(plateau)} PLATEAU buildings, "
           f"{m['city_proxy_building_count']} filled-in, {len(removed)} removed as implausible")
