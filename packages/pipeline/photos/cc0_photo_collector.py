@@ -39,7 +39,6 @@ from photos.photo_catalog_rules import (
     classify_time_of_day,
     classify_weather,
     find_gitleaks_hex32_matches,
-    is_cc0_or_public_domain,
     is_ccby_nosa_or_cc0,
     is_strict_cc0,
     is_urban_scene_candidate,
@@ -64,9 +63,7 @@ def query_commons_search(query: str, limit: int = 80, license_mode: str = "cc0",
 
 
 def query_commons_category(category: str, limit: int = 120, sleep_fn=time.sleep, depth: int = 0) -> list[str]:
-    return _sources.query_commons_category(
-        category, limit=limit, sleep_fn=sleep_fn, fetch_fn=fetch_json_with_retry, depth=depth
-    )
+    return _sources.query_commons_category(category, limit, sleep_fn, fetch_json_with_retry, depth)
 
 
 def query_commons_geosearch(
@@ -155,8 +152,7 @@ def collect_from_config(
                     ordered_titles.append(t)
 
         for cat in spot.get("commons_categories", []):
-            add_titles(query_commons_category(cat, limit=int(spot.get("cat_limit", 100)),
-                                              depth=int(spot.get("category_depth", 0))))
+            add_titles(query_commons_category(cat, int(spot.get("cat_limit", 100)), depth=int(spot.get("category_depth", 0))))
         for q in spot.get("commons_searches", []):
             add_titles(query_commons_search(q, limit=int(spot.get("search_limit", 60)), license_mode=eff_license_mode))
         for geo in spot.get("geosearch", []):
@@ -200,9 +196,8 @@ def collect_from_config(
             dt_info = parse_datetime(rec.get("datetime") or "")
             if not dt_info["year"]:
                 dt_info = parse_datetime(rec.get("title") or "")
-            # "min_year" (config or spot): the city as it stands now, not old prints and plans
             too_old = date_rejection(dt_info["year"], rec.get("license", ""), rec.get("license_url", ""),
-                                     spot.get("min_year", config.get("min_year")))
+                                     spot.get("min_year", config.get("min_year")))   # the city as it stands now
             if too_old:
                 rejected[too_old] += 1
                 continue

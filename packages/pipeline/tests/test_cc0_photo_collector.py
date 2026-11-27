@@ -977,7 +977,8 @@ class CC0PhotoCollectorTests(unittest.TestCase):
             ov = m.query_openverse("Akihabara", pages=1, license_mode="cc0_pd")
             self.assertIn("license=cc0%2Cpdm", seen_urls[-1])
             self.assertEqual([r["license"] for r in ov], ["CC0 1.0", "Public Domain Mark 1.0"])
-            self.assertTrue(m.is_cc0_or_public_domain(ov[1]["license"], ov[1]["license_url"]))
+            rules = import_pipeline("photos.photo_catalog_rules")
+            self.assertTrue(rules.is_cc0_or_public_domain(ov[1]["license"], ov[1]["license_url"]))
 
     def test_licence_policy_names_public_domain_apart_from_attribution(self):
         review = import_pipeline("photos.photo_catalog_review")
@@ -1000,8 +1001,8 @@ class CC0PhotoCollectorTests(unittest.TestCase):
         def fake_fetch(url, sleep_fn=None):
             import urllib.parse as up
             q = dict(up.parse_qsl(up.urlsplit(url).query))
-            self.assertIn("subcat", q["cmtype"])
-            return {"query": {"categorymembers": [{"title": t} for t in tree[q["cmtitle"]]]}}
+            members = [t for t in tree[q["cmtitle"]] if "subcat" in q["cmtype"] or not t.startswith("Category:")]
+            return {"query": {"categorymembers": [{"title": t} for t in members]}}
 
         with patch.object(m, "fetch_json_with_retry", side_effect=fake_fetch):
             self.assertEqual(m.query_commons_category("Kaminarimon", limit=50, sleep_fn=lambda _: None),

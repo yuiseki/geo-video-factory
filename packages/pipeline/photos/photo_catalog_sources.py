@@ -164,8 +164,8 @@ def query_commons_category(
             "action": "query",
             "list": "categorymembers",
             "cmtitle": cat_name,
-            "cmtype": "file|subcat",
-            "cmlimit": "500",
+            "cmtype": "file|subcat" if depth > 0 else "file",
+            "cmlimit": "500" if depth > 0 else str(min(50, limit - len(titles))),
             "format": "json",
         }
         if cmcontinue:
