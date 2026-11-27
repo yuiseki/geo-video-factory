@@ -12,6 +12,8 @@ people and cars stand in front of it (surface_atlas.people_band).
 photos/people_removal.py found them (=cache reads shared_cache.people_masks_dir()).
 --edge-margin=N keeps every photo off its pixels within N of the city model's outline in it (silhouette_blocked):
 there a small error of pose or shape paints the sky or the building behind on the edge of a wall.
+Leave it off when every photo was taken from one eye (a balcony, a window): the outline then falls on the same
+texels in every photo, no photo paints them, and a faded rim runs along every silhouette seen from there.
 --tidy[=2] drops specks of seen texels and grows the seen texels that many texels into their own face (tidy).
 Texels that no photo saw are grey in atlas.png and are counted in report.json; they are not made up."""
 import json
