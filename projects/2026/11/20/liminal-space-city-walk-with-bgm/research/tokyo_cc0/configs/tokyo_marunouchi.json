@@ -1,0 +1,44 @@
+{
+  "area": "tokyo_marunouchi",
+  "license_mode": "cc0_pd",
+  "min_year": 2005,
+  "max_per_creator_day": 100,
+  "target_total": 1229,
+  "spots": [
+    {
+      "slug": "tokyo_station_marunouchi",
+      "kind": "landmarks",
+      "label": "東京駅丸の内駅舎・駅前広場",
+      "commons_categories": [
+        "Tokyo Station Marunouchi Building"
+      ],
+      "category_depth": 2,
+      "cat_limit": 1500,
+      "target": 535,
+      "max_per_creator_day": 100,
+      "openverse_queries": [
+        "Tokyo Station Marunouchi",
+        "東京駅 丸の内駅舎"
+      ],
+      "openverse_pages": 5
+    },
+    {
+      "slug": "gyoko_dori_marunouchi",
+      "kind": "streets",
+      "label": "行幸通り・丸の内仲通り・皇居側丸の内街並み",
+      "commons_categories": [
+        "Gyoko Street",
+        "Views from Gyoko Street"
+      ],
+      "category_depth": 2,
+      "cat_limit": 1500,
+      "target": 552,
+      "max_per_creator_day": 100,
+      "openverse_queries": [
+        "Gyoko-dori Tokyo",
+        "行幸通り"
+      ],
+      "openverse_pages": 5
+    }
+  ]
+}

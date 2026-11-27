@@ -1,26 +1,27 @@
-# 東京主要エリア CC0 街並み写真カタログ
+# 東京主要エリア 街並み写真カタログ
 
-厳密に **CC0 / CC-Zero** ライセンスの写真（Wikimedia Commons / Openverse）のみを収集し、目視検品したカタログです。
-実画像ファイルは `flyover/assets/photos/tokyo_cc0/<area>/<kind>/<spot_slug>/` に保存しています（`.gitignore` 対象）。
+ライセンス方針: **CC0 or public domain (no attribution required)**。目視検品済みのカタログです。
+実画像ファイルは各 `local_path`（`.gitignore` 対象）に保存しています。
 
-- **総枚数**: 1284 枚（9 エリア）
-- **SfM / 3DGS 投入可能バケット（同一スポット×同一時間帯 >= 10枚）**: 27 件
-- **種別内訳**: {"landmarks": 896, "streets": 388}
-- **時間帯内訳**: {"day": 738, "dusk": 215, "morning": 63, "night": 268}
-- **季節内訳**: {"autumn": 256, "spring": 401, "summer": 338, "unknown": 12, "winter": 277}
+- **総枚数**: 1380 枚（9 エリア）
+- **SfM / 3DGS 投入可能バケット（同一スポット×同一時間帯 >= 10枚）**: 30 件
+- **ライセンス内訳**: {"CC0": 1327, "CC0 1.0": 9, "Public domain": 44}
+- **種別内訳**: {"landmarks": 965, "streets": 415}
+- **時間帯内訳**: {"day": 813, "dusk": 222, "morning": 65, "night": 280}
+- **季節内訳**: {"autumn": 272, "spring": 423, "summer": 341, "unknown": 15, "winter": 329}
 
 ## エリア別サマリー
 
 | エリア | 合計 | ランドマーク | 通り | 朝 | 昼 | 夕 | 夜 | 春 | 夏 | 秋 | 冬 | マニフェスト |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| `akihabara` | 129 | 55 | 74 | 6 | 71 | 26 | 26 | 30 | 27 | 36 | 36 | [akihabara_manifest.json](akihabara_manifest.json) |
-| `asakusa` | 254 | 203 | 51 | 37 | 171 | 22 | 24 | 146 | 37 | 34 | 29 | [asakusa_manifest.json](asakusa_manifest.json) |
-| `ginza` | 27 | 16 | 11 | 2 | 11 | 3 | 11 | 8 | 5 | 5 | 9 | [ginza_manifest.json](ginza_manifest.json) |
+| `akihabara` | 156 | 55 | 101 | 6 | 90 | 29 | 31 | 34 | 27 | 47 | 48 | [akihabara_manifest.json](akihabara_manifest.json) |
+| `asakusa` | 260 | 209 | 51 | 39 | 174 | 23 | 24 | 147 | 37 | 34 | 33 | [asakusa_manifest.json](asakusa_manifest.json) |
+| `ginza` | 72 | 61 | 11 | 2 | 53 | 4 | 13 | 15 | 5 | 7 | 43 | [ginza_manifest.json](ginza_manifest.json) |
 | `omotesando_harajuku` | 55 | 24 | 31 | 0 | 32 | 13 | 10 | 15 | 9 | 17 | 13 | [omotesando_harajuku_manifest.json](omotesando_harajuku_manifest.json) |
 | `roppongi` | 60 | 29 | 31 | 1 | 35 | 7 | 17 | 17 | 14 | 9 | 20 | [roppongi_manifest.json](roppongi_manifest.json) |
 | `shibuya` | 233 | 170 | 63 | 4 | 153 | 49 | 27 | 53 | 55 | 67 | 57 | [shibuya_manifest.json](shibuya_manifest.json) |
 | `shinjuku` | 76 | 43 | 33 | 2 | 35 | 17 | 22 | 19 | 12 | 23 | 21 | [shinjuku_manifest.json](shinjuku_manifest.json) |
-| `tokyo_marunouchi` | 229 | 177 | 52 | 4 | 112 | 51 | 62 | 62 | 91 | 34 | 41 | [tokyo_marunouchi_manifest.json](tokyo_marunouchi_manifest.json) |
+| `tokyo_marunouchi` | 247 | 195 | 52 | 4 | 123 | 53 | 67 | 72 | 94 | 37 | 43 | [tokyo_marunouchi_manifest.json](tokyo_marunouchi_manifest.json) |
 | `ueno` | 221 | 179 | 42 | 7 | 118 | 27 | 69 | 51 | 88 | 31 | 51 | [ueno_manifest.json](ueno_manifest.json) |
 
 ## フォトグラメトリ / 3DGS 密度マトリクス（スポット × 時間帯）
@@ -34,11 +35,12 @@
 | `ueno` | `shinobazu_bentendo` (不忍池・不忍池辯天堂・清水観音堂) | landmarks | 99 | 1 | **64★★** | 3 | **31★★** |
 | `asakusa` | `sensoji_temple` (浅草寺本堂・五重塔・宝蔵門・二天門) | landmarks | 90 | **17★** | **71★★** | 1 | 1 |
 | `ueno` | `ueno_park_center` (上野公園・西郷像・東照宮・五重塔・博物館外観) | landmarks | 80 | 5 | **47★★** | **11★** | **17★** |
-| `asakusa` | `kaminarimon` (雷門) | landmarks | 56 | **13★** | **34★★** | 2 | 7 |
+| `asakusa` | `kaminarimon` (雷門) | landmarks | 62 | **15★** | **37★★** | 3 | 7 |
+| `tokyo_marunouchi` | `tokyo_station_marunouchi` (東京駅丸の内駅舎・駅前広場) | landmarks | 53 | 0 | **26★★** | 6 | **21★** |
+| `ginza` | `ginza_4chome_wako` (銀座四丁目交差点・和光時計塔・銀座三越) | landmarks | 52 | 0 | **46★★** | 2 | 4 |
 | `tokyo_marunouchi` | `gyoko_dori_marunouchi` (行幸通り・丸の内仲通り・皇居側丸の内街並み) | streets | 52 | 0 | **25★★** | **12★** | **15★** |
+| `akihabara` | `chuo_dori` (秋葉原中央通り・電気街メインストリート・歩行者天国) | streets | 49 | 0 | **27★★** | 8 | **14★** |
 | `ueno` | `ameyoko` (アメ横・アメヤ横丁・高架下) | streets | 42 | 1 | 7 | **13★** | **21★** |
-| `tokyo_marunouchi` | `tokyo_station_marunouchi` (東京駅丸の内駅舎・駅前広場) | landmarks | 35 | 0 | **15★** | 4 | **16★** |
-| `akihabara` | `chuo_dori` (秋葉原中央通り・電気街メインストリート・歩行者天国) | streets | 22 | 0 | 8 | 5 | 9 |
 | `akihabara` | `kandamyojin_showa_dori` (神田明神通り・昭和通り) | streets | 20 | 6 | **11★** | 1 | 2 |
 | `asakusa` | `azumabashi_sumida` (吾妻橋・隅田川・スカイツリー遠景・浅草文化観光センター・隅田公園の桜) | landmarks | 20 | 2 | 9 | 3 | 6 |
 | `asakusa` | `sumida_park_kototoi` (隅田公園・言問橋・駒形橋・蔵前側リバーサイド) | landmarks | 20 | 0 | **12★** | 3 | 5 |
@@ -77,7 +79,6 @@
 | `shinjuku` | `kabukicho_omoide_golden` (歌舞伎町セントラルロード・思い出横丁・新宿ゴールデン街) | streets | 8 | 0 | 2 | 2 | 4 |
 | `shinjuku` | `meiji_koshu_dori` (明治通り・甲州街道・西新宿大通り) | streets | 8 | 1 | 3 | 2 | 2 |
 | `asakusa` | `kappabashi_dori` (かっぱ橋道具街通り) | streets | 7 | 0 | 6 | 1 | 0 |
-| `ginza` | `ginza_4chome_wako` (銀座四丁目交差点・和光時計塔・銀座三越) | landmarks | 7 | 0 | 4 | 1 | 2 |
 | `ginza` | `ginza_chuo_dori` (銀座中央通り・歩行者天国) | streets | 7 | 1 | 3 | 1 | 2 |
 | `omotesando_harajuku` | `cat_street_meiji_dori` (キャットストリート・明治通り原宿) | streets | 7 | 0 | 1 | 6 | 0 |
 | `omotesando_harajuku` | `yoyogi_park` (代々木公園・国立代々木競技場) | landmarks | 7 | 0 | 5 | 0 | 2 |
@@ -93,5 +94,5 @@
 
 ## 出典・ライセンス規約
 
-- 収録写真はすべて **CC0 1.0 / CC-Zero** として取得・検証済みです。
-- 著作権表示の法的義務はありませんが、動画公開時には [index.json](index.json) に記録した作者名 (`creator`)・取得元 URL (`landing_url`) を参考にクレジットを記録してください。
+- 本カタログのライセンス方針は **CC0 or public domain (no attribution required)** です。
+- 動画公開時には [index.json](index.json) に記録した作者名 (`creator`)・ライセンス (`license`)・取得元 URL (`landing_url`) を参考にクレジットを記録してください（CC BY 写真は帰属表記必須）。
