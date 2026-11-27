@@ -156,7 +156,7 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
     cache.mkdir(parents=True, exist_ok=True)
     if not (out / "manifest.json").exists():
         try:
-            prepare_tiles(tileset, bbox, out, max_texture_dimension=2048, far_texture_dimension=1024, workers=3)
+            prepare_tiles(tileset, bbox, out, max_texture_dimension=2048, workers=3)
         except ValueError as error:                     # PLATEAU has no model here: build from footprints alone
             if "no leaf content" not in str(error):
                 raise

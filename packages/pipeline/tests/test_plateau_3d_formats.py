@@ -371,17 +371,34 @@ class PrepareTilesTests(unittest.TestCase):
                     plateau_3d.prepare_tiles('https://tiles.example/root.json', BBOX, Path(directory), fetcher=never, **kwargs)
             self.assertEqual(list(Path(directory).iterdir()), [])
 
-    def test_a_tile_without_any_bounding_region_is_kept_at_the_near_texture_size(self):
-        """iter_leaf_contents keeps a leaf whose position is unknown; it may be right under the camera, so it
-        keeps the larger texture."""
+    def test_a_tile_without_any_bounding_region_gets_the_one_texture_size(self):
         glb = make_glb({'asset': {'version': '2.0'}})
         resources = {
             'https://tiles.example/root.json': json.dumps({'root': {'content': {'uri': 'tile.glb'}}}).encode(),
             'https://tiles.example/tile.glb': glb,
         }
         with tempfile.TemporaryDirectory() as directory:
-            manifest = self.prepare(resources, directory, max_texture_dimension=2048, far_texture_dimension=512)
+            manifest = self.prepare(resources, directory, max_texture_dimension=2048)
             self.assertEqual([(t['region'], t['texture_limit']) for t in manifest['tiles']], [(None, 2048)])
+
+    def test_a_tile_comes_out_the_same_whatever_box_asked_for_it(self):
+        """A building is the same in every build that holds it: its tile's texture size does not depend on where
+        the box (or its centre) lies."""
+        image = io.BytesIO()
+        Image.new('RGB', (3000, 1500), (120, 90, 40)).save(image, 'PNG')
+        binary = image.getvalue()
+        glb = make_glb({'asset': {'version': '2.0'}, 'images': [{'bufferView': 0, 'mimeType': 'image/png'}],
+                        'bufferViews': [{'buffer': 0, 'byteOffset': 0, 'byteLength': len(binary)}],
+                        'buffers': [{'byteLength': len(binary)}]}, binary)
+        resources = single_tile_resources(glb, uri='tile.glb', tile_region=region(139.84, 35.74, 139.845, 35.745))
+        made = []
+        for box in (BBOX, [139.83, 35.73, 139.95, 35.85]):          # the tile at the far corner, then near the centre
+            with tempfile.TemporaryDirectory() as directory:
+                m = plateau_3d.prepare_tiles('https://tiles.example/root.json', box, Path(directory),
+                                             fetcher=lambda url: resources[url])
+                made.append([(t['texture_limit'], t['sha256']) for t in m['tiles']])
+        self.assertEqual(made[0], made[1])
+        self.assertEqual(made[0][0][0], 2048)
 
     def test_an_rtc_center_that_is_not_a_list_is_reported_as_invalid(self):
         feature = json.dumps({'RTC_CENTER': 5}).encode()
@@ -458,7 +475,7 @@ class PrepareTilesTests(unittest.TestCase):
             manifest = self.prepare(single_tile_resources(make_glb({'asset': {'version': '2.0'}}), uri='tile.glb'), directory)
         self.assertEqual(manifest['tiles'][0]['rtc'], [0.0, 0.0, 0.0])
 
-    def test_textures_far_from_the_bbox_centre_get_the_far_limit(self):
+    def test_textures_near_and_far_from_the_bbox_centre_get_the_same_limit(self):
         texture = image_bytes((64, 32))
         root = {'root': {'children': [
             {'boundingVolume': {'region': region(139.799, 35.699, 139.801, 35.701)}, 'content': {'uri': 'near.glb'}},
@@ -470,21 +487,21 @@ class PrepareTilesTests(unittest.TestCase):
             'https://tiles.example/far.glb': textured_glb(texture, 'image/png'),
         }
         with tempfile.TemporaryDirectory() as directory:
-            manifest = self.prepare(resources, directory, max_texture_dimension=64, far_texture_dimension=16)
+            manifest = self.prepare(resources, directory, max_texture_dimension=16)
             sizes = {
                 Path(tile['source']).name: (tile['texture_limit'], embedded_image((Path(directory) / tile['glb']).read_bytes()).size)
                 for tile in manifest['tiles']
             }
-        self.assertEqual(sizes, {'near.glb': (64, (64, 32)), 'far.glb': (16, (16, 8))})
+        self.assertEqual(sizes, {'near.glb': (16, (16, 8)), 'far.glb': (16, (16, 8))})
         self.assertEqual([Path(tile['source']).name for tile in manifest['tiles']], ['far.glb', 'near.glb'])
 
-    def test_far_limit_defaults_to_1024_only_for_the_2048_default(self):
+    def test_the_limit_is_the_max_dimension_for_every_tile(self):
         far = region(139.84, 35.74, 139.85, 35.75)
         glb = make_glb({'asset': {'version': '2.0'}})
-        for max_dimension, expected in ((2048, 1024), (512, 512)):
+        for max_dimension in (2048, 512):
             with self.subTest(max_dimension=max_dimension), tempfile.TemporaryDirectory() as directory:
                 manifest = self.prepare(single_tile_resources(glb, uri='far.glb', tile_region=far), directory, max_texture_dimension=max_dimension)
-                self.assertEqual(manifest['tiles'][0]['texture_limit'], expected)
+                self.assertEqual(manifest['tiles'][0]['texture_limit'], max_dimension)
                 self.assertEqual(manifest['texture_max_dimension'], max_dimension)
 
 

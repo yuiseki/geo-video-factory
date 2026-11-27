@@ -210,11 +210,7 @@ class Plateau3DTilesTests(unittest.TestCase):
             mock_proxy.assert_called_once()
             self.assertEqual(mock_proxy.call_args.kwargs.get('plateau_ids'), {'gml-1', 'gml-2'})
 
-    def test_adaptive_texture_limit_uses_2048_near_center_and_1024_far_and_strips_cesium_rtc(self):
-        near_region = [math.radians(139.799), math.radians(35.699), math.radians(139.801), math.radians(35.701), 0, 50]
-        far_region = [math.radians(139.810), math.radians(35.710), math.radians(139.812), math.radians(35.712), 0, 50]
-        self.assertEqual(plateau_3d.tile_texture_limit(near_region, (139.800, 35.700), 2048, 1024), 2048)
-        self.assertEqual(plateau_3d.tile_texture_limit(far_region, (139.800, 35.700), 2048, 1024), 1024)
+    def test_texture_resizing_strips_cesium_rtc(self):
         image_buffer = io.BytesIO()
         Image.new('RGB', (200, 100), (120, 90, 40)).save(image_buffer, 'PNG')
         binary = image_buffer.getvalue()

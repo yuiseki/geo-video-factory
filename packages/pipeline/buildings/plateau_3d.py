@@ -178,18 +178,6 @@ def extract_gml_ids(payload: bytes, batch_table: dict[str, Any] | None = None) -
     return ids
 
 
-def tile_texture_limit(
-    region: list[float] | None, center: tuple[float, float] | list[float],
-    near_dimension: int = 2048, far_dimension: int = 1024,
-) -> int:
-    if region is None:  # a leaf whose position is unknown may be right under the camera
-        return near_dimension
-    west, south, east, north = (math.degrees(v) for v in region[:4])
-    cx, cy = float(center[0]), float(center[1])
-    near = not (east < cx - 0.003 or west > cx + 0.003 or north < cy - 0.0025 or south > cy + 0.0025)
-    return near_dimension if near else far_dimension
-
-
 def _strip_cesium_rtc(document: dict[str, Any]) -> bool:
     changed = False
     for key in ('extensionsUsed', 'extensionsRequired'):
@@ -274,7 +262,7 @@ def _default_fetch(url: str) -> bytes:
 
 def prepare_tiles(
     tileset_url: str, bbox_degrees: list[float], output_dir: Path, *,
-    max_texture_dimension: int = 2048, far_texture_dimension: int | None = None,
+    max_texture_dimension: int = 2048,
     workers: int = 3, fetcher: Callable[[str], bytes] | None = None, raw_cache: Path | None = None,
 ) -> dict[str, Any]:
     """Download intersecting leaf models and write a fixed local manifest.
@@ -282,11 +270,11 @@ def prepare_tiles(
     The served bytes (tileset JSON and tile content) are kept in raw_cache and read from there next time.
     Without a fetcher, raw_cache defaults to the shared plateau-raw cache (shared_cache), so every
     project and box reuses the same downloads. A fetcher given without raw_cache is called directly.
+    Every tile's textures are limited to max_texture_dimension, wherever it lies: a building comes out the same in
+    every box that holds it (an earlier rule halved the textures of tiles away from the box's centre).
     """
     if max_texture_dimension <= 0 or workers <= 0:
         raise ValueError('max texture dimension and workers must be positive')
-    center = [(bbox_degrees[0] + bbox_degrees[2]) / 2, (bbox_degrees[1] + bbox_degrees[3]) / 2]
-    far_dim = far_texture_dimension or (1024 if max_texture_dimension == 2048 else max_texture_dimension)
     fetch = fetcher or _default_fetch
     if raw_cache is None and fetcher is None:
         from shared_cache import plateau_raw_dir
@@ -324,7 +312,7 @@ def prepare_tiles(
         if not isinstance(rtc, (list, tuple)) or len(rtc) != 3 or any(not isinstance(v, (int, float)) for v in rtc):
             raise ValueError(f'invalid RTC center in {item["uri"]}')
         model_path = models_dir / f'{hashlib.sha256(item["uri"].encode()).hexdigest()[:20]}.glb'
-        limit = tile_texture_limit(item['region'], center, max_texture_dimension, far_dim)
+        limit = max_texture_dimension
         optimized = _resize_glb_textures(glb, limit)
         model_path.write_bytes(optimized)
         try:
@@ -346,7 +334,7 @@ def prepare_tiles(
     unique_ids = {identifier for item in results for identifier in item['ids']}
     manifest = {
         'format': 'geo-video-factory.plateau-3d/1', 'tileset_url': tileset_url, 'bbox_degrees': bbox_degrees,
-        'center': center, 'tile_count': len(results), 'tile_ids': len(unique_ids),
+        'center': [(bbox_degrees[0] + bbox_degrees[2]) / 2, (bbox_degrees[1] + bbox_degrees[3]) / 2], 'tile_count': len(results), 'tile_ids': len(unique_ids),
         'total_source_bytes': sum(item['source_bytes'] for item in results),
         'total_bytes': sum(item['bytes'] for item in results),
         'texture_max_dimension': max_texture_dimension, 'tiles': results,
