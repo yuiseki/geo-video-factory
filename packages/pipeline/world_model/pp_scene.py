@@ -22,7 +22,7 @@ ground on the ellipsoid, which the road plane under everything and --water start
 
 The buildings are PLATEAU++ (packages/pipeline: PLATEAU models with their own photo textures, filled-in
 buildings where PLATEAU has none), every tile whose extent (its region) comes within --radius metres of --centre.
-The photo atlases of this directory (build_atlas.py) lie on top of them, 0.15 m out along each face,
+The photo atlases of this directory (build_atlas.py) lie on top of them, 0.15 m out (edges kept closed, atlas_shell),
 showing only the texels a photo saw (seen.png > 0): where no photo looked, PLATEAU++ shows through
 instead of the atlas's grey fill. Photo textures (PLATEAU's and the atlases') are drawn unlit, as
 orbit_render.py does: the photos carry their own light. --dim scales the PLATEAU++ photos (taken by
@@ -170,9 +170,14 @@ for path in [p for p in opts.get("atlas", "").split(",") if p]:
     seen_path = Path(path).parent / "seen.png"
     for obj in set(bpy.data.objects) - before:
         obj.name = "atlas-" + Path(path).parent.name
-        for poly in obj.data.polygons:          # faces are unwelded: each moves out along its own normal
-            for vi in poly.vertices:
-                obj.data.vertices[vi].co += poly.normal * 0.15
+        # off the faces it paints by 0.15 m, the copies of a vertex at one place moving together (atlas_shell):
+        # pushed out face by face, walls and roofs parted at every edge and the building below showed through
+        from world_model.atlas_shell import push_out
+        me = obj.data
+        co = [tuple(vx.co) for vx in me.vertices]
+        moved = push_out(co, [tuple(poly.vertices) for poly in me.polygons], 0.15)
+        for vx, new in zip(me.vertices, moved):
+            vx.co = new
         for mat in obj.data.materials:
             nt = mat.node_tree
             tex = next(n for n in nt.nodes if n.type == "TEX_IMAGE")

@@ -36,8 +36,18 @@ class Tidy(unittest.TestCase):
         c, q = ba.tidy(colour, quality, chart, min_island=4, grow=2)
         self.assertTrue((q[2:18, 4:12] > 0).all() and (q[4:16, 2:14] > 0).all())   # the rim of face 0 is filled
         self.assertTrue(np.allclose(c[2, 6], (200, 50, 50)))
-        self.assertTrue((q[:, 15:] == 0).all())                    # nothing crossed into face 1
-        self.assertTrue((q[chart < 0] == 0).all())                 # nor into the margin of the atlas
+        self.assertTrue((q[:, 16:] == 0).all() and (q[2:18, 15] == 0).all())   # nothing crossed into face 1
+
+    def test_seen_texels_also_grow_into_the_margin_around_their_face(self):
+        """A face's edge is read between its last texel and the margin outside it: a transparent margin makes a
+        see-through line along every edge (the veranda of Minowa, probed with the atlas forced opaque)."""
+        colour, quality, chart = setup()
+        quality[2:18, 2:14] = 1.0
+        colour[2:18, 2:14] = (200, 50, 50)
+        c, q = ba.tidy(colour, quality, chart, min_island=4, grow=1)
+        self.assertEqual(q[1, 6], 1.0)                             # the margin above face 0
+        self.assertEqual(q[8, 1], 1.0)                             # and left of it
+        self.assertTrue(np.allclose(c[1, 6], (200, 50, 50)))
 
 
 if __name__ == "__main__":

@@ -87,7 +87,8 @@ def silhouette_blocked(depth, shape, margin=3, jump=0.1):
 def tidy(colour, quality, chart, min_island=9, grow=2):
     """(colour, quality) of an atlas (rows, width) with the seen texels (quality > 0) of fewer than min_island texels
     together dropped, then every seen texel's colour and quality spread `grow` texels into the unseen texels of its own
-    face (chart: the face index of every texel, -1 outside the faces). A speck of a face seen at a grazing angle, or the
+    face and one texel into the margin outside it (chart: the face index of every texel, -1 outside the faces): a face's
+    edge is read between its last texel and the margin, and a transparent margin draws a see-through line there. A speck of a face seen at a grazing angle, or the
     see-through rim of a seen face, draws a line along the edges of the painted buildings otherwise."""
     from scipy.ndimage import label
     colour, quality = colour.copy(), quality.copy()
@@ -103,8 +104,10 @@ def tidy(colour, quality, chart, min_island=9, grow=2):
         for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
             q2 = np.roll(quality, (dy, dx), (0, 1))
             c2 = np.roll(colour, (dy, dx), (0, 1))
-            same = np.roll(chart, (dy, dx), (0, 1)) == chart
-            take = ~seen & (chart >= 0) & same & (q2 > best_q)
+            src = np.roll(chart, (dy, dx), (0, 1))
+            # into the unseen texels of the same face, and into the margin just outside a face (its edge is read
+            # between its last texel and the margin), never into another face
+            take = ~seen & (q2 > best_q) & (((chart >= 0) & (src == chart)) | ((chart < 0) & (src >= 0)))
             best_q = np.where(take, q2, best_q)
             best_c = np.where(take[..., None], c2, best_c)
         quality, colour = best_q, best_c
