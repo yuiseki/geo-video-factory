@@ -177,6 +177,119 @@
    "seen": {
     "aisan_denki": "bldg_5a6da709-3a3e-4ab7-af2a-8b5f16c689c2",
     "aisan_denki_next": "bldg_960fd75f-f90d-4f1e-972e-32889d6080f2"
+   },
+   "silhouette": {
+    "prompt": {
+     "point": [
+      1196.6,
+      984.9
+     ],
+     "box": [
+      484,
+      82,
+      1929,
+      1785
+     ]
+    },
+    "masks": [
+     "masks/Sofmap_Tokyo_Akihabara_main_store_0.png",
+     "masks/Sofmap_Tokyo_Akihabara_main_store_1.png",
+     "masks/Sofmap_Tokyo_Akihabara_main_store_2.png"
+    ],
+    "sam_model": "facebook/sam-vit-base",
+    "sam_scores": [
+     0.984,
+     0.965,
+     0.936
+    ],
+    "camera": {
+     "eye": [
+      -33.091,
+      -27.913,
+      44.682
+     ],
+     "Rw": [
+      [
+       0.637124,
+       -0.770762,
+       -0.000326
+      ],
+      [
+       0.213693,
+       0.177048,
+       -0.960724
+      ],
+      [
+       0.740547,
+       0.61203,
+       0.277508
+      ]
+     ],
+     "params": [
+      2236,
+      2236,
+      1258.0,
+      930.0
+     ]
+    },
+    "miss_px": 2.24,
+    "runs": [
+     {
+      "start": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "miss_px": 2.24
+     },
+     {
+      "start": [
+       0,
+       2,
+       0,
+       3,
+       0,
+       0
+      ],
+      "miss_px": 2.24
+     },
+     {
+      "start": [
+       1.5,
+       -1,
+       0.5,
+       0,
+       3,
+       1
+      ],
+      "miss_px": 2.24
+     },
+     {
+      "start": [
+       -1,
+       1.5,
+       0,
+       -3,
+       -2,
+       0
+      ],
+      "miss_px": Infinity
+     },
+     {
+      "start": [
+       0,
+       -2,
+       0,
+       0,
+       0,
+       -3
+      ],
+      "miss_px": 2.24
+     }
+    ]
    }
   },
   {
@@ -360,7 +473,120 @@
     ]
    },
    "residual_px_max": 29.0,
-   "seen": {}
+   "seen": {},
+   "silhouette": {
+    "prompt": {
+     "point": [
+      629.2,
+      1135.4
+     ],
+     "box": [
+      0,
+      0,
+      1289,
+      2021
+     ]
+    },
+    "masks": [
+     "masks/AKIBA_Sofmap_1gouten_1_0.png",
+     "masks/AKIBA_Sofmap_1gouten_1_1.png",
+     "masks/AKIBA_Sofmap_1gouten_1_2.png"
+    ],
+    "sam_model": "facebook/sam-vit-base",
+    "sam_scores": [
+     0.97,
+     0.937,
+     0.836
+    ],
+    "camera": {
+     "eye": [
+      -8.33,
+      36.845,
+      46.127
+     ],
+     "Rw": [
+      [
+       0.761276,
+       0.647525,
+       -0.034219
+      ],
+      [
+       -0.263168,
+       0.260307,
+       -0.928968
+      ],
+      [
+       -0.592622,
+       0.716207,
+       0.368573
+      ]
+     ],
+     "params": [
+      1936,
+      1936,
+      768.0,
+      1024.0
+     ]
+    },
+    "miss_px": 1.41,
+    "runs": [
+     {
+      "start": [
+       0,
+       0,
+       0,
+       0,
+       0,
+       0
+      ],
+      "miss_px": 2.0
+     },
+     {
+      "start": [
+       0,
+       2,
+       0,
+       3,
+       0,
+       0
+      ],
+      "miss_px": 2.24
+     },
+     {
+      "start": [
+       1.5,
+       -1,
+       0.5,
+       0,
+       3,
+       1
+      ],
+      "miss_px": 2.24
+     },
+     {
+      "start": [
+       -1,
+       1.5,
+       0,
+       -3,
+       -2,
+       0
+      ],
+      "miss_px": 26.0
+     },
+     {
+      "start": [
+       0,
+       -2,
+       0,
+       0,
+       0,
+       -3
+      ],
+      "miss_px": 1.41
+     }
+    ]
+   }
   }
  ]
 }

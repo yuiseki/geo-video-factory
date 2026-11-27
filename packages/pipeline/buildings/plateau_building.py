@@ -76,6 +76,33 @@ def building_triangles(gml_ids, origin, store=None):
     return {g: ((np.concatenate(t).reshape(-1, 3) - o) @ frame.T).reshape(-1, 3, 3) for g, t in ecef.items()}
 
 
+def area_triangles(origin, centre, radius, store=None):
+    """Every PLATEAU triangle (n, 3, 3) within `radius` metres of `centre` (x, y in the frame at origin), in that
+    frame: the buildings that hide part of a target from a camera. Tiles are chosen by their region."""
+    import math
+    from buildings.plateau_mesh import glb_triangles
+    if store is None:
+        from buildings.pp_tiles import store as pp_store
+        store = pp_store()
+    store = Path(store)
+    lon0, lat0 = origin
+    kx, ky = 111320 * math.cos(math.radians(lat0)), 110950
+    lon, lat = lon0 + centre[0] / kx, lat0 + centre[1] / ky
+    w, s, e, n = lon - radius / kx, lat - radius / ky, lon + radius / kx, lat + radius / ky
+    o, frame = enu_frame(*origin)
+    out = []
+    for entry_path in sorted(store.glob("plateau/*/*.json")):
+        entry = json.loads(entry_path.read_text())
+        reg = [math.degrees(v) for v in entry.get("region", [])[:4]]
+        if len(reg) < 4 or reg[2] < w or reg[0] > e or reg[3] < s or reg[1] > n:
+            continue
+        t = glb_triangles((store / entry["glb"]).read_bytes(), entry["rtc"])
+        t = ((t.reshape(-1, 3) - o) @ frame.T).reshape(-1, 3, 3)
+        c = t.mean(1)
+        out.append(t[np.hypot(c[:, 0] - centre[0], c[:, 1] - centre[1]) < radius])
+    return np.concatenate(out) if out else np.zeros((0, 3, 3))
+
+
 def roof_levels(tris, step=0.5):
     """[{z, corners [[x, y], ...]}] of the building's vertex heights, from the top: what to pick in a photo."""
     v = np.unique(np.asarray(tris, float).reshape(-1, 3).round(2), axis=0)
