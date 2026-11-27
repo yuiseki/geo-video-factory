@@ -221,7 +221,10 @@ def _cached(cache_dir: Path, relative: str, url: str, fetch: Fetch) -> bytes | N
         return data or None
     data = fetch(url)
     path.parent.mkdir(parents=True, exist_ok=True)
-    tmp = path.with_suffix(path.suffix + '.part')
+    import os
+    import threading
+    # each writer its own temporary name: tiles are fetched on several threads, and two may want the same tile
+    tmp = path.with_suffix(path.suffix + f'.part{os.getpid()}-{threading.get_ident()}')
     tmp.write_bytes(data or b'')
     tmp.replace(path)
     return data

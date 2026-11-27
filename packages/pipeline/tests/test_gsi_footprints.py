@@ -178,5 +178,35 @@ class OrthophotoTextureTest(unittest.TestCase):
             self.assertEqual(len(calls), n)
 
 
+class CachedTiles(unittest.TestCase):
+    def test_two_threads_fetching_the_same_tile_do_not_trip_over_each_other(self):
+        import tempfile
+        import threading
+        from buildings import gsi_footprints as gf
+        root = Path(tempfile.mkdtemp())
+        gate = threading.Barrier(4)
+
+        def fetch(url):
+            gate.wait()                          # every thread writes at the same moment
+            return b"tile"
+
+        errors = []
+
+        def one():
+            try:
+                self.assertEqual(gf._cached(root, "photo/18/1/2.jpg", "u", fetch), b"tile")
+            except Exception as e:               # noqa: BLE001 - the race shows as any exception
+                errors.append(e)
+
+        threads = [threading.Thread(target=one) for _ in range(4)]
+        for t in threads:
+            t.start()
+        for t in threads:
+            t.join()
+        self.assertEqual(errors, [])
+        self.assertEqual((root / "photo/18/1/2.jpg").read_bytes(), b"tile")
+        self.assertEqual(sorted(p.name for p in (root / "photo/18/1").iterdir()), ["2.jpg"])
+
+
 if __name__ == '__main__':
     unittest.main()

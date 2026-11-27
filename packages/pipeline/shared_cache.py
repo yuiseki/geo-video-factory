@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import hashlib
 import os
+import threading
 import urllib.parse
 from pathlib import Path
 from typing import Callable
@@ -60,7 +61,7 @@ def cached_fetch(fetch: Callable[[str], bytes], cache_dir: Path) -> Callable[[st
             return path.read_bytes()
         data = fetch(url)
         path.parent.mkdir(parents=True, exist_ok=True)
-        part = path.with_name(path.name + f".{os.getpid()}.part")
+        part = path.with_name(path.name + f".{os.getpid()}-{threading.get_ident()}.part")   # threads fetch too
         part.write_bytes(data)
         part.replace(path)
         return data
