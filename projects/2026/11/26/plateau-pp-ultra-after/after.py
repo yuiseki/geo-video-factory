@@ -1,6 +1,6 @@
 """Render the improved world model at the areas of plateau-pp-ultra-before, with the same views, into out/<name>/.
 
-    OVERPASS_URL=<your Overpass> python projects/2026/11/26/plateau-pp-ultra-after/after.py [name ...]
+    OVERPASS_URL=<your Overpass> python projects/2026/11/26/plateau-pp-ultra-after/after.py [--spots] [name ...]
 
 Run from the repository root with packages/pipeline's Python, under the host's resource limits; blender on PATH.
 Same areas, scene and views as the before project (its render_area), with the improvements switched on:
@@ -13,7 +13,10 @@ The atlases are atlas_after.py's (the before project's placements without the ph
 quality.png) when present, else the before project's; Shibuya's are rebuilt with quality.png by shibuya_atlases.sh
 into work/shibuya/ and used from there when present. When work/spots/<spot>/<name>/ holds a world (atlas_before.py
 with --root, --spot and --registration: one spot's CC0/PD photos placed by SfM with the help of CC BY / BY-SA
-photos), its atlases replace the area's (both are the group within the same radius, and would overlap).
+photos), --spots makes its atlases replace the area's (both are the group within the same radius, and would overlap).
+Off by default: the SfM models are put on the city by anchors placed one by one on the skyline, which land 30 to
+300 m from where the models' fit puts them (Kaminarimon, Akihabara, Ginza 4-chome), and the photos are painted on
+the wrong buildings.
 """
 import importlib.util
 import json
@@ -32,8 +35,8 @@ from world_model.osm_street_lamps import lamps_file  # noqa: E402
 def after_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], list[str], list[str]]:
     _, atlases, grounds = before.before_layers(area, t, bbox)
     work = HERE / "work" / area["name"]                                  # atlas_after.py: without roofline-less photos
-    spots = sorted((HERE / "work" / "spots").glob(f"*/{area['name']}/world"))
-    if spots:        # one spot's photos joined by SfM with registration-only photos: it replaces the area's atlas
+    spots = sorted((HERE / "work" / "spots").glob(f"*/{area['name']}/world")) if USE_SPOTS else []
+    if spots:        # --spots: one spot's photos joined by SfM with registration-only photos replace the area's atlas
         work = spots[0].parent
     mine = work / f"atlas_{t}" / "model.obj"
     cams = work / "world" / "layers" / f"cams_{t}.json"
@@ -50,9 +53,12 @@ def after_layers(area: dict, t: str, bbox: list[float]) -> tuple[list[str], list
     return extra, atlases, grounds
 
 
+USE_SPOTS = "--spots" in sys.argv[1:]
+
+
 def main() -> None:
     conf = json.loads((BEFORE / "areas.json").read_text(encoding="utf-8"))
-    names = sys.argv[1:]
+    names = [a for a in sys.argv[1:] if not a.startswith("--")]
     for area in conf["areas"]:
         if not names or area["name"] in names:
             before.render_area(area, conf["radius_m"], HERE / "out" / area["name"], layers=after_layers,
