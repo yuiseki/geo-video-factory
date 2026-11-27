@@ -1,0 +1,21 @@
+{
+  "area": "akihabara",
+  "license_mode": "registration",
+  "max_per_creator_day": 100,
+  "target_total": 1600,
+  "spots": [
+    {
+      "slug": "chuo_dori",
+      "kind": "streets",
+      "label": "秋葉原中央通り・電気街メインストリート・歩行者天国",
+      "commons_categories": [
+        "Akihabara Main Street"
+      ],
+      "category_depth": 1,
+      "cat_limit": 2000,
+      "target": 800,
+      "max_per_creator_day": 100,
+      "openverse_pages": 5
+    }
+  ]
+}

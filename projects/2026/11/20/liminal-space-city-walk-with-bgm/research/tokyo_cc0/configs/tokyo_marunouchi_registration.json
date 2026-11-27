@@ -1,0 +1,35 @@
+{
+  "area": "tokyo_marunouchi",
+  "license_mode": "registration",
+  "max_per_creator_day": 100,
+  "target_total": 1600,
+  "spots": [
+    {
+      "slug": "tokyo_station_marunouchi",
+      "kind": "landmarks",
+      "label": "東京駅丸の内駅舎・駅前広場",
+      "commons_categories": [
+        "Tokyo Station Marunouchi Building"
+      ],
+      "category_depth": 1,
+      "cat_limit": 2000,
+      "target": 800,
+      "max_per_creator_day": 100,
+      "openverse_pages": 5
+    },
+    {
+      "slug": "gyoko_dori_marunouchi",
+      "kind": "streets",
+      "label": "行幸通り・丸の内仲通り・皇居側丸の内街並み",
+      "commons_categories": [
+        "Gyoko Street",
+        "Views from Gyoko Street"
+      ],
+      "category_depth": 1,
+      "cat_limit": 2000,
+      "target": 800,
+      "max_per_creator_day": 100,
+      "openverse_pages": 5
+    }
+  ]
+}
