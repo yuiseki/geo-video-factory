@@ -1,6 +1,6 @@
 """An SfM model near its place on the city model, moved as a whole until its photos' skylines lie on the roofline.
 
-    python -m world_model.sky_refine <cams.json> <scene tris.npz> <out cams.json> [--photos=16] [--radius=300] [--wide]
+    python -m world_model.sky_refine <cams.json> <scene tris.npz> <out cams.json> [--photos=16] [--radius=300] [--wide] [--full-turn]
 
 sfm_to_world lays the SfM points on the city model's surfaces, which leaves the model's scale and place loose when
 the points are few or on one street (the station front of Minowa: scale 1.7 or 2.2, the outlines of the towers off).
@@ -92,12 +92,15 @@ def cost(cams: dict, masks: dict, tris: np.ndarray, edges=None, tau=5.0) -> floa
     return float(np.mean(out)) if out else float("nan")
 
 
-def refine(cams: dict, masks: dict, tris: np.ndarray, radius: float = 300.0, wide: bool = False) -> tuple[dict, dict]:
+def refine(cams: dict, masks: dict, tris: np.ndarray, radius: float = 300.0, wide: bool = False,
+           full_turn: bool = False) -> tuple[dict, dict]:
     """(the cameras moved as a whole to fit the skylines, a report with the cost before and after and the delta).
 
     The tilt (pitch and roll) stays as the cameras' mean up set it: photos are held level, and freeing the tilt let
     the station front settle 3 to 7 degrees askew. wide searches heading +-20 degrees, place +-18 m and scale
-    0.8 to 1.25 before refining, for a model whose surface fit left it far off."""
+    0.8 to 1.25 before refining, for a model whose surface fit left it far off; full_turn searches every heading
+    (10 degrees apart): the station front's GPS start looked 75 to 90 degrees away from where its photos looked,
+    and a skyline of similar shape elsewhere took the fit."""
     eyes = np.array([c["eye"] for c in cams.values()], float)
     centre = eyes.mean(axis=0)
     near = np.hypot(*(tris.mean(axis=1)[:, :2] - centre[:2]).T) < radius
@@ -108,6 +111,8 @@ def refine(cams: dict, masks: dict, tris: np.ndarray, radius: float = 300.0, wid
     best, best_cost = np.zeros(5), before
     yaws, steps, scales = ((range(-20, 21, 4), (-18, -12, -6, 0, 6, 12, 18), (-0.22, 0.0, 0.22)) if wide
                            else ((-8, -4, 0, 4, 8), (-6, 0, 6), (0.0,)))
+    if full_turn:
+        yaws = range(-180, 180, 10)
     for yaw in yaws:                               # coarse: heading, place and scale, where the surface fit is loosest
         for dx in steps:
             for dy in steps:
@@ -138,7 +143,8 @@ def main(argv: list[str]) -> None:
         m = sky_mask(np.asarray(small))
         if m.mean() > 0.02:                        # a photo without sky says nothing here
             masks[k] = m
-    fixed, report = refine(cams, masks, tris, float(opts.get("radius", 300)), wide="wide" in opts)
+    fixed, report = refine(cams, masks, tris, float(opts.get("radius", 300)), wide="wide" in opts,
+                           full_turn="full-turn" in opts)
     Path(out).write_text(json.dumps(fixed))
     Path(out).with_suffix(".refine.json").write_text(json.dumps(report, indent=1))
     print(json.dumps(report))

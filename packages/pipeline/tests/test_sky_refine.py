@@ -81,5 +81,14 @@ class Refine(unittest.TestCase):
             self.assertLess(np.linalg.norm(np.array(fixed[k]["eye"]) - CAMS[k]["eye"]), 1.5)
 
 
+class FullTurn(unittest.TestCase):
+    def test_a_model_looking_far_away_from_where_it_should_is_turned_back(self):
+        masks = {k: mask(c) for k, c in CAMS.items()}
+        off = sr.apply_delta(CAMS, np.array([70.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]))
+        fixed, report = sr.refine(off, masks, TRIS, full_turn=True)
+        for k in CAMS:
+            self.assertLess(np.linalg.norm(np.array(fixed[k]["eye"]) - CAMS[k]["eye"]), 1.5)
+
+
 if __name__ == "__main__":
     unittest.main()
