@@ -1,50 +1,51 @@
 {
   "area": "tokyo_marunouchi",
   "license_policy": "CC0 or public domain (no attribution required)",
-  "generated_at": "2026-11-27T09:23:30",
+  "generated_at": "2026-11-27T09:34:12",
   "summary": {
-    "total_photos": 247,
+    "total_photos": 243,
     "by_kind": {
-      "landmarks": 195,
+      "landmarks": 191,
       "streets": 52
     },
     "by_spot": {
       "gyoko_dori_marunouchi": 52,
       "imperial_palace_outer": 142,
-      "tokyo_station_marunouchi": 53
+      "tokyo_station_marunouchi": 49
     },
     "by_time_of_day": {
-      "day": 123,
+      "day": 119,
       "dusk": 53,
       "morning": 4,
       "night": 67
     },
     "by_season": {
-      "autumn": 37,
-      "spring": 72,
+      "autumn": 36,
+      "spring": 70,
       "summer": 94,
       "unknown": 1,
-      "winter": 43
+      "winter": 42
     },
     "by_weather": {
-      "normal": 222,
+      "normal": 218,
       "rain": 23,
       "snow": 2
     },
     "by_license": {
-      "CC0": 233,
+      "CC0": 231,
       "CC0 1.0": 1,
-      "Public domain": 13
+      "Public domain": 11
     },
     "by_source": {
       "openverse/wordpress": 1,
-      "wikimedia_commons": 246
+      "wikimedia_commons": 242
     },
     "rejected": {
       "already_exists": 34,
       "pd_undated": 34,
       "noise_keyword": 2,
-      "extreme_aspect": 4
+      "extreme_aspect": 4,
+      "manual_prune": 4
     }
   },
   "photos": [
@@ -4939,36 +4940,6 @@
       "photo": "commons:Tokyo_Station_12.jpg"
     },
     {
-      "id": "tokyo_marunouchi_tokyo_station_marunouchi_323",
-      "area": "tokyo_marunouchi",
-      "kind": "landmarks",
-      "spot_slug": "tokyo_station_marunouchi",
-      "spot_label": "東京駅丸の内駅舎・駅前広場",
-      "source": "wikimedia_commons",
-      "title": "File:Tokyo station entrance.jpg",
-      "creator": "Syced",
-      "license": "CC0",
-      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Tokyo_station_entrance.jpg",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Tokyo_station_entrance.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/3/37/Tokyo_station_entrance.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "local_path": "assets/photos/tokyo_cc0/tokyo_marunouchi/landmarks/tokyo_station_marunouchi/323_Tokyo_station_entrance.jpg",
-      "width": 4032,
-      "height": 3024,
-      "sha256": "36f1295cb633bd408fa10a18c81001aeb884bc43a184040a6c53e9f8ca073bf4",
-      "mean_luma": 118.7,
-      "time_of_day": "day",
-      "season": "winter",
-      "weather": "normal",
-      "date": "2022-01-16",
-      "coordinates": [
-        139.765876,
-        35.6804695
-      ],
-      "exif_preserved": true,
-      "photo": "commons:Tokyo_station_entrance.jpg"
-    },
-    {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_328",
       "area": "tokyo_marunouchi",
       "kind": "landmarks",
@@ -5271,32 +5242,6 @@
       "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211127_02.jpg"
     },
     {
-      "id": "tokyo_marunouchi_tokyo_station_marunouchi_456",
-      "area": "tokyo_marunouchi",
-      "kind": "landmarks",
-      "spot_slug": "tokyo_station_marunouchi",
-      "spot_label": "東京駅丸の内駅舎・駅前広場",
-      "source": "wikimedia_commons",
-      "title": "File:Tokyo Station Marunouchi Building - DSC09668.JPG",
-      "creator": "Daderot",
-      "license": "Public domain",
-      "license_url": "",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Tokyo_Station_Marunouchi_Building_-_DSC09668.JPG",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Tokyo_Station_Marunouchi_Building_-_DSC09668.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/4/4c/Tokyo_Station_Marunouchi_Building_-_DSC09668.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "width": 4843,
-      "height": 3219,
-      "sha256": "a1ee7a7804ac94a019721337130593cb751110d4d22a3a35582ff8239882b561",
-      "mean_luma": 161.6,
-      "time_of_day": "day",
-      "season": "spring",
-      "weather": "normal",
-      "date": "2014-02-14",
-      "coordinates": null,
-      "exif_preserved": true,
-      "photo": "commons:Tokyo_Station_Marunouchi_Building_-_DSC09668.JPG"
-    },
-    {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_457",
       "area": "tokyo_marunouchi",
       "kind": "landmarks",
@@ -5321,58 +5266,6 @@
       "coordinates": null,
       "exif_preserved": true,
       "photo": "commons:Tokyo_Railway_Station._(51337172927).jpg"
-    },
-    {
-      "id": "tokyo_marunouchi_tokyo_station_marunouchi_458",
-      "area": "tokyo_marunouchi",
-      "kind": "landmarks",
-      "spot_slug": "tokyo_station_marunouchi",
-      "spot_label": "東京駅丸の内駅舎・駅前広場",
-      "source": "wikimedia_commons",
-      "title": "File:JR Tōkaidō Main Line Tōkyō Sta. 20211127 03.jpg",
-      "creator": "先従隗始",
-      "license": "CC0",
-      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:JR_T%C5%8Dkaid%C5%8D_Main_Line_T%C5%8Dky%C5%8D_Sta._20211127_03.jpg",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/JR_T%C5%8Dkaid%C5%8D_Main_Line_T%C5%8Dky%C5%8D_Sta._20211127_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/9/9d/JR_T%C5%8Dkaid%C5%8D_Main_Line_T%C5%8Dky%C5%8D_Sta._20211127_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "width": 3456,
-      "height": 4608,
-      "sha256": "9daa30ccd14648f9271c778cad82802e4484aaf9ffebb48cb2a3be728aa31499",
-      "mean_luma": 137.9,
-      "time_of_day": "day",
-      "season": "autumn",
-      "weather": "normal",
-      "date": "2021-11-27",
-      "coordinates": null,
-      "exif_preserved": true,
-      "photo": "commons:JR_Tōkaidō_Main_Line_Tōkyō_Sta._20211127_03.jpg"
-    },
-    {
-      "id": "tokyo_marunouchi_tokyo_station_marunouchi_459",
-      "area": "tokyo_marunouchi",
-      "kind": "landmarks",
-      "spot_slug": "tokyo_station_marunouchi",
-      "spot_label": "東京駅丸の内駅舎・駅前広場",
-      "source": "wikimedia_commons",
-      "title": "File:Tokyo Station Marunouchi Building, with dirigible - DSC09666.JPG",
-      "creator": "Daderot",
-      "license": "Public domain",
-      "license_url": "",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Tokyo_Station_Marunouchi_Building,_with_dirigible_-_DSC09666.JPG",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Tokyo_Station_Marunouchi_Building%2C_with_dirigible_-_DSC09666.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/4/46/Tokyo_Station_Marunouchi_Building%2C_with_dirigible_-_DSC09666.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "width": 4894,
-      "height": 3362,
-      "sha256": "b97dfffa6c5ef2f4c74ca0e081ae8e6ae11de45b6dc637da467a4777eabcaf31",
-      "mean_luma": 149.3,
-      "time_of_day": "day",
-      "season": "spring",
-      "weather": "normal",
-      "date": "2014-02-14",
-      "coordinates": null,
-      "exif_preserved": true,
-      "photo": "commons:Tokyo_Station_Marunouchi_Building,_with_dirigible_-_DSC09666.JPG"
     },
     {
       "id": "tokyo_marunouchi_tokyo_station_marunouchi_460",

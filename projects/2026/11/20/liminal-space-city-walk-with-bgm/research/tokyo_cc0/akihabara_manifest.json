@@ -1,17 +1,17 @@
 {
   "area": "akihabara",
   "license_policy": "CC0 or public domain (no attribution required)",
-  "generated_at": "2026-11-27T09:26:19",
+  "generated_at": "2026-11-27T09:34:13",
   "summary": {
-    "total_photos": 156,
+    "total_photos": 151,
     "by_kind": {
       "landmarks": 55,
-      "streets": 101
+      "streets": 96
     },
     "by_spot": {
       "akiba_station_radiokaikan": 17,
       "bellesalle_crossing": 11,
-      "chuo_dori": 49,
+      "chuo_dori": 44,
       "junk_dori_backstreets": 10,
       "kanda_myojin": 10,
       "kandamyojin_showa_dori": 20,
@@ -20,32 +20,33 @@
       "udx_manseibashi": 17
     },
     "by_time_of_day": {
-      "day": 90,
+      "day": 85,
       "dusk": 29,
       "morning": 6,
       "night": 31
     },
     "by_season": {
-      "autumn": 47,
-      "spring": 34,
+      "autumn": 44,
+      "spring": 33,
       "summer": 27,
-      "winter": 48
+      "winter": 47
     },
     "by_weather": {
-      "normal": 152,
+      "normal": 147,
       "rain": 4
     },
     "by_license": {
-      "CC0": 133,
-      "Public domain": 23
+      "CC0": 131,
+      "Public domain": 20
     },
     "by_source": {
-      "wikimedia_commons": 156
+      "wikimedia_commons": 151
     },
     "rejected": {
       "already_exists": 35,
       "noise_keyword": 4,
-      "pd_undated": 6
+      "pd_undated": 6,
+      "manual_prune": 5
     }
   },
   "photos": [
@@ -2305,32 +2306,6 @@
       "photo": "commons:Outside_Akihabara_Station.jpg"
     },
     {
-      "id": "akihabara_chuo_dori_039",
-      "area": "akihabara",
-      "kind": "streets",
-      "spot_slug": "chuo_dori",
-      "spot_label": "秋葉原中央通り・電気街メインストリート・歩行者天国",
-      "source": "wikimedia_commons",
-      "title": "File:Beef at Gyukatsu Ichinisan in Akihabara.jpg",
-      "creator": "Pocsywe",
-      "license": "CC0",
-      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Beef_at_Gyukatsu_Ichinisan_in_Akihabara.jpg",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Beef_at_Gyukatsu_Ichinisan_in_Akihabara.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Beef_at_Gyukatsu_Ichinisan_in_Akihabara.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "width": 3264,
-      "height": 2448,
-      "sha256": "9ee5aa5114908588dc4e04d69156d0f0af7ea184606baeddf9ebba1fa358230c",
-      "mean_luma": 68.6,
-      "time_of_day": "day",
-      "season": "spring",
-      "weather": "normal",
-      "date": "2018-04-29",
-      "coordinates": null,
-      "exif_preserved": true,
-      "photo": "commons:Beef_at_Gyukatsu_Ichinisan_in_Akihabara.jpg"
-    },
-    {
       "id": "akihabara_chuo_dori_040",
       "area": "akihabara",
       "kind": "streets",
@@ -2441,32 +2416,6 @@
       "photo": "commons:Transportation_Museum_(2006.05.05)_5.jpg"
     },
     {
-      "id": "akihabara_chuo_dori_044",
-      "area": "akihabara",
-      "kind": "streets",
-      "spot_slug": "chuo_dori",
-      "spot_label": "秋葉原中央通り・電気街メインストリート・歩行者天国",
-      "source": "wikimedia_commons",
-      "title": "File:Gashapon Shop in Akihabara, Tokyo, Japan.jpg",
-      "creator": "Ubahnverleih",
-      "license": "CC0",
-      "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Gashapon_Shop_in_Akihabara,_Tokyo,_Japan.jpg",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Gashapon_Shop_in_Akihabara%2C_Tokyo%2C_Japan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8f/Gashapon_Shop_in_Akihabara%2C_Tokyo%2C_Japan.jpg/3840px-Gashapon_Shop_in_Akihabara%2C_Tokyo%2C_Japan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail",
-      "width": 3840,
-      "height": 2560,
-      "sha256": "77a07a421e93609735603e2a0b838d69e2b3bb766bf98536437620bf6114e6d7",
-      "mean_luma": 119.0,
-      "time_of_day": "day",
-      "season": "autumn",
-      "weather": "normal",
-      "date": "2018-10-23",
-      "coordinates": null,
-      "exif_preserved": false,
-      "photo": "commons:Gashapon_Shop_in_Akihabara,_Tokyo,_Japan.jpg"
-    },
-    {
       "id": "akihabara_chuo_dori_045",
       "area": "akihabara",
       "kind": "streets",
@@ -2549,35 +2498,6 @@
       "coordinates": null,
       "exif_preserved": false,
       "photo": "commons:Akihabara_Main_Street_at_1-00_p.m._on_Sunday_23_January_2011.JPG"
-    },
-    {
-      "id": "akihabara_chuo_dori_048",
-      "area": "akihabara",
-      "kind": "streets",
-      "spot_slug": "chuo_dori",
-      "spot_label": "秋葉原中央通り・電気街メインストリート・歩行者天国",
-      "source": "wikimedia_commons",
-      "title": "File:Roadside coin lockers in Akihabara 20111122.jpg",
-      "creator": "Uploader; Vantey",
-      "license": "Public domain",
-      "license_url": "",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Roadside_coin_lockers_in_Akihabara_20111122.jpg",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Roadside_coin_lockers_in_Akihabara_20111122.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/b/ba/Roadside_coin_lockers_in_Akihabara_20111122.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "width": 1328,
-      "height": 1992,
-      "sha256": "fbfc43a38b8adac1cd6f86be5c11aacc3aa08651027baf5260cdd7ee9b98a42d",
-      "mean_luma": 115.0,
-      "time_of_day": "day",
-      "season": "autumn",
-      "weather": "normal",
-      "date": "2011-11-22",
-      "coordinates": [
-        139.770872,
-        35.700784
-      ],
-      "exif_preserved": false,
-      "photo": "commons:Roadside_coin_lockers_in_Akihabara_20111122.jpg"
     },
     {
       "id": "akihabara_chuo_dori_049",
@@ -2762,32 +2682,6 @@
       "photo": "commons:Akihabara_Main_Street_at_11-49_a.m._on_Saturday_8_February_2014.JPG"
     },
     {
-      "id": "akihabara_chuo_dori_056",
-      "area": "akihabara",
-      "kind": "streets",
-      "spot_slug": "chuo_dori",
-      "spot_label": "秋葉原中央通り・電気街メインストリート・歩行者天国",
-      "source": "wikimedia_commons",
-      "title": "File:Moto-Manseibashi Bridge dismantling.jpg",
-      "creator": "日本国有鉄道",
-      "license": "Public domain",
-      "license_url": "",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Moto-Manseibashi_Bridge_dismantling.jpg",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Moto-Manseibashi_Bridge_dismantling.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/8/86/Moto-Manseibashi_Bridge_dismantling.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "width": 1600,
-      "height": 1030,
-      "sha256": "54bf7ccf4831ed790b2ad3f220590e073c082f8ad1e0f21c6eff3c440ded1024",
-      "mean_luma": 144.2,
-      "time_of_day": "day",
-      "season": "autumn",
-      "weather": "normal",
-      "date": "2013-10-21",
-      "coordinates": null,
-      "exif_preserved": false,
-      "photo": "commons:Moto-Manseibashi_Bridge_dismantling.jpg"
-    },
-    {
       "id": "akihabara_chuo_dori_057",
       "area": "akihabara",
       "kind": "streets",
@@ -2890,32 +2784,6 @@
       "coordinates": null,
       "exif_preserved": true,
       "photo": "commons:Sofmap_Shop_01.JPG"
-    },
-    {
-      "id": "akihabara_chuo_dori_061",
-      "area": "akihabara",
-      "kind": "streets",
-      "spot_slug": "chuo_dori",
-      "spot_label": "秋葉原中央通り・電気街メインストリート・歩行者天国",
-      "source": "wikimedia_commons",
-      "title": "File:Reopening ceremony of Akihabara pedestrian zone.JPG",
-      "creator": "Abasaa",
-      "license": "Public domain",
-      "license_url": "",
-      "landing_url": "https://commons.wikimedia.org/wiki/File:Reopening_ceremony_of_Akihabara_pedestrian_zone.JPG",
-      "original_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Reopening_ceremony_of_Akihabara_pedestrian_zone.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "download_url": "https://upload.wikimedia.org/wikipedia/commons/0/0c/Reopening_ceremony_of_Akihabara_pedestrian_zone.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
-      "width": 2048,
-      "height": 1536,
-      "sha256": "b66e4ce055b5eba1944c4cadaf3f8c7628ea946a1550d222cabfba17b51c1012",
-      "mean_luma": 58.3,
-      "time_of_day": "day",
-      "season": "winter",
-      "weather": "normal",
-      "date": "2011-01-23",
-      "coordinates": null,
-      "exif_preserved": true,
-      "photo": "commons:Reopening_ceremony_of_Akihabara_pedestrian_zone.JPG"
     },
     {
       "id": "akihabara_junk_dori_backstreets_001",

@@ -3,25 +3,25 @@
 ライセンス方針: **CC0 or public domain (no attribution required)**。目視検品済みのカタログです。
 実画像ファイルは各 `local_path`（`.gitignore` 対象）に保存しています。
 
-- **総枚数**: 1380 枚（9 エリア）
-- **SfM / 3DGS 投入可能バケット（同一スポット×同一時間帯 >= 10枚）**: 30 件
-- **ライセンス内訳**: {"CC0": 1327, "CC0 1.0": 9, "Public domain": 44}
-- **種別内訳**: {"landmarks": 965, "streets": 415}
-- **時間帯内訳**: {"day": 813, "dusk": 222, "morning": 65, "night": 280}
-- **季節内訳**: {"autumn": 272, "spring": 423, "summer": 341, "unknown": 15, "winter": 329}
+- **総枚数**: 1320 枚（9 エリア）
+- **SfM / 3DGS 投入可能バケット（同一スポット×同一時間帯 >= 10枚）**: 29 件
+- **ライセンス内訳**: {"CC0": 1273, "CC0 1.0": 9, "Public domain": 38}
+- **種別内訳**: {"landmarks": 910, "streets": 410}
+- **時間帯内訳**: {"day": 753, "dusk": 222, "morning": 65, "night": 280}
+- **季節内訳**: {"autumn": 266, "spring": 409, "summer": 336, "unknown": 12, "winter": 297}
 
 ## エリア別サマリー
 
 | エリア | 合計 | ランドマーク | 通り | 朝 | 昼 | 夕 | 夜 | 春 | 夏 | 秋 | 冬 | マニフェスト |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---|
-| `akihabara` | 156 | 55 | 101 | 6 | 90 | 29 | 31 | 34 | 27 | 47 | 48 | [akihabara_manifest.json](akihabara_manifest.json) |
-| `asakusa` | 260 | 209 | 51 | 39 | 174 | 23 | 24 | 147 | 37 | 34 | 33 | [asakusa_manifest.json](asakusa_manifest.json) |
-| `ginza` | 72 | 61 | 11 | 2 | 53 | 4 | 13 | 15 | 5 | 7 | 43 | [ginza_manifest.json](ginza_manifest.json) |
+| `akihabara` | 151 | 55 | 96 | 6 | 85 | 29 | 31 | 33 | 27 | 44 | 47 | [akihabara_manifest.json](akihabara_manifest.json) |
+| `asakusa` | 250 | 199 | 51 | 39 | 164 | 23 | 24 | 143 | 32 | 34 | 33 | [asakusa_manifest.json](asakusa_manifest.json) |
+| `ginza` | 31 | 20 | 11 | 2 | 12 | 4 | 13 | 8 | 5 | 5 | 13 | [ginza_manifest.json](ginza_manifest.json) |
 | `omotesando_harajuku` | 55 | 24 | 31 | 0 | 32 | 13 | 10 | 15 | 9 | 17 | 13 | [omotesando_harajuku_manifest.json](omotesando_harajuku_manifest.json) |
 | `roppongi` | 60 | 29 | 31 | 1 | 35 | 7 | 17 | 17 | 14 | 9 | 20 | [roppongi_manifest.json](roppongi_manifest.json) |
 | `shibuya` | 233 | 170 | 63 | 4 | 153 | 49 | 27 | 53 | 55 | 67 | 57 | [shibuya_manifest.json](shibuya_manifest.json) |
 | `shinjuku` | 76 | 43 | 33 | 2 | 35 | 17 | 22 | 19 | 12 | 23 | 21 | [shinjuku_manifest.json](shinjuku_manifest.json) |
-| `tokyo_marunouchi` | 247 | 195 | 52 | 4 | 123 | 53 | 67 | 72 | 94 | 37 | 43 | [tokyo_marunouchi_manifest.json](tokyo_marunouchi_manifest.json) |
+| `tokyo_marunouchi` | 243 | 191 | 52 | 4 | 119 | 53 | 67 | 70 | 94 | 36 | 42 | [tokyo_marunouchi_manifest.json](tokyo_marunouchi_manifest.json) |
 | `ueno` | 221 | 179 | 42 | 7 | 118 | 27 | 69 | 51 | 88 | 31 | 51 | [ueno_manifest.json](ueno_manifest.json) |
 
 ## フォトグラメトリ / 3DGS 密度マトリクス（スポット × 時間帯）
@@ -35,11 +35,10 @@
 | `ueno` | `shinobazu_bentendo` (不忍池・不忍池辯天堂・清水観音堂) | landmarks | 99 | 1 | **64★★** | 3 | **31★★** |
 | `asakusa` | `sensoji_temple` (浅草寺本堂・五重塔・宝蔵門・二天門) | landmarks | 90 | **17★** | **71★★** | 1 | 1 |
 | `ueno` | `ueno_park_center` (上野公園・西郷像・東照宮・五重塔・博物館外観) | landmarks | 80 | 5 | **47★★** | **11★** | **17★** |
-| `asakusa` | `kaminarimon` (雷門) | landmarks | 62 | **15★** | **37★★** | 3 | 7 |
-| `tokyo_marunouchi` | `tokyo_station_marunouchi` (東京駅丸の内駅舎・駅前広場) | landmarks | 53 | 0 | **26★★** | 6 | **21★** |
-| `ginza` | `ginza_4chome_wako` (銀座四丁目交差点・和光時計塔・銀座三越) | landmarks | 52 | 0 | **46★★** | 2 | 4 |
+| `asakusa` | `kaminarimon` (雷門) | landmarks | 52 | **15★** | **27★★** | 3 | 7 |
 | `tokyo_marunouchi` | `gyoko_dori_marunouchi` (行幸通り・丸の内仲通り・皇居側丸の内街並み) | streets | 52 | 0 | **25★★** | **12★** | **15★** |
-| `akihabara` | `chuo_dori` (秋葉原中央通り・電気街メインストリート・歩行者天国) | streets | 49 | 0 | **27★★** | 8 | **14★** |
+| `tokyo_marunouchi` | `tokyo_station_marunouchi` (東京駅丸の内駅舎・駅前広場) | landmarks | 49 | 0 | **22★** | 6 | **21★** |
+| `akihabara` | `chuo_dori` (秋葉原中央通り・電気街メインストリート・歩行者天国) | streets | 44 | 0 | **22★** | 8 | **14★** |
 | `ueno` | `ameyoko` (アメ横・アメヤ横丁・高架下) | streets | 42 | 1 | 7 | **13★** | **21★** |
 | `akihabara` | `kandamyojin_showa_dori` (神田明神通り・昭和通り) | streets | 20 | 6 | **11★** | 1 | 2 |
 | `asakusa` | `azumabashi_sumida` (吾妻橋・隅田川・スカイツリー遠景・浅草文化観光センター・隅田公園の桜) | landmarks | 20 | 2 | 9 | 3 | 6 |
@@ -58,6 +57,7 @@
 | `shinjuku` | `kabukicho_landmarks` (歌舞伎町一番街アーチ・新宿東宝ビル/ゴジラ・東急歌舞伎町タワー) | landmarks | 12 | 0 | 5 | 3 | 4 |
 | `akihabara` | `bellesalle_crossing` (ベルサール秋葉原前交差点・中央通り電気街中心部) | landmarks | 11 | 0 | 6 | 3 | 2 |
 | `asakusa` | `shinnakamise_denboin` (新仲見世通り・伝法院通り) | streets | 11 | 1 | 7 | 2 | 1 |
+| `ginza` | `ginza_4chome_wako` (銀座四丁目交差点・和光時計塔・銀座三越) | landmarks | 11 | 0 | 5 | 2 | 4 |
 | `omotesando_harajuku` | `harajuku_meiji_jingu` (原宿駅・明治神宮大鳥居・神宮橋) | landmarks | 11 | 0 | 6 | 1 | 4 |
 | `roppongi` | `gaienhigashi_dori` (外苑東通り・芋洗坂・星条旗通り) | streets | 11 | 1 | 5 | 1 | 4 |
 | `roppongi` | `roppongi_crossing_tower` (六本木交差点・六本木から望む東京タワー周辺) | landmarks | 11 | 0 | 4 | 2 | 5 |

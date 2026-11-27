@@ -6,7 +6,8 @@ Steps, in order (each reads what the previous wrote; run from the repository roo
 under the host's resource limits):
 
     photos   the area's photo set (areas.json "photos": a tokyo_cc0 manifest of the liminal project) staged from the
-             shared photo store as work/<name>/images/<n>_<ref>.jpg symlinks; blocklisted photos left out
+             shared photo store as work/<name>/images/<n>_<ref>.jpg symlinks; blocklisted photos left out;
+             --spot=<slug>,... and --time=<day|dusk|night|morning> stage only those (one spot's photos for SfM)
     tris     the PLATEAU++ v0.1.0 mesh in east/north/up metres around the area's centre (buildings/plateau_mesh.py)
     sfm      pycolmap: SIFT on every image (--threads=6), exhaustive matching, incremental mapping
              -> work/<name>/sfm/sparse/<k>
@@ -58,9 +59,11 @@ def work(name: str) -> Path:
     return d
 
 
-def rows(area: dict) -> list[dict]:
+def rows(area: dict, spot: str = "", time_of_day: str = "") -> list[dict]:
+    """The area's photos; with spot (comma separated slugs) or time_of_day, only those."""
     manifest = LIMINAL / "research" / "tokyo_cc0" / f"{area['photos']}_manifest.json"
-    return [r for r in json.loads(manifest.read_text(encoding="utf-8"))["photos"] if r.get("photo")]
+    return [r for r in json.loads(manifest.read_text(encoding="utf-8"))["photos"] if r.get("photo")
+            and (not spot or r.get("spot_slug") in spot.split(",")) and (not time_of_day or r.get("time_of_day") == time_of_day)]
 
 
 def image_name(i: int, ref: str) -> str:
@@ -72,7 +75,7 @@ def step_photos(name, area, opts):
     d = work(name) / "images"
     d.mkdir(exist_ok=True)
     index, n = {}, 0
-    for i, row in enumerate(rows(area)):
+    for i, row in enumerate(rows(area, opts.get("spot", ""), opts.get("time", ""))):
         src = photo_store.path(row["photo"])
         if src is None:
             print("not in this store:", row["photo"])
