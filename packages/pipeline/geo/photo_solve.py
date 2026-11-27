@@ -7,8 +7,10 @@ looking, and refused rather than guessed when a gate does not pass.
                   box first when the tile store does not cover it).
    sky.json       which sky photo_place reads: clear blue or overcast white, whichever finds more (night only when
                   neither does); refused here when none finds 2 % of the picture.
-3. place/         geo/photo_place.py: the skyline searched over every place within the GPS radius, every heading,
-                  pitch, roll and field of view. Gate: no place 10 m or more away fits within 1 % (alone).
+3. place/         geo/photo_place.py: the skyline searched over every heading, pitch, roll and field of view, on an
+                  8 m grid and then a 2 m grid around the best eight places, within 40 m of the GPS fix first and
+                  wider (100 m, then as far as the EXIF says the fix may be off) only while the best place is not
+                  alone or lies on the rim. Gate: no place 10 m or more away fits within 1 % (alone).
 4. target.json    the PLATEAU building the coarse camera sees most of (by its visible pixels).
 5. masks/         world_model/sam_mask.py, run with --vision-python: SAM's three masks of that building, prompted by
                   its middle and box as the coarse camera draws it.
@@ -83,17 +85,41 @@ def step_sky(photo, work):
     return _json(f, {"kind": kind, "share": share})
 
 
+SEARCH_RADII = (40.0, 100.0)    # metres searched first; widened only when the answer is not decided inside
+# The fine search stays photo_place's +-4 m: at +-2 m the Ueno photo's best (0.640) lay 3 m outside and a worse one
+# (0.649, 1.1 m away) was taken, to save 20 s.
+COARSE_GRID = 8.0
+
+
 def step_place(photo, tris_path, ex, sky, work):
+    """The skyline search, from a small radius outwards: it stops at the first radius whose answer is alone and does
+    not lie on the radius's rim (within one coarse step), else widens, up to how far the EXIF says the fix may be off.
+    A photo whose GPS is good is searched over 40 m, not the 300 m a cell-tower label asks for."""
+    import shutil
     from geo.photo_place import place
     f = work / "place" / "result.json"
     if f.exists():
         return _json(f)
+    limit = ex["search_radius_m"]
+    tried = []
+    for radius in [r for r in SEARCH_RADII if r < limit] + [limit]:
+        out = work / f"place_{radius:g}m"
+        res = _place_once(place, photo, tris_path, ex, sky, out, radius)
+        tried.append({"radius": radius, "alone": res["alone"], "moved_m": round(res["moved_m"], 1)})
+        if res["alone"] and res["moved_m"] <= radius - COARSE_GRID:
+            break
+    shutil.copytree(out, work / "place")
+    res.update(radius=radius, tried=tried)
+    return _json(f, res)
+
+
+def _place_once(place, photo, tris_path, ex, sky, out, radius):
     if ex["fx"] is not None:
         hfov, fov_range = ex["hfov_deg"], "0.94:1.06:3"
     else:                                     # no 35 mm equivalent: phones' main cameras, 50 to 80 degrees across
         hfov, fov_range = 65.0, "0.77:1.23:7"
-    return place(photo, tris_path, work / "place", 0.0, 0.0, hfov, radius=ex["search_radius_m"],
-                 grid=2.0, coarse_grid=8.0, fov_range=fov_range, min_sky=40, sky=sky,
+    return place(photo, tris_path, out, 0.0, 0.0, hfov, radius=radius,
+                 grid=2.0, coarse_grid=COARSE_GRID, fov_range=fov_range, min_sky=40, sky=sky,
                  log=lambda s: print(s, flush=True))
 
 

@@ -1,0 +1,404 @@
+{
+ "how": "geo/photo_solve.py from the photo file alone (pixels and EXIF); no person picked or looked",
+ "frame": "metres east, north and up (ellipsoid height) from each photo's EXIF GPS position (origin)",
+ "photos": [
+  {
+   "file": "../photos/ueno_okachimachi_20261127_1019.jpg",
+   "sha256": "0f39defce970f779664c3e90bef9a283bf3b2a987e52a4c9a8ee67316e79c0ea",
+   "source": "Gyazo, the photographer's own photo, added with the photographer's leave (2026-11-27)",
+   "exif": {
+    "width": 4080,
+    "height": 3072,
+    "fx": 3305.131488132681,
+    "fx_from": "FocalLengthIn35mmFilm 28 mm on the diagonal",
+    "gps_method": "network",
+    "search_radius_m": 80.0
+   },
+   "origin": [
+    139.7726958,
+    35.7072621
+   ],
+   "sky": {
+    "kind": "blue",
+    "share": {
+     "blue": 0.3621,
+     "bright": 0.0913,
+     "dark": 0.0
+    }
+   },
+   "place": {
+    "best": {
+     "east": -5.5,
+     "north": -17.0,
+     "up": 41.6188102722168,
+     "heading": 61.0,
+     "pitch": 21.0,
+     "roll": 2.5,
+     "hfov": 60.83289429060685,
+     "cost": 0.6398760904401741
+    },
+    "alone": true,
+    "moved_m": 17.9,
+    "ground": 40.0188102722168
+   },
+   "coarse_camera": {
+    "eye": [
+     -5.5,
+     -17.0,
+     41.6188102722168
+    ],
+    "Rw": [
+     [
+      0.4706763169619501,
+      -0.8813657053507618,
+      0.04072220626007703
+     ],
+     [
+      0.3342844483962133,
+      0.13542449152361813,
+      -0.9326918647956617
+     ],
+     [
+      0.8165278392140548,
+      0.4526087720395218,
+      0.35836794954530027
+     ]
+    ],
+    "params": [
+     3474.810079328195,
+     3474.810079328195,
+     2040.0,
+     1536.0
+    ],
+    "width": 4080,
+    "height": 3072
+   },
+   "target": "bldg_4c4d73fa-a24b-46dd-8f0a-17aa34697333",
+   "masks": [
+    "masks/ueno_okachimachi_20261127_1019_0.png",
+    "masks/ueno_okachimachi_20261127_1019_1.png",
+    "masks/ueno_okachimachi_20261127_1019_2.png"
+   ],
+   "sam": {
+    "model": "facebook/sam-vit-base",
+    "point": [
+     2122.6,
+     1950.0
+    ],
+    "box": [
+     90.0,
+     486.0,
+     3977.0,
+     2997.0
+    ],
+    "scores": [
+     0.971,
+     0.947,
+     0.879
+    ]
+   },
+   "camera": {
+    "eye": [
+     -2.1593630845873872,
+     -17.941693136493154,
+     41.49431342944607
+    ],
+    "Rw": [
+     [
+      0.48022084226152517,
+      -0.8734683692045239,
+      0.08025553349657913
+     ],
+     [
+      0.37409711014150987,
+      0.12119428022408497,
+      -0.9194364027080596
+     ],
+     [
+      0.7933721036445646,
+      0.4715558868683065,
+      0.3849620120459194
+     ]
+    ],
+    "params": [
+     3474.810079328195,
+     3474.810079328195,
+     2040.0,
+     1536.0
+    ]
+   },
+   "gates": {
+    "alone": true,
+    "miss_px": [
+     2.24,
+     true
+    ],
+    "starts_agreeing": [
+     5,
+     true
+    ],
+    "from_gps_m": [
+     18.1,
+     true
+    ]
+   },
+   "runs": [
+    {
+     "start": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "miss_px": 2.24
+    },
+    {
+     "start": [
+      0,
+      2,
+      0,
+      3,
+      0,
+      0
+     ],
+     "miss_px": 2.24
+    },
+    {
+     "start": [
+      1.5,
+      -1,
+      0.5,
+      0,
+      3,
+      1
+     ],
+     "miss_px": 2.24
+    },
+    {
+     "start": [
+      -1,
+      1.5,
+      0,
+      -3,
+      -2,
+      0
+     ],
+     "miss_px": 2.24
+    },
+    {
+     "start": [
+      0,
+      -2,
+      0,
+      0,
+      0,
+      -3
+     ],
+     "miss_px": 2.24
+    }
+   ],
+   "verdict": "solved"
+  },
+  {
+   "file": "../photos/shibuya_20230321_1432.jpg",
+   "sha256": "994f8d533b58bf5418c208b78b891241f5345727485a656590f66cce495951be",
+   "source": "Gyazo, the photographer's own photo, added with the photographer's leave (2026-11-27)",
+   "exif": {
+    "width": 3472,
+    "height": 4640,
+    "fx": null,
+    "fx_from": "no 35 mm equivalent (FocalLength 4.695 mm, sensor size unknown): search the field of view",
+    "gps_method": "CELLID",
+    "search_radius_m": 300.0
+   },
+   "origin": [
+    139.69945,
+    35.65945833333333
+   ],
+   "sky": {
+    "kind": "bright",
+    "share": {
+     "blue": 0.0,
+     "bright": 0.3096,
+     "dark": 0.0
+    }
+   },
+   "place": {
+    "best": {
+     "east": 1.5,
+     "north": -2.0,
+     "up": 54.61215362548828,
+     "heading": 292.5,
+     "pitch": 18.5,
+     "roll": -2.0,
+     "hfov": 55.03333333333333,
+     "cost": 0.5031435773089216
+    },
+    "alone": true,
+    "moved_m": 2.5,
+    "ground": 53.01215362548828
+   },
+   "coarse_camera": {
+    "eye": [
+     1.5,
+     -2.0,
+     54.61215362548828
+    ],
+    "Rw": [
+     [
+      0.372219479911109,
+      0.9275544794505931,
+      -0.03309601827777242
+     ],
+     [
+      -0.3063281569714726,
+      0.08911033412942122,
+      -0.9477459620582953
+     ],
+     [
+      -0.876136815241298,
+      0.3629077513673165,
+      0.31730465640509214
+     ]
+    ],
+    "params": [
+     3332.4578428085597,
+     3332.4578428085597,
+     1736.0,
+     2320.0
+    ],
+    "width": 3472,
+    "height": 4640
+   },
+   "target": "bldg_aba50b67-9267-4c80-9004-08ebfc7682d8",
+   "masks": [
+    "masks/shibuya_20230321_1432_0.png",
+    "masks/shibuya_20230321_1432_1.png",
+    "masks/shibuya_20230321_1432_2.png"
+   ],
+   "sam": {
+    "model": "facebook/sam-vit-base",
+    "point": [
+     1197.1,
+     2268.3
+    ],
+    "box": [
+     0.0,
+     128.0,
+     2249.0,
+     3627.0
+    ],
+    "scores": [
+     0.984,
+     0.973,
+     0.94
+    ]
+   },
+   "camera": {
+    "eye": [
+     2.2576949163523574,
+     -1.973559973081442,
+     54.400104519837285
+    ],
+    "Rw": [
+     [
+      0.3667852944917051,
+      0.9297839277334755,
+      -0.031151171296508306
+     ],
+     [
+      -0.3009671399368567,
+      0.0869095608632386,
+      -0.9496659986062406
+     ],
+     [
+      -0.8802768476012888,
+      0.3576990018983424,
+      0.31171155836456865
+     ]
+    ],
+    "params": [
+     3332.4578428085597,
+     3332.4578428085597,
+     1736.0,
+     2320.0
+    ]
+   },
+   "gates": {
+    "alone": true,
+    "miss_px": [
+     2.83,
+     true
+    ],
+    "starts_agreeing": [
+     5,
+     true
+    ],
+    "from_gps_m": [
+     3.0,
+     true
+    ]
+   },
+   "runs": [
+    {
+     "start": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+     ],
+     "miss_px": 2.83
+    },
+    {
+     "start": [
+      0,
+      2,
+      0,
+      3,
+      0,
+      0
+     ],
+     "miss_px": 2.83
+    },
+    {
+     "start": [
+      1.5,
+      -1,
+      0.5,
+      0,
+      3,
+      1
+     ],
+     "miss_px": 2.83
+    },
+    {
+     "start": [
+      -1,
+      1.5,
+      0,
+      -3,
+      -2,
+      0
+     ],
+     "miss_px": 2.83
+    },
+    {
+     "start": [
+      0,
+      -2,
+      0,
+      0,
+      0,
+      -3
+     ],
+     "miss_px": 2.83
+    }
+   ],
+   "verdict": "solved"
+  }
+ ]
+}

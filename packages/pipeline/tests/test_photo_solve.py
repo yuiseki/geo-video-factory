@@ -1,5 +1,6 @@
 """photo_solve: the gates a camera found from the photo alone must pass before it is given as the answer."""
 import unittest
+from pathlib import Path
 
 import numpy as np
 
@@ -40,3 +41,44 @@ class Judge(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+SOLVED = Path(__file__).resolve().parents[1] / "camera_truth" / "photo_solve" / "solved.json"
+
+
+def _store_ready():
+    try:
+        from buildings.pp_tiles import store
+        return any(store().glob("plateau/*/*.json"))
+    except Exception:
+        return False
+
+
+class Kept(unittest.TestCase):
+    def test_every_kept_photo_is_the_file_it_was_solved_from(self):
+        import hashlib, json
+        doc = json.loads(SOLVED.read_text())
+        for p in doc["photos"]:
+            with self.subTest(photo=p["file"]):
+                f = SOLVED.parent / p["file"]
+                self.assertEqual(hashlib.sha256(f.read_bytes()).hexdigest(), p["sha256"])
+                self.assertEqual(p["verdict"], "solved")
+
+    @unittest.skipUnless(_store_ready(), "no PLATEAU++ tile store here")
+    def test_every_kept_camera_is_what_its_coarse_camera_and_masks_give(self):
+        import json
+        from PIL import Image
+        from buildings.plateau_building import area_triangles, building_triangles
+        from world_model.silhouette_pose import solve
+        doc = json.loads(SOLVED.read_text())
+        for p in doc["photos"]:
+            with self.subTest(photo=p["file"]):
+                origin = tuple(p["origin"]); cam = p["coarse_camera"]
+                tgt = building_triangles([p["target"]], origin)[p["target"]]
+                scene = area_triangles(origin, cam["eye"][:2], 400.0)
+                masks = [np.asarray(Image.open(SOLVED.parent / m).convert("L")) > 127 for m in p["masks"]]
+                best, runs = solve(cam, scene, tgt, masks, eye_z=p["place"]["ground"] + 1.6)
+                place, turn = ps._apart(best["camera"], p["camera"])
+                self.assertLess(place, 0.05)
+                self.assertLess(turn, 0.05)
+                self.assertEqual(ps.judge(p["place"]["alone"], best, runs, p["exif"]["search_radius_m"])[0], "solved")

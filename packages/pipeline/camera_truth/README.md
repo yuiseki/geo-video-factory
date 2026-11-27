@@ -58,11 +58,22 @@ against thousands of outline points and sank or rose by metres until it was weig
 main-store photo (no eye height given) four starts of five reach the same camera, 4.3 m and 3.7 degrees from the
 hand camera, with the eye 4.8 m above the foot instead of 7.6; both draw the building equally well.
 
+## Solved from the photo alone (`photo_solve/`)
+
+`photo_solve/solved.json` keeps photos that `python -m geo.photo_solve <photo> <work_dir> --vision-python=...` placed
+from nothing but the file (pixels and EXIF), with no person picking or looking: the EXIF read, the sky read, the
+skyline search's place, the building chosen, SAM's masks (`photo_solve/masks/`) and the camera, with every gate it
+passed. These are the photographer's own photos, added with leave; they are not CC0. `tests/test_photo_solve.py`
+checks each camera is what its coarse camera and masks give, and `tests/test_photo_place_frozen.py` that the
+skyline search still finds each place (in under 5 minutes).
+
 ## Photos
 
 | file | creator | licence |
 |---|---|---|
 | `photos/Sofmap_Tokyo_Akihabara_main_store.jpg` | Tokumeigakarinoaoshima, [Commons](https://commons.wikimedia.org/wiki/File:Sofmap_Tokyo_Akihabara_main_store.JPG) | CC0 |
 | `photos/AKIBA_Sofmap_1gouten_1.jpg` | Saoyagi2, [Commons](https://commons.wikimedia.org/wiki/File:AKIBA_Sofmap_1gouten_1.jpg) | CC0 |
+| `photos/ueno_okachimachi_20261127_1019.jpg` | the photographer's own (Gyazo), added with leave | not CC0 |
+| `photos/shibuya_20230321_1432.jpg` | the photographer's own (Gyazo), added with leave | not CC0 |
 
 Building shapes: PLATEAU (MLIT), 3D city model of Chiyoda ward 2025.

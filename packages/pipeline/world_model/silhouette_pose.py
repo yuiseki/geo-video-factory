@@ -31,7 +31,10 @@ from world_model import surface_atlas as sa
 
 UPPER = 0.5                                        # outline above this share of the building's height is used
 STEP = np.array([3, 3, 3, 5, 5, 5], float)         # degrees (camera x, y, z) and metres per step at most
-RADII = (80, 60, 50, 40, 30, 25, 20, 15, 12, 10, 8, 8, 8, 8)     # search radius per step, full-resolution pixels
+# search radius per step, full-resolution pixels; a start a few degrees and metres off lies 250 px away, and from 80 px
+# the outline met almost nothing there and the start lost the building (Ueno: 3 of 5 starts agreed, Shibuya 2 of 5;
+# from 300 px all 5 did, to the same camera)
+RADII = (300, 200, 150, 100, 80, 60, 50, 40, 30, 25, 20, 15, 12, 10, 8, 8, 8, 8)
 STARTS = ([0, 0, 0, 0, 0, 0], [0, 2, 0, 3, 0, 0], [1.5, -1, 0.5, 0, 3, 1], [-1, 1.5, 0, -3, -2, 0], [0, -2, 0, 0, 0, -3])
 EYE_Z_WEIGHT = 10.0      # an eye 1 m off the given height weighs as every outline point 10 px off (times sqrt(n))
 
@@ -95,11 +98,11 @@ def choose_mask(masks, cam, scene, target, scale=0.25):
     return int(np.argmax(best))
 
 
-def refine(cam, scene, target, mask, eye_z=None, radii=RADII):
+def refine(cam, scene, target, mask, eye_z=None, radii=None):
     """(camera, median miss in pixels of the target's upper outline from SAM's) after the steps of `radii`."""
     q, nq = mask_outline(mask)
     tree = cKDTree(q)
-    for r in radii:
+    for r in RADII if radii is None else radii:
         P = outline_points(cam, scene, target)
         if len(P) < 20:
             return cam, float("inf")
