@@ -1,27 +1,23 @@
 """PLATEAU++: PLATEAU's own buildings and textures, synthesized only where PLATEAU has none.
 
     OVERPASS_URL=<your Overpass> python -m buildings.plateau_pp [<out dir>] --bbox=w,s,e,n
-        [--tileset=<PLATEAU 3D Tiles tileset.json>] [--cache=<dir>] [--gsi-cache=<dir>] [--seed=plateau-pp] [--no-bake]
+        [--tileset=<PLATEAU 3D Tiles tileset.json>] [--gsi-cache=<dir>] [--seed=plateau-pp]
 
-Without an output directory the build goes to the shared cache, tmp/.cache/plateau-pp/v<PLATEAU_PP_VERSION>/<key>/
-(cached()), once per version and request, and its path is printed.
+Since 0.3.0 PLATEAU++ is kept once per tile and shared by every box (buildings.pp_tiles): a box is its manifest and
+links into tmp/.cache/plateau-pp/v<PLATEAU_PP_VERSION>/ (plateau/ per PLATEAU tile, proxy/ per GSI z16 tile).
+Without an output directory the box goes to boxes/<key>/ there (cached()) and its path is printed; with one, the
+manifest and links are written there. A box costs only the tiles no box asked for before.
 
-PLATEAU tiles as served and GSI tiles are kept in the shared cache (shared_cache: $GEO_VIDEO_CACHE, or tmp/.cache
-of this repository), so another box or project reuses them; the OSM extract of this box goes to --cache
-(default <out dir>-cache).
-
-1. PLATEAU's building tiles with their own textures (plateau_3d.prepare_tiles).
-2. Buildings that cannot be real are taken out of PLATEAU (plausibility: needles, complexes extruded to
-   their tower's height, giant slabs) and listed in the manifest as removed_buildings.
-3. Buildings PLATEAU left untextured get a wall colour from their ID and height (city_proxy.wall_hex: tall
-   curtain walls or low houses, the same palette as the filled-in buildings) and the GSI photo (z18, roof-photo.jpg)
-   on their roofs; textured ones are left alone. The renderer applies both only to untextured materials.
-4. Every GSI footprint PLATEAU does not model, including the ones step 2 freed, becomes a filled-in building:
-   on the GSI DEM, OSM building:levels before height, otherwise a height calibrated on PLATEAU (city_proxy).
-   Where PLATEAU has no tiles at all, every building is filled in.
-5. The look is baked into every GLB (pp_bake): roof photo, wall colour, windows and tone, so any glTF renderer shows
-   the same city. manifest.plateau_pp names the version. --no-bake stops before this step and leaves the look to
-   the renderer's draw-time shaders, as before v0.1.0 (to compare the two).
+Per tile, whatever box asks for it:
+1. PLATEAU's tile with its own textures, at 2048 px wherever it lies.
+2. Buildings that cannot be real are taken out of it (plausibility: needles, complexes extruded to their tower's
+   height, giant slabs; OSM within CONTEXT_M of the tile) and listed as removed_buildings.
+3. Its untextured buildings get a wall colour from their ID and height (city_proxy.wall_hex) and the GSI photo
+   (z18) of the tile's region on their roofs, baked in (pp_bake).
+4. Every GSI footprint PLATEAU does not model, including the ones step 2 freed, becomes a filled-in building, kept
+   per z16 tile (the footprints whose centre lies in it): on the GSI DEM, OSM building:levels before height,
+   otherwise a height calibrated on the PLATEAU buildings of its JIS mesh cell (cell_heights). Filled-in tiles are
+   written as ECEF offsets from their own RTC centre, like PLATEAU's (enu_rtc).
 
 OSM comes only from the Overpass named by OVERPASS_URL: the public servers are shared and are never called.
 """
@@ -35,12 +31,9 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
-from buildings import glb_spatial
-from buildings.glb_strip import drop_features
-from buildings.plausibility import implausible
 
 TOKYO_2025 = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
-PLATEAU_PP_VERSION = "0.2.1"   # raise when a change alters what a build looks like: cached builds live under it
+PLATEAU_PP_VERSION = "0.3.0"   # raise when a change alters what a build looks like: cached builds live under it
 
 
 def overpass_endpoint() -> str:
@@ -87,62 +80,12 @@ def roof_texture_entry(image: str, bounds: list[float], center: list[float]) -> 
             "bounds_m": [(w - center[0]) * kx, (s - center[1]) * ky, (e - center[0]) * kx, (n - center[1]) * ky]}
 
 
-def remove_implausible(plateau_dir: Path, manifest: dict, osm_features: list[dict]) -> dict:
-    """Take the buildings plausibility refuses out of every PLATEAU tile, and list them in the manifest."""
-    removed = manifest.setdefault("removed_buildings", [])
-    done = {r["id"] for r in removed}
-    for tile in manifest["tiles"]:
-        if tile.get("kind") in ("city-proxy", "city-shadow") or tile.get("frame") == "enu":
-            continue
-        path = Path(plateau_dir) / tile["glb"]
-        raw = path.read_bytes()
-        ids = [str(i) for i in tile.get("ids", [])]
-        shapes = glb_spatial.extract_glb_feature_shapes(raw, tile["rtc"], ids)
-        traps = {fid: trap for fid, trap in implausible(shapes, osm_features).items() if fid not in done}
-        if not traps:
-            continue
-        new = drop_features(raw, {ids.index(fid) for fid in traps})
-        path.write_bytes(new)
-        tile["bytes"] = len(new)
-        for fid, trap in sorted(traps.items()):
-            s = shapes[fid]
-            removed.append({"id": fid, "trap": trap, "lonlat": [round(v, 6) for v in s["lonlat"]],
-                            "height": round(s["height"], 1), "area": round(s["area"], 1)})
-            done.add(fid)
-    return manifest
-
-
 def cache_dirs(out: Path, cache: Path | None = None, gsi_cache: Path | None = None) -> tuple[Path, Path]:
     """(files that belong to this box, GSI tiles). The box's OSM extract sits beside the output in <out>-cache; GSI tiles, the same for every box, go to the shared cache (shared_cache.gsi_dir)."""
     from shared_cache import gsi_dir
     out = Path(out)
     return (Path(cache) if cache else out.parent / (out.name + "-cache"),
             Path(gsi_cache) if gsi_cache else gsi_dir())
-
-
-def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float], tile_roof=None) -> None:
-    """Write the look into every tile (pp_bake): PLATEAU tiles and filled-in tiles; the shadow tile stays as it is.
-    tile_roof(tile) -> (photo, bounds) gives a PLATEAU tile the roof photo of its own region (a tile reaches beyond the
-    box, and the box's photo would cut its roofs at the box's edge, differently in every box)."""
-    import hashlib
-
-    from buildings import pp_bake
-    for tile in m["tiles"]:
-        if tile.get("kind") == "city-shadow":
-            continue
-        path = out / tile["glb"]
-        raw = path.read_bytes()
-        ids = [str(i) for i in tile.get("ids", [])]
-        if tile.get("kind") == "city-proxy":
-            new = pp_bake.bake_proxy(raw, ids, roof_photo, (tile.get("roof_texture") or m["roof_texture"])["bounds_m"])
-        elif tile.get("frame") != "enu":
-            photo, bounds = tile_roof(tile) if tile_roof and tile.get("region") else (roof_photo, roof_bounds)
-            new = pp_bake.bake_untextured(raw, tile["rtc"], ids, tile.get("facade_colors") or [], photo, bounds)
-        else:
-            continue
-        path.write_bytes(new)
-        tile["bytes"], tile["sha256"] = len(new), hashlib.sha256(new).hexdigest()
-    m["plateau_pp"] = {"version": PLATEAU_PP_VERSION, "baked": True}
 
 
 CONTEXT_M = 300.0   # what is read around the box, so a building near its edge is judged as in a box around it
@@ -177,71 +120,14 @@ def cell_models(footprints: list[dict], tileset: str, gsi: Path):
 
 def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path | None = None,
           seed: str = "plateau-pp", gsi_cache: Path | None = None, bake: bool = True) -> dict:
-    from buildings.city_proxy import build_city_proxy_tile, wall_hex
-    from buildings.gsi_footprints import dem_sampler, fetch_gsi_buildings, orthophoto_texture
-    from buildings.plateau_3d import prepare_tiles
-    from shapely.geometry import Point, shape
-    from shapely.strtree import STRtree
-
-    out = Path(out)
-    cache, gsi = cache_dirs(out, cache, gsi_cache)
-    cache.mkdir(parents=True, exist_ok=True)
-    if not (out / "manifest.json").exists():
-        try:
-            prepare_tiles(tileset, bbox, out, max_texture_dimension=2048, workers=3)
-        except ValueError as error:                     # PLATEAU has no model here: build from footprints alone
-            if "no leaf content" not in str(error):
-                raise
-            (out / "models").mkdir(parents=True, exist_ok=True)
-            (out / "manifest.json").write_text(json.dumps({
-                "format": "geo-video-factory.plateau-3d/1", "tileset_url": tileset, "bbox_degrees": bbox,
-                "center": [(bbox[0] + bbox[2]) / 2, (bbox[1] + bbox[3]) / 2], "tile_count": 0, "tile_ids": 0,
-                "tiles": []}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-            print("no PLATEAU tiles in the box: filled-in buildings only", flush=True)
-    m = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
-    context = grow(bbox, CONTEXT_M)           # OSM, GSI and the ground around the box, not only in it
-    osm = fetch_osm_buildings(context, cache / "osm-buildings.geojson")
-    m = remove_implausible(out, m, osm)
-    (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"removed {len(m['removed_buildings'])} implausible PLATEAU buildings", flush=True)
-
-
-    from shapely.geometry import box as to_box
-    around = fetch_gsi_buildings(context, gsi)     # whole: a building across a tile seam at the edge is not cut
-    inside = to_box(*bbox)
-    footprints = [f for f in around if shape(f["geometry"]).intersects(inside)]
-    ground = dem_sampler(context, gsi)
-    plateau = {}
-    for tile in m["tiles"]:
-        plateau.update(glb_spatial.extract_glb_feature_heights((out / tile["glb"]).read_bytes(), tile["rtc"], tile["ids"]))
-    tree = STRtree([shape(f["geometry"]) for f in around])
-    casters = {}
-    for item in plateau.values():
-        hits = tree.query(Point(*item["lonlat"]), predicate="within")
-        if len(hits):
-            casters[int(hits[0])] = max(casters.get(int(hits[0]), 0.0), item["height"])
-    for tile in m["tiles"]:
-        tile["facade_colors"] = [wall_hex(str(i), plateau.get(str(i), {}).get("height", 6.0)) for i in tile["ids"]]
-    (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-
-    roof, roof_bounds = orthophoto_texture(bbox, gsi, zoom=18)
-    roof.save(out / "roof-photo.jpg", quality=90)
-    removed = m.get("removed_buildings", [])
-    m = build_city_proxy_tile(
-        footprints, bbox, out, ground=ground, orthophoto=roof, orthophoto_bounds=roof_bounds,
-        plateau_centroids=[item["lonlat"] for item in plateau.values()], osm_features=osm,
-        height_model=cell_models(footprints, tileset, gsi), seed=seed,
-        shadow_casters=[(around[i], h) for i, h in sorted(casters.items())],
-        roof_texture=("roof-photo.jpg", roof_bounds))
-    m["removed_buildings"] = removed
-    m["plateau_building_count"] = len(plateau)
-    m["roof_texture"] = roof_texture_entry("roof-photo.jpg", roof_bounds, m["center"])
-    if bake:
-        import math
-        bake_tiles(out, m, roof, roof_bounds, lambda t: orthophoto_texture([math.degrees(v) for v in t["region"][:4]], gsi, zoom=18))
-    (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"PLATEAU++: {m['tile_count']} tiles, {len(plateau)} PLATEAU buildings, "
-          f"{m['city_proxy_building_count']} filled-in, {len(removed)} removed as implausible")
+    """The box's manifest and links into the per-tile store (pp_tiles), making only the tiles no box made before."""
+    from buildings import pp_tiles
+    if not bake:
+        raise SystemExit("--no-bake was dropped in PLATEAU++ 0.3.0: tiles are kept baked, once, for every box")
+    _, gsi = cache_dirs(Path(out), cache, gsi_cache)
+    m = pp_tiles.assemble(Path(out), list(bbox), tileset, gsi, seed)
+    print(f"PLATEAU++: {m['tile_count']} tiles, {m['plateau_building_count']} PLATEAU buildings, "
+          f"{m['city_proxy_building_count']} filled-in, {len(m['removed_buildings'])} removed as implausible", flush=True)
     return m
 
 
@@ -254,15 +140,17 @@ def cache_key(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau
 
 
 def cache_dir(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp") -> Path:
-    from shared_cache import plateau_pp_dir
-    return plateau_pp_dir(PLATEAU_PP_VERSION) / cache_key(bbox, tileset, seed)
+    """A box's directory: its manifest and links into the per-tile store (pp_tiles.store()), nothing heavier."""
+    from buildings import pp_tiles
+    return pp_tiles.store() / "boxes" / cache_key(bbox, tileset, seed)
 
 
 def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp") -> Path:
-    """The finished PLATEAU++ for this request, built once per version in the shared cache.
+    """The PLATEAU++ of this box: its manifest and links into the per-tile store, written once per version.
 
-    It is built into <dir>.part and moved into place when done, so a build stopped half way is never read; a
-    leftover .part is thrown away and the build started again. request.json says what the directory holds.
+    The links are written into <dir>.part and moved into place when done, so a box stopped half way is never read;
+    a leftover .part (links only) is thrown away and started again. request.json says what the directory holds.
+    The tiles themselves are kept once for every box (pp_tiles), so another box costs only the tiles it adds.
     """
     import shutil
     final = cache_dir(bbox, tileset, seed)
@@ -272,8 +160,7 @@ def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp
     if part.exists():
         shutil.rmtree(part)
     part.mkdir(parents=True)
-    from shared_cache import cache_root
-    build(part, list(bbox), tileset, cache_root() / "osm" / final.name, seed, None, True)   # OSM does not change with the version
+    build(part, list(bbox), tileset, None, seed, None, True)
     (part / "request.json").write_text(json.dumps({"version": PLATEAU_PP_VERSION, "tileset": tileset,
                                                    "bbox": list(bbox), "seed": seed}, indent=1) + "\n", encoding="utf-8")
     part.rename(final)
