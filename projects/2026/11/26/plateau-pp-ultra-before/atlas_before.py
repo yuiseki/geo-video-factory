@@ -9,7 +9,9 @@ under the host's resource limits):
              shared photo store as work/<name>/images/<n>_<ref>.jpg symlinks; blocklisted photos left out;
              --spot=<slug>,... and --time=<day|dusk|night|morning> stage only those (one spot's photos for SfM);
              --registration also stages <photos>_registration_manifest.json (CC BY / BY-SA that only help SfM place
-             the others; world leaves their cameras out, see photos/photo_use.py)
+             the others; world leaves their cameras out, see photos/photo_use.py); --include-gyazo[=<gyazo.json>]
+             also the owner's #publish_as_cc0 Gyazo photos within --gyazo-radius=300 m of the centre (the liminal
+             catalogue's gyazo.json by default, which the repository ignores; photos/gyazo_photos.py)
     tris     the PLATEAU++ v0.1.0 mesh in east/north/up metres around the area's centre (buildings/plateau_mesh.py)
     sfm      pycolmap: SIFT on every image (--threads=6), exhaustive matching, incremental mapping
              -> work/<name>/sfm/sparse/<k>
@@ -61,16 +63,22 @@ def work(name: str) -> Path:
     return d
 
 
-def rows(area: dict, spot: str = "", time_of_day: str = "", registration: bool = False) -> list[dict]:
+def rows(area: dict, spot: str = "", time_of_day: str = "", registration: bool = False, gyazo: str = "",
+         gyazo_radius: float = 300.0) -> list[dict]:
     """The area's photos; with spot (comma separated slugs) or time_of_day, only those. registration: also the
-    CC BY / BY-SA photos of <photos>_registration_manifest.json, which only help SfM place the others."""
+    CC BY / BY-SA photos of <photos>_registration_manifest.json, which only help SfM place the others. gyazo (a
+    gyazo.json, kept out of the repository; photos/gyazo_photos.py): also the owner's CC0 photos taken within
+    gyazo_radius metres of the area's centre, whatever the spot."""
     research = LIMINAL / "research" / "tokyo_cc0"
     found = json.loads((research / f"{area['photos']}_manifest.json").read_text(encoding="utf-8"))["photos"]
     extra = research / f"{area['photos']}_registration_manifest.json"
     if registration and extra.exists():
         found = found + [dict(r, use="registration") for r in json.loads(extra.read_text(encoding="utf-8"))["photos"]]
-    return [r for r in found if r.get("photo")
-            and (not spot or r.get("spot_slug") in spot.split(",")) and (not time_of_day or r.get("time_of_day") == time_of_day)]
+    found = [r for r in found if not spot or r.get("spot_slug") in spot.split(",")]
+    if gyazo:
+        from photos import gyazo_photos
+        found = found + gyazo_photos.near(gyazo_photos.read(gyazo), area["center"], gyazo_radius)
+    return [r for r in found if r.get("photo") and (not time_of_day or r.get("time_of_day") == time_of_day)]
 
 
 def image_name(i: int, ref: str) -> str:
@@ -82,7 +90,9 @@ def step_photos(name, area, opts):
     d = work(name) / "images"
     d.mkdir(exist_ok=True)
     index, n = {}, 0
-    for i, row in enumerate(rows(area, opts.get("spot", ""), opts.get("time", ""), "registration" in opts)):
+    gyazo = opts.get("include-gyazo") or (str(LIMINAL / "research" / "tokyo_cc0" / "gyazo.json") if "include-gyazo" in opts else "")
+    for i, row in enumerate(rows(area, opts.get("spot", ""), opts.get("time", ""), "registration" in opts, gyazo,
+                                 float(opts.get("gyazo-radius", 300)))):
         src = photo_store.path(row["photo"])
         if src is None:
             print("not in this store:", row["photo"])

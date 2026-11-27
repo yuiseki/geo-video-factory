@@ -74,6 +74,8 @@ def photo_ref(row: dict) -> str:
         m = re.search(r"rawpixel\.com/image/(\d+)", landing)
         if m:
             return f"rawpixel:{m.group(1)}"
+    if source == "gyazo" and row.get("gyazo_id"):          # photos/gyazo_photos.py: never written into the repository
+        return f"gyazo:{row['gyazo_id']}"
     if "wordpress" in source or "wordpress.org/photos" in landing:
         m = re.search(r"wordpress\.org/photos/photo/([0-9a-z]+)", landing)
         if m:
