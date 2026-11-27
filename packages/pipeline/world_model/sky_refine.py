@@ -126,7 +126,7 @@ def refine(cams: dict, masks: dict, tris: np.ndarray, radius: float = 300.0, wid
 
 def main(argv: list[str]) -> None:
     from PIL import Image
-    opts = dict(a[2:].split("=", 1) for a in argv if a.startswith("--"))
+    opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))
     src, scene, out = [a for a in argv if not a.startswith("--")][:3]
     cams = json.loads(Path(src).read_text())
     tris = np.load(scene)["tris"].astype(float)
