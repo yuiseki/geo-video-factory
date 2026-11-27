@@ -226,7 +226,12 @@ def drop_registration(w: Path) -> None:
     index = json.loads((w / "images.json").read_text())
     path = w / "world" / "cams.json"
     cams = json.loads(path.read_text())
-    kept = {k: c for k, c in cams.items() if index.get(Path(c["photo"]).name, {}).get("use") != "registration"}
+    from photos.photo_use import is_registration_ref
+
+    def registration(c):     # by the camera's ref (sfm_to_world points "photo" at the store's file), or by its image
+        name = c.get("name") or Path(c["photo"]).name
+        return is_registration_ref(c.get("ref", "")) or index.get(name, {}).get("use") == "registration"
+    kept = {k: c for k, c in cams.items() if not registration(c)}
     path.write_text(json.dumps(kept, indent=1) + "\n")
     print(f"{len(cams) - len(kept)} cameras of registration-only photos left out, {len(kept)} go on")
 
