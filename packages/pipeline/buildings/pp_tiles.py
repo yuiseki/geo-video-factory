@@ -200,7 +200,13 @@ def assemble(out: Path, bbox: list[float], tileset: str, gsi: Path, seed: str = 
     leaves = _leaf_items(tileset, bbox, fetch)
     with ThreadPoolExecutor(max_workers=workers) as pool:
         plateau = list(pool.map(lambda item: plateau_tile(item, gsi, fetch), leaves))
-    proxies = [e for x, y in tiles_for_bbox(bbox, PROXY_ZOOM) for e in proxy_tile(x, y, tileset, gsi, seed, fetch)]
+    print(f"{len(plateau)} PLATEAU tiles ready", flush=True)
+    cells = tiles_for_bbox(bbox, PROXY_ZOOM)
+    proxies = []
+    for n, (x, y) in enumerate(cells, 1):
+        proxies += proxy_tile(x, y, tileset, gsi, seed, fetch)
+        if n % 20 == 0 or n == len(cells):
+            print(f"filled-in tiles {n}/{len(cells)}", flush=True)
     out = Path(out)
     models = out / "models"
     if models.exists():
