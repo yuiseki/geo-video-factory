@@ -9,7 +9,7 @@
 python projects/2026/11/26/plateau-pp-ultra-after/atlas_after.py              # 6 か所のアトラス (写真の置き直しなし)
 projects/2026/11/26/plateau-pp-ultra-after/shibuya_atlases.sh                 # 渋谷の CC0 アトラスを quality.png 付きで作り直す
 OVERPASS_URL=<自前の Overpass> python projects/2026/11/26/plateau-pp-ultra-after/after.py [名前 ...]
-python projects/2026/11/26/plateau-pp-ultra-after/compare.py                  # out/compare_<day|night>.jpg
+python projects/2026/11/26/plateau-pp-ultra-after/compare.py [場所 ...]       # out/compare_<場所>.jpg (昼の 3 視点、左が before、右が after)
 ```
 
 リポジトリのルートから、`packages/pipeline` の Python で流します (ホストの資源制限に従う。アトラスは 1 つ最大 20 GB)。`blender` が要ります。`out/` と `work/` は使い捨てで、git の対象外です。
@@ -28,7 +28,7 @@ python projects/2026/11/26/plateau-pp-ultra-after/compare.py                  # 
 
 3 (写らなかった面を同じ建物の繰り返しで埋める) は、入れないと決めました。`--atlas-fade` は、アトラスの画素を `quality.png` (写真の何画素がかかったか) の分だけ不透明にし、写らなかった画素は quality が 0 なので完全に透明になります (`pp_scene.py` の atlas-fade、`surface_atlas.texel_quality`)。そこには焼き込んだ PLATEAU++ (壁の色と窓の模様) が見えます。写らなかった画素を何で埋めても、この描き方では画に出ません。画に出すには埋めた画素を不透明にする必要があり、それは焼き込みの窓の模様を、写真で埋まった 0〜6% の面から取った縞で覆うことになります。写真が建物の面の多くを覆う場所ができたら、考え直します。
 
-## 結果 (`out/compare_<day|night>.jpg`)
+## 結果 (`out/compare_<場所>.jpg`)
 
 - 1 の効果がいちばん大きい。before で黒い壁に窓だけが光っていた補完の建物 (羽村の全域、各地の PLATEAU に無い建物) が、昼は壁の色と窓の模様、夜は灯る窓として出る。テクスチャの無い PLATEAU の面の灰色も、焼き込んだ壁の色になった。
 - 5 で、目の高さの画に路面の質感と横断歩道が入った (渋谷で 1,371 本の縞)。夜は、道路沿いの街灯の光だまりが、濡れた路面に並ぶ。窓の明かりしかなかった before の夜より、街の形が道路から読める。
@@ -85,7 +85,7 @@ OSM の横断歩道 (`crosswalk_eval.py`) は、空の写らない写真にも�
 - 2 枚以上の写真に写ったテクセルだけを見せる `pp_scene.py --atlas-min-views=2` (`world_model/atlas_views.py`)。渦は小さくなるが残り、夜の上空と屋上の絵で正しく塗られていた壁も消えた。夜のアトラスの見える部分のうち 1 枚だけの写真から来る割合は magnet 96%、around 69%、s109 39%、ほかの 6 か所はほぼ全部。
 - OSM の街路樹 (`natural=tree`、範囲内に 28 本) を箱にして隠れの判定に入れる。どの写真の見たテクセルの数も変わらなかった。
 
-帯より高い所にいる人 (歩道橋、階段) や、木、車の屋根は、この規則では防げない。写真の中の人を見分けて塗らない画素にする手 (`photos/people_removal.py` の覆いを `surface_atlas.observe` の `blocked` に渡す) は、ComfyUI と GPU が要るのでまだ試していない。ほかの 6 か所のアトラスも `atlas_after.py` から `--people-band=2.2` で作る (地面は before.py と同じく中心から 150 m 以内の面の下から 2%)。写真で塗れた壁がもともと少ないので、絵はほとんど変わらない。
+帯より高い所にいる人 (歩道橋、階段) や、木、車の屋根は、この規則では防げない。写真の中の人と車を見分けて塗らない画素にする手は `build_atlas.py --people-masks` として入れた。覆いは `photos/people_removal.py` が liminal の作業で作ったもの (夜の 12 枚のうち 5 枚分) で、共有キャッシュの `photos-processed/people-masks/<写真>.png` に置き、`shibuya_atlases.sh` が使う。帯の規則のあとでは、効くのは夜の絵だけで、変わった画素は 1% 未満だった (屋上の視点 0.85%)。昼の写真の覆いは無い。ほかの 6 か所のアトラスも `atlas_after.py` から `--people-band=2.2` で作る (地面は before.py と同じく中心から 150 m 以内の面の下から 2%)。写真で塗れた壁がもともと少ないので、絵はほとんど変わらない。
 
 ## 渋谷の MAGNET の上の黒い三角 (直した)
 
@@ -96,3 +96,5 @@ OSM の横断歩道 (`crosswalk_eval.py`) は、空の写らない写真にも�
 - 写真が少ない場所では、写真を足すことより、写真を正しく置けることのほうが先の課題。空の写らない写真は、境界線でも角でも消失点でも置けず、横断歩道の帯も弱い。写真の EXIF に撮影の向き (`GPSImgDirection`) があるのは 31 枚中 1 枚、位置 (GPS) も 5 枚だけで、向きを写真から借りることもできない。PLATEAU LOD2 は看板や庇を持たないので、写真の線のほとんどに対応するものが模型に無い。境界線の無い写真を外すと、1 か所に 1〜2 枚しか残らない。
 - 道路 LOD3 の歩道に信号の柱を寄せる `buildings/street_lights.py` は、歩道のある所でしか使えないので、つないでいない。
 - PLATEAU の写真のテクスチャは、近くで見るとぼやける。
+- 写真の数そのものも足りていなかった。最初のカタログ (`research/tokyo_cc0`) はキーワード検索で CC0 だけを集め、カテゴリを辿らず、Public domain も入れていなかった (入れない理由の記録は無かった)。銀座四丁目交差点の CC0 は Commons に 45 枚あるのに 4 枚しか入っていなかった。収集スクリプトに `--license-mode=cc0_pd`、`category_depth`、`min_year` を足し、場所ごとの設定 (`research/tokyo_cc0/configs/`) で集め直している。座標の無い写真も捨ててはいないが、SfM が座標のある写真とつなげない限り置けない。
+- 将来: 昼と夜だけでなく、年代も行き来できる映像。Public domain には 1914 年の東京駅のような古い写真が多い。今は `min_year=2005` で外しているが、撮影年を持たせて残せば、同じ建物の上で年代を切り替える材料になる。

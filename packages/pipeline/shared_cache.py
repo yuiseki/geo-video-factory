@@ -35,6 +35,11 @@ def gsi_dir() -> Path:
     return cache_root() / "gsi"
 
 
+def people_masks_dir() -> Path:
+    """<photo key>.png: the people and cars of a placed photo (photos/people_removal.py's grown mask), one per photo."""
+    return cache_root() / "photos-processed" / "people-masks"
+
+
 def plateau_pp_dir(version: str) -> Path:
     return cache_root() / "plateau-pp" / f"v{version}"
 

@@ -1,0 +1,27 @@
+{
+  "area": "akihabara",
+  "license_mode": "cc0_pd",
+  "min_year": 2005,
+  "max_per_creator_day": 100,
+  "target_total": 1129,
+  "spots": [
+    {
+      "slug": "chuo_dori",
+      "kind": "streets",
+      "label": "秋葉原中央通り・電気街メインストリート・歩行者天国",
+      "commons_categories": [
+        "Akihabara Main Street"
+      ],
+      "category_depth": 2,
+      "cat_limit": 1500,
+      "target": 522,
+      "max_per_creator_day": 100,
+      "openverse_queries": [
+        "Akihabara Chuo-dori",
+        "Akihabara street",
+        "秋葉原 中央通り"
+      ],
+      "openverse_pages": 5
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "area": "ginza",
+  "license_mode": "cc0_pd",
+  "min_year": 2005,
+  "max_per_creator_day": 100,
+  "target_total": 1027,
+  "spots": [
+    {
+      "slug": "ginza_4chome_wako",
+      "kind": "landmarks",
+      "label": "銀座四丁目交差点・和光時計塔・銀座三越",
+      "commons_categories": [
+        "Ginza 4-chome intersection"
+      ],
+      "category_depth": 2,
+      "cat_limit": 1500,
+      "target": 507,
+      "max_per_creator_day": 100,
+      "openverse_queries": [
+        "Ginza Wako",
+        "Ginza 4-chome crossing",
+        "銀座四丁目交差点"
+      ],
+      "openverse_pages": 5
+    }
+  ]
+}

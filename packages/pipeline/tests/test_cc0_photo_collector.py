@@ -950,6 +950,106 @@ class CC0PhotoCollectorTests(unittest.TestCase):
             self.assertEqual(ov[0]["license"], "CC BY 2.0")
 
 
+    def test_cc0_pd_searches_both_and_never_takes_attribution_licences(self):
+        m = self.mod
+        seen_urls = []
+
+        def fake_fetch(url, sleep_fn=None):
+            seen_urls.append(url)
+            if "commons.wikimedia.org" in url and "list=search" in url:
+                if "CC-Zero" in url:
+                    return {"query": {"search": [{"title": "File:Akiba_cc0.jpg"}]}}
+                if "P6216" in url:
+                    return {"query": {"search": [{"title": "File:Akiba_pd.jpg"}, {"title": "File:Akiba_cc0.jpg"}]}}
+                return {"query": {"search": [{"title": "File:Akiba_bysa.jpg"}]}}
+            if "openverse" in url:
+                return {"results": [
+                    {"id": "1", "source": "flickr", "license": "cc0", "url": "https://x/1.jpg", "width": 2000, "height": 1500},
+                    {"id": "2", "source": "flickr", "license": "pdm", "url": "https://x/2.jpg", "width": 2000, "height": 1500},
+                    {"id": "3", "source": "flickr", "license": "by", "url": "https://x/3.jpg", "width": 2000, "height": 1500},
+                ]}
+            raise AssertionError(url)
+
+        with patch.object(m, "fetch_json_with_retry", side_effect=fake_fetch):
+            titles = m.query_commons_search("Akihabara Main Street", limit=10, license_mode="cc0_pd")
+            self.assertEqual(titles, ["File:Akiba_cc0.jpg", "File:Akiba_pd.jpg"])
+            self.assertTrue(all("CC-Zero" in u or "P6216" in u for u in seen_urls))
+            ov = m.query_openverse("Akihabara", pages=1, license_mode="cc0_pd")
+            self.assertIn("license=cc0%2Cpdm", seen_urls[-1])
+            self.assertEqual([r["license"] for r in ov], ["CC0 1.0", "Public Domain Mark 1.0"])
+            rules = import_pipeline("photos.photo_catalog_rules")
+            self.assertTrue(rules.is_cc0_or_public_domain(ov[1]["license"], ov[1]["license_url"]))
+
+    def test_licence_policy_names_public_domain_apart_from_attribution(self):
+        review = import_pipeline("photos.photo_catalog_review")
+        cc0 = {"license": "CC0", "license_url": ""}
+        pd = {"license": "Public domain", "license_url": ""}
+        by = {"license": "CC BY 4.0", "license_url": ""}
+        self.assertEqual(review.license_policy_of([cc0]), "CC0 / CC-Zero only")
+        self.assertEqual(review.license_policy_of([cc0, pd]), "CC0 or public domain (no attribution required)")
+        self.assertEqual(review.license_policy_of([cc0, pd, by]), "CC0 + CC BY (non-SA, attribution required)")
+
+    def test_a_category_is_walked_into_its_subcategories_to_the_depth_asked(self):
+        m = self.mod
+        tree = {
+            "Category:Kaminarimon": ["File:Gate.jpg", "Category:Kaminarimon at night", "Category:Kaminarimon lantern"],
+            "Category:Kaminarimon at night": ["File:Night.jpg", "Category:Kaminarimon at night in winter"],
+            "Category:Kaminarimon lantern": ["File:Lantern.jpg", "Category:Kaminarimon"],     # a loop back
+            "Category:Kaminarimon at night in winter": ["File:Snow.jpg"],
+        }
+
+        def fake_fetch(url, sleep_fn=None):
+            import urllib.parse as up
+            q = dict(up.parse_qsl(up.urlsplit(url).query))
+            members = [t for t in tree[q["cmtitle"]] if "subcat" in q["cmtype"] or not t.startswith("Category:")]
+            return {"query": {"categorymembers": [{"title": t} for t in members]}}
+
+        with patch.object(m, "fetch_json_with_retry", side_effect=fake_fetch):
+            self.assertEqual(m.query_commons_category("Kaminarimon", limit=50, sleep_fn=lambda _: None),
+                             ["File:Gate.jpg"])
+            self.assertEqual(m.query_commons_category("Kaminarimon", limit=50, sleep_fn=lambda _: None, depth=1),
+                             ["File:Gate.jpg", "File:Night.jpg", "File:Lantern.jpg"])
+            self.assertEqual(m.query_commons_category("Kaminarimon", limit=50, sleep_fn=lambda _: None, depth=2),
+                             ["File:Gate.jpg", "File:Night.jpg", "File:Snow.jpg", "File:Lantern.jpg"])
+            self.assertEqual(len(m.query_commons_category("Kaminarimon", limit=2, sleep_fn=lambda _: None, depth=2)), 2)
+
+    def test_photos_older_than_min_year_and_undated_public_domain_are_refused(self):
+        m = self.mod
+        self.assertIsNone(m.date_rejection(2015, "Public domain", "", min_year=2005))
+        self.assertEqual(m.date_rejection(1914, "Public domain", "", min_year=2005), "before_min_year")
+        self.assertEqual(m.date_rejection(None, "Public domain", "", min_year=2005), "pd_undated")
+        self.assertIsNone(m.date_rejection(None, "CC0", "", min_year=2005))     # CC0 is the author's own photo
+        self.assertIsNone(m.date_rejection(1914, "Public domain", "", min_year=None))
+
+    def test_registration_photos_are_collected_only_when_asked_twice(self):
+        m = self.mod
+        with self.assertRaises(SystemExit):
+            m.main(["collect", "cfg.json", "--out-photos", "p", "--out-manifest", "m.json", "--license-mode=registration"])
+        with self.assertRaises(SystemExit):
+            m.main(["collect", "cfg.json", "--out-photos", "p", "--out-manifest", "m.json", "--registration-only"])
+        with self.assertRaises(ValueError):           # a config asking for it is not enough either
+            m.collect_from_config({"area": "ginza", "license_mode": "registration", "spots": []}, Path("p"), Path("m.json"))
+
+    def test_registration_mode_searches_without_the_cc0_filter_and_takes_by_and_by_sa(self):
+        m = self.mod
+        seen_urls = []
+
+        def fake_fetch(url, sleep_fn=None):
+            seen_urls.append(url)
+            if "openverse" in url:
+                return {"results": [
+                    {"id": "1", "source": "flickr", "license": "by-sa", "license_version": "2.0", "url": "https://x/1.jpg", "width": 2000, "height": 1500},
+                    {"id": "2", "source": "flickr", "license": "cc0", "url": "https://x/2.jpg", "width": 2000, "height": 1500},
+                ]}
+            return {"query": {"search": [{"title": "File:Ginza_bysa.jpg"}]}}
+
+        with patch.object(m, "fetch_json_with_retry", side_effect=fake_fetch):
+            self.assertEqual(m.query_commons_search("Ginza", limit=5, license_mode="registration"), ["File:Ginza_bysa.jpg"])
+            self.assertNotIn("CC-Zero", seen_urls[0])
+            ov = m.query_openverse("Ginza", pages=1, license_mode="registration")
+            self.assertIn("license=by%2Cby-sa", seen_urls[-1])
+            self.assertEqual([r["license"] for r in ov], ["CC BY-SA 2.0"])
+
     def test_pruning_a_row_never_deletes_a_photo_of_the_shared_store(self):
         review = import_pipeline("photos.photo_catalog_review")
         buf = io.BytesIO()

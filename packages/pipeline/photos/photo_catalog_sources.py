@@ -96,12 +96,22 @@ def query_commons_search(
     sleep_fn=time.sleep,
     fetch_fn=None,
 ) -> list[str]:
-    """Search Commons files; restrict to Category:CC-Zero when license_mode=='cc0'."""
+    """Search Commons files; restrict to Category:CC-Zero when license_mode=='cc0'. license_mode=='cc0_pd' runs that
+    search and a second one for files whose copyright status is public domain (structured data P6216=Q19652), and
+    merges them (CC0 first): neither needs attribution. Licences are checked again on each file's page."""
+    if license_mode == "cc0_pd":
+        titles = query_commons_search(query, limit, "cc0", sleep_fn, fetch_fn)
+        for t in query_commons_search(query, limit, "pd", sleep_fn, fetch_fn):
+            if t not in titles:
+                titles.append(t)
+        return titles[:limit]
     fetcher = fetch_fn or fetch_json_with_retry
     titles: list[str] = []
     sroffset = 0
-    if license_mode == "ccby_nosa":
+    if license_mode in ("ccby_nosa", "registration"):
         srsearch = f"{query.strip()} filetype:bitmap"
+    elif license_mode == "pd":
+        srsearch = f"{query.strip()} haswbstatement:P6216=Q19652 filetype:bitmap"
     else:
         srsearch = f'{query.strip()} incategory:"CC-Zero" filetype:bitmap'
     while len(titles) < limit:
@@ -137,18 +147,25 @@ def query_commons_category(
     limit: int = 120,
     sleep_fn=time.sleep,
     fetch_fn=None,
+    depth: int = 0,
+    _seen: set | None = None,
 ) -> list[str]:
+    """The files of a Commons category, then (depth > 0) those of its subcategories down to `depth` levels, each
+    subcategory right after the files of its parent; a category already walked is not walked again."""
     fetcher = fetch_fn or fetch_json_with_retry
     titles: list[str] = []
+    subcats: list[str] = []
     cmcontinue = None
     cat_name = category if category.startswith("Category:") else f"Category:{category}"
+    seen = _seen if _seen is not None else set()
+    seen.add(cat_name)
     while len(titles) < limit:
         params = {
             "action": "query",
             "list": "categorymembers",
             "cmtitle": cat_name,
-            "cmtype": "file",
-            "cmlimit": str(min(50, limit - len(titles))),
+            "cmtype": "file|subcat" if depth > 0 else "file",
+            "cmlimit": "500" if depth > 0 else str(min(50, limit - len(titles))),
             "format": "json",
         }
         if cmcontinue:
@@ -160,11 +177,23 @@ def query_commons_category(
             print(f"[commons category warn] {cat_name}: {exc}", file=sys.stderr)
             break
         for item in data.get("query", {}).get("categorymembers", []):
-            titles.append(item["title"])
+            if item["title"].startswith("Category:"):
+                subcats.append(item["title"])
+            else:
+                titles.append(item["title"])
         cmcontinue = data.get("continue", {}).get("cmcontinue")
         if not cmcontinue:
             break
         sleep_fn(0.35)
+    titles = titles[:limit]
+    for sub in subcats if depth > 0 else []:
+        if len(titles) >= limit:
+            break
+        if sub in seen:
+            continue
+        for t in query_commons_category(sub, limit - len(titles), sleep_fn, fetch_fn, depth - 1, seen):
+            if t not in titles:
+                titles.append(t)
     return titles
 
 
@@ -286,8 +315,8 @@ def query_openverse(
 ) -> list[dict]:
     fetcher = fetch_fn or fetch_json_with_retry
     records: list[dict] = []
-    lic_param = "cc0,by" if license_mode == "ccby_nosa" else "cc0"
-    allowed_codes = {"cc0", "by"} if license_mode == "ccby_nosa" else {"cc0"}
+    lic_param = {"ccby_nosa": "cc0,by", "cc0_pd": "cc0,pdm", "registration": "by,by-sa"}.get(license_mode, "cc0")
+    allowed_codes = set(lic_param.split(","))
     for page in range(1, pages + 1):
         params = {
             "q": query,
@@ -310,7 +339,8 @@ def query_openverse(
             if lic not in allowed_codes:
                 continue
             lic_ver = (r.get("license_version") or "4.0").strip()
-            lic_str = "CC0 1.0" if lic == "cc0" else f"CC BY {lic_ver}".strip()
+            lic_str = {"cc0": "CC0 1.0", "pdm": "Public Domain Mark 1.0", "by-sa": f"CC BY-SA {lic_ver}"}.get(lic) \
+                or f"CC BY {lic_ver}".strip()
             src = (r.get("source") or "unknown").strip().lower()
             if skip_rawpixel and src == "rawpixel":
                 continue
@@ -328,11 +358,9 @@ def query_openverse(
                     "creator": (r.get("creator") or "Unknown")[:120],
                     "license": lic_str,
                     "license_url": r.get("license_url")
-                    or (
-                        "https://creativecommons.org/publicdomain/zero/1.0/"
-                        if lic == "cc0"
-                        else f"https://creativecommons.org/licenses/by/{lic_ver}/"
-                    ),
+                    or {"cc0": "https://creativecommons.org/publicdomain/zero/1.0/",
+                        "pdm": "https://creativecommons.org/publicdomain/mark/1.0/"}.get(lic)
+                    or f"https://creativecommons.org/licenses/{lic}/{lic_ver}/",
                     "description": "",
                     "categories": "",
                     "datetime": "",

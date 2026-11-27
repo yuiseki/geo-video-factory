@@ -1,0 +1,26 @@
+{
+  "area": "asakusa",
+  "license_mode": "cc0_pd",
+  "min_year": 2005,
+  "max_per_creator_day": 100,
+  "target_total": 1254,
+  "spots": [
+    {
+      "slug": "kaminarimon",
+      "kind": "landmarks",
+      "label": "雷門",
+      "commons_categories": [
+        "Kaminarimon"
+      ],
+      "category_depth": 2,
+      "cat_limit": 1500,
+      "target": 556,
+      "max_per_creator_day": 100,
+      "openverse_queries": [
+        "Kaminarimon Asakusa",
+        "雷門 浅草"
+      ],
+      "openverse_pages": 5
+    }
+  ]
+}
