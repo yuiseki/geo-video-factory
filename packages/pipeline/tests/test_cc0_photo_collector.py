@@ -950,6 +950,44 @@ class CC0PhotoCollectorTests(unittest.TestCase):
             self.assertEqual(ov[0]["license"], "CC BY 2.0")
 
 
+    def test_cc0_pd_searches_both_and_never_takes_attribution_licences(self):
+        m = self.mod
+        seen_urls = []
+
+        def fake_fetch(url, sleep_fn=None):
+            seen_urls.append(url)
+            if "commons.wikimedia.org" in url and "list=search" in url:
+                if "CC-Zero" in url:
+                    return {"query": {"search": [{"title": "File:Akiba_cc0.jpg"}]}}
+                if "P6216" in url:
+                    return {"query": {"search": [{"title": "File:Akiba_pd.jpg"}, {"title": "File:Akiba_cc0.jpg"}]}}
+                return {"query": {"search": [{"title": "File:Akiba_bysa.jpg"}]}}
+            if "openverse" in url:
+                return {"results": [
+                    {"id": "1", "source": "flickr", "license": "cc0", "url": "https://x/1.jpg", "width": 2000, "height": 1500},
+                    {"id": "2", "source": "flickr", "license": "pdm", "url": "https://x/2.jpg", "width": 2000, "height": 1500},
+                    {"id": "3", "source": "flickr", "license": "by", "url": "https://x/3.jpg", "width": 2000, "height": 1500},
+                ]}
+            raise AssertionError(url)
+
+        with patch.object(m, "fetch_json_with_retry", side_effect=fake_fetch):
+            titles = m.query_commons_search("Akihabara Main Street", limit=10, license_mode="cc0_pd")
+            self.assertEqual(titles, ["File:Akiba_cc0.jpg", "File:Akiba_pd.jpg"])
+            self.assertTrue(all("CC-Zero" in u or "P6216" in u for u in seen_urls))
+            ov = m.query_openverse("Akihabara", pages=1, license_mode="cc0_pd")
+            self.assertIn("license=cc0%2Cpdm", seen_urls[-1])
+            self.assertEqual([r["license"] for r in ov], ["CC0 1.0", "Public Domain Mark 1.0"])
+            self.assertTrue(m.is_cc0_or_public_domain(ov[1]["license"], ov[1]["license_url"]))
+
+    def test_licence_policy_names_public_domain_apart_from_attribution(self):
+        review = import_pipeline("photos.photo_catalog_review")
+        cc0 = {"license": "CC0", "license_url": ""}
+        pd = {"license": "Public domain", "license_url": ""}
+        by = {"license": "CC BY 4.0", "license_url": ""}
+        self.assertEqual(review.license_policy_of([cc0]), "CC0 / CC-Zero only")
+        self.assertEqual(review.license_policy_of([cc0, pd]), "CC0 or public domain (no attribution required)")
+        self.assertEqual(review.license_policy_of([cc0, pd, by]), "CC0 + CC BY (non-SA, attribution required)")
+
     def test_pruning_a_row_never_deletes_a_photo_of_the_shared_store(self):
         review = import_pipeline("photos.photo_catalog_review")
         buf = io.BytesIO()

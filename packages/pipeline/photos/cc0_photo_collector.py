@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Tokyo urban photo collector CLI (strict CC0 or CC0+CC-BY non-SA), review sheet builder, and index manager."""
+"""Tokyo urban photo collector CLI (strict CC0, CC0 + public domain, or CC0+CC-BY non-SA), review sheet builder, and index manager."""
 from __future__ import annotations
 import sys as _sys
 from pathlib import Path as _Path
@@ -38,6 +38,7 @@ from photos.photo_catalog_rules import (
     classify_time_of_day,
     classify_weather,
     find_gitleaks_hex32_matches,
+    is_cc0_or_public_domain,
     is_ccby_nosa_or_cc0,
     is_strict_cc0,
     is_urban_scene_candidate,
@@ -350,7 +351,7 @@ def main(argv: list[str] | None = None) -> int:
     p_col.add_argument("--existing-dir", type=Path, action="append", default=[])
     p_col.add_argument("--existing-manifest", type=Path, action="append", default=[])
     p_col.add_argument("--append", action="store_true")
-    p_col.add_argument("--license-mode", choices=["cc0", "ccby_nosa"], default=None)
+    p_col.add_argument("--license-mode", choices=["cc0", "cc0_pd", "ccby_nosa"], default=None)
 
     p_cs = sub.add_parser("contact-sheet", help="Build contact sheets for visual QA")
     p_cs.add_argument("manifest", type=Path)

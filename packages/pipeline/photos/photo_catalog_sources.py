@@ -96,12 +96,22 @@ def query_commons_search(
     sleep_fn=time.sleep,
     fetch_fn=None,
 ) -> list[str]:
-    """Search Commons files; restrict to Category:CC-Zero when license_mode=='cc0'."""
+    """Search Commons files; restrict to Category:CC-Zero when license_mode=='cc0'. license_mode=='cc0_pd' runs that
+    search and a second one for files whose copyright status is public domain (structured data P6216=Q19652), and
+    merges them (CC0 first): neither needs attribution. Licences are checked again on each file's page."""
+    if license_mode == "cc0_pd":
+        titles = query_commons_search(query, limit, "cc0", sleep_fn, fetch_fn)
+        for t in query_commons_search(query, limit, "pd", sleep_fn, fetch_fn):
+            if t not in titles:
+                titles.append(t)
+        return titles[:limit]
     fetcher = fetch_fn or fetch_json_with_retry
     titles: list[str] = []
     sroffset = 0
     if license_mode == "ccby_nosa":
         srsearch = f"{query.strip()} filetype:bitmap"
+    elif license_mode == "pd":
+        srsearch = f"{query.strip()} haswbstatement:P6216=Q19652 filetype:bitmap"
     else:
         srsearch = f'{query.strip()} incategory:"CC-Zero" filetype:bitmap'
     while len(titles) < limit:
@@ -286,8 +296,8 @@ def query_openverse(
 ) -> list[dict]:
     fetcher = fetch_fn or fetch_json_with_retry
     records: list[dict] = []
-    lic_param = "cc0,by" if license_mode == "ccby_nosa" else "cc0"
-    allowed_codes = {"cc0", "by"} if license_mode == "ccby_nosa" else {"cc0"}
+    lic_param = {"ccby_nosa": "cc0,by", "cc0_pd": "cc0,pdm"}.get(license_mode, "cc0")
+    allowed_codes = set(lic_param.split(","))
     for page in range(1, pages + 1):
         params = {
             "q": query,
@@ -310,7 +320,7 @@ def query_openverse(
             if lic not in allowed_codes:
                 continue
             lic_ver = (r.get("license_version") or "4.0").strip()
-            lic_str = "CC0 1.0" if lic == "cc0" else f"CC BY {lic_ver}".strip()
+            lic_str = {"cc0": "CC0 1.0", "pdm": "Public Domain Mark 1.0"}.get(lic) or f"CC BY {lic_ver}".strip()
             src = (r.get("source") or "unknown").strip().lower()
             if skip_rawpixel and src == "rawpixel":
                 continue
@@ -328,11 +338,9 @@ def query_openverse(
                     "creator": (r.get("creator") or "Unknown")[:120],
                     "license": lic_str,
                     "license_url": r.get("license_url")
-                    or (
-                        "https://creativecommons.org/publicdomain/zero/1.0/"
-                        if lic == "cc0"
-                        else f"https://creativecommons.org/licenses/by/{lic_ver}/"
-                    ),
+                    or {"cc0": "https://creativecommons.org/publicdomain/zero/1.0/",
+                        "pdm": "https://creativecommons.org/publicdomain/mark/1.0/"}.get(lic)
+                    or f"https://creativecommons.org/licenses/by/{lic_ver}/",
                     "description": "",
                     "categories": "",
                     "datetime": "",

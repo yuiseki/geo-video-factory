@@ -12,7 +12,7 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageOps
 
-from photos.photo_catalog_rules import find_gitleaks_hex32_matches, is_strict_cc0
+from photos.photo_catalog_rules import find_gitleaks_hex32_matches, is_cc0_or_public_domain, is_strict_cc0
 from photos.photo_store import photo_file
 
 
@@ -131,6 +131,18 @@ def _count_dict(items: list[dict], field: str) -> dict[str, int]:
     return dict(sorted(out.items()))
 
 
+def license_policy_of(photos: list[dict]) -> str:
+    """The catalogue's licence policy, from the photos it holds: CC0 only, CC0 or public domain (neither needs
+    attribution), or CC0 with CC BY."""
+    def every(test):
+        return all(test(p.get("license", ""), p.get("license_url", "")) for p in photos)
+    if every(is_strict_cc0):
+        return "CC0 / CC-Zero only"
+    if every(is_cc0_or_public_domain):
+        return "CC0 or public domain (no attribution required)"
+    return "CC0 + CC BY (non-SA, attribution required)"
+
+
 def build_manifest_payload(
     area: str,
     photos: list[dict],
@@ -138,10 +150,7 @@ def build_manifest_payload(
     license_policy: str | None = None,
 ) -> dict:
     if not license_policy:
-        has_non_cc0 = any(not is_strict_cc0(p.get("license", ""), p.get("license_url", "")) for p in photos)
-        license_policy = (
-            "CC0 + CC BY (non-SA, attribution required)" if has_non_cc0 else "CC0 / CC-Zero only"
-        )
+        license_policy = license_policy_of(photos)
     return {
         "area": area,
         "license_policy": license_policy,
@@ -295,8 +304,7 @@ def merge_area_manifests(research_dir: Path) -> dict:
                 })
     sfm_ready_slots.sort(key=lambda r: (-r["count"], r["area"], r["spot_slug"], r["time_of_day"]))
 
-    has_non_cc0 = any(not is_strict_cc0(p.get("license", ""), p.get("license_url", "")) for p in all_photos)
-    license_policy = "CC0 + CC BY (non-SA, attribution required)" if has_non_cc0 else "CC0 / CC-Zero only"
+    license_policy = license_policy_of(all_photos)
 
     index_payload = {
         "license_policy": license_policy,
