@@ -27,18 +27,23 @@ BINS, EL_STEP = 360, 0.5
 
 
 def sky_mask(rgb: np.ndarray) -> np.ndarray:
-    """The clear sky of a photo: bluish, bright pixels connected to the top row (a blue car or sign below the
-    buildings is not sky)."""
-    from scipy.ndimage import label
+    """The clear sky of a photo: bluish, bright, smooth pixels connected to the top row (a blue car or sign below the
+    buildings is not sky; a pale blue facade reaching the top of the frame has rows of windows, the sky has none)."""
+    from scipy.ndimage import label, uniform_filter
     a = np.asarray(rgb, float) / 255.0
+    lum = a.mean(-1)
+    mean = uniform_filter(lum, 5)
+    smooth = np.sqrt(np.maximum(uniform_filter(lum * lum, 5) - mean * mean, 0)) < 0.035    # a facade has windows
     r, g, b = a[..., 0], a[..., 1], a[..., 2]
     mx, mn = a.max(-1), a.min(-1)
     blue = (b >= g) & (b > r + 0.08) & (mx > 0.35) & ((mx - mn) / np.maximum(mx, 1e-6) > 0.15)
     white = (mn > 0.78) & (mx - mn < 0.12)                      # thin cloud and the glare near the sun
-    cand = blue | white
+    cand = (blue | white) & smooth
     lab, _ = label(cand)
     top = set(np.unique(lab[0])) - {0}
-    return np.isin(lab, list(top))
+    sky = np.isin(lab, list(top))
+    from scipy.ndimage import binary_dilation       # the texture window eats the sky's rim: give it back
+    return binary_dilation(sky, iterations=3) & (blue | white)
 
 
 def apply_delta(cams: dict, d: np.ndarray) -> dict:

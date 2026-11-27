@@ -48,6 +48,17 @@ class SkyMask(unittest.TestCase):
         self.assertFalse(m[15:].any())
 
 
+    def test_a_pale_blue_facade_reaching_the_top_is_not_sky(self):
+        img = np.full((60, 80, 3), 120, np.uint8)
+        img[:20] = (70, 140, 230)                                  # sky
+        img[:50, 50:75] = (150, 185, 225)                          # a pale blue tower up to the top of the frame
+        img[2:50:4, 50:75] = (90, 110, 140)                        # with rows of windows
+        img[:50, 50:75:5] = (90, 110, 140)
+        m = sr.sky_mask(img)
+        self.assertGreater(m[:20, :45].mean(), 0.95)
+        self.assertLess(m[:50, 52:73].mean(), 0.1)
+
+
 class Delta(unittest.TestCase):
     def test_no_delta_changes_nothing_and_a_shift_moves_every_eye(self):
         same = sr.apply_delta(CAMS, np.zeros(7))
