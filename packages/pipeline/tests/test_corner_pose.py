@@ -50,6 +50,24 @@ class Solve(unittest.TestCase):
         self.assertLess(np.linalg.norm(np.array(got["eye"]) - truth["eye"]), 0.2)
 
 
+class Keep(unittest.TestCase):
+    def test_a_photo_is_solved_and_written_in_once_and_replaced_when_kept_again(self):
+        import tempfile
+        truth = camera([-30, -25, 1.6], 40, 15, 1800)
+        pts, lines = picks(truth)
+        path = Path(tempfile.mkdtemp()) / "place.json"
+        path.write_text(json.dumps({"origin": [139.77, 35.70], "photos": []}))
+        photo = {"ref": "commons:x.jpg", "width": 2000, "height": 1500, "fx": 1800, "points": pts, "lines": lines,
+                 "guess_eye": [-20, -40, 1.6]}
+        cp.keep(path, photo)
+        cp.keep(path, photo)
+        kept = json.loads(path.read_text())["photos"]
+        self.assertEqual(len(kept), 1)
+        self.assertNotIn("guess_eye", kept[0])
+        self.assertLess(np.linalg.norm(np.array(kept[0]["camera"]["eye"]) - truth["eye"]), 0.05)
+        self.assertLess(kept[0]["residual_px_max"], 0.5)
+
+
 class Truth(unittest.TestCase):
     def test_every_kept_camera_is_what_its_picks_give(self):
         files = sorted(TRUTH.glob("*.json"))

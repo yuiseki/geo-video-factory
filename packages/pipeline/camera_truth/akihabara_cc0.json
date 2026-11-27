@@ -173,7 +173,11 @@
      930.0
     ]
    },
-   "residual_px_max": 48.0
+   "residual_px_max": 48.0,
+   "seen": {
+    "aisan_denki": "bldg_5a6da709-3a3e-4ab7-af2a-8b5f16c689c2",
+    "aisan_denki_next": "bldg_960fd75f-f90d-4f1e-972e-32889d6080f2"
+   }
   },
   {
    "ref": "commons:AKIBA_Sofmap_1gouten_1.jpg",
@@ -355,7 +359,8 @@
      1024.0
     ]
    },
-   "residual_px_max": 29.0
+   "residual_px_max": 29.0,
+   "seen": {}
   }
  ]
 }

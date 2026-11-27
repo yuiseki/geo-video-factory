@@ -1,4 +1,5 @@
 """python -m world_model.corner_pose <camera_truth.json> [<ref>]
+   python -m world_model.corner_pose keep <camera_truth.json> <photo.json>
 A camera from building corners and edges picked in one photo: the place and turn (and, when the photo does not say
 it, the focal length) that put each picked roof corner on its pixel and each picked edge through its pixel.
 
@@ -9,7 +10,8 @@ from a short one close by; `eye_z` (the photographer stood on the street) settle
 
 The kept truths are packages/pipeline/camera_truth/*.json: the picks, the PLATEAU buildings they came from and the
 camera they give, so a photo is placed once by hand and never again (tests/test_corner_pose.py checks that every
-kept camera is still what its picks give). Run as a module, it prints each kept camera and its residuals."""
+kept camera is still what its picks give). Run as a module, it prints each kept camera and its residuals; `keep` solves one photo's picks (a photo
+entry without its camera, plus guess_eye) and writes it into the file."""
 import json
 import math
 import sys
@@ -77,9 +79,28 @@ def solve(spec, spread=60, step=20):
     return cam, residuals(cam, spec)
 
 
+def keep(truth_path, photo):
+    """Solve a photo's picks (photo['guess_eye'] near where it was taken) and write it, with its camera and largest
+    miss, into the camera_truth file; a photo already kept under the same ref is replaced."""
+    cam, res = solve(photo)
+    entry = {k: v for k, v in photo.items() if k != "guess_eye"}
+    entry["camera"] = {"eye": [round(v, 3) for v in cam["eye"]], "Rw": [[round(v, 6) for v in r] for r in cam["Rw"]],
+                       "params": [round(v, 2) for v in cam["params"]]}
+    entry["residual_px_max"] = round(float(np.abs(res).max()), 1)
+    doc = json.loads(open(truth_path).read())
+    doc["photos"] = [p for p in doc["photos"] if p["ref"] != photo["ref"]] + [entry]
+    with open(truth_path, "w") as f:
+        f.write(json.dumps(doc, ensure_ascii=False, indent=1) + "\n")
+    return entry
+
+
 def main(argv):
     if not argv:
         raise SystemExit(__doc__)
+    if argv[0] == "keep":                      # keep <camera_truth.json> <photo.json>
+        e = keep(argv[1], json.load(open(argv[2])))
+        print(e["ref"], "eye", e["camera"]["eye"], "max miss px", e["residual_px_max"])
+        return
     doc = json.load(open(argv[0]))
     for photo in doc["photos"]:
         if len(argv) > 1 and photo["ref"] != argv[1]:
