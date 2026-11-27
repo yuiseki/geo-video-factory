@@ -20,12 +20,15 @@ finds the file, camera_photo(cam) a camera's photo, ref_of_file(file) the ref of
     python -m photos.photo_store import <manifest.json> <flyover dir>     take a project's downloaded photos in,
                                                                           and write each row's ref into the manifest
     python -m photos.photo_store refs <cams.json> ...                     name each world-model camera's photo by its ref
+    python -m photos.photo_store fold <dir> ...                           a project's copies of stored photos become
+                                                                          relative links to them (bytes kept once)
 """
 from __future__ import annotations
 
 import hashlib
 import io
 import json
+import os
 import re
 import sys
 import urllib.parse
@@ -265,9 +268,39 @@ def import_manifest(manifest_path: Path, flyover_dir: Path) -> dict[str, int]:
     return counts
 
 
+def fold(folder) -> dict[str, int]:
+    """Replace every file under `folder` that is byte for byte a stored photo (its meta.json "sha1", not a smaller
+    copy listed in also_sha1, which a camera may be calibrated on) by a relative link to it, so that what refers to
+    the project's path keeps working and the bytes are kept once; other files are left as they are."""
+    from shared_cache import cache_root
+    primary = {}
+    for meta in (cache_root() / "photos").glob("*/*/meta.json"):
+        m = json.loads(meta.read_text(encoding="utf-8"))
+        found = next(iter(sorted(meta.parent.glob("photo.*"))), None)
+        if found is not None:
+            primary[m["sha1"]] = found
+    counts = {"linked": 0, "kept": 0}
+    for file in sorted(Path(folder).rglob("*")):
+        if file.is_symlink() or not file.is_file():
+            continue
+        target = primary.get(hashlib.sha1(file.read_bytes()).hexdigest())
+        if target is None:
+            counts["kept"] += 1
+            continue
+        link = file.with_name(file.name + ".link")
+        link.symlink_to(os.path.relpath(target.resolve(), file.parent.resolve()))
+        link.replace(file)
+        counts["linked"] += 1
+    return counts
+
+
 def main(argv: list[str]) -> None:
     if len(argv) == 3 and argv[0] == "import":
         print(json.dumps(import_manifest(Path(argv[1]), Path(argv[2]))))
+        return
+    if len(argv) >= 2 and argv[0] == "fold":
+        for d in argv[1:]:
+            print(d, json.dumps(fold(Path(d))))
         return
     if len(argv) >= 2 and argv[0] == "refs":
         for f in argv[1:]:

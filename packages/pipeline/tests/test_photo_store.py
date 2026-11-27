@@ -169,5 +169,50 @@ class Store(unittest.TestCase):
         self.assertEqual(photo_store.camera_photo(dict(cam, width=128)), photo_store.path(ref))
 
 
+class Fold(unittest.TestCase):
+    """fold(dir): a project's copies that are byte for byte a stored photo become relative links to it."""
+
+    def setUp(self):
+        self.root = Path(tempfile.mkdtemp())
+        env = mock.patch.dict(os.environ, {"GEO_VIDEO_CACHE": str(self.root / "cache")})
+        env.start()
+        self.addCleanup(env.stop)
+        guard = mock.patch.object(photo_store, "blocked", return_value=None)
+        guard.start()
+        self.addCleanup(guard.stop)
+        self.project = self.root / "project" / "assets" / "photos"
+        self.project.mkdir(parents=True)
+
+    def test_an_identical_copy_becomes_a_relative_link_to_the_store(self):
+        data = jpeg()
+        ref = photo_store.put(COMMONS, data)
+        copy = self.project / "001_a.jpg"
+        copy.write_bytes(data)
+        counts = photo_store.fold(self.project)
+        self.assertEqual(counts["linked"], 1)
+        self.assertTrue(copy.is_symlink())
+        self.assertFalse(Path(os.readlink(copy)).is_absolute())            # works wherever the repository is
+        self.assertEqual(copy.resolve(), photo_store.path(ref).resolve())
+        self.assertEqual(copy.read_bytes(), data)
+
+    def test_a_smaller_copy_of_a_stored_photo_and_an_unknown_file_are_kept(self):
+        photo_store.put(COMMONS, jpeg((128, 96)))
+        small = self.project / "002_small.jpg"
+        small.write_bytes(jpeg())
+        photo_store.put(COMMONS, small.read_bytes())         # seen, but the store keeps the larger (also_sha1)
+        other = self.project / "003_other.jpg"
+        other.write_bytes(jpeg(colour=(1, 2, 3)))
+        counts = photo_store.fold(self.project)
+        self.assertEqual((counts["linked"], counts["kept"]), (0, 2))
+        self.assertFalse(small.is_symlink() or other.is_symlink())
+
+    def test_folding_twice_changes_nothing(self):
+        data = jpeg()
+        photo_store.put(COMMONS, data)
+        (self.project / "001_a.jpg").write_bytes(data)
+        photo_store.fold(self.project)
+        self.assertEqual(photo_store.fold(self.project)["linked"], 0)
+
+
 if __name__ == "__main__":
     unittest.main()
