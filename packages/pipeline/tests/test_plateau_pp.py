@@ -120,7 +120,7 @@ class Build(unittest.TestCase):
                 Path(path).write_bytes(b"jpg")
 
         def proxy(footprints, bbox, out_dir, **kw):
-            self.proxy_kw = kw
+            self.proxy_kw, self.proxy_footprints = kw, footprints
             m = json.loads((Path(out_dir) / "manifest.json").read_text())
             for kind in ("city-proxy", "city-shadow"):
                 (Path(out_dir) / "models" / f"{kind}.glb").write_bytes(kind.encode())
@@ -145,12 +145,12 @@ class Build(unittest.TestCase):
         self.ortho = mock.MagicMock(side_effect=AssertionError("the z16 orthophoto is not used any more"))
         self.palette = mock.MagicMock(side_effect=AssertionError("its colours were overwritten unused"))
         with tempfile.TemporaryDirectory() as root, mock.patch.dict(os.environ, {"GEO_VIDEO_CACHE": root}), \
-                mock.patch.object(plateau_pp, "fetch_osm_buildings", return_value=[]), \
+                mock.patch.object(plateau_pp, "fetch_osm_buildings", return_value=[]) as self.osm, \
                 mock.patch("geo.seasonal_ortho.fetch_gsi_ortho_mosaic", self.ortho), \
                 mock.patch("buildings.building_appearance.apply_orthophoto_palette", self.palette), \
                 mock.patch("buildings.gsi_footprints.fetch_gsi_buildings", return_value=list(footprints)) as self.gsi, \
                 mock.patch("buildings.cell_heights.feature_heights", return_value=heights) as self.cal, \
-                mock.patch("buildings.gsi_footprints.dem_sampler", return_value=lambda lon, lat: 0.0), \
+                mock.patch("buildings.gsi_footprints.dem_sampler", return_value=lambda lon, lat: 0.0) as self.dem, \
                 mock.patch("buildings.gsi_footprints.orthophoto_texture", return_value=(Photo(), [139.0, 35.0, 139.01, 35.01])), \
                 mock.patch.object(gs, "extract_glb_feature_heights", return_value=heights), \
                 mock.patch.object(gs, "extract_glb_feature_shapes", return_value={}), \
@@ -163,14 +163,13 @@ class Build(unittest.TestCase):
 
     def test_every_tile_but_the_shadow_is_baked_and_the_manifest_names_the_version(self):
         from buildings.city_proxy import wall_hex
-        from buildings.pp_bake import BAKE_VERSION
         out, m = self.run_build()
         self.assertEqual([(k, raw) for k, raw, *_ in self.baked], [("plateau", b"glb"), ("proxy", b"city-proxy")])
         self.assertEqual(self.baked[0][3], [wall_hex("a", 30.0), wall_hex("b", 6.0)])
         self.assertEqual(self.baked[1][3], [-5, -5, 5, 5])
         self.assertEqual((out / "models" / "t.glb").read_bytes(), b"glb-baked")
         self.assertEqual((out / "models" / "city-shadow.glb").read_bytes(), b"city-shadow")
-        self.assertEqual(m["plateau_pp"], {"version": BAKE_VERSION, "baked": True})
+        self.assertEqual(m["plateau_pp"], {"version": plateau_pp.PLATEAU_PP_VERSION, "baked": True})
         self.assertEqual(m["tiles"][0]["bytes"], len(b"glb-baked"))
 
     def test_filled_in_heights_are_calibrated_on_the_whole_mesh_cells_of_the_footprints(self):
@@ -184,6 +183,24 @@ class Build(unittest.TestCase):
         self.assertEqual(self.cal.call_args.args[1], box)        # PLATEAU read for the whole cell, not the box
         self.assertIn(box, [c.args[0] for c in self.gsi.call_args_list])
         self.assertEqual(list(self.proxy_kw["height_model"].models), [cell])
+
+    def test_the_context_around_the_box_is_read_and_only_the_box_is_built(self):
+        """A building near the edge is judged with what stands around it (OSM, GSI pieces across tile seams, the
+        ground, PLATEAU's shadows), so it comes out as in a box around it; only the footprints touching the box
+        are filled in."""
+        def foot(i, lon):
+            ring = [[lon, 35.005], [lon + 0.0001, 35.005], [lon + 0.0001, 35.0051], [lon, 35.0051], [lon, 35.005]]
+            return {"type": "Feature", "id": f"gsi/{i}", "properties": {"vt_code": "3101"},
+                    "geometry": {"type": "Polygon", "coordinates": [ring]}}
+        inside, outside = foot(1, 139.005), foot(2, 139.0115)          # the second about 100 m east of the box
+        self.run_build(footprints=[inside, outside])
+        box = [139.0, 35.0, 139.01, 35.01]
+        context = plateau_pp.grow(box, plateau_pp.CONTEXT_M)
+        self.assertEqual(self.osm.call_args.args[0], context)
+        self.assertEqual(self.gsi.call_args_list[0].args[0], context)
+        self.assertEqual(self.dem.call_args.args[0], context)
+        self.assertEqual(self.proxy_footprints, [inside])
+        self.assertLess(context[0], box[0] - 0.003)
 
     def test_no_bake_leaves_the_look_to_the_renderer_as_before(self):
         out, m = self.run_build(bake=False)

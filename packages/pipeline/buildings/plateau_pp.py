@@ -40,7 +40,7 @@ from buildings.glb_strip import drop_features
 from buildings.plausibility import implausible
 
 TOKYO_2025 = "https://api.plateauview.mlit.go.jp/datacatalog/3dtiles/13-bldg-lod2-texture-2025/tileset.json"
-PLATEAU_PP_VERSION = "0.1.0"   # raise when a change alters what a build looks like: cached builds live under it
+PLATEAU_PP_VERSION = "0.2.0"   # raise when a change alters what a build looks like: cached builds live under it
 
 
 def overpass_endpoint() -> str:
@@ -142,6 +142,18 @@ def bake_tiles(out: Path, m: dict, roof_photo, roof_bounds: list[float]) -> None
     m["plateau_pp"] = {"version": PLATEAU_PP_VERSION, "baked": True}
 
 
+CONTEXT_M = 300.0   # what is read around the box, so a building near its edge is judged as in a box around it
+
+
+def grow(bbox: list[float], metres: float) -> list[float]:
+    """The box widened by metres on every side."""
+    import math
+    w, s, e, n = bbox
+    dlat = metres / 110_950.0
+    dlon = metres / (111_320.0 * math.cos(math.radians((s + n) / 2)))
+    return [round(w - dlon, 7), round(s - dlat, 7), round(e + dlon, 7), round(n + dlat, 7)]
+
+
 def cell_models(footprints: list[dict], tileset: str, gsi: Path):
     """(lon, lat) -> height model of the JIS mesh cell there, calibrated on the PLATEAU buildings and GSI footprints
     of the whole cells the footprints lie in (cell_heights), so a building's height does not depend on the box."""
@@ -184,18 +196,22 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
                 "tiles": []}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
             print("no PLATEAU tiles in the box: filled-in buildings only", flush=True)
     m = json.loads((out / "manifest.json").read_text(encoding="utf-8"))
-    osm = fetch_osm_buildings(bbox, cache / "osm-buildings.geojson")
+    context = grow(bbox, CONTEXT_M)           # OSM, GSI and the ground around the box, not only in it
+    osm = fetch_osm_buildings(context, cache / "osm-buildings.geojson")
     m = remove_implausible(out, m, osm)
     (out / "manifest.json").write_text(json.dumps(m, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"removed {len(m['removed_buildings'])} implausible PLATEAU buildings", flush=True)
 
 
-    footprints = fetch_gsi_buildings(bbox, gsi)
-    ground = dem_sampler(bbox, gsi)
+    from shapely.geometry import box as to_box
+    around = fetch_gsi_buildings(context, gsi)     # whole: a building across a tile seam at the edge is not cut
+    inside = to_box(*bbox)
+    footprints = [f for f in around if shape(f["geometry"]).intersects(inside)]
+    ground = dem_sampler(context, gsi)
     plateau = {}
     for tile in m["tiles"]:
         plateau.update(glb_spatial.extract_glb_feature_heights((out / tile["glb"]).read_bytes(), tile["rtc"], tile["ids"]))
-    tree = STRtree([shape(f["geometry"]) for f in footprints])
+    tree = STRtree([shape(f["geometry"]) for f in around])
     casters = {}
     for item in plateau.values():
         hits = tree.query(Point(*item["lonlat"]), predicate="within")
@@ -212,7 +228,7 @@ def build(out: Path, bbox: list[float], tileset: str = TOKYO_2025, cache: Path |
         footprints, bbox, out, ground=ground, orthophoto=roof, orthophoto_bounds=roof_bounds,
         plateau_centroids=[item["lonlat"] for item in plateau.values()], osm_features=osm,
         height_model=cell_models(footprints, tileset, gsi), seed=seed,
-        shadow_casters=[(footprints[i], h) for i, h in sorted(casters.items())],
+        shadow_casters=[(around[i], h) for i, h in sorted(casters.items())],
         roof_texture=("roof-photo.jpg", roof_bounds))
     m["removed_buildings"] = removed
     m["plateau_building_count"] = len(plateau)
