@@ -63,14 +63,14 @@ def summary(rows, ks=KS):
 def collect(research, photos, gyazo):
     items = []
     for m in sorted(Path(research).glob("*_manifest.json")):
-        for p in json.loads(m.read_text())["photos"]:
+        for p in json.loads(m.read_text(encoding="utf-8"))["photos"]:
             c, local = p.get("coordinates"), p.get("local_path")
             path = Path(photos) / local.split("tokyo_cc0/", 1)[1] if local else None
             if c and path and path.exists():
                 items.append({"id": p["id"], "path": str(path), "lon": c[0], "lat": c[1], "creator": p["creator"],
                               "date": p.get("date") or "", "area": p["area"], "spot": p["spot_slug"], "role": "db"})
     for meta in sorted(Path(gyazo).glob("*/meta.json")):
-        g = json.loads(meta.read_text())
+        g = json.loads(meta.read_text(encoding="utf-8"))
         c = g.get("coordinates")
         if c and (meta.parent / "photo.jpg").exists():
             items.append({"id": "gyazo_" + meta.parent.name, "path": str(meta.parent / "photo.jpg"), "lon": c[0],
@@ -82,12 +82,12 @@ def collect(research, photos, gyazo):
 def main(argv):
     if argv[0] == "collect":
         items = collect(*argv[1:4])
-        Path(argv[4]).write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items))
+        Path(argv[4]).write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items), encoding="utf-8")
         print(len(items), "photos,", sum(i["role"] == "db" for i in items), "in the database")
     elif argv[0] == "score":
-        items = [json.loads(line) for line in Path(argv[1]).read_text().splitlines()]
+        items = [json.loads(line) for line in Path(argv[1]).read_text(encoding="utf-8").splitlines()]
         rows = evaluate(items, np.load(argv[2]))
-        Path(argv[3]).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows))
+        Path(argv[3]).write_text("".join(json.dumps(r, ensure_ascii=False) + "\n" for r in rows), encoding="utf-8")
         for name, sub in (("cc0 leave-one-out", [r for r in rows if r["role"] == "db"]),
                           ("gyazo against cc0", [r for r in rows if r["role"] == "query"])):
             print(name, json.dumps(summary(sub)))

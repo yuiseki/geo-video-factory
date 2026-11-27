@@ -80,7 +80,7 @@ def anyloc(items, dev, clone, vocab_dir):
 
 
 def main(argv):
-    items = [json.loads(line) for line in Path(argv[1]).read_text().splitlines()]
+    items = [json.loads(line) for line in Path(argv[1]).read_text(encoding="utf-8").splitlines()]
     dev = "cuda" if torch.cuda.is_available() else "cpu"
     print(len(items), "photos on", dev, flush=True)
     d = megaloc(items, dev) if argv[0] == "megaloc" else anyloc(items, dev, argv[3], argv[4])
