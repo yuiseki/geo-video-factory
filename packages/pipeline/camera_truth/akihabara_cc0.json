@@ -1,0 +1,361 @@
+{
+ "place": "Akihabara, Chuo-dori at Kanda-Myojin-dori (Chiyoda, Tokyo)",
+ "origin": [
+  139.7716,
+  35.6997
+ ],
+ "frame": "metres east, north and up (ellipsoid height) from origin, as buildings/plateau_mesh.enu_frame; pixels are of the full-resolution photo, origin top-left",
+ "plateau": "13101_chiyoda-ku_pref_2025 LOD2 (PLATEAU++ 0.3.0 tiles)",
+ "photos": [
+  {
+   "ref": "commons:Sofmap_Tokyo_Akihabara_main_store.JPG",
+   "file": "photos/Sofmap_Tokyo_Akihabara_main_store.jpg",
+   "sha256": "230896d5059a2cbffa252ffb29f49ef282adb1368a51c24a75d71d79f07ce6c5",
+   "license": "CC0",
+   "creator": "Tokumeigakarinoaoshima",
+   "landing_url": "https://commons.wikimedia.org/wiki/File:Sofmap_Tokyo_Akihabara_main_store.JPG",
+   "taken": "2015-03-28T17:09:29",
+   "width": 2516,
+   "height": 1860,
+   "fx": 2236,
+   "fx_from": "EXIF FocalLengthIn35mmFilm 32 mm on the 2516 px width",
+   "eye_z": null,
+   "buildings": {
+    "bic_camera_akiba (former Sofmap main store)": "bldg_d4bca89e-7b20-40f0-b7c4-d0784fdcc388"
+   },
+   "points": [
+    [
+     [
+      -0.9,
+      9.2,
+      81.3
+     ],
+     [
+      950,
+      92
+     ]
+    ],
+    [
+     [
+      5.2,
+      1.8,
+      81.3
+     ],
+     [
+      1307,
+      78
+     ]
+    ],
+    [
+     [
+      1.2,
+      29.0,
+      81.3
+     ],
+     [
+      555,
+      308
+     ]
+    ],
+    [
+     [
+      30.8,
+      -0.6,
+      81.3
+     ],
+     [
+      1840,
+      442
+     ]
+    ]
+   ],
+   "lines": [
+    [
+     [
+      [
+       -0.9,
+       9.2,
+       81.3
+      ],
+      [
+       -0.9,
+       9.2,
+       39.9
+      ]
+     ],
+     [
+      919,
+      1233
+     ]
+    ],
+    [
+     [
+      [
+       5.2,
+       1.8,
+       81.3
+      ],
+      [
+       5.2,
+       1.8,
+       39.9
+      ]
+     ],
+     [
+      1315,
+      1274
+     ]
+    ],
+    [
+     [
+      [
+       1.2,
+       29.0,
+       81.3
+      ],
+      [
+       1.2,
+       29.0,
+       39.9
+      ]
+     ],
+     [
+      524,
+      1233
+     ]
+    ],
+    [
+     [
+      [
+       30.8,
+       -0.6,
+       81.3
+      ],
+      [
+       30.8,
+       -0.6,
+       39.9
+      ]
+     ],
+     [
+      1922,
+      1233
+     ]
+    ]
+   ],
+   "camera": {
+    "eye": [
+     -35.492,
+     -30.002,
+     47.509
+    ],
+    "Rw": [
+     [
+      0.641271,
+      -0.767283,
+      -0.00702
+     ],
+     [
+      0.161299,
+      0.143742,
+      -0.976382
+     ],
+     [
+      0.75017,
+      0.624993,
+      0.215939
+     ]
+    ],
+    "params": [
+     2236,
+     2236,
+     1258.0,
+     930.0
+    ]
+   },
+   "residual_px_max": 48.0
+  },
+  {
+   "ref": "commons:AKIBA_Sofmap_1gouten_1.jpg",
+   "file": "photos/AKIBA_Sofmap_1gouten_1.jpg",
+   "sha256": "2b6ced2e2478d7f6933acb75401181f3d422b40ea7df5a24f427493e741e8b37",
+   "license": "CC0",
+   "creator": "Saoyagi2",
+   "landing_url": "https://commons.wikimedia.org/wiki/File:AKIBA_Sofmap_1gouten_1.jpg",
+   "taken": "2011-09-10T12:36:30",
+   "width": 1536,
+   "height": 2048,
+   "fx": 1936,
+   "fx_from": "EXIF FocalLength 5.406 mm (Canon IXY DIGITAL 30a, 1/2.5-inch sensor 4.29 mm on the 1536 px width)",
+   "eye_z": 41.6,
+   "buildings": {
+    "akiba_sofmap_no1": "bldg_33cec7ba-0ebf-40a8-9d3b-b52e1c27755e"
+   },
+   "points": [
+    [
+     [
+      -49.8,
+      64.6,
+      91.1
+     ],
+     [
+      284,
+      228
+     ]
+    ],
+    [
+     [
+      -31.1,
+      81.6,
+      91.1
+     ],
+     [
+      1092,
+      234
+     ]
+    ]
+   ],
+   "lines": [
+    [
+     [
+      [
+       -32.8,
+       63.1,
+       91.1
+      ],
+      [
+       -32.8,
+       63.1,
+       40.0
+      ]
+     ],
+     [
+      637,
+      910
+     ]
+    ],
+    [
+     [
+      [
+       -32.8,
+       63.1,
+       91.1
+      ],
+      [
+       -32.8,
+       63.1,
+       40.0
+      ]
+     ],
+     [
+      649,
+      1593
+     ]
+    ],
+    [
+     [
+      [
+       -49.8,
+       64.6,
+       91.1
+      ],
+      [
+       -49.8,
+       64.6,
+       40.0
+      ]
+     ],
+     [
+      250,
+      751
+     ]
+    ],
+    [
+     [
+      [
+       -31.1,
+       81.6,
+       91.1
+      ],
+      [
+       -31.1,
+       81.6,
+       40.0
+      ]
+     ],
+     [
+      1138,
+      751
+     ]
+    ],
+    [
+     [
+      [
+       -32.8,
+       63.1,
+       91.1
+      ],
+      [
+       -49.8,
+       64.6,
+       91.1
+      ]
+     ],
+     [
+      455,
+      118
+     ]
+    ],
+    [
+     [
+      [
+       -32.8,
+       63.1,
+       91.1
+      ],
+      [
+       -31.1,
+       81.6,
+       91.1
+      ]
+     ],
+     [
+      887,
+      118
+     ]
+    ]
+   ],
+   "camera": {
+    "eye": [
+     -8.674,
+     38.363,
+     41.683
+    ],
+    "Rw": [
+     [
+      0.754412,
+      0.65578,
+      -0.028567
+     ],
+     [
+      -0.290289,
+      0.294284,
+      -0.910565
+     ],
+     [
+      -0.588723,
+      0.695234,
+      0.412377
+     ]
+    ],
+    "params": [
+     1936,
+     1936,
+     768.0,
+     1024.0
+    ]
+   },
+   "residual_px_max": 29.0
+  }
+ ]
+}
