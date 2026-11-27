@@ -54,6 +54,43 @@ def _store_ready():
         return False
 
 
+class Tris(unittest.TestCase):
+    def test_the_whole_box_is_asked_for_before_the_triangles_are_read(self):
+        """What the store happened to hold must not decide the scene: the box around the fix is built every time
+        (a box built before costs nothing), and only then read."""
+        import tempfile
+        from unittest import mock
+        asked = []
+        ex = {"lon": 139.7, "lat": 35.6}
+
+        def area(origin, centre, radius):
+            self.assertEqual(len(asked), 1)                    # the box came first
+            return np.zeros((5, 3, 3))
+        with tempfile.TemporaryDirectory() as d, \
+                mock.patch("buildings.plateau_pp.cached", lambda box: asked.append(box)), \
+                mock.patch("buildings.plateau_building.area_triangles", area):
+            f = ps.step_tris(ex, Path(d))
+            self.assertEqual(np.load(f)["tris"].shape, (5, 3, 3))
+            ps.step_tris(ex, Path(d))                          # kept: neither asked for nor read again
+        self.assertEqual(len(asked), 1)
+        w, s, e, n = asked[0]
+        self.assertAlmostEqual((n - s) * 110950, 2 * ps.TRIS_RADIUS, places=3)
+        self.assertAlmostEqual((w + e) / 2, 139.7); self.assertAlmostEqual((s + n) / 2, 35.6)
+
+
+class Fetch(unittest.TestCase):
+    def test_a_photo_given_by_its_address_is_fetched_once_into_the_work_directory(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            src = Path(d) / "there.jpg"; src.write_bytes(b"pixels")
+            work = Path(d) / "work"; work.mkdir()
+            got = ps.photo_file(src.as_uri(), work)
+            self.assertEqual((got.parent, got.read_bytes()), (work, b"pixels"))
+            src.write_bytes(b"changed")
+            self.assertEqual(ps.photo_file(src.as_uri(), work).read_bytes(), b"pixels")
+            self.assertEqual(ps.photo_file(str(src), work), src.resolve())     # a file is used where it is
+
+
 class Kept(unittest.TestCase):
     def test_every_kept_photo_is_the_file_it_was_solved_from(self):
         import hashlib, json

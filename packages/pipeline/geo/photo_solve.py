@@ -1,10 +1,10 @@
-"""python -m geo.photo_solve <photo> <work_dir> [--vision-python=<python with torch and transformers>]
+"""python -m geo.photo_solve <photo file or address> <work_dir> [--vision-python=<python with torch and transformers>]
 One photo placed on PLATEAU from nothing but the photo file (its pixels and its EXIF), with no person picking or
 looking, and refused rather than guessed when a gate does not pass.
 
 1. exif.json      photos/photo_exif.py: size, focal length (35 mm equivalent), GPS position and how far to trust it.
-2. tris.npz       PLATEAU around the position (buildings/plateau_building.area_triangles; PLATEAU++ is built for the
-                  box first when the tile store does not cover it).
+2. tris.npz       PLATEAU around the position (buildings/plateau_building.area_triangles), after PLATEAU++ is built
+                  for the whole box (OVERPASS_URL; tiles made before are not made again).
    sky.json       which sky photo_place reads: clear blue or overcast white, whichever finds more (night only when
                   neither does); refused here when none finds 2 % of the picture.
 3. place/         geo/photo_place.py: the skyline searched over every heading, pitch, roll and field of view, on an
@@ -50,18 +50,30 @@ def step_exif(photo, work):
     return _json(f) if f.exists() else _json(f, camera_from_exif(photo))
 
 
+def photo_file(photo, work):
+    """The photo's file: where it is, or fetched once into the work directory when an address was given."""
+    if "://" not in str(photo):
+        return Path(photo).resolve()
+    import urllib.request
+    f = Path(work).resolve() / "photo.jpg"
+    if not f.exists():
+        with urllib.request.urlopen(urllib.request.Request(str(photo), headers={"User-Agent": "geo-video-factory"}),
+                                    timeout=60) as r:
+            f.write_bytes(r.read())
+    return f
+
+
 def step_tris(ex, work):
-    from buildings.plateau_building import area_triangles
+    """PLATEAU within TRIS_RADIUS of the fix. The whole box is built first, every time (one built before costs
+    nothing), so the scene does not depend on what the tile store happened to hold."""
+    from buildings import plateau_building, plateau_pp
     f = work / "tris.npz"
     if not f.exists():
         origin = (ex["lon"], ex["lat"])
-        t = area_triangles(origin, (0.0, 0.0), TRIS_RADIUS)
-        if len(t) < 1000:                     # the store does not cover the place yet: build PLATEAU++ for it
-            from buildings.plateau_pp import cached
-            kx, ky = 111320 * math.cos(math.radians(ex["lat"])), 110950
-            r = TRIS_RADIUS
-            cached([ex["lon"] - r / kx, ex["lat"] - r / ky, ex["lon"] + r / kx, ex["lat"] + r / ky])
-            t = area_triangles(origin, (0.0, 0.0), TRIS_RADIUS)
+        kx, ky = 111320 * math.cos(math.radians(ex["lat"])), 110950
+        r = TRIS_RADIUS
+        plateau_pp.cached([ex["lon"] - r / kx, ex["lat"] - r / ky, ex["lon"] + r / kx, ex["lat"] + r / ky])
+        t = plateau_building.area_triangles(origin, (0.0, 0.0), TRIS_RADIUS)
         np.savez_compressed(f, tris=t.astype(np.float32), origin=np.array(origin))
     return f
 
@@ -214,7 +226,8 @@ def main(argv):
     args = [a for a in argv if not a.startswith("--")]
     if len(args) != 2:
         raise SystemExit(__doc__)
-    photo, work = Path(args[0]).resolve(), Path(args[1]); work.mkdir(parents=True, exist_ok=True)
+    work = Path(args[1]); work.mkdir(parents=True, exist_ok=True)
+    photo = photo_file(args[0], work)
     clock = [time.time()]
 
     def took(step):                       # how long each step took, to the log
