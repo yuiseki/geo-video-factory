@@ -92,10 +92,15 @@ describe('city proxy material', () => {
     assert.match(roofShader.fragmentShader, /^#define CITY_ROOF_PHOTO/);
   });
 
-  it('places proxy tiles at map altitude', () => {
-    assert.equal(tileHeightOffset('city-proxy', -39), 0);
-    assert.equal(tileHeightOffset('city-shadow', -39), 0);
+  it('places proxy tiles in a local frame at map altitude', () => {
+    assert.equal(tileHeightOffset('city-proxy', -39, 'enu'), 0);
+    assert.equal(tileHeightOffset('city-shadow', -39, 'enu'), 0);
     assert.equal(tileHeightOffset(undefined, -39), -39);
+  });
+
+  it('places PLATEAU++ 0.3 proxy tiles, written in ECEF on the ellipsoid like PLATEAU, as PLATEAU', () => {
+    assert.equal(tileHeightOffset('city-proxy', -39), -39);
+    assert.equal(tileHeightOffset('city-shadow', -39), -39);
   });
 });
 

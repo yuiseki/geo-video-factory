@@ -219,7 +219,7 @@ async function loadGroup(config: PlateauBuildingsConfig): Promise<BuildingGroup>
       const baked = isBakedGltf(gltf);                 // PLATEAU++ v0.1.0+: the look is in the GLB
       if (!baked) batchUntexturedMeshes(gltf.scene);
       const delta = tile.rtc.map((value, index) => value - origin[index]!) as [number, number, number];
-      const localPosition: [number, number, number] = [dot(east, delta), dot(north, delta), dot(up, delta) + tileHeightOffset(tile.kind, heightOffset)];
+      const localPosition: [number, number, number] = [dot(east, delta), dot(north, delta), dot(up, delta) + tileHeightOffset(tile.kind, heightOffset, tile.frame)];
       const translate = new THREE.Matrix4().makeTranslation(...localPosition);
       gltf.scene.matrixAutoUpdate = false;
       if (tile.frame === 'enu') {
