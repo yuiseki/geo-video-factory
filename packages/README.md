@@ -51,6 +51,7 @@ rendererは動画開始前にマニフェストとモデルを読み込み、WGS
 |---|---|
 | `buildings/plateau_mesh.py` | `buildings/plateau_3d.py` が固定したタイルの全三角形を、1 つの東・北・上 (メートル) の座標系へ集めて `tris.npz` に書く |
 | `geo/skyline_match.py` | 建物と空の境界線を、モデルと写真の両方から読み、立ち位置と向きごとの費用を出す |
+| `geo/upright.py` | 写真の中の垂直な線 (壁や窓の縦の線) が集まる点から、カメラの仰角とロールを読む。焦点距離が要る。`photo_solve` はこの値のまわりだけを探す |
 | `geo/photo_place.py` | 写真 1 枚の位置・向き・上向き・ロール・画角を全幅探索し、`result.json`、重ね描き、`cams.json`、`mesh.npz` を書く |
 | `photos/people_removal.py` | 検出マスクを広げて人を埋める。見落としは箱で囲んで埋め直す (`refill`) |
 | `video/camera_path.py` | 写真の位置と向きを基準にしたキーフレームから、フレームごとのカメラを作る |

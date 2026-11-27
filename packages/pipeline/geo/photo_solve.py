@@ -9,6 +9,9 @@ looking, and refused rather than guessed when a gate does not pass.
                   neither does); refused here when none finds 2 % of the picture.
    trees/         world_model/tree_mask.py, run with --vision-python: where trees stand. PLATEAU holds none, so a
                   crown against the sky says only that the roofline is no higher than it.
+   upright.json   geo/upright.py: the pitch and roll the picture's upright lines (walls, windows) give, when the
+                  focal length is known. Enough lines agreeing, place searches 2 degrees of pitch and 1.5 of roll
+                  around them instead of pitch 0 to 30 and roll -2 to 2.
 3. place/         geo/photo_place.py: the skyline searched over every heading, pitch, roll and field of view, on an
                   8 m grid and then a 2 m grid around the best eight places, within 40 m of the GPS fix first and
                   wider (100 m, 250 m, then as far as the EXIF says the fix may be off; 16 m grid beyond 250 m) only
@@ -143,7 +146,20 @@ def sky_reading(sky, trees):
     return sky["kind"]
 
 
-def step_place(photo, tris_path, ex, sky, work, veil=None):
+def step_upright(photo, ex, work):
+    """The pitch and roll read from the photo's upright lines (geo/upright.py); None without a focal length or when
+    no two lines agree. Searched over 0 to 30 degrees instead, a pitch of 34 was placed 38 m off at the range's end,
+    and a range widened to 56 found a place that fitted (0.608) 72 m off."""
+    f = work / "upright.json"
+    if f.exists():
+        return _json(f)["reading"]
+    if ex["fx"] is None:
+        return None
+    from geo.upright import upright
+    return _json(f, {"reading": upright(photo, ex["fx"])})["reading"]
+
+
+def step_place(photo, tris_path, ex, sky, work, veil=None, tilt=None):
     """The skyline search, from a small radius outwards: it stops at the first radius whose answer is alone and does
     not lie on the radius's rim (within one coarse step) and fits (PLACE_COST), else widens, up to how far the EXIF says the fix may be off.
     A photo whose GPS is good is searched over 40 m, not the 300 m a cell-tower label asks for."""
@@ -157,7 +173,7 @@ def step_place(photo, tris_path, ex, sky, work, veil=None):
     for radius in [r for r in SEARCH_RADII if r < limit] + [limit]:
         out = work / f"place_{radius:g}m"
         step = COARSE_GRID if radius <= SEARCH_RADII[-1] else WIDE_GRID
-        res = _place_once(place, photo, tris_path, ex, sky, out, radius, veil=veil, coarse_grid=step)
+        res = _place_once(place, photo, tris_path, ex, sky, out, radius, veil=veil, coarse_grid=step, tilt=tilt)
         tried.append({"radius": radius, "alone": res["alone"], "moved_m": round(res["moved_m"], 1),
                       "cost": round(res["best"]["cost"], 3)})
         if res["alone"] and res["moved_m"] <= radius - step and res["best"]["cost"] <= PLACE_COST:
@@ -167,14 +183,15 @@ def step_place(photo, tris_path, ex, sky, work, veil=None):
     return _json(f, res)
 
 
-def _place_once(place, photo, tris_path, ex, sky, out, radius, veil=None, coarse_grid=COARSE_GRID):
+def _place_once(place, photo, tris_path, ex, sky, out, radius, veil=None, coarse_grid=COARSE_GRID, tilt=None):
+    from geo.upright import ranges
     if ex["fx"] is not None:
         hfov, fov_range = ex["hfov_deg"], "0.94:1.06:3"
     else:                                     # no 35 mm equivalent: phones' main cameras, 50 to 80 degrees across
         hfov, fov_range = 65.0, "0.77:1.23:7"
     return place(photo, tris_path, out, 0.0, 0.0, hfov, radius=radius,
                  grid=2.0, coarse_grid=coarse_grid, fov_range=fov_range, min_sky=40, sky=sky, veil=veil,
-                 log=lambda s: print(s, flush=True))
+                 log=lambda s: print(s, flush=True), **ranges(tilt))
 
 
 def _coarse_camera(work):
@@ -322,7 +339,8 @@ def main(argv):
         _json(work / "solve.json", {"verdict": "refused: no sky", "sky": sky})
         print("refused: no sky to read a roofline from", sky["share"]); raise SystemExit(1)
     tris = step_tris(ex, work); took("tris")
-    place = step_place(photo, tris, ex, reading, work, veil=trees); took("place")
+    tilt = step_upright(photo, ex, work); print("upright lines:", tilt, flush=True)
+    place = step_place(photo, tris, ex, reading, work, veil=trees, tilt=tilt); took("place")
     if not place["alone"]:
         _json(work / "solve.json", {"verdict": "refused: alone", "place": place["best"]})
         print("refused: the skyline does not decide the place"); raise SystemExit(1)

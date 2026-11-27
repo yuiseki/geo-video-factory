@@ -75,6 +75,12 @@ The steps, each kept in the work directory and skipped when its file is there:
 3. Which sky to read. The colour reading is sharp at the roofline and stays, unless the segmentation saw at least
    1.5 times as much sky (sky behind bare branches, which colour takes for one patch at the top); then `sky.png` is
    read instead. Taking the segmentation's sky for every photo moved a kept answer by 2 m, so it is not the default.
+   The pitch and roll from the picture's upright lines (`geo.upright`, `upright.json`): walls and windows stand
+   upright, so their lines meet at one point of the picture, and that point gives the tilt. It needs the focal
+   length. With 20 or more segments agreeing (10 % of the segment length) the skyline search keeps to 2 degrees of
+   pitch and 1.5 of roll around it, 27 poses in place of 144. A photo looking up 34 degrees was placed 38 m off at
+   the end of the 0 to 30 range and refused, and is solved this way; widening the range to 56 instead found a false
+   place that fitted well 72 m off. It does not rescue a photo whose buildings the model does not hold.
 4. The PLATEAU++ box 700 m around the fix, then the skyline search (`geo.photo_place`). It widens (40, 100, 250 m, the
    EXIF limit; a 16 m coarse grid beyond 250 m) while its answer is not decided: not alone, on the rim, or its cost
    above 1.0.

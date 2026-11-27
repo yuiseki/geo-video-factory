@@ -86,7 +86,7 @@ class Place(unittest.TestCase):
         from unittest import mock
         calls = []
 
-        def once(place, photo, tris, ex, sky, out, radius, veil=None, coarse_grid=None):
+        def once(place, photo, tris, ex, sky, out, radius, veil=None, coarse_grid=None, tilt=None):
             calls.append((radius, veil, coarse_grid)); Path(out).mkdir()
             cost, alone, moved = by_radius[radius]
             return {"best": {"cost": cost}, "alone": alone, "moved_m": moved}
@@ -242,3 +242,30 @@ class Refusals(unittest.TestCase):
         seen = np.zeros((6, 8), bool); seen[2:4, 1:5] = True
         self.assertEqual(ps.prompt_of(seen), {"point": [5.0, 5.0], "box": [2, 4, 9, 7]})
         self.assertIsNone(ps.prompt_of(np.zeros((6, 8), bool)))
+
+
+class Tilt(unittest.TestCase):
+    """The pitch and roll read from the picture's upright lines narrow the place search; without them it is as it was."""
+
+    def once(self, tilt):
+        got = {}
+
+        def place(*a, **k):
+            got.update(k)
+        ps._place_once(place, "p.jpg", "tris.npz", {"fx": 3000.0, "hfov_deg": 60.0}, "blue", "out", 40.0, tilt=tilt)
+        return got
+
+    def test_a_reading_many_lines_agree_on_is_searched_around(self):
+        got = self.once({"pitch": 21.1, "roll": 2.6, "lines": 99, "of": 258, "share": 0.4})
+        self.assertEqual((got["pitch"], got["roll"]), ("19:23:2", "1:4:1.5"))
+
+    def test_no_reading_leaves_the_ranges_to_photo_place(self):
+        got = self.once(None)
+        self.assertNotIn("pitch", got)
+        self.assertNotIn("roll", got)
+
+    def test_a_photo_without_a_focal_length_is_not_read(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            self.assertIsNone(ps.step_upright("p.jpg", {"fx": None}, Path(d)))
+            self.assertFalse((Path(d) / "upright.json").exists())
