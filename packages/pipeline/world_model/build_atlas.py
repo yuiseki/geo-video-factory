@@ -1,5 +1,5 @@
 """python -m world_model.build_atlas <work_dir> <building> <scene tris.npz> <out_dir> [--texel=0.05] [--width=4096] [--keep=6] [--fuse=face|median] [--few=3] [--patch=metres] [--agree=colour distance] [--smooth=0.7] [--expose=0] [--fill=mean] [--split=metres] [--changing=colour distance] [--eras=k] [--era=0] [--people-band=metres] [--ground-z=<the building's lowest point>] [--without=<buildings.npz>:<name>,...]
-       [--people-masks=<dir>|cache] [--edge-margin=<photo pixels>]
+       [--people-masks=<dir>|cache] [--edge-margin=<photo pixels>] [--tidy[=texels]]
        [--only=<word in the camera key>,...] [--skip=<word in the camera key>,...] <cams.json>...
 The texture of one building, read back from every placed photo, and the building as an OBJ that uses it.
 <work_dir>/buildings.npz comes from geometry_map.py; each cams.json is what photo_place.py writes.
@@ -12,6 +12,7 @@ people and cars stand in front of it (surface_atlas.people_band).
 photos/people_removal.py found them (=cache reads shared_cache.people_masks_dir()).
 --edge-margin=N keeps every photo off its pixels within N of the city model's outline in it (silhouette_blocked):
 there a small error of pose or shape paints the sky or the building behind on the edge of a wall.
+--tidy[=2] drops specks of seen texels and grows the seen texels that many texels into their own face (tidy).
 Texels that no photo saw are grey in atlas.png and are counted in report.json; they are not made up."""
 import json
 import sys
@@ -81,6 +82,33 @@ def silhouette_blocked(depth, shape, margin=3, jump=0.1):
     xi = np.minimum(np.arange(w) * d.shape[1] // w, d.shape[1] - 1)
     big = edge[np.ix_(yi, xi)]
     return binary_dilation(big, iterations=int(margin))
+
+
+def tidy(colour, quality, chart, min_island=9, grow=2):
+    """(colour, quality) of an atlas (rows, width) with the seen texels (quality > 0) of fewer than min_island texels
+    together dropped, then every seen texel's colour and quality spread `grow` texels into the unseen texels of its own
+    face (chart: the face index of every texel, -1 outside the faces). A speck of a face seen at a grazing angle, or the
+    see-through rim of a seen face, draws a line along the edges of the painted buildings otherwise."""
+    from scipy.ndimage import label
+    colour, quality = colour.copy(), quality.copy()
+    seen = quality > 0
+    if min_island > 1 and seen.any():
+        lab, n = label(seen)
+        size = np.bincount(lab.ravel(), minlength=n + 1)
+        quality[(size[lab] < min_island) & seen] = 0.0
+    for _ in range(int(grow)):
+        seen = quality > 0
+        best_q = quality.copy()
+        best_c = colour.copy()
+        for dy, dx in ((1, 0), (-1, 0), (0, 1), (0, -1)):
+            q2 = np.roll(quality, (dy, dx), (0, 1))
+            c2 = np.roll(colour, (dy, dx), (0, 1))
+            same = np.roll(chart, (dy, dx), (0, 1)) == chart
+            take = ~seen & (chart >= 0) & same & (q2 > best_q)
+            best_q = np.where(take, q2, best_q)
+            best_c = np.where(take[..., None], c2, best_c)
+        quality, colour = best_q, best_c
+    return colour, quality
 
 
 def people_mask(folder, key, cam, cut=64):
@@ -226,6 +254,14 @@ def main(argv):
         guess = part.copy()
         guess[~seen_t] = mean[real_face[~seen_t]]
         fused.reshape(-1, 3)[where] = guess
+    if "tidy" in opts:              # --tidy[=grow]: drop specks, close the see-through rims of seen faces
+        chart = np.full(rows * width, -1, np.int64)
+        chart[where] = np.concatenate([np.full(int(c[1].sum()), f) for f, c in enumerate(charts)])
+        q2 = quality.reshape(rows, width)
+        fused, q2 = tidy(np.nan_to_num(fused, nan=0.0), q2, chart.reshape(rows, width),
+                         grow=int(opts.get("tidy") or 2))
+        quality = q2.reshape(-1)
+        count = np.where(q2 > 0, np.maximum(count, 1), count)
     atlas = np.where(np.isnan(fused), np.array(UNSEEN, np.float32), fused).clip(0, 255).astype(np.uint8)
     Image.fromarray(atlas).save(out / "atlas.png")
     Image.fromarray(atlas_views.seen_png(count)).save(out / "seen.png")
