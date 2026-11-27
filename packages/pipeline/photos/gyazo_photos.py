@@ -5,9 +5,11 @@ ignores (next to the catalogue that uses it, one photo per line, sorted), the ph
 "gyazo:<id>", and a step reads them only when given --include-gyazo (atlas_before.py photos).
 
     python -m photos.gyazo_photos collect <gyazo.json> --creator=<name> [--query=#publish_as_cc0]
+    python -m photos.gyazo_photos reread <gyazo.json>      every row again from its stored original's EXIF
 
-collect asks the gyazo CLI for every capture the query finds, reads each one's EXIF place (gyazo get), keeps the
-public ones that carry the tag, stores each photo once and adds new rows to the file.
+collect asks the gyazo CLI for every capture the query finds, keeps the public ones that carry the tag, reads place,
+time, compass heading and focal length from each original image's own EXIF (gyazo get returns none for a photo just
+uploaded), stores each photo once and adds new rows to the file.
 """
 from __future__ import annotations
 
@@ -44,6 +46,50 @@ def record(item: dict, creator: str) -> dict | None:
             "time_of_day": classify_time_of_day("", hour=local.hour) if local else "unknown",
             "heading": _number((meta.get("exif") or {}).get("GPS Image Direction")),      # compass, degrees
             "focal_35mm": _number((meta.get("exif") or {}).get("Focal Length in 35mm Film"))}
+
+
+def exif_of(data: bytes) -> dict:
+    """What the original image's own EXIF says: lat, lon, heading, focal_35mm, model, taken (local time, ISO), each
+    None when absent. gyazo get may return no EXIF for a photo just uploaded, while the original keeps it."""
+    import io
+    from PIL import ExifTags, Image
+    out = {"lat": None, "lon": None, "heading": None, "focal_35mm": None, "model": None, "taken": None}
+    try:
+        exif = Image.open(io.BytesIO(data)).getexif()
+    except OSError:
+        return out
+    sub, gps = exif.get_ifd(0x8769), exif.get_ifd(0x8825)
+    tags = {ExifTags.GPSTAGS.get(k, k): v for k, v in gps.items()}
+
+    def degrees(v, ref):
+        d = float(v[0]) + float(v[1]) / 60 + float(v[2]) / 3600
+        return -d if ref in ("S", "W") else d
+    if "GPSLatitude" in tags and "GPSLongitude" in tags:
+        out["lat"] = degrees(tags["GPSLatitude"], tags.get("GPSLatitudeRef", "N"))
+        out["lon"] = degrees(tags["GPSLongitude"], tags.get("GPSLongitudeRef", "E"))
+    if "GPSImgDirection" in tags:
+        out["heading"] = float(tags["GPSImgDirection"])
+    if sub.get(0xA405):
+        out["focal_35mm"] = float(sub[0xA405])
+    out["model"] = exif.get(0x0110) or None
+    taken = sub.get(0x9003)
+    if taken and len(str(taken)) >= 19:
+        out["taken"] = str(taken)[:10].replace(":", "-") + "T" + str(taken)[11:19]
+    return out
+
+
+def with_exif(row: dict, exif: dict) -> dict:
+    """The row with what the original's EXIF says in place of what the API returned (place, time, heading, focal)."""
+    if exif["lat"] is not None:
+        row["coordinates"] = [exif["lon"], exif["lat"]]
+    if exif["taken"]:
+        local = datetime.fromisoformat(exif["taken"])          # EXIF times are the camera's local time
+        row["date"] = local.date().isoformat()
+        row["time_of_day"] = classify_time_of_day("", hour=local.hour)
+    for key in ("heading", "focal_35mm"):
+        if exif[key] is not None:
+            row[key] = exif[key]
+    return row
 
 
 def merge(found: dict, got: dict) -> dict:
@@ -110,7 +156,9 @@ def collect(path, creator: str, query: str = TAG) -> dict[str, int]:
                     counts["refused"] += 1
                     continue
                 with urllib.request.urlopen(row["original_url"], timeout=60) as r:
-                    row["photo"] = photo_store.put(row, r.read())
+                    data = r.read()
+                row = with_exif(row, exif_of(data))         # the original's EXIF, not the API's (empty just after upload)
+                row["photo"] = photo_store.put(row, data)
             except (OSError, subprocess.SubprocessError, ValueError) as e:     # one capture failing (503) is not all
                 print("failed:", type(e).__name__, e, file=sys.stderr)
                 counts["failed"] = counts.get("failed", 0) + 1
@@ -123,9 +171,26 @@ def collect(path, creator: str, query: str = TAG) -> dict[str, int]:
     return counts
 
 
+def reread(path) -> dict[str, int]:
+    """Take every row's place, time, heading and focal length again from its stored original's EXIF."""
+    rows, changed = read(path), 0
+    for row in rows:
+        stored = photo_store.path(row["photo"]) if row.get("photo") else None
+        if stored is None:
+            continue
+        before = json.dumps(row, sort_keys=True)
+        with_exif(row, exif_of(stored.read_bytes()))
+        changed += json.dumps(row, sort_keys=True) != before
+    write(path, rows)
+    return {"rows": len(rows), "changed": changed}
+
+
 def main(argv: list[str]) -> None:
     opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))
     args = [a for a in argv if not a.startswith("--")]
+    if len(args) == 2 and args[0] == "reread":
+        print(json.dumps(reread(Path(args[1]))))
+        return
     if len(args) == 2 and args[0] == "collect" and opts.get("creator"):
         print(json.dumps(collect(Path(args[1]), opts["creator"], opts.get("query") or TAG)))
         return
