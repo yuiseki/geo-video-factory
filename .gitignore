@@ -17,8 +17,6 @@ logs/
 *.psd
 *.glb
 
-*.log
-
 # Reference videos and their analyses stay outside the repository
 video-references/
 
