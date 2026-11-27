@@ -38,7 +38,7 @@ class Record(unittest.TestCase):
 class Merge(unittest.TestCase):
     def test_the_search_result_lends_its_tag_to_a_detail_without_one(self):
         got = {"image_id": "gyazo-test-photo-id", "access_policy": "anyone", "url": "u", "permalink_url": "p",
-               "metadata": {"exif_normalized": {"latitude": 35.0, "longitude": 139.0, "time": "2026-11-23T03:00:00Z"},
+               "metadata": {"desc": "", "exif_normalized": {"latitude": 35.0, "longitude": 139.0, "time": "2026-11-23T03:00:00Z"},
                             "exif": {"GPS Image Direction": "123.45", "Focal Length in 35mm Film": "26"}}}
         row = gz.record(gz.merge(ITEM, got), creator="x")
         self.assertIsNotNone(row)

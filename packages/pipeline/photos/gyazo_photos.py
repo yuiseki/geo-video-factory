@@ -48,9 +48,9 @@ def record(item: dict, creator: str) -> dict | None:
 
 def merge(found: dict, got: dict) -> dict:
     """A capture's detail (gyazo get: EXIF) with the description and access of its search result where the detail
-    lacks them (gyazo get does not always return the description)."""
-    meta = dict(found.get("metadata") or {}, **{k: v for k, v in (got.get("metadata") or {}).items() if v is not None})
-    out = dict(found, **{k: v for k, v in got.items() if v is not None and k != "metadata"})
+    lacks them (gyazo get may return the description empty)."""
+    meta = dict(found.get("metadata") or {}, **{k: v for k, v in (got.get("metadata") or {}).items() if v not in (None, "")})
+    out = dict(found, **{k: v for k, v in got.items() if v not in (None, "") and k != "metadata"})
     out["metadata"] = meta
     return out
 
