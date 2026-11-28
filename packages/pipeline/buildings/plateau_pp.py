@@ -145,20 +145,50 @@ def cache_dir(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau
     return pp_tiles.store() / "boxes" / cache_key(bbox, tileset, seed)
 
 
+LOCK_POLL_S = 2.0      # how often a run that waits for another's box looks again
+LOCK_EMPTY_S = 60.0    # a lock still without a pid after this long was left by a run that stopped right after making it
+
+
 def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp") -> Path:
     """The PLATEAU++ of this box: its manifest and links into the per-tile store, written once per version.
 
-    The links are written into <dir>.<pid>.part and moved into place when done, so a box stopped half way is never
-    read. A box comes out the same whoever builds it (the tiles are idempotent, pp_tiles), so two runs asking for one
-    box need no lock: each builds its own .part, the first to finish moves it into place, and the other drops its own.
-    A .part left by a run that stopped holds links only and is ignored. request.json says what the directory holds.
-    The tiles themselves are kept once for every box (pp_tiles), so another box costs only the tiles it adds.
+    One run builds a box at a time: it creates <dir>.lock (exclusively) holding its pid, and a run that finds the
+    lock held by a live process waits for the box instead of building it again; a lock whose process is gone is
+    taken over. The links are written into <dir>.<pid>.part and moved into place when done, so a box stopped half
+    way is never read. A box comes out the same whoever builds it (the tiles are idempotent, pp_tiles), so the rare
+    case the lock lets through (two runs taking over one dead lock at once) still ends in the same box: the first to
+    finish moves its .part into place and the other drops its own. A .part left by a run that stopped holds links
+    only and is ignored. request.json says what the directory holds. The tiles themselves are kept once for every
+    box (pp_tiles), so another box costs only the tiles it adds.
     """
-    import shutil
+    import time
     final = cache_dir(bbox, tileset, seed)
-    if (final / "manifest.json").exists():
-        return final
+    lock = final.with_name(final.name + ".lock")
     final.parent.mkdir(parents=True, exist_ok=True)
+    while not (final / "manifest.json").exists():
+        try:
+            fd = os.open(lock, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+        except FileExistsError:
+            holder = _lock_pid(lock)
+            gone = not _alive(holder) if holder is not None else _age_s(lock) > LOCK_EMPTY_S
+            if gone and _lock_pid(lock) == holder:
+                lock.unlink(missing_ok=True)          # its builder is gone: take the box over
+            else:
+                time.sleep(LOCK_POLL_S)               # being built (or the pid not written yet): wait for it
+            continue
+        try:
+            os.write(fd, str(os.getpid()).encode())
+            os.close(fd)
+            _build_box(final, bbox, tileset, seed)
+        finally:
+            lock.unlink(missing_ok=True)
+    return final
+
+
+def _build_box(final: Path, bbox: list[float], tileset: str, seed: str) -> None:
+    import shutil
+    if (final / "manifest.json").exists():
+        return
     part = final.with_name(f"{final.name}.{os.getpid()}.part")
     part.mkdir(parents=True, exist_ok=True)   # a dead run's with our pid: building over it gives the same box
     build(part, list(bbox), tileset, None, seed, None, True)
@@ -171,7 +201,43 @@ def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp
             raise
     if part.exists():                     # another run finished the same box first: take its, drop ours
         shutil.rmtree(part, ignore_errors=True)
-    return final
+
+
+def _lock_pid(lock: Path) -> int | None:
+    try:
+        text = lock.read_text().strip()
+    except OSError:
+        return None
+    return int(text) if text.isdigit() else None
+
+
+def _age_s(path: Path) -> float:
+    import time
+    try:
+        return time.time() - path.stat().st_mtime
+    except OSError:
+        return 0.0
+
+
+def _alive(pid: int) -> bool:
+    """Whether a process with this pid runs on this machine (the cache is per machine, so is the lock)."""
+    if os.name == "nt":                   # os.kill(pid, 0) would end the process there: ask the kernel instead
+        import ctypes
+        k32 = ctypes.windll.kernel32
+        h = k32.OpenProcess(0x1000, False, pid)                 # PROCESS_QUERY_LIMITED_INFORMATION
+        if not h:
+            return False
+        code = ctypes.c_ulong()
+        k32.GetExitCodeProcess(h, ctypes.byref(code))
+        k32.CloseHandle(h)
+        return code.value == 259                                # STILL_ACTIVE
+    try:
+        os.kill(pid, 0)
+    except ProcessLookupError:
+        return False
+    except PermissionError:               # it runs, under another user
+        return True
+    return True
 
 
 def main(argv: list[str]) -> None:

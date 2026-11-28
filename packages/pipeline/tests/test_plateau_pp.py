@@ -146,6 +146,72 @@ class Cached(unittest.TestCase):
         self.assertTrue((path / "manifest.json").exists())
         self.assertNotEqual(self.calls[0], theirs)
 
+    def test_the_builder_holds_a_lock_with_its_pid_and_lets_go_when_done(self):
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        lock = plateau_pp.cache_dir(bbox).with_name(plateau_pp.cache_dir(bbox).name + ".lock")
+        seen = []
+        self.build.stop()
+
+        def build(out, *a, **k):
+            seen.append(lock.read_text())
+            Path(out).mkdir(parents=True, exist_ok=True)
+            (Path(out) / "manifest.json").write_text("{}")
+        with mock.patch.object(plateau_pp, "build", side_effect=build):
+            plateau_pp.cached(bbox)
+        self.build.start()
+        self.assertEqual(seen, [str(os.getpid())])
+        self.assertFalse(lock.exists())
+
+    def test_a_box_a_live_process_holds_is_waited_for_not_built_again(self):
+        import threading
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        final = plateau_pp.cache_dir(bbox)
+        lock = final.with_name(final.name + ".lock")
+        lock.parent.mkdir(parents=True)
+        lock.write_text(str(os.getppid()))                       # alive: the runner that started these tests
+
+        def finish():
+            final.mkdir()
+            (final / "manifest.json").write_text("{}")
+            lock.unlink()
+        threading.Timer(0.3, finish).start()
+        with mock.patch.object(plateau_pp, "LOCK_POLL_S", 0.05):
+            path = plateau_pp.cached(bbox)
+        self.assertEqual(path, final)
+        self.assertEqual(self.calls, [])
+
+    def test_a_lock_left_by_a_dead_process_is_taken_over(self):
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        lock = plateau_pp.cache_dir(bbox).with_name(plateau_pp.cache_dir(bbox).name + ".lock")
+        lock.parent.mkdir(parents=True)
+        lock.write_text("99999999")
+        with mock.patch.object(plateau_pp, "LOCK_POLL_S", 0.05):
+            path = plateau_pp.cached(bbox)
+        self.assertTrue((path / "manifest.json").exists())
+        self.assertEqual(len(self.calls), 1)
+        self.assertFalse(lock.exists())
+
+    def test_an_empty_lock_is_waited_on_briefly_then_taken_over(self):
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        lock = plateau_pp.cache_dir(bbox).with_name(plateau_pp.cache_dir(bbox).name + ".lock")
+        lock.parent.mkdir(parents=True)
+        lock.write_text("")                                      # made, but its maker stopped before the pid
+        old = lock.stat().st_mtime - 120
+        os.utime(lock, (old, old))
+        with mock.patch.object(plateau_pp, "LOCK_POLL_S", 0.05):
+            path = plateau_pp.cached(bbox)
+        self.assertTrue((path / "manifest.json").exists())
+        self.assertEqual(len(self.calls), 1)
+
+    def test_the_liveness_check_never_signals_a_process_on_windows(self):
+        """On Windows os.kill(pid, 0) ends the process; the check must ask the kernel there instead."""
+        with mock.patch.object(plateau_pp.os, "name", "nt"), mock.patch.object(plateau_pp.os, "kill") as kill:
+            try:
+                plateau_pp._alive(os.getpid())
+            except AttributeError:        # no ctypes.windll off Windows: what matters is that kill was not called
+                pass
+        kill.assert_not_called()
+
     def test_a_box_finished_by_another_process_meanwhile_is_taken_and_ours_dropped(self):
         bbox = [139.68, 35.688, 139.69, 35.696]
         final = plateau_pp.cache_dir(bbox)
