@@ -173,6 +173,19 @@ class SearchTests(unittest.TestCase):
         np.testing.assert_array_equal(alone[1], pooled[1])
         np.testing.assert_array_equal(alone[2], pooled[2])
 
+    def test_spawned_workers_where_there_is_no_fork_give_the_same_answer(self):
+        """Windows has no fork: the workers are spawned and handed the search's state instead of inheriting it."""
+        alone = pp.search(self.edges, self.sky, self.places, self.poses, bins=BINS, workers=None)
+        try:
+            pp.START_METHOD = "spawn"
+            self.assertEqual(pp._context().get_start_method(), "spawn")
+            spawned = pp.search(self.edges, self.sky, self.places, self.poses, bins=BINS, workers=(2, 2))
+        finally:
+            pp.START_METHOD = None
+        self.assertEqual(alone[0], spawned[0])
+        np.testing.assert_array_equal(alone[1], spawned[1])
+        np.testing.assert_array_equal(alone[2], spawned[2])
+
     def test_what_the_picture_says_can_be_read_once_and_given_to_every_search(self):
         told = pp.picture_says(self.sky, self.poses, bins=BINS, workers=2)
         self.assertEqual(len(told), len(self.poses))

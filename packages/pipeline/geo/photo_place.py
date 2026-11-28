@@ -153,10 +153,27 @@ def _one_pose(iq):
     return cost[np.arange(len(model)), turn], turn
 
 
+START_METHOD = None   # None: fork where the system has it (workers inherit _STATE), else spawn (they are handed it)
+
+
+def _context():
+    method = START_METHOD or ("fork" if "fork" in multiprocessing.get_all_start_methods() else "spawn")
+    return multiprocessing.get_context(method)
+
+
+def _take_state(state):
+    _STATE.update(state)
+
+
 def _map(func, items, workers, chunksize):
     if not workers or workers == 1:
         return [func(i) for i in items]
-    with multiprocessing.get_context("fork").Pool(workers) as pool:
+    ctx = _context()
+    if ctx.get_start_method() == "fork":
+        pool = ctx.Pool(workers)
+    else:
+        pool = ctx.Pool(workers, initializer=_take_state, initargs=(dict(_STATE),))
+    with pool:
         return pool.map(func, items, chunksize=chunksize)
 
 
