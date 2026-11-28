@@ -55,6 +55,27 @@ class Georeference(unittest.TestCase):
         self.assertAlmostEqual(sc.angle_deg(got["a.jpg"]["R"], looking(30)), 0, places=5)
 
 
+class GeoreferenceAModel(unittest.TestCase):
+    def test_a_text_model_from_another_tool_is_put_on_the_gps(self):
+        # cameras in an SfM frame (scaled 0.5, y down, shifted); GPS says where they stood
+        flip = np.diag([1.0, -1.0, -1.0])
+        world = {"a.jpg": (0.0, 0.0, looking(0)), "b.jpg": (20.0, 0.0, looking(90)), "c.jpg": (0.0, 30.0, looking(180))}
+        sfm = {k: {"R": r @ flip.T, "C": 0.5 * flip @ np.array([e, n, 1.6]) + np.array([1.0, 2.0, 3.0])}
+               for k, (e, n, r) in world.items()}
+        origin = (139.776, 35.7116)
+        fixes = {k: sc._sphere_lonlat(e, n, *origin) for k, (e, n, _) in world.items()}
+        with tempfile.TemporaryDirectory() as d:
+            d = Path(d)
+            cs.write_model(d / "sfm", sfm, None)
+            cs.georeference_model(d / "sfm", fixes, d / "geo")
+            got = sc.components(d / "geo")[0]
+        for k, (e, n, r) in world.items():
+            ge, gn = cs.sphere_enu(*got[k]["lonlat"], origin)
+            self.assertAlmostEqual(ge, e, places=3)
+            self.assertAlmostEqual(gn, n, places=3)
+            self.assertAlmostEqual(sc.angle_deg(got[k]["R"], r), 0, places=4)
+
+
 class Components(unittest.TestCase):
     def test_a_dir_of_models_is_read_as_components(self):
         cams = {"a.jpg": {"R": looking(0), "C": np.zeros(3)}}

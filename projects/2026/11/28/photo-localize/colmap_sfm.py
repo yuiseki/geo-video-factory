@@ -1,6 +1,7 @@
 """The repository's usual SfM (pycolmap, as atlas_before.py's step_sfm), georeferenced from the photos' GPS.
 
     python colmap_sfm.py <image dir> <work dir> [--threads=6]
+    python colmap_sfm.py --georef <COLMAP text model> <image dir> <out dir>    another tool's model, same fit
 
 SIFT on every image (long side 1600 px, up to 8,192 features, one camera per image from its EXIF), exhaustive
 matching, incremental mapping. Every model it makes is put into metres east, north, up with
@@ -52,7 +53,31 @@ def write_model(d, cams, origin):
         q = r_to_quat(r)
         lines += [" ".join(map(str, [i, *q, *t, i, name])), ""]
     (d / "images.txt").write_text("\n".join(lines) + "\n")
-    (d / "enu_origin.txt").write_text(f"# lat lon alt\n{origin[1]} {origin[0]} 0\n")
+    if origin is not None:
+        (d / "enu_origin.txt").write_text(f"# lat lon alt\n{origin[1]} {origin[0]} 0\n")
+
+
+def read_model(d):
+    """{name: (R, C)} from a COLMAP text model's images.txt, in its own frame."""
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from sfm_compare import quat_to_r
+    lines = [ln for ln in (Path(d) / "images.txt").read_text().splitlines() if not ln.startswith("#")]
+    out = {}
+    for ln in lines[0::2]:
+        f = ln.split()
+        if len(f) < 10:
+            continue
+        r, t = quat_to_r(*map(float, f[1:5])), np.array(list(map(float, f[5:8])))
+        out[f[9]] = (r, -r.T @ t)
+    return out
+
+
+def georeference_model(model, fixes, out):
+    """Put a COLMAP text model made by any tool on the photos' GPS ({name: (lon, lat)}), written to out/0/."""
+    sfm = read_model(model)
+    origin = tuple(np.mean(list(fixes.values()), axis=0))
+    gps = {k: sphere_enu(*v, origin) for k, v in fixes.items()}
+    write_model(Path(out) / "0", georeference(sfm, gps), origin)
 
 
 def exif_lonlat(path):
@@ -65,10 +90,16 @@ def exif_lonlat(path):
 
 
 def main(argv):
+    opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))
+    paths = [Path(a) for a in argv if not a.startswith("--")]
+    if "georef" in opts:
+        model, img, out = paths
+        fixes = {p.name: exif_lonlat(p) for p in sorted(img.glob("*.jpg"))}
+        georeference_model(model, {k: v for k, v in fixes.items() if v}, out)
+        return
+    img, work = paths
     import zlib  # noqa: F401  (pycolmap's wheel needs it loaded first)
     import pycolmap
-    opts = dict((a[2:].split("=", 1) + [""])[:2] for a in argv if a.startswith("--"))
-    img, work = (Path(a) for a in argv if not a.startswith("--"))
     work.mkdir(parents=True, exist_ok=True)
     db, sparse = work / "database.db", work / "sparse"
     sparse.mkdir(exist_ok=True)
