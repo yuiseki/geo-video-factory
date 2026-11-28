@@ -4,9 +4,9 @@
 
 <names.tsv> maps each SfM image name to the key photo_solve's run used for the same photo (one "NNN.jpg<TAB>key"
 per line). <truth dir> holds photo_solve work directories named by key; only those whose solve.json says "solved"
-count as truth. A model dir is either a COLMAP text model with enu_origin.txt beside it (visloc-rs writes both:
-tool name "visloc") or an OpenSfM dataset with reconstruction.json and reference_lla.json (any other tool name is
-read as OpenSfM). Each tool is scored as it georeferenced itself from the photos' GPS: for every truth photo, how
+count as truth. A model dir is a COLMAP text model with enu_origin.txt beside it (visloc-rs writes both), a
+directory of such models (colmap_sfm.py's geo/), or an OpenSfM dataset with reconstruction.json and
+reference_lla.json; the tool name only labels the report. Each tool is scored as it georeferenced itself from the photos' GPS: for every truth photo, how
 far its camera is from photo_solve's and by how many degrees it is turned. All positions go through longitude and
 latitude and then one local frame, so the tools' own metre conventions do not matter. Every camera is OpenCV's:
 x_cam = R @ (x - C), x right, y down, z forward, world east, north, up.
@@ -124,6 +124,17 @@ def opensfm_cams(dataset):
     return comps
 
 
+def components(model):
+    """Every model in a directory: a COLMAP text model (images.txt), an OpenSfM dataset (reconstruction.json), or a
+    directory of COLMAP text models, one per subdirectory (what does not connect becomes another model)."""
+    model = Path(model)
+    if (model / "images.txt").exists():
+        return [colmap_cams(model)]
+    if (model / "reconstruction.json").exists():
+        return opensfm_cams(model)
+    return [colmap_cams(d) for d in sorted(model.iterdir()) if (d / "images.txt").exists()]
+
+
 def similarity(src, dst):
     """Scale, rotation and shift with dst = s * R @ src + t, least squares (Umeyama)."""
     src, dst = np.asarray(src, float), np.asarray(dst, float)
@@ -180,7 +191,7 @@ def main(argv):
     report = {"truth_photos": len(truth), "tools": {}}
     for spec in argv[2:]:
         tool, model = spec.split("=", 1)
-        comps = [colmap_cams(model)] if tool == "visloc" else opensfm_cams(model)
+        comps = components(model)
         best = max(comps, key=len) if comps else {}
         rows = against_truth(best, truth)
         report["tools"][tool] = {"components": [len(c) for c in comps], "registered_total": sum(len(c) for c in comps),
