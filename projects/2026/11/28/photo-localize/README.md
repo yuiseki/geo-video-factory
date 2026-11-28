@@ -90,4 +90,66 @@ one PINHOLE camera per photo from the EXIF 35 mm focal length).
   point at the station as the photos show. Night, crowds, construction and years between photos keep the
   rest apart.
 
+## Five SfM tools on the same photos (2026-11-28)
+
+The same street photos went through five SfM tools on equal terms: long side 1,600 px,
+SIFT up to 8,192 features, exhaustive pairs, one camera per photo from its EXIF. Each
+model is put on the photos' GPS and scored against 12 cameras that `geo.photo_solve`
+placed independently (`sfm_compare.py`; all components of a model are scored, a photo in
+two components taking the larger one's pose).
+
+| Tool | Version, licence | How GPS enters | Script |
+|---|---|---|---|
+| visloc-rs | f692931 | priors in bundle adjustment | `unordered_sfm_demo` (above) |
+| COLMAP | pycolmap 4.2.1, BSD-3-Clause | Sim(3) afterwards (`world_model.sim3`) | `colmap_sfm.py` |
+| OpenSfM | 1d1f9a3 (last commit with green CI), BSD-2-Clause | priors in bundle adjustment | docker build of the repository |
+| AliceVision (Meshroom's engine) | 3.3.0 release binaries, MPL-2.0 | Sim(3) afterwards | `av_sfm.sh`, `av_intrinsics.py` |
+| openMVG | v2.1, MPL-2.0 | priors in bundle adjustment | `omvg_sfm.sh`, `omvg_tools.py` |
+
+ODM's OpenSfM fork is AGPL and was not used.
+
+Ueno, 200 photos from one phone around the station's pedestrian deck and the pavements
+below it:
+
+| Tool | Registered (components) | Truths placed | Offset from photo_solve, median / max | Turn, median | Time | Peak memory |
+|---|---|---|---|---|---|---|
+| visloc-rs | 199 (1) | 12 | 19.8 m / 241.6 m | 45.6 deg | 23 min | 6.8 GB |
+| COLMAP | 202 (154 + 48) | 12 | 4.9 m / 14.6 m | 7.6 deg | 34 min | 3.6 GB |
+| OpenSfM | 199 (151 + 48) | 12 | 4.6 m / 13.6 m | 4.7 deg | 12 min | not measured |
+| AliceVision | 89 (1) | 9 | 5.6 m / 12.6 m | 10.8 deg | 88 min | 4.9 GB |
+| openMVG | 150 (1) | 10 | 9.0 m / 14.2 m | 5.0 deg | 6 min | not measured |
+
+The other set had 130 photos: a home balcony, the street outside and the walk to a station
+between tall buildings. No photo_solve truth was available for it, so only registration
+was compared:
+
+- visloc-rs: 43
+- COLMAP: 112 in one model
+- OpenSfM: 54 + 43 + 13 + 2
+- AliceVision: 43
+- openMVG: 33
+
+- COLMAP and OpenSfM split Ueno at the same place, into about 150 and 48 photos. Two tools
+  agreeing suggests the break is in the photos, not in either tool.
+- Photos 018 and 025 sit 12 to 14 m from photo_solve in every model except visloc-rs, all
+  in the same direction. That points at photo_solve's answer for those two, not at the
+  tools.
+- GPS inside bundle adjustment hurts when the GPS error is as large as the walk:
+  - visloc-rs pulls the whole model toward the noisy fixes and turns it.
+  - openMVG keeps the shape but scatters the cameras.
+- A Sim(3) fitted after a purely visual model (COLMAP, AliceVision) keeps the model's
+  shape. OpenSfM's priors are weak enough to do the same.
+- AliceVision got the heading right (1 to 3 deg) but was tilted 8 to 12 deg. The up
+  direction is taken as the cameras' mean up, and 89 cameras leave that estimate biased.
+- AliceVision spent 97% of its time in CPU feature matching.
+- openMVG's INCREMENTALV2 never grew past its two-view seed on 130 or 200 photos, with
+  either the STELLAR or the MAX_PAIR initialiser. The classic INCREMENTAL engine works.
+
+How to run them:
+
+- AliceVision: `av_sfm.sh` with `AV_ROOT` pointing at the release.
+- openMVG: `omvg_sfm.sh` with `OMVG_IMAGE` pointing at a docker image built from the
+  repository's Dockerfile.
+- Both scripts write `geo/0/`, which `sfm_compare.py` reads.
+
 Tests: `python -m unittest discover -s tests`.
