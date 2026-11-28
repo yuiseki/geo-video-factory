@@ -5,7 +5,8 @@
 The anchor goes first with its pose (cam2world: Rw transposed, eye) and its intrinsics; every other photo goes with
 the intrinsics its EXIF 35 mm focal length gives (none when the EXIF has none). MapAnything (the Apache-2.0
 weights, facebook/map-anything-apache) returns every camera in the anchor's metric frame, which is the frame of
-the anchor's solve.json (metres east, north, up from its "origin"). Writes {name: {eye, Rw, params, width,
+the anchor's solve.json (metres east, north, up from its "origin"): the model answers in its first view's frame,
+so every pose is carried by the anchor's given pose (to_anchor_frame). Writes {name: {eye, Rw, params, width,
 height}, "origin": ...}. --no-anchor gives no pose to anyone (the model's own frame, for comparison).
 """
 import json
@@ -45,6 +46,13 @@ def camera_of(pose):
     return {"eye": pose[:3, 3].tolist(), "Rw": pose[:3, :3].T.tolist()}
 
 
+def to_anchor_frame(out_poses, anchor_given):
+    """MapAnything answers in its first view's frame (that view near identity), even when the view came with a pose:
+    move every pose by anchor_given @ inv(first view's answer) so the anchor lands where it was given."""
+    move = np.asarray(anchor_given, float) @ np.linalg.inv(np.asarray(out_poses[0], float))
+    return [move @ np.asarray(p, float) for p in out_poses]
+
+
 def main(argv):
     import torch
     from mapanything.models import MapAnything
@@ -71,8 +79,10 @@ def main(argv):
     model = MapAnything.from_pretrained(MODEL).to(dev)
     preds = model.infer(preprocess_inputs(views), memory_efficient_inference=True, use_amp=True, amp_dtype="bf16")
     res = {"origin": solve_path["origin"], "anchor": anchor, "anchored": use_anchor}
-    for name, p in zip(names, preds):
-        pose = p["camera_poses"][0].float().cpu().numpy()
+    poses = [p["camera_poses"][0].float().cpu().numpy() for p in preds]
+    if use_anchor:
+        poses = to_anchor_frame(poses, pose_of(solve_path["camera"]))
+    for name, p, pose in zip(names, preds, poses):
         k = p["intrinsics"][0].float().cpu().numpy()
         hh, ww = p["img_no_norm"].shape[1:3]
         res[name] = {**camera_of(pose),

@@ -28,5 +28,18 @@ class Pose(unittest.TestCase):
         np.testing.assert_allclose(back["Rw"], self.cam["Rw"], atol=1e-12)
 
 
+class Frame(unittest.TestCase):
+    def test_poses_in_the_first_cameras_frame_are_carried_into_the_anchors_world(self):
+        """MapAnything returns the first view near identity: every pose is moved by anchor_given @ inv(first_out)."""
+        rng = np.random.default_rng(0)
+        q, _ = np.linalg.qr(rng.normal(size=(3, 3)))
+        given = np.eye(4); given[:3, :3] = q * np.sign(np.linalg.det(q)); given[:3, 3] = [5.0, -33.0, 40.0]
+        rel = np.eye(4); rel[:3, :3] = given[:3, :3].T @ given[:3, :3]; rel[:3, 3] = [2.0, 0.0, 7.0]   # view 2
+        first_out = np.eye(4); first_out[:3, 3] = [0.01, -0.02, 0.1]                      # not quite identity
+        world = ma.to_anchor_frame([first_out, first_out @ rel], given)
+        np.testing.assert_allclose(world[0], given, atol=1e-12)
+        np.testing.assert_allclose(world[1], given @ rel, atol=1e-12)
+
+
 if __name__ == "__main__":
     unittest.main()
