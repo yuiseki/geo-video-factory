@@ -135,6 +135,14 @@ def components(model):
     return [colmap_cams(d) for d in sorted(model.iterdir()) if (d / "images.txt").exists()]
 
 
+def merged(comps):
+    """One camera per photo from every model; a photo in two models takes the larger model's camera."""
+    out = {}
+    for c in sorted(comps, key=len):
+        out.update(c)
+    return out
+
+
 def similarity(src, dst):
     """Scale, rotation and shift with dst = s * R @ src + t, least squares (Umeyama)."""
     src, dst = np.asarray(src, float), np.asarray(dst, float)
@@ -193,7 +201,7 @@ def main(argv):
         tool, model = spec.split("=", 1)
         comps = components(model)
         best = max(comps, key=len) if comps else {}
-        rows = against_truth(best, truth)
+        rows = against_truth(merged(comps), truth)
         report["tools"][tool] = {"components": [len(c) for c in comps], "registered_total": sum(len(c) for c in comps),
                                  "largest": len(best), "vs_photo_solve": summary(rows), "rows": rows}
     json.dump(report, sys.stdout, indent=1, default=float)

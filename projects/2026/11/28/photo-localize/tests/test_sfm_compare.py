@@ -98,6 +98,12 @@ class Scoring(unittest.TestCase):
         rows = sc.against_truth({}, truth)
         self.assertEqual(rows, [{"name": "a", "registered": False}])
 
+    def test_components_merge_with_the_larger_one_winning(self):
+        a = {"x": {"id": "big"}, "y": {"id": "big"}, "z": {"id": "big"}}
+        b = {"z": {"id": "small"}, "w": {"id": "small"}}
+        m = sc.merged([b, a])
+        self.assertEqual({k: v["id"] for k, v in m.items()}, {"x": "big", "y": "big", "z": "big", "w": "small"})
+
     def test_similarity_fit_recovers_scale_rotation_shift(self):
         rng = np.random.default_rng(0)
         src = rng.normal(size=(6, 3))
