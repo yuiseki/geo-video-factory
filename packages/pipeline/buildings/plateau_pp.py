@@ -148,8 +148,10 @@ def cache_dir(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau
 def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp") -> Path:
     """The PLATEAU++ of this box: its manifest and links into the per-tile store, written once per version.
 
-    The links are written into <dir>.part and moved into place when done, so a box stopped half way is never read;
-    a leftover .part (links only) is thrown away and started again. request.json says what the directory holds.
+    The links are written into <dir>.<pid>.part and moved into place when done, so a box stopped half way is never
+    read. A box comes out the same whoever builds it (the tiles are idempotent, pp_tiles), so two runs asking for one
+    box need no lock: each builds its own .part, the first to finish moves it into place, and the other drops its own.
+    A .part left by a run that stopped holds links only and is ignored. request.json says what the directory holds.
     The tiles themselves are kept once for every box (pp_tiles), so another box costs only the tiles it adds.
     """
     import shutil
@@ -157,11 +159,8 @@ def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp
     if (final / "manifest.json").exists():
         return final
     final.parent.mkdir(parents=True, exist_ok=True)
-    for old in final.parent.glob(final.name + ".*part"):        # left by a run that stopped, not one still at work
-        if not _alive(old.name[len(final.name):-len("part")].strip(".")):
-            shutil.rmtree(old, ignore_errors=True)
     part = final.with_name(f"{final.name}.{os.getpid()}.part")
-    part.mkdir(parents=True)
+    part.mkdir(parents=True, exist_ok=True)   # a dead run's with our pid: building over it gives the same box
     build(part, list(bbox), tileset, None, seed, None, True)
     (part / "request.json").write_text(json.dumps({"version": PLATEAU_PP_VERSION, "tileset": tileset,
                                                    "bbox": list(bbox), "seed": seed}, indent=1) + "\n", encoding="utf-8")
@@ -173,29 +172,6 @@ def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp
     if part.exists():                     # another run finished the same box first: take its, drop ours
         shutil.rmtree(part, ignore_errors=True)
     return final
-
-
-def _alive(pid: str) -> bool:
-    """Whether the process that named a .part directory still runs on this machine ("" for the old unnamed .part)."""
-    if not pid.isdigit():
-        return False
-    if os.name == "nt":                   # os.kill(pid, 0) would end the process there: ask the kernel instead
-        import ctypes
-        k32 = ctypes.windll.kernel32
-        h = k32.OpenProcess(0x1000, False, int(pid))            # PROCESS_QUERY_LIMITED_INFORMATION
-        if not h:
-            return False
-        code = ctypes.c_ulong()
-        k32.GetExitCodeProcess(h, ctypes.byref(code))
-        k32.CloseHandle(h)
-        return code.value == 259                                # STILL_ACTIVE
-    try:
-        os.kill(int(pid), 0)
-    except ProcessLookupError:
-        return False
-    except OSError:                       # it exists but is not ours to signal (or Windows says so differently)
-        return True
-    return True
 
 
 def main(argv: list[str]) -> None:
