@@ -134,6 +134,54 @@ class Cached(unittest.TestCase):
         self.assertFalse((path / "stale").exists())
         self.assertFalse(part.exists())
 
+    def test_a_box_another_live_process_is_building_is_left_alone(self):
+        """Two photo_solve runs that ask for the same box: neither throws away the other's half-built directory."""
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        final = plateau_pp.cache_dir(bbox)
+        theirs = final.with_name(f"{final.name}.{os.getppid()}.part")      # a process that is alive
+        theirs.mkdir(parents=True)
+        (theirs / "half").write_text("x")
+        path = plateau_pp.cached(bbox)
+        self.assertTrue((theirs / "half").exists())
+        self.assertTrue((path / "manifest.json").exists())
+        self.assertNotEqual(self.calls[0], theirs)
+
+    def test_the_liveness_check_never_signals_a_process_on_windows(self):
+        """On Windows os.kill(pid, 0) terminates the process; the check must not call it there."""
+        with mock.patch.object(plateau_pp.os, "name", "nt"), mock.patch.object(plateau_pp.os, "kill") as kill:
+            try:
+                plateau_pp._alive(str(os.getpid()))
+            except AttributeError:        # no ctypes.windll off Windows: what matters is that kill was not called
+                pass
+        kill.assert_not_called()
+
+    def test_a_dead_process_part_is_thrown_away(self):
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        final = plateau_pp.cache_dir(bbox)
+        dead = final.with_name(f"{final.name}.99999999.part")
+        dead.mkdir(parents=True)
+        plateau_pp.cached(bbox)
+        self.assertFalse(dead.exists())
+
+    def test_a_box_finished_by_another_process_meanwhile_is_taken_and_ours_dropped(self):
+        bbox = [139.68, 35.688, 139.69, 35.696]
+        final = plateau_pp.cache_dir(bbox)
+        self.build.stop()
+
+        def build(out, *a, **k):          # while we build, the other process moves its box into place
+            self.calls.append(Path(out))
+            final.mkdir(parents=True)
+            (final / "manifest.json").write_text("{}")
+            (final / "theirs").write_text("x")
+            Path(out).mkdir(parents=True, exist_ok=True)
+            (Path(out) / "manifest.json").write_text("{}")
+        with mock.patch.object(plateau_pp, "build", side_effect=build):
+            path = plateau_pp.cached(bbox)
+        self.build.start()
+        self.assertEqual(path, final)
+        self.assertTrue((final / "theirs").exists())
+        self.assertFalse(self.calls[0].exists())
+
     def test_the_command_line_without_an_output_prints_the_cached_build(self):
         with mock.patch("builtins.print") as printed:
             plateau_pp.main(["--bbox=139.68,35.688,139.69,35.696"])

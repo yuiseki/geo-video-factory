@@ -156,15 +156,46 @@ def cached(bbox: list[float], tileset: str = TOKYO_2025, seed: str = "plateau-pp
     final = cache_dir(bbox, tileset, seed)
     if (final / "manifest.json").exists():
         return final
-    part = final.with_name(final.name + ".part")
-    if part.exists():
-        shutil.rmtree(part)
+    final.parent.mkdir(parents=True, exist_ok=True)
+    for old in final.parent.glob(final.name + ".*part"):        # left by a run that stopped, not one still at work
+        if not _alive(old.name[len(final.name):-len("part")].strip(".")):
+            shutil.rmtree(old, ignore_errors=True)
+    part = final.with_name(f"{final.name}.{os.getpid()}.part")
     part.mkdir(parents=True)
     build(part, list(bbox), tileset, None, seed, None, True)
     (part / "request.json").write_text(json.dumps({"version": PLATEAU_PP_VERSION, "tileset": tileset,
                                                    "bbox": list(bbox), "seed": seed}, indent=1) + "\n", encoding="utf-8")
-    part.rename(final)
+    try:
+        part.rename(final)
+    except OSError:
+        if not (final / "manifest.json").exists():
+            raise
+    if part.exists():                     # another run finished the same box first: take its, drop ours
+        shutil.rmtree(part, ignore_errors=True)
     return final
+
+
+def _alive(pid: str) -> bool:
+    """Whether the process that named a .part directory still runs on this machine ("" for the old unnamed .part)."""
+    if not pid.isdigit():
+        return False
+    if os.name == "nt":                   # os.kill(pid, 0) would end the process there: ask the kernel instead
+        import ctypes
+        k32 = ctypes.windll.kernel32
+        h = k32.OpenProcess(0x1000, False, int(pid))            # PROCESS_QUERY_LIMITED_INFORMATION
+        if not h:
+            return False
+        code = ctypes.c_ulong()
+        k32.GetExitCodeProcess(h, ctypes.byref(code))
+        k32.CloseHandle(h)
+        return code.value == 259                                # STILL_ACTIVE
+    try:
+        os.kill(int(pid), 0)
+    except ProcessLookupError:
+        return False
+    except OSError:                       # it exists but is not ours to signal (or Windows says so differently)
+        return True
+    return True
 
 
 def main(argv: list[str]) -> None:
